@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Plus, Trash2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { countdownLabel, daysUntil, formatDate } from '@/lib/dates/countdown'
@@ -12,7 +12,12 @@ import { useToday } from '@/lib/dates/use-today'
 import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
 import type { KeyDate } from '@/lib/types/progress'
 
-/** Your own dates alongside the two fixed ones — travel, mock sittings, whatever matters. */
+/**
+ * Your own dates alongside the two fixed ones.
+ *
+ * One CardContent rather than CardHeader + CardContent: each brings its own
+ * spacing, which is what opened the gap between the title and the body.
+ */
 export function KeyDates() {
   const { keyDates } = useProgress()
   const { setKeyDates } = useProgressActions()
@@ -33,17 +38,15 @@ export function KeyDates() {
   const remove = (id: string) => setKeyDates(keyDates.filter((d) => d.id !== id))
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle className="text-base">Your key dates</CardTitle>
-      </CardHeader>
+    <Card className="[--card-spacing:--spacing(5)]">
       <CardContent className="space-y-4">
+        <h3 className="text-sm font-medium">Your key dates</h3>
+
         {!ready ? (
-          <p className="text-muted-foreground text-sm">Loading…</p>
+          <div className="h-8" aria-hidden />
         ) : keyDates.length === 0 ? (
           <p className="text-muted-foreground text-sm">
-            Nothing added yet. Use this for anything with a date attached — booking travel to the
-            test centre, or a week you know you will lose to something else.
+            Travel bookings, mock sittings, anything else with a date.
           </p>
         ) : (
           <ul className="divide-y">
@@ -52,7 +55,7 @@ export function KeyDates() {
               return (
                 <li key={entry.id} className="flex items-center justify-between gap-3 py-2">
                   <div className="min-w-0">
-                    <p className="truncate text-sm font-medium">{entry.label}</p>
+                    <p className="truncate text-sm">{entry.label}</p>
                     <p className="text-muted-foreground text-xs">
                       {formatDate(entry.date)}
                       {days !== null ? ` · ${countdownLabel(days)}` : ''}
@@ -64,7 +67,7 @@ export function KeyDates() {
                     onClick={() => remove(entry.id)}
                     aria-label={`Remove ${entry.label}`}
                   >
-                    <Trash2 className="h-4 w-4" />
+                    <Trash2 className="size-4" />
                   </Button>
                 </li>
               )
@@ -72,15 +75,17 @@ export function KeyDates() {
           </ul>
         )}
 
+        {/* Grid, not flex-wrap: with flex the label field shrank to a few
+            pixels on a phone because the date input and button won the space. */}
         <form
-          className="flex flex-wrap items-end gap-2 border-t pt-4"
+          className="grid gap-3 border-t pt-4 sm:grid-cols-[1fr_auto_auto] sm:items-end sm:gap-2"
           onSubmit={(e) => {
             e.preventDefault()
             add()
           }}
         >
-          <div className="min-w-0 flex-1 space-y-1">
-            <Label htmlFor="key-date-label" className="text-xs">
+          <div className="min-w-0 space-y-1">
+            <Label htmlFor="key-date-label" className="text-muted-foreground text-xs">
               What
             </Label>
             <Input
@@ -91,7 +96,7 @@ export function KeyDates() {
             />
           </div>
           <div className="space-y-1">
-            <Label htmlFor="key-date-date" className="text-xs">
+            <Label htmlFor="key-date-date" className="text-muted-foreground text-xs">
               When
             </Label>
             <Input
@@ -101,8 +106,13 @@ export function KeyDates() {
               onChange={(e) => setDate(e.target.value)}
             />
           </div>
-          <Button type="submit" variant="outline" disabled={!label.trim() || !date}>
-            <Plus className="h-4 w-4" />
+          <Button
+            type="submit"
+            variant="outline"
+            disabled={!label.trim() || !date}
+            className="w-full sm:w-auto"
+          >
+            <Plus className="size-4" />
             Add
           </Button>
         </form>

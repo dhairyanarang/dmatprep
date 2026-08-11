@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
+import { SECTION_ACCENT } from '@/lib/nav'
 import type { SectionId } from '@/lib/sections'
 import { cn } from '@/lib/utils'
 
@@ -12,8 +13,15 @@ const TABS = [
   { segment: 'practice', label: 'Practice' },
 ] as const
 
+const ACTIVE = {
+  figures: 'border-figures text-foreground',
+  equations: 'border-equations text-foreground',
+  latin: 'border-latin text-foreground',
+} as const
+
 export function SectionTabs({ sectionId }: { sectionId: SectionId }) {
   const pathname = usePathname()
+  const accent = SECTION_ACCENT[sectionId]
 
   return (
     <div className="border-b">
@@ -28,10 +36,10 @@ export function SectionTabs({ sectionId }: { sectionId: SectionId }) {
               href={href}
               aria-current={active ? 'page' : undefined}
               className={cn(
-                'border-b-2 px-3 py-2.5 text-sm transition-colors',
-                'focus-visible:ring-ring rounded-t-sm focus-visible:ring-2 focus-visible:outline-none',
+                'flex h-10 items-center rounded-t-md border-b-2 px-3 text-sm transition-colors',
+                'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
                 active
-                  ? 'border-foreground text-foreground font-medium'
+                  ? `${ACTIVE[accent]} font-medium`
                   : 'text-muted-foreground hover:text-foreground border-transparent',
               )}
             >

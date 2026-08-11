@@ -65,19 +65,17 @@ export function FeedbackPanel({
   return (
     <div
       className={cn(
-        'rounded-lg border-2 p-4 sm:p-5',
-        correct
-          ? 'border-emerald-600/40 bg-emerald-50/60 dark:bg-emerald-950/20'
-          : 'border-rose-600/40 bg-rose-50/60 dark:bg-rose-950/20',
+        'rounded-xl border p-5',
+        correct ? 'border-success/40 bg-success-tint/50' : 'border-danger/40 bg-danger-tint/50',
       )}
       role="status"
       aria-live="polite"
     >
       <div className="flex items-center gap-2">
         {correct ? (
-          <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" aria-hidden />
+          <CheckCircle2 className="text-success-fg size-5" aria-hidden />
         ) : (
-          <XCircle className="h-5 w-5 text-rose-600 dark:text-rose-400" aria-hidden />
+          <XCircle className="text-danger-fg size-5" aria-hidden />
         )}
         <p className="font-medium">{correct ? 'Correct' : 'Not quite'}</p>
       </div>

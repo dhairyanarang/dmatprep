@@ -1,8 +1,17 @@
-import { SECTIONS } from '@/lib/sections'
+import { SECTIONS, type SectionId } from '@/lib/sections'
+
+/** Section hue, used for the sidebar dot and section page accents. */
+export const SECTION_ACCENT: Record<SectionId, 'figures' | 'equations' | 'latin'> = {
+  'figure-sequences': 'figures',
+  'mathematical-equations': 'equations',
+  'latin-squares': 'latin',
+}
 
 export type NavLink = {
   href: string
   label: string
+  /** Renders a small colour dot — only the three Core Module sections have one. */
+  accent?: 'figures' | 'equations' | 'latin'
   /** Renders as a non-interactive "coming soon" entry. */
   disabled?: boolean
 }
@@ -15,9 +24,6 @@ export type NavGroup = {
 /**
  * Single source of truth for both the desktop sidebar and the mobile sheet, so
  * the two can never drift apart.
- *
- * Practice is linked directly from the section list on the dashboard, which is
- * what keeps "reach Latin Squares practice" to one click from home.
  */
 export const NAV: NavGroup[] = [
   {
@@ -38,17 +44,18 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
-    label: 'Module A — Core',
+    label: 'Module A · Core',
     links: [
       { href: '/module-a', label: 'Overview' },
       ...SECTIONS.map((s) => ({
         href: `/module-a/${s.id}/learn`,
         label: s.title,
+        accent: SECTION_ACCENT[s.id],
       })),
     ],
   },
   {
-    label: 'Module B — Subject',
+    label: 'Module B · Subject',
     links: [{ href: '/module-b', label: 'General Academic', disabled: true }],
   },
 ]

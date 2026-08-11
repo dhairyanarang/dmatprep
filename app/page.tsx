@@ -14,49 +14,51 @@ export default function DashboardPage() {
   ) as Record<SectionId, number>
 
   return (
-    <PageShell
-      title="Dashboard"
-      description="Time remaining, where your practice stands, and a way into each section."
-      wide
-    >
-      <div className="space-y-10">
+    <PageShell title="Dashboard" wide>
+      <div className="space-y-8">
         <section className="grid gap-4 sm:grid-cols-2">
           {FIXED_DATES.map((entry) => (
             <CountdownCard
               key={entry.id}
               label={entry.label}
               date={entry.date}
-              description={entry.description}
+              kind={entry.id === 'exam-date' ? 'exam' : 'deadline'}
             />
           ))}
         </section>
 
         <section className="space-y-4">
-          <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-lg font-semibold tracking-tight">Practice</h2>
-            <Link
-              href="/module-a"
-              className="text-muted-foreground hover:text-foreground text-sm underline underline-offset-4"
-            >
-              All of Module A
-            </Link>
-          </div>
+          <SectionHeading title="Practice" href="/module-a" linkLabel="All of Module A" />
           <ProgressSnapshot bankSizes={bankSizes} />
         </section>
 
         <section className="space-y-4">
-          <div className="flex flex-wrap items-baseline justify-between gap-2">
-            <h2 className="text-lg font-semibold tracking-tight">Dates</h2>
-            <Link
-              href="/study-plan"
-              className="text-muted-foreground hover:text-foreground text-sm underline underline-offset-4"
-            >
-              Study plan
-            </Link>
-          </div>
+          <SectionHeading title="Dates" href="/study-plan" linkLabel="Study plan" />
           <KeyDates />
         </section>
       </div>
     </PageShell>
+  )
+}
+
+function SectionHeading({
+  title,
+  href,
+  linkLabel,
+}: {
+  title: string
+  href: string
+  linkLabel: string
+}) {
+  return (
+    <div className="flex items-baseline justify-between gap-4">
+      <h2 className="text-base font-semibold tracking-tight">{title}</h2>
+      <Link
+        href={href}
+        className="text-muted-foreground hover:text-foreground text-xs transition-colors"
+      >
+        {linkLabel}
+      </Link>
+    </div>
   )
 }

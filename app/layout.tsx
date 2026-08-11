@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
+import { ThemeProvider } from '@/components/layout/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -32,19 +33,23 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      // next-themes writes the class before paint; React must not object to it.
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        <TooltipProvider>
-          <div className="flex min-h-svh">
-            <AppSidebar />
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <TooltipProvider>
+            <div className="flex min-h-svh">
+              <AppSidebar />
 
-            <div className="flex min-w-0 flex-1 flex-col">
-              <MobileNav />
-              <main className="flex-1">{children}</main>
+              <div className="flex min-w-0 flex-1 flex-col">
+                <MobileNav />
+                <main className="flex-1">{children}</main>
+              </div>
             </div>
-          </div>
-          <Toaster />
-        </TooltipProvider>
+            <Toaster />
+          </TooltipProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

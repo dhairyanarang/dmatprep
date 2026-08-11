@@ -1,10 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import { Menu } from 'lucide-react'
 
 import { NavList } from '@/components/layout/nav-list'
+import { SidebarBrand } from '@/components/layout/sidebar-brand'
+import { ThemeToggle } from '@/components/layout/theme-toggle'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -18,30 +19,35 @@ export function MobileNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-background/95 supports-[backdrop-filter]:bg-background/80 sticky top-0 z-40 flex h-14 items-center gap-3 border-b px-4 backdrop-blur lg:hidden">
+    <header className="bg-background/90 supports-[backdrop-filter]:bg-background/75 sticky top-0 z-40 flex h-16 items-center gap-2 border-b px-4 backdrop-blur lg:hidden">
       <Sheet open={open} onOpenChange={setOpen}>
         {/* Base UI composes via `render`, not Radix's `asChild`. */}
         <SheetTrigger
           render={
             <Button variant="ghost" size="icon" aria-label="Open navigation">
-              <Menu className="h-5 w-5" />
+              <Menu className="size-5" />
             </Button>
           }
         />
 
-        <SheetContent side="left" className="w-72 p-0">
-          <SheetHeader className="h-14 justify-center border-b px-6">
-            <SheetTitle className="text-sm font-semibold">dMAT Prep</SheetTitle>
+        <SheetContent side="left" className="bg-sidebar flex w-72 flex-col p-0">
+          <SheetHeader className="h-16 shrink-0 justify-center border-b px-4">
+            <SheetTitle className="text-left">
+              <SidebarBrand />
+            </SheetTitle>
           </SheetHeader>
-          <div className="overflow-y-auto">
+
+          <div className="flex-1 overflow-y-auto">
             <NavList onNavigate={() => setOpen(false)} />
+          </div>
+
+          <div className="shrink-0 border-t p-3">
+            <ThemeToggle />
           </div>
         </SheetContent>
       </Sheet>
 
-      <Link href="/" className="text-sm font-semibold">
-        dMAT Prep
-      </Link>
+      <SidebarBrand />
     </header>
   )
 }

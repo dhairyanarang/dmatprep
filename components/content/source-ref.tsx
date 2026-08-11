@@ -40,8 +40,8 @@ export function SourceCitation({ sources }: { sources?: SourceRef[] }) {
 }
 
 const CONFIDENCE_STYLE: Record<Exclude<Confidence, 'official'>, string> = {
-  inferred: 'border-amber-600/40 text-amber-700 dark:text-amber-400',
-  unconfirmed: 'border-rose-600/40 text-rose-700 dark:text-rose-400',
+  inferred: 'bg-warning-tint text-warning-fg',
+  unconfirmed: 'bg-danger-tint text-danger-fg',
 }
 
 const CONFIDENCE_LABEL: Record<Exclude<Confidence, 'official'>, string> = {
@@ -66,7 +66,7 @@ export function ConfidenceBadge({
     <span className="mt-1.5 flex flex-wrap items-baseline gap-1.5">
       <span
         className={cn(
-          'rounded border px-1.5 py-0.5 text-[10px] font-medium tracking-wide uppercase',
+          'inline-flex h-5 items-center rounded px-2 text-[11px] font-medium tracking-wide uppercase',
           CONFIDENCE_STYLE[confidence],
         )}
       >

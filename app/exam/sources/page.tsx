@@ -5,6 +5,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { Badge } from '@/components/ui/badge'
 import { SOURCES, type SourceId } from '@/content/exam/sources'
 import { buildLedger } from '@/lib/content/ledger'
+import { cn } from '@/lib/utils'
 
 export const metadata = { title: 'Sources' }
 
@@ -36,14 +37,21 @@ export default function ExamSourcesPage() {
           ) : (
             <ul className="space-y-3">
               {flagged.map((entry, i) => (
-                <li key={i} className="rounded-lg border border-amber-600/30 p-4">
+                <li
+                  key={i}
+                  className={cn(
+                    'rounded-xl border p-4',
+                    entry.confidence === 'unconfirmed'
+                      ? 'border-danger/30 bg-danger-tint/30'
+                      : 'border-warning/30 bg-warning-tint/30',
+                  )}
+                >
                   <div className="flex flex-wrap items-center gap-2">
                     <Badge
-                      variant="outline"
                       className={
                         entry.confidence === 'unconfirmed'
-                          ? 'border-rose-600/40 text-rose-700 dark:text-rose-400'
-                          : 'border-amber-600/40 text-amber-700 dark:text-amber-400'
+                          ? 'bg-danger-tint text-danger-fg'
+                          : 'bg-warning-tint text-warning-fg'
                       }
                     >
                       {entry.confidence === 'unconfirmed' ? 'Unconfirmed' : 'Inferred'}

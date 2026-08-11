@@ -118,11 +118,11 @@ export function FigureMatrix({
         width={width + PAD * 2}
         height={height + PAD * 2}
         rx={8}
-        fill="#fbfbfa"
+        fill="var(--figure-panel)"
       />
 
       {/* Interior grid lines, then a heavier outer frame. */}
-      <g stroke="#a1a1aa" strokeWidth={2}>
+      <g stroke="var(--figure-line)" strokeWidth={2}>
         {Array.from({ length: rows - 1 }, (_, i) => (
           <line key={`h${i}`} x1={0} y1={(i + 1) * CELL} x2={width} y2={(i + 1) * CELL} />
         ))}
@@ -130,7 +130,7 @@ export function FigureMatrix({
           <line key={`v${i}`} x1={(i + 1) * CELL} y1={0} x2={(i + 1) * CELL} y2={height} />
         ))}
       </g>
-      <rect x={0} y={0} width={width} height={height} fill="none" stroke="#3f3f46" strokeWidth={4} />
+      <rect x={0} y={0} width={width} height={height} fill="none" stroke="var(--figure-frame)" strokeWidth={4} />
 
       {panel.symbols.map((s) => (
         <Symbol key={s.id} symbol={s} />
@@ -165,9 +165,9 @@ export function FigureUnknown({
         width={width + PAD * 2}
         height={height + PAD * 2}
         rx={8}
-        fill="#fbfbfa"
+        fill="var(--figure-panel)"
       />
-      <rect x={0} y={0} width={width} height={height} fill="none" stroke="#3f3f46" strokeWidth={4} />
+      <rect x={0} y={0} width={width} height={height} fill="none" stroke="var(--figure-frame)" strokeWidth={4} />
       <text
         x={width / 2}
         y={height / 2}
@@ -175,7 +175,7 @@ export function FigureUnknown({
         dominantBaseline="central"
         fontSize={CELL * 1.1}
         fontWeight={600}
-        fill="#3f3f46"
+        fill="var(--figure-frame)"
       >
         ?
       </text>

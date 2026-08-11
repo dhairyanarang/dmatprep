@@ -8,9 +8,15 @@ import type { ContentBlock } from '@/lib/types/content'
 import { cn } from '@/lib/utils'
 
 const CALLOUT_STYLE = {
-  note: 'border-border bg-muted/40',
-  warning: 'border-amber-600/40 bg-amber-50/60 dark:bg-amber-950/20',
-  unconfirmed: 'border-rose-600/40 bg-rose-50/60 dark:bg-rose-950/20',
+  note: 'border-border bg-muted/50',
+  warning: 'border-warning/35 bg-warning-tint/50',
+  unconfirmed: 'border-danger/35 bg-danger-tint/50',
+} as const
+
+const CALLOUT_ICON_TONE = {
+  note: 'text-muted-foreground',
+  warning: 'text-warning-fg',
+  unconfirmed: 'text-danger-fg',
 } as const
 
 const CALLOUT_ICON = {
@@ -58,8 +64,11 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
           {block.title ? <h3 className="text-sm font-medium">{block.title}</h3> : null}
           <ul className="space-y-2.5">
             {block.items.map((item, i) => (
-              <li key={i} className="flex gap-2.5 text-sm leading-relaxed">
-                <span className="bg-muted-foreground/50 mt-[0.55rem] h-1 w-1 shrink-0 rounded-full" />
+              <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                <span
+                  aria-hidden
+                  className="bg-muted-foreground/40 mt-2 size-1 shrink-0 rounded-full"
+                />
                 <span>
                   {item.text}
                   <SourceCitation sources={item.sources} />
@@ -78,10 +87,13 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
           <ol className="space-y-2.5">
             {block.items.map((item, i) => (
               <li key={i} className="flex gap-3 text-sm leading-relaxed">
-                <span className="bg-muted text-muted-foreground flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-medium">
+                <span
+                  aria-hidden
+                  className="bg-primary/10 text-primary flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-medium tabular-nums"
+                >
                   {i + 1}
                 </span>
-                <span className="pt-px">{item}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ol>
@@ -91,8 +103,11 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
     case 'callout': {
       const Icon = CALLOUT_ICON[block.variant]
       return (
-        <div className={cn('flex gap-3 rounded-lg border p-4', CALLOUT_STYLE[block.variant])}>
-          <Icon className="text-muted-foreground mt-0.5 h-4 w-4 shrink-0" aria-hidden />
+        <div className={cn('flex gap-3 rounded-xl border p-4', CALLOUT_STYLE[block.variant])}>
+          <Icon
+            className={cn('mt-px size-4 shrink-0', CALLOUT_ICON_TONE[block.variant])}
+            aria-hidden
+          />
           <div className="space-y-1">
             {block.title ? <p className="text-sm font-medium">{block.title}</p> : null}
             <p className="text-muted-foreground text-sm leading-relaxed">{block.text}</p>
@@ -103,9 +118,9 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
 
     case 'quote':
       return (
-        <blockquote className="border-l-2 py-1 pl-4">
-          <p className="text-sm leading-relaxed italic">“{block.text}”</p>
-          <p className="text-muted-foreground mt-1 text-xs">
+        <blockquote className="border-primary/30 bg-muted/30 rounded-r-lg border-l-2 py-3 pr-4 pl-4">
+          <p className="text-sm leading-relaxed">{block.text}</p>
+          <p className="text-muted-foreground mt-2 text-xs">
             Official wording
             <SourceCitation sources={block.sources} />
           </p>

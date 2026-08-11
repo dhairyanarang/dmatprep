@@ -101,7 +101,7 @@ export function PlanView() {
                         {milestone.label}
                         {milestone.critical ? (
                           <AlertTriangle
-                            className="ml-1.5 inline h-3.5 w-3.5 text-amber-600 dark:text-amber-400"
+                            className="text-warning-fg ml-2 inline size-3.5 align-baseline"
                             aria-label="Has a hard deadline"
                           />
                         ) : null}

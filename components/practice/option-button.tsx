@@ -43,22 +43,19 @@ export function OptionButton({
         !disabled && 'hover:border-foreground/40 cursor-pointer',
         state === 'idle' && 'border-border',
         state === 'selected' && 'border-primary bg-primary/5',
-        state === 'correct' && 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40',
-        state === 'incorrect' && 'border-rose-600 bg-rose-50 dark:bg-rose-950/40',
-        state === 'missed' && 'border-emerald-600/60 border-dashed',
+        state === 'correct' && 'border-success bg-success-tint',
+        state === 'incorrect' && 'border-danger bg-danger-tint',
+        state === 'missed' && 'border-success/60 border-dashed',
         className,
       )}
     >
       {children}
 
       {(state === 'correct' || state === 'missed') && (
-        <Check
-          className="absolute top-2 right-2 h-4 w-4 text-emerald-600 dark:text-emerald-400"
-          aria-hidden
-        />
+        <Check className="text-success-fg absolute top-2 right-2 size-4" aria-hidden />
       )}
       {state === 'incorrect' && (
-        <X className="absolute top-2 right-2 h-4 w-4 text-rose-600 dark:text-rose-400" aria-hidden />
+        <X className="text-danger-fg absolute top-2 right-2 size-4" aria-hidden />
       )}
     </button>
   )
