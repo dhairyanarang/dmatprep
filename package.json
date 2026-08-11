@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:questions": "node scripts/generate-all.mjs",
+    "verify:bank": "node scripts/verify-bank.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

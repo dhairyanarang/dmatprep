@@ -1,0 +1,4802 @@
+[
+  {
+    "id": "ls-low-001",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        null,
+        "C",
+        "E",
+        null
+      ],
+      [
+        "E",
+        "C",
+        null,
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        "A"
+      ],
+      [
+        "B",
+        "A",
+        null,
+        "D",
+        null
+      ],
+      [
+        "C",
+        "B",
+        "D",
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "A, C, E already appear in row 1; D already appears in column 5 — so B is the only letter left for R1C5."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, C, E already appear in row 1; D already appears in column 5 — so B is the only letter left for R1C5. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 1 (at R1C1), and a letter can only appear once per row.",
+      "C": "C already appears in row 1 (at R1C3), and a letter can only appear once per row.",
+      "D": "D already appears in column 5 (at R2C5), and a letter can only appear once per column.",
+      "E": "E already appears in row 1 (at R1C4), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-002",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "D",
+        null,
+        null,
+        null,
+        "B"
+      ],
+      [
+        null,
+        "D",
+        "E",
+        "B",
+        "C"
+      ],
+      [
+        "C",
+        "B",
+        "A",
+        null,
+        null
+      ],
+      [
+        "E",
+        "C",
+        "B",
+        "D",
+        null
+      ],
+      [
+        "B",
+        "A",
+        null,
+        "C",
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "B, D already appear in row 1; A, C already appear in column 2 — so E is the only letter left for R1C2."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "B, D already appear in row 1; A, C already appear in column 2 — so E is the only letter left for R1C2. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R5C2), and a letter can only appear once per column.",
+      "B": "B already appears in row 1 (at R1C5), and a letter can only appear once per row.",
+      "C": "C already appears in column 2 (at R4C2), and a letter can only appear once per column.",
+      "D": "D already appears in row 1 (at R1C1), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-003",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "E",
+        "C",
+        "A",
+        "B",
+        "D"
+      ],
+      [
+        null,
+        null,
+        "B",
+        "E",
+        null
+      ],
+      [
+        null,
+        "D",
+        null,
+        "A",
+        "E"
+      ],
+      [
+        "A",
+        "E",
+        "D",
+        null,
+        "B"
+      ],
+      [
+        null,
+        "B",
+        null,
+        "D",
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "C",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, D, E already appear in row 3; B already appears in column 3 — so C is the only letter left for R3C3."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, D, E already appear in row 3; B already appears in column 3 — so C is the only letter left for R3C3. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 3 (at R3C4), and a letter can only appear once per row.",
+      "B": "B already appears in column 3 (at R2C3), and a letter can only appear once per column.",
+      "D": "D already appears in row 3 (at R3C2), and a letter can only appear once per row.",
+      "E": "E already appears in row 3 (at R3C5), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-004",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        "E",
+        "B"
+      ],
+      [
+        "B",
+        "E",
+        "D",
+        "A",
+        "C"
+      ],
+      [
+        "C",
+        null,
+        "B",
+        null,
+        "E"
+      ],
+      [
+        "E",
+        null,
+        "C",
+        "B",
+        "A"
+      ],
+      [
+        "A",
+        null,
+        null,
+        "C",
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A, C, D already appear in row 5; E already appears in column 2 — so B is the only letter left for R5C2."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, C, D already appear in row 5; E already appears in column 2 — so B is the only letter left for R5C2. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 5 (at R5C1), and a letter can only appear once per row.",
+      "C": "C already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "D": "D already appears in row 5 (at R5C5), and a letter can only appear once per row.",
+      "E": "E already appears in column 2 (at R2C2), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-005",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "E"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "A"
+      ],
+      [
+        "C",
+        "A",
+        null,
+        "D",
+        "B"
+      ],
+      [
+        "E",
+        "C",
+        "B",
+        "A",
+        null
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "A already appears in row 2; C, D, E already appear in column 1 — so B is the only letter left for R2C1."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A already appears in row 2; C, D, E already appear in column 1 — so B is the only letter left for R2C1. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C5), and a letter can only appear once per row.",
+      "C": "C already appears in column 1 (at R3C1), and a letter can only appear once per column.",
+      "D": "D already appears in column 1 (at R5C1), and a letter can only appear once per column.",
+      "E": "E already appears in column 1 (at R4C1), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-006",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "D",
+        null,
+        "B",
+        null
+      ],
+      [
+        "B",
+        "E",
+        "C",
+        "A",
+        "D"
+      ],
+      [
+        null,
+        "B",
+        "A",
+        null,
+        "C"
+      ],
+      [
+        "A",
+        null,
+        null,
+        "D",
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "C",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "A, D already appear in row 5; B, E already appear in column 2 — so C is the only letter left for R5C2."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, D already appear in row 5; B, E already appear in column 2 — so C is the only letter left for R5C2. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 5 (at R5C1), and a letter can only appear once per row.",
+      "B": "B already appears in column 2 (at R4C2), and a letter can only appear once per column.",
+      "D": "D already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "E": "E already appears in column 2 (at R3C2), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-007",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        "C",
+        "D",
+        null,
+        "B"
+      ],
+      [
+        "C",
+        "E",
+        null,
+        null,
+        "A"
+      ],
+      [
+        "D",
+        "B",
+        "C",
+        null,
+        "E"
+      ],
+      [
+        "E",
+        "D",
+        "A",
+        "B",
+        "C"
+      ],
+      [
+        "B",
+        "A",
+        "E",
+        "C",
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C4."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C4. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row.",
+      "C": "C already appears in row 3 (at R3C3), and a letter can only appear once per row.",
+      "D": "D already appears in row 3 (at R3C1), and a letter can only appear once per row.",
+      "E": "E already appears in row 3 (at R3C5), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-008",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "B"
+      ],
+      [
+        "E",
+        null,
+        null,
+        null,
+        "A"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in column 5 — so E is the only letter left for R4C5."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, B, C, D already appear in column 5 — so E is the only letter left for R4C5. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in column 5 (at R3C5), and a letter can only appear once per column.",
+      "B": "B already appears in column 5 (at R2C5), and a letter can only appear once per column.",
+      "C": "C already appears in column 5 (at R1C5), and a letter can only appear once per column.",
+      "D": "D already appears in column 5 (at R5C5), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-009",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "C",
+        "B",
+        "A",
+        "D",
+        "E"
+      ],
+      [
+        "A",
+        "E",
+        null,
+        "B",
+        "C"
+      ],
+      [
+        null,
+        "A",
+        null,
+        "C",
+        "D"
+      ],
+      [
+        "D",
+        "C",
+        null,
+        null,
+        null
+      ],
+      [
+        "E",
+        "D",
+        "C",
+        "A",
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "A, B, C, E already appear in row 2 — so D is the only letter left for R2C3."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, B, C, E already appear in row 2 — so D is the only letter left for R2C3. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row.",
+      "B": "B already appears in row 2 (at R2C4), and a letter can only appear once per row.",
+      "C": "C already appears in row 2 (at R2C5), and a letter can only appear once per row.",
+      "E": "E already appears in row 2 (at R2C2), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-010",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "B",
+        "A",
+        "D",
+        "C",
+        "E"
+      ],
+      [
+        null,
+        "B",
+        null,
+        null,
+        "A"
+      ],
+      [
+        null,
+        "E",
+        "B",
+        "D",
+        "C"
+      ],
+      [
+        "C",
+        "D",
+        null,
+        "A",
+        null
+      ],
+      [
+        null,
+        "C",
+        null,
+        "B",
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "A, C, D already appear in row 4; B already appears in column 3 — so E is the only letter left for R4C3."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "A, C, D already appear in row 4; B already appears in column 3 — so E is the only letter left for R4C3. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in row 4 (at R4C4), and a letter can only appear once per row.",
+      "B": "B already appears in column 3 (at R3C3), and a letter can only appear once per column.",
+      "C": "C already appears in row 4 (at R4C1), and a letter can only appear once per row.",
+      "D": "D already appears in row 4 (at R4C2), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-011",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        "D",
+        "E",
+        "C",
+        "B"
+      ],
+      [
+        "B",
+        "C",
+        "A",
+        "E",
+        null
+      ],
+      [
+        "D",
+        null,
+        "B",
+        "A",
+        "C"
+      ],
+      [
+        "C",
+        "A",
+        "D",
+        "B",
+        "E"
+      ],
+      [
+        "E",
+        null,
+        null,
+        "D",
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "C",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 5; A, B already appear in column 3 — so C is the only letter left for R5C3."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "D, E already appear in row 5; A, B already appear in column 3 — so C is the only letter left for R5C3. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in column 3 (at R2C3), and a letter can only appear once per column.",
+      "B": "B already appears in column 3 (at R3C3), and a letter can only appear once per column.",
+      "D": "D already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C1), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-012",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "B",
+        "C",
+        "E",
+        "A"
+      ],
+      [
+        null,
+        "E",
+        "A",
+        null,
+        "B"
+      ],
+      [
+        "E",
+        null,
+        null,
+        null,
+        "C"
+      ],
+      [
+        "B",
+        "C",
+        "E",
+        "A",
+        "D"
+      ],
+      [
+        "A",
+        "D",
+        "B",
+        "C",
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 3; B, D already appear in column 2 — so A is the only letter left for R3C2."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "C, E already appear in row 3; B, D already appear in column 2 — so A is the only letter left for R3C2. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "B": "B already appears in column 2 (at R1C2), and a letter can only appear once per column.",
+      "C": "C already appears in row 3 (at R3C5), and a letter can only appear once per row.",
+      "D": "D already appears in column 2 (at R5C2), and a letter can only appear once per column.",
+      "E": "E already appears in row 3 (at R3C1), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-013",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        "E",
+        "B"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "A",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "C",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "B, E already appear in row 1; A, C already appear in column 1 — so D is the only letter left for R1C1."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "B, E already appear in row 1; A, C already appear in column 1 — so D is the only letter left for R1C1. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in column 1 (at R3C1), and a letter can only appear once per column.",
+      "B": "B already appears in row 1 (at R1C5), and a letter can only appear once per row.",
+      "C": "C already appears in column 1 (at R5C1), and a letter can only appear once per column.",
+      "E": "E already appears in row 1 (at R1C4), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-low-014",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "low",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "C",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        "A",
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "E already appears in row 4; A, B, C already appear in column 2 — so D is the only letter left for R4C2."
+      }
+    ],
+    "forcedPlacementDepth": 1,
+    "explanation": "E already appears in row 4; A, B, C already appear in column 2 — so D is the only letter left for R4C2. Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R5C2), and a letter can only appear once per column.",
+      "B": "B already appears in column 2 (at R2C2), and a letter can only appear once per column.",
+      "C": "C already appears in column 2 (at R1C2), and a letter can only appear once per column.",
+      "E": "E already appears in row 4 (at R4C3), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-001",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        "A",
+        "B",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "A",
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "D",
+        "reason": "A, B already appear in row 3; C, E already appear in column 4 — so D is the only letter left for R3C4."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "A already appears in row 5; C, D, E already appear in column 4 — so B is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in column 4 — so A is the only letter left for R4C4."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R3C4 must be D (A, B already appear in row 3; C, E already appear in column 4 — so D is the only letter left for R3C4); R5C4 must be B (A already appears in row 5; C, D, E already appear in column 4 — so B is the only letter left for R5C4). B, C, D, E already appear in column 4 — so A is the only letter left for R4C4.",
+    "distractorNotes": {
+      "B": "B already appears in column 4 (at R5C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 4 (at R2C4), and a letter can only appear once per column.",
+      "D": "D already appears in column 4 (at R3C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 4 (at R1C4), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-002",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "C",
+        null,
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        "C",
+        null,
+        "E"
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        null,
+        "B",
+        "E",
+        null,
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "B, C already appear in row 1; D, E already appear in column 5 — so A is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 1; E already appears in column 3 — so D is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C1."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R1C5 must be A (B, C already appear in row 1; D, E already appear in column 5 — so A is the only letter left for R1C5); R1C3 must be D (A, B, C already appear in row 1; E already appears in column 3 — so D is the only letter left for R1C3). A, B, C, D already appear in row 1 — so E is the only letter left for R1C1.",
+    "distractorNotes": {
+      "A": "A already appears in row 1 (at R1C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in row 1 (at R1C4), and a letter can only appear once per row.",
+      "C": "C already appears in row 1 (at R1C2), and a letter can only appear once per row.",
+      "D": "D already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-003",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "D",
+        "A",
+        "C",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "E"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "A, C, D already appear in row 1; E already appears in column 5 — so B is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C4."
+      }
+    ],
+    "forcedPlacementDepth": 2,
+    "explanation": "Fill the forced cells first: R1C5 must be B (A, C, D already appear in row 1; E already appears in column 5 — so B is the only letter left for R1C5). A, B, C, D already appear in row 1 — so E is the only letter left for R1C4.",
+    "distractorNotes": {
+      "A": "A already appears in row 1 (at R1C2), and a letter can only appear once per row.",
+      "B": "B already appears in row 1 (at R1C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 1 (at R1C3), and a letter can only appear once per row.",
+      "D": "D already appears in row 1 (at R1C1), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-004",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "A, D already appear in row 5; C, E already appear in column 4 — so B is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "D",
+        "reason": "A already appears in row 1; B, C, E already appear in column 4 — so D is the only letter left for R1C4."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in column 4 — so A is the only letter left for R4C4."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R5C4 must be B (A, D already appear in row 5; C, E already appear in column 4 — so B is the only letter left for R5C4); R1C4 must be D (A already appears in row 1; B, C, E already appear in column 4 — so D is the only letter left for R1C4). B, C, D, E already appear in column 4 — so A is the only letter left for R4C4.",
+    "distractorNotes": {
+      "B": "B already appears in column 4 (at R5C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 4 (at R2C4), and a letter can only appear once per column.",
+      "D": "D already appears in column 4 (at R1C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 4 (at R3C4), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-005",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "E",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "A"
+      ],
+      [
+        "E",
+        null,
+        "B",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "B, E already appear in row 4; A, D already appear in column 5 — so C is the only letter left for R4C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "E already appears in row 1; A, C, D already appear in column 5 — so B is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in column 5 — so E is the only letter left for R5C5."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R4C5 must be C (B, E already appear in row 4; A, D already appear in column 5 — so C is the only letter left for R4C5); R1C5 must be B (E already appears in row 1; A, C, D already appear in column 5 — so B is the only letter left for R1C5). A, B, C, D already appear in column 5 — so E is the only letter left for R5C5.",
+    "distractorNotes": {
+      "A": "A already appears in column 5 (at R3C5), and a letter can only appear once per column.",
+      "B": "B already appears in column 5 (at R1C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 5 (at R4C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 5 (at R2C5), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-006",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "D",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "B",
+        "A",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "A",
+        null,
+        "C",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "C",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "A, B, C already appear in row 4; D already appears in column 2 — so E is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "A, B already appear in row 2; D, E already appear in column 2 — so C is the only letter left for R2C2."
+      }
+    ],
+    "forcedPlacementDepth": 2,
+    "explanation": "Fill the forced cells first: R4C2 must be E (A, B, C already appear in row 4; D already appears in column 2 — so E is the only letter left for R4C2). A, B already appear in row 2; D, E already appear in column 2 — so C is the only letter left for R2C2.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C4), and a letter can only appear once per row.",
+      "B": "B already appears in row 2 (at R2C3), and a letter can only appear once per row.",
+      "D": "D already appears in column 2 (at R1C2), and a letter can only appear once per column.",
+      "E": "E already appears in column 2 (at R4C2), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-007",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "C",
+        "A",
+        null
+      ],
+      [
+        "E",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "A, C already appear in row 2; D, E already appear in column 5 — so B is the only letter left for R2C5."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 2; E already appears in column 1 — so D is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 2 — so E is the only letter left for R2C2."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R2C5 must be B (A, C already appear in row 2; D, E already appear in column 5 — so B is the only letter left for R2C5); R2C1 must be D (A, B, C already appear in row 2; E already appears in column 1 — so D is the only letter left for R2C1). A, B, C, D already appear in row 2 — so E is the only letter left for R2C2.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C4), and a letter can only appear once per row.",
+      "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 2 (at R2C3), and a letter can only appear once per row.",
+      "D": "D already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-008",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        "D",
+        "E",
+        null,
+        "B"
+      ],
+      [
+        null,
+        null,
+        null,
+        "B",
+        null
+      ],
+      [
+        "C",
+        null,
+        null,
+        "D",
+        null
+      ],
+      [
+        "D",
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        null,
+        "C",
+        null,
+        null,
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "B already appears in row 2; A, C, D already appear in column 1 — so E is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, E already appear in row 2; C, D already appear in column 2 — so A is the only letter left for R2C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "D, E already appear in row 4; A, C already appear in column 2 — so B is the only letter left for R4C2."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R2C1 must be E (B already appears in row 2; A, C, D already appear in column 1 — so E is the only letter left for R2C1); R2C2 must be A (B, E already appear in row 2; C, D already appear in column 2 — so A is the only letter left for R2C2). D, E already appear in row 4; A, C already appear in column 2 — so B is the only letter left for R4C2.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R2C2), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 2 (at R5C2), and a letter can only appear once per column.",
+      "D": "D already appears in row 4 (at R4C1), and a letter can only appear once per row.",
+      "E": "E already appears in row 4 (at R4C4), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-009",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "B",
+        "A"
+      ],
+      [
+        "E",
+        "D",
+        null,
+        "A",
+        null
+      ],
+      [
+        null,
+        "A",
+        null,
+        "E",
+        null
+      ],
+      [
+        "A",
+        "C",
+        null,
+        "D",
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "D already appears in row 1; A, B, E already appear in column 4 — so C is the only letter left for R1C4."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "C, D already appear in row 1; A, B already appear in column 5 — so E is the only letter left for R1C5."
+      }
+    ],
+    "forcedPlacementDepth": 2,
+    "explanation": "Fill the forced cells first: R1C4 must be C (D already appears in row 1; A, B, E already appear in column 4 — so C is the only letter left for R1C4). C, D already appear in row 1; A, B already appear in column 5 — so E is the only letter left for R1C5.",
+    "distractorNotes": {
+      "A": "A already appears in column 5 (at R2C5), and a letter can only appear once per column.",
+      "B": "B already appears in column 5 (at R5C5), and a letter can only appear once per column.",
+      "C": "C already appears in row 1 (at R1C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 1 (at R1C1), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-010",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "C",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        "D",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "B, D already appear in row 4; C, E already appear in column 3 — so A is the only letter left for R4C3."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "B already appears in row 5; A, C, E already appear in column 3 — so D is the only letter left for R5C3."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A, C, D, E already appear in column 3 — so B is the only letter left for R2C3."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R4C3 must be A (B, D already appear in row 4; C, E already appear in column 3 — so A is the only letter left for R4C3); R5C3 must be D (B already appears in row 5; A, C, E already appear in column 3 — so D is the only letter left for R5C3). A, C, D, E already appear in column 3 — so B is the only letter left for R2C3.",
+    "distractorNotes": {
+      "A": "A already appears in column 3 (at R4C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 3 (at R1C3), and a letter can only appear once per column.",
+      "D": "D already appears in column 3 (at R5C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 3 (at R3C3), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-011",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "E",
+        null,
+        "C",
+        "D"
+      ],
+      [
+        null,
+        "C",
+        null,
+        null,
+        null
+      ],
+      [
+        "A",
+        "B",
+        null,
+        "D",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "E",
+        null,
+        "B",
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, E already appear in row 5; C, D already appear in column 4 — so A is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "A, B, E already appear in row 5; D already appears in column 5 — so C is the only letter left for R5C5."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R5C4 must be A (B, E already appear in row 5; C, D already appear in column 4 — so A is the only letter left for R5C4); R5C5 must be C (A, B, E already appear in row 5; D already appears in column 5 — so C is the only letter left for R5C5). A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5.",
+    "distractorNotes": {
+      "A": "A already appears in row 3 (at R3C1), and a letter can only appear once per row.",
+      "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row.",
+      "C": "C already appears in column 5 (at R5C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 3 (at R3C4), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-012",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        "A",
+        "C"
+      ],
+      [
+        "D",
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        "E",
+        "B",
+        "C",
+        null,
+        "A"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "A, C already appear in row 1; D, E already appear in column 1 — so B is the only letter left for R1C1."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "A already appears in row 3; B, D, E already appear in column 1 — so C is the only letter left for R3C1."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in column 1 — so A is the only letter left for R5C1."
+      }
+    ],
+    "forcedPlacementDepth": 3,
+    "explanation": "Fill the forced cells first: R1C1 must be B (A, C already appear in row 1; D, E already appear in column 1 — so B is the only letter left for R1C1); R3C1 must be C (A already appears in row 3; B, D, E already appear in column 1 — so C is the only letter left for R3C1). B, C, D, E already appear in column 1 — so A is the only letter left for R5C1.",
+    "distractorNotes": {
+      "B": "B already appears in column 1 (at R1C1), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 1 (at R3C1), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 1 (at R2C1), and a letter can only appear once per column.",
+      "E": "E already appears in column 1 (at R4C1), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-medium-013",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "medium",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        "B",
+        null,
+        "D",
+        "E"
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "A",
+        "C",
+        null
+      ],
+      [
+        "C",
+        "A",
+        "D",
+        "E",
+        "B"
+      ],
+      [
+        null,
+        null,
+        "B",
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B already appears in row 5; C, D, E already appear in column 4 — so A is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "D already appears in row 2; A, C, E already appear in column 4 — so B is the only letter left for R2C4."
+      }
+    ],
+    "forcedPlacementDepth": 2,
+    "explanation": "Fill the forced cells first: R5C4 must be A (B already appears in row 5; C, D, E already appear in column 4 — so A is the only letter left for R5C4). D already appears in row 2; A, C, E already appear in column 4 — so B is the only letter left for R2C4.",
+    "distractorNotes": {
+      "A": "A already appears in column 4 (at R5C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 4 (at R3C4), and a letter can only appear once per column.",
+      "D": "D already appears in row 2 (at R2C1), and a letter can only appear once per row.",
+      "E": "E already appears in column 4 (at R4C4), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-001",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "B",
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        "E",
+        "D",
+        null,
+        null,
+        "A"
+      ],
+      [
+        null,
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "A, D, E already appear in row 2; C already appears in column 4 — so B is the only letter left for R2C4."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in row 2 — so C is the only letter left for R2C3."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "D, E already appear in row 4; A, C already appear in column 3 — so B is the only letter left for R4C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "B, C already appear in row 1; A, D already appear in column 5 — so E is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "B, C, E already appear in row 1; A already appears in column 3 — so D is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in column 3 — so E is the only letter left for R5C3."
+      }
+    ],
+    "forcedPlacementDepth": 6,
+    "explanation": "Fill the forced cells first: R2C4 must be B (A, D, E already appear in row 2; C already appears in column 4 — so B is the only letter left for R2C4); R2C3 must be C (A, B, D, E already appear in row 2 — so C is the only letter left for R2C3); R4C3 must be B (D, E already appear in row 4; A, C already appear in column 3 — so B is the only letter left for R4C3); R1C5 must be E (B, C already appear in row 1; A, D already appear in column 5 — so E is the only letter left for R1C5); R1C3 must be D (B, C, E already appear in row 1; A already appears in column 3 — so D is the only letter left for R1C3). A, B, C, D already appear in column 3 — so E is the only letter left for R5C3.",
+    "distractorNotes": {
+      "A": "A already appears in column 3 (at R3C3), and a letter can only appear once per column.",
+      "B": "B already appears in column 3 (at R4C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 3 (at R2C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 3 (at R1C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-002",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "D",
+        null,
+        null,
+        null
+      ],
+      [
+        "D",
+        null,
+        "C",
+        null,
+        null
+      ],
+      [
+        "E",
+        null,
+        "D",
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        "E",
+        "A",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "C, D, E already appear in row 3; A already appears in column 4 — so B is the only letter left for R3C4."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C2."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "C, D already appear in row 2; A, B already appear in column 4 — so E is the only letter left for R2C4."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "C, D, E already appear in row 2; A already appears in column 2 — so B is the only letter left for R2C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "A, E already appear in row 4; B, D already appear in column 2 — so C is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "A, C, E already appear in row 4; D already appears in column 1 — so B is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "D already appears in row 1; A, B, E already appear in column 4 — so C is the only letter left for R1C4."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "C, D already appear in row 1; B, E already appear in column 1 — so A is the only letter left for R1C1."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A, C, D already appear in row 1; E already appears in column 3 — so B is the only letter left for R1C3."
+      }
+    ],
+    "forcedPlacementDepth": 9,
+    "explanation": "Fill the forced cells first: R3C4 must be B (C, D, E already appear in row 3; A already appears in column 4 — so B is the only letter left for R3C4); R3C2 must be A (B, C, D, E already appear in row 3 — so A is the only letter left for R3C2); R2C4 must be E (C, D already appear in row 2; A, B already appear in column 4 — so E is the only letter left for R2C4); R2C2 must be B (C, D, E already appear in row 2; A already appears in column 2 — so B is the only letter left for R2C2); R4C2 must be C (A, E already appear in row 4; B, D already appear in column 2 — so C is the only letter left for R4C2); R4C1 must be B (A, C, E already appear in row 4; D already appears in column 1 — so B is the only letter left for R4C1); R1C4 must be C (D already appears in row 1; A, B, E already appear in column 4 — so C is the only letter left for R1C4); R1C1 must be A (C, D already appear in row 1; B, E already appear in column 1 — so A is the only letter left for R1C1). A, C, D already appear in row 1; E already appears in column 3 — so B is the only letter left for R1C3.",
+    "distractorNotes": {
+      "A": "A already appears in row 1 (at R1C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 1 (at R1C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 1 (at R1C2), and a letter can only appear once per row.",
+      "E": "E already appears in column 3 (at R4C3), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-003",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "C",
+        null,
+        null,
+        "B",
+        null
+      ],
+      [
+        "D",
+        "C",
+        null,
+        null,
+        "B"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "E"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "E",
+        "D",
+        null
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "B, C, D already appear in row 2; E already appears in column 3 — so A is the only letter left for R2C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "B, C already appear in row 1; A, E already appear in column 3 — so D is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "B, C, D already appear in row 1; E already appears in column 5 — so A is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 5; A, B already appear in column 5 — so C is the only letter left for R5C5."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "A, B, C, E already appear in column 5 — so D is the only letter left for R4C5."
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R2C3 must be A (B, C, D already appear in row 2; E already appears in column 3 — so A is the only letter left for R2C3); R1C3 must be D (B, C already appear in row 1; A, E already appear in column 3 — so D is the only letter left for R1C3); R1C5 must be A (B, C, D already appear in row 1; E already appears in column 5 — so A is the only letter left for R1C5); R5C5 must be C (D, E already appear in row 5; A, B already appear in column 5 — so C is the only letter left for R5C5). A, B, C, E already appear in column 5 — so D is the only letter left for R4C5.",
+    "distractorNotes": {
+      "A": "A already appears in column 5 (at R1C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in column 5 (at R2C5), and a letter can only appear once per column.",
+      "C": "C already appears in column 5 (at R5C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 5 (at R3C5), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-004",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "B",
+        "C",
+        null
+      ],
+      [
+        "E",
+        "D",
+        null,
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        null
+      ],
+      [
+        null,
+        "E",
+        null,
+        null,
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C already appear in row 2; D, E already appear in column 2 — so A is the only letter left for R2C2."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 2; E already appears in column 1 — so D is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 2 — so E is the only letter left for R2C5."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "D already appears in row 4; B, C, E already appear in column 5 — so A is the only letter left for R4C5."
+      }
+    ],
+    "forcedPlacementDepth": 4,
+    "explanation": "Fill the forced cells first: R2C2 must be A (B, C already appear in row 2; D, E already appear in column 2 — so A is the only letter left for R2C2); R2C1 must be D (A, B, C already appear in row 2; E already appears in column 1 — so D is the only letter left for R2C1); R2C5 must be E (A, B, C, D already appear in row 2 — so E is the only letter left for R2C5). D already appears in row 4; B, C, E already appear in column 5 — so A is the only letter left for R4C5.",
+    "distractorNotes": {
+      "B": "B already appears in column 5 (at R5C5), and a letter can only appear once per column.",
+      "C": "C already appears in column 5 (at R3C5), and a letter can only appear once per column.",
+      "D": "D already appears in row 4 (at R4C4), and a letter can only appear once per row.",
+      "E": "E already appears in column 5 (at R2C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-005",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "D",
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "A"
+      ],
+      [
+        "B",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        "A",
+        null,
+        "B",
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "E already appears in row 4; A, B, D already appear in column 1 — so C is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "A, B already appear in row 5; D, E already appear in column 4 — so C is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B already appears in row 3; C, D, E already appear in column 4 — so A is the only letter left for R3C4."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, D already appear in row 2; B, E already appear in column 3 — so C is the only letter left for R2C3."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "A, B already appear in row 3; C, E already appear in column 3 — so D is the only letter left for R3C3."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 4; B, D already appear in column 3 — so A is the only letter left for R4C3."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "A, C, D already appear in row 2; B already appears in column 1 — so E is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A, C, D, E already appear in row 2 — so B is the only letter left for R2C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "A, C, E already appear in row 4; B already appears in column 2 — so D is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "A, C, D, E already appear in row 4 — so B is the only letter left for R4C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 1; A, B already appear in column 5 — so C is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5."
+      }
+    ],
+    "forcedPlacementDepth": 12,
+    "explanation": "Fill the forced cells first: R4C1 must be C (E already appears in row 4; A, B, D already appear in column 1 — so C is the only letter left for R4C1); R5C4 must be C (A, B already appear in row 5; D, E already appear in column 4 — so C is the only letter left for R5C4); R3C4 must be A (B already appears in row 3; C, D, E already appear in column 4 — so A is the only letter left for R3C4); R2C3 must be C (A, D already appear in row 2; B, E already appear in column 3 — so C is the only letter left for R2C3); R3C3 must be D (A, B already appear in row 3; C, E already appear in column 3 — so D is the only letter left for R3C3); R4C3 must be A (C, E already appear in row 4; B, D already appear in column 3 — so A is the only letter left for R4C3); R2C1 must be E (A, C, D already appear in row 2; B already appears in column 1 — so E is the only letter left for R2C1); R2C2 must be B (A, C, D, E already appear in row 2 — so B is the only letter left for R2C2); R4C2 must be D (A, C, E already appear in row 4; B already appears in column 2 — so D is the only letter left for R4C2); R4C5 must be B (A, C, D, E already appear in row 4 — so B is the only letter left for R4C5); R1C5 must be C (D, E already appear in row 1; A, B already appear in column 5 — so C is the only letter left for R1C5). A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5.",
+    "distractorNotes": {
+      "A": "A already appears in row 3 (at R3C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 5 (at R1C5), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 3 (at R3C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-006",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "E",
+        "B",
+        null,
+        null,
+        "C"
+      ],
+      [
+        "B",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "A",
+        null,
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "C, E already appear in row 5; A, B already appear in column 2 — so D is the only letter left for R5C2."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "C, D, E already appear in row 5; B already appears in column 1 — so A is the only letter left for R5C1."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "A, B already appear in row 4; C, E already appear in column 5 — so D is the only letter left for R4C5."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "A, B, D already appear in row 4; E already appears in column 1 — so C is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B, C, E already appear in column 1 — so D is the only letter left for R1C1."
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R5C2 must be D (C, E already appear in row 5; A, B already appear in column 2 — so D is the only letter left for R5C2); R5C1 must be A (C, D, E already appear in row 5; B already appears in column 1 — so A is the only letter left for R5C1); R4C5 must be D (A, B already appear in row 4; C, E already appear in column 5 — so D is the only letter left for R4C5); R4C1 must be C (A, B, D already appear in row 4; E already appears in column 1 — so C is the only letter left for R4C1). A, B, C, E already appear in column 1 — so D is the only letter left for R1C1.",
+    "distractorNotes": {
+      "A": "A already appears in column 1 (at R5C1), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in column 1 (at R3C1), and a letter can only appear once per column.",
+      "C": "C already appears in column 1 (at R4C1), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 1 (at R2C1), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-007",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "E",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ],
+      [
+        null,
+        "B",
+        null,
+        "A",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "A"
+      ],
+      [
+        "C",
+        null,
+        "A",
+        "B",
+        null
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B already appear in row 3; C, E already appear in column 1 — so D is the only letter left for R3C1."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "A already appears in row 4; C, D, E already appear in column 1 — so B is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in row 3 — so C is the only letter left for R3C3."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 5; E already appears in column 5 — so D is the only letter left for R5C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "E already appears in row 1; A, C, D already appear in column 5 — so B is the only letter left for R1C5."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "B, E already appear in row 1; A, C already appear in column 3 — so D is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "A, B already appear in row 4; C, D already appear in column 3 — so E is the only letter left for R4C3."
+      }
+    ],
+    "forcedPlacementDepth": 8,
+    "explanation": "Fill the forced cells first: R3C1 must be D (A, B already appear in row 3; C, E already appear in column 1 — so D is the only letter left for R3C1); R4C1 must be B (A already appears in row 4; C, D, E already appear in column 1 — so B is the only letter left for R4C1); R3C5 must be E (A, B, D already appear in row 3; C already appears in column 5 — so E is the only letter left for R3C5); R3C3 must be C (A, B, D, E already appear in row 3 — so C is the only letter left for R3C3); R5C5 must be D (A, B, C already appear in row 5; E already appears in column 5 — so D is the only letter left for R5C5); R1C5 must be B (E already appears in row 1; A, C, D already appear in column 5 — so B is the only letter left for R1C5); R1C3 must be D (B, E already appear in row 1; A, C already appear in column 3 — so D is the only letter left for R1C3). A, B already appear in row 4; C, D already appear in column 3 — so E is the only letter left for R4C3.",
+    "distractorNotes": {
+      "A": "A already appears in row 4 (at R4C5), and a letter can only appear once per row.",
+      "B": "B already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in column 3 (at R3C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 3 (at R1C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-008",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "C",
+        "E",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "A"
+      ],
+      [
+        "B",
+        null,
+        null,
+        "D",
+        null
+      ],
+      [
+        null,
+        "A",
+        "B",
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "B, D already appear in row 4; A, C already appear in column 2 — so E is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "B, D, E already appear in row 4; A already appears in column 5 — so C is the only letter left for R4C5."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "B, C, E already appear in row 2; A already appears in column 5 — so D is the only letter left for R2C5."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B already appear in row 5; C, D already appear in column 5 — so E is the only letter left for R5C5."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "A, B, E already appear in row 5; D already appears in column 4 — so C is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "A already appears in row 3; B, C, D already appear in column 4 — so E is the only letter left for R3C4."
+      }
+    ],
+    "forcedPlacementDepth": 6,
+    "explanation": "Fill the forced cells first: R4C2 must be E (B, D already appear in row 4; A, C already appear in column 2 — so E is the only letter left for R4C2); R4C5 must be C (B, D, E already appear in row 4; A already appears in column 5 — so C is the only letter left for R4C5); R2C5 must be D (B, C, E already appear in row 2; A already appears in column 5 — so D is the only letter left for R2C5); R5C5 must be E (A, B already appear in row 5; C, D already appear in column 5 — so E is the only letter left for R5C5); R5C4 must be C (A, B, E already appear in row 5; D already appears in column 4 — so C is the only letter left for R5C4). A already appears in row 3; B, C, D already appear in column 4 — so E is the only letter left for R3C4.",
+    "distractorNotes": {
+      "A": "A already appears in row 3 (at R3C5), and a letter can only appear once per row.",
+      "B": "B already appears in column 4 (at R2C4), and a letter can only appear once per column.",
+      "C": "C already appears in column 4 (at R5C4), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 4 (at R4C4), and a letter can only appear once per column."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-009",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "C",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "D",
+        "B",
+        "C",
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        null,
+        "A"
+      ],
+      [
+        null,
+        null,
+        "D",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "B, C, D already appear in row 2; A already appears in column 5 — so E is the only letter left for R2C5."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "B, D already appear in row 4; A, E already appear in column 5 — so C is the only letter left for R4C5."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 2 — so A is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "B, C, D already appear in row 4; A already appears in column 1 — so E is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 4 — so A is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "C already appears in row 1; A, B, D already appear in column 2 — so E is the only letter left for R1C2."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 1; B, D already appear in column 3 — so A is the only letter left for R1C3."
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C5 must be E (B, C, D already appear in row 2; A already appears in column 5 — so E is the only letter left for R2C5); R4C5 must be C (B, D already appear in row 4; A, E already appear in column 5 — so C is the only letter left for R4C5); R2C1 must be A (B, C, D, E already appear in row 2 — so A is the only letter left for R2C1); R4C1 must be E (B, C, D already appear in row 4; A already appears in column 1 — so E is the only letter left for R4C1); R4C2 must be A (B, C, D, E already appear in row 4 — so A is the only letter left for R4C2); R1C2 must be E (C already appears in row 1; A, B, D already appear in column 2 — so E is the only letter left for R1C2). C, E already appear in row 1; B, D already appear in column 3 — so A is the only letter left for R1C3.",
+    "distractorNotes": {
+      "B": "B already appears in column 3 (at R2C3), and a letter can only appear once per column.",
+      "C": "C already appears in row 1 (at R1C1), and a letter can only appear once per row.",
+      "D": "D already appears in column 3 (at R4C3), and a letter can only appear once per column.",
+      "E": "E already appears in row 1 (at R1C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-010",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "C",
+        null,
+        null,
+        null
+      ],
+      [
+        "B",
+        null,
+        null,
+        "A",
+        null
+      ],
+      [
+        "A",
+        null,
+        null,
+        "C",
+        "B"
+      ],
+      [
+        null,
+        null,
+        "D",
+        null,
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "A, B, C already appear in row 4; D already appears in column 3 — so E is the only letter left for R4C3."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "A, B, C, E already appear in row 4 — so D is the only letter left for R4C2."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "A, B already appear in row 3; C, D already appear in column 2 — so E is the only letter left for R3C2."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A, D already appear in row 5; C, E already appear in column 2 — so B is the only letter left for R5C2."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in column 2 — so A is the only letter left for R1C2."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, B, E already appear in row 3; D already appears in column 3 — so C is the only letter left for R3C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A already appears in row 1; C, D, E already appear in column 3 — so B is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "C already appears in row 2; B, D, E already appear in column 3 — so A is the only letter left for R2C3."
+      }
+    ],
+    "forcedPlacementDepth": 8,
+    "explanation": "Fill the forced cells first: R4C3 must be E (A, B, C already appear in row 4; D already appears in column 3 — so E is the only letter left for R4C3); R4C2 must be D (A, B, C, E already appear in row 4 — so D is the only letter left for R4C2); R3C2 must be E (A, B already appear in row 3; C, D already appear in column 2 — so E is the only letter left for R3C2); R5C2 must be B (A, D already appear in row 5; C, E already appear in column 2 — so B is the only letter left for R5C2); R1C2 must be A (B, C, D, E already appear in column 2 — so A is the only letter left for R1C2); R3C3 must be C (A, B, E already appear in row 3; D already appears in column 3 — so C is the only letter left for R3C3); R1C3 must be B (A already appears in row 1; C, D, E already appear in column 3 — so B is the only letter left for R1C3). C already appears in row 2; B, D, E already appear in column 3 — so A is the only letter left for R2C3.",
+    "distractorNotes": {
+      "B": "B already appears in column 3 (at R1C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 3 (at R5C3), and a letter can only appear once per column.",
+      "E": "E already appears in column 3 (at R4C3), and a letter can only appear once per column. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-011",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ],
+      [
+        "D",
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "D",
+        null,
+        null
+      ],
+      [
+        "B",
+        "C",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "B, C already appear in row 4; D, E already appear in column 3 — so A is the only letter left for R4C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "C already appears in row 1; A, D, E already appear in column 3 — so B is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "E already appears in row 5; A, B, D already appear in column 3 — so C is the only letter left for R5C3."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 5; B, D already appear in column 1 — so A is the only letter left for R5C1."
+      }
+    ],
+    "forcedPlacementDepth": 4,
+    "explanation": "Fill the forced cells first: R4C3 must be A (B, C already appear in row 4; D, E already appear in column 3 — so A is the only letter left for R4C3); R1C3 must be B (C already appears in row 1; A, D, E already appear in column 3 — so B is the only letter left for R1C3); R5C3 must be C (E already appears in row 5; A, B, D already appear in column 3 — so C is the only letter left for R5C3). C, E already appear in row 5; B, D already appear in column 1 — so A is the only letter left for R5C1.",
+    "distractorNotes": {
+      "B": "B already appears in column 1 (at R4C1), and a letter can only appear once per column.",
+      "C": "C already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 1 (at R2C1), and a letter can only appear once per column.",
+      "E": "E already appears in row 5 (at R5C5), and a letter can only appear once per row."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-012",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "B",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "E",
+        "A",
+        "D",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        "A",
+        "B",
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 2,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "A, B, D already appear in row 4; C already appears in column 4 — so E is the only letter left for R4C4."
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in row 4 — so C is the only letter left for R4C1."
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "A, D, E already appear in row 2; C already appears in column 1 — so B is the only letter left for R2C1."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "C already appears in row 3; A, B, E already appear in column 2 — so D is the only letter left for R3C2."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "C, D already appear in row 3; A, B already appear in column 3 — so E is the only letter left for R3C3."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "C, D, E already appear in row 3; B already appears in column 1 — so A is the only letter left for R3C1."
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "A, C, D, E already appear in row 3 — so B is the only letter left for R3C5."
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R4C4 must be E (A, B, D already appear in row 4; C already appears in column 4 — so E is the only letter left for R4C4); R4C1 must be C (A, B, D, E already appear in row 4 — so C is the only letter left for R4C1); R2C1 must be B (A, D, E already appear in row 2; C already appears in column 1 — so B is the only letter left for R2C1); R3C2 must be D (C already appears in row 3; A, B, E already appear in column 2 — so D is the only letter left for R3C2); R3C3 must be E (C, D already appear in row 3; A, B already appear in column 3 — so E is the only letter left for R3C3); R3C1 must be A (C, D, E already appear in row 3; B already appears in column 1 — so A is the only letter left for R3C1). A, C, D, E already appear in row 3 — so B is the only letter left for R3C5.",
+    "distractorNotes": {
+      "A": "A already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 3 (at R3C4), and a letter can only appear once per row.",
+      "D": "D already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in row 3 (at R3C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "ls-high-013",
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        "C",
+        "D"
+      ],
+      [
+        null,
+        null,
+        "A",
+        null,
+        "E"
+      ],
+      [
+        null,
+        "A",
+        "D",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        "C",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "D",
+        "reason": "A, E already appear in row 2; B, C already appear in column 4 — so D is the only letter left for R2C4."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "A already appears in row 5; B, C, D already appear in column 4 — so E is the only letter left for R5C4."
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A, E already appear in row 5; C, D already appear in column 3 — so B is the only letter left for R5C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "C, D already appear in row 1; A, B already appear in column 3 — so E is the only letter left for R1C3."
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "C, D, E already appear in row 1; A already appears in column 2 — so B is the only letter left for R1C2."
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R2C4 must be D (A, E already appear in row 2; B, C already appear in column 4 — so D is the only letter left for R2C4); R5C4 must be E (A already appears in row 5; B, C, D already appear in column 4 — so E is the only letter left for R5C4); R5C3 must be B (A, E already appear in row 5; C, D already appear in column 3 — so B is the only letter left for R5C3); R1C3 must be E (C, D already appear in row 1; A, B already appear in column 3 — so E is the only letter left for R1C3). C, D, E already appear in row 1; A already appears in column 2 — so B is the only letter left for R1C2.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R3C2), and a letter can only appear once per column.",
+      "C": "C already appears in row 1 (at R1C4), and a letter can only appear once per row.",
+      "D": "D already appears in row 1 (at R1C5), and a letter can only appear once per row.",
+      "E": "E already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "generator": {
+      "name": "latin-squares",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  }
+]

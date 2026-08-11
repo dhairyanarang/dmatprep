@@ -1,0 +1,2318 @@
+[
+  {
+    "id": "me-low-001",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "2 × A = 18",
+      "29 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 9,
+      "B": 20
+    },
+    "solutionSteps": [
+      "2 × A = 18. Dividing both sides by 2 gives A = 9.",
+      "29 − A = B, so B = 29 − 9 = 20.",
+      "Full solution: A = 9, B = 20. The question asks for A, so the answer is 9."
+    ],
+    "explanation": "2 × A = 18. Dividing both sides by 2 gives A = 9. 29 − A = B, so B = 29 − 9 = 20. Full solution: A = 9, B = 20. The question asks for A, so the answer is 9.",
+    "distractorNotes": {
+      "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-18": "18 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-8": "8 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-002",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "6 + A = 18",
+      "30 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-19",
+        "value": 19
+      },
+      {
+        "id": "opt-17",
+        "value": 17
+      }
+    ],
+    "correctOptionId": "opt-18",
+    "solution": {
+      "A": 12,
+      "B": 18
+    },
+    "solutionSteps": [
+      "6 + A = 18. Subtracting 6 from both sides gives A = 12.",
+      "30 − A = B, so B = 30 − 12 = 18.",
+      "Full solution: A = 12, B = 18. The question asks for B, so the answer is 18."
+    ],
+    "explanation": "6 + A = 18. Subtracting 6 from both sides gives A = 12. 30 − A = B, so B = 30 − 12 = 18. Full solution: A = 12, B = 18. The question asks for B, so the answer is 18.",
+    "distractorNotes": {
+      "opt-17": "17 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-19": "19 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-12": "12 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-003",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "4 − A = B",
+      "2 × A = 6"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      }
+    ],
+    "correctOptionId": "opt-3",
+    "solution": {
+      "A": 3,
+      "B": 1
+    },
+    "solutionSteps": [
+      "2 × A = 6. Dividing both sides by 2 gives A = 3.",
+      "4 − A = B, so B = 4 − 3 = 1.",
+      "Full solution: A = 3, B = 1. The question asks for A, so the answer is 3."
+    ],
+    "explanation": "2 × A = 6. Dividing both sides by 2 gives A = 3. 4 − A = B, so B = 4 − 3 = 1. Full solution: A = 3, B = 1. The question asks for A, so the answer is 3.",
+    "distractorNotes": {
+      "opt-1": "1 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-2": "2 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-4": "4 is one more than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-004",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "22 − A = B",
+      "A − 6 = 8"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-7",
+        "value": 7
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      }
+    ],
+    "correctOptionId": "opt-14",
+    "solution": {
+      "A": 14,
+      "B": 8
+    },
+    "solutionSteps": [
+      "A − 6 = 8. Adding 6 to both sides gives A = 14.",
+      "22 − A = B, so B = 22 − 14 = 8.",
+      "Full solution: A = 14, B = 8. The question asks for A, so the answer is 14."
+    ],
+    "explanation": "A − 6 = 8. Adding 6 to both sides gives A = 14. 22 − A = B, so B = 22 − 14 = 8. Full solution: A = 14, B = 8. The question asks for A, so the answer is 14.",
+    "distractorNotes": {
+      "opt-7": "7 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-15": "15 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-8": "8 is the value of B, not A — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-005",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "A − 7 = B",
+      "4 × A = 36"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      }
+    ],
+    "correctOptionId": "opt-2",
+    "solution": {
+      "A": 9,
+      "B": 2
+    },
+    "solutionSteps": [
+      "4 × A = 36. Dividing both sides by 4 gives A = 9.",
+      "A − 7 = B, so B = 9 − 7 = 2.",
+      "Full solution: A = 9, B = 2. The question asks for B, so the answer is 2."
+    ],
+    "explanation": "4 × A = 36. Dividing both sides by 4 gives A = 9. A − 7 = B, so B = 9 − 7 = 2. Full solution: A = 9, B = 2. The question asks for B, so the answer is 2.",
+    "distractorNotes": {
+      "opt-4": "4 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-9": "9 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-3": "3 is one more than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-006",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "14 − A = B",
+      "A − 4 = 2"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      }
+    ],
+    "correctOptionId": "opt-6",
+    "solution": {
+      "A": 6,
+      "B": 8
+    },
+    "solutionSteps": [
+      "A − 4 = 2. Adding 4 to both sides gives A = 6.",
+      "14 − A = B, so B = 14 − 6 = 8.",
+      "Full solution: A = 6, B = 8. The question asks for A, so the answer is 6."
+    ],
+    "explanation": "A − 4 = 2. Adding 4 to both sides gives A = 6. 14 − A = B, so B = 14 − 6 = 8. Full solution: A = 6, B = 8. The question asks for A, so the answer is 6.",
+    "distractorNotes": {
+      "opt-5": "5 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-12": "12 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-8": "8 is the value of B, not A — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-007",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "5 × A = 25",
+      "14 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "A": 5,
+      "B": 9
+    },
+    "solutionSteps": [
+      "5 × A = 25. Dividing both sides by 5 gives A = 5.",
+      "14 − A = B, so B = 14 − 5 = 9.",
+      "Full solution: A = 5, B = 9. The question asks for A, so the answer is 5."
+    ],
+    "explanation": "5 × A = 25. Dividing both sides by 5 gives A = 5. 14 − A = B, so B = 14 − 5 = 9. Full solution: A = 5, B = 9. The question asks for A, so the answer is 5.",
+    "distractorNotes": {
+      "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-9": "9 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-4": "4 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-008",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "10 − A = B",
+      "A − 7 = 1"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      }
+    ],
+    "correctOptionId": "opt-2",
+    "solution": {
+      "A": 8,
+      "B": 2
+    },
+    "solutionSteps": [
+      "A − 7 = 1. Adding 7 to both sides gives A = 8.",
+      "10 − A = B, so B = 10 − 8 = 2.",
+      "Full solution: A = 8, B = 2. The question asks for B, so the answer is 2."
+    ],
+    "explanation": "A − 7 = 1. Adding 7 to both sides gives A = 8. 10 − A = B, so B = 10 − 8 = 2. Full solution: A = 8, B = 2. The question asks for B, so the answer is 2.",
+    "distractorNotes": {
+      "opt-3": "3 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-1": "1 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-4": "4 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-009",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "A − 1 = 1",
+      "6 × A = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 2,
+      "B": 12
+    },
+    "solutionSteps": [
+      "A − 1 = 1. Adding 1 to both sides gives A = 2.",
+      "6 × A = B, so B = 6 × 2 = 12.",
+      "Full solution: A = 2, B = 12. The question asks for B, so the answer is 12."
+    ],
+    "explanation": "A − 1 = 1. Adding 1 to both sides gives A = 2. 6 × A = B, so B = 6 × 2 = 12. Full solution: A = 2, B = 12. The question asks for B, so the answer is 12.",
+    "distractorNotes": {
+      "opt-2": "2 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-13": "13 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-11": "11 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-010",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "6 + A = 12",
+      "7 + A = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-6",
+    "solution": {
+      "A": 6,
+      "B": 13
+    },
+    "solutionSteps": [
+      "6 + A = 12. Subtracting 6 from both sides gives A = 6.",
+      "7 + A = B, so B = 7 + 6 = 13.",
+      "Full solution: A = 6, B = 13. The question asks for A, so the answer is 6."
+    ],
+    "explanation": "6 + A = 12. Subtracting 6 from both sides gives A = 6. 7 + A = B, so B = 7 + 6 = 13. Full solution: A = 6, B = 13. The question asks for A, so the answer is 6.",
+    "distractorNotes": {
+      "opt-3": "3 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-13": "13 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-12": "12 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-011",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "14 + A = B",
+      "2 × A = 6"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-17",
+        "value": 17
+      },
+      {
+        "id": "opt-16",
+        "value": 16
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      }
+    ],
+    "correctOptionId": "opt-17",
+    "solution": {
+      "A": 3,
+      "B": 17
+    },
+    "solutionSteps": [
+      "2 × A = 6. Dividing both sides by 2 gives A = 3.",
+      "14 + A = B, so B = 14 + 3 = 17.",
+      "Full solution: A = 3, B = 17. The question asks for B, so the answer is 17."
+    ],
+    "explanation": "2 × A = 6. Dividing both sides by 2 gives A = 3. 14 + A = B, so B = 14 + 3 = 17. Full solution: A = 3, B = 17. The question asks for B, so the answer is 17.",
+    "distractorNotes": {
+      "opt-18": "18 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-3": "3 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-16": "16 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-012",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "10 + A = 22",
+      "A ÷ 4 = B"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 12,
+      "B": 3
+    },
+    "solutionSteps": [
+      "10 + A = 22. Subtracting 10 from both sides gives A = 12.",
+      "A ÷ 4 = B, so B = 12 ÷ 4 = 3.",
+      "Full solution: A = 12, B = 3. The question asks for A, so the answer is 12."
+    ],
+    "explanation": "10 + A = 22. Subtracting 10 from both sides gives A = 12. A ÷ 4 = B, so B = 12 ÷ 4 = 3. Full solution: A = 12, B = 3. The question asks for A, so the answer is 12.",
+    "distractorNotes": {
+      "opt-13": "13 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-3": "3 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-6": "6 is half the correct value, which is what you get if you divide where the equation multiplies."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-013",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "22 − A = B",
+      "3 × A = 36"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-10",
+    "solution": {
+      "A": 12,
+      "B": 10
+    },
+    "solutionSteps": [
+      "3 × A = 36. Dividing both sides by 3 gives A = 12.",
+      "22 − A = B, so B = 22 − 12 = 10.",
+      "Full solution: A = 12, B = 10. The question asks for B, so the answer is 10."
+    ],
+    "explanation": "3 × A = 36. Dividing both sides by 3 gives A = 12. 22 − A = B, so B = 22 − 12 = 10. Full solution: A = 12, B = 10. The question asks for B, so the answer is 10.",
+    "distractorNotes": {
+      "opt-5": "5 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-11": "11 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-20": "20 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-low-014",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "low",
+    "equations": [
+      "1 + A = B",
+      "4 × A = 28"
+    ],
+    "variables": [
+      "A",
+      "B"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-7",
+        "value": 7
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      }
+    ],
+    "correctOptionId": "opt-7",
+    "solution": {
+      "A": 7,
+      "B": 8
+    },
+    "solutionSteps": [
+      "4 × A = 28. Dividing both sides by 4 gives A = 7.",
+      "1 + A = B, so B = 1 + 7 = 8.",
+      "Full solution: A = 7, B = 8. The question asks for A, so the answer is 7."
+    ],
+    "explanation": "4 × A = 28. Dividing both sides by 4 gives A = 7. 1 + A = B, so B = 1 + 7 = 8. Full solution: A = 7, B = 8. The question asks for A, so the answer is 7.",
+    "distractorNotes": {
+      "opt-8": "8 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-6": "6 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-14": "14 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-001",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "33 − B = C",
+      "B − C + A = 18",
+      "31 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-20",
+        "value": 20
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      }
+    ],
+    "correctOptionId": "opt-20",
+    "solution": {
+      "A": 11,
+      "B": 20,
+      "C": 13
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B − C + A = 18 leaves a single unknown, which solves to A = 11.",
+      "31 − A = B, so B = 31 − 11 = 20.",
+      "33 − B = C, so C = 33 − 20 = 13.",
+      "Full solution: A = 11, B = 20, C = 13. The question asks for B, so the answer is 20."
+    ],
+    "explanation": "Substituting the other equations into B − C + A = 18 leaves a single unknown, which solves to A = 11. 31 − A = B, so B = 31 − 11 = 20. 33 − B = C, so C = 33 − 20 = 13. Full solution: A = 11, B = 20, C = 13. The question asks for B, so the answer is 20.",
+    "distractorNotes": {
+      "opt-11": "11 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-13": "13 is the value of C, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-002",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "22 − A = B",
+      "B − C − A = 3",
+      "B − 5 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-15",
+        "value": 15
+      }
+    ],
+    "correctOptionId": "opt-15",
+    "solution": {
+      "A": 2,
+      "B": 20,
+      "C": 15
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B − C − A = 3 leaves a single unknown, which solves to A = 2.",
+      "22 − A = B, so B = 22 − 2 = 20.",
+      "B − 5 = C, so C = 20 − 5 = 15.",
+      "Full solution: A = 2, B = 20, C = 15. The question asks for C, so the answer is 15."
+    ],
+    "explanation": "Substituting the other equations into B − C − A = 3 leaves a single unknown, which solves to A = 2. 22 − A = B, so B = 22 − 2 = 20. B − 5 = C, so C = 20 − 5 = 15. Full solution: A = 2, B = 20, C = 15. The question asks for C, so the answer is 15.",
+    "distractorNotes": {
+      "opt-20": "20 is the value of B, not C — this is the right system solved for the wrong letter.",
+      "opt-2": "2 is the value of A, not C — this is the right system solved for the wrong letter.",
+      "opt-14": "14 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-003",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "15 − B = C",
+      "13 − A = B",
+      "C − B + A = 16"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 9,
+      "B": 4,
+      "C": 11
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − B + A = 16 leaves a single unknown, which solves to A = 9.",
+      "13 − A = B, so B = 13 − 9 = 4.",
+      "15 − B = C, so C = 15 − 4 = 11.",
+      "Full solution: A = 9, B = 4, C = 11. The question asks for A, so the answer is 9."
+    ],
+    "explanation": "Substituting the other equations into C − B + A = 16 leaves a single unknown, which solves to A = 9. 13 − A = B, so B = 13 − 9 = 4. 15 − B = C, so C = 15 − 4 = 11. Full solution: A = 9, B = 4, C = 11. The question asks for A, so the answer is 9.",
+    "distractorNotes": {
+      "opt-11": "11 is the value of C, not A — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-18": "18 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-004",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "2 + A = C",
+      "A − B + C = 25",
+      "A − 11 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 12,
+      "B": 1,
+      "C": 14
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A − B + C = 25 leaves a single unknown, which solves to A = 12.",
+      "A − 11 = B, so B = 12 − 11 = 1.",
+      "2 + A = C, so C = 2 + 12 = 14.",
+      "Full solution: A = 12, B = 1, C = 14. The question asks for A, so the answer is 12."
+    ],
+    "explanation": "Substituting the other equations into A − B + C = 25 leaves a single unknown, which solves to A = 12. A − 11 = B, so B = 12 − 11 = 1. 2 + A = C, so C = 2 + 12 = 14. Full solution: A = 12, B = 1, C = 14. The question asks for A, so the answer is 12.",
+    "distractorNotes": {
+      "opt-1": "1 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-11": "11 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-13": "13 is one more than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-005",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "16 − A = B",
+      "2 + B = C",
+      "B + C − A = 22"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 4,
+      "B": 12,
+      "C": 14
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B + C − A = 22 leaves a single unknown, which solves to A = 4.",
+      "16 − A = B, so B = 16 − 4 = 12.",
+      "2 + B = C, so C = 2 + 12 = 14.",
+      "Full solution: A = 4, B = 12, C = 14. The question asks for B, so the answer is 12."
+    ],
+    "explanation": "Substituting the other equations into B + C − A = 22 leaves a single unknown, which solves to A = 4. 16 − A = B, so B = 16 − 4 = 12. 2 + B = C, so C = 2 + 12 = 14. Full solution: A = 4, B = 12, C = 14. The question asks for B, so the answer is 12.",
+    "distractorNotes": {
+      "opt-6": "6 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-11": "11 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-4": "4 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-006",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "23 − A = B",
+      "A + B + C = 29",
+      "B − 12 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      }
+    ],
+    "correctOptionId": "opt-6",
+    "solution": {
+      "A": 5,
+      "B": 18,
+      "C": 6
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A + B + C = 29 leaves a single unknown, which solves to A = 5.",
+      "23 − A = B, so B = 23 − 5 = 18.",
+      "B − 12 = C, so C = 18 − 12 = 6.",
+      "Full solution: A = 5, B = 18, C = 6. The question asks for C, so the answer is 6."
+    ],
+    "explanation": "Substituting the other equations into A + B + C = 29 leaves a single unknown, which solves to A = 5. 23 − A = B, so B = 23 − 5 = 18. B − 12 = C, so C = 18 − 12 = 6. Full solution: A = 5, B = 18, C = 6. The question asks for C, so the answer is 6.",
+    "distractorNotes": {
+      "opt-12": "12 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-5": "5 is the value of A, not C — this is the right system solved for the wrong letter.",
+      "opt-18": "18 is the value of B, not C — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-007",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "22 − A = B",
+      "B + A + C = 40",
+      "27 − A = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 9,
+      "B": 13,
+      "C": 18
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B + A + C = 40 leaves a single unknown, which solves to A = 9.",
+      "22 − A = B, so B = 22 − 9 = 13.",
+      "27 − A = C, so C = 27 − 9 = 18.",
+      "Full solution: A = 9, B = 13, C = 18. The question asks for A, so the answer is 9."
+    ],
+    "explanation": "Substituting the other equations into B + A + C = 40 leaves a single unknown, which solves to A = 9. 22 − A = B, so B = 22 − 9 = 13. 27 − A = C, so C = 27 − 9 = 18. Full solution: A = 9, B = 13, C = 18. The question asks for A, so the answer is 9.",
+    "distractorNotes": {
+      "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-8": "8 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-18": "18 is the value of C, not A — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-008",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "4 + A = B",
+      "A − C + B = 2",
+      "11 + A = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 9,
+      "B": 13,
+      "C": 20
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A − C + B = 2 leaves a single unknown, which solves to A = 9.",
+      "4 + A = B, so B = 4 + 9 = 13.",
+      "11 + A = C, so C = 11 + 9 = 20.",
+      "Full solution: A = 9, B = 13, C = 20. The question asks for A, so the answer is 9."
+    ],
+    "explanation": "Substituting the other equations into A − C + B = 2 leaves a single unknown, which solves to A = 9. 4 + A = B, so B = 4 + 9 = 13. 11 + A = C, so C = 11 + 9 = 20. Full solution: A = 9, B = 13, C = 20. The question asks for A, so the answer is 9.",
+    "distractorNotes": {
+      "opt-13": "13 is the value of B, not A — this is the right system solved for the wrong letter.",
+      "opt-8": "8 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-009",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "6 + A = C",
+      "C − A + B = 26",
+      "25 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      }
+    ],
+    "correctOptionId": "opt-11",
+    "solution": {
+      "A": 5,
+      "B": 20,
+      "C": 11
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − A + B = 26 leaves a single unknown, which solves to A = 5.",
+      "25 − A = B, so B = 25 − 5 = 20.",
+      "6 + A = C, so C = 6 + 5 = 11.",
+      "Full solution: A = 5, B = 20, C = 11. The question asks for C, so the answer is 11."
+    ],
+    "explanation": "Substituting the other equations into C − A + B = 26 leaves a single unknown, which solves to A = 5. 25 − A = B, so B = 25 − 5 = 20. 6 + A = C, so C = 6 + 5 = 11. Full solution: A = 5, B = 20, C = 11. The question asks for C, so the answer is 11.",
+    "distractorNotes": {
+      "opt-12": "12 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-20": "20 is the value of B, not C — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is one less than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-010",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "C − A + B = 5",
+      "14 − B = C",
+      "A − 7 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 9,
+      "B": 2,
+      "C": 12
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − A + B = 5 leaves a single unknown, which solves to A = 9.",
+      "A − 7 = B, so B = 9 − 7 = 2.",
+      "14 − B = C, so C = 14 − 2 = 12.",
+      "Full solution: A = 9, B = 2, C = 12. The question asks for C, so the answer is 12."
+    ],
+    "explanation": "Substituting the other equations into C − A + B = 5 leaves a single unknown, which solves to A = 9. A − 7 = B, so B = 9 − 7 = 2. 14 − B = C, so C = 14 − 2 = 12. Full solution: A = 9, B = 2, C = 12. The question asks for C, so the answer is 12.",
+    "distractorNotes": {
+      "opt-11": "11 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-2": "2 is the value of B, not C — this is the right system solved for the wrong letter.",
+      "opt-13": "13 is one more than the correct value — an off-by-one slip when adding or subtracting the constant."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-011",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "1 + A = C",
+      "A − B + C = 13",
+      "A ÷ 2 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 8,
+      "B": 4,
+      "C": 9
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A − B + C = 13 leaves a single unknown, which solves to A = 8.",
+      "A ÷ 2 = B, so B = 8 ÷ 2 = 4.",
+      "1 + A = C, so C = 1 + 8 = 9.",
+      "Full solution: A = 8, B = 4, C = 9. The question asks for C, so the answer is 9."
+    ],
+    "explanation": "Substituting the other equations into A − B + C = 13 leaves a single unknown, which solves to A = 8. A ÷ 2 = B, so B = 8 ÷ 2 = 4. 1 + A = C, so C = 1 + 8 = 9. Full solution: A = 8, B = 4, C = 9. The question asks for C, so the answer is 9.",
+    "distractorNotes": {
+      "opt-8": "8 is the value of A, not C — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-18": "18 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-012",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "B − 1 = C",
+      "26 − A = B",
+      "B + C − A = 15"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      }
+    ],
+    "correctOptionId": "opt-13",
+    "solution": {
+      "A": 12,
+      "B": 14,
+      "C": 13
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B + C − A = 15 leaves a single unknown, which solves to A = 12.",
+      "26 − A = B, so B = 26 − 12 = 14.",
+      "B − 1 = C, so C = 14 − 1 = 13.",
+      "Full solution: A = 12, B = 14, C = 13. The question asks for C, so the answer is 13."
+    ],
+    "explanation": "Substituting the other equations into B + C − A = 15 leaves a single unknown, which solves to A = 12. 26 − A = B, so B = 26 − 12 = 14. B − 1 = C, so C = 14 − 1 = 13. Full solution: A = 12, B = 14, C = 13. The question asks for C, so the answer is 13.",
+    "distractorNotes": {
+      "opt-14": "14 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-12": "12 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-15": "15 does not satisfy every equation at once — check it against each line of the system."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-medium-013",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "B + C − A = 18",
+      "19 − A = C",
+      "29 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-19",
+        "value": 19
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      }
+    ],
+    "correctOptionId": "opt-9",
+    "solution": {
+      "A": 10,
+      "B": 19,
+      "C": 9
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B + C − A = 18 leaves a single unknown, which solves to A = 10.",
+      "29 − A = B, so B = 29 − 10 = 19.",
+      "19 − A = C, so C = 19 − 10 = 9.",
+      "Full solution: A = 10, B = 19, C = 9. The question asks for C, so the answer is 9."
+    ],
+    "explanation": "Substituting the other equations into B + C − A = 18 leaves a single unknown, which solves to A = 10. 29 − A = B, so B = 29 − 10 = 19. 19 − A = C, so C = 19 − 10 = 9. Full solution: A = 10, B = 19, C = 9. The question asks for C, so the answer is 9.",
+    "distractorNotes": {
+      "opt-19": "19 is the value of B, not C — this is the right system solved for the wrong letter.",
+      "opt-18": "18 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-10": "10 is the value of A, not C — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-001",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "3 + C = D",
+      "20 − B = C",
+      "D + B + A − C = 21",
+      "A − 2 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-8",
+    "solution": {
+      "A": 10,
+      "B": 8,
+      "C": 12,
+      "D": 15
+    },
+    "solutionSteps": [
+      "Substituting the other equations into D + B + A − C = 21 leaves a single unknown, which solves to A = 10.",
+      "A − 2 = B, so B = 10 − 2 = 8.",
+      "20 − B = C, so C = 20 − 8 = 12.",
+      "3 + C = D, so D = 3 + 12 = 15.",
+      "Full solution: A = 10, B = 8, C = 12, D = 15. The question asks for B, so the answer is 8."
+    ],
+    "explanation": "Substituting the other equations into D + B + A − C = 21 leaves a single unknown, which solves to A = 10. A − 2 = B, so B = 10 − 2 = 8. 20 − B = C, so C = 20 − 8 = 12. 3 + C = D, so D = 3 + 12 = 15. Full solution: A = 10, B = 8, C = 12, D = 15. The question asks for B, so the answer is 8.",
+    "distractorNotes": {
+      "opt-12": "12 is the value of C, not B — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-4": "4 is half the correct value, which is what you get if you divide where the equation multiplies."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-002",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "9 − A = C",
+      "7 − A = B",
+      "B − A + D + C = 5",
+      "4 − B = D"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-1",
+    "solution": {
+      "A": 4,
+      "B": 3,
+      "C": 5,
+      "D": 1
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B − A + D + C = 5 leaves a single unknown, which solves to A = 4.",
+      "7 − A = B, so B = 7 − 4 = 3.",
+      "9 − A = C, so C = 9 − 4 = 5.",
+      "4 − B = D, so D = 4 − 3 = 1.",
+      "Full solution: A = 4, B = 3, C = 5, D = 1. The question asks for D, so the answer is 1."
+    ],
+    "explanation": "Substituting the other equations into B − A + D + C = 5 leaves a single unknown, which solves to A = 4. 7 − A = B, so B = 7 − 4 = 3. 9 − A = C, so C = 9 − 4 = 5. 4 − B = D, so D = 4 − 3 = 1. Full solution: A = 4, B = 3, C = 5, D = 1. The question asks for D, so the answer is 1.",
+    "distractorNotes": {
+      "opt-2": "2 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-5": "5 is the value of C, not D — this is the right system solved for the wrong letter.",
+      "opt-3": "3 is the value of B, not D — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-003",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A + C − B + D = 39",
+      "7 + B = C",
+      "4 + A = D",
+      "A − 10 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      }
+    ],
+    "correctOptionId": "opt-4",
+    "solution": {
+      "A": 14,
+      "B": 4,
+      "C": 11,
+      "D": 18
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A + C − B + D = 39 leaves a single unknown, which solves to A = 14.",
+      "A − 10 = B, so B = 14 − 10 = 4.",
+      "7 + B = C, so C = 7 + 4 = 11.",
+      "4 + A = D, so D = 4 + 14 = 18.",
+      "Full solution: A = 14, B = 4, C = 11, D = 18. The question asks for B, so the answer is 4."
+    ],
+    "explanation": "Substituting the other equations into A + C − B + D = 39 leaves a single unknown, which solves to A = 14. A − 10 = B, so B = 14 − 10 = 4. 7 + B = C, so C = 7 + 4 = 11. 4 + A = D, so D = 4 + 14 = 18. Full solution: A = 14, B = 4, C = 11, D = 18. The question asks for B, so the answer is 4.",
+    "distractorNotes": {
+      "opt-8": "8 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-18": "18 is the value of D, not B — this is the right system solved for the wrong letter.",
+      "opt-14": "14 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-004",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "21 − A = B",
+      "C + B − A − D = 24",
+      "B − 11 = D",
+      "17 − A = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      }
+    ],
+    "correctOptionId": "opt-2",
+    "solution": {
+      "A": 2,
+      "B": 19,
+      "C": 15,
+      "D": 8
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C + B − A − D = 24 leaves a single unknown, which solves to A = 2.",
+      "21 − A = B, so B = 21 − 2 = 19.",
+      "17 − A = C, so C = 17 − 2 = 15.",
+      "B − 11 = D, so D = 19 − 11 = 8.",
+      "Full solution: A = 2, B = 19, C = 15, D = 8. The question asks for A, so the answer is 2."
+    ],
+    "explanation": "Substituting the other equations into C + B − A − D = 24 leaves a single unknown, which solves to A = 2. 21 − A = B, so B = 21 − 2 = 19. 17 − A = C, so C = 17 − 2 = 15. B − 11 = D, so D = 19 − 11 = 8. Full solution: A = 2, B = 19, C = 15, D = 8. The question asks for A, so the answer is 2.",
+    "distractorNotes": {
+      "opt-1": "1 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-8": "8 is the value of D, not A — this is the right system solved for the wrong letter.",
+      "opt-15": "15 is the value of C, not A — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-005",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "6 + B = C",
+      "B − 3 = D",
+      "C − A + B + D = 42",
+      "17 − A = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      }
+    ],
+    "correctOptionId": "opt-11",
+    "solution": {
+      "A": 3,
+      "B": 14,
+      "C": 20,
+      "D": 11
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − A + B + D = 42 leaves a single unknown, which solves to A = 3.",
+      "17 − A = B, so B = 17 − 3 = 14.",
+      "6 + B = C, so C = 6 + 14 = 20.",
+      "B − 3 = D, so D = 14 − 3 = 11.",
+      "Full solution: A = 3, B = 14, C = 20, D = 11. The question asks for D, so the answer is 11."
+    ],
+    "explanation": "Substituting the other equations into C − A + B + D = 42 leaves a single unknown, which solves to A = 3. 17 − A = B, so B = 17 − 3 = 14. 6 + B = C, so C = 6 + 14 = 20. B − 3 = D, so D = 14 − 3 = 11. Full solution: A = 3, B = 14, C = 20, D = 11. The question asks for D, so the answer is 11.",
+    "distractorNotes": {
+      "opt-12": "12 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-14": "14 is the value of B, not D — this is the right system solved for the wrong letter.",
+      "opt-20": "20 is the value of C, not D — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-006",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "22 − B = C",
+      "23 − A = B",
+      "C + B + D + A = 48",
+      "5 + C = D"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      },
+      {
+        "id": "opt-11",
+        "value": 11
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      }
+    ],
+    "correctOptionId": "opt-12",
+    "solution": {
+      "A": 11,
+      "B": 12,
+      "C": 10,
+      "D": 15
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C + B + D + A = 48 leaves a single unknown, which solves to A = 11.",
+      "23 − A = B, so B = 23 − 11 = 12.",
+      "22 − B = C, so C = 22 − 12 = 10.",
+      "5 + C = D, so D = 5 + 10 = 15.",
+      "Full solution: A = 11, B = 12, C = 10, D = 15. The question asks for B, so the answer is 12."
+    ],
+    "explanation": "Substituting the other equations into C + B + D + A = 48 leaves a single unknown, which solves to A = 11. 23 − A = B, so B = 23 − 11 = 12. 22 − B = C, so C = 22 − 12 = 10. 5 + C = D, so D = 5 + 10 = 15. Full solution: A = 11, B = 12, C = 10, D = 15. The question asks for B, so the answer is 12.",
+    "distractorNotes": {
+      "opt-13": "13 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-10": "10 is the value of C, not B — this is the right system solved for the wrong letter.",
+      "opt-11": "11 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-007",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A − 7 = B",
+      "D + A − C + B = 22",
+      "1 + A = C",
+      "9 + C = D"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      }
+    ],
+    "correctOptionId": "opt-3",
+    "solution": {
+      "A": 10,
+      "B": 3,
+      "C": 11,
+      "D": 20
+    },
+    "solutionSteps": [
+      "Substituting the other equations into D + A − C + B = 22 leaves a single unknown, which solves to A = 10.",
+      "A − 7 = B, so B = 10 − 7 = 3.",
+      "1 + A = C, so C = 1 + 10 = 11.",
+      "9 + C = D, so D = 9 + 11 = 20.",
+      "Full solution: A = 10, B = 3, C = 11, D = 20. The question asks for B, so the answer is 3."
+    ],
+    "explanation": "Substituting the other equations into D + A − C + B = 22 leaves a single unknown, which solves to A = 10. A − 7 = B, so B = 10 − 7 = 3. 1 + A = C, so C = 1 + 10 = 11. 9 + C = D, so D = 9 + 11 = 20. Full solution: A = 10, B = 3, C = 11, D = 20. The question asks for B, so the answer is 3.",
+    "distractorNotes": {
+      "opt-2": "2 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-4": "4 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-10": "10 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-008",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "19 − B = D",
+      "A − C − D + B = 15",
+      "13 + A = B",
+      "B − 11 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-7",
+        "value": 7
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "A": 5,
+      "B": 18,
+      "C": 7,
+      "D": 1
+    },
+    "solutionSteps": [
+      "Substituting the other equations into A − C − D + B = 15 leaves a single unknown, which solves to A = 5.",
+      "13 + A = B, so B = 13 + 5 = 18.",
+      "B − 11 = C, so C = 18 − 11 = 7.",
+      "19 − B = D, so D = 19 − 18 = 1.",
+      "Full solution: A = 5, B = 18, C = 7, D = 1. The question asks for A, so the answer is 5."
+    ],
+    "explanation": "Substituting the other equations into A − C − D + B = 15 leaves a single unknown, which solves to A = 5. 13 + A = B, so B = 13 + 5 = 18. B − 11 = C, so C = 18 − 11 = 7. 19 − B = D, so D = 19 − 18 = 1. Full solution: A = 5, B = 18, C = 7, D = 1. The question asks for A, so the answer is 5.",
+    "distractorNotes": {
+      "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-1": "1 is the value of D, not A — this is the right system solved for the wrong letter.",
+      "opt-7": "7 is the value of C, not A — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-009",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A ÷ 2 = B",
+      "D − B + A + C = 30",
+      "C − 11 = D",
+      "22 − A = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      }
+    ],
+    "correctOptionId": "opt-1",
+    "solution": {
+      "A": 2,
+      "B": 1,
+      "C": 20,
+      "D": 9
+    },
+    "solutionSteps": [
+      "Substituting the other equations into D − B + A + C = 30 leaves a single unknown, which solves to A = 2.",
+      "A ÷ 2 = B, so B = 2 ÷ 2 = 1.",
+      "22 − A = C, so C = 22 − 2 = 20.",
+      "C − 11 = D, so D = 20 − 11 = 9.",
+      "Full solution: A = 2, B = 1, C = 20, D = 9. The question asks for B, so the answer is 1."
+    ],
+    "explanation": "Substituting the other equations into D − B + A + C = 30 leaves a single unknown, which solves to A = 2. A ÷ 2 = B, so B = 2 ÷ 2 = 1. 22 − A = C, so C = 22 − 2 = 20. C − 11 = D, so D = 20 − 11 = 9. Full solution: A = 2, B = 1, C = 20, D = 9. The question asks for B, so the answer is 1.",
+    "distractorNotes": {
+      "opt-20": "20 is the value of C, not B — this is the right system solved for the wrong letter.",
+      "opt-2": "2 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-9": "9 is the value of D, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-010",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "11 + A = C",
+      "9 × B = D",
+      "7 − A = B",
+      "B − D + A + C = 5"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-17",
+        "value": 17
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-18",
+    "solution": {
+      "A": 5,
+      "B": 2,
+      "C": 16,
+      "D": 18
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B − D + A + C = 5 leaves a single unknown, which solves to A = 5.",
+      "7 − A = B, so B = 7 − 5 = 2.",
+      "11 + A = C, so C = 11 + 5 = 16.",
+      "9 × B = D, so D = 9 × 2 = 18.",
+      "Full solution: A = 5, B = 2, C = 16, D = 18. The question asks for D, so the answer is 18."
+    ],
+    "explanation": "Substituting the other equations into B − D + A + C = 5 leaves a single unknown, which solves to A = 5. 7 − A = B, so B = 7 − 5 = 2. 11 + A = C, so C = 11 + 5 = 16. 9 × B = D, so D = 9 × 2 = 18. Full solution: A = 5, B = 2, C = 16, D = 18. The question asks for D, so the answer is 18.",
+    "distractorNotes": {
+      "opt-5": "5 is the value of A, not D — this is the right system solved for the wrong letter.",
+      "opt-17": "17 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-9": "9 is half the correct value, which is what you get if you divide where the equation multiplies."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-011",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A − 8 = B",
+      "22 − B = D",
+      "20 − B = C",
+      "C − A + B + D = 24"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-13",
+        "value": 13
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "A": 13,
+      "B": 5,
+      "C": 15,
+      "D": 17
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − A + B + D = 24 leaves a single unknown, which solves to A = 13.",
+      "A − 8 = B, so B = 13 − 8 = 5.",
+      "20 − B = C, so C = 20 − 5 = 15.",
+      "22 − B = D, so D = 22 − 5 = 17.",
+      "Full solution: A = 13, B = 5, C = 15, D = 17. The question asks for B, so the answer is 5."
+    ],
+    "explanation": "Substituting the other equations into C − A + B + D = 24 leaves a single unknown, which solves to A = 13. A − 8 = B, so B = 13 − 8 = 5. 20 − B = C, so C = 20 − 5 = 15. 22 − B = D, so D = 22 − 5 = 17. Full solution: A = 13, B = 5, C = 15, D = 17. The question asks for B, so the answer is 5.",
+    "distractorNotes": {
+      "opt-10": "10 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-13": "13 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-15": "15 is the value of C, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-012",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "1 + B = D",
+      "18 − A = B",
+      "B + C + D − A = 16",
+      "A − 5 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-20",
+        "value": 20
+      }
+    ],
+    "correctOptionId": "opt-10",
+    "solution": {
+      "A": 8,
+      "B": 10,
+      "C": 3,
+      "D": 11
+    },
+    "solutionSteps": [
+      "Substituting the other equations into B + C + D − A = 16 leaves a single unknown, which solves to A = 8.",
+      "18 − A = B, so B = 18 − 8 = 10.",
+      "A − 5 = C, so C = 8 − 5 = 3.",
+      "1 + B = D, so D = 1 + 10 = 11.",
+      "Full solution: A = 8, B = 10, C = 3, D = 11. The question asks for B, so the answer is 10."
+    ],
+    "explanation": "Substituting the other equations into B + C + D − A = 16 leaves a single unknown, which solves to A = 8. 18 − A = B, so B = 18 − 8 = 10. A − 5 = C, so C = 8 − 5 = 3. 1 + B = D, so D = 1 + 10 = 11. Full solution: A = 8, B = 10, C = 3, D = 11. The question asks for B, so the answer is 10.",
+    "distractorNotes": {
+      "opt-8": "8 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-20": "20 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-3": "3 is the value of C, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  },
+  {
+    "id": "me-high-013",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "10 − A = D",
+      "7 + A = B",
+      "C − A + D − B = 10",
+      "6 + B = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      }
+    ],
+    "correctOptionId": "opt-10",
+    "solution": {
+      "A": 3,
+      "B": 10,
+      "C": 16,
+      "D": 7
+    },
+    "solutionSteps": [
+      "Substituting the other equations into C − A + D − B = 10 leaves a single unknown, which solves to A = 3.",
+      "7 + A = B, so B = 7 + 3 = 10.",
+      "6 + B = C, so C = 6 + 10 = 16.",
+      "10 − A = D, so D = 10 − 3 = 7.",
+      "Full solution: A = 3, B = 10, C = 16, D = 7. The question asks for B, so the answer is 10."
+    ],
+    "explanation": "Substituting the other equations into C − A + D − B = 10 leaves a single unknown, which solves to A = 3. 7 + A = B, so B = 7 + 3 = 10. 6 + B = C, so C = 6 + 10 = 16. 10 − A = D, so D = 10 − 3 = 7. Full solution: A = 3, B = 10, C = 16, D = 7. The question asks for B, so the answer is 10.",
+    "distractorNotes": {
+      "opt-9": "9 is one less than the correct value — an off-by-one slip when adding or subtracting the constant.",
+      "opt-5": "5 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-3": "3 is the value of A, not B — this is the right system solved for the wrong letter."
+    },
+    "generator": {
+      "name": "math-equations",
+      "version": "1.0.0",
+      "verifiedAt": "2026-08-11"
+    }
+  }
+]
