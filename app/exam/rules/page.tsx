@@ -1,4 +1,6 @@
-import { ComingSoon, PageShell } from '@/components/layout/page-shell'
+import { ContentBlocks } from '@/components/content/content-blocks'
+import { PageShell } from '@/components/layout/page-shell'
+import { rules } from '@/content/exam/rules'
 
 export const metadata = { title: 'Exam-Day Rules' }
 
@@ -8,7 +10,7 @@ export default function ExamRulesPage() {
       title="Exam-Day Rules"
       description="Identification, arrival, prohibited items and conduct — the things that get you excluded if you get them wrong."
     >
-      <ComingSoon note="Reference content lands in phase 7." />
+      <ContentBlocks blocks={rules} />
     </PageShell>
   )
 }

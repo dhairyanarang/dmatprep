@@ -1,4 +1,6 @@
-import { ComingSoon, PageShell } from '@/components/layout/page-shell'
+import { ContentBlocks } from '@/components/content/content-blocks'
+import { PageShell } from '@/components/layout/page-shell'
+import { format } from '@/content/exam/format'
 
 export const metadata = { title: 'Format & Structure' }
 
@@ -8,7 +10,7 @@ export default function ExamFormatPage() {
       title="Format & Structure"
       description="What the dMAT consists of, how long each part runs, and how the day is shaped."
     >
-      <ComingSoon note="Reference content lands in phase 7." />
+      <ContentBlocks blocks={format} />
     </PageShell>
   )
 }

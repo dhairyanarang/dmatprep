@@ -1,4 +1,6 @@
-import { ComingSoon, PageShell } from '@/components/layout/page-shell'
+import { ContentBlocks } from '@/components/content/content-blocks'
+import { PageShell } from '@/components/layout/page-shell'
+import { logistics } from '@/content/exam/logistics'
 
 export const metadata = { title: 'Dates & Logistics' }
 
@@ -8,7 +10,7 @@ export default function ExamLogisticsPage() {
       title="Dates & Logistics"
       description="Deadlines, fee, test centres, and how the dMAT connects to the APS process."
     >
-      <ComingSoon note="Reference content lands in phase 7." />
+      <ContentBlocks blocks={logistics} />
     </PageShell>
   )
 }
