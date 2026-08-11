@@ -131,7 +131,6 @@ export function difficultyForDepth(depth) {
  * aren't padded with givens that do no work.
  */
 export function carvePuzzle(rng, solution, target, letters = LETTERS) {
-  const n = solution.length
   const givens = solution.map((row) => [...row])
   givens[target.row][target.col] = null
 

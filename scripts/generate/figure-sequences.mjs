@@ -244,6 +244,19 @@ function buildQuestion(rng, index, difficulty) {
     if (panelsEqual(panels[i], panels[i - 1])) return null
   }
 
+  // Reject degenerate oscillations. A symbol that immediately bounces flips
+  // between two cells forever: legal, but it teaches nothing and is trivially
+  // guessable. Require every symbol to visit at least three distinct cells.
+  for (const symbol of symbols) {
+    const visited = new Set(
+      panels.map((panel) => {
+        const s = panel.symbols.find((x) => x.id === symbol.id)
+        return `${s.cell.row},${s.cell.col}`
+      }),
+    )
+    if (visited.size < 3) return null
+  }
+
   const image1 = buildImage(rng, 'image1', panels[4], panels[3], rules)
   if (!image1) return null
   const image2 = buildImage(rng, 'image2', panels[5], panels[4], rules)

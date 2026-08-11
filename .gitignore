@@ -44,3 +44,7 @@ next-env.d.ts
 # fetch it locally with scripts/extract-pdf.mjs instead of committing it.
 /source-material/
 *.pdf
+
+# local review artifacts
+/.playwright-mcp/
+/*.png

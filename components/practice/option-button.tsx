@@ -1,0 +1,82 @@
+'use client'
+
+import type { ReactNode } from 'react'
+import { Check, X } from 'lucide-react'
+
+import { cn } from '@/lib/utils'
+
+export type OptionState = 'idle' | 'selected' | 'correct' | 'incorrect' | 'missed'
+
+/**
+ * One answer choice.
+ *
+ * After submission the states carry the whole feedback story: `correct` for a
+ * right pick, `incorrect` for a wrong one, and `missed` to point out the right
+ * answer when the candidate chose something else.
+ */
+export function OptionButton({
+  state,
+  onSelect,
+  disabled,
+  label,
+  children,
+  className,
+}: {
+  state: OptionState
+  onSelect: () => void
+  disabled?: boolean
+  /** Accessible name, needed when the visible content is a diagram. */
+  label: string
+  children: ReactNode
+  className?: string
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onSelect}
+      disabled={disabled}
+      aria-pressed={state === 'selected' || state === 'correct' || state === 'incorrect'}
+      aria-label={label}
+      className={cn(
+        'relative flex items-center gap-3 rounded-lg border-2 p-3 text-left transition-colors',
+        'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
+        !disabled && 'hover:border-foreground/40 cursor-pointer',
+        state === 'idle' && 'border-border',
+        state === 'selected' && 'border-primary bg-primary/5',
+        state === 'correct' && 'border-emerald-600 bg-emerald-50 dark:bg-emerald-950/40',
+        state === 'incorrect' && 'border-rose-600 bg-rose-50 dark:bg-rose-950/40',
+        state === 'missed' && 'border-emerald-600/60 border-dashed',
+        className,
+      )}
+    >
+      {children}
+
+      {(state === 'correct' || state === 'missed') && (
+        <Check
+          className="absolute top-2 right-2 h-4 w-4 text-emerald-600 dark:text-emerald-400"
+          aria-hidden
+        />
+      )}
+      {state === 'incorrect' && (
+        <X className="absolute top-2 right-2 h-4 w-4 text-rose-600 dark:text-rose-400" aria-hidden />
+      )}
+    </button>
+  )
+}
+
+/** Resolve an option's visual state from the current answer/selection. */
+export function optionState({
+  optionId,
+  selectedId,
+  correctId,
+  submitted,
+}: {
+  optionId: string
+  selectedId: string | undefined
+  correctId: string
+  submitted: boolean
+}): OptionState {
+  if (!submitted) return selectedId === optionId ? 'selected' : 'idle'
+  if (optionId === correctId) return selectedId === optionId ? 'correct' : 'missed'
+  return selectedId === optionId ? 'incorrect' : 'idle'
+}

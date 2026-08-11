@@ -1,6 +1,8 @@
-import { ComingSoon } from '@/components/layout/page-shell'
-import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 import { notFound } from 'next/navigation'
+
+import { PracticeRunner } from '@/components/practice/practice-runner'
+import { getQuestions } from '@/lib/content/registry'
+import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 
 export function generateStaticParams() {
   return SECTION_IDS.map((section) => ({ section }))
@@ -20,5 +22,5 @@ export default async function PracticePage({
   const { section } = await params
   if (!isSectionId(section)) notFound()
 
-  return <ComingSoon note="The practice runner lands in phase 5." />
+  return <PracticeRunner sectionId={section} questions={getQuestions(section)} />
 }
