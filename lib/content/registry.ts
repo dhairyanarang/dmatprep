@@ -2,7 +2,16 @@ import figureSequences from '@/content/sections/figure-sequences/questions.json'
 import mathematicalEquations from '@/content/sections/mathematical-equations/questions.json'
 import latinSquares from '@/content/sections/latin-squares/questions.json'
 
+import { learn as figureLearn } from '@/content/sections/figure-sequences/learn'
+import { learn as mathLearn } from '@/content/sections/mathematical-equations/learn'
+import { learn as latinLearn } from '@/content/sections/latin-squares/learn'
+
+import { tips as figureTips } from '@/content/sections/figure-sequences/tips'
+import { tips as mathTips } from '@/content/sections/mathematical-equations/tips'
+import { tips as latinTips } from '@/content/sections/latin-squares/tips'
+
 import type { SectionId } from '@/lib/sections'
+import type { LearnPage, TipsPage } from '@/lib/types/content'
 import type { Difficulty, Question } from '@/lib/types/question'
 
 /**
@@ -16,6 +25,26 @@ const BANKS: Record<SectionId, Question[]> = {
   'figure-sequences': figureSequences as unknown as Question[],
   'mathematical-equations': mathematicalEquations as unknown as Question[],
   'latin-squares': latinSquares as unknown as Question[],
+}
+
+const LEARN: Record<SectionId, LearnPage> = {
+  'figure-sequences': figureLearn,
+  'mathematical-equations': mathLearn,
+  'latin-squares': latinLearn,
+}
+
+const TIPS: Record<SectionId, TipsPage> = {
+  'figure-sequences': figureTips,
+  'mathematical-equations': mathTips,
+  'latin-squares': latinTips,
+}
+
+export function getLearn(sectionId: SectionId): LearnPage {
+  return LEARN[sectionId]
+}
+
+export function getTips(sectionId: SectionId): TipsPage {
+  return TIPS[sectionId]
 }
 
 export function getQuestions(sectionId: SectionId): Question[] {

@@ -1,6 +1,8 @@
-import { ComingSoon } from '@/components/layout/page-shell'
-import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 import { notFound } from 'next/navigation'
+
+import { ContentBlocks } from '@/components/content/content-blocks'
+import { getLearn } from '@/lib/content/registry'
+import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 
 export function generateStaticParams() {
   return SECTION_IDS.map((section) => ({ section }))
@@ -18,5 +20,12 @@ export default async function LearnPage({ params }: PageProps<'/module-a/[sectio
   const { section } = await params
   if (!isSectionId(section)) notFound()
 
-  return <ComingSoon note="Learn content is authored in phase 6." />
+  const learn = getLearn(section)
+
+  return (
+    <article className="space-y-6">
+      <p className="text-sm leading-relaxed text-pretty">{learn.intro}</p>
+      <ContentBlocks blocks={learn.blocks} sectionId={section} />
+    </article>
+  )
 }
