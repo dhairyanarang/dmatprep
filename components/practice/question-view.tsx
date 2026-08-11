@@ -36,7 +36,10 @@ function FigureSequenceView({
         <p className="text-muted-foreground mb-3 text-sm">
           Continue the sequence. Work out what the fifth and sixth matrices look like.
         </p>
-        <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-2">
+        {/* Three-up on phones so all six panels are visible at once; the whole
+            point of the task is comparing them, so horizontal scrolling here
+            actively gets in the way. */}
+        <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
           {question.given.map((panel, i) => (
             <FigureMatrix
               key={i}
@@ -44,18 +47,18 @@ function FigureSequenceView({
               rows={question.grid.rows}
               cols={question.grid.cols}
               title={`Matrix ${i + 1}`}
-              className="max-w-[110px] sm:max-w-[130px]"
+              className="max-w-none"
             />
           ))}
           <FigureUnknown
             rows={question.grid.rows}
             cols={question.grid.cols}
-            className="max-w-[110px] sm:max-w-[130px]"
+            className="max-w-none"
           />
           <FigureUnknown
             rows={question.grid.rows}
             cols={question.grid.cols}
-            className="max-w-[110px] sm:max-w-[130px]"
+            className="max-w-none"
           />
         </div>
       </div>
