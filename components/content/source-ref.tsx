@@ -1,43 +1,12 @@
-import { SOURCES } from '@/content/exam/sources'
-import type { Confidence, SourceRef } from '@/lib/types/content'
+import type { Confidence } from '@/lib/types/content'
 import { cn } from '@/lib/utils'
 
-const SHORT: Record<string, string> = {
-  'gam-pdf': 'Prep materials',
-  'dmat-home': 'd-mat.de',
-  'dmat-india': 'd-mat.de (India)',
-  'dmat-structure': 'd-mat.de (structure)',
-  'dmat-terms': 'T&Cs',
-  'dmat-preparation': 'd-mat.de (preparation)',
-  'aps-dmat': 'APS India',
-  'aps-fields': 'APS field list',
-}
-
-/** Inline citation chips. Deliberately quiet — present, but not shouting. */
-export function SourceCitation({ sources }: { sources?: SourceRef[] }) {
-  if (!sources?.length) return null
-
-  return (
-    <span className="ml-1.5 inline-flex flex-wrap gap-1 align-baseline">
-      {sources.map((ref, i) => {
-        const source = SOURCES[ref.id]
-        return (
-          <a
-            key={`${ref.id}-${ref.page ?? i}`}
-            href={source.url}
-            target="_blank"
-            rel="noreferrer"
-            title={`${source.title}${source.asAt ? ` (${source.asAt})` : ''}`}
-            className="text-muted-foreground hover:text-foreground rounded border px-1 text-[10px] leading-4 transition-colors"
-          >
-            {SHORT[ref.id] ?? ref.id}
-            {ref.page ? ` p.${ref.page}` : ''}
-          </a>
-        )
-      })}
-    </span>
-  )
-}
+/**
+ * Inline citations were removed from the reading experience — they broke up
+ * every paragraph. The `sources` data is still carried on each claim and still
+ * drives /exam/sources, so the audit trail is intact; it just isn't rendered
+ * against the prose any more.
+ */
 
 const CONFIDENCE_STYLE: Record<Exclude<Confidence, 'official'>, string> = {
   inferred: 'bg-warning-tint text-warning-fg',

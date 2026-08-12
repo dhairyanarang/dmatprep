@@ -1,6 +1,6 @@
 import { AlertTriangle, HelpCircle, Info } from 'lucide-react'
 
-import { ConfidenceBadge, SourceCitation } from '@/components/content/source-ref'
+import { ConfidenceBadge } from '@/components/content/source-ref'
 import { WorkedExample } from '@/components/content/worked-example'
 import { getQuestion } from '@/lib/content/registry'
 import type { SectionId } from '@/lib/sections'
@@ -52,7 +52,6 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
         <div>
           <p className="text-sm leading-relaxed text-pretty">
             {block.text}
-            <SourceCitation sources={block.sources} />
           </p>
           <ConfidenceBadge confidence={block.confidence} note={block.note} />
         </div>
@@ -71,7 +70,6 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
                 />
                 <span>
                   {item.text}
-                  <SourceCitation sources={item.sources} />
                   <ConfidenceBadge confidence={item.confidence} note={item.note} />
                 </span>
               </li>
@@ -122,7 +120,6 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
           <p className="text-sm leading-relaxed">{block.text}</p>
           <p className="text-muted-foreground mt-2 text-xs">
             Official wording
-            <SourceCitation sources={block.sources} />
           </p>
         </blockquote>
       )
