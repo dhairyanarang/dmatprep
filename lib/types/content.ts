@@ -32,7 +32,6 @@ export type Claim = {
  */
 export type DiagramKind =
   | 'fs-anatomy'
-  | 'fs-movement'
   | 'fs-bounce'
   | 'fs-catalogue'
   | 'fs-difficulty'

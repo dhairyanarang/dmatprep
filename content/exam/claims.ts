@@ -55,7 +55,7 @@ export const EXAM_CLAIMS: PageClaims[] = [
       { text: 'A phone ringing during the examination results in exclusion.', sources: [{ id: TERMS }] },
       { text: 'No notes may be taken throughout the exam, and notice paper counts as a prohibited aid.', sources: [{ id: GAM, page: 6 }, { id: TERMS }] },
       { text: 'You may not leave the building for the duration, nor the room until the module ends.', sources: [{ id: TERMS }] },
-      { text: 'Lavatories may be used only during designated breaks; cafeteria visits are not permitted during them.', sources: [{ id: TERMS }] },
+      { text: 'The lavatory may be used only during the break specified by the test centre; cafeteria or canteen visits during breaks are prohibited.', sources: [{ id: TERMS }] },
       { text: 'Consulting notes or reference books during breaks is a violation.', sources: [{ id: TERMS }] },
       { text: 'Exclusion carries no refund, and the Examination Board may deny admission to future sittings.', sources: [{ id: TERMS }] },
       { text: 'Recording, discussing or publishing exam content is prohibited and prosecutable.', sources: [{ id: TERMS }] },
@@ -67,7 +67,7 @@ export const EXAM_CLAIMS: PageClaims[] = [
     claims: [
       { text: 'The dMAT score converts the total number of correct answers to a value between 0 and 200, with a mean of 100.', sources: [{ id: HOME }] },
       { text: 'You also receive a percentile rank, and the total combines both modules.', sources: [{ id: HOME }] },
-      { text: 'The official instructions tell candidates to guess when they do not know an answer.', sources: [{ id: GAM, page: 8 }, { id: GAM, page: 25 }, { id: GAM, page: 34 }] },
+      { text: 'The instructions tell candidates to guess when they do not know an answer. It appears in Figure Sequences, Latin Squares and the Subject Module; the Mathematical Equations instructions omit it.', sources: [{ id: GAM, page: 8 }, { id: GAM, page: 25 }, { id: GAM, page: 34 }] },
       {
         text: 'There is no penalty for a wrong answer, so a blank costs exactly what a wrong guess costs.',
         confidence: 'unconfirmed',

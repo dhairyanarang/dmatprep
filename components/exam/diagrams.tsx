@@ -104,17 +104,6 @@ function MiniGrid({
   )
 }
 
-function Figure({ caption, children }: { caption: string; children: React.ReactNode }) {
-  return (
-    <figure className="border-border bg-card flex flex-col items-center gap-3 rounded-xl border p-4">
-      {children}
-      <figcaption className="text-muted-foreground text-center text-xs leading-relaxed">
-        {caption}
-      </figcaption>
-    </figure>
-  )
-}
-
 /* ------------------------------------------------- figure sequences: anatomy */
 
 /** What a single item actually consists of — four shown, two to choose. */
@@ -160,54 +149,6 @@ export function ItemAnatomy() {
         Each of the two answers is picked from <span className="text-foreground">three</span>{' '}
         candidate matrices, and the item only counts as correct when both are right.
       </p>
-    </div>
-  )
-}
-
-/* -------------------------------------------- figure sequences: movement types */
-
-export function MovementTypes() {
-  return (
-    <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      <Figure caption="Vertical or horizontal — travels along one fixed row or column">
-        <MiniGrid
-          marks={[
-            { r: 1, c: 0, kind: 'ghost' },
-            { r: 1, c: 1, kind: 'ghost' },
-            { r: 1, c: 2 },
-          ]}
-        />
-      </Figure>
-
-      <Figure caption="Diagonal — and a diagonal mover can never switch to another movement type">
-        <MiniGrid
-          marks={[
-            { r: 0, c: 0, kind: 'ghost' },
-            { r: 1, c: 1, kind: 'ghost' },
-            { r: 2, c: 2 },
-          ]}
-        />
-      </Figure>
-
-      <Figure caption="Along the outer border — clockwise or counter-clockwise around the perimeter">
-        <MiniGrid
-          marks={[
-            { r: 0, c: 1, kind: 'ghost' },
-            { r: 0, c: 2, kind: 'ghost' },
-            { r: 0, c: 3 },
-          ]}
-        />
-      </Figure>
-
-      <Figure caption="Accelerating by x + 1 — one step, then two, then three">
-        <MiniGrid
-          marks={[
-            { r: 3, c: 0, kind: 'ghost' },
-            { r: 3, c: 1, kind: 'ghost' },
-            { r: 3, c: 3 },
-          ]}
-        />
-      </Figure>
     </div>
   )
 }
@@ -409,7 +350,7 @@ const RULES: Rule[] = [
       [{ r: 1, c: 1, rotate: 180 }],
       [{ r: 1, c: 1, rotate: 270 }],
     ],
-    text: 'A quarter turn each panel, clockwise or counter-clockwise. Only shapes with a visible facing rotate — a circle could not show it.',
+    text: 'A quarter turn each panel, clockwise or counter-clockwise. Rotation is only readable on a shape with a visible facing, so it turns up on arrows and triangles rather than circles.',
   },
   {
     name: 'Colour cycle',
@@ -437,6 +378,16 @@ const RULES: Rule[] = [
       [{ r: 1, c: 1, rotate: 270 }],
     ],
     text: 'Rotation accelerates the same way: one quarter turn, then two, then three.',
+  },
+  {
+    name: 'Accelerating colour',
+    level: 'High',
+    panels: [
+      [{ r: 1, c: 1, colour: 'bg-figures' }],
+      [{ r: 1, c: 1, colour: 'bg-equations' }],
+      [{ r: 1, c: 1, colour: 'bg-figures' }],
+    ],
+    text: 'The official rule allows x + 1 on colour as well as movement and rotation — the cycle advances one place, then two, then three.',
   },
 ]
 
@@ -625,7 +576,6 @@ export function LatinDifficulty() {
 
 export const DIAGRAMS = {
   'fs-anatomy': ItemAnatomy,
-  'fs-movement': MovementTypes,
   'fs-bounce': BounceDiagram,
   'fs-catalogue': MovementCatalogue,
   'fs-difficulty': FigureDifficulty,

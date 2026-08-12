@@ -29,7 +29,7 @@ export default function ExamScoringPage() {
         <Section title="Always guess">
           <div className="border-success/25 bg-success-tint/40 rounded-xl border p-5">
             <p className="text-sm leading-relaxed">
-              The official instructions say so directly, and repeat it in every subtest:{' '}
+              The official instructions say so directly, in Figure Sequences, Latin Squares and the Subject Module:{' '}
               <span className="font-medium">
                 if you do not know an answer, guess which answer might be correct.
               </span>

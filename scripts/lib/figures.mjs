@@ -128,7 +128,11 @@ export function stepSymbol(state, rule, transitionIndex) {
   }
 
   if (rule.colour.type === 'cycle') {
-    next.colourIndex = next.colourIndex + 1
+    // "Figures can also change their movement, colour or orientation by x + 1"
+    // (GAM PDF p.8) — acceleration applies to colour as well, not just movement
+    // and rotation.
+    const advanceBy = rule.colour.accelerating ? transitionIndex + 1 : 1
+    next.colourIndex = next.colourIndex + advanceBy
     next.colour = rule.colour.colours[next.colourIndex % rule.colour.colours.length]
   }
 
@@ -244,7 +248,11 @@ export function describeRule(symbol, rule) {
   }
 
   if (rule.colour.type === 'cycle') {
-    parts.push(`changes colour in the order ${rule.colour.colours.join(' → ')}, repeating`)
+    parts.push(
+      rule.colour.accelerating
+        ? `advances through the colours ${rule.colour.colours.join(' → ')} by x + 1 each panel`
+        : `changes colour in the order ${rule.colour.colours.join(' → ')}, repeating`,
+    )
   }
 
   return `${subject} ${parts.join(', and ')}.`

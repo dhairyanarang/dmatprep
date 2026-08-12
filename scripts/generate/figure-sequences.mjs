@@ -47,7 +47,12 @@ function makeMovement(rng, difficulty) {
         : ['linear', 'diagonal', 'border', 'direction-cycle']
 
   const kind = pick(rng, kinds)
-  const step = allowAccel && rng() < 0.35 ? 'x+1' : pick(rng, [1, 1, 1, 2])
+
+  // Every official linear/diagonal example moves "one field at a time"; only
+  // border travel is attested at more than one field ("by two squares at a
+  // time", GAM PDF p.15). Acceleration is the only other size either takes.
+  const straightStep = allowAccel && rng() < 0.35 ? 'x+1' : 1
+  const step = straightStep
 
   if (kind === 'linear') {
     const axis = pick(rng, ['vertical', 'horizontal'])
@@ -74,6 +79,7 @@ function makeMovement(rng, difficulty) {
       movement: {
         type: 'border',
         direction: pick(rng, ['clockwise', 'counter-clockwise']),
+        // Two squares at a time is attested for border travel specifically.
         step: allowAccel && rng() < 0.3 ? 'x+1' : pick(rng, [1, 2]),
       },
       cell: pick(rng, RING),
@@ -116,9 +122,14 @@ function makeSymbol(rng, id, difficulty, usedShapes) {
       : { type: 'none' }
 
   const colourChance = difficulty === 'low' ? 0 : difficulty === 'medium' ? 0.35 : 0.5
-  const cycleColours = shuffle(rng, CYCLE_COLOURS).slice(0, rng() < 0.5 ? 2 : 3)
+  // An accelerating cycle needs three colours to be readable: with two, x + 1
+  // advances land on the same alternation an ordinary cycle would produce.
+  const accelColour = difficulty === 'high' && rng() < 0.3
+  const cycleColours = shuffle(rng, CYCLE_COLOURS).slice(0, accelColour || rng() < 0.5 ? 3 : 2)
   const colour =
-    rng() < colourChance ? { type: 'cycle', colours: cycleColours } : { type: 'constant' }
+    rng() < colourChance
+      ? { type: 'cycle', colours: cycleColours, accelerating: accelColour }
+      : { type: 'constant' }
 
   const startColour = colour.type === 'cycle' ? colour.colours[0] : pick(rng, CYCLE_COLOURS)
 

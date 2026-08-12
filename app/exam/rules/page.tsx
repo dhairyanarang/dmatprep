@@ -9,7 +9,7 @@ const CONDUCT = [
   ['Arrive before materials are distributed', 'Arrive after and you are not admitted. No exceptions.'],
   ['Bring the ID you registered with', 'It must match your online registration. Without it you are not admitted.'],
   ['Stay in the building', 'You may not leave for the duration, and may not leave the room until the module ends.'],
-  ['Lavatories only at the designated breaks', 'And no cafeteria or canteen during them.'],
+  ['Lavatory only at the break the test centre specifies', 'And no cafeteria or canteen visits during it.'],
   ['No notes or reference books in breaks', 'Consulting them between modules counts as a violation.'],
   ['Never discuss exam content', 'Recording, sharing or posting it is prosecutable under the terms.'],
 ] as const

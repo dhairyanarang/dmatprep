@@ -46,12 +46,19 @@ function buildQuestion(rng, index, wanted) {
   const solution = randomLatinSquare(rng, 5, LETTERS)
   const target = { row: Math.floor(rng() * 5), col: Math.floor(rng() * 5) }
 
+  // A maximal carve can leave a twelve-placement chain. That is solvable by
+  // exclusion, but nobody holds it in their head inside 75 seconds, and the
+  // official example needs a single prerequisite — so high is capped at six.
+  const MAX_DEPTH = 6
+
   let givens = carvePuzzle(rng, solution, target)
   if (wanted === 'low') givens = relaxToDepth(rng, givens, solution, target, 1)
   if (wanted === 'medium') givens = relaxToDepth(rng, givens, solution, target, 3)
+  if (wanted === 'high') givens = relaxToDepth(rng, givens, solution, target, MAX_DEPTH)
 
   const depth = forcedPlacementDepth(givens, solution, target)
   if (depth === null) return null
+  if (depth > MAX_DEPTH) return null
   if (difficultyForDepth(depth) !== wanted) return null
 
   // The target must be uniquely determined — this is the hard gate.

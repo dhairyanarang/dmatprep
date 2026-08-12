@@ -8,7 +8,7 @@ import { guide as latinGuide } from '@/content/sections/latin-squares/guide'
 
 import type { SectionId } from '@/lib/sections'
 import type { SectionGuide } from '@/lib/types/content'
-import type { Difficulty, Question } from '@/lib/types/question'
+import type { Question } from '@/lib/types/question'
 
 /**
  * Single lookup point for section content.
@@ -39,12 +39,6 @@ export function getQuestions(sectionId: SectionId): Question[] {
 
 export function getQuestion(sectionId: SectionId, id: string): Question | undefined {
   return BANKS[sectionId].find((q) => q.id === id)
-}
-
-export function countByDifficulty(sectionId: SectionId): Record<Difficulty, number> {
-  const counts: Record<Difficulty, number> = { low: 0, medium: 0, high: 0 }
-  for (const q of BANKS[sectionId]) counts[q.difficulty] += 1
-  return counts
 }
 
 export function getBankSize(sectionId: SectionId): number {
