@@ -1,11 +1,9 @@
 'use client'
 
-import { CheckCircle2, XCircle } from 'lucide-react'
-
+import { Disclosure } from '@/components/content/disclosure'
+import { ResultBanner } from '@/components/practice/result-banner'
 import { SolutionViewer } from '@/components/practice/solution-viewer'
-import { Separator } from '@/components/ui/separator'
 import type { Question, Selection } from '@/lib/types/question'
-import { cn } from '@/lib/utils'
 
 type WrongOption = { key: string; label: string; note: string }
 
@@ -42,15 +40,13 @@ function wrongOptions(question: Question): WrongOption[] {
     }))
 }
 
-/** Per-image outcome, so a half-right figure item reads honestly. */
-function imageOutcomes(question: Question, selection: Selection) {
-  if (question.kind !== 'figure-sequence') return null
-  return question.images.map((image, i) => ({
-    label: `Image ${i + 1}`,
-    correct: selection[image.label] === image.correctOptionId,
-  }))
-}
-
+/**
+ * Everything shown after submitting, in the order a student needs it:
+ * result, then the reasoning, then why the other options fail.
+ *
+ * The next action is not here — it lives in the sticky action bar, so the
+ * length of this panel never decides how far the student has to scroll.
+ */
 export function FeedbackPanel({
   question,
   selection,
@@ -63,47 +59,23 @@ export function FeedbackPanel({
   hintsUsed?: number
 }) {
   const wrong = wrongOptions(question)
-  const outcomes = imageOutcomes(question, selection)
 
   return (
-    <div
-      className={cn(
-        'rounded-xl border p-5',
-        correct ? 'border-success/40 bg-success-tint/50' : 'border-danger/40 bg-danger-tint/50',
-      )}
-      role="status"
-      aria-live="polite"
-    >
-      <div className="flex items-center gap-2">
-        {correct ? (
-          <CheckCircle2 className="text-success-fg size-5" aria-hidden />
-        ) : (
-          <XCircle className="text-danger-fg size-5" aria-hidden />
-        )}
-        <p className="font-medium">{correct ? 'Correct' : 'Not quite'}</p>
-      </div>
+    <div className="space-y-3">
+      <ResultBanner
+        question={question}
+        selection={selection}
+        correct={correct}
+        hintsUsed={hintsUsed}
+      />
 
-      {outcomes && !correct && (
-        <p className="text-muted-foreground mt-1 text-sm">
-          {outcomes.map((o) => `${o.label}: ${o.correct ? 'right' : 'wrong'}`).join(' · ')} — both
-          have to be right for the item to count.
-        </p>
-      )}
-
-      {hintsUsed > 0 && (
-        <p className="text-muted-foreground mt-1 text-sm">
-          {hintsUsed === 1 ? 'One hint' : `${hintsUsed} hints`} used.
-        </p>
-      )}
-
-      <Separator className="my-4" />
-
-      <SolutionViewer question={question} />
+      {/* Open the working straight away when the answer was wrong — that is the
+          moment the explanation is actually wanted. */}
+      <SolutionViewer question={question} defaultOpen={!correct} />
 
       {wrong.length > 0 && (
-        <div className="mt-4 space-y-2">
-          <h3 className="text-sm font-medium">Why the other options are wrong</h3>
-          <ul className="space-y-2">
+        <Disclosure summary="Why the other options are wrong" hint={`${wrong.length}`}>
+          <ul className="space-y-2.5">
             {wrong.map((option) => (
               <li key={option.key} className="text-muted-foreground text-sm leading-relaxed">
                 <span className="text-foreground font-mono font-medium">{option.label}</span>
@@ -112,7 +84,7 @@ export function FeedbackPanel({
               </li>
             ))}
           </ul>
-        </div>
+        </Disclosure>
       )}
     </div>
   )

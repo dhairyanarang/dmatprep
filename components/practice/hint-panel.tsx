@@ -11,36 +11,37 @@ import type { Hint } from '@/lib/types/question'
  * Nothing is shown until it is asked for, and no hint contains the answer —
  * `verify-bank` fails the build if one does, so the guarantee is mechanical
  * rather than a matter of authoring discipline.
+ *
+ * The opening trigger lives in the action bar, not here: hints are secondary to
+ * answering, and putting the trigger beside the primary action keeps it from
+ * competing with the question for attention.
  */
 export function HintPanel({
   hints,
   revealed,
   onReveal,
-  disabled,
 }: {
   hints: Hint[]
   /** How many hints are currently open, 0–3. */
   revealed: number
   onReveal: (next: number) => void
-  disabled?: boolean
 }) {
-  if (hints.length === 0) return null
+  if (hints.length === 0 || revealed === 0) return null
 
   const shown = hints.slice(0, revealed)
   const remaining = hints.length - revealed
 
-  if (revealed === 0) {
-    return (
-      <Button variant="outline" size="sm" onClick={() => onReveal(1)} disabled={disabled}>
-        <Lightbulb className="size-4" aria-hidden />
-        Need a hint?
-      </Button>
-    )
-  }
-
   return (
-    <div className="border-border bg-muted/40 space-y-3 rounded-xl border p-4">
-      <ol className="space-y-3">
+    <aside
+      className="border-border bg-muted/40 space-y-3 rounded-xl border p-4"
+      aria-label="Hints"
+    >
+      <div className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wide uppercase">
+        <Lightbulb className="size-3.5" aria-hidden />
+        Hint {revealed} of {hints.length}
+      </div>
+
+      <ol className="space-y-2.5">
         {shown.map((hint) => (
           <li key={hint.level} className="flex items-start gap-2.5">
             <span
@@ -55,14 +56,24 @@ export function HintPanel({
       </ol>
 
       {remaining > 0 ? (
-        <Button variant="outline" size="sm" onClick={() => onReveal(revealed + 1)} disabled={disabled}>
+        <Button variant="outline" size="sm" onClick={() => onReveal(revealed + 1)}>
           Still stuck? Get a stronger hint
         </Button>
       ) : (
         <p className="text-muted-foreground text-xs">
-          That is every hint for this question. Answer it, and the full walkthrough opens up.
+          That is every hint. The full walkthrough opens once you answer.
         </p>
       )}
-    </div>
+    </aside>
+  )
+}
+
+/** The opening affordance, rendered in the action bar alongside the primary CTA. */
+export function HintTrigger({ onReveal }: { onReveal: () => void }) {
+  return (
+    <Button variant="outline" size="sm" onClick={onReveal}>
+      <Lightbulb className="size-4" aria-hidden />
+      Need a hint?
+    </Button>
   )
 }

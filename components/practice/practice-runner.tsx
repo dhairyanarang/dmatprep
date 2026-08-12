@@ -3,9 +3,10 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { RotateCcw } from 'lucide-react'
 
+import { PracticeActionBar } from '@/components/practice/action-bar'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
 import { FeedbackPanel } from '@/components/practice/feedback-panel'
-import { HintPanel } from '@/components/practice/hint-panel'
+import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { Button } from '@/components/ui/button'
@@ -167,32 +168,42 @@ export function PracticeRunner({
         />
       )}
 
-      <div className="flex flex-wrap items-center gap-3">
-        {!submitted ? (
-          <Button onClick={handleSubmit} disabled={!answered}>
-            Check answer
-          </Button>
-        ) : (
-          <Button onClick={() => advance(index + 1)} disabled={atEnd}>
-            {atEnd ? 'End of this set' : 'Next question'}
-          </Button>
-        )}
-
-        {submitted && atEnd && (
-          <Button variant="outline" onClick={() => advance(0)}>
-            <RotateCcw className="h-4 w-4" />
-            Start again
-          </Button>
-        )}
-
-        {!submitted && !answered && (
-          <p className="text-muted-foreground text-sm">
-            {requiredSelectionCount(question) === 2
-              ? 'Choose an option for both images.'
-              : 'Choose an option.'}
-          </p>
-        )}
-      </div>
+      <PracticeActionBar
+        secondary={
+          submitted ? (
+            atEnd ? (
+              <Button variant="outline" size="sm" onClick={() => advance(0)}>
+                <RotateCcw className="size-4" aria-hidden />
+                Start again
+              </Button>
+            ) : null
+          ) : (
+            <>
+              {question.hints?.length && hintsUsed === 0 ? (
+                <HintTrigger onReveal={() => setHintsUsed(1)} />
+              ) : null}
+              {!answered ? (
+                <p className="text-muted-foreground text-sm">
+                  {requiredSelectionCount(question) === 2
+                    ? 'Choose an option for both images.'
+                    : 'Choose an option.'}
+                </p>
+              ) : null}
+            </>
+          )
+        }
+        primary={
+          !submitted ? (
+            <Button onClick={handleSubmit} disabled={!answered}>
+              Check answer
+            </Button>
+          ) : (
+            <Button onClick={() => advance(index + 1)} disabled={atEnd}>
+              {atEnd ? 'End of this set' : 'Next question'}
+            </Button>
+          )
+        }
+      />
     </div>
   )
 }
