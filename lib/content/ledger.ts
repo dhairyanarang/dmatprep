@@ -1,51 +1,39 @@
-import { format } from '@/content/exam/format'
-import { logistics } from '@/content/exam/logistics'
-import { rules } from '@/content/exam/rules'
-import { scoring } from '@/content/exam/scoring'
+import { EXAM_CLAIMS } from '@/content/exam/claims'
 import type { SourceId } from '@/content/exam/sources'
 import { getGuide } from '@/lib/content/registry'
 import { SECTIONS } from '@/lib/sections'
-import type { Confidence, ContentBlock } from '@/lib/types/content'
+import type { Claim, Confidence, ContentBlock } from '@/lib/types/content'
 
 export type LedgerEntry = {
   text: string
   page?: number
   confidence?: Confidence
   note?: string
-  /** Page the claim appears on, for "where did I read this". */
+  /** Where the claim appears, so a reader can go and check it in context. */
   where: string
   href: string
 }
 
 /**
- * Pull every sourced claim out of a page's blocks.
+ * The ledger is derived, never hand-maintained.
  *
- * The ledger is derived from the content itself rather than maintained by hand,
- * so it cannot drift out of date as content changes.
+ * Section overviews are block lists, so their claims are extracted by walking
+ * the blocks. The exam reference pages are bespoke visual layouts, so their
+ * claims live in `content/exam/claims.ts` — see the note there.
  */
-function claimsIn(blocks: ContentBlock[], where: string, href: string) {
-  const out: { sources: { id: SourceId; page?: number }[]; entry: Omit<LedgerEntry, 'page'> }[] = []
-
-  const push = (
-    text: string,
-    sources: { id: SourceId; page?: number }[] | undefined,
-    confidence?: Confidence,
-    note?: string,
-  ) => {
-    if (!sources?.length && !confidence) return
-    out.push({ sources: sources ?? [], entry: { text, confidence, note, where, href } })
-  }
+function claimsFromBlocks(blocks: ContentBlock[]): Claim[] {
+  const out: Claim[] = []
 
   for (const block of blocks) {
     switch (block.type) {
       case 'prose':
-        push(block.text, block.sources, block.confidence, block.note)
+        out.push(block)
         break
       case 'quote':
-        push(block.text, block.sources)
+        out.push({ text: block.text, sources: block.sources })
         break
       case 'rules':
-        for (const item of block.items) push(item.text, item.sources, item.confidence, item.note)
+        out.push(...block.items)
         break
       default:
         break
@@ -55,34 +43,46 @@ function claimsIn(blocks: ContentBlock[], where: string, href: string) {
   return out
 }
 
-const PAGES: { blocks: ContentBlock[]; where: string; href: string }[] = [
-  { blocks: format, where: 'Format & Structure', href: '/exam' },
-  { blocks: rules, where: 'Exam-Day Rules', href: '/exam/rules' },
-  { blocks: scoring, where: 'Scoring & Results', href: '/exam/scoring' },
-  { blocks: logistics, where: 'Dates & Logistics', href: '/exam/logistics' },
-  ...SECTIONS.map((section) => ({
-    blocks: getGuide(section.id).blocks,
-    where: `${section.title} — Overview`,
-    href: `/module-a/${section.id}/overview`,
-  })),
-]
+type Page = { where: string; href: string; claims: Claim[] }
+
+function pages(): Page[] {
+  return [
+    ...EXAM_CLAIMS,
+    ...SECTIONS.map((section) => ({
+      where: `${section.title} — Overview`,
+      href: `/module-a/${section.id}/overview`,
+      claims: claimsFromBlocks(getGuide(section.id).blocks),
+    })),
+  ]
+}
 
 export function buildLedger() {
   const bySource = new Map<SourceId, LedgerEntry[]>()
   const flagged: LedgerEntry[] = []
+  let totalClaims = 0
 
-  for (const page of PAGES) {
-    for (const { sources, entry } of claimsIn(page.blocks, page.where, page.href)) {
-      for (const ref of sources) {
+  for (const page of pages()) {
+    for (const claim of page.claims) {
+      if (!claim.sources?.length && !claim.confidence) continue
+      totalClaims++
+
+      const entry: LedgerEntry = {
+        text: claim.text,
+        confidence: claim.confidence,
+        note: claim.note,
+        where: page.where,
+        href: page.href,
+      }
+
+      for (const ref of claim.sources ?? []) {
         const list = bySource.get(ref.id) ?? []
         list.push({ ...entry, page: ref.page })
         bySource.set(ref.id, list)
       }
-      if (entry.confidence && entry.confidence !== 'official') {
-        flagged.push({ ...entry })
-      }
+
+      if (claim.confidence && claim.confidence !== 'official') flagged.push(entry)
     }
   }
 
-  return { bySource, flagged, totalClaims: PAGES.reduce((n, p) => n + claimsIn(p.blocks, '', '').length, 0) }
+  return { bySource, flagged, totalClaims }
 }

@@ -55,8 +55,21 @@ never as a plausible-sounding guess.
 ## Stack
 
 Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4 ·
-shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
+shadcn/ui as owned source in `components/ui/` · next-themes · Vercel · GitHub.
 **No backend, database or auth** — progress lives in `localStorage`.
+
+Repo: `github.com/dhairyanarang/dmatprep`, branch `main`. Every route is static;
+nothing needs a server at request time.
+
+### Visual feedback loop
+
+`agentation` renders a dev-only annotation toolbar, and `agentation-mcp` is
+registered in `.mcp.json` so annotations reach the agent. It is imported through
+`components/dev/annotations.tsx`, **not** directly in the layout: a static import
+behind a `NODE_ENV` guard still ships the whole ~500KB package because it has CSS
+side effects. Putting the dynamic import inside a branch the compiler proves false
+removes it from the production graph. Verify with
+`grep -rl agentation .next/static` after a build — it must return nothing.
 
 ### Stack gotchas already hit
 
@@ -72,6 +85,11 @@ shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
 ## Conventions
 
 - **Content never lives in components.** All of it sits in `content/` as typed TS/JSON.
+  The one exception is the four exam reference pages: they are bespoke visual
+  layouts, so their facts sit in the page files, and
+  **`content/exam/claims.ts` is the audit record that feeds `/exam/sources`**.
+  Change a fact on one of those pages and change it there too — that file exists
+  precisely so there is no second prose copy to drift.
 - **Each Module A section has exactly two pages: Overview and Practice.** Learn and
   Tips were merged — they restated each other. The Overview is a single ordered
   `SectionGuide.blocks` list: stats → what an item looks like → the rules →
@@ -115,6 +133,12 @@ call site.
 - **Three radii, no more**: 4px badges, 6px buttons/inputs, 12px cards. Every
   radius token above 12 is capped at 12.
 - Spacing ladder 4/8/12/16/20/24/32; card padding 20–24.
+- **Never use a chromatic colour as text.** Acid lime as type measures **1.23:1**
+  on the light card — it reads fine on dark, which is exactly why it slips
+  through. Chromatic colours are fills with a dark foreground on top. This has
+  already been fixed twice; check both themes before shipping a coloured label.
+- Icons in a grid gap must be **narrower than the gap** — a 14px arrow in a 12px
+  gap overlaps the cards either side.
 
 Two documented deviations from DESIGN.md, both deliberate:
 

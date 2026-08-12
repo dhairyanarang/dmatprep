@@ -326,15 +326,18 @@ export function SolveChain() {
     { eq: 'B = 20', note: 'The chain closes' },
   ]
 
+  // A 14px icon cannot sit inside a 12px gap without overlapping the cards
+  // either side. The gap is 16px and the icon 12px, offset so it centres:
+  // right:-14px puts it 2px clear of this card and 2px clear of the next.
   return (
-    <ol className="grid gap-3 sm:grid-cols-4">
+    <ol className="grid gap-4 sm:grid-cols-4">
       {steps.map((s, i) => (
         <li key={s.eq} className="border-border bg-card relative rounded-xl border p-4">
           <p className="text-foreground font-mono text-sm">{s.eq}</p>
           <p className="text-muted-foreground mt-2 text-xs leading-relaxed">{s.note}</p>
           {i < steps.length - 1 ? (
             <ArrowRight
-              className="text-muted-foreground/50 absolute top-1/2 -right-2.5 hidden size-3.5 -translate-y-1/2 sm:block"
+              className="text-muted-foreground/50 absolute top-1/2 -right-3.5 hidden size-3 -translate-y-1/2 sm:block"
               aria-hidden
             />
           ) : null}
