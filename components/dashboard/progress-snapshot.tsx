@@ -48,9 +48,11 @@ export function ProgressSnapshot({ bankSizes }: { bankSizes: Record<SectionId, n
                       "Mathematical Equations" clipped in the three-up grid. */}
                   <h3 className="text-sm font-medium text-balance">{section.title}</h3>
                 </div>
+                {/* -my-2 keeps the visual position while giving the link a
+                    comfortable tap area on a phone. */}
                 <Link
                   href={`/module-a/${section.id}/practice`}
-                  className="text-muted-foreground hover:text-foreground inline-flex shrink-0 items-center gap-1 text-xs transition-colors"
+                  className="text-muted-foreground hover:text-foreground focus-visible:ring-ring -my-2 inline-flex shrink-0 items-center gap-1 rounded py-2 text-xs transition-colors focus-visible:ring-2 focus-visible:outline-none"
                 >
                   Practise
                   <ArrowRight className="size-3" aria-hidden />

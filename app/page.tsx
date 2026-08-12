@@ -1,72 +1,55 @@
 import Link from 'next/link'
 
-import { CountdownCard } from '@/components/dashboard/countdown-card'
-import { KeyDates } from '@/components/dashboard/key-dates'
+import { ExamLine } from '@/components/dashboard/exam-line'
 import { NextStep } from '@/components/dashboard/next-step'
 import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
 import { PageShell } from '@/components/layout/page-shell'
-import { FIXED_DATES } from '@/content/exam/key-dates'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
-export default function DashboardPage() {
+/**
+ * Home answers one question — what should I do now — and then gets out of the
+ * way. Everything else it used to carry (key dates, readiness, the full metric
+ * set) moved to the page where it is actually being looked for.
+ */
+export default function HomePage() {
   const bankSizes = Object.fromEntries(
     SECTIONS.map((s) => [s.id, getBankSize(s.id)]),
   ) as Record<SectionId, number>
 
   return (
-    <PageShell title="Dashboard" wide>
+    <PageShell title="dMAT Prep" description={<ExamLine />} wide>
       <div className="space-y-8">
-        <section className="grid gap-4 sm:grid-cols-2">
-          {FIXED_DATES.map((entry) => (
-            <CountdownCard
-              key={entry.id}
-              label={entry.label}
-              date={entry.date}
-              kind={entry.id === 'exam-date' ? 'exam' : 'deadline'}
-            />
-          ))}
-        </section>
+        <NextStep bankSizes={bankSizes} />
 
         <section className="space-y-4">
-          <SectionHeading title="What to do next" />
-          <NextStep bankSizes={bankSizes} />
-        </section>
-
-        <section className="space-y-4">
-          <SectionHeading title="Module A" href="/practice" linkLabel="Timed practice" />
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="text-base font-semibold tracking-tight">Your progress</h2>
+            <Link
+              href="/review"
+              className="text-muted-foreground hover:text-foreground text-xs transition-colors"
+            >
+              Review and breakdown
+            </Link>
+          </div>
           <ProgressSnapshot bankSizes={bankSizes} />
         </section>
 
-        <section className="space-y-4">
-          <SectionHeading title="Dates" href="/study-plan" linkLabel="Study plan" />
-          <KeyDates />
+        <section className="space-y-3">
+          <h2 className="text-base font-semibold tracking-tight">Or something shorter</h2>
+          <div className="text-muted-foreground flex flex-wrap gap-x-5 gap-y-2 text-sm">
+            <Link href="/practice/quick" className="hover:text-foreground transition-colors">
+              Quick practice · 10 questions
+            </Link>
+            <Link href="/test" className="hover:text-foreground transition-colors">
+              Timed practice · 25 min
+            </Link>
+            <Link href="/review" className="hover:text-foreground transition-colors">
+              Review mistakes
+            </Link>
+          </div>
         </section>
       </div>
     </PageShell>
-  )
-}
-
-function SectionHeading({
-  title,
-  href,
-  linkLabel,
-}: {
-  title: string
-  href?: string
-  linkLabel?: string
-}) {
-  return (
-    <div className="flex items-baseline justify-between gap-4">
-      <h2 className="text-base font-semibold tracking-tight">{title}</h2>
-      {href && linkLabel ? (
-        <Link
-          href={href}
-          className="text-muted-foreground hover:text-foreground text-xs transition-colors"
-        >
-          {linkLabel}
-        </Link>
-      ) : null}
-    </div>
   )
 }
