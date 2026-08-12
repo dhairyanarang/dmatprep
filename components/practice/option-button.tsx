@@ -38,11 +38,13 @@ export function OptionButton({
       aria-pressed={state === 'selected' || state === 'correct' || state === 'incorrect'}
       aria-label={label}
       className={cn(
-        'relative flex items-center gap-3 rounded-lg border-2 p-3 text-left transition-colors',
+        'relative flex items-center gap-3 rounded-md border p-3 text-left transition-colors',
         'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         !disabled && 'hover:border-foreground/40 cursor-pointer',
         state === 'idle' && 'border-border',
-        state === 'selected' && 'border-primary bg-primary/5',
+        // Selection stays neutral-bright rather than acid lime: lime is reserved
+        // for the single action on the view, which is the Check answer button.
+        state === 'selected' && 'border-foreground bg-accent',
         state === 'correct' && 'border-success bg-success-tint',
         state === 'incorrect' && 'border-danger bg-danger-tint',
         state === 'missed' && 'border-success/60 border-dashed',

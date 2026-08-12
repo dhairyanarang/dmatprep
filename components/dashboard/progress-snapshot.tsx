@@ -44,7 +44,9 @@ export function ProgressSnapshot({ bankSizes }: { bankSizes: Record<SectionId, n
               <div className="flex items-center justify-between gap-2">
                 <div className="flex min-w-0 items-center gap-2">
                   <span aria-hidden className={cn('size-2 shrink-0 rounded-full', DOT[accent])} />
-                  <h3 className="truncate text-sm font-medium">{section.title}</h3>
+                  {/* No truncation: Inter is wider than the previous face and
+                      "Mathematical Equations" clipped in the three-up grid. */}
+                  <h3 className="text-sm font-medium text-balance">{section.title}</h3>
                 </div>
                 <Link
                   href={`/module-a/${section.id}/practice`}

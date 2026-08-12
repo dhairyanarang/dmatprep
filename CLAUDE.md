@@ -84,9 +84,39 @@ shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
 - **Figure Sequences renders as SVG from state.** No image assets, ever.
 - **No timers in practice.** Timed mode is a later addition: keep `durationMs` recorded
   and the runner's `timing` prop optional so it stays a drop-in.
-- Design: calm, low-fatigue, information-dense. No hero banners, carousels or decorative
-  animation — this gets opened dozens of times over six weeks.
 - Mobile and laptop are both first-class.
+
+## Design system — Linear-derived (see DESIGN.md)
+
+Dark is the native theme; light is a supported counterpart with identical
+structure. Tokens live in `app/globals.css` — change values there, never at the
+call site.
+
+- **Surfaces** ladder: Void `#08090a` → Carbon `#0f1011` → Obsidian `#161718` →
+  Slate `#23252a`. Separation comes from **hairline borders**, never shadows.
+- **Acid lime `#e4f222` is the only chromatic action colour**, and it plays
+  exactly two roles: the single primary button per view, and the active nav
+  marker. Never decoration, never a second button, never a progress fill.
+- **Section hues are tags, not actions** — Iris Violet (Figure Sequences),
+  Lavender (Mathematical Equations), Signal Teal (Latin Squares). They appear as
+  dots, eyebrows and tab underlines only.
+- **Type**: Inter Variable with `cv01`/`ss03`/`zero` on; JetBrains Mono stands in
+  for Berkeley Mono and is reserved for equations, grid letters and IDs.
+  **Weights cap at 590** — nothing is bold; `font-semibold` is remapped to 590
+  and `font-medium` to 510 in the base layer.
+- **Tracking** tightens as type grows: −0.011em body, −0.012em at 20–32px.
+  Tailwind's `tracking-tight` is overridden to the system value.
+- **Three radii, no more**: 4px badges, 6px buttons/inputs, 12px cards. Every
+  radius token above 12 is capped at 12.
+- Spacing ladder 4/8/12/16/20/24/32; card padding 20–24.
+
+Two documented deviations from DESIGN.md, both deliberate:
+
+- Pulse Green and Coral Red are used **as status** (correct/incorrect), which the
+  reference discourages. A practice app needs a real right/wrong signal.
+- The reference has no caution colour, so "inferred" renders as a **neutral
+  marked state** rather than introducing an amber — this keeps the accent count
+  where the system wants it. "Unconfirmed" uses Coral Red.
 
 ## Scope
 

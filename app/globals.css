@@ -8,10 +8,10 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   /* Literal family names: Tailwind v4 resolves @theme inline at parse time, so
-     var(--font-geist-sans) (injected by next/font at runtime) never resolves here. */
-  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
-  --font-heading: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+     var(--font-inter) (injected by next/font at runtime) never resolves here. */
+  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
+  --font-heading: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -63,144 +63,169 @@
   --color-latin: var(--latin);
   --color-latin-tint: var(--latin-tint);
 
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  /* Tracking tightens as type grows. Overriding Tailwind's defaults means the
+     `tracking-tight` already on headings resolves to the system's -0.012em. */
+  --tracking-tighter: -0.022em;
+  --tracking-tight: -0.012em;
+  --tracking-normal: -0.011em;
+
+  /* Three radii is the whole vocabulary: 4 badges, 6 buttons/inputs, 12 cards.
+     Everything above 12 is capped — nothing in this system rounds further. */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 12px;
+  --radius-xl: 12px;
+  --radius-2xl: 12px;
+  --radius-3xl: 12px;
+  --radius-4xl: 12px;
 }
 
 /**
- * Warm neutrals rather than pure grey. A chroma-0 palette reads sterile on a
- * text-dense tool; a trace of warmth in the greys is what stops long reading
- * sessions feeling clinical.
+ * Linear-derived system. Dark is the native theme — the palette is built on the
+ * Void→Carbon→Obsidian→Slate surface ladder, and acid lime is the single
+ * chromatic action colour. Light is a supported counterpart with the same
+ * structure: hairline borders, identical radii, identical type.
  */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.29 0.008 70);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.29 0.008 70);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.29 0.008 70);
-  --primary: oklch(0.53 0.14 254);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.966 0.004 85);
-  --secondary-foreground: oklch(0.29 0.008 70);
-  --muted: oklch(0.97 0.004 85);
-  --muted-foreground: oklch(0.545 0.012 72);
-  --accent: oklch(0.955 0.006 85);
-  --accent-foreground: oklch(0.27 0.01 70);
-  --destructive: oklch(0.58 0.2 25);
-  --border: oklch(0.918 0.004 85);
-  --input: oklch(0.918 0.004 85);
-  --ring: oklch(0.53 0.14 254);
-  --chart-1: oklch(0.53 0.14 254);
-  --chart-2: oklch(0.56 0.15 300);
-  --chart-3: oklch(0.58 0.1 195);
-  --chart-4: oklch(0.65 0.14 60);
-  --chart-5: oklch(0.6 0.13 150);
-  --radius: 0.625rem;
+  --background: #ffffff;
+  --foreground: #08090a;
+  --card: #ffffff;
+  --card-foreground: #08090a;
+  --popover: #ffffff;
+  --popover-foreground: #08090a;
+  --primary: #e4f222;
+  --primary-foreground: #08090a;
+  --secondary: #f4f4f5;
+  --secondary-foreground: #08090a;
+  --muted: #f6f6f7;
+  --muted-foreground: #62666d;
+  --accent: #f0f0f1;
+  --accent-foreground: #08090a;
+  --destructive: #eb5757;
+  --border: #e5e5e6;
+  --input: #dedee0;
+  --ring: #62666d;
+  --chart-1: #6366f1;
+  --chart-2: #8b5cf6;
+  --chart-3: #02b8cc;
+  --chart-4: #27a644;
+  --chart-5: #eb5757;
+  --radius: 6px;
 
-  --success: oklch(0.55 0.13 155);
-  --success-fg: oklch(0.44 0.12 155);
-  --success-tint: oklch(0.965 0.03 155);
-  --warning: oklch(0.66 0.14 70);
-  --warning-fg: oklch(0.5 0.13 62);
-  --warning-tint: oklch(0.972 0.035 80);
-  --danger: oklch(0.58 0.19 22);
-  --danger-fg: oklch(0.5 0.18 22);
-  --danger-tint: oklch(0.968 0.025 20);
+  /* Status. Pulse Green and Coral Red carry correct/incorrect — a practice app
+     needs a real right/wrong signal, so they are used as status here. */
+  --success: #27a644;
+  --success-fg: #1c7a33;
+  --success-tint: #eaf6ec;
+  /* Caution has no colour in the reference; it is a neutral marked state
+     rather than a new hue, which keeps the accent count where it should be. */
+  --warning: #62666d;
+  --warning-fg: #45484d;
+  --warning-tint: #f2f2f3;
+  --danger: #eb5757;
+  --danger-fg: #c0392f;
+  --danger-tint: #fdeeee;
 
-  --figures: oklch(0.53 0.14 254);
-  --figures-tint: oklch(0.962 0.028 254);
-  --equations: oklch(0.53 0.16 305);
-  --equations-tint: oklch(0.962 0.03 305);
-  --latin: oklch(0.52 0.1 195);
-  --latin-tint: oklch(0.958 0.03 195);
+  /* Section hues use the reference's designated tag/badge fills — chromatic
+     punctuation on labels, never on actions. */
+  --figures: #6366f1;
+  --figures-tint: #eeeefc;
+  --equations: #8b5cf6;
+  --equations-tint: #f2ecfd;
+  --latin: #02b8cc;
+  --latin-tint: #e3f7fa;
 
-  /* Figure Sequences panels stay light in both themes so a symbol the
-     explanation calls "black" never renders white. Dark mode only dims them,
-     to take the glare off a large bright area on a dark page. */
-  --figure-panel: oklch(0.988 0.002 85);
-  --figure-line: oklch(0.72 0.006 85);
-  --figure-frame: oklch(0.44 0.008 75);
+  /* Figure panels stay light in both themes so a symbol the explanation calls
+     "black" never renders white. Mist is the palette's light surface fill. */
+  --figure-panel: #e5e5e6;
+  --figure-line: #8a8f98;
+  --figure-frame: #23252a;
 
-  --sidebar: oklch(0.978 0.005 85);
-  --sidebar-foreground: oklch(0.29 0.008 70);
-  --sidebar-primary: oklch(0.53 0.14 254);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.94 0.008 85);
-  --sidebar-accent-foreground: oklch(0.27 0.01 70);
-  --sidebar-border: oklch(0.914 0.005 85);
-  --sidebar-ring: oklch(0.53 0.14 254);
+  --sidebar: #fafafa;
+  --sidebar-foreground: #08090a;
+  --sidebar-primary: #e4f222;
+  --sidebar-primary-foreground: #08090a;
+  --sidebar-accent: #eeeeef;
+  --sidebar-accent-foreground: #08090a;
+  --sidebar-border: #e5e5e6;
+  --sidebar-ring: #62666d;
 }
 
 .dark {
-  --background: oklch(0.19 0.004 75);
-  --foreground: oklch(0.93 0.004 85);
-  --card: oklch(0.226 0.005 75);
-  --card-foreground: oklch(0.93 0.004 85);
-  --popover: oklch(0.235 0.005 75);
-  --popover-foreground: oklch(0.93 0.004 85);
-  --primary: oklch(0.66 0.14 254);
-  --primary-foreground: oklch(0.17 0.01 254);
-  --secondary: oklch(0.27 0.006 75);
-  --secondary-foreground: oklch(0.93 0.004 85);
-  --muted: oklch(0.27 0.006 75);
-  --muted-foreground: oklch(0.685 0.008 80);
-  --accent: oklch(0.3 0.007 75);
-  --accent-foreground: oklch(0.95 0.004 85);
-  --destructive: oklch(0.68 0.17 22);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.66 0.14 254);
-  --chart-1: oklch(0.66 0.14 254);
-  --chart-2: oklch(0.68 0.15 305);
-  --chart-3: oklch(0.7 0.1 195);
-  --chart-4: oklch(0.75 0.13 68);
-  --chart-5: oklch(0.72 0.13 152);
+  --background: #08090a;
+  --foreground: #ffffff;
+  --card: #0f1011;
+  --card-foreground: #ffffff;
+  --popover: #161718;
+  --popover-foreground: #ffffff;
+  --primary: #e4f222;
+  --primary-foreground: #08090a;
+  --secondary: #161718;
+  --secondary-foreground: #d0d6e0;
+  --muted: #161718;
+  --muted-foreground: #8a8f98;
+  --accent: #23252a;
+  --accent-foreground: #ffffff;
+  --destructive: #eb5757;
+  --border: #23252a;
+  --input: rgba(255, 255, 255, 0.08);
+  --ring: #d0d6e0;
+  --chart-1: #6366f1;
+  --chart-2: #8b5cf6;
+  --chart-3: #02b8cc;
+  --chart-4: #27a644;
+  --chart-5: #eb5757;
 
-  --success: oklch(0.7 0.14 155);
-  --success-fg: oklch(0.78 0.13 155);
-  --success-tint: oklch(0.3 0.05 155);
-  --warning: oklch(0.78 0.13 75);
-  --warning-fg: oklch(0.84 0.12 80);
-  --warning-tint: oklch(0.32 0.05 75);
-  --danger: oklch(0.68 0.17 22);
-  --danger-fg: oklch(0.77 0.14 22);
-  --danger-tint: oklch(0.31 0.06 22);
+  --success: #27a644;
+  --success-fg: #4ade80;
+  --success-tint: rgba(39, 166, 68, 0.14);
+  --warning: #62666d;
+  --warning-fg: #d0d6e0;
+  --warning-tint: rgba(255, 255, 255, 0.06);
+  --danger: #eb5757;
+  --danger-fg: #ff8b8b;
+  --danger-tint: rgba(235, 87, 87, 0.14);
 
-  --figures: oklch(0.68 0.14 254);
-  --figures-tint: oklch(0.29 0.05 254);
-  --equations: oklch(0.7 0.14 305);
-  --equations-tint: oklch(0.29 0.05 305);
-  --latin: oklch(0.7 0.1 195);
-  --latin-tint: oklch(0.28 0.045 195);
+  --figures: #6366f1;
+  --figures-tint: rgba(99, 102, 241, 0.16);
+  --equations: #8b5cf6;
+  --equations-tint: rgba(139, 92, 246, 0.16);
+  --latin: #02b8cc;
+  --latin-tint: rgba(2, 184, 204, 0.16);
 
-  --figure-panel: oklch(0.86 0.004 85);
-  --figure-line: oklch(0.66 0.006 85);
-  --figure-frame: oklch(0.38 0.008 75);
+  --figure-panel: #d0d6e0;
+  --figure-line: #8a8f98;
+  --figure-frame: #23252a;
 
-  --sidebar: oklch(0.165 0.004 75);
-  --sidebar-foreground: oklch(0.93 0.004 85);
-  --sidebar-primary: oklch(0.66 0.14 254);
-  --sidebar-primary-foreground: oklch(0.17 0.01 254);
-  --sidebar-accent: oklch(0.27 0.007 75);
-  --sidebar-accent-foreground: oklch(0.95 0.004 85);
-  --sidebar-border: oklch(1 0 0 / 9%);
-  --sidebar-ring: oklch(0.66 0.14 254);
+  --sidebar: #08090a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #e4f222;
+  --sidebar-primary-foreground: #08090a;
+  --sidebar-accent: #23252a;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #23252a;
+  --sidebar-ring: #d0d6e0;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-  body {
-    @apply bg-background text-foreground;
-  }
   html {
     @apply font-sans;
+    /* These alternate glyphs are part of the typographic identity, not a
+       nicety: cv01 (single-storey a), ss03, and slashed zero. */
+    font-feature-settings: 'cv01' on, 'ss03' on, 'zero' on;
+  }
+  body {
+    @apply bg-background text-foreground;
+    letter-spacing: -0.011em;
+  }
+  /* Weights cap at 590. Nothing in this system is bold. */
+  .font-semibold {
+    font-weight: 590;
+  }
+  .font-medium {
+    font-weight: 510;
   }
 }

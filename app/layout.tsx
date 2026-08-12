@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 
 import { DevAnnotations } from '@/components/dev/annotations'
 
@@ -11,13 +11,18 @@ import { Toaster } from '@/components/ui/sonner'
 
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+// Inter as a variable font: the system uses 400/510/590, which needs the full
+// axis rather than the discrete weights a static family would give.
+const inter = Inter({
+  variable: '--font-inter',
   subsets: ['latin'],
+  axes: ['opsz'],
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+// Stands in for Berkeley Mono, which is commercial. Reserved for equations,
+// grid letters and IDs — never headings or body copy.
+const jetbrainsMono = JetBrains_Mono({
+  variable: '--font-jetbrains-mono',
   subsets: ['latin'],
 })
 
@@ -34,12 +39,13 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
       // next-themes writes the class before paint; React must not object to it.
       suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        {/* Dark is the native theme here — the palette is built on it. */}
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           <TooltipProvider>
             <div className="flex min-h-svh">
               <AppSidebar />

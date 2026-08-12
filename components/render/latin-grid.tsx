@@ -22,7 +22,7 @@ export function LatinGrid({
   // bg-border fills the 1px gaps between cells so they read as grid lines.
   return (
     <div
-      className={cn('bg-border inline-grid gap-px rounded-md border-2 p-px', className)}
+      className={cn('bg-border inline-grid gap-px rounded-md border p-px', className)}
       style={{ gridTemplateColumns: `repeat(${size}, minmax(0, 1fr))` }}
       role="table"
       aria-label={`${size} by ${size} Latin square puzzle`}
@@ -45,7 +45,7 @@ export function LatinGrid({
               className={cn(
                 'flex aspect-square w-11 items-center justify-center text-base font-medium sm:w-12 sm:text-lg',
                 isTarget
-                  ? 'bg-primary/10 text-primary ring-primary/50 font-semibold ring-2 ring-inset'
+                  ? 'bg-accent text-foreground ring-foreground/40 font-medium ring-1 ring-inset'
                   : revealed
                     ? 'bg-muted text-muted-foreground'
                     : 'bg-background',

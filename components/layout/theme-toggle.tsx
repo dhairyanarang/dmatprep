@@ -20,7 +20,7 @@ export function ThemeToggle() {
 
   return (
     <div
-      className="bg-muted/60 flex items-center gap-0.5 rounded-lg p-1"
+      className="bg-muted border-border flex items-center gap-1 rounded-md border p-1"
       role="radiogroup"
       aria-label="Colour theme"
     >
@@ -39,9 +39,10 @@ export function ThemeToggle() {
             className={cn(
               'flex h-6 flex-1 items-center justify-center rounded-md transition-colors',
               'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+              // Elevation from a border, not a shadow.
               active
-                ? 'bg-background text-foreground shadow-xs'
-                : 'text-muted-foreground hover:text-foreground',
+                ? 'bg-accent text-foreground border-border border'
+                : 'text-muted-foreground hover:text-foreground border border-transparent',
             )}
           >
             <Icon className="size-3.5" aria-hidden />

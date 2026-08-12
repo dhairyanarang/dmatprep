@@ -69,13 +69,12 @@ export function NavList({ onNavigate }: { onNavigate?: () => void }) {
                   )}
                 >
                   {/* Active marker doubles as the section's colour cue. */}
+                  {/* Acid lime marks the active nav row — one of the two roles
+                      the accent is allowed to play. */}
                   {active && (
                     <span
                       aria-hidden
-                      className={cn(
-                        'absolute top-1.5 bottom-1.5 left-0 w-0.5 rounded-full',
-                        link.accent ? DOT[link.accent] : 'bg-primary',
-                      )}
+                      className="bg-primary absolute top-1.5 bottom-1.5 left-0 w-0.5 rounded-full"
                     />
                   )}
 
