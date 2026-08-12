@@ -8,8 +8,7 @@ import type { SectionId } from '@/lib/sections'
 import { cn } from '@/lib/utils'
 
 const TABS = [
-  { segment: 'learn', label: 'Learn' },
-  { segment: 'tips', label: 'Tips & Tricks' },
+  { segment: 'overview', label: 'Overview' },
   { segment: 'practice', label: 'Practice' },
 ] as const
 

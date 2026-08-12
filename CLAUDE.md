@@ -72,6 +72,12 @@ shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
 ## Conventions
 
 - **Content never lives in components.** All of it sits in `content/` as typed TS/JSON.
+- **Each Module A section has exactly two pages: Overview and Practice.** Learn and
+  Tips were merged — they restated each other. The Overview is a single ordered
+  `SectionGuide.blocks` list: stats → what an item looks like → the rules →
+  difficulty → method → strategy → mistakes → worked examples. Diagrams are named
+  in content (`{ type: 'diagram', kind: 'fs-bounce' }`) and drawn by
+  `components/exam/diagrams.tsx`, so content stays data-only.
 - **All progress access goes through `ProgressStore`.** Only the localStorage adapter may
   touch `window.localStorage`; read through `useProgress()` (built on
   `useSyncExternalStore`) — direct reads cause hydration mismatches.

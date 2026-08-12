@@ -47,6 +47,7 @@ export type ContentBlock =
   | { type: 'stats'; items: { value: string; unit?: string; label: string }[] }
   | { type: 'diagram'; kind: DiagramKind; title?: string; description?: string }
   | { type: 'cards'; title?: string; items: { title: string; text: string }[] }
+  | { type: 'tips'; title: string; variant: 'strategy' | 'mistake'; items: Tip[] }
   | ({ type: 'prose' } & Claim)
   | { type: 'rules'; title?: string; items: Claim[] }
   | { type: 'steps'; title?: string; items: string[] }
@@ -55,22 +56,18 @@ export type ContentBlock =
   /** Renders a real item from the question bank through the real renderers. */
   | { type: 'example'; questionId: string; caption?: string }
 
-export type LearnPage = {
-  intro: string
-  blocks: ContentBlock[]
-}
-
 export type Tip = {
   title: string
   body: string
 }
 
-export type TipsPage = {
+/**
+ * One guide per section. Learn and Tips were separate pages that restated each
+ * other — the movement catalogue duplicated the movement diagram, and the
+ * do/don't lists restated the strategies and mistakes in shorter words. They are
+ * now a single ordered block list so the page reads as one argument.
+ */
+export type SectionGuide = {
   intro: string
-  /** Optional diagrams and cards rendered above the strategy list. */
-  blocks?: ContentBlock[]
-  strategies: Tip[]
-  mistakes: Tip[]
-  dos: string[]
-  donts: string[]
+  blocks: ContentBlock[]
 }

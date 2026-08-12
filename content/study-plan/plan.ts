@@ -35,13 +35,13 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-08-16',
     focus: 'Register, and learn all three formats',
     summary:
-      'Get the admin done first, then read every Learn page end to end. The goal this week is that no task type is unfamiliar — not that you are fast at any of them.',
+      'Get the admin done first, then read every section overview end to end. The goal this week is that no task type is unfamiliar — not that you are fast at any of them.',
     milestones: [
       { id: 'w1-register', label: 'Register for the exam at gast.de and pay the €150 fee', critical: true },
       { id: 'w1-rules', label: 'Read the exam-day rules, especially what you may not bring' },
-      { id: 'w1-learn-fs', label: 'Read the Figure Sequences Learn page', sectionId: 'figure-sequences' },
-      { id: 'w1-learn-me', label: 'Read the Mathematical Equations Learn page', sectionId: 'mathematical-equations' },
-      { id: 'w1-learn-ls', label: 'Read the Latin Squares Learn page', sectionId: 'latin-squares' },
+      { id: 'w1-guide-fs', label: 'Read the Figure Sequences overview end to end', sectionId: 'figure-sequences' },
+      { id: 'w1-guide-me', label: 'Read the Mathematical Equations overview end to end', sectionId: 'mathematical-equations' },
+      { id: 'w1-guide-ls', label: 'Read the Latin Squares overview end to end', sectionId: 'latin-squares' },
       { id: 'w1-sample', label: 'Attempt five low-difficulty items in each section, untimed' },
     ],
   },
@@ -54,7 +54,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     summary:
       'The most mechanical subtest, so the fastest to bank. Get the elimination routine automatic and learn to recognise within seconds whether an item is direct or needs a chain.',
     milestones: [
-      { id: 'w2-tips', label: 'Read the Latin Squares Tips & Tricks page', sectionId: 'latin-squares' },
+      { id: 'w2-tips', label: 'Re-read the Latin Squares strategy and mistakes', sectionId: 'latin-squares' },
       { id: 'w2-low', label: 'Clear all low-difficulty Latin Squares items', sectionId: 'latin-squares' },
       { id: 'w2-medium', label: 'Clear all medium-difficulty Latin Squares items', sectionId: 'latin-squares' },
       { id: 'w2-nopaper', label: 'Confirm you are solving entirely in your head, with no sketching' },
@@ -69,7 +69,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     summary:
       'Mental arithmetic under time pressure. Build the habit of scanning for the shortest equation, and practise substituting answer options rather than always solving forward.',
     milestones: [
-      { id: 'w3-tips', label: 'Read the Mathematical Equations Tips & Tricks page', sectionId: 'mathematical-equations' },
+      { id: 'w3-tips', label: 'Re-read the Mathematical Equations strategy and mistakes', sectionId: 'mathematical-equations' },
       { id: 'w3-low', label: 'Clear all low-difficulty Mathematical Equations items', sectionId: 'mathematical-equations' },
       { id: 'w3-medium', label: 'Clear all medium-difficulty Mathematical Equations items', sectionId: 'mathematical-equations' },
       { id: 'w3-backsolve', label: 'Practise back-solving: answer ten items by testing options only' },
@@ -85,7 +85,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     summary:
       'The subtest with the most moving parts, so it gets a full week. The priority is boundary behaviour — bouncing means reversing, and getting that wrong is the most expensive single error in the Core Module.',
     milestones: [
-      { id: 'w4-tips', label: 'Read the Figure Sequences Tips & Tricks page', sectionId: 'figure-sequences' },
+      { id: 'w4-tips', label: 'Re-read the Figure Sequences strategy and mistakes', sectionId: 'figure-sequences' },
       { id: 'w4-low', label: 'Clear all low-difficulty Figure Sequences items', sectionId: 'figure-sequences' },
       { id: 'w4-medium', label: 'Clear all medium-difficulty Figure Sequences items', sectionId: 'figure-sequences' },
       { id: 'w4-bounce', label: 'Be able to state the bounce rule from memory, and the x + 1 rule' },
@@ -132,7 +132,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     summary:
       'No new material. Light revision, sort out the logistics, and arrive rested. The exam is Saturday 26 September.',
     milestones: [
-      { id: 'w7-reread-tips', label: 'Re-read all three Tips & Tricks pages' },
+      { id: 'w7-reread-tips', label: 'Re-read all three section overviews' },
       { id: 'w7-logistics', label: 'Confirm your test centre, travel time and what time to arrive' },
       { id: 'w7-id', label: 'Check your ID or passport matches your registration exactly', critical: true },
       { id: 'w7-pack', label: 'Plan what to leave behind — no phone, watch, calculator or notes on the desk' },

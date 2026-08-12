@@ -2,16 +2,12 @@ import figureSequences from '@/content/sections/figure-sequences/questions.json'
 import mathematicalEquations from '@/content/sections/mathematical-equations/questions.json'
 import latinSquares from '@/content/sections/latin-squares/questions.json'
 
-import { learn as figureLearn } from '@/content/sections/figure-sequences/learn'
-import { learn as mathLearn } from '@/content/sections/mathematical-equations/learn'
-import { learn as latinLearn } from '@/content/sections/latin-squares/learn'
-
-import { tips as figureTips } from '@/content/sections/figure-sequences/tips'
-import { tips as mathTips } from '@/content/sections/mathematical-equations/tips'
-import { tips as latinTips } from '@/content/sections/latin-squares/tips'
+import { guide as figureGuide } from '@/content/sections/figure-sequences/guide'
+import { guide as mathGuide } from '@/content/sections/mathematical-equations/guide'
+import { guide as latinGuide } from '@/content/sections/latin-squares/guide'
 
 import type { SectionId } from '@/lib/sections'
-import type { LearnPage, TipsPage } from '@/lib/types/content'
+import type { SectionGuide } from '@/lib/types/content'
 import type { Difficulty, Question } from '@/lib/types/question'
 
 /**
@@ -27,24 +23,14 @@ const BANKS: Record<SectionId, Question[]> = {
   'latin-squares': latinSquares as unknown as Question[],
 }
 
-const LEARN: Record<SectionId, LearnPage> = {
-  'figure-sequences': figureLearn,
-  'mathematical-equations': mathLearn,
-  'latin-squares': latinLearn,
+const GUIDES: Record<SectionId, SectionGuide> = {
+  'figure-sequences': figureGuide,
+  'mathematical-equations': mathGuide,
+  'latin-squares': latinGuide,
 }
 
-const TIPS: Record<SectionId, TipsPage> = {
-  'figure-sequences': figureTips,
-  'mathematical-equations': mathTips,
-  'latin-squares': latinTips,
-}
-
-export function getLearn(sectionId: SectionId): LearnPage {
-  return LEARN[sectionId]
-}
-
-export function getTips(sectionId: SectionId): TipsPage {
-  return TIPS[sectionId]
+export function getGuide(sectionId: SectionId): SectionGuide {
+  return GUIDES[sectionId]
 }
 
 export function getQuestions(sectionId: SectionId): Question[] {

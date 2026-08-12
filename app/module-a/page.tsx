@@ -38,16 +38,10 @@ export default function ModuleAPage() {
                 <div className="flex items-center justify-between gap-3 border-t pt-4 text-sm">
                   <div className="flex gap-4">
                     <Link
-                      href={`/module-a/${section.id}/learn`}
+                      href={`/module-a/${section.id}/overview`}
                       className="text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      Learn
-                    </Link>
-                    <Link
-                      href={`/module-a/${section.id}/tips`}
-                      className="text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      Tips
+                      Overview
                     </Link>
                   </div>
 

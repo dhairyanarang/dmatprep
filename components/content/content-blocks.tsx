@@ -86,6 +86,46 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
         </div>
       )
 
+    case 'tips': {
+      const isMistake = block.variant === 'mistake'
+      return (
+        <section className="space-y-4">
+          <div className="flex items-baseline justify-between gap-4">
+            <h2 className="text-base font-semibold tracking-tight">{block.title}</h2>
+            <span className="text-muted-foreground text-xs tabular-nums">
+              {block.items.length}
+            </span>
+          </div>
+          <ol className="grid gap-3 sm:grid-cols-2">
+            {block.items.map((tip, i) => (
+              <li
+                key={tip.title}
+                className={cn(
+                  'rounded-xl border p-4',
+                  isMistake ? 'border-danger/25 bg-danger-tint/25' : 'border-border bg-card',
+                )}
+              >
+                <div className="flex items-start gap-2.5">
+                  {isMistake ? (
+                    <AlertTriangle className="text-danger-fg mt-0.5 size-4 shrink-0" aria-hidden />
+                  ) : (
+                    <span
+                      aria-hidden
+                      className="border-border bg-accent text-foreground flex size-5 shrink-0 items-center justify-center rounded-full border text-xs font-medium tabular-nums"
+                    >
+                      {i + 1}
+                    </span>
+                  )}
+                  <h3 className="text-sm font-medium">{tip.title}</h3>
+                </div>
+                <p className="text-muted-foreground mt-2.5 text-sm leading-relaxed">{tip.body}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )
+    }
+
     case 'prose':
       return (
         <div>

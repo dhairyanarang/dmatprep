@@ -3,7 +3,7 @@ import { logistics } from '@/content/exam/logistics'
 import { rules } from '@/content/exam/rules'
 import { scoring } from '@/content/exam/scoring'
 import type { SourceId } from '@/content/exam/sources'
-import { getLearn } from '@/lib/content/registry'
+import { getGuide } from '@/lib/content/registry'
 import { SECTIONS } from '@/lib/sections'
 import type { Confidence, ContentBlock } from '@/lib/types/content'
 
@@ -61,9 +61,9 @@ const PAGES: { blocks: ContentBlock[]; where: string; href: string }[] = [
   { blocks: scoring, where: 'Scoring & Results', href: '/exam/scoring' },
   { blocks: logistics, where: 'Dates & Logistics', href: '/exam/logistics' },
   ...SECTIONS.map((section) => ({
-    blocks: getLearn(section.id).blocks,
-    where: `${section.title} — Learn`,
-    href: `/module-a/${section.id}/learn`,
+    blocks: getGuide(section.id).blocks,
+    where: `${section.title} — Overview`,
+    href: `/module-a/${section.id}/overview`,
   })),
 ]
 

@@ -48,7 +48,7 @@ export const NAV: NavGroup[] = [
     links: [
       { href: '/module-a', label: 'Overview' },
       ...SECTIONS.map((s) => ({
-        href: `/module-a/${s.id}/learn`,
+        href: `/module-a/${s.id}/overview`,
         label: s.title,
         accent: SECTION_ACCENT[s.id],
       })),
