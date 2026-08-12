@@ -44,7 +44,7 @@ export const guide: SectionGuide = {
     },
     {
       type: 'prose',
-      text: 'When a figure reaches an outer boundary, the sequence may specify that it bounces off the boundary or moves along the outer boundary. Treat the observed boundary behaviour as part of the rule you need to identify.',
+      text: 'When a figure reaches an outer boundary, the sequence may specify that it bounces off the boundary or moves along the outer boundary. When a sequence uses a bounce, the figure reverses its movement along the same path. But reaching a boundary does not always mean bouncing — the sequence may instead use movement along the outer boundary, so treat the observed boundary behaviour as part of the rule you need to identify.',
       sources: [{ id: 'gam-pdf', page: 8 }],
     },
 

@@ -8,7 +8,7 @@ import {
   type Segment,
 } from '@/components/exam/visuals'
 import { SECTION_ACCENT } from '@/lib/nav'
-import { SECTIONS } from '@/lib/sections'
+import { SECTIONS, type SectionId } from '@/lib/sections'
 import { cn } from '@/lib/utils'
 
 export const metadata = { title: 'Format & Structure' }
@@ -27,6 +27,15 @@ const SCHEDULE: Segment[] = [
 ]
 
 const DOT = { figures: 'bg-figures', equations: 'bg-equations', latin: 'bg-latin' } as const
+
+// The noun each subtest's own instructions use for its 20 items: "20 series of
+// matrices", "20 systems of equations", "20 tasks" (GAM PDF pp. 8, 18, 25).
+// 75 seconds is 25 min ÷ 20, an average — no per-item limit is published.
+const UNIT: Record<SectionId, string> = {
+  'figure-sequences': 'series',
+  'mathematical-equations': 'systems',
+  'latin-squares': 'tasks',
+}
 
 export default function ExamFormatPage() {
   return (
@@ -68,7 +77,7 @@ export default function ExamFormatPage() {
                   {section.oneLiner}
                 </p>
                 <p className="text-muted-foreground mt-4 text-xs tabular-nums">
-                  25 min · 20 items · 75 seconds each
+                  25 min · 20 {UNIT[section.id]} · 75 sec average
                 </p>
               </div>
             ))}
