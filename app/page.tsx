@@ -28,7 +28,7 @@ export default function DashboardPage() {
         </section>
 
         <section className="space-y-4">
-          <SectionHeading title="Practice" href="/module-a" linkLabel="All of Module A" />
+          <SectionHeading title="Practice" />
           <ProgressSnapshot bankSizes={bankSizes} />
         </section>
 
@@ -47,18 +47,20 @@ function SectionHeading({
   linkLabel,
 }: {
   title: string
-  href: string
-  linkLabel: string
+  href?: string
+  linkLabel?: string
 }) {
   return (
     <div className="flex items-baseline justify-between gap-4">
       <h2 className="text-base font-semibold tracking-tight">{title}</h2>
-      <Link
-        href={href}
-        className="text-muted-foreground hover:text-foreground text-xs transition-colors"
-      >
-        {linkLabel}
-      </Link>
+      {href && linkLabel ? (
+        <Link
+          href={href}
+          className="text-muted-foreground hover:text-foreground text-xs transition-colors"
+        >
+          {linkLabel}
+        </Link>
+      ) : null}
     </div>
   )
 }

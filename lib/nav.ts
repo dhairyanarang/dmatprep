@@ -44,15 +44,14 @@ export const NAV: NavGroup[] = [
     ],
   },
   {
+    // No Module A landing page: it would only relist the three sections that
+    // are already here, one level deeper.
     label: 'Module A · Core',
-    links: [
-      { href: '/module-a', label: 'Overview' },
-      ...SECTIONS.map((s) => ({
-        href: `/module-a/${s.id}/overview`,
-        label: s.title,
-        accent: SECTION_ACCENT[s.id],
-      })),
-    ],
+    links: SECTIONS.map((s) => ({
+      href: `/module-a/${s.id}/overview`,
+      label: s.title,
+      accent: SECTION_ACCENT[s.id],
+    })),
   },
   {
     label: 'Module B · Subject',
@@ -67,7 +66,6 @@ export const NAV: NavGroup[] = [
 export function isActive(pathname: string, href: string): boolean {
   if (href === '/') return pathname === '/'
   if (href === '/exam') return pathname === '/exam'
-  if (href === '/module-a') return pathname === '/module-a'
   if (href.startsWith('/module-a/')) {
     const sectionRoot = href.split('/').slice(0, 3).join('/')
     return pathname.startsWith(sectionRoot)

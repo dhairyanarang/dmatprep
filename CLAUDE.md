@@ -81,6 +81,12 @@ removes it from the production graph. Verify with
   the home directory makes Turbopack infer `~/` as the workspace root.
 - Next 16 typed routes: use `LayoutProps<'/route'>` / `PageProps<'/route'>`, and
   **`params` is a Promise** — always `await params`.
+- **next-themes' `theme` only exists on the client.** Reading it during the first
+  render is a genuine hydration mismatch, not a cosmetic one —
+  `suppressHydrationWarning` on `<html>` does not reach it, because it applies to
+  that element alone and not its descendants. Gate the read behind the
+  `useSyncExternalStore(NEVER_CHANGES, () => true, () => false)` flag in
+  `theme-toggle.tsx`.
 
 ## Conventions
 
@@ -90,6 +96,9 @@ removes it from the production graph. Verify with
   **`content/exam/claims.ts` is the audit record that feeds `/exam/sources`**.
   Change a fact on one of those pages and change it there too — that file exists
   precisely so there is no second prose copy to drift.
+- **There is no `/module-a` landing route.** It only relisted the three sections
+  the sidebar already carries, one level deeper. The sections are the nav; the
+  dashboard links straight to practice.
 - **Each Module A section has exactly two pages: Overview and Practice.** Learn and
   Tips were merged — they restated each other. The Overview is a single ordered
   `SectionGuide.blocks` list: stats → what an item looks like → the rules →

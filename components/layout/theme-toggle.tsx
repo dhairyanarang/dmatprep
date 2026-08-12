@@ -1,5 +1,6 @@
 'use client'
 
+import { useSyncExternalStore } from 'react'
 import { useTheme } from 'next-themes'
 import { Monitor, Moon, Sun } from 'lucide-react'
 
@@ -12,11 +13,29 @@ const OPTIONS = [
 ] as const
 
 /**
+ * The stored theme only exists on the client, so reading it during the first
+ * render makes the server and client disagree about which segment is checked —
+ * a real hydration mismatch, not a cosmetic one. This renders the server's
+ * "none checked" state through hydration and swaps on the next tick, the same
+ * way `useProgressReady` handles localStorage.
+ */
+const NEVER_CHANGES = () => () => {}
+
+function useHydrated(): boolean {
+  return useSyncExternalStore(
+    NEVER_CHANGES,
+    () => true,
+    () => false,
+  )
+}
+
+/**
  * Segmented rather than a single toggle, so the current choice is visible
  * without having to infer it — and "system" stays reachable.
  */
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme()
+  const hydrated = useHydrated()
 
   return (
     <div
@@ -25,7 +44,7 @@ export function ThemeToggle() {
       aria-label="Colour theme"
     >
       {OPTIONS.map(({ value, label, Icon }) => {
-        const active = theme === value
+        const active = hydrated && theme === value
 
         return (
           <button

@@ -42,62 +42,71 @@ export function Stat({
   )
 }
 
-/* --------------------------------------------------------------- timeline */
+/* --------------------------------------------------------------- schedule */
 
 export type Segment = {
   label: string
   minutes: number
   tone: 'figures' | 'equations' | 'latin' | 'break' | 'subject'
-}
-
-const SEGMENT_FILL: Record<Segment['tone'], string> = {
-  figures: 'bg-figures',
-  equations: 'bg-equations',
-  latin: 'bg-latin',
-  break: 'bg-muted-foreground/25',
-  subject: 'bg-foreground/70',
+  /** Optional second line — only tall blocks have room for it. */
+  note?: string
 }
 
 /**
- * The exam day drawn to scale. Segment widths are proportional to their real
- * durations, so the 90-minute subject module visibly dominates the 25-minute
- * subtests — a relationship a list of numbers never conveys.
+ * The hue is an edge rail and a tint, never the text colour: acid-on-light and
+ * white-on-teal both fail contrast, and this component has to work in both
+ * themes. Foreground text on a tint always passes.
  */
-export function TimelineBar({ segments }: { segments: Segment[] }) {
-  const total = segments.reduce((n, s) => n + s.minutes, 0)
+const SEGMENT_STYLE: Record<Segment['tone'], string> = {
+  figures: 'border-figures bg-figures-tint',
+  equations: 'border-equations bg-equations-tint',
+  latin: 'border-latin bg-latin-tint',
+  break: 'border-border border-dashed bg-transparent',
+  subject: 'border-foreground/40 bg-muted',
+}
 
+/**
+ * The exam day drawn to scale, running downwards like a calendar day.
+ *
+ * Each block's height is proportional to its real duration, so the 90-minute
+ * subject module visibly dominates the three 25-minute subtests. Vertical
+ * rather than horizontal because a full-width block has room for its own name
+ * and duration — a to-scale horizontal bar leaves a 25-minute segment about
+ * 40px wide on a phone, which forces the labels out into a legend.
+ */
+export function DaySchedule({ segments }: { segments: Segment[] }) {
   return (
-    <div className="space-y-3">
-      <div className="flex h-10 gap-1 overflow-hidden rounded-md" role="img" aria-label={
-        `Exam day schedule: ${segments.map((s) => `${s.label} ${s.minutes} minutes`).join(', ')}. Total ${total} minutes.`
-      }>
-        {segments.map((s) => (
+    <ol className="flex h-[22rem] flex-col gap-1">
+      {segments.map((s) => (
+        <li key={s.label} style={{ flexGrow: s.minutes, flexBasis: 0 }} className="min-h-0">
           <div
-            key={s.label}
-            style={{ flexGrow: s.minutes }}
-            className={cn('flex min-w-0 items-center justify-center rounded-sm', SEGMENT_FILL[s.tone])}
+            className={cn(
+              // Top-aligned, so every block reads as "this is where it starts"
+              // rather than floating its label in the middle of 90 minutes.
+              'flex h-full flex-col justify-start rounded-md rounded-l-sm border-l-2 px-3 py-2',
+              SEGMENT_STYLE[s.tone],
+            )}
           >
-            <span
-              className={cn(
-                'truncate px-2 text-[11px] font-medium tabular-nums',
-                s.tone === 'break' ? 'text-foreground' : 'text-background',
-              )}
-            >
-              {s.minutes}m
-            </span>
+            <div className="flex items-baseline justify-between gap-3">
+              <span
+                className={cn(
+                  'text-[13px] font-medium',
+                  s.tone === 'break' ? 'text-muted-foreground' : 'text-foreground',
+                )}
+              >
+                {s.label}
+              </span>
+              <span className="text-muted-foreground shrink-0 text-xs tabular-nums">
+                {s.minutes} min
+              </span>
+            </div>
+            {s.note ? (
+              <p className="text-muted-foreground mt-1 text-xs leading-relaxed">{s.note}</p>
+            ) : null}
           </div>
-        ))}
-      </div>
-
-      <ul className="flex flex-wrap gap-x-4 gap-y-1">
-        {segments.map((s) => (
-          <li key={s.label} className="text-muted-foreground flex items-center gap-2 text-xs">
-            <span aria-hidden className={cn('size-2 shrink-0 rounded-sm', SEGMENT_FILL[s.tone])} />
-            {s.label}
-          </li>
-        ))}
-      </ul>
-    </div>
+        </li>
+      ))}
+    </ol>
   )
 }
 

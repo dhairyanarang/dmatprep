@@ -1,10 +1,10 @@
 import { PageShell } from '@/components/layout/page-shell'
 import {
   ChipGrid,
+  DaySchedule,
   Section,
   Stat,
   StatGrid,
-  TimelineBar,
   type Segment,
 } from '@/components/exam/visuals'
 import { SECTION_ACCENT } from '@/lib/nav'
@@ -14,11 +14,16 @@ import { cn } from '@/lib/utils'
 export const metadata = { title: 'Format & Structure' }
 
 const SCHEDULE: Segment[] = [
-  { label: 'Figure Sequences · 25 min', minutes: 25, tone: 'figures' },
-  { label: 'Mathematical Equations · 25 min', minutes: 25, tone: 'equations' },
-  { label: 'Latin Squares · 25 min', minutes: 25, tone: 'latin' },
-  { label: 'Break · 30 min', minutes: 30, tone: 'break' },
-  { label: 'General Academic Module · 90 min', minutes: 90, tone: 'subject' },
+  { label: 'Figure Sequences', minutes: 25, tone: 'figures' },
+  { label: 'Mathematical Equations', minutes: 25, tone: 'equations' },
+  { label: 'Latin Squares', minutes: 25, tone: 'latin' },
+  { label: 'Break', minutes: 30, tone: 'break', note: 'Between the two modules.' },
+  {
+    label: 'General Academic Module',
+    minutes: 90,
+    tone: 'subject',
+    note: 'Each task pairs an academic input text with related questions.',
+  },
 ]
 
 const DOT = { figures: 'bg-figures', equations: 'bg-equations', latin: 'bg-latin' } as const
@@ -42,7 +47,7 @@ export default function ExamFormatPage() {
           title="The exam day, to scale"
           description="The subject module is longer than the entire Core Module and its break combined."
         >
-          <TimelineBar segments={SCHEDULE} />
+          <DaySchedule segments={SCHEDULE} />
         </Section>
 
         <Section
