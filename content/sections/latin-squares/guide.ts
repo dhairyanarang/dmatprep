@@ -2,7 +2,7 @@ import type { SectionGuide } from '@/lib/types/content'
 
 export const guide: SectionGuide = {
   intro:
-    'You get a partly filled 5×5 grid of letters with one cell marked, and work out which letter belongs there — only that cell, never the whole grid. It is the most mechanical of the three subtests, which makes it the most improvable.',
+    'You get a partly filled 5×5 grid of letters with one cell marked, and work out which letter belongs there — only that cell, never the whole grid. Its rules are highly constrained, which makes it well suited to systematic practice.',
   blocks: [
     {
       type: 'stats',
@@ -48,8 +48,8 @@ export const guide: SectionGuide = {
       variant: 'strategy',
       items: [
         {
-          title: 'Always start at the marked cell, never at the grid',
-          body: 'The instinct is to start completing the square. Resist it. In a large share of items the marked cell’s own row and column settle it in fifteen seconds, without touching anything else.',
+          title: 'Start at the marked cell, not at the grid',
+          body: 'The instinct is to start completing the square. Resist it. In some items, the marked cell can be determined directly from its row and column, without touching anything else.',
         },
         {
           title: 'Count letters, do not name them',
@@ -57,7 +57,7 @@ export const guide: SectionGuide = {
         },
         {
           title: 'When stuck, stay in the marked row and column',
-          body: 'The cell you need to fill first is almost always in the same row or column as the marked one. A placement elsewhere usually cannot affect it at all, so filling it in is wasted effort.',
+          body: 'Look first in the marked cell’s own row and column, since a placement elsewhere does not directly change what the marked cell can be. Widen the search only once those are exhausted.',
         },
         {
           title: 'Prefer the fuller line',
@@ -65,7 +65,7 @@ export const guide: SectionGuide = {
         },
         {
           title: 'Recognise which kind of item you are in',
-          body: 'Difficulty here is genuinely bimodal: an item is either settled straight from the givens or needs a chain. Work out which within about ten seconds, and give the chain items the time you saved on the direct ones.',
+          body: 'Some items can be solved directly from the given row and column, while others require one or more intermediate deductions. Work out which kind you are in early, and give the chain items the time you saved on the direct ones.',
         },
       ],
     },
@@ -77,11 +77,11 @@ export const guide: SectionGuide = {
       items: [
         {
           title: 'Trying to complete the whole square',
-          body: 'The most expensive habit, because it feels like progress. Filling the full grid takes minutes; the question needs one cell. Every placement outside the marked row and column is time you will not get back.',
+          body: 'It feels like progress, but completing the full grid can take unnecessary time when the question only asks for one cell. Every placement outside the marked row and column is time you will not get back.',
         },
         {
           title: 'Importing Sudoku habits',
-          body: 'There are no boxes or sub-regions here. Ruling a letter out because it appears in a nearby block is a rule this puzzle does not have, and it produces confident wrong answers.',
+          body: 'There are no boxes or sub-regions here. Ruling a letter out because it appears in a nearby block is a rule this puzzle does not have, and it can lead to an incorrect deduction.',
         },
         {
           title: 'Double-counting a letter',

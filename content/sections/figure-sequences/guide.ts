@@ -2,7 +2,7 @@ import type { SectionGuide } from '@/lib/types/content'
 
 export const guide: SectionGuide = {
   intro:
-    'You are shown four matrices in which one or more symbols move, turn and change colour by fixed rules. You choose what the fifth and sixth look like. The rule set is small and closed, which is what makes this subtest learnable rather than open-ended.',
+    'You are shown four matrices in which one or more symbols move, turn and change colour by fixed rules. You choose what the fifth and sixth look like. The rules are few and clearly defined, which is what makes this subtest something you can practise rather than an open-ended puzzle.',
   blocks: [
     {
       type: 'stats',
@@ -33,19 +33,18 @@ export const guide: SectionGuide = {
       type: 'diagram',
       kind: 'fs-catalogue',
       description:
-        'The complete rule set — each strip reads left to right, one panel at a time. Symbols can also never disappear, never overlap, and never leave the matrix.',
+        'The rules the official materials set out — each strip reads left to right, one panel at a time. Symbols can also never disappear, never overlap, and never leave the matrix.',
     },
 
-    { type: 'heading', text: 'What “bouncing” actually means' },
+    { type: 'heading', text: 'What happens at a boundary' },
     {
       type: 'diagram',
       kind: 'fs-bounce',
-      description:
-        'The single most important mechanic to get right, and the one most often misread.',
+      description: 'A useful boundary rule to understand clearly.',
     },
     {
       type: 'prose',
-      text: 'Travelling along the outer border is a separate rule, not a variation of bouncing. A symbol following it simply keeps going round the perimeter, turning at the corners.',
+      text: 'When a figure reaches an outer boundary, the sequence may specify that it bounces off the boundary or moves along the outer boundary. Treat the observed boundary behaviour as part of the rule you need to identify.',
       sources: [{ id: 'gam-pdf', page: 8 }],
     },
 
@@ -56,11 +55,11 @@ export const guide: SectionGuide = {
     {
       type: 'steps',
       items: [
-        'Count the symbols in matrix 1. That number never changes, so it tells you how many independent rules you are looking for.',
+        'Count the symbols in matrix 1. Figures cannot disappear, so that number tells you how many symbols you have to account for.',
         'Take one symbol and follow it across all four matrices, ignoring every other symbol completely.',
         'For that symbol, settle three questions in turn: where does it move, does it rotate, does it change colour?',
         'Check whether the step size is constant or growing — two panels suggest it, the third confirms it.',
-        'Watch for a boundary in the shown panels. A visible bounce settles the hardest part of the item.',
+        'Watch for a boundary in the shown panels. If a symbol reaches an edge, the sequence is showing you its boundary behaviour directly.',
         'Repeat for each symbol, then apply every rule twice: once to reach matrix 5, once more for matrix 6.',
       ],
     },
@@ -71,20 +70,20 @@ export const guide: SectionGuide = {
       variant: 'strategy',
       items: [
         {
-          title: 'One symbol at a time, always',
-          body: 'Multi-symbol items look daunting because the eye tries to take in the whole grid at once. Fix on a single symbol and track only it across all four matrices. Each carries its own independent rule, so a four-symbol item is four easy problems, not one hard one.',
+          title: 'One symbol at a time',
+          body: 'Multi-symbol items look daunting because the eye tries to take in the whole grid at once. Tracking one symbol at a time can make a multi-symbol sequence easier to analyse. Once its movement, orientation and colour behaviour are clear, repeat the process for the remaining symbols.',
         },
         {
           title: 'Read the options before deriving anything',
-          body: 'The three options usually agree about most of the grid and differ in one or two symbols. Spot the difference first: it tells you which symbol actually decides the answer, and colour is faster to check than position, which is faster than rotation.',
+          body: 'Compare the answer options before doing all the work. If they differ in only a few places, those differences can help you identify which rule matters most for the answer.',
         },
         {
           title: 'Establish step size from the gaps, not the positions',
-          body: 'Do not think “it was at row 2 and now it is at row 3”. Think “it moved down one”. Constant gaps mean a fixed step; gaps of one, two, three mean x + 1.',
+          body: 'Do not think “it was at row 2 and now it is at row 3”. Think “it moved down one”. Constant gaps indicate a fixed step; a progression such as one step, then two, then three can indicate an x + 1 pattern.',
         },
         {
-          title: 'Treat a visible bounce as a gift',
-          body: 'If a symbol reaches an edge and turns within the four shown matrices, its boundary behaviour is settled — you have seen it. That is the hardest part of the item already answered.',
+          title: 'Use a visible boundary event as evidence',
+          body: 'If a symbol reaches an edge within the four shown matrices, the sequence is showing you what happens there rather than leaving you to assume it. Use that observation as evidence for the boundary rule.',
         },
         {
           title: 'Answer image 1 before you think about image 2',
@@ -99,8 +98,8 @@ export const guide: SectionGuide = {
       variant: 'mistake',
       items: [
         {
-          title: 'Treating a bounce as a reflection',
-          body: 'The most costly single error. A diagonal symbol meeting the top edge reverses and retraces its path rather than carrying on mirrored. Reflection reasoning produces an answer that is usually on offer as a distractor.',
+          title: 'Assuming boundary behaviour instead of checking it',
+          body: 'Do not assume boundary behaviour from intuition. Check how the figure behaves when it reaches the edge in the sequence.',
         },
         {
           title: 'Missing acceleration because two panels looked consistent',
@@ -108,7 +107,7 @@ export const guide: SectionGuide = {
         },
         {
           title: 'Forgetting that symbols can never overlap',
-          body: 'If a candidate answer puts two symbols on the same cell it is wrong, with no further checking needed. This eliminates options for free and is routinely missed.',
+          body: 'If a candidate answer puts two symbols in the same cell, it conflicts with the stated rule that figures cannot overlap. That rules the option out with no further checking needed.',
         },
         {
           title: 'Overlooking rotation on a symbol that also moves',
@@ -119,6 +118,6 @@ export const guide: SectionGuide = {
 
     { type: 'heading', text: 'Worked examples' },
     { type: 'example', questionId: 'fs-low-001', caption: 'One symbol — establish the movement, then apply it twice.' },
-    { type: 'example', questionId: 'fs-medium-001', caption: 'Several symbols, each with its own independent rule.' },
+    { type: 'example', questionId: 'fs-medium-001', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
   ],
 }

@@ -37,7 +37,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     summary:
       'Get the admin done first, then read every section overview end to end. The goal this week is that no task type is unfamiliar — not that you are fast at any of them.',
     milestones: [
-      { id: 'w1-register', label: 'Register for the exam at gast.de and pay the €150 fee', critical: true },
+      { id: 'w1-register', label: 'Register for the exam through g.a.s.t. and pay the €150 fee', critical: true },
       { id: 'w1-rules', label: 'Read the exam-day rules, especially what you may not bring' },
       { id: 'w1-guide-fs', label: 'Read the Figure Sequences overview end to end', sectionId: 'figure-sequences' },
       { id: 'w1-guide-me', label: 'Read the Mathematical Equations overview end to end', sectionId: 'mathematical-equations' },
@@ -52,12 +52,12 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-08-23',
     focus: 'Latin Squares',
     summary:
-      'The most mechanical subtest, so the fastest to bank. Get the elimination routine automatic and learn to recognise within seconds whether an item is direct or needs a chain.',
+      'A highly rule-based subtest, making it well suited to systematic practice. Get the elimination routine automatic and learn to recognise early whether an item is direct or needs a chain.',
     milestones: [
       { id: 'w2-tips', label: 'Re-read the Latin Squares strategy and mistakes', sectionId: 'latin-squares' },
       { id: 'w2-low', label: 'Clear all low-difficulty Latin Squares items', sectionId: 'latin-squares' },
       { id: 'w2-medium', label: 'Clear all medium-difficulty Latin Squares items', sectionId: 'latin-squares' },
-      { id: 'w2-nopaper', label: 'Confirm you are solving entirely in your head, with no sketching' },
+      { id: 'w2-nopaper', label: 'Practise without notes or external working, because notes are not permitted during the exam' },
     ],
   },
   {
@@ -67,7 +67,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-08-30',
     focus: 'Mathematical Equations',
     summary:
-      'Mental arithmetic under time pressure. Build the habit of scanning for the shortest equation, and practise substituting answer options rather than always solving forward.',
+      'Solve equation systems efficiently under time pressure. Build the habit of scanning for a simple starting relationship, and practise both direct solving and checking answer options so you can choose the faster reliable method.',
     milestones: [
       { id: 'w3-tips', label: 'Re-read the Mathematical Equations strategy and mistakes', sectionId: 'mathematical-equations' },
       { id: 'w3-low', label: 'Clear all low-difficulty Mathematical Equations items', sectionId: 'mathematical-equations' },
@@ -83,12 +83,12 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-09-06',
     focus: 'Figure Sequences',
     summary:
-      'The subtest with the most moving parts, so it gets a full week. The priority is boundary behaviour — bouncing means reversing, and getting that wrong is the most expensive single error in the Core Module.',
+      'The subtest with several interacting visual rules, so it gets a full week. Pay particular attention to movement, rotation, colour and boundary behaviour, and practise identifying which rule is changing between matrices.',
     milestones: [
       { id: 'w4-tips', label: 'Re-read the Figure Sequences strategy and mistakes', sectionId: 'figure-sequences' },
       { id: 'w4-low', label: 'Clear all low-difficulty Figure Sequences items', sectionId: 'figure-sequences' },
       { id: 'w4-medium', label: 'Clear all medium-difficulty Figure Sequences items', sectionId: 'figure-sequences' },
-      { id: 'w4-bounce', label: 'Be able to state the bounce rule from memory, and the x + 1 rule' },
+      { id: 'w4-bounce', label: 'Be able to recognise boundary behaviour and identify x + 1 patterns' },
       { id: 'w4-upkeep', label: 'Keep the other two sections warm: ten items each' },
     ],
   },
@@ -99,7 +99,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-09-13',
     focus: 'High difficulty, all three',
     summary:
-      'Move to the hardest items in every section. Accuracy on high-difficulty items is what separates scores at this stage, and this is the last week where slow, careful work is still the right approach.',
+      'Use this week to practise the more challenging items in each section. Focus on accurate reasoning first, then gradually reduce the time you need.',
     milestones: [
       { id: 'w5-fs-high', label: 'Clear all high-difficulty Figure Sequences items', sectionId: 'figure-sequences' },
       { id: 'w5-me-high', label: 'Clear all high-difficulty Mathematical Equations items', sectionId: 'mathematical-equations' },
@@ -115,7 +115,7 @@ export const STUDY_PLAN: StudyWeek[] = [
     endDate: '2026-09-20',
     focus: 'Speed and switching',
     summary:
-      'Accuracy should be in place; now build pace. Twenty items in 25 minutes is 75 seconds each, so practise walking away from an item that is not yielding rather than rescuing it.',
+      'Accuracy should be in place; now build pace. 20 items in 25 minutes gives an average of 75 seconds per item, so practise walking away from an item that is not yielding rather than rescuing it.',
     milestones: [
       { id: 'w6-pace', label: 'Practise at pace: sets of 20 items in one sitting, one section at a time' },
       { id: 'w6-abandon', label: 'Deliberately practise abandoning a stuck item and moving on' },

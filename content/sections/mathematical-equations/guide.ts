@@ -2,7 +2,7 @@ import type { SectionGuide } from '@/lib/types/content'
 
 export const guide: SectionGuide = {
   intro:
-    'Each item gives you two to four equations in which letters stand for whole numbers, and asks for the value of one letter. The arithmetic is easy; doing it in your head at speed, without slipping, is the actual difficulty.',
+    'Each item gives you a system of equations in which letters stand for whole numbers. The equations use a constrained set of values and operations, but solving them accurately under time pressure requires careful reasoning and arithmetic.',
   blocks: [
     {
       type: 'stats',
@@ -18,7 +18,7 @@ export const guide: SectionGuide = {
       type: 'diagram',
       kind: 'me-range',
       description:
-        'Two official constraints narrow this subtest far more than it first appears. Operations are limited to + − × ÷, written with × and ÷ rather than · and /.',
+        'Two official constraints narrow this subtest far more than it first appears. The operations shown in the official examples are + − × ÷, written with × and ÷ rather than · and /.',
     },
     {
       type: 'quote',
@@ -29,7 +29,7 @@ export const guide: SectionGuide = {
     { type: 'heading', text: 'The answer format' },
     {
       type: 'prose',
-      text: 'The dMAT is single-choice throughout, so you pick a value from a list rather than typing a number. That is worth exploiting: checking a candidate against one equation is far cheaper than solving forward.',
+      text: 'The dMAT is single-choice throughout, so you pick a value from a list rather than typing a number. That is worth exploiting: checking a candidate against one equation is often cheaper than solving forward.',
       sources: [{ id: 'dmat-home' }],
     },
     {
@@ -40,12 +40,12 @@ export const guide: SectionGuide = {
       sources: [{ id: 'gam-pdf', page: 17 }],
     },
 
-    { type: 'heading', text: 'Every system is a chain' },
+    { type: 'heading', text: 'How a system comes apart' },
     {
       type: 'diagram',
       kind: 'me-chain',
       description:
-        'One equation pins a single letter down and the rest hang off it. The whole skill is finding the end of the chain and pulling.',
+        'In many systems one equation pins a single letter down and the rest follow from it. Finding a relationship you can solve first is the core of the method.',
     },
     {
       type: 'steps',
@@ -76,11 +76,11 @@ export const guide: SectionGuide = {
       items: [
         {
           title: 'Test the options instead of solving forward',
-          body: 'The single biggest time-saver, available because the format is single-choice. Substitute an option into the equation that mentions the asked letter and see whether it holds. Checking a candidate is one or two operations; solving from scratch is four or five.',
+          body: 'One potentially useful time-saving strategy, available because the format is single-choice. Substitute an option into the equation that mentions the asked letter and see whether it holds. Checking a candidate is often one or two operations, where solving from scratch can be four or five.',
         },
         {
-          title: 'Find the shortest equation first',
-          body: 'Never start at the top of the list. Systems here are chains, and one end is always short — often a single letter with a constant.',
+          title: 'Look for a simple starting relationship',
+          body: 'Do not assume you have to start at the top of the list. A simple equation can provide a useful starting point, so scan the system for a relationship that can be solved or substituted efficiently.',
         },
         {
           title: 'Use divisibility as a filter',
@@ -88,7 +88,7 @@ export const guide: SectionGuide = {
         },
         {
           title: 'Rehearse the values you have fixed',
-          body: 'With no paper, working memory is the bottleneck. Each time you pin a letter, say the full set so far — “A is six, B is twelve” — before moving on. The alternative is re-deriving a value you already had.',
+          body: 'Because notes are not permitted, keeping track of already-established values can be challenging under time pressure. Each time you pin a letter, say the full set so far — “A is six, B is twelve” — before moving on. The alternative is re-deriving a value you already had.',
         },
         {
           title: 'Verify against an equation you did not need',
@@ -104,15 +104,15 @@ export const guide: SectionGuide = {
       items: [
         {
           title: 'Answering with the wrong letter',
-          body: 'By far the most common error, and painful because the reasoning was right. You solve the chain, land on a value, and pick it — but the question asked about a different letter. Re-read the question immediately before answering.',
+          body: 'A common mistake to watch for during practice, and a frustrating one because the reasoning was right. You solve the system, land on a value, and pick it — but the question asked about a different letter. Re-read the question immediately before answering.',
         },
         {
           title: 'Sign errors when unpacking a bracket',
-          body: 'Substituting 11 + B into a subtraction gives −11 − B, not −11 + B. This accounts for a large share of near-miss answers — and near-misses are exactly what the wrong options are built from.',
+          body: 'Substituting 11 + B into a subtraction gives −11 − B, not −11 + B. A slip here produces a value close to the correct one, which is easy to accept without noticing.',
         },
         {
           title: 'Multiplying where the equation divides',
-          body: 'B ÷ 2 = A means B is the larger value. Reversing it produces a value that is double or half the correct one, which will be sitting right there among the options.',
+          body: 'B ÷ 2 = A means B is the larger value. Reversing it produces a value that is double or half the correct one.',
         },
         {
           title: 'Carrying on past an impossible value',
