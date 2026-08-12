@@ -2,6 +2,8 @@ import { AlertTriangle, HelpCircle, Info } from 'lucide-react'
 
 import { ConfidenceBadge } from '@/components/content/source-ref'
 import { WorkedExample } from '@/components/content/worked-example'
+import { DIAGRAMS } from '@/components/exam/diagrams'
+import { Stat } from '@/components/exam/visuals'
 import { getQuestion } from '@/lib/content/registry'
 import type { SectionId } from '@/lib/sections'
 import type { ContentBlock } from '@/lib/types/content'
@@ -47,6 +49,43 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
     case 'heading':
       return <h2 className="pt-2 text-lg font-semibold tracking-tight">{block.text}</h2>
 
+    case 'stats':
+      return (
+        <div className="grid gap-3 sm:grid-cols-3">
+          {block.items.map((s) => (
+            <Stat key={s.label} value={s.value} unit={s.unit} label={s.label} />
+          ))}
+        </div>
+      )
+
+    case 'diagram': {
+      const Diagram = DIAGRAMS[block.kind]
+      return (
+        <div className="space-y-3">
+          {block.title ? <h3 className="text-sm font-medium">{block.title}</h3> : null}
+          {block.description ? (
+            <p className="text-muted-foreground text-sm leading-relaxed">{block.description}</p>
+          ) : null}
+          <Diagram />
+        </div>
+      )
+    }
+
+    case 'cards':
+      return (
+        <div className="space-y-3">
+          {block.title ? <h3 className="text-sm font-medium">{block.title}</h3> : null}
+          <div className="grid gap-3 sm:grid-cols-2">
+            {block.items.map((c) => (
+              <div key={c.title} className="border-border bg-card rounded-xl border p-4">
+                <p className="text-sm font-medium">{c.title}</p>
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">{c.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )
+
     case 'prose':
       return (
         <div>
@@ -85,9 +124,11 @@ function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionI
           <ol className="space-y-2.5">
             {block.items.map((item, i) => (
               <li key={i} className="flex gap-3 text-sm leading-relaxed">
+                {/* Acid lime on a 10% lime wash was close to unreadable. The
+                    step index is structure, not accent — it takes neutral. */}
                 <span
                   aria-hidden
-                  className="bg-primary/10 text-primary flex size-5 shrink-0 items-center justify-center rounded-full text-xs font-medium tabular-nums"
+                  className="border-border bg-accent text-foreground flex size-5 shrink-0 items-center justify-center rounded-full border text-xs font-medium tabular-nums"
                 >
                   {i + 1}
                 </span>

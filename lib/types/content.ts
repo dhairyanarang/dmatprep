@@ -26,8 +26,23 @@ export type Claim = {
   note?: string
 }
 
+/**
+ * Named diagrams. Content declares *what* to show; the diagram component owns
+ * *how*, so the content layer stays data-only.
+ */
+export type DiagramKind =
+  | 'fs-anatomy'
+  | 'fs-movement'
+  | 'fs-bounce'
+  | 'ls-constraint'
+  | 'me-range'
+  | 'me-chain'
+
 export type ContentBlock =
   | { type: 'heading'; text: string }
+  | { type: 'stats'; items: { value: string; unit?: string; label: string }[] }
+  | { type: 'diagram'; kind: DiagramKind; title?: string; description?: string }
+  | { type: 'cards'; title?: string; items: { title: string; text: string }[] }
   | ({ type: 'prose' } & Claim)
   | { type: 'rules'; title?: string; items: Claim[] }
   | { type: 'steps'; title?: string; items: string[] }
