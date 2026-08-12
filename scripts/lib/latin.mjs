@@ -229,6 +229,262 @@ export function describeElimination(grid, row, col, letter, letters = LETTERS) {
     : `${letter} is the only letter that fits R${row + 1}C${col + 1}.`
 }
 
+/* ------------------------------------------------------------------------- */
+/* Two-technique solving.                                                     */
+/*                                                                            */
+/* The official solution paths use two distinct moves, and a bank that trains  */
+/* only the first is incomplete (see DMAT_QUESTION_AUTHORING_SPEC.md §4.2):    */
+/*                                                                            */
+/*   A  naked single      — which letter must this cell take?                 */
+/*   B  pair elimination  — which cell must this letter occupy?               */
+/*                                                                            */
+/* B is what the official solutions lead with: "In column β, C and D are      */
+/* missing. C is already in row 4, so D must be inserted in β4."              */
+/* ------------------------------------------------------------------------- */
+
+const cellName = ({ row, col }) => `R${row + 1}C${col + 1}`
+
+/** Every row and column, as a list of its cells. */
+function linesOf(n) {
+  const lines = []
+  for (let r = 0; r < n; r++) {
+    lines.push({
+      kind: 'row',
+      index: r,
+      label: `row ${r + 1}`,
+      cells: Array.from({ length: n }, (_, c) => ({ row: r, col: c })),
+    })
+  }
+  for (let c = 0; c < n; c++) {
+    lines.push({
+      kind: 'col',
+      index: c,
+      label: `column ${c + 1}`,
+      cells: Array.from({ length: n }, (_, r) => ({ row: r, col: c })),
+    })
+  }
+  return lines
+}
+
+/** Technique A: every cell whose row and column between them exclude four letters. */
+export function nakedSingles(grid, letters) {
+  const n = grid.length
+  const found = []
+
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      if (grid[r][c]) continue
+      const cands = candidatesAt(grid, r, c, letters)
+      if (cands.length !== 1) continue
+      found.push({ cell: { row: r, col: c }, letter: cands[0], technique: 'naked-single' })
+    }
+  }
+  return found
+}
+
+/**
+ * Technique B: a line missing exactly two letters across exactly two empty
+ * cells, where one of those letters is blocked from one cell by its crossing
+ * line — so it must take the other, and the pair resolves.
+ *
+ * Only reachable when no naked single exists: if a line is missing two letters,
+ * each of its empty cells already has at most those two as candidates, so a
+ * single-candidate cell would have been caught by technique A first.
+ */
+export function pairEliminations(grid, letters) {
+  const n = grid.length
+  const found = []
+
+  for (const line of linesOf(n)) {
+    const empties = line.cells.filter(({ row, col }) => !grid[row][col])
+    if (empties.length !== 2) continue
+
+    const present = new Set(line.cells.map(({ row, col }) => grid[row][col]).filter(Boolean))
+    const missing = letters.filter((l) => !present.has(l))
+    if (missing.length !== 2) continue
+
+    for (const letter of missing) {
+      const fits = empties.filter((cell) =>
+        candidatesAt(grid, cell.row, cell.col, letters).includes(letter),
+      )
+      if (fits.length !== 1) continue
+
+      const cell = fits[0]
+      const blocked = empties.find((c) => c.row !== cell.row || c.col !== cell.col)
+      const other = missing.find((l) => l !== letter)
+
+      // Name the crossing line that rules the letter out of the other cell.
+      const crossing =
+        line.kind === 'row'
+          ? `column ${blocked.col + 1}`
+          : `row ${blocked.row + 1}`
+
+      found.push({
+        cell,
+        letter,
+        technique: 'pair-elimination',
+        line: { kind: line.kind, index: line.index },
+        pairLetters: [missing[0], missing[1]],
+        pairCells: [empties[0], empties[1]],
+        reason:
+          `In ${line.label}, ${missing[0]} and ${missing[1]} are missing. ` +
+          `${letter} cannot go in ${cellName(blocked)} because it already appears in ${crossing}, ` +
+          `so ${letter} must go in ${cellName(cell)}${other ? ` — which leaves ${other} for ${cellName(blocked)}` : ''}.`,
+      })
+    }
+  }
+
+  return found
+}
+
+/**
+ * Solve towards `target`, preferring naked singles so that any pair-elimination
+ * step in the result was genuinely necessary — the label can never overstate
+ * what the puzzle required.
+ */
+export function solvePath(givens, target, letters = LETTERS, maxSteps = 14) {
+  const grid = givens.map((row) => [...row])
+  const steps = []
+
+  for (let i = 0; i < maxSteps; i++) {
+    const targetCands = candidatesAt(grid, target.row, target.col, letters)
+    if (targetCands.length === 1) {
+      const letter = targetCands[0]
+      grid[target.row][target.col] = letter
+      steps.push({
+        cell: { ...target },
+        letter,
+        technique: 'naked-single',
+        reason: describeElimination(grid, target.row, target.col, letter, letters),
+      })
+      return { steps, grid }
+    }
+
+    // Priority matters. Naked singles come first so a pair-elimination label can
+    // never overstate what the puzzle needed — but only naked singles that bear
+    // on the target, otherwise an irrelevant one elsewhere on the grid gets
+    // taken every round, inflating the path and hiding the pair steps that the
+    // target's own lines actually require.
+    const onTargetLine = (s) => s.cell.row === target.row || s.cell.col === target.col
+    const singles = nakedSingles(grid, letters)
+    const pairs = pairEliminations(grid, letters)
+
+    const step =
+      singles.find(onTargetLine) ??
+      pairs.find(onTargetLine) ??
+      singles[0] ??
+      pairs[0]
+    if (!step) return null
+
+    // The target may itself be settled by pair elimination.
+    if (step.cell.row === target.row && step.cell.col === target.col) {
+      grid[step.cell.row][step.cell.col] = step.letter
+      steps.push({
+        cell: step.cell,
+        letter: step.letter,
+        technique: step.technique,
+        reason: step.reason ?? describeElimination(grid, step.cell.row, step.cell.col, step.letter, letters),
+      })
+      return { steps, grid }
+    }
+
+    grid[step.cell.row][step.cell.col] = step.letter
+    steps.push({
+      cell: step.cell,
+      letter: step.letter,
+      technique: step.technique,
+      reason:
+        step.reason ?? describeElimination(grid, step.cell.row, step.cell.col, step.letter, letters),
+    })
+  }
+
+  return null
+}
+
+/** Replay a stored path, confirming every step really was forced by its technique. */
+export function replayPath(givens, steps, letters = LETTERS) {
+  const grid = givens.map((row) => [...row])
+
+  for (const step of steps) {
+    const { row, col } = step.cell
+    if (grid[row][col]) return { ok: false, error: `${cellName(step.cell)} was already filled` }
+
+    if (step.technique === 'pair-elimination') {
+      const match = pairEliminations(grid, letters).some(
+        (s) => s.cell.row === row && s.cell.col === col && s.letter === step.letter,
+      )
+      if (!match) {
+        return { ok: false, error: `${cellName(step.cell)} is not forced by pair elimination` }
+      }
+    } else {
+      const cands = candidatesAt(grid, row, col, letters)
+      if (cands.length !== 1 || cands[0] !== step.letter) {
+        return { ok: false, error: `${cellName(step.cell)} is not a naked single (${cands.length} candidates)` }
+      }
+    }
+
+    grid[row][col] = step.letter
+  }
+
+  return { ok: true, grid }
+}
+
+/** First full completion of a partial square, or null. Backtracking, MRV order. */
+export function completeGrid(grid, letters = LETTERS) {
+  const n = grid.length
+  const g = grid.map((r) => [...r])
+
+  const solve = () => {
+    let best = null
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c < n; c++) {
+        if (g[r][c]) continue
+        const cands = candidatesAt(g, r, c, letters)
+        if (cands.length === 0) return false
+        if (!best || cands.length < best.cands.length) best = { r, c, cands }
+      }
+    }
+    if (!best) return true
+    for (const letter of best.cands) {
+      g[best.r][best.c] = letter
+      if (solve()) return true
+      g[best.r][best.c] = null
+    }
+    return false
+  }
+
+  return solve() ? g : null
+}
+
+/**
+ * The strong uniqueness gate: every letter that could sit in the target is
+ * tried and the rest of the square searched exhaustively. Anything other than
+ * exactly one survivor is an ambiguous item, whatever the deduction path says.
+ */
+export function viableTargetLetters(grid, target, letters = LETTERS) {
+  const viable = []
+  for (const letter of letters) {
+    if (!candidatesAt(grid, target.row, target.col, letters).includes(letter)) continue
+    const trial = grid.map((r) => [...r])
+    trial[target.row][target.col] = letter
+    if (completeGrid(trial, letters)) viable.push(letter)
+  }
+  return viable
+}
+
+/** Givens as a fraction of the 24 cells that are not the target. */
+export function clueDensity(grid, target) {
+  const n = grid.length
+  let given = 0
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      if (r === target.row && c === target.col) continue
+      if (grid[r][c]) given++
+    }
+  }
+  return given / (n * n - 1)
+}
+
 /** Why a specific wrong letter cannot go in the target cell. */
 export function describeClash(grid, row, col, letter) {
   const n = grid.length

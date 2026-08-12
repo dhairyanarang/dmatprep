@@ -11,7 +11,7 @@
 import { readFileSync } from 'node:fs'
 
 import { verifyLatinSquare } from './generate/latin-squares.mjs'
-import { parseEquation, solveAll } from './lib/equations.mjs'
+import { parseEquation, satisfies, solveAll } from './lib/equations.mjs'
 import { panelsEqual, simulate } from './lib/figures.mjs'
 
 const SECTIONS = ['figure-sequences', 'mathematical-equations', 'latin-squares']
@@ -23,6 +23,74 @@ function verifyCommon(q) {
   if (!DIFFICULTIES.includes(q.difficulty)) errors.push(`bad difficulty: ${q.difficulty}`)
   if (!q.explanation || q.explanation.trim().length < 20) errors.push('missing or trivial explanation')
   if (!q.generator?.name) errors.push('missing generator stamp')
+  return errors
+}
+
+/**
+ * Hints and the structured walkthrough. Both are optional so that questions
+ * predating the Phase 3 upgrade still pass — but anything present must be
+ * complete and, for hints, must not give the answer away.
+ */
+function verifyLearningAids(q) {
+  const errors = []
+
+  if (q.hints) {
+    const levels = q.hints.map((h) => h.level)
+    if (levels.join(',') !== '1,2,3') errors.push(`hint levels are ${levels.join(',')}, expected 1,2,3`)
+    for (const hint of q.hints) {
+      if (!hint.text || hint.text.trim().length < 15) errors.push(`hint ${hint.level} is too thin`)
+    }
+
+    // Answer leakage. A hint that states the answer is not a hint.
+    const text = q.hints.map((h) => h.text).join(' ')
+    if (q.kind === 'math-equations') {
+      const answer = q.solution[q.asked]
+      if (new RegExp(`(^|[^0-9])${answer}([^0-9]|$)`).test(text)) {
+        errors.push(`a hint contains the answer value ${answer}`)
+      }
+    }
+    if (q.kind === 'latin-square') {
+      if (new RegExp(`\\b${q.correctOptionId}\\b`).test(text)) {
+        errors.push(`a hint names the answer letter ${q.correctOptionId}`)
+      }
+    }
+    if (q.kind === 'figure-sequence' && /\bmatrix\s*[123]\b/i.test(text)) {
+      errors.push('a hint names a specific answer option')
+    }
+  }
+
+  if (q.walkthrough) {
+    const w = q.walkthrough
+    if (!w.keyInsight || w.keyInsight.length < 20) errors.push('walkthrough has no key insight')
+    if (!Array.isArray(w.steps) || w.steps.length < 2) errors.push('walkthrough needs at least two steps')
+    if (!w.answer) errors.push('walkthrough states no answer')
+    if (!w.takeaway || w.takeaway.length < 20) errors.push('walkthrough has no takeaway')
+    for (const step of w.steps ?? []) {
+      if (!step.title || !step.detail) errors.push('a walkthrough step is missing its title or detail')
+    }
+
+    // The stated answer must agree with the key that is actually marked correct.
+    if (q.kind === 'math-equations' && !w.answer.includes(String(q.solution[q.asked]))) {
+      errors.push('walkthrough answer disagrees with the solution')
+    }
+    if (q.kind === 'latin-square' && !w.answer.includes(q.correctOptionId)) {
+      errors.push('walkthrough answer disagrees with correctOptionId')
+    }
+  }
+
+  if (q.meta) {
+    const allowed = ['officially_documented', 'reasonable_extrapolation', 'uncertain']
+    if (!allowed.includes(q.meta.dmatAlignment)) {
+      errors.push(`unknown dmatAlignment: ${q.meta.dmatAlignment}`)
+    }
+    if (q.meta.dmatAlignment === 'uncertain') {
+      errors.push('an item classified `uncertain` must not ship without human review')
+    }
+    if (!Array.isArray(q.meta.patternType) || q.meta.patternType.length === 0) {
+      errors.push('meta.patternType is empty')
+    }
+  }
+
   return errors
 }
 
@@ -83,6 +151,35 @@ function verifyMathEquations(q) {
   if (new Set(values).size !== values.length) errors.push('duplicate option values')
   if (!q.variables.includes(q.asked)) errors.push(`asked letter ${q.asked} is not in the system`)
 
+  // Every stored value must be a legal dMAT value and satisfy every equation.
+  for (const [name, value] of Object.entries(q.solution)) {
+    if (!Number.isInteger(value) || value < 1 || value > 20) {
+      errors.push(`${name} = ${value} is outside the documented 1..20 range`)
+    }
+  }
+  if (!satisfies(parsed, q.solution)) errors.push('stored solution does not satisfy every equation')
+
+  const answer = q.solution[q.asked]
+  if (q.options.filter((o) => o.value === answer).length !== 1) {
+    errors.push('the answer value does not appear on exactly one option')
+  }
+
+  // Distractor notes must open with their own option's value, so a note can
+  // never end up describing a different option.
+  for (const option of q.options) {
+    if (option.id === q.correctOptionId) continue
+    const note = q.distractorNotes[option.id]
+    if (note && !note.startsWith(`${option.value} `)) {
+      errors.push(`note for ${option.id} does not describe the value ${option.value}`)
+    }
+  }
+
+  // Spec §3.4: at most one off-by-one distractor per item.
+  if (q.meta?.distractorTypes) {
+    const offByOne = Object.values(q.meta.distractorTypes).filter((f) => f === 'off-by-one').length
+    if (offByOne > 1) errors.push(`${offByOne} off-by-one distractors; the policy allows one`)
+  }
+
   return errors
 }
 
@@ -134,6 +231,26 @@ function verifyFigureSequence(q) {
 
   if (q.given.length !== 4) errors.push(`expected 4 given matrices, found ${q.given.length}`)
   if (q.images.length !== 2) errors.push(`expected 2 images, found ${q.images.length}`)
+
+  // Official invariants must hold in every panel the candidate ever sees,
+  // including the wrong options: figures cannot disappear, overlap or leave
+  // the matrix (GAM PDF p. 8).
+  const symbolCount = q.given[0].symbols.length
+  if (symbolCount > 3) errors.push(`${symbolCount} symbols; the official exercises never exceed 3`)
+
+  const everyPanel = [...q.given, ...q.images.flatMap((im) => im.options.map((o) => o.panel))]
+  for (const panel of everyPanel) {
+    if (panel.symbols.length !== symbolCount) errors.push('a panel has a different symbol count')
+    const cells = new Set()
+    for (const s of panel.symbols) {
+      if (s.cell.row < 0 || s.cell.row >= q.grid.rows || s.cell.col < 0 || s.cell.col >= q.grid.cols) {
+        errors.push('a symbol sits outside the matrix')
+      }
+      const key = `${s.cell.row},${s.cell.col}`
+      if (cells.has(key)) errors.push('two symbols overlap in a panel')
+      cells.add(key)
+    }
+  }
 
   return errors
 }
@@ -199,6 +316,7 @@ for (const section of SECTIONS) {
     totalChecked++
     const errors = [
       ...verifyCommon(q),
+      ...verifyLearningAids(q),
       ...verifyDistractorCoverage(q),
       ...(q.kind === 'latin-square' ? verifyLatinSquare(q) : []),
       ...(q.kind === 'math-equations' ? verifyMathEquations(q) : []),

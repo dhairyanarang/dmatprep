@@ -14,6 +14,11 @@ export type AttemptRecord = {
    * be added later without a schema migration.
    */
   durationMs?: number
+  /**
+   * How far up the hint ladder this attempt went. Absent on attempts recorded
+   * before hints existed, which is why it is optional rather than defaulted.
+   */
+  hintsUsed?: 0 | 1 | 2 | 3
 }
 
 /** A date the user adds themselves. The two fixed exam dates are content, not state. */

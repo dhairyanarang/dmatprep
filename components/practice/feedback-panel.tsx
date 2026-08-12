@@ -2,6 +2,7 @@
 
 import { CheckCircle2, XCircle } from 'lucide-react'
 
+import { SolutionViewer } from '@/components/practice/solution-viewer'
 import { Separator } from '@/components/ui/separator'
 import type { Question, Selection } from '@/lib/types/question'
 import { cn } from '@/lib/utils'
@@ -54,10 +55,12 @@ export function FeedbackPanel({
   question,
   selection,
   correct,
+  hintsUsed = 0,
 }: {
   question: Question
   selection: Selection
   correct: boolean
+  hintsUsed?: number
 }) {
   const wrong = wrongOptions(question)
   const outcomes = imageOutcomes(question, selection)
@@ -87,12 +90,15 @@ export function FeedbackPanel({
         </p>
       )}
 
+      {hintsUsed > 0 && (
+        <p className="text-muted-foreground mt-1 text-sm">
+          {hintsUsed === 1 ? 'One hint' : `${hintsUsed} hints`} used.
+        </p>
+      )}
+
       <Separator className="my-4" />
 
-      <div className="space-y-2">
-        <h3 className="text-sm font-medium">How it works out</h3>
-        <p className="text-muted-foreground text-sm leading-relaxed">{question.explanation}</p>
-      </div>
+      <SolutionViewer question={question} />
 
       {wrong.length > 0 && (
         <div className="mt-4 space-y-2">

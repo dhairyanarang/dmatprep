@@ -18,6 +18,75 @@ export type GeneratorStamp = {
   verifiedAt: string
 }
 
+/**
+ * How well a question's mechanics trace to the official material. See
+ * `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md` §0 — an inference
+ * never gets promoted to a fact by being useful.
+ */
+export type DmatAlignment = 'officially_documented' | 'reasonable_extrapolation' | 'uncertain'
+
+/**
+ * A progressive nudge. Level 1 points at where to look, 2 narrows the search, 3
+ * gives a procedural instruction. None of them may contain the answer —
+ * `verify-bank` fails the build if one does.
+ */
+export type Hint = { level: 1 | 2 | 3; text: string }
+
+/** A drawing instruction the section's solution renderer knows how to execute. */
+export type SolutionVisual =
+  // Figure Sequences
+  | { type: 'fs-track'; symbolId: string; panels: number[] }
+  | {
+      type: 'fs-aspect'
+      symbolId: string
+      aspect: 'movement' | 'rotation' | 'colour' | 'boundary' | 'acceleration'
+      panels: number[]
+    }
+  | { type: 'fs-predict'; panel: 4 | 5 }
+  // Mathematical Equations
+  | { type: 'me-equation'; equation: string; note?: string }
+  | { type: 'me-values'; values: Record<string, number> }
+  // Latin Squares
+  | { type: 'ls-lines'; row?: number; col?: number; excluded?: string[] }
+  | { type: 'ls-place'; cell: GridCell; letter: string; technique: LatinTechnique }
+  | {
+      type: 'ls-pair'
+      line: { kind: 'row' | 'col'; index: number }
+      letters: [string, string]
+      cells: [GridCell, GridCell]
+    }
+
+export type SolutionStep = {
+  /** Short imperative, e.g. "Track the triangle". */
+  title: string
+  detail: string
+  visual?: SolutionVisual
+}
+
+/**
+ * The structured solution. Present as five parts because a wall of prose does
+ * not teach a search — see the spec, §7.6.
+ */
+export type Solution = {
+  keyInsight: string
+  steps: SolutionStep[]
+  answer: string
+  /** A faster route, or the transferable lesson. */
+  takeaway: string
+}
+
+/** Measured, never assigned. Drives coverage analysis and future generation. */
+export type QuestionMeta = {
+  patternType: string[]
+  skill: string
+  dmatAlignment: DmatAlignment
+  /** Reasoning steps required to reach the answer, by the subtest's own model. */
+  reasoningDepth: number
+  /** option key -> the error family that option encodes. */
+  distractorTypes: Record<string, string>
+  generationNotes?: string
+}
+
 type QuestionBase = {
   id: string
   section: SectionId
@@ -30,6 +99,18 @@ type QuestionBase = {
    */
   distractorNotes: Record<string, string>
   generator: GeneratorStamp
+  /**
+   * The three below are optional so questions predating the Phase 3 upgrade keep
+   * rendering. The UI falls back to `explanation` when `solution` is absent and
+   * hides the hint affordance when `hints` is absent.
+   */
+  hints?: Hint[]
+  /**
+   * Named `walkthrough`, not `solution`: Mathematical Equations already uses
+   * `solution` for the verified letter-to-value assignment.
+   */
+  walkthrough?: Solution
+  meta?: QuestionMeta
 }
 
 // ---------------------------------------------------------- Figure Sequences
@@ -117,8 +198,12 @@ export type RotationRule =
 
 export type ColourRule =
   | { type: 'constant' }
-  /** Cycles through the listed colours, one step per panel. */
-  | { type: 'cycle'; colours: FigureColour[] }
+  /**
+   * Cycles through the listed colours, one step per panel. `accelerating`
+   * advances by x+1 instead, which needs three colours to be readable — with
+   * two it lands on the same alternation an ordinary cycle gives.
+   */
+  | { type: 'cycle'; colours: FigureColour[]; accelerating?: boolean }
 
 export type SymbolRule = {
   movement: MovementRule
@@ -166,10 +251,19 @@ export type MathEquationsQuestion = QuestionBase & {
 
 // ------------------------------------------------------------- Latin Squares
 
+/**
+ * Both techniques the official solution paths demonstrate. A naked single asks
+ * which letter a cell must take; pair elimination asks which cell a letter must
+ * occupy. Four of the six official solutions lead with the latter.
+ */
+export type LatinTechnique = 'naked-single' | 'pair-elimination'
+
 export type EliminationStep = {
   cell: GridCell
   letter: string
   reason: string
+  /** Absent on questions generated before the technique split existed. */
+  technique?: LatinTechnique
 }
 
 export type LatinSquaresQuestion = QuestionBase & {

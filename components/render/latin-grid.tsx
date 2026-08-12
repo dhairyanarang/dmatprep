@@ -10,14 +10,23 @@ export function LatinGrid({
   target,
   reveal,
   className,
+  focusRow,
+  focusCol,
+  focusCells,
 }: {
   grid: (string | null)[][]
   target: GridCell
   /** Cell → letter to show as newly filled in, keyed "row,col". */
   reveal?: Record<string, string>
   className?: string
+  /** Solution steps light the line that is doing the work. */
+  focusRow?: number
+  focusCol?: number
+  /** Individual cells a step is reasoning about, keyed "row,col". */
+  focusCells?: string[]
 }) {
   const size = grid.length
+  const focusing = focusRow !== undefined || focusCol !== undefined || Boolean(focusCells?.length)
 
   // bg-border fills the 1px gaps between cells so they read as grid lines.
   return (
@@ -32,6 +41,9 @@ export function LatinGrid({
           const isTarget = r === target.row && c === target.col
           const revealed = reveal?.[`${r},${c}`]
           const shown = letter ?? revealed ?? null
+          const onFocusLine = r === focusRow || c === focusCol
+          const isFocusCell = focusCells?.includes(`${r},${c}`)
+          const dimmed = focusing && !onFocusLine && !isFocusCell && !isTarget
 
           return (
             <div
@@ -43,12 +55,15 @@ export function LatinGrid({
                   : `Row ${r + 1}, column ${c + 1}: ${shown ?? 'empty'}`
               }
               className={cn(
-                'flex aspect-square w-11 items-center justify-center text-base font-medium sm:w-12 sm:text-lg',
+                'flex aspect-square w-11 items-center justify-center text-base font-medium transition-opacity sm:w-12 sm:text-lg',
                 isTarget
                   ? 'bg-accent text-foreground ring-foreground/40 font-medium ring-1 ring-inset'
                   : revealed
                     ? 'bg-muted text-muted-foreground'
                     : 'bg-background',
+                isFocusCell && !isTarget && 'bg-latin-tint text-foreground',
+                onFocusLine && !isFocusCell && !isTarget && 'bg-muted/60',
+                dimmed && 'opacity-35',
               )}
             >
               {isTarget && !shown ? '?' : (shown ?? '')}

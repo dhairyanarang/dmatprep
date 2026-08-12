@@ -93,8 +93,10 @@ for (const q of LS) {
   // Distractor notes are written against the grid AFTER the forced prerequisite
   // placements, so check them against that — and require the caveat whenever the
   // cited cell is not visible in the published grid.
-  const afterSteps = grid.map((r) => [...r])
-  for (const s of q.solutionSteps) afterSteps[s.cell.row][s.cell.col] = s.letter
+  // Against the fully completed square, not just the steps: a clash may sit in a
+  // cell the deduction never needed to place. This mirrors verify-bank, which is
+  // the authoritative gate.
+  const afterSteps = completes(grid.map((r) => [...r]), letters) ?? grid.map((r) => [...r])
 
   let derivedNotes = 0
   for (const [letter, note] of Object.entries(q.distractorNotes)) {

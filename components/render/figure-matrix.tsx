@@ -95,15 +95,26 @@ export function FigureMatrix({
   cols = 4,
   className,
   title,
+  highlight,
+  trail,
 }: {
   panel: FigurePanel
   rows?: number
   cols?: number
   className?: string
   title?: string
+  /**
+   * Symbol ids to keep at full strength while the rest fade back. This is how a
+   * solution step says "track only this one" — the instruction the guide gives
+   * is unfollowable if every symbol competes for attention.
+   */
+  highlight?: string[]
+  /** Cells the highlighted symbol has occupied, drawn as a faint path. */
+  trail?: { row: number; col: number }[]
 }) {
   const width = cols * CELL
   const height = rows * CELL
+  const focusing = Boolean(highlight?.length)
 
   return (
     <svg
@@ -132,9 +143,38 @@ export function FigureMatrix({
       </g>
       <rect x={0} y={0} width={width} height={height} fill="none" stroke="var(--figure-frame)" strokeWidth={4} />
 
-      {panel.symbols.map((s) => (
-        <Symbol key={s.id} symbol={s} />
+      {trail?.map((cell, i) => (
+        <rect
+          key={`t${i}`}
+          x={cell.col * CELL + 6}
+          y={cell.row * CELL + 6}
+          width={CELL - 12}
+          height={CELL - 12}
+          rx={6}
+          fill="var(--figure-trail)"
+        />
       ))}
+
+      {panel.symbols.map((s) => {
+        const focused = !focusing || highlight?.includes(s.id)
+        return (
+          <g key={s.id} opacity={focused ? 1 : 0.18}>
+            {focusing && focused ? (
+              <rect
+                x={s.cell.col * CELL + 3}
+                y={s.cell.row * CELL + 3}
+                width={CELL - 6}
+                height={CELL - 6}
+                rx={8}
+                fill="none"
+                stroke="var(--figure-focus)"
+                strokeWidth={5}
+              />
+            ) : null}
+            <Symbol symbol={s} />
+          </g>
+        )
+      })}
     </svg>
   )
 }

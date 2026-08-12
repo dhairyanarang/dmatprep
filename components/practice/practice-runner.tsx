@@ -5,6 +5,7 @@ import { RotateCcw } from 'lucide-react'
 
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
 import { FeedbackPanel } from '@/components/practice/feedback-panel'
+import { HintPanel } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { Button } from '@/components/ui/button'
@@ -44,6 +45,7 @@ export function PracticeRunner({
   const [index, setIndex] = useState(0)
   const [selection, setSelection] = useState<Selection>({})
   const [submitted, setSubmitted] = useState(false)
+  const [hintsUsed, setHintsUsed] = useState(0)
   // Set in an effect, not during render: Date.now() is impure and the React
   // Compiler rejects it in the render path.
   const startedAt = useRef<number>(0)
@@ -69,6 +71,7 @@ export function PracticeRunner({
     setIndex(nextIndex)
     setSelection({})
     setSubmitted(false)
+    setHintsUsed(0)
   }, [])
 
   const handleSelect = useCallback(
@@ -91,8 +94,9 @@ export function PracticeRunner({
       selection,
       at: new Date().toISOString(),
       durationMs: Date.now() - startedAt.current,
+      hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
     })
-  }, [question, selection, submitted, recordAttempt, sectionId])
+  }, [question, selection, submitted, recordAttempt, sectionId, hintsUsed])
 
   const handleFilter = useCallback(
     (value: Filter) => {
@@ -150,8 +154,17 @@ export function PracticeRunner({
         </CardContent>
       </Card>
 
+      {!submitted && question.hints?.length ? (
+        <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={setHintsUsed} />
+      ) : null}
+
       {submitted && (
-        <FeedbackPanel question={question} selection={selection} correct={correct} />
+        <FeedbackPanel
+          question={question}
+          selection={selection}
+          correct={correct}
+          hintsUsed={hintsUsed}
+        />
       )}
 
       <div className="flex flex-wrap items-center gap-3">

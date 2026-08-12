@@ -140,6 +140,11 @@
   --figure-panel: #e5e5e6;
   --figure-line: #62666d;
   --figure-frame: #23252a;
+  /* Solution-step emphasis on the figure panel. The panel is a fixed light
+     surface in both themes, so these do not need a dark counterpart. Iris
+     Violet is the Figure Sequences section hue, used here as a tag. */
+  --figure-focus: #6366f1;
+  --figure-trail: rgba(99, 102, 241, 0.14);
 
   --sidebar: #fafafa;
   --sidebar-foreground: #08090a;
@@ -196,6 +201,8 @@
   --figure-panel: #d0d6e0;
   --figure-line: #62666d;
   --figure-frame: #23252a;
+  --figure-focus: #4f46e5;
+  --figure-trail: rgba(79, 70, 229, 0.16);
 
   --sidebar: #08090a;
   --sidebar-foreground: #ffffff;

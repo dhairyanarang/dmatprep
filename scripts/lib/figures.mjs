@@ -144,6 +144,17 @@ export function stepSymbol(state, rule, transitionIndex) {
  * official rule — a symbol leaving the grid, or two symbols overlapping.
  */
 export function simulate(symbols, rules, panelCount = 6) {
+  const run = simulateStates(symbols, rules, panelCount)
+  return run ? run.panels : null
+}
+
+/**
+ * Same simulation, but keeping the per-panel state — heading, colour index and
+ * cycle position. Distractors need it: a plausible wrong panel is the one a
+ * *perturbed rule* produces from the previous state, and the heading a symbol
+ * was travelling on is not recoverable from the rendered panel alone.
+ */
+export function simulateStates(symbols, rules, panelCount = 6) {
   let states = symbols.map((s) => ({
     id: s.id,
     shape: s.shape,
@@ -155,6 +166,7 @@ export function simulate(symbols, rules, panelCount = 6) {
     cycleIndex: 0,
   }))
 
+  const history = []
   const panels = []
 
   for (let panel = 0; panel < panelCount; panel++) {
@@ -177,6 +189,7 @@ export function simulate(symbols, rules, panelCount = 6) {
       occupied.add(key)
     }
 
+    history.push(states.map((s) => ({ ...s, cell: { ...s.cell } })))
     panels.push({
       symbols: states.map((s) => ({
         id: s.id,
@@ -188,7 +201,7 @@ export function simulate(symbols, rules, panelCount = 6) {
     })
   }
 
-  return panels
+  return { panels, states: history }
 }
 
 export const panelsEqual = (a, b) =>

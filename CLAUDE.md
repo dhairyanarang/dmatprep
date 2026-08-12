@@ -112,6 +112,10 @@ removes it from the production graph. Verify with
   option.** Enforced by the types and re-checked by `verify-bank`.
 - **No question ships unverified.** A solver must confirm a unique solution and all
   invariants before it enters `questions.json`.
+- **Never generate dMAT questions from intuition.** Read
+  `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md` first — it is the
+  source of truth for what the exam actually documents, and for each subtest's
+  difficulty model. The contract is below.
 - **Latin Squares difficulty is measured, never assigned** — `forcedPlacementDepth`,
   computed by constraint propagation. 1 → low, 2–3 → medium, 4+ → high.
 - **Figure Sequences renders as SVG from state.** No image assets, ever.
@@ -156,6 +160,39 @@ Two documented deviations from DESIGN.md, both deliberate:
 - The reference has no caution colour, so "inferred" renders as a **neutral
   marked state** rather than introducing an amber — this keeps the accent count
   where the system wants it. "Unconfirmed" uses Coral Red.
+
+## Question generation contract
+
+A model is never the authority on whether a question is correct. It shapes prose —
+explanations, hints, notes. Every logical and mathematical claim is decided by code.
+
+Before generating questions for any section:
+
+1. Read `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md`.
+2. Read that section's `guide.ts`.
+3. Run `node scripts/audit-bank.mjs` to see the **actual** current distribution —
+   never assume it from memory.
+4. Identify which patterns are already overrepresented.
+5. **Write a `generation_plan` before generating a batch** (spec §6): count,
+   difficulty split, current coverage, gaps being filled, expected distribution.
+   This is what stops successive batches from re-producing the same easy pattern.
+6. Generate only within documented mechanics, preferring underrepresented ones.
+7. Run the solver, prove uniqueness, validate distractors, validate the
+   explanation, and **measure** difficulty rather than inheriting the label.
+8. `npm run verify:bank` must pass before anything is committed.
+
+Difficulty is measured in all three sections, never assigned:
+
+| Section | Metric |
+|---|---|
+| Figure Sequences | transformation load — rules stacked on one symbol, **not** symbol count. Max 3 symbols. |
+| Mathematical Equations | substitution depth to the asked letter, **not** variable count. |
+| Latin Squares | deduction depth × clue density × technique. |
+
+Both official Latin Squares techniques must stay represented: naked single, and
+line-based pair elimination. Four of the six official solution paths lead with
+the latter, and a step may only be labelled `pair-elimination` when the solver
+could not reach it with a naked single.
 
 ## Scope
 
