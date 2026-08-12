@@ -3,6 +3,11 @@ import type { TipsPage } from '@/lib/types/content'
 export const tips: TipsPage = {
   intro:
     'Latin Squares is the most mechanical of the three subtests, which makes it the most improvable. There is a single correct procedure, no ambiguity, and no need for insight — speed comes almost entirely from scanning efficiently and not filling in cells you did not need.',
+  blocks: [
+    { type: 'heading', text: 'What changes as difficulty rises' },
+    { type: 'diagram', kind: 'ls-difficulty' },
+  ],
+
   strategies: [
     {
       title: 'Always start at the marked cell, never at the grid',

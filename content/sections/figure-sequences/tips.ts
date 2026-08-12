@@ -3,6 +3,18 @@ import type { TipsPage } from '@/lib/types/content'
 export const tips: TipsPage = {
   intro:
     'Figure Sequences rewards a fixed routine more than cleverness. At roughly 75 seconds an item, the difference between a fast solver and a slow one is almost entirely about not re-deriving things you have already established.',
+  blocks: [
+    { type: 'heading', text: 'Every movement you can be shown' },
+    {
+      type: 'diagram',
+      kind: 'fs-catalogue',
+      description:
+        'This is the complete rule set — each strip reads left to right, one panel at a time. Nothing outside these appears, which is what makes the subtest learnable rather than open-ended.',
+    },
+    { type: 'heading', text: 'What changes as difficulty rises' },
+    { type: 'diagram', kind: 'fs-difficulty' },
+  ],
+
   strategies: [
     {
       title: 'One symbol at a time, always',

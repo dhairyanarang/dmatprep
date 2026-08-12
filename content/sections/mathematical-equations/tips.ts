@@ -3,6 +3,11 @@ import type { TipsPage } from '@/lib/types/content'
 export const tips: TipsPage = {
   intro:
     'The mathematics here is easy — it is arithmetic on numbers under 20. What makes this subtest hard is doing it entirely in your head, at about 75 seconds an item, without slipping. Almost every technique below is really a technique for not making mistakes.',
+  blocks: [
+    { type: 'heading', text: 'What changes as difficulty rises' },
+    { type: 'diagram', kind: 'me-difficulty' },
+  ],
+
   strategies: [
     {
       title: 'Test the options instead of solving forward',

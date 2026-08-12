@@ -34,9 +34,13 @@ export type DiagramKind =
   | 'fs-anatomy'
   | 'fs-movement'
   | 'fs-bounce'
+  | 'fs-catalogue'
+  | 'fs-difficulty'
   | 'ls-constraint'
+  | 'ls-difficulty'
   | 'me-range'
   | 'me-chain'
+  | 'me-difficulty'
 
 export type ContentBlock =
   | { type: 'heading'; text: string }
@@ -63,6 +67,8 @@ export type Tip = {
 
 export type TipsPage = {
   intro: string
+  /** Optional diagrams and cards rendered above the strategy list. */
+  blocks?: ContentBlock[]
   strategies: Tip[]
   mistakes: Tip[]
   dos: string[]

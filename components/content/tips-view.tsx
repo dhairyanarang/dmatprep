@@ -1,11 +1,14 @@
 import { AlertTriangle, Check, X } from 'lucide-react'
 
+import { ContentBlocks } from '@/components/content/content-blocks'
 import type { TipsPage } from '@/lib/types/content'
 
 export function TipsView({ tips }: { tips: TipsPage }) {
   return (
     <div className="space-y-10">
       <p className="max-w-prose text-sm leading-relaxed text-pretty">{tips.intro}</p>
+
+      {tips.blocks ? <ContentBlocks blocks={tips.blocks} /> : null}
 
       <section className="space-y-4">
         <div className="flex items-baseline justify-between gap-4">
