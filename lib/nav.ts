@@ -30,6 +30,8 @@ export const NAV: NavGroup[] = [
     label: 'Overview',
     links: [
       { href: '/', label: 'Dashboard' },
+      { href: '/practice', label: 'Timed Practice' },
+      { href: '/review', label: 'Review Mistakes' },
       { href: '/study-plan', label: 'Study Plan' },
     ],
   },

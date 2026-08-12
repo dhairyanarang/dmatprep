@@ -33,6 +33,7 @@ export function useProgressActions() {
     recordAttempt: progressStore.recordAttempt,
     toggleMilestone: progressStore.toggleMilestone,
     setKeyDates: progressStore.setKeyDates,
+    recordSession: progressStore.recordSession,
     reset: progressStore.reset,
   }
 }

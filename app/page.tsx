@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { CountdownCard } from '@/components/dashboard/countdown-card'
 import { KeyDates } from '@/components/dashboard/key-dates'
+import { NextStep } from '@/components/dashboard/next-step'
 import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
 import { PageShell } from '@/components/layout/page-shell'
 import { FIXED_DATES } from '@/content/exam/key-dates'
@@ -28,7 +29,12 @@ export default function DashboardPage() {
         </section>
 
         <section className="space-y-4">
-          <SectionHeading title="Practice" />
+          <SectionHeading title="What to do next" />
+          <NextStep bankSizes={bankSizes} />
+        </section>
+
+        <section className="space-y-4">
+          <SectionHeading title="Module A" href="/practice" linkLabel="Timed practice" />
           <ProgressSnapshot bankSizes={bankSizes} />
         </section>
 

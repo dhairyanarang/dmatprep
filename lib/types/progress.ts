@@ -1,12 +1,38 @@
 import type { SectionId } from '@/lib/sections'
 import type { Difficulty, Selection } from '@/lib/types/question'
 
+/**
+ * Where an attempt came from. Absent on attempts recorded before timed modes
+ * existed, which are all ordinary practice.
+ */
+export type PracticeMode = 'practice' | 'quick' | 'diagnostic' | 'timed' | 'simulation'
+
+export const isExamMode = (mode: PracticeMode | undefined): boolean =>
+  mode === 'timed' || mode === 'simulation' || mode === 'diagnostic'
+
+/** A completed timed session, kept so results stay reviewable after a reload. */
+export type SessionResult = {
+  id: string
+  mode: PracticeMode
+  sections: SectionId[]
+  /** ISO timestamp of completion. */
+  at: string
+  durationMs: number
+  /** True when the clock ran out rather than the candidate submitting. */
+  timedOut: boolean
+  total: number
+  answered: number
+  correct: number
+  questionIds: string[]
+}
+
 export type AttemptRecord = {
   questionId: string
   sectionId: SectionId
   difficulty: Difficulty
   correct: boolean
   selection: Selection
+  mode?: PracticeMode
   /** ISO timestamp. */
   at: string
   /**
@@ -35,6 +61,8 @@ export type ProgressState = {
   attempts: AttemptRecord[]
   milestones: Record<string, boolean>
   keyDates: KeyDate[]
+  /** Completed timed sessions. Defaulted on read, so older stores still load. */
+  sessions: SessionResult[]
   lastSession?: {
     sectionId: SectionId
     questionId: string
@@ -47,6 +75,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   attempts: [],
   milestones: {},
   keyDates: [],
+  sessions: [],
 }
 
 export type DifficultyStats = { attempts: number; correct: number }

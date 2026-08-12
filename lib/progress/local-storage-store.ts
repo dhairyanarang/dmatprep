@@ -1,5 +1,11 @@
 import type { ProgressStore } from '@/lib/progress/store'
-import { EMPTY_PROGRESS, type AttemptRecord, type KeyDate, type ProgressState } from '@/lib/types/progress'
+import {
+  EMPTY_PROGRESS,
+  type AttemptRecord,
+  type KeyDate,
+  type ProgressState,
+  type SessionResult,
+} from '@/lib/types/progress'
 
 const STORAGE_KEY = 'dmat-prep:progress:v1'
 
@@ -16,6 +22,9 @@ function parse(raw: string | null): ProgressState {
       attempts: parsed.attempts,
       milestones: parsed.milestones ?? {},
       keyDates: Array.isArray(parsed.keyDates) ? parsed.keyDates : [],
+      // Defaulted rather than version-bumped: a store written before timed
+      // sessions existed is still valid, it simply has none.
+      sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
       lastSession: parsed.lastSession,
     }
   } catch {
@@ -81,6 +90,11 @@ function createLocalStorageStore(): ProgressStore {
           at: attempt.at,
         },
       })
+    },
+
+    recordSession(result: SessionResult) {
+      const current = read()
+      write({ ...current, sessions: [...current.sessions, result].slice(-100) })
     },
 
     toggleMilestone(id: string) {

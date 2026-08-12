@@ -1,4 +1,4 @@
-import type { AttemptRecord, KeyDate, ProgressState } from '@/lib/types/progress'
+import type { AttemptRecord, KeyDate, ProgressState, SessionResult } from '@/lib/types/progress'
 
 /**
  * The single seam between the app and wherever progress happens to live.
@@ -15,6 +15,8 @@ export interface ProgressStore {
   subscribe(listener: () => void): () => void
 
   recordAttempt(attempt: AttemptRecord): void
+  /** Store a completed timed session so its result survives a reload. */
+  recordSession(result: SessionResult): void
   toggleMilestone(id: string): void
   setKeyDates(dates: KeyDate[]): void
   reset(): void
