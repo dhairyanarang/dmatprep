@@ -48,7 +48,7 @@ function MiniGrid({
 }) {
   return (
     <div
-      className="bg-border/60 inline-grid gap-px rounded-sm p-px"
+      className="bg-muted-foreground/30 inline-grid gap-px rounded-sm p-px"
       style={{ gridTemplateColumns: `repeat(${n}, ${cell}px)` }}
       aria-hidden
     >
@@ -141,12 +141,12 @@ export function ItemAnatomy() {
         <ArrowRight className="text-muted-foreground mb-6 size-4 shrink-0" aria-hidden />
 
         <div className="space-y-2">
-          <p className="text-primary text-xs font-medium">You choose both of these</p>
+          <p className="text-foreground text-xs font-medium">You choose both of these</p>
           <div className="flex gap-2">
             {[0, 1].map((i) => (
               <div
                 key={i}
-                className="border-primary/50 text-muted-foreground flex items-center justify-center rounded-sm border border-dashed text-sm"
+                className="border-muted-foreground/50 text-muted-foreground flex items-center justify-center rounded-sm border border-dashed text-sm"
                 style={{ width: 82, height: 82 }}
               >
                 ?

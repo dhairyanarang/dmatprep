@@ -138,7 +138,7 @@
   /* Figure panels stay light in both themes so a symbol the explanation calls
      "black" never renders white. Mist is the palette's light surface fill. */
   --figure-panel: #e5e5e6;
-  --figure-line: #8a8f98;
+  --figure-line: #62666d;
   --figure-frame: #23252a;
 
   --sidebar: #fafafa;
@@ -194,7 +194,7 @@
   --latin-tint: rgba(2, 184, 204, 0.16);
 
   --figure-panel: #d0d6e0;
-  --figure-line: #8a8f98;
+  --figure-line: #62666d;
   --figure-frame: #23252a;
 
   --sidebar: #08090a;
