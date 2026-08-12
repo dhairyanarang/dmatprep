@@ -1,5 +1,11 @@
 import { SECTIONS, type SectionId } from '@/lib/sections'
-import { sectionStats, type ProgressState } from '@/lib/types/progress'
+import {
+  bucketAccuracy,
+  bucketOf,
+  sectionStats,
+  type MetricBucket,
+  type ProgressState,
+} from '@/lib/types/progress'
 
 /**
  * Deterministic, inspectable summaries of where preparation stands.
@@ -27,10 +33,13 @@ export type SectionSignal = {
 export function sectionSignals(
   progress: ProgressState,
   bankSizes: Record<SectionId, number>,
+  buckets: readonly MetricBucket[] = ['practice'],
 ): SectionSignal[] {
   return SECTIONS.map((section) => {
-    const stats = sectionStats(progress, section.id)
-    const attempts = progress.attempts.filter((a) => a.sectionId === section.id)
+    const stats = sectionStats(progress, section.id, buckets)
+    const attempts = progress.attempts.filter(
+      (a) => a.sectionId === section.id && buckets.includes(bucketOf(a.mode)),
+    )
     const timed = attempts.filter((a) => typeof a.durationMs === 'number')
     const withHints = attempts.filter((a) => (a.hintsUsed ?? 0) > 0)
 
@@ -144,6 +153,9 @@ export function readiness(progress: ProgressState, signals: SectionSignal[]): Re
   const timedSessions = progress.sessions.filter(
     (s) => s.mode === 'timed' || s.mode === 'simulation',
   )
+  // Read separately, never averaged into the practice figure.
+  const timedScore = bucketAccuracy(progress, 'timed')
+  const mockScore = bucketAccuracy(progress, 'mock')
 
   const because: string[] = []
 
@@ -160,8 +172,14 @@ export function readiness(progress: ProgressState, signals: SectionSignal[]): Re
   because.push(`${covered.length} of 3 sections practised enough to judge.`)
   if (accuracies.length) {
     because.push(
-      `Accuracy averages ${Math.round(overall * 100)}%, weakest section ${Math.round(weakest * 100)}%.`,
+      `Practice accuracy averages ${Math.round(overall * 100)}%, weakest section ${Math.round(weakest * 100)}%.`,
     )
+  }
+  if (timedScore.accuracy !== null) {
+    because.push(`Timed practice accuracy ${Math.round(timedScore.accuracy * 100)}%, counted separately.`)
+  }
+  if (mockScore.accuracy !== null) {
+    because.push(`Mock accuracy ${Math.round(mockScore.accuracy * 100)}%, counted separately.`)
   }
   if (hintLean > 0.4) because.push(`Hints used on ${Math.round(hintLean * 100)}% of attempts in one section.`)
   if (timedSessions.length) because.push(`${timedSessions.length} timed session${timedSessions.length === 1 ? '' : 's'} completed.`)

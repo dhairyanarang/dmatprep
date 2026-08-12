@@ -10,6 +10,34 @@ export type PracticeMode = 'practice' | 'quick' | 'diagnostic' | 'timed' | 'simu
 export const isExamMode = (mode: PracticeMode | undefined): boolean =>
   mode === 'timed' || mode === 'simulation' || mode === 'diagnostic'
 
+/**
+ * Learning and assessment are different measurements and must not be averaged
+ * together.
+ *
+ * An untimed attempt with three hints available says something about
+ * understanding; a mock attempt under a clock with none says something about
+ * exam performance. Mixing them produces a number that means neither. Readiness
+ * may read all four buckets, but only ever separately.
+ */
+export type MetricBucket = 'practice' | 'timed' | 'mock' | 'diagnostic'
+
+export function bucketOf(mode: PracticeMode | undefined): MetricBucket {
+  switch (mode) {
+    case 'timed':
+      return 'timed'
+    case 'simulation':
+      return 'mock'
+    case 'diagnostic':
+      return 'diagnostic'
+    // `undefined` covers attempts recorded before modes existed; those were all
+    // ordinary practice.
+    default:
+      return 'practice'
+  }
+}
+
+export const PRACTICE_ONLY: readonly MetricBucket[] = ['practice']
+
 /** A completed timed session, kept so results stay reviewable after a reload. */
 export type SessionResult = {
   id: string
@@ -107,13 +135,22 @@ const emptyStats = (): SectionStats => ({
 /**
  * Stats are always derived from `attempts`, never stored alongside it — that way
  * they cannot drift out of agreement with the underlying record.
+ *
+ * Defaults to practice only: "your Latin Squares accuracy" on the dashboard
+ * means how you are doing while learning, and a timed mock should not drag it
+ * down or prop it up.
  */
-export function sectionStats(state: ProgressState, sectionId: SectionId): SectionStats {
+export function sectionStats(
+  state: ProgressState,
+  sectionId: SectionId,
+  buckets: readonly MetricBucket[] = PRACTICE_ONLY,
+): SectionStats {
   const stats = emptyStats()
   const seen = new Set<string>()
 
   for (const a of state.attempts) {
     if (a.sectionId !== sectionId) continue
+    if (!buckets.includes(bucketOf(a.mode))) continue
     stats.attempts += 1
     if (a.correct) stats.correct += 1
     seen.add(a.questionId)
@@ -130,11 +167,30 @@ export function sectionStats(state: ProgressState, sectionId: SectionId): Sectio
   return stats
 }
 
-/** Question ids already answered correctly at least once, for "unseen first" ordering. */
+/**
+ * Question ids already answered correctly at least once, for "unseen first"
+ * ordering. Deliberately spans every mode — a question met in a mock has still
+ * been met, whatever bucket it was scored in.
+ */
 export function answeredCorrectly(state: ProgressState, sectionId: SectionId): Set<string> {
   const out = new Set<string>()
   for (const a of state.attempts) {
     if (a.sectionId === sectionId && a.correct) out.add(a.questionId)
   }
   return out
+}
+
+/** Accuracy within one bucket, across every section. Null when untried. */
+export function bucketAccuracy(
+  state: ProgressState,
+  bucket: MetricBucket,
+): { attempts: number; correct: number; accuracy: number | null } {
+  let attempts = 0
+  let correct = 0
+  for (const a of state.attempts) {
+    if (bucketOf(a.mode) !== bucket) continue
+    attempts++
+    if (a.correct) correct++
+  }
+  return { attempts, correct, accuracy: attempts ? correct / attempts : null }
 }

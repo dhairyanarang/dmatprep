@@ -26,6 +26,9 @@ export function NextStep({ bankSizes }: { bankSizes: Record<SectionId, number> }
   const signals = sectionSignals(progress, bankSizes)
   const recommendation = recommendNext(signals)
   const state = readiness(progress, signals)
+  // Nothing attempted yet: fifteen questions will point somewhere useful faster
+  // than guessing which section to open first.
+  const brandNew = ready && progress.attempts.length === 0
 
   return (
     <div className="grid gap-4 lg:grid-cols-[2fr_1fr]">
@@ -35,26 +38,56 @@ export function NextStep({ bankSizes }: { bankSizes: Record<SectionId, number> }
             <p className="text-muted-foreground text-xs tracking-wide uppercase">
               Recommended next step
             </p>
-            <h3 className="mt-2 flex items-center gap-2 text-base font-semibold tracking-tight">
-              <span
-                aria-hidden
-                className={cn('size-2 rounded-full', DOT[SECTION_ACCENT[recommendation.sectionId]])}
-              />
-              {recommendation.title}
-            </h3>
-            <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-              {ready ? recommendation.reason : 'Checking where you left off…'}
-            </p>
+            {brandNew ? (
+              <>
+                <h3 className="mt-2 text-base font-semibold tracking-tight">
+                  Start with the diagnostic
+                </h3>
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+                  Fifteen questions, five from each subtest, with no clock. It finds where to begin
+                  faster than picking a section at random — and it locks nothing in.
+                </p>
+              </>
+            ) : (
+              <>
+                <h3 className="mt-2 flex items-center gap-2 text-base font-semibold tracking-tight">
+                  <span
+                    aria-hidden
+                    className={cn(
+                      'size-2 rounded-full',
+                      DOT[SECTION_ACCENT[recommendation.sectionId]],
+                    )}
+                  />
+                  {recommendation.title}
+                </h3>
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+                  {ready ? recommendation.reason : 'Checking where you left off…'}
+                </p>
+              </>
+            )}
           </div>
 
           <div className="mt-auto flex flex-wrap items-center gap-3">
-            <ButtonLink href={`/module-a/${recommendation.sectionId}/practice`}>
-              Start practice
-              <ArrowRight className="size-4" aria-hidden />
-            </ButtonLink>
-            <span className="text-muted-foreground text-xs tabular-nums">
-              {recommendation.unseen} unseen · about {Math.round(recommendation.unseen * 1.25)} min
-            </span>
+            {brandNew ? (
+              <>
+                <ButtonLink href="/practice/diagnostic">
+                  Take the diagnostic
+                  <ArrowRight className="size-4" aria-hidden />
+                </ButtonLink>
+                <span className="text-muted-foreground text-xs">15 questions · about 15 min</span>
+              </>
+            ) : (
+              <>
+                <ButtonLink href={`/module-a/${recommendation.sectionId}/practice`}>
+                  Start practice
+                  <ArrowRight className="size-4" aria-hidden />
+                </ButtonLink>
+                <span className="text-muted-foreground text-xs tabular-nums">
+                  {recommendation.unseen} unseen · about {Math.round(recommendation.unseen * 1.25)}{' '}
+                  min
+                </span>
+              </>
+            )}
           </div>
         </CardContent>
       </Card>

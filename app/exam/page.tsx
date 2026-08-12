@@ -1,3 +1,4 @@
+import { StartHere } from '@/components/exam/start-here'
 import { PageShell } from '@/components/layout/page-shell'
 import {
   ChipGrid,
@@ -51,6 +52,13 @@ export default function ExamFormatPage() {
           <Stat value="60" label="Core Module items, across three subtests" />
           <Stat value="1" label="Answer selected per question — single-choice throughout" />
         </StatGrid>
+
+        <Section
+          title="Start here"
+          description="The eight questions most people arrive with, answered in a line each."
+        >
+          <StartHere />
+        </Section>
 
         <Section
           title="The exam day, to scale"

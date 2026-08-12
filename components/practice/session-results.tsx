@@ -79,6 +79,8 @@ export function SessionResults({
         </CardContent>
       </Card>
 
+      {mode === 'diagnostic' ? <StartingPoint graded={graded} stages={stages} /> : null}
+
       <Disclosure summary="How you did by difficulty" hint={`${byDifficulty.length} tiers`}>
         <ul className="space-y-2.5">
           {byDifficulty.map((row) => (
@@ -138,6 +140,90 @@ export function SessionResults({
   )
 }
 
+/**
+ * The diagnostic's own summary: where you are strongest and weakest, and what to
+ * do first. Fifteen questions is enough to point somewhere and nothing more, so
+ * the copy says exactly that and the path stays changeable.
+ */
+function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStage[] }) {
+  const perSection = stages.map((stage) => {
+    const rows = graded.filter((g) => g.question.section === stage.sectionId)
+    const answered = rows.filter((r) => r.answered).length
+    const correct = rows.filter((r) => r.correct).length
+    return {
+      sectionId: stage.sectionId,
+      label: stage.label,
+      total: rows.length,
+      answered,
+      correct,
+      // Score over everything shown: an unanswered question is not a strength.
+      score: rows.length ? correct / rows.length : 0,
+    }
+  })
+
+  const ranked = [...perSection].sort((a, b) => b.score - a.score)
+  const strongest = ranked[0]
+  const weakest = ranked[ranked.length - 1]
+  const overall = graded.filter((g) => g.correct).length / (graded.length || 1)
+  const flat = strongest.score - weakest.score < 0.15
+
+  return (
+    <Card>
+      <CardContent className="space-y-4">
+        <div>
+          <p className="text-muted-foreground text-xs tracking-wide uppercase">
+            dMAT Prep diagnostic
+          </p>
+          <h3 className="mt-1 text-base font-semibold tracking-tight">Your starting point</h3>
+        </div>
+
+        <ul className="space-y-2">
+          {perSection.map((row) => (
+            <li key={row.sectionId} className="flex items-center justify-between gap-4 text-sm">
+              <span>{row.label}</span>
+              <span className="text-muted-foreground tabular-nums">
+                {row.correct} / {row.total}
+              </span>
+            </li>
+          ))}
+        </ul>
+
+        <dl className="border-border space-y-2 border-t pt-4 text-sm">
+          <div className="flex gap-2">
+            <dt className="text-muted-foreground shrink-0">Strongest</dt>
+            <dd className="font-medium">{flat ? 'Fairly even across the three' : strongest.label}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="text-muted-foreground shrink-0">Weakest</dt>
+            <dd className="font-medium">{flat ? 'No clear gap yet' : weakest.label}</dd>
+          </div>
+          <div className="flex gap-2">
+            <dt className="text-muted-foreground shrink-0">Overall</dt>
+            <dd className="font-medium tabular-nums">{Math.round(overall * 100)}% correct</dd>
+          </div>
+        </dl>
+
+        <div className="border-border bg-muted/50 rounded-xl border p-4">
+          <p className="text-sm font-medium">Start with {weakest.label}</p>
+          <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+            {flat
+              ? 'Nothing stands out from five questions each, so any section is a reasonable place to begin — this one only just came last.'
+              : 'Five questions per section is a pointer, not a verdict. Nothing is locked in: practise whichever section you like, and the recommendation updates as you go.'}
+          </p>
+          <ButtonLink
+            variant="outline"
+            size="sm"
+            className="mt-3"
+            href={`/module-a/${weakest.sectionId}/practice`}
+          >
+            Practise {weakest.label}
+          </ButtonLink>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
+
 function Metric({ value, label }: { value: string; label: string }) {
   return (
     <div className="border-border bg-muted/40 rounded-xl border p-4">
@@ -147,7 +233,7 @@ function Metric({ value, label }: { value: string; label: string }) {
   )
 }
 
-type Graded = { question: Question; correct: boolean; answered: boolean }
+type Graded = { question: Question; correct: boolean; answered: boolean; selection: Selection }
 
 /** Accuracy per pattern, using the metadata the generators already record. */
 function patternBreakdown(graded: Graded[]) {

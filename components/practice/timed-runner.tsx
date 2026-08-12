@@ -31,6 +31,7 @@ export function TimedRunner({
   stages,
   minutesPerStage,
   breakAfterStage,
+  untimed = false,
 }: {
   mode: PracticeMode
   title: string
@@ -38,6 +39,8 @@ export function TimedRunner({
   minutesPerStage: number
   /** Index after which the documented 30-minute break falls, if any. */
   breakAfterStage?: number
+  /** The diagnostic runs under assessment rules but without a clock. */
+  untimed?: boolean
 }) {
   const { recordAttempt, recordSession } = useProgressActions()
 
@@ -117,7 +120,7 @@ export function TimedRunner({
    * is running would re-render before the browser has painted.
    */
   useEffect(() => {
-    if (phase !== 'running' || endsAt === 0) return
+    if (phase !== 'running' || endsAt === 0 || untimed) return
     const id = window.setInterval(() => {
       const t = Date.now()
       setNow(t)
@@ -127,7 +130,7 @@ export function TimedRunner({
       }
     }, 1000)
     return () => window.clearInterval(id)
-  }, [phase, endsAt, expire])
+  }, [phase, endsAt, expire, untimed])
 
   // A reload mid-test loses the session, so make it deliberate.
   useEffect(() => {
@@ -139,10 +142,10 @@ export function TimedRunner({
 
   const start = useCallback(() => {
     startedAt.current = Date.now()
-    setEndsAt(Date.now() + minutesPerStage * 60_000)
+    setEndsAt(untimed ? 0 : Date.now() + minutesPerStage * 60_000)
     setNow(Date.now())
     setPhase('running')
-  }, [minutesPerStage])
+  }, [minutesPerStage, untimed])
 
   const select = useCallback(
     (key: string, optionId: string) => {
@@ -163,7 +166,15 @@ export function TimedRunner({
   }, [minutesPerStage])
 
   if (phase === 'brief') {
-    return <Brief title={title} stages={stages} minutesPerStage={minutesPerStage} onStart={start} />
+    return (
+      <Brief
+        title={title}
+        stages={stages}
+        minutesPerStage={minutesPerStage}
+        untimed={untimed}
+        onStart={start}
+      />
+    )
   }
 
   if (phase === 'break') {
@@ -203,7 +214,7 @@ export function TimedRunner({
             {answeredInStage} of {stage.questions.length} {stage.unitNoun} answered
           </p>
         </div>
-        <TimerChip remainingMs={remainingMs} />
+        {untimed ? null : <TimerChip remainingMs={remainingMs} />}
       </div>
 
       <Card>
@@ -310,7 +321,7 @@ function QuestionStrip({
             aria-label={`Question ${i + 1}${done ? ', answered' : ', not answered'}${i === current ? ', current' : ''}`}
             aria-current={i === current ? 'true' : undefined}
             className={cn(
-              'size-8 rounded-md border text-xs font-medium tabular-nums transition-colors',
+              'size-9 rounded-md border text-xs font-medium tabular-nums transition-colors',
               'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
               i === current
                 ? 'border-foreground/40 bg-accent text-foreground'
@@ -331,11 +342,13 @@ function Brief({
   title,
   stages,
   minutesPerStage,
+  untimed,
   onStart,
 }: {
   title: string
   stages: TimedStage[]
   minutesPerStage: number
+  untimed?: boolean
   onStart: () => void
 }) {
   const total = stages.reduce((n, s) => n + s.questions.length, 0)
@@ -346,32 +359,44 @@ function Brief({
         <div>
           <h2 className="text-lg font-semibold">{title}</h2>
           <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-            {stages.length === 1
-              ? `${stages[0].questions.length} ${stages[0].unitNoun} in ${minutesPerStage} minutes.`
-              : `${stages.length} parts, ${minutesPerStage} minutes each — ${total} questions in total.`}{' '}
-            That works out at an average of{' '}
-            {Math.round((minutesPerStage * 60) / (total / stages.length))} seconds each, which is a
-            pacing guide rather than a limit on any one question.
+            {untimed ? (
+              `${total} questions across the three Core subtests, with no clock. Answer what you can — skipping is fine, and it will still tell you where you stand.`
+            ) : (
+              <>
+                {stages.length === 1
+                  ? `${stages[0].questions.length} ${stages[0].unitNoun} in ${minutesPerStage} minutes.`
+                  : `${stages.length} parts, ${minutesPerStage} minutes each — ${total} questions in total.`}{' '}
+                That works out at an average of{' '}
+                {Math.round((minutesPerStage * 60) / (total / stages.length))} seconds each, which is
+                a pacing guide rather than a limit on any one question.
+              </>
+            )}
           </p>
         </div>
 
         <ul className="text-muted-foreground space-y-2 text-sm">
           <li>· No hints, and no answers or explanations until you submit.</li>
-          <li>· You can skip a question and come back to it.</li>
-          <li>· The clock keeps running if you leave the page, and reloading loses the test.</li>
+          <li>· You can skip a question, jump to another, and come back.</li>
+          {untimed ? null : (
+            <li>· The clock keeps running if you leave the page, and reloading loses the test.</li>
+          )}
           <li>· Practise the way you will sit it: no notes, no calculator.</li>
         </ul>
 
         <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-xl border p-4">
           <AlertTriangle className="text-warning-fg mt-px size-4 shrink-0" aria-hidden />
           <p className="text-muted-foreground text-sm leading-relaxed">
-            This is a <span className="text-foreground">dMAT Prep practice mock</span>. The timing
-            and item counts follow the official preparatory materials; the question mix is ours, and
-            nothing here claims to reproduce the real paper.
+            This is a{' '}
+            <span className="text-foreground">
+              dMAT Prep {untimed ? 'diagnostic' : 'practice simulation'}
+            </span>
+            . {untimed ? 'It is not' : 'The timing and item counts follow the official preparatory materials, but it is not'}{' '}
+            an official dMAT assessment, and interface behaviour may differ from the official test
+            platform.
           </p>
         </div>
 
-        <Button onClick={onStart}>Start the test</Button>
+        <Button onClick={onStart}>{untimed ? 'Start the diagnostic' : 'Start the test'}</Button>
       </CardContent>
     </Card>
   )

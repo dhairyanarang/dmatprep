@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { ArrowRight, Clock, Layers, Timer } from 'lucide-react'
+import { ArrowRight, Clock, Compass, Layers, Timer, Zap } from 'lucide-react'
 
 import { PageShell } from '@/components/layout/page-shell'
 import { Card, CardContent } from '@/components/ui/card'
 import { SECTIONS } from '@/lib/sections'
 
-export const metadata = { title: 'Timed practice' }
+export const metadata = { title: 'Practice & mocks' }
 
 const UNIT: Record<string, string> = {
   'figure-sequences': '20 series of matrices',
@@ -16,11 +16,49 @@ const UNIT: Record<string, string> = {
 export default function PracticeHubPage() {
   return (
     <PageShell
-      title="Timed practice"
+      title="Practice & mocks"
       description="Full-length practice under the clock. Timings and item counts follow the official preparatory materials; the question mix is ours."
       wide
     >
       <div className="space-y-8">
+        <section className="space-y-4">
+          <h2 className="text-base font-semibold tracking-tight">Short sessions</h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Card>
+              <CardContent className="flex h-full flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <Zap className="text-muted-foreground size-4" aria-hidden />
+                  <h3 className="text-sm font-medium">Quick practice</h3>
+                </div>
+                <p className="text-muted-foreground flex-1 text-sm leading-relaxed">
+                  10 questions mixed across the three subtests, about 10 minutes. Hints and full
+                  solutions available.
+                </p>
+                <Link href="/practice/quick" className="inline-flex items-center gap-1 text-sm font-medium">
+                  Start quick practice
+                  <ArrowRight className="size-3.5" aria-hidden />
+                </Link>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardContent className="flex h-full flex-col gap-3">
+                <div className="flex items-center gap-2">
+                  <Compass className="text-muted-foreground size-4" aria-hidden />
+                  <h3 className="text-sm font-medium">Diagnostic</h3>
+                </div>
+                <p className="text-muted-foreground flex-1 text-sm leading-relaxed">
+                  15 questions, 5 per subtest, no clock and no hints — a starting point, not a
+                  verdict.
+                </p>
+                <Link href="/practice/diagnostic" className="inline-flex items-center gap-1 text-sm font-medium">
+                  Take the diagnostic
+                  <ArrowRight className="size-3.5" aria-hidden />
+                </Link>
+              </CardContent>
+            </Card>
+          </div>
+        </section>
+
         <section className="space-y-4">
           <h2 className="text-base font-semibold tracking-tight">One subtest at a time</h2>
           <div className="grid gap-4 sm:grid-cols-3">

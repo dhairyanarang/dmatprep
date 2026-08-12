@@ -30,7 +30,7 @@ export const NAV: NavGroup[] = [
     label: 'Overview',
     links: [
       { href: '/', label: 'Dashboard' },
-      { href: '/practice', label: 'Timed Practice' },
+      { href: '/practice', label: 'Practice & Mocks' },
       { href: '/review', label: 'Review Mistakes' },
       { href: '/study-plan', label: 'Study Plan' },
     ],
@@ -42,6 +42,7 @@ export const NAV: NavGroup[] = [
       { href: '/exam/rules', label: 'Exam-Day Rules' },
       { href: '/exam/scoring', label: 'Scoring & Results' },
       { href: '/exam/logistics', label: 'Dates & Logistics' },
+      { href: '/exam/checklist', label: 'Pre-Exam Checklist' },
       { href: '/exam/sources', label: 'Sources' },
     ],
   },

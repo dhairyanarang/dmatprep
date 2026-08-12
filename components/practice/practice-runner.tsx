@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/select'
 import { useProgress, useProgressActions } from '@/lib/progress/use-progress'
 import type { SectionId } from '@/lib/sections'
-import { answeredCorrectly } from '@/lib/types/progress'
+import { answeredCorrectly, type PracticeMode } from '@/lib/types/progress'
 import {
   DIFFICULTIES,
   isCorrect,
@@ -35,9 +35,16 @@ type Filter = Difficulty | 'all'
 export function PracticeRunner({
   sectionId,
   questions,
+  mode = 'practice',
+  showProgress = true,
+  showFilter = true,
 }: {
-  sectionId: SectionId
+  /** Absent for a mixed session; each attempt is filed under its own question's section. */
+  sectionId?: SectionId
   questions: Question[]
+  mode?: PracticeMode
+  showProgress?: boolean
+  showFilter?: boolean
 }) {
   const progress = useProgress()
   const { recordAttempt } = useProgressActions()
@@ -59,7 +66,7 @@ export function PracticeRunner({
       filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
 
     // Unseen questions first, so repeat sessions don't replay the same items.
-    const done = answeredCorrectly(progress, sectionId)
+    const done = sectionId ? answeredCorrectly(progress, sectionId) : new Set<string>()
     return [...filtered].sort((a, b) => Number(done.has(a.id)) - Number(done.has(b.id)))
     // `progress` is deliberately excluded: re-sorting mid-session would shuffle
     // the deck under the candidate's feet after every answer.
@@ -89,15 +96,16 @@ export function PracticeRunner({
     setSubmitted(true)
     recordAttempt({
       questionId: question.id,
-      sectionId,
+      sectionId: question.section,
       difficulty: question.difficulty,
+      mode,
       correct,
       selection,
       at: new Date().toISOString(),
       durationMs: Date.now() - startedAt.current,
       hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
     })
-  }, [question, selection, submitted, recordAttempt, sectionId, hintsUsed])
+  }, [question, selection, submitted, recordAttempt, hintsUsed, mode])
 
   const handleFilter = useCallback(
     (value: Filter) => {
@@ -132,7 +140,9 @@ export function PracticeRunner({
 
   return (
     <div className="space-y-5">
-      <SectionProgress sectionId={sectionId} bankSize={questions.length} />
+      {showProgress && sectionId ? (
+        <SectionProgress sectionId={sectionId} bankSize={questions.length} />
+      ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-2">
@@ -141,7 +151,7 @@ export function PracticeRunner({
           </span>
           <DifficultyBadge difficulty={question.difficulty} />
         </div>
-        <FilterBar filter={filter} onChange={handleFilter} />
+        {showFilter ? <FilterBar filter={filter} onChange={handleFilter} /> : null}
       </div>
 
       <Card>

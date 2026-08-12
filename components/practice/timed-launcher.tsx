@@ -31,12 +31,14 @@ export function TimedLauncher({
   stages,
   minutesPerStage,
   breakAfterStage,
+  untimed = false,
 }: {
   mode: PracticeMode
   title: string
   stages: StageSpec[]
   minutesPerStage: number
   breakAfterStage?: number
+  untimed?: boolean
 }) {
   const progress = useProgress()
   const ready = useProgressReady()
@@ -85,6 +87,7 @@ export function TimedLauncher({
         stages={built.map((s) => s.stage)}
         minutesPerStage={minutesPerStage}
         breakAfterStage={breakAfterStage}
+        untimed={untimed}
       />
     </div>
   )
