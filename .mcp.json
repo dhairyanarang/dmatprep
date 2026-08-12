@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "agentation": {
+      "command": "npx",
+      "args": ["--no-install", "agentation-mcp", "server"]
+    }
+  }
+}

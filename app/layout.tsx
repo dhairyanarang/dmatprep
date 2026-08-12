@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import { DevAnnotations } from '@/components/dev/annotations'
+
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
 import { ThemeProvider } from '@/components/layout/theme-provider'
@@ -50,6 +52,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             <Toaster />
           </TooltipProvider>
         </ThemeProvider>
+
+        {/* Visual feedback toolbar; dev-only, and dropped from production builds. */}
+        <DevAnnotations />
       </body>
     </html>
   )
