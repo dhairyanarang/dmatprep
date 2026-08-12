@@ -23,10 +23,15 @@ export function NavList({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname()
 
   return (
-    <nav className="flex flex-col gap-6 px-3 py-4" aria-label="Main">
-      {NAV.map((group) => (
-        <div key={group.label}>
-          <p className="text-muted-foreground/70 mb-2 px-3 text-[11px] font-semibold tracking-[0.08em] uppercase select-none">
+    <nav className="flex flex-col px-3 py-4" aria-label="Main">
+      {NAV.map((group, i) => (
+        // A rule between groups says "section break" the way indentation and
+        // weight alone could not — the labels were still reading as controls.
+        <div
+          key={group.label}
+          className={cn(i > 0 && 'border-sidebar-border mt-5 border-t pt-5')}
+        >
+          <p className="text-muted-foreground/55 mb-2 px-3 text-[10px] font-semibold tracking-[0.14em] uppercase select-none">
             {group.label}
           </p>
 
