@@ -1,5 +1,9 @@
-import { HubCard, HubSection } from '@/components/layout/hub'
-import { PageShell } from '@/components/layout/page-shell'
+import { CalendarRange, Info, Library, Zap } from 'lucide-react'
+
+import { PageHeader } from '@/components/layout/page-header'
+import { PageContainer } from '@/components/layout/page-shell'
+import { SectionHeading } from '@/components/layout/section-heading'
+import { TileCard } from '@/components/layout/tile-card'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTION_ICON } from '@/lib/nav'
 import { SECTIONS } from '@/lib/sections'
@@ -7,56 +11,59 @@ import { SECTIONS } from '@/lib/sections'
 export const metadata = { title: 'Prepare' }
 
 export default function PreparePage() {
+  const perSection = getBankSize(SECTIONS[0].id)
+
   return (
-    <PageShell
-      description="Learn how each Core subtest works, then practise it untimed with hints and full solutions."
-      wide
-    >
-      <div className="space-y-10">
-        <HubSection title="Module A — the Core Module">
-          <div className="grid gap-4 sm:grid-cols-3">
-            {SECTIONS.map((section) => {
-              const Icon = SECTION_ICON[section.id]
-              return (
-              <HubCard
+    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+      <PageContainer className="flex flex-col gap-7 py-6">
+        <PageHeader
+          icon={Library}
+          title="Prepare"
+          description="Learn how each Core subtest works, then practise it untimed with hints and full solutions."
+        />
+
+        <SectionHeading title="Module A" meta={`${perSection} questions each`}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {SECTIONS.map((section) => (
+              <TileCard
                 key={section.id}
                 href={`/module-a/${section.id}`}
+                icon={SECTION_ICON[section.id]}
                 title={section.title}
                 description={section.oneLiner}
-                meta={`${getBankSize(section.id)} questions`}
-                action="Learn & practise"
-                marker={<Icon className="text-brand size-5 shrink-0" aria-hidden />}
               />
-              )
-            })}
+            ))}
           </div>
-        </HubSection>
+        </SectionHeading>
 
-        <HubSection title="Shorter sessions">
+        <SectionHeading title="Shorter sessions">
           <div className="grid gap-4 sm:grid-cols-2">
-            <HubCard
+            <TileCard
               href="/practice/quick"
+              icon={Zap}
               title="Quick practice"
-              description="Ten questions mixed across the three subtests, with hints and solutions as usual."
-              meta="~10 min"
-              action="Start"
+              description="10 questions mixed across the three subtests, with hints and solutions as usual."
+              meta="10 mins"
             />
-            <HubCard
+            <TileCard
               href="/study-plan"
+              icon={CalendarRange}
               title="Study plan"
               description="A week-by-week route from now to exam day, with milestones you can tick off."
-              action="Open the plan"
+              meta="7 weeks"
             />
           </div>
-        </HubSection>
+        </SectionHeading>
 
-        <HubSection title="Module B — the Subject Module">
-          <div className="border-border text-muted-foreground rounded-2xl border border-dashed p-5 text-sm leading-relaxed">
-            The General Academic Module runs 90 minutes with four options per question. dMAT Prep
-            does not cover it yet.
-          </div>
-        </HubSection>
-      </div>
-    </PageShell>
+        <SectionHeading title="Module B">
+          <TileCard
+            icon={Info}
+            tone="muted"
+            title="Coming soon"
+            description="The General Academic Module runs 90 minutes with four options per question. dMAT Prep does not cover it yet."
+          />
+        </SectionHeading>
+      </PageContainer>
+    </div>
   )
 }

@@ -1,18 +1,21 @@
 'use client'
 
-import { Disclosure } from '@/components/content/disclosure'
-import { Card, CardContent } from '@/components/ui/card'
+import { ChartNoAxesCombined } from 'lucide-react'
+
+import { ProgressBar } from '@/components/dashboard/progress-snapshot'
 import { readiness, sectionSignals } from '@/lib/practice/insights'
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
-import { bucketAccuracy } from '@/lib/types/progress'
 import type { SectionId } from '@/lib/sections'
+import { bucketAccuracy } from '@/lib/types/progress'
+import { cn } from '@/lib/utils'
 
 /**
- * How preparation is going, in three layers.
+ * Where preparation stands: the band and its reasoning on the left, the numbers
+ * behind it on the right.
  *
- * The screen previously showed accuracy, speed, hint dependence, exposure,
- * difficulty and readiness at once, which is more than anyone can act on. The
- * headline is now one sentence; the numbers behind it are one click away.
+ * Practice attempts only. Timed and mock runs are scored separately, so a mock
+ * can neither prop up nor drag down the figure that is meant to say how well the
+ * material is understood.
  */
 export function ProgressPanel({ bankSizes }: { bankSizes: Record<SectionId, number> }) {
   const progress = useProgress()
@@ -21,124 +24,110 @@ export function ProgressPanel({ bankSizes }: { bankSizes: Record<SectionId, numb
   const signals = sectionSignals(progress, bankSizes)
   const state = readiness(progress, signals)
   const practice = bucketAccuracy(progress, 'practice')
-  const timed = bucketAccuracy(progress, 'timed')
-  const mock = bucketAccuracy(progress, 'mock')
 
   const measured = signals.filter((s) => s.accuracy !== null)
   const best = measured.length
     ? measured.reduce((a, b) => ((b.accuracy ?? 0) > (a.accuracy ?? 0) ? b : a))
     : null
+  const sectionsAttempted = signals.filter((s) => s.attempts > 0).length
 
   if (!ready) {
-    return <p className="text-muted-foreground text-sm">Loading your progress…</p>
+    return (
+      <div className="border-border bg-card text-muted-foreground rounded-2xl border p-4 text-sm">
+        Loading your progress…
+      </div>
+    )
   }
 
   return (
-    <div className="space-y-3">
-      <Card className="[--card-spacing:--spacing(5)]">
-        <CardContent className="space-y-3">
-          <div>
-            <p className="text-muted-foreground text-xs tracking-wide uppercase">Readiness</p>
-            <h3 className="mt-2 text-lg font-semibold tracking-tight">{state.label}</h3>
-          </div>
+    <div className="border-border bg-card flex flex-col gap-4 rounded-2xl border p-4 lg:flex-row">
+      {/* Left: the verdict and why. */}
+      <div className="flex min-w-0 flex-1 flex-col gap-3">
+        <div className="flex items-center gap-3">
+          <span aria-hidden className="bg-brand/8 flex shrink-0 items-center rounded-md p-2">
+            <ChartNoAxesCombined className="text-brand size-5" />
+          </span>
+          <h3 className="text-lg leading-5 font-semibold">{state.label}</h3>
+        </div>
 
-          <p className="text-sm leading-relaxed">
+        <div className="text-muted-foreground flex flex-col gap-2.5 text-sm leading-relaxed font-medium">
+          <p>
             {best
-              ? `You're strongest in ${best.title}.`
+              ? `Strongest in ${best.title}.`
               : 'Nothing attempted yet — a few questions will give this something to read.'}
-            {practice.accuracy !== null ? (
-              <span className="text-muted-foreground">
-                {' '}
-                {Math.round(practice.accuracy * 100)}% practice accuracy across{' '}
-                {practice.attempts} {practice.attempts === 1 ? 'question' : 'questions'}.
-              </span>
-            ) : null}
+            {practice.accuracy !== null
+              ? ` ${Math.round(practice.accuracy * 100)}% practice accuracy across ${practice.attempts} ${practice.attempts === 1 ? 'question' : 'questions'}.`
+              : ''}
           </p>
-
           {state.nextUp ? (
-            <p className="text-muted-foreground text-sm leading-relaxed">
-              <span className="text-foreground font-medium">To move up: </span>
-              {state.nextUp}
+            <p>
+              <span className="text-foreground">To move up:</span> {state.nextUp}
             </p>
           ) : null}
-
-          <p className="text-muted-foreground border-t pt-3 text-xs leading-relaxed">
-            A dMAT Prep indicator based on your practice here — not an official dMAT score, and not
-            a university admission threshold.
+          <p>
+            A dMAT Prep indicator based on your practice here. Not an official dMAT score, and not a
+            university admission threshold.
           </p>
-        </CardContent>
-      </Card>
-
-      <Disclosure summary="See the breakdown" hint={`${signals.length} sections`}>
-        <div className="space-y-5">
-          <div>
-            <h4 className="text-sm font-medium">By section</h4>
-            <ul className="mt-2 space-y-2">
-              {signals.map((signal) => (
-                <li key={signal.sectionId} className="flex flex-wrap items-baseline gap-x-3 text-sm">
-                  <span className="min-w-40 flex-1">{signal.title}</span>
-                  <span className="text-muted-foreground tabular-nums">
-                    {signal.accuracy === null
-                      ? 'not started'
-                      : `${Math.round(signal.accuracy * 100)}% · ${signal.attempts} attempts`}
-                  </span>
-                  {signal.averageSeconds !== null ? (
-                    <span className="text-muted-foreground text-xs tabular-nums">
-                      {signal.averageSeconds}s average
-                    </span>
-                  ) : null}
-                  {signal.hintRate ? (
-                    <span className="text-muted-foreground text-xs tabular-nums">
-                      hints on {Math.round(signal.hintRate * 100)}%
-                    </span>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-medium">Practice against tests</h4>
-            <p className="text-muted-foreground mt-1 text-sm leading-relaxed">
-              Kept apart on purpose: an untimed attempt with hints available measures understanding,
-              a timed one measures exam performance, and averaging them would describe neither.
-            </p>
-            <ul className="mt-2 space-y-2 text-sm">
-              <Row label="Practice" data={practice} />
-              <Row label="Timed practice" data={timed} />
-              <Row label="Mocks" data={mock} />
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-sm font-medium">Why this band</h4>
-            <ul className="text-muted-foreground mt-2 space-y-1 text-sm leading-relaxed">
-              {state.because.map((line) => (
-                <li key={line}>{line}</li>
-              ))}
-            </ul>
-          </div>
         </div>
-      </Disclosure>
+      </div>
+
+      {/* The divider runs horizontally when the panel stacks. */}
+      <div aria-hidden className="bg-border h-px w-full shrink-0 lg:h-auto lg:w-px" />
+
+      {/* Right: the numbers. */}
+      <div className="flex min-w-0 flex-1 flex-col gap-4">
+        <div className="divide-border grid grid-cols-3 divide-x">
+          <Stat
+            label="Practice accuracy"
+            value={practice.accuracy === null ? '—' : `${Math.round(practice.accuracy * 100)}%`}
+          />
+          <Stat label="Questions attempted" value={String(practice.attempts)} className="px-3" />
+          <Stat
+            label="Sections attempted"
+            value={`${sectionsAttempted}/${signals.length}`}
+            className="pl-3"
+          />
+        </div>
+
+        <div aria-hidden className="bg-border h-px w-full" />
+
+        <div className="flex flex-col gap-3">
+          <p className="text-muted-foreground text-sm font-medium">Accuracy by section</p>
+          {signals.map((signal) => (
+            <div
+              key={signal.sectionId}
+              className="flex flex-col gap-1.5 sm:flex-row sm:items-center sm:gap-4"
+            >
+              {/* Narrow enough and the bar drops below the name rather than
+                  truncating it — a clipped section title tells you nothing. */}
+              <p className="min-w-0 flex-1 truncate text-sm font-medium">{signal.title}</p>
+              <div className="flex w-full shrink-0 flex-col gap-1.5 sm:w-[240px]">
+                <div className="text-muted-foreground flex items-baseline justify-between">
+                  <span className="text-sm tabular-nums">
+                    {signal.accuracy === null ? 'not started' : `${Math.round(signal.accuracy * 100)}%`}
+                  </span>
+                  <span className="text-xs tabular-nums">({signal.attempts})</span>
+                </div>
+                <ProgressBar value={signal.accuracy ?? 0} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }
 
-function Row({
-  label,
-  data,
-}: {
-  label: string
-  data: { attempts: number; correct: number; accuracy: number | null }
-}) {
+/**
+ * The value hangs off the bottom of the cell rather than following the label,
+ * so the three numbers stay on one line together even when a label wraps to two
+ * — which it does as soon as the panel is narrow enough.
+ */
+function Stat({ label, value, className }: { label: string; value: string; className?: string }) {
   return (
-    <li className="flex items-baseline justify-between gap-4">
-      <span>{label}</span>
-      <span className="text-muted-foreground tabular-nums">
-        {data.accuracy === null
-          ? 'none yet'
-          : `${Math.round(data.accuracy * 100)}% of ${data.attempts}`}
-      </span>
-    </li>
+    <div className={cn('flex h-full min-w-0 flex-col gap-2 pr-3', className)}>
+      <p className="text-muted-foreground text-sm leading-5 font-medium">{label}</p>
+      <p className="mt-auto text-base leading-5 font-medium tabular-nums">{value}</p>
+    </div>
   )
 }

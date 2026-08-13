@@ -14,13 +14,19 @@ export function Disclosure({
   summary,
   hint,
   defaultOpen = false,
+  chevron = 'start',
   children,
   className,
 }: {
-  summary: string
+  summary: ReactNode
   /** Short right-aligned counter, e.g. "6 steps". */
   hint?: string
   defaultOpen?: boolean
+  /**
+   * Where the affordance sits. Prose disclosures lead with it so the row reads
+   * as expandable; list rows put it at the end, where a link's arrow would be.
+   */
+  chevron?: 'start' | 'end'
   children: ReactNode
   className?: string
 }) {
@@ -31,16 +37,19 @@ export function Disclosure({
     >
       <summary
         className={cn(
-          'flex cursor-pointer list-none items-center gap-2 rounded-2xl p-3',
+          'flex cursor-pointer list-none items-center gap-2 rounded-2xl p-3 group-[.p-0]:p-4',
           'hover:bg-muted/50 focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
           '[&::-webkit-details-marker]:hidden',
         )}
       >
         <ChevronRight
-          className="text-muted-foreground size-5 shrink-0 transition-transform group-open:rotate-90"
+          className={cn(
+            'text-muted-foreground size-5 shrink-0 transition-transform group-open:rotate-90',
+            chevron === 'end' && 'order-last',
+          )}
           aria-hidden
         />
-        <span className="flex-1 text-sm font-medium">{summary}</span>
+        <span className="min-w-0 flex-1 text-sm font-medium">{summary}</span>
         {hint ? <span className="text-muted-foreground text-xs tabular-nums">{hint}</span> : null}
       </summary>
       <div className="border-border border-t px-3 py-4">{children}</div>

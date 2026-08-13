@@ -1,57 +1,67 @@
-import { HubCard, HubSection } from '@/components/layout/hub'
-import { PageShell } from '@/components/layout/page-shell'
-import { SECTIONS } from '@/lib/sections'
+import { Info, TestTubeDiagonal } from 'lucide-react'
+
+import { PageHeader } from '@/components/layout/page-header'
+import { PageContainer } from '@/components/layout/page-shell'
+import { SectionHeading } from '@/components/layout/section-heading'
+import { TileCard } from '@/components/layout/tile-card'
+import { getBankSize } from '@/lib/content/registry'
+import { SECTION_ICON } from '@/lib/nav'
+import { SECTIONS, type SectionId } from '@/lib/sections'
 
 export const metadata = { title: 'Test' }
 
 /** The noun each subtest's own official instructions use for its 20 items. */
-const UNIT: Record<string, string> = {
+const UNIT: Record<SectionId, string> = {
   'figure-sequences': '20 series of matrices',
   'mathematical-equations': '20 systems of equations',
   'latin-squares': '20 tasks',
 }
 
 export default function TestPage() {
+  const perSection = getBankSize(SECTIONS[0].id)
+
   return (
-    <PageShell
-      description="Practice under the clock. Timings and item counts follow the official preparatory materials; the questions are ours."
-      wide
-    >
-      <div className="space-y-10">
-        <HubSection
-          title="Timed practice"
-          description="One subtest at a time — 25 minutes, no hints, results at the end."
-        >
-          <div className="grid gap-4 sm:grid-cols-3">
+    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+      <PageContainer className="flex flex-col gap-7 py-6">
+        <PageHeader icon={TestTubeDiagonal} title="Test" description="Practice under the clock." />
+
+        <SectionHeading title="Module A" meta={`${perSection} questions each`}>
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SECTIONS.map((section) => (
-              <HubCard
+              <TileCard
                 key={section.id}
                 href={`/practice/timed/${section.id}`}
+                icon={SECTION_ICON[section.id]}
                 title={section.title}
-                description={`${UNIT[section.id]} in 25 minutes.`}
-                meta="25 min"
-                action="Start"
+                description={`${UNIT[section.id]} in 25 minutes`}
               />
             ))}
           </div>
-        </HubSection>
 
-        <HubSection title="Full simulation">
-          <HubCard
+          <TileCard
+            className="mt-4"
             href="/practice/simulation"
-            title="Module A mock"
+            icon={Info}
+            title="Full simulation mock"
             description="All three Core subtests back to back, in the order the official materials present them. 60 questions, 75 minutes."
-            meta="75 min"
-            action="Start the mock"
           />
-        </HubSection>
+        </SectionHeading>
+
+        <SectionHeading title="Module B">
+          <TileCard
+            icon={Info}
+            tone="muted"
+            title="Coming soon"
+            description="The General Academic Module runs 90 minutes with four options per question. dMAT Prep does not cover it yet."
+          />
+        </SectionHeading>
 
         <p className="text-muted-foreground text-xs leading-relaxed">
           These are dMAT Prep practice simulations, not official dMAT papers, and interface
           behaviour may differ from the real test platform. 75 seconds per question is 25 minutes
           divided by 20 — a pacing guide, not a published limit.
         </p>
-      </div>
-    </PageShell>
+      </PageContainer>
+    </div>
   )
 }

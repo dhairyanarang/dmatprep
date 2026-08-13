@@ -1,8 +1,11 @@
 import {
   BookOpenCheck,
   ChartArea,
+  Grid3x3,
   LayoutDashboard,
+  LayoutGrid,
   Library,
+  SquareFunction,
   TestTubeDiagonal,
   type LucideIcon,
 } from 'lucide-react'
@@ -17,9 +20,9 @@ import type { SectionId } from '@/lib/sections'
  * multi-coloured dashboard.
  */
 export const SECTION_ICON: Record<SectionId, LucideIcon> = {
-  'figure-sequences': LayoutDashboard,
-  'mathematical-equations': BookOpenCheck,
-  'latin-squares': ChartArea,
+  'figure-sequences': LayoutGrid,
+  'mathematical-equations': SquareFunction,
+  'latin-squares': Grid3x3,
 }
 
 export type NavLink = {

@@ -1,7 +1,10 @@
+import { ChartArea } from 'lucide-react'
+
 import { ProgressPanel } from '@/components/dashboard/progress-panel'
-import { HubSection } from '@/components/layout/hub'
-import { PageShell } from '@/components/layout/page-shell'
-import { ReviewList } from '@/components/practice/review-list'
+import { PageHeader } from '@/components/layout/page-header'
+import { PageContainer } from '@/components/layout/page-shell'
+import { SectionHeading } from '@/components/layout/section-heading'
+import { MistakeCount, ReviewList } from '@/components/practice/review-list'
 import { getBankSize, getQuestions } from '@/lib/content/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
@@ -14,22 +17,18 @@ export default function ReviewPage() {
   ) as Record<SectionId, number>
 
   return (
-    <PageShell
-      description="Where your preparation stands, and the questions worth a second look."
-      wide
-    >
-      <div className="space-y-10">
-        <HubSection title="Progress">
-          <ProgressPanel bankSizes={bankSizes} />
-        </HubSection>
+    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+      <PageContainer className="flex flex-col gap-7 py-6">
+        <PageHeader icon={ChartArea} title="Review" description="Your progress at a glance" />
 
-        <HubSection
-          title="Mistakes"
-          description="Questions you answered wrong, or answered right only after a hint."
-        >
+        <SectionHeading title="Start here">
+          <ProgressPanel bankSizes={bankSizes} />
+        </SectionHeading>
+
+        <SectionHeading title="Mistakes" note={<MistakeCount questions={questions} />}>
           <ReviewList questions={questions} />
-        </HubSection>
-      </div>
-    </PageShell>
+        </SectionHeading>
+      </PageContainer>
+    </div>
   )
 }

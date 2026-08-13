@@ -126,7 +126,7 @@
   --muted-foreground: #756f69;
   --accent: #f6f5f2;
   --accent-foreground: #2e2b27;
-  --destructive: #b4342a;
+  --destructive: #bf191e;
   --border: #e5e4e1;
   --input: #e5e4e1;
   --ring: #025964;
@@ -134,7 +134,7 @@
   --chart-2: #01d37e;
   --chart-3: #756f69;
   --chart-4: #1c7a33;
-  --chart-5: #b4342a;
+  --chart-5: #bf191e;
   --radius: 8px;
 
   /* Status. A practice app needs a real right/wrong signal, so these stay —
@@ -146,9 +146,9 @@
   --warning: #756f69;
   --warning-fg: #514c47;
   --warning-tint: #f6f5f2;
-  --danger: #b4342a;
-  --danger-fg: #94281f;
-  --danger-tint: #fbeeed;
+  --danger: #bf191e;
+  --danger-fg: #bf191e;
+  --danger-tint: #faeded;
 
   /* Section identity comes from the icon in this system, not from a hue — the
      design gives all three subtests the same teal. These remain for the figure
