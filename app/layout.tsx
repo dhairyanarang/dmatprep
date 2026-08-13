@@ -5,7 +5,6 @@ import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
-import { ThemeProvider } from '@/components/layout/theme-provider'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -40,24 +39,19 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     <html
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full antialiased`}
-      // next-themes writes the class before paint; React must not object to it.
-      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col">
-        {/* Dark is the native theme here — the palette is built on it. */}
-        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
-          <TooltipProvider>
-            <div className="flex min-h-svh">
-              <AppSidebar />
+        <TooltipProvider>
+          <div className="flex min-h-svh">
+            <AppSidebar />
 
-              <div className="flex min-w-0 flex-1 flex-col">
-                <MobileNav />
-                <main className="flex-1">{children}</main>
-              </div>
+            <div className="flex min-w-0 flex-1 flex-col">
+              <MobileNav />
+              <main className="flex-1">{children}</main>
             </div>
-            <Toaster />
-          </TooltipProvider>
-        </ThemeProvider>
+          </div>
+          <Toaster />
+        </TooltipProvider>
 
         {/* Visual feedback toolbar; dev-only, and dropped from production builds. */}
         <DevAnnotations />

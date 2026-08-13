@@ -2,6 +2,9 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* dMAT Prep ships one theme. The variant is kept only because the shadcn
+   components still carry inert `dark:` utilities; nothing sets `.dark`, so
+   they never match. They go when those components are restyled. */
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -154,64 +157,6 @@
   --sidebar-accent-foreground: #08090a;
   --sidebar-border: #e5e5e6;
   --sidebar-ring: #62666d;
-}
-
-.dark {
-  --background: #08090a;
-  --foreground: #ffffff;
-  --card: #0f1011;
-  --card-foreground: #ffffff;
-  --popover: #161718;
-  --popover-foreground: #ffffff;
-  --primary: #e4f222;
-  --primary-foreground: #08090a;
-  --secondary: #161718;
-  --secondary-foreground: #d0d6e0;
-  --muted: #161718;
-  --muted-foreground: #8a8f98;
-  --accent: #23252a;
-  --accent-foreground: #ffffff;
-  --destructive: #eb5757;
-  --border: #23252a;
-  --input: rgba(255, 255, 255, 0.08);
-  --ring: #d0d6e0;
-  --chart-1: #6366f1;
-  --chart-2: #8b5cf6;
-  --chart-3: #02b8cc;
-  --chart-4: #27a644;
-  --chart-5: #eb5757;
-
-  --success: #27a644;
-  --success-fg: #4ade80;
-  --success-tint: rgba(39, 166, 68, 0.14);
-  --warning: #62666d;
-  --warning-fg: #d0d6e0;
-  --warning-tint: rgba(255, 255, 255, 0.06);
-  --danger: #eb5757;
-  --danger-fg: #ff8b8b;
-  --danger-tint: rgba(235, 87, 87, 0.14);
-
-  --figures: #6366f1;
-  --figures-tint: rgba(99, 102, 241, 0.16);
-  --equations: #8b5cf6;
-  --equations-tint: rgba(139, 92, 246, 0.16);
-  --latin: #02b8cc;
-  --latin-tint: rgba(2, 184, 204, 0.16);
-
-  --figure-panel: #d0d6e0;
-  --figure-line: #62666d;
-  --figure-frame: #23252a;
-  --figure-focus: #4f46e5;
-  --figure-trail: rgba(79, 70, 229, 0.16);
-
-  --sidebar: #08090a;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #e4f222;
-  --sidebar-primary-foreground: #08090a;
-  --sidebar-accent: #23252a;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #23252a;
-  --sidebar-ring: #d0d6e0;
 }
 
 @layer base {

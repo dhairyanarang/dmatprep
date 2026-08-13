@@ -5,7 +5,6 @@ import { Menu } from 'lucide-react'
 
 import { NavList } from '@/components/layout/nav-list'
 import { SidebarBrand } from '@/components/layout/sidebar-brand'
-import { ThemeToggle } from '@/components/layout/theme-toggle'
 import { Button } from '@/components/ui/button'
 import {
   Sheet,
@@ -41,9 +40,6 @@ export function MobileNav() {
             <NavList onNavigate={() => setOpen(false)} />
           </div>
 
-          <div className="shrink-0 border-t p-3">
-            <ThemeToggle />
-          </div>
         </SheetContent>
       </Sheet>
 

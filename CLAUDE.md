@@ -55,7 +55,7 @@ never as a plausible-sounding guess.
 ## Stack
 
 Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4 ·
-shadcn/ui as owned source in `components/ui/` · next-themes · Vercel · GitHub.
+shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
 **No backend, database or auth** — progress lives in `localStorage`.
 
 Repo: `github.com/dhairyanarang/dmatprep`, branch `main`. Every route is static;
@@ -81,12 +81,6 @@ removes it from the production graph. Verify with
   the home directory makes Turbopack infer `~/` as the workspace root.
 - Next 16 typed routes: use `LayoutProps<'/route'>` / `PageProps<'/route'>`, and
   **`params` is a Promise** — always `await params`.
-- **next-themes' `theme` only exists on the client.** Reading it during the first
-  render is a genuine hydration mismatch, not a cosmetic one —
-  `suppressHydrationWarning` on `<html>` does not reach it, because it applies to
-  that element alone and not its descendants. Gate the read behind the
-  `useSyncExternalStore(NEVER_CHANGES, () => true, () => false)` flag in
-  `theme-toggle.tsx`.
 
 ## Conventions
 
@@ -125,9 +119,11 @@ removes it from the production graph. Verify with
 
 ## Design system — Linear-derived (see DESIGN.md)
 
-Dark is the native theme; light is a supported counterpart with identical
-structure. Tokens live in `app/globals.css` — change values there, never at the
-call site.
+**One theme: light.** The dark palette, the theme toggle and next-themes were
+removed — there is no theme switching and no system detection. Tokens live in
+`app/globals.css` — change values there, never at the call site. The
+`@custom-variant dark` line survives only because the shadcn components still
+carry inert `dark:` utilities; nothing sets `.dark`, so they never match.
 
 - **Surfaces** ladder: Void `#08090a` → Carbon `#0f1011` → Obsidian `#161718` →
   Slate `#23252a`. Separation comes from **hairline borders**, never shadows.

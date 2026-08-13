@@ -1,6 +1,5 @@
 import { NavList } from '@/components/layout/nav-list'
 import { SidebarBrand } from '@/components/layout/sidebar-brand'
-import { ThemeToggle } from '@/components/layout/theme-toggle'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
 /**
@@ -19,13 +18,11 @@ export function AppSidebar() {
         <SidebarBrand />
       </div>
 
+      {/* The footer held the theme toggle. With one theme there is nothing to
+          put there, and an empty bordered strip reads as a broken region. */}
       <ScrollArea className="min-h-0 flex-1">
         <NavList />
       </ScrollArea>
-
-      <div className="border-sidebar-border shrink-0 border-t p-3">
-        <ThemeToggle />
-      </div>
     </aside>
   )
 }
