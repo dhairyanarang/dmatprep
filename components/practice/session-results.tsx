@@ -1,6 +1,7 @@
 'use client'
 
 
+import { SaveProgressInvite } from '@/components/auth/save-progress-invite'
 import { Disclosure } from '@/components/content/disclosure'
 import { ResultBanner } from '@/components/practice/result-banner'
 import { SolutionViewer } from '@/components/practice/solution-viewer'
@@ -80,6 +81,10 @@ export function SessionResults({
       </Card>
 
       {mode === 'diagnostic' ? <StartingPoint graded={graded} stages={stages} /> : null}
+
+      {/* Value first: the offer to save comes after there is something worth
+          saving, never before the test. */}
+      <SaveProgressInvite moment={mode === 'diagnostic' ? 'diagnostic' : 'mock'} />
 
       <Disclosure summary="How you did by difficulty" hint={`${byDifficulty.length} tiers`}>
         <ul className="space-y-2.5">
@@ -203,7 +208,7 @@ function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStag
           </div>
         </dl>
 
-        <div className="border-border bg-muted/50 rounded-xl border p-4">
+        <div className="border-border bg-muted/50 rounded-2xl border p-4">
           <p className="text-sm font-medium">Start with {weakest.label}</p>
           <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
             {flat
@@ -226,7 +231,7 @@ function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStag
 
 function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="border-border bg-muted/40 rounded-xl border p-4">
+    <div className="border-border bg-muted/40 rounded-2xl border p-4">
       <p className="text-2xl leading-none font-semibold tabular-nums">{value}</p>
       <p className="text-muted-foreground mt-2 text-xs leading-relaxed">{label}</p>
     </div>

@@ -30,7 +30,7 @@ export function PracticeActionBar({
     <div
       className={cn(
         'bg-background/95 supports-[backdrop-filter]:bg-background/85 sticky bottom-0 z-20',
-        '-mx-4 border-t px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8',
+        '-mx-4 border-t px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6',
         className,
       )}
     >

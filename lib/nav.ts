@@ -1,17 +1,35 @@
-import { SECTIONS, type SectionId } from '@/lib/sections'
+import {
+  BookOpenCheck,
+  Grid3x3,
+  LayoutDashboard,
+  LayoutGrid,
+  Library,
+  SquareFunction,
+  TestTubeDiagonal,
+  type LucideIcon,
+} from 'lucide-react'
 
-/** Section hue, used for the sidebar dot and section page accents. */
-export const SECTION_ACCENT: Record<SectionId, 'figures' | 'equations' | 'latin'> = {
-  'figure-sequences': 'figures',
-  'mathematical-equations': 'equations',
-  'latin-squares': 'latin',
+import type { SectionId } from '@/lib/sections'
+
+/**
+ * Section identity is carried by the icon, not by a hue.
+ *
+ * The design gives all three subtests the same brand teal and tells them apart
+ * with distinct glyphs, which is what keeps the product from turning into a
+ * multi-coloured dashboard.
+ */
+export const SECTION_ICON: Record<SectionId, LucideIcon> = {
+  'figure-sequences': LayoutGrid,
+  'mathematical-equations': SquareFunction,
+  'latin-squares': Grid3x3,
 }
 
 export type NavLink = {
   href: string
   label: string
-  /** Renders a small colour dot — only the three Core Module sections have one. */
-  accent?: 'figures' | 'equations' | 'latin'
+  /** One line under the label — what the destination is for. */
+  hint?: string
+  icon: LucideIcon
   /** Renders as a non-interactive "coming soon" entry. */
   disabled?: boolean
 }
@@ -22,56 +40,41 @@ export type NavGroup = {
 }
 
 /**
- * Single source of truth for both the desktop sidebar and the mobile sheet, so
- * the two can never drift apart.
+ * Four destinations, in the design's order and wording. Each hub page lists
+ * what is inside it, so the sidebar never has to grow.
+ *
+ * Review was removed for the public beta. Its data model, its calculations and
+ * its components all stay — mistakes now surface where they are actually
+ * useful, at the end of a practice set, rather than as a fifth place to visit
+ * that answered a question nobody had yet asked.
  */
 export const NAV: NavGroup[] = [
   {
-    label: 'Overview',
+    label: 'dMAT Prep',
     links: [
-      { href: '/', label: 'Dashboard' },
-      { href: '/practice', label: 'Practice & Mocks' },
-      { href: '/review', label: 'Review Mistakes' },
-      { href: '/study-plan', label: 'Study Plan' },
+      { href: '/', label: 'Home', hint: 'What to do next', icon: LayoutDashboard },
+      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
+      { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
     ],
-  },
-  {
-    label: 'The Exam',
-    links: [
-      { href: '/exam', label: 'Format & Structure' },
-      { href: '/exam/rules', label: 'Exam-Day Rules' },
-      { href: '/exam/scoring', label: 'Scoring & Results' },
-      { href: '/exam/logistics', label: 'Dates & Logistics' },
-      { href: '/exam/checklist', label: 'Pre-Exam Checklist' },
-      { href: '/exam/sources', label: 'Sources' },
-    ],
-  },
-  {
-    // No Module A landing page: it would only relist the three sections that
-    // are already here, one level deeper.
-    label: 'Module A · Core',
-    links: SECTIONS.map((s) => ({
-      href: `/module-a/${s.id}/overview`,
-      label: s.title,
-      accent: SECTION_ACCENT[s.id],
-    })),
-  },
-  {
-    label: 'Module B · Subject',
-    links: [{ href: '/module-b', label: 'General Academic', disabled: true }],
   },
 ]
 
-/**
- * Marks a nav link active. Exact match for roots, prefix match for nested
- * routes so /module-a/latin-squares/practice still highlights its section.
- */
+/** Which top-level destination a path belongs to. */
+const OWNS: Record<string, (path: string) => boolean> = {
+  '/': (path) => path === '/',
+  '/prepare': (path) =>
+    path.startsWith('/prepare') ||
+    path.startsWith('/module-a') ||
+    path.startsWith('/module-b') ||
+    path.startsWith('/study-plan') ||
+    path.startsWith('/practice/quick'),
+  '/test': (path) =>
+    path.startsWith('/test') ||
+    (path.startsWith('/practice') && !path.startsWith('/practice/quick')),
+  '/exam': (path) => path.startsWith('/exam'),
+}
+
 export function isActive(pathname: string, href: string): boolean {
-  if (href === '/') return pathname === '/'
-  if (href === '/exam') return pathname === '/exam'
-  if (href.startsWith('/module-a/')) {
-    const sectionRoot = href.split('/').slice(0, 3).join('/')
-    return pathname.startsWith(sectionRoot)
-  }
-  return pathname === href || pathname.startsWith(href + '/')
+  return OWNS[href]?.(pathname) ?? pathname === href
 }

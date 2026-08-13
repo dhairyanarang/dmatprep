@@ -117,7 +117,7 @@ export function ChecklistItems() {
             {group.items.map((item) => {
               const checked = Boolean(progress.milestones[item.id])
               return (
-                <li key={item.id} className="border-border bg-card rounded-xl border p-4">
+                <li key={item.id} className="border-border bg-card rounded-2xl border p-4">
                   <label className="flex cursor-pointer items-start gap-3">
                     <Checkbox
                       checked={checked}

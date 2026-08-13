@@ -30,7 +30,7 @@ export function Stat({
           : 'text-foreground'
 
   return (
-    <div className="border-border bg-card rounded-xl border p-4">
+    <div className="border-border bg-card rounded-2xl border p-4">
       <p className="flex items-baseline gap-1">
         <span className={cn('text-2xl leading-none font-semibold tabular-nums', accent)}>
           {value}
@@ -147,7 +147,7 @@ export function MilestoneTrack({ milestones }: { milestones: Milestone[] }) {
 /** The 0–200 scale with the mean marked, rather than three sentences about it. */
 export function ScoreScale() {
   return (
-    <div className="border-border bg-card rounded-xl border p-5">
+    <div className="border-border bg-card rounded-2xl border p-5">
       <div className="relative">
         <div className="bg-muted h-2 w-full rounded-full" />
         <div
@@ -186,7 +186,7 @@ export function AllowedList({
   return (
     <div
       className={cn(
-        'space-y-3 rounded-xl border p-4',
+        'space-y-3 rounded-2xl border p-4',
         allowed ? 'border-success/25 bg-success-tint/40' : 'border-danger/25 bg-danger-tint/40',
       )}
     >

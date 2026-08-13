@@ -3,7 +3,7 @@ import { TimedLauncher } from '@/components/practice/timed-launcher'
 import { getQuestions } from '@/lib/content/registry'
 import { SECTIONS } from '@/lib/sections'
 
-export const metadata = { title: 'Module A simulation' }
+export const metadata = { title: 'Module A mock' }
 
 const UNIT: Record<string, string> = {
   'figure-sequences': 'series',
@@ -14,8 +14,8 @@ const UNIT: Record<string, string> = {
 export default function SimulationPage() {
   return (
     <PageShell
-      title="Module A simulation"
       description="The three Core subtests back to back, 25 minutes each, in the order the preparatory materials present them."
+      wide
     >
       <TimedLauncher
         mode="simulation"

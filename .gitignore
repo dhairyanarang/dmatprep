@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# ...except the template, which holds placeholders only and is how another
+# developer learns which variables exist.
+!.env.example
 
 # vercel
 .vercel
@@ -48,3 +51,7 @@ next-env.d.ts
 # local review artifacts
 /.playwright-mcp/
 /*.png
+
+# Supabase CLI link state. Holds the project ref and pooler URL for this
+# machine — local scaffolding, not part of the project.
+supabase/.temp/

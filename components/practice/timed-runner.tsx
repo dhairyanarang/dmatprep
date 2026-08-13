@@ -3,14 +3,17 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { AlertTriangle, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
 
+import { ReadingMeasure } from '@/components/layout/page-shell'
 import { PracticeActionBar } from '@/components/practice/action-bar'
 import { QuestionView } from '@/components/practice/question-view'
 import { SessionResults } from '@/components/practice/session-results'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import type { ResumeState } from '@/components/practice/resume-prompt'
+import { useNow } from '@/lib/dates/use-today'
 import { useProgressActions } from '@/lib/progress/use-progress'
 import type { SectionId } from '@/lib/sections'
-import type { PracticeMode, SessionResult } from '@/lib/types/progress'
+import { exposureContextOf, type PracticeMode, type SessionResult } from '@/lib/types/progress'
 import { isCorrect, type Question, type Selection } from '@/lib/types/question'
 import { cn } from '@/lib/utils'
 
@@ -28,30 +31,52 @@ export type TimedStage = { sectionId: SectionId; label: string; unitNoun: string
 export function TimedRunner({
   mode,
   title,
+  route,
   stages,
   minutesPerStage,
   breakAfterStage,
   untimed = false,
+  resume,
+  onStarted,
 }: {
   mode: PracticeMode
   title: string
+  /** The route this session belongs to, stored so a resume lands back here. */
+  route: string
   stages: TimedStage[]
   minutesPerStage: number
   /** Index after which the documented 30-minute break falls, if any. */
   breakAfterStage?: number
   /** The diagnostic runs under assessment rules but without a clock. */
   untimed?: boolean
+  /** A session picked up again after a reload. */
+  resume?: ResumeState
+  /** Fired when a fresh session begins, so the launcher stops offering one. */
+  onStarted?: () => void
 }) {
-  const { recordAttempt, recordSession } = useProgressActions()
+  const { recordAttempt, recordSession, recordExposure, setActiveSession } = useProgressActions()
 
-  const [phase, setPhase] = useState<'brief' | 'running' | 'break' | 'done'>('brief')
-  const [stageIndex, setStageIndex] = useState(0)
-  const [index, setIndex] = useState(0)
-  const [answers, setAnswers] = useState<Record<string, Selection>>({})
-  const [endsAt, setEndsAt] = useState(0)
-  const [now, setNow] = useState(0)
-  const startedAt = useRef(0)
+  const [phase, setPhase] = useState<'brief' | 'running' | 'break' | 'done'>(
+    resume ? (resume.phase === 'break' ? 'break' : 'running') : 'brief',
+  )
+  const [stageIndex, setStageIndex] = useState(resume?.stageIndex ?? 0)
+  const [index, setIndex] = useState(resume?.currentIndex ?? 0)
+  const [answers, setAnswers] = useState<Record<string, Selection>>(resume?.answers ?? {})
+  const [endsAt, setEndsAt] = useState(
+    resume?.stageEndsAt ? new Date(resume.stageEndsAt).getTime() : 0,
+  )
+  /**
+   * The clock is read from the shared ticker rather than kept locally.
+   *
+   * A local `now` starts at zero, and on a *resumed* session the first paint
+   * happens before the first tick — so the remaining time rendered as
+   * `endsAt - 0`, which is 29 million minutes. Reading a store that is already
+   * initialised removes the window in which that is possible.
+   */
+  const now = useNow()
+  const startedAt = useRef(resume ? new Date(resume.startedAt).getTime() : 0)
   const finishedRef = useRef(false)
+  const sessionId = useRef(resume?.id ?? '')
 
   const stage = stages[stageIndex]
   const question = stage?.questions[index]
@@ -73,19 +98,21 @@ export function TimedRunner({
         const ok = isCorrect(q, selection)
         if (ok) correct++
         recordAttempt({
+          id: `${sessionId.current}:${q.id}`,
           questionId: q.id,
           sectionId: q.section,
           difficulty: q.difficulty,
           correct: ok,
           selection,
           mode,
+          sessionId: sessionId.current,
           at: new Date().toISOString(),
           hintsUsed: 0,
         })
       }
 
       const result: SessionResult = {
-        id: `${mode}-${Date.now()}`,
+        id: sessionId.current,
         mode,
         sections: [...new Set(stages.map((s) => s.sectionId))],
         at: new Date().toISOString(),
@@ -97,9 +124,12 @@ export function TimedRunner({
         questionIds: allQuestions.map((q) => q.id),
       }
       recordSession(result)
+      // The session is over: drop the restore point so returning to this route
+      // offers a new test rather than a finished one.
+      setActiveSession(null)
       setPhase('done')
     },
-    [allQuestions, answers, mode, recordAttempt, recordSession, stages],
+    [allQuestions, answers, mode, recordAttempt, recordSession, setActiveSession, stages],
   )
 
   const expire = useCallback(() => {
@@ -122,9 +152,7 @@ export function TimedRunner({
   useEffect(() => {
     if (phase !== 'running' || endsAt === 0 || untimed) return
     const id = window.setInterval(() => {
-      const t = Date.now()
-      setNow(t)
-      if (t >= endsAt) {
+      if (Date.now() >= endsAt) {
         window.clearInterval(id)
         expire()
       }
@@ -132,20 +160,96 @@ export function TimedRunner({
     return () => window.clearInterval(id)
   }, [phase, endsAt, expire, untimed])
 
-  // A reload mid-test loses the session, so make it deliberate.
+  /**
+   * The restore point.
+   *
+   * Written on every answer and every move, so the worst a crash or a closed tab
+   * can cost is the question currently on screen. The deadline is stored as an
+   * absolute time rather than a remaining count: a count is meaningless once the
+   * browser has been shut for ten minutes, whereas a deadline can still be
+   * compared against the clock on the way back in.
+   */
   useEffect(() => {
-    if (phase !== 'running') return
+    // Never after the session has been submitted. Without this the restore point
+    // can be written back *after* `finish` cleared it — the effect re-runs while
+    // `phase` is still the value it had before submission — and the finished
+    // test would be offered for resuming next time the page opened.
+    if (finishedRef.current) return
+    if (phase !== 'running' && phase !== 'break') return
+    if (!sessionId.current) return
+
+    setActiveSession({
+      id: sessionId.current,
+      mode,
+      route,
+      title,
+      stages: stages.map((s) => ({
+        sectionId: s.sectionId,
+        label: s.label,
+        unitNoun: s.unitNoun,
+        questionIds: s.questions.map((q) => q.id),
+      })),
+      stageIndex,
+      currentIndex: index,
+      answers,
+      phase: phase === 'break' ? 'break' : 'running',
+      startedAt: new Date(startedAt.current).toISOString(),
+      stageEndsAt: untimed || endsAt === 0 ? null : new Date(endsAt).toISOString(),
+      minutesPerStage,
+      untimed,
+      updatedAt: new Date().toISOString(),
+    })
+  }, [
+    answers,
+    endsAt,
+    index,
+    minutesPerStage,
+    mode,
+    phase,
+    route,
+    setActiveSession,
+    stageIndex,
+    stages,
+    title,
+    untimed,
+  ])
+
+  /**
+   * A session whose clock had already run out before the page came back.
+   *
+   * Submitted rather than resumed: the answers stand, the result is marked as
+   * timed out, and nothing is silently thrown away.
+   */
+  useEffect(() => {
+    if (!resume?.expired) return
+    finish(true)
+  }, [resume?.expired, finish])
+
+  // The clock keeps running while the tab is away, so leaving still costs time
+  // even though nothing is lost. Worth one confirmation.
+  useEffect(() => {
+    if (phase !== 'running' || untimed) return
     const warn = (e: BeforeUnloadEvent) => e.preventDefault()
     window.addEventListener('beforeunload', warn)
     return () => window.removeEventListener('beforeunload', warn)
-  }, [phase])
+  }, [phase, untimed])
 
   const start = useCallback(() => {
-    startedAt.current = Date.now()
-    setEndsAt(untimed ? 0 : Date.now() + minutesPerStage * 60_000)
-    setNow(Date.now())
+    const at = Date.now()
+    startedAt.current = at
+    sessionId.current = `${mode}-${at}`
+    setEndsAt(untimed ? 0 : at + minutesPerStage * 60_000)
     setPhase('running')
-  }, [minutesPerStage, untimed])
+
+    // A question shown under exam conditions is spent from the mock pool even
+    // if it is never answered — it has been seen, and that is what exposure
+    // means. Recorded once, at the start, rather than per question.
+    recordExposure(
+      allQuestions.map((q) => ({ questionId: q.id, sectionId: q.section })),
+      exposureContextOf(mode),
+    )
+    onStarted?.()
+  }, [allQuestions, minutesPerStage, mode, onStarted, recordExposure, untimed])
 
   const select = useCallback(
     (key: string, optionId: string) => {
@@ -219,17 +323,23 @@ export function TimedRunner({
 
       <Card>
         <CardContent className="pt-6">
-          <p className="text-muted-foreground mb-4 text-sm">
-            {stage.unitNoun === 'systems' ? 'System' : stage.unitNoun === 'tasks' ? 'Task' : 'Series'}{' '}
-            {index + 1} of {stage.questions.length}
-          </p>
-          {/* submitted is always false: no feedback is shown during the test. */}
-          <QuestionView
-            question={question}
-            selection={answers[question.id] ?? {}}
-            submitted={false}
-            onSelect={select}
-          />
+          <ReadingMeasure>
+            <p className="text-muted-foreground mb-4 text-sm">
+              {stage.unitNoun === 'systems'
+                ? 'System'
+                : stage.unitNoun === 'tasks'
+                  ? 'Task'
+                  : 'Series'}{' '}
+              {index + 1} of {stage.questions.length}
+            </p>
+            {/* submitted is always false: no feedback is shown during the test. */}
+            <QuestionView
+              question={question}
+              selection={answers[question.id] ?? {}}
+              submitted={false}
+              onSelect={select}
+            />
+          </ReadingMeasure>
         </CardContent>
       </Card>
 
@@ -378,12 +488,15 @@ function Brief({
           <li>· No hints, and no answers or explanations until you submit.</li>
           <li>· You can skip a question, jump to another, and come back.</li>
           {untimed ? null : (
-            <li>· The clock keeps running if you leave the page, and reloading loses the test.</li>
+            <li>
+              · The clock keeps running if you leave the page — but your answers are saved, and
+              reloading picks up where you left off.
+            </li>
           )}
           <li>· Practise the way you will sit it: no notes, no calculator.</li>
         </ul>
 
-        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-xl border p-4">
+        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-2xl border p-4">
           <AlertTriangle className="text-warning-fg mt-px size-4 shrink-0" aria-hidden />
           <p className="text-muted-foreground text-sm leading-relaxed">
             This is a{' '}

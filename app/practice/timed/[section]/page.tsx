@@ -29,7 +29,7 @@ export default async function TimedSectionPage({ params }: PageProps<'/practice/
   const meta = SECTION_BY_ID[section]
 
   return (
-    <PageShell title={`${meta.title} — timed`} description="25 minutes, 20 questions, no hints.">
+    <PageShell description="25 minutes, 20 questions, no hints." wide>
       <TimedLauncher
         mode="timed"
         title={`${meta.title} practice mock`}

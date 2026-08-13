@@ -1,30 +1,19 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight } from 'lucide-react'
 
-import { Card, CardContent } from '@/components/ui/card'
-import { Progress } from '@/components/ui/progress'
-import { SECTION_ACCENT } from '@/lib/nav'
+import { ArrowAffordance } from '@/components/ui/arrow-affordance'
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
+import { SECTION_ICON } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 import { sectionStats } from '@/lib/types/progress'
-import { cn } from '@/lib/utils'
-
-const DOT = { figures: 'bg-figures', equations: 'bg-equations', latin: 'bg-latin' } as const
-
-// The indicator sits inside Track, so this needs a descendant selector rather
-// than the direct-child `*:` variant.
-const BAR = {
-  figures: '[&_[data-slot=progress-indicator]]:bg-figures',
-  equations: '[&_[data-slot=progress-indicator]]:bg-equations',
-  latin: '[&_[data-slot=progress-indicator]]:bg-latin',
-} as const
 
 /**
- * Two numbers per section — accuracy, and how much of the bank you have seen.
- * Raw attempt count lives on the practice page; on a dashboard it competes with
- * the numbers that actually tell you what to do next.
+ * Accuracy and coverage per subtest.
+ *
+ * Practice attempts only — timed and mock runs are scored separately, so a
+ * mock can neither prop up nor drag down the number that is meant to say how
+ * well the material is understood.
  */
 export function ProgressSnapshot({ bankSizes }: { bankSizes: Record<SectionId, number> }) {
   const progress = useProgress()
@@ -35,60 +24,57 @@ export function ProgressSnapshot({ bankSizes }: { bankSizes: Record<SectionId, n
       {SECTIONS.map((section) => {
         const stats = sectionStats(progress, section.id)
         const bankSize = bankSizes[section.id]
-        const coverage = bankSize > 0 ? stats.uniqueQuestions / bankSize : 0
-        const accent = SECTION_ACCENT[section.id]
+        const accuracy = stats.accuracy === null ? null : Math.round(stats.accuracy * 100)
+        const Icon = SECTION_ICON[section.id]
 
         return (
-          <Card key={section.id} className="[--card-spacing:--spacing(5)]">
-            <CardContent className="space-y-4">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex min-w-0 items-center gap-2">
-                  <span aria-hidden className={cn('size-2 shrink-0 rounded-full', DOT[accent])} />
-                  {/* No truncation: Inter is wider than the previous face and
-                      "Mathematical Equations" clipped in the three-up grid. */}
-                  <h3 className="text-sm font-medium text-balance">{section.title}</h3>
-                </div>
-                <Link
-                  href={`/module-a/${section.id}/practice`}
-                  className="text-muted-foreground hover:text-foreground inline-flex shrink-0 items-center gap-1 text-xs transition-colors"
-                >
-                  Practise
-                  <ArrowRight className="size-3" aria-hidden />
-                </Link>
+          <Link
+            key={section.id}
+            href={`/module-a/${section.id}/practice`}
+            className="group border-border bg-card hover:border-brand/40 focus-visible:ring-ring flex flex-col gap-4 rounded-2xl border p-5 transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
+          >
+            <div className="flex items-center justify-between gap-3">
+              <span className="flex min-w-0 items-center gap-2">
+                <Icon className="text-brand size-5 shrink-0" aria-hidden />
+                <span className="text-eyebrow truncate">{section.title}</span>
+              </span>
+              <ArrowAffordance />
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <div className="flex items-baseline justify-between gap-3">
+                <span className="flex items-baseline gap-2.5">
+                  <span className="text-metric tabular-nums">
+                    {!ready || accuracy === null ? '—' : `${accuracy}%`}
+                  </span>
+                  <span className="text-muted-foreground text-sm">accuracy</span>
+                </span>
+                <span className="text-muted-foreground text-xs tabular-nums">
+                  {ready ? `${stats.uniqueQuestions}/${bankSize} seen` : `${bankSize} questions`}
+                </span>
               </div>
 
-              {!ready ? (
-                <div className="h-14" aria-hidden />
-              ) : (
-                <>
-                  <div className="flex min-h-6 items-baseline justify-between gap-2">
-                    {stats.accuracy === null ? (
-                      // An em dash at 2xl reads as a rule, not a placeholder.
-                      <span className="text-muted-foreground text-sm">Not started</span>
-                    ) : (
-                      <p className="flex items-baseline gap-1">
-                        <span className="text-2xl leading-none font-semibold tabular-nums">
-                          {Math.round(stats.accuracy * 100)}%
-                        </span>
-                        <span className="text-muted-foreground text-xs">accuracy</span>
-                      </p>
-                    )}
-                    <p className="text-muted-foreground text-xs tabular-nums">
-                      {stats.uniqueQuestions}/{bankSize} seen
-                    </p>
-                  </div>
-
-                  <Progress
-                    value={coverage * 100}
-                    className={BAR[accent]}
-                    aria-label={`${section.title}: ${stats.uniqueQuestions} of ${bankSize} questions seen`}
-                  />
-                </>
-              )}
-            </CardContent>
-          </Card>
+              <ProgressBar value={ready ? stats.uniqueQuestions / bankSize : 0} />
+            </div>
+          </Link>
         )
       })}
     </div>
+  )
+}
+
+/**
+ * 4px track, brand fill. Shared so every bar in the product is the same object —
+ * the value is also written out beside it, so nothing here depends on colour.
+ */
+export function ProgressBar({ value }: { value: number }) {
+  const pct = Math.round(Math.min(1, Math.max(0, value)) * 100)
+  return (
+    <span className="bg-surface-muted block h-1 w-full overflow-hidden rounded-full">
+      <span
+        className="bg-brand block h-full rounded-full transition-[width] duration-500 ease-out"
+        style={{ width: `${pct}%` }}
+      />
+    </span>
   )
 }

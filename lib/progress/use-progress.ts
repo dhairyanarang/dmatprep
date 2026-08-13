@@ -2,6 +2,7 @@
 
 import { useSyncExternalStore } from 'react'
 
+import { getSyncStatus, pendingCount, subscribeSyncStatus } from '@/lib/progress/cloud-sync'
 import { progressStore } from '@/lib/progress/local-storage-store'
 import type { SectionId } from '@/lib/sections'
 import { sectionStats, type ProgressState, type SectionStats } from '@/lib/types/progress'
@@ -13,6 +14,10 @@ import { sectionStats, type ProgressState, type SectionStats } from '@/lib/types
  * then swaps to the real client snapshot, which is what keeps localStorage from
  * producing hydration mismatches. Never read `localStorage` directly in a
  * component — go through here.
+ *
+ * This stays the single read path whether or not the candidate is signed in.
+ * The cloud layer writes *into* this store rather than replacing it, so no
+ * component has to know where the data came from.
  */
 export function useProgress(): ProgressState {
   return useSyncExternalStore(
@@ -31,9 +36,13 @@ export function useSectionStats(sectionId: SectionId): SectionStats {
 export function useProgressActions() {
   return {
     recordAttempt: progressStore.recordAttempt,
+    recordSession: progressStore.recordSession,
+    recordExposure: progressStore.recordExposure,
+    setActiveSession: progressStore.setActiveSession,
+    setPracticeDraft: progressStore.setPracticeDraft,
+    clearPracticeDraft: progressStore.clearPracticeDraft,
     toggleMilestone: progressStore.toggleMilestone,
     setKeyDates: progressStore.setKeyDates,
-    recordSession: progressStore.recordSession,
     reset: progressStore.reset,
   }
 }
@@ -48,4 +57,19 @@ export function useProgressReady(): boolean {
     () => true,
     () => false,
   )
+}
+
+/** Sync state, for the one small indicator in the account menu. */
+export function useSyncState(): { status: ReturnType<typeof getSyncStatus>; pending: number } {
+  const status = useSyncExternalStore(
+    subscribeSyncStatus,
+    getSyncStatus,
+    () => 'idle' as const,
+  )
+  const pending = useSyncExternalStore(
+    subscribeSyncStatus,
+    pendingCount,
+    () => 0,
+  )
+  return { status, pending }
 }

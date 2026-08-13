@@ -61,7 +61,9 @@ export function FeedbackPanel({
   const wrong = wrongOptions(question)
 
   return (
-    <div className="space-y-3">
+    // The verdict pushes the page down as it arrives, so it fades and rises into
+    // place instead of shunting the content under the reader's eye.
+    <div className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1 space-y-3 motion-safe:duration-200">
       <ResultBanner
         question={question}
         selection={selection}

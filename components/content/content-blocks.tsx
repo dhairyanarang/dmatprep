@@ -5,6 +5,7 @@ import { WorkedExample } from '@/components/content/worked-example'
 import { DIAGRAMS } from '@/components/exam/diagrams'
 import { Stat } from '@/components/exam/visuals'
 import { getQuestion } from '@/lib/content/registry'
+import { headingSlug } from '@/lib/search/entries'
 import type { SectionId } from '@/lib/sections'
 import type { ContentBlock } from '@/lib/types/content'
 import { cn } from '@/lib/utils'
@@ -47,7 +48,16 @@ export function ContentBlocks({
 function Block({ block, sectionId }: { block: ContentBlock; sectionId?: SectionId }) {
   switch (block.type) {
     case 'heading':
-      return <h2 className="pt-2 text-lg font-semibold tracking-tight">{block.text}</h2>
+      // The id is what global search deep-links to; scroll-mt clears the
+      // sticky header when the browser jumps to it.
+      return (
+        <h2
+          id={headingSlug(block.text)}
+          className="scroll-mt-24 pt-2 text-lg font-semibold tracking-tight"
+        >
+          {block.text}
+        </h2>
+      )
 
     case 'stats':
       return (

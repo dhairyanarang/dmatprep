@@ -28,7 +28,7 @@ export function ResultBanner({
   return (
     <div
       className={cn(
-        'rounded-xl border p-4',
+        'rounded-2xl border p-4',
         correct ? 'border-success/40 bg-success-tint/50' : 'border-danger/40 bg-danger-tint/50',
       )}
       role="status"

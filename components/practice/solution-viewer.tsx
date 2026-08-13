@@ -74,7 +74,7 @@ function Callout({
   children: ReactNode
 }) {
   return (
-    <div className="border-border bg-card rounded-xl border p-4">
+    <div className="border-border bg-card rounded-2xl border p-4">
       <div className="flex items-start gap-2.5">
         <span className="text-muted-foreground mt-0.5 shrink-0">{icon}</span>
         <div className="min-w-0">

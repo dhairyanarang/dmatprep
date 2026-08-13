@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils'
 /**
  * Colour is *content* here — explanations refer to "the blue square", and a
  * symbol may cycle black → pink → yellow. So these are fixed hues and the panel
- * keeps a light surface in both themes: inverting for dark mode would make a
- * symbol the text calls "black" render white.
+ * keeps a light surface. The product ships one theme, and inverting the panel
+ * would render the symbol the text calls "black" as white.
  */
 const COLOUR_FILL: Record<FigureColour, string> = {
   black: '#18181b',

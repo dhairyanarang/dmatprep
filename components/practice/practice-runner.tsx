@@ -1,14 +1,15 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { RotateCcw } from 'lucide-react'
 
+import { ReadingMeasure } from '@/components/layout/page-shell'
 import { PracticeActionBar } from '@/components/practice/action-bar'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
 import { FeedbackPanel } from '@/components/practice/feedback-panel'
 import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
+import { SetComplete } from '@/components/practice/set-complete'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -18,9 +19,15 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useProgress, useProgressActions } from '@/lib/progress/use-progress'
+import { Skeleton } from '@/components/ui/skeleton'
+import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
 import type { SectionId } from '@/lib/sections'
-import { answeredCorrectly, type PracticeMode } from '@/lib/types/progress'
+import {
+  answeredCorrectly,
+  exposureContextOf,
+  type PracticeDraft,
+  type PracticeMode,
+} from '@/lib/types/progress'
 import {
   DIFFICULTIES,
   isCorrect,
@@ -32,28 +39,69 @@ import {
 
 type Filter = Difficulty | 'all'
 
-export function PracticeRunner({
-  sectionId,
-  questions,
-  mode = 'practice',
-  showProgress = true,
-  showFilter = true,
-}: {
+type RunnerProps = {
   /** Absent for a mixed session; each attempt is filed under its own question's section. */
   sectionId?: SectionId
   questions: Question[]
   mode?: PracticeMode
   showProgress?: boolean
   showFilter?: boolean
-}) {
-  const progress = useProgress()
-  const { recordAttempt } = useProgressActions()
+}
 
-  const [filter, setFilter] = useState<Filter>('all')
-  const [index, setIndex] = useState(0)
-  const [selection, setSelection] = useState<Selection>({})
-  const [submitted, setSubmitted] = useState(false)
-  const [hintsUsed, setHintsUsed] = useState(0)
+/**
+ * Practice restores itself rather than asking.
+ *
+ * A mock is a commitment worth confirming before you resume it; an untimed
+ * practice run is not. Coming back should simply put you where you were, on the
+ * question you were on, with the hints you had already opened — the way closing
+ * a book and opening it again does.
+ *
+ * The draft is read after hydration, which is why this waits a paint: reading
+ * `localStorage` during the first render is what produces hydration mismatches.
+ */
+export function PracticeRunner(props: RunnerProps) {
+  const ready = useProgressReady()
+  const progress = useProgress()
+
+  const key = props.mode === 'quick' ? 'quick' : `practice:${props.sectionId ?? 'mixed'}`
+
+  if (!ready) {
+    return (
+      <div className="space-y-5">
+        <Skeleton className="h-4 w-40" />
+        <Skeleton className="h-72 w-full rounded-2xl" />
+      </div>
+    )
+  }
+
+  const saved = progress.practiceDrafts[key]
+  const known = new Set(props.questions.map((q) => q.id))
+  // A draft written before the bank was regenerated points at questions that no
+  // longer exist. Better to start clean than to restore a broken position.
+  const draft = saved && saved.questionIds.every((id) => known.has(id)) ? saved : null
+
+  return <PracticeSession {...props} draftKey={key} initialDraft={draft} />
+}
+
+function PracticeSession({
+  sectionId,
+  questions,
+  mode = 'practice',
+  showProgress = true,
+  showFilter = true,
+  draftKey,
+  initialDraft,
+}: RunnerProps & { draftKey: string; initialDraft: PracticeDraft | null }) {
+  const progress = useProgress()
+  const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft } =
+    useProgressActions()
+
+  const [filter, setFilter] = useState<Filter>(initialDraft?.filter ?? 'all')
+  const [index, setIndex] = useState(initialDraft?.index ?? 0)
+  const [selection, setSelection] = useState<Selection>(initialDraft?.selection ?? {})
+  const [submitted, setSubmitted] = useState(initialDraft?.submitted ?? false)
+  const [hintsUsed, setHintsUsed] = useState(initialDraft?.hintsUsed ?? 0)
+  const [finished, setFinished] = useState(false)
   // Set in an effect, not during render: Date.now() is impure and the React
   // Compiler rejects it in the render path.
   const startedAt = useRef<number>(0)
@@ -61,9 +109,23 @@ export function PracticeRunner({
     startedAt.current = Date.now()
   }, [index, filter])
 
+  // State rather than a ref: it decides what renders, and the React Compiler
+  // rightly refuses a ref read in the render path.
+  const [restoredOrder, setRestoredOrder] = useState<string[] | null>(
+    initialDraft?.questionIds ?? null,
+  )
+
   const pool = useMemo(() => {
     const filtered =
       filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
+
+    // A restored run keeps the order it had, so "question 7 of 45" still means
+    // the question it meant before the reload.
+    if (restoredOrder) {
+      const byId = new Map(filtered.map((q) => [q.id, q]))
+      const kept = restoredOrder.map((id) => byId.get(id)).filter((q): q is Question => !!q)
+      if (kept.length === filtered.length) return kept
+    }
 
     // Unseen questions first, so repeat sessions don't replay the same items.
     const done = sectionId ? answeredCorrectly(progress, sectionId) : new Set<string>()
@@ -71,15 +133,38 @@ export function PracticeRunner({
     // `progress` is deliberately excluded: re-sorting mid-session would shuffle
     // the deck under the candidate's feet after every answer.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [questions, filter, sectionId])
+  }, [questions, filter, sectionId, restoredOrder])
 
   const question = pool[index]
 
+  /**
+   * The restore point, written on every change.
+   *
+   * Cheap — one small object into localStorage — and it is the whole reason a
+   * mid-question reload costs nothing.
+   */
+  useEffect(() => {
+    setPracticeDraft({
+      key: draftKey,
+      questionIds: pool.map((q) => q.id),
+      index,
+      selection,
+      hintsUsed,
+      submitted,
+      filter,
+      updatedAt: new Date().toISOString(),
+    })
+  }, [draftKey, pool, index, selection, hintsUsed, submitted, filter, setPracticeDraft])
+
   const advance = useCallback((nextIndex: number) => {
+    setFinished(false)
     setIndex(nextIndex)
     setSelection({})
     setSubmitted(false)
     setHintsUsed(0)
+    // Past this point the restored order no longer applies: the filter may have
+    // changed the pool underneath it.
+    setRestoredOrder(null)
   }, [])
 
   const handleSelect = useCallback(
@@ -105,7 +190,12 @@ export function PracticeRunner({
       durationMs: Date.now() - startedAt.current,
       hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
     })
-  }, [question, selection, submitted, recordAttempt, hintsUsed, mode])
+    // Answered, so it is spent — from the practice pool, and only that one.
+    recordExposure(
+      [{ questionId: question.id, sectionId: question.section }],
+      exposureContextOf(mode),
+    )
+  }, [question, selection, submitted, recordAttempt, recordExposure, hintsUsed, mode])
 
   const handleFilter = useCallback(
     (value: Filter) => {
@@ -138,6 +228,20 @@ export function PracticeRunner({
   const correct = submitted && isCorrect(question, selection)
   const atEnd = index >= pool.length - 1
 
+  if (finished && sectionId) {
+    return (
+      <SetComplete
+        sectionId={sectionId}
+        questions={pool}
+        answered={pool.length}
+        onRestart={() => {
+          clearPracticeDraft(draftKey)
+          advance(0)
+        }}
+      />
+    )
+  }
+
   return (
     <div className="space-y-5">
       {showProgress && sectionId ? (
@@ -156,12 +260,22 @@ export function PracticeRunner({
 
       <Card>
         <CardContent className="pt-6">
-          <QuestionView
-            question={question}
-            selection={selection}
-            submitted={submitted}
-            onSelect={handleSelect}
-          />
+          <ReadingMeasure>
+            {/* Keyed on the question, so moving on fades the next one in instead
+                of swapping it under the eye — the only signal that the page has
+                changed at all when two questions look alike. */}
+            <div
+              key={question.id}
+              className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:duration-150"
+            >
+              <QuestionView
+                question={question}
+                selection={selection}
+                submitted={submitted}
+                onSelect={handleSelect}
+              />
+            </div>
+          </ReadingMeasure>
         </CardContent>
       </Card>
 
@@ -180,14 +294,7 @@ export function PracticeRunner({
 
       <PracticeActionBar
         secondary={
-          submitted ? (
-            atEnd ? (
-              <Button variant="outline" size="sm" onClick={() => advance(0)}>
-                <RotateCcw className="size-4" aria-hidden />
-                Start again
-              </Button>
-            ) : null
-          ) : (
+          submitted ? null : (
             <>
               {question.hints?.length && hintsUsed === 0 ? (
                 <HintTrigger onReveal={() => setHintsUsed(1)} />
@@ -207,10 +314,10 @@ export function PracticeRunner({
             <Button onClick={handleSubmit} disabled={!answered}>
               Check answer
             </Button>
+          ) : atEnd ? (
+            <Button onClick={() => setFinished(true)}>Finish this set</Button>
           ) : (
-            <Button onClick={() => advance(index + 1)} disabled={atEnd}>
-              {atEnd ? 'End of this set' : 'Next question'}
-            </Button>
+            <Button onClick={() => advance(index + 1)}>Next question</Button>
           )
         }
       />

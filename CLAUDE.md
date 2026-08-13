@@ -55,8 +55,15 @@ never as a plausible-sounding guess.
 ## Stack
 
 Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4 ·
-shadcn/ui as owned source in `components/ui/` · next-themes · Vercel · GitHub.
-**No backend, database or auth** — progress lives in `localStorage`.
+shadcn/ui as owned source in `components/ui/` · Vercel · GitHub ·
+**Supabase (optional)** for accounts and cross-device progress.
+
+**Guest mode is a supported mode, not a degraded one.** With no Supabase
+environment variables set the app builds and runs exactly as it always has —
+every route static, progress in `localStorage`, and no sign-in affordance
+rendered anywhere. Signing in adds durability across devices and nothing else;
+nothing is ever gated behind it. See `docs/SUPABASE.md` before touching
+`lib/progress/`, `lib/supabase/` or `supabase/migrations/`.
 
 Repo: `github.com/dhairyanarang/dmatprep`, branch `main`. Every route is static;
 nothing needs a server at request time.
@@ -81,12 +88,6 @@ removes it from the production graph. Verify with
   the home directory makes Turbopack infer `~/` as the workspace root.
 - Next 16 typed routes: use `LayoutProps<'/route'>` / `PageProps<'/route'>`, and
   **`params` is a Promise** — always `await params`.
-- **next-themes' `theme` only exists on the client.** Reading it during the first
-  render is a genuine hydration mismatch, not a cosmetic one —
-  `suppressHydrationWarning` on `<html>` does not reach it, because it applies to
-  that element alone and not its descendants. Gate the read behind the
-  `useSyncExternalStore(NEVER_CHANGES, () => true, () => false)` flag in
-  `theme-toggle.tsx`.
 
 ## Conventions
 
@@ -108,6 +109,31 @@ removes it from the production graph. Verify with
 - **All progress access goes through `ProgressStore`.** Only the localStorage adapter may
   touch `window.localStorage`; read through `useProgress()` (built on
   `useSyncExternalStore`) — direct reads cause hydration mismatches.
+- **The local store is the render source, signed in or not.** The cloud layer
+  writes *into* it rather than replacing it, so no component knows where the
+  data came from and answering a question never waits on the network. Writes go
+  local-first and queue in an outbox; every attempt carries a client-minted id
+  and every push is an upsert, so a retry can never count an answer twice.
+- **Aggregates are never stored** — accuracy, readiness and hint rate are always
+  derived from attempts, in both the browser and the cloud read path.
+- **Attempts are immutable.** There is no update policy on the table, and the
+  merge is a set union by id. Rewriting one would change every derived figure.
+- **A reload must never silently cost work.** Mocks keep a restore point and ask
+  before resuming; practice restores itself silently. Session timing is an
+  absolute `stageEndsAt`, never a remaining-seconds counter — a counter is a lie
+  the moment the browser is closed.
+- **Question exposure is tracked per context** — `practice`, `diagnostic`,
+  `mock` — so the pools never consume each other. A question met in the
+  diagnostic is not disqualified from a mock; it is only ranked below fresh
+  material.
+- **The mock runner uses the same `PageContainer` as every other route.** The
+  reading measure is an *inner* constraint (`ReadingMeasure`), never a narrower
+  page — narrowing the page is what made the mock sit 100px inside every other
+  screen.
+- **Motion answers a question or it does not ship** — did my action register,
+  what changed, where did I go, is something being worked on. 150ms for
+  controls, 200ms for panels, and `prefers-reduced-motion` is honoured globally
+  in `app/globals.css` as well as per call site.
 - **Every question stores an `explanation` plus a `distractorNotes` entry for every wrong
   option.** Enforced by the types and re-checked by `verify-bank`.
 - **No question ships unverified.** A solver must confirm a unique solution and all
@@ -123,11 +149,15 @@ removes it from the production graph. Verify with
   and the runner's `timing` prop optional so it stays a drop-in.
 - Mobile and laptop are both first-class.
 
-## Design system — Linear-derived (see DESIGN.md)
+## Design system — PrepdMAT (Figma is the source of truth)
 
-Dark is the native theme; light is a supported counterpart with identical
-structure. Tokens live in `app/globals.css` — change values there, never at the
-call site.
+Figma: `LjpnjICgqimazVDo1Tw9IB` (PrepdMAT), Home at node `61:1781`. Values come
+from `get_variable_defs` / `get_design_context`, never estimated off a
+screenshot. **One theme: light.** The dark palette, the theme toggle and next-themes were
+removed — there is no theme switching and no system detection. Tokens live in
+`app/globals.css` — change values there, never at the call site. The
+`@custom-variant dark` line survives only because the shadcn components still
+carry inert `dark:` utilities; nothing sets `.dark`, so they never match.
 
 - **Surfaces** ladder: Void `#08090a` → Carbon `#0f1011` → Obsidian `#161718` →
   Slate `#23252a`. Separation comes from **hairline borders**, never shadows.
@@ -198,6 +228,18 @@ could not reach it with a naked single.
 
 **Module A only** — Figure Sequences, Mathematical Equations, Latin Squares.
 Module B (General Academic Module) is a "coming soon" placeholder; do not build it out.
+
+**Four primary destinations, and no more**: Home, About the Exam, Prepare, Test.
+Review was removed from the public-beta IA — its data model, calculations and
+components all remain, and mistakes now surface at the end of a practice set,
+which is when they are worth looking at. `/review` redirects to Home. Do not
+re-add a fifth destination without evidence that someone asked for it.
+
+**`content/exam/updates.ts` is the only update surface**, and it is a content
+file on purpose: nothing can publish to it except a commit, so there is no path
+by which unverified news reaches a candidate. Every entry carries the official
+source it was fetched from. An empty list renders "No new official updates" —
+never a placeholder.
 
 ## Commands
 

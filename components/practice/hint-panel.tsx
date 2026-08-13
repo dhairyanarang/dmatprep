@@ -33,7 +33,10 @@ export function HintPanel({
 
   return (
     <aside
-      className="border-border bg-muted/40 space-y-3 rounded-xl border p-4"
+      // Keyed on the count so each further hint animates in on its own, rather
+      // than the panel re-playing from scratch every time one is added.
+      key={revealed}
+      className="border-border bg-muted/40 motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1 space-y-3 rounded-2xl border p-4 motion-safe:duration-200"
       aria-label="Hints"
     >
       <div className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wide uppercase">
