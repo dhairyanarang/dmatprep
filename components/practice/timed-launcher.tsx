@@ -71,7 +71,7 @@ export function TimedLauncher({
   return (
     <div className="space-y-4">
       {shortfall > 0 && (
-        <div className="border-warning/35 bg-warning-tint/50 rounded-xl border p-4">
+        <div className="border-warning/35 bg-warning-tint/50 rounded-2xl border p-4">
           <p className="text-sm font-medium">You have seen some of these questions before</p>
           <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
             The bank could not supply {shortfall} unseen{' '}

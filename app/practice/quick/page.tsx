@@ -13,7 +13,6 @@ export default function QuickPracticePage() {
 
   return (
     <PageShell
-      title="Quick practice"
       description="Ten questions mixed across the three Core subtests — about ten minutes. Hints and full solutions are available, as in normal practice."
       wide
     >

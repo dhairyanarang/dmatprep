@@ -17,15 +17,15 @@ export type Crumb = {
 
 const PREPARE: Crumb = { label: 'Prepare', href: '/prepare' }
 const TEST: Crumb = { label: 'Test', href: '/test' }
-const EXAM: Crumb = { label: 'The exam', href: '/exam' }
+const EXAM: Crumb = { label: 'About The Exam', href: '/exam' }
 
 /** Leaf pages whose trail is fixed. */
 const STATIC: Record<string, Crumb[]> = {
-  '/': [],
+  '/': [{ label: 'Home' }],
   '/prepare': [{ label: 'Prepare' }],
   '/test': [{ label: 'Test' }],
   '/review': [{ label: 'Review' }],
-  '/exam': [{ label: 'The exam' }],
+  '/exam': [{ label: 'About The Exam' }],
   '/study-plan': [PREPARE, { label: 'Study plan' }],
   '/practice/quick': [PREPARE, { label: 'Quick practice' }],
   '/practice/diagnostic': [TEST, { label: 'Diagnostic' }],

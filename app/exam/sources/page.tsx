@@ -14,7 +14,6 @@ export default function ExamSourcesPage() {
 
   return (
     <PageShell
-      title="Sources"
       description="Every factual claim in this hub traces to an official g.a.s.t. or APS India document. This page is generated from the content itself, so it cannot drift out of date."
     >
       <div className="space-y-10">

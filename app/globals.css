@@ -12,9 +12,9 @@
   --color-foreground: var(--foreground);
   /* Literal family names: Tailwind v4 resolves @theme inline at parse time, so
      var(--font-inter) (injected by next/font at runtime) never resolves here. */
-  --font-sans: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
-  --font-heading: "Inter", "Inter Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-heading: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -59,6 +59,13 @@
 
   /* One hue per Core Module section, so a section is recognisable at a glance
      in the sidebar, on its pages and on the dashboard. */
+  /* Brand teal and its on-surface CTA, straight from the Figma variables. */
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-cta: var(--brand-cta);
+  --color-brand-cta-foreground: var(--brand-cta-foreground);
+  --color-surface-muted: var(--surface-muted);
+
   --color-figures: var(--figures);
   --color-figures-tint: var(--figures-tint);
   --color-equations: var(--equations);
@@ -68,95 +75,110 @@
 
   /* Tracking tightens as type grows. Overriding Tailwind's defaults means the
      `tracking-tight` already on headings resolves to the system's -0.012em. */
-  --tracking-tighter: -0.022em;
-  --tracking-tight: -0.012em;
-  --tracking-normal: -0.011em;
+  --tracking-tighter: -0.03em;
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0em;
+  --tracking-eyebrow: 0.08em;
 
-  /* Three radii is the whole vocabulary: 4 badges, 6 buttons/inputs, 12 cards.
-     Everything above 12 is capped — nothing in this system rounds further. */
+  /* Radii read off the design: 4 chips, 6 nav rows, 8 icon buttons, 12 fields,
+     14 cards, 16 grouped card blocks. Nothing rounds further. */
   --radius-sm: 4px;
   --radius-md: 6px;
-  --radius-lg: 12px;
+  --radius-lg: 8px;
   --radius-xl: 12px;
-  --radius-2xl: 12px;
-  --radius-3xl: 12px;
-  --radius-4xl: 12px;
+  --radius-2xl: 14px;
+  --radius-3xl: 16px;
+  --radius-4xl: 16px;
 }
 
 /**
- * Linear-derived system. Dark is the native theme — the palette is built on the
- * Void→Carbon→Obsidian→Slate surface ladder, and acid lime is the single
- * chromatic action colour. Light is a supported counterpart with the same
- * structure: hairline borders, identical radii, identical type.
+ * The PrepdMAT design system, taken from the Figma file.
+ *
+ * A warm neutral foundation — #2e2b27 on white, #756f69 for secondary text,
+ * #e5e4e1 hairlines — with a single brand teal (#025964) doing the work colour
+ * used to be spread across four hues. Colour carries meaning here; it does not
+ * decorate. One theme only.
  */
 :root {
+  /* Surfaces and text — Figma: Surface/*, Text/*, Border/default. */
   --background: #ffffff;
-  --foreground: #08090a;
+  --foreground: #2e2b27;
   --card: #ffffff;
-  --card-foreground: #08090a;
+  --card-foreground: #2e2b27;
   --popover: #ffffff;
-  --popover-foreground: #08090a;
-  --primary: #e4f222;
-  --primary-foreground: #08090a;
-  --secondary: #f4f4f5;
-  --secondary-foreground: #08090a;
-  --muted: #f6f6f7;
-  --muted-foreground: #62666d;
-  --accent: #f0f0f1;
-  --accent-foreground: #08090a;
-  --destructive: #eb5757;
-  --border: #e5e5e6;
-  --input: #dedee0;
-  --ring: #62666d;
-  --chart-1: #6366f1;
-  --chart-2: #8b5cf6;
-  --chart-3: #02b8cc;
-  --chart-4: #27a644;
-  --chart-5: #eb5757;
-  --radius: 6px;
+  --popover-foreground: #2e2b27;
+  --surface-muted: #f6f5f2;
 
-  /* Status. Pulse Green and Coral Red carry correct/incorrect — a practice app
-     needs a real right/wrong signal, so they are used as status here. */
-  --success: #27a644;
-  --success-fg: #1c7a33;
-  --success-tint: #eaf6ec;
-  /* Caution has no colour in the reference; it is a neutral marked state
-     rather than a new hue, which keeps the accent count where it should be. */
-  --warning: #62666d;
-  --warning-fg: #45484d;
-  --warning-tint: #f2f2f3;
-  --danger: #eb5757;
-  --danger-fg: #c0392f;
-  --danger-tint: #fdeeee;
+  /* Brand. The teal is the primary action on light surfaces; the green pill is
+     the CTA that sits *on* the teal surface, never on white. */
+  --brand: #025964;
+  --brand-foreground: #ffffff;
+  --brand-cta: #01d37e;
+  /* Figma pairs the pill with #007a7b, which is 3.0:1 on this green and fails
+     AA at 12px. Darkened to hold the same hue at 5.8:1. */
+  --brand-cta-foreground: #00494b;
 
-  /* Section hues use the reference's designated tag/badge fills — chromatic
-     punctuation on labels, never on actions. */
-  --figures: #6366f1;
-  --figures-tint: #eeeefc;
-  --equations: #8b5cf6;
-  --equations-tint: #f2ecfd;
-  --latin: #02b8cc;
-  --latin-tint: #e3f7fa;
+  --primary: #025964;
+  --primary-foreground: #ffffff;
+  --secondary: #f6f5f2;
+  --secondary-foreground: #2e2b27;
+  --muted: #f6f5f2;
+  --muted-foreground: #756f69;
+  --accent: #f6f5f2;
+  --accent-foreground: #2e2b27;
+  --destructive: #b4342a;
+  --border: #e5e4e1;
+  --input: #e5e4e1;
+  --ring: #025964;
+  --chart-1: #025964;
+  --chart-2: #01d37e;
+  --chart-3: #756f69;
+  --chart-4: #1c7a33;
+  --chart-5: #b4342a;
+  --radius: 8px;
 
-  /* Figure panels stay light in both themes so a symbol the explanation calls
-     "black" never renders white. Mist is the palette's light surface fill. */
-  --figure-panel: #e5e5e6;
-  --figure-line: #62666d;
-  --figure-frame: #23252a;
-  /* Solution-step emphasis on the figure panel. The panel is a fixed light
-     surface in both themes, so these do not need a dark counterpart. Iris
-     Violet is the Figure Sequences section hue, used here as a tag. */
-  --figure-focus: #6366f1;
-  --figure-trail: rgba(99, 102, 241, 0.14);
+  /* Status. A practice app needs a real right/wrong signal, so these stay —
+     retuned to sit in the warm neutral palette rather than beside it. */
+  --success: #1c7a33;
+  --success-fg: #16612a;
+  --success-tint: #eaf4ec;
+  /* Caution is a neutral marked state, not a fifth hue. */
+  --warning: #756f69;
+  --warning-fg: #514c47;
+  --warning-tint: #f6f5f2;
+  --danger: #b4342a;
+  --danger-fg: #94281f;
+  --danger-tint: #fbeeed;
 
-  --sidebar: #fafafa;
-  --sidebar-foreground: #08090a;
-  --sidebar-primary: #e4f222;
-  --sidebar-primary-foreground: #08090a;
-  --sidebar-accent: #eeeeef;
-  --sidebar-accent-foreground: #08090a;
-  --sidebar-border: #e5e5e6;
-  --sidebar-ring: #62666d;
+  /* Section identity comes from the icon in this system, not from a hue — the
+     design gives all three subtests the same teal. These remain for the figure
+     diagrams, where colour is content rather than decoration. */
+  --figures: #025964;
+  --figures-tint: #e6eff0;
+  --equations: #025964;
+  --equations-tint: #e6eff0;
+  --latin: #025964;
+  --latin-tint: #e6eff0;
+
+  /* Figure panels stay a light surface so a symbol the explanation calls
+     "black" never renders white. */
+  --figure-panel: #f6f5f2;
+  --figure-line: #b8b4ae;
+  --figure-frame: #2e2b27;
+  --figure-focus: #025964;
+  --figure-trail: rgba(2, 89, 100, 0.12);
+
+  /* The sidebar is a cool light plane against the warm content area — the one
+     place the design steps outside the warm neutrals, which is what separates
+     navigation from page. */
+  --sidebar: #f5f7f9;
+  --sidebar-foreground: #2e2b27;
+  --sidebar-primary: #025964;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffffff;
+  --sidebar-accent-foreground: #025964;
+  --sidebar-border: #e7e7e7;
+  --sidebar-ring: #025964;
 }
 
 @layer base {
@@ -165,19 +187,39 @@
   }
   html {
     @apply font-sans;
-    /* These alternate glyphs are part of the typographic identity, not a
-       nicety: cv01 (single-storey a), ss03, and slashed zero. */
-    font-feature-settings: 'cv01' on, 'ss03' on, 'zero' on;
   }
   body {
     @apply bg-background text-foreground;
-    letter-spacing: -0.011em;
+    /* The design sets tracking per style rather than globally: body and meta
+       run at 0, and only 16px+ tightens. Left neutral here so the utilities
+       below are the only thing that moves it. */
+    letter-spacing: 0;
   }
-  /* Weights cap at 590. Nothing in this system is bold. */
-  .font-semibold {
-    font-weight: 590;
+
+  /* Manrope's own 500 and 600 are the design's Medium and SemiBold. The old
+     system remapped these to 510/590 for Inter's variable axis; Manrope has
+     real cuts at these weights, so the remap is gone. */
+
+  /* Eyebrows: 12px medium, uppercase, +0.08em — used on every card label. */
+  .text-eyebrow {
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    letter-spacing: var(--tracking-eyebrow);
+    text-transform: uppercase;
   }
-  .font-medium {
-    font-weight: 510;
+  /* The countdown numeral: 36px medium, line-height 1. */
+  .text-countdown {
+    font-size: 36px;
+    line-height: 36px;
+    font-weight: 500;
+    letter-spacing: 0;
+  }
+  /* The card metric: 24px semibold, -0.6px. */
+  .text-metric {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 600;
+    letter-spacing: -0.025em;
   }
 }

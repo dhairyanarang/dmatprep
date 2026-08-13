@@ -41,7 +41,6 @@ const PAGES = [
 export default function ExamPage() {
   return (
     <PageShell
-      title="The exam"
       description="Start with the short answers. Every detail behind them is one click away, with its official source."
       wide
     >

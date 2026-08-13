@@ -27,10 +27,9 @@ export function SidebarBrand({ className }: { className?: string }) {
     >
       <span
         aria-hidden
-        // Neutral, not acid lime — the accent belongs to the primary action.
-        className="bg-foreground text-background flex size-8 shrink-0 items-center justify-center rounded-md text-sm font-semibold"
+        className="bg-foreground text-background flex size-9 shrink-0 items-center justify-center rounded-[9px] text-base font-semibold"
       >
-        d
+        D
       </span>
 
       <span className="min-w-0">

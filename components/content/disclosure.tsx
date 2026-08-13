@@ -27,11 +27,11 @@ export function Disclosure({
   return (
     <details
       open={defaultOpen}
-      className={cn('group border-border bg-card rounded-xl border', className)}
+      className={cn('group border-border bg-card rounded-2xl border', className)}
     >
       <summary
         className={cn(
-          'flex cursor-pointer list-none items-center gap-2 rounded-xl px-4 py-3',
+          'flex cursor-pointer list-none items-center gap-2 rounded-2xl px-4 py-3',
           'hover:bg-muted/50 focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
           '[&::-webkit-details-marker]:hidden',
         )}

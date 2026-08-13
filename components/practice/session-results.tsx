@@ -203,7 +203,7 @@ function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStag
           </div>
         </dl>
 
-        <div className="border-border bg-muted/50 rounded-xl border p-4">
+        <div className="border-border bg-muted/50 rounded-2xl border p-4">
           <p className="text-sm font-medium">Start with {weakest.label}</p>
           <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
             {flat
@@ -226,7 +226,7 @@ function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStag
 
 function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="border-border bg-muted/40 rounded-xl border p-4">
+    <div className="border-border bg-muted/40 rounded-2xl border p-4">
       <p className="text-2xl leading-none font-semibold tabular-nums">{value}</p>
       <p className="text-muted-foreground mt-2 text-xs leading-relaxed">{label}</p>
     </div>

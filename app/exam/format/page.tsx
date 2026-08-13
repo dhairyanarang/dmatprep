@@ -7,9 +7,8 @@ import {
   StatGrid,
   type Segment,
 } from '@/components/exam/visuals'
-import { SECTION_ACCENT } from '@/lib/nav'
+import { SECTION_ICON } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
-import { cn } from '@/lib/utils'
 
 export const metadata = { title: 'Format & structure' }
 
@@ -26,8 +25,6 @@ const SCHEDULE: Segment[] = [
   },
 ]
 
-const DOT = { figures: 'bg-figures', equations: 'bg-equations', latin: 'bg-latin' } as const
-
 // The noun each subtest's own instructions use for its 20 items: "20 series of
 // matrices", "20 systems of equations", "20 tasks" (GAM PDF pp. 8, 18, 25).
 // 75 seconds is 25 min ÷ 20, an average — no per-item limit is published.
@@ -40,7 +37,6 @@ const UNIT: Record<SectionId, string> = {
 export default function ExamFormatPage() {
   return (
     <PageShell
-      title="Format & structure"
       description="Two modules, four sittings, 195 minutes of scheduled time."
       wide
     >
@@ -65,12 +61,9 @@ export default function ExamFormatPage() {
         >
           <div className="grid gap-4 sm:grid-cols-3">
             {SECTIONS.map((section) => (
-              <div key={section.id} className="border-border bg-card rounded-xl border p-5">
+              <div key={section.id} className="border-border bg-card rounded-2xl border p-5">
                 <div className="flex items-center gap-2">
-                  <span
-                    aria-hidden
-                    className={cn('size-2 rounded-full', DOT[SECTION_ACCENT[section.id]])}
-                  />
+                  <SectionIcon sectionId={section.id} />
                   <h3 className="text-sm font-medium">{section.title}</h3>
                 </div>
                 <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
@@ -113,7 +106,7 @@ export default function ExamFormatPage() {
 
         <Section title="Two things worth knowing">
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="border-warning/35 bg-warning-tint/50 rounded-xl border p-4">
+            <div className="border-warning/35 bg-warning-tint/50 rounded-2xl border p-4">
               <p className="text-sm font-medium">The official sources disagree on duration</p>
               <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                 The preparatory materials say “about three hours with a break of 30 minutes”;
@@ -122,7 +115,7 @@ export default function ExamFormatPage() {
               </p>
             </div>
 
-            <div className="border-border bg-muted/50 rounded-xl border p-4">
+            <div className="border-border bg-muted/50 rounded-2xl border p-4">
               <p className="text-sm font-medium">Read the instructions before the day</p>
               <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
                 g.a.s.t. states the detailed task instructions exist{' '}
@@ -136,4 +129,9 @@ export default function ExamFormatPage() {
       </div>
     </PageShell>
   )
+}
+
+function SectionIcon({ sectionId }: { sectionId: SectionId }) {
+  const Icon = SECTION_ICON[sectionId]
+  return <Icon className="text-brand size-5 shrink-0" aria-hidden />
 }

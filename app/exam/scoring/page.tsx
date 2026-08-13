@@ -7,7 +7,6 @@ export const metadata = { title: 'Scoring & Results' }
 export default function ExamScoringPage() {
   return (
     <PageShell
-      title="Scoring & Results"
       description="No pass, no fail — a score, a percentile, and a certificate that never expires."
       wide
     >
@@ -27,7 +26,7 @@ export default function ExamScoringPage() {
         </Section>
 
         <Section title="Always guess">
-          <div className="border-success/25 bg-success-tint/40 rounded-xl border p-5">
+          <div className="border-success/25 bg-success-tint/40 rounded-2xl border p-5">
             <p className="text-sm leading-relaxed">
               The official instructions say so directly, in Figure Sequences, Latin Squares and the Subject Module:{' '}
               <span className="font-medium">
@@ -59,7 +58,7 @@ export default function ExamScoringPage() {
         </Section>
 
         <Section title="What the score does not do">
-          <div className="border-border bg-muted/50 rounded-xl border p-4">
+          <div className="border-border bg-muted/50 rounded-2xl border p-4">
             <p className="text-muted-foreground text-sm leading-relaxed">
               APS India is explicit: the dMAT does not replace document verification, does not
               establish formal eligibility, does not replace anabin, does not override recognition

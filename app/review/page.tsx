@@ -15,7 +15,6 @@ export default function ReviewPage() {
 
   return (
     <PageShell
-      title="Review"
       description="Where your preparation stands, and the questions worth a second look."
       wide
     >

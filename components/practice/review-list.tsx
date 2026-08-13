@@ -39,7 +39,7 @@ export function ReviewList({ questions }: { questions: Question[] }) {
 
   if (rows.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed p-8 text-center">
+      <div className="rounded-2xl border border-dashed p-8 text-center">
         <p className="text-sm font-medium">Nothing to review yet</p>
         <p className="text-muted-foreground mx-auto mt-2 max-w-prose text-sm leading-relaxed">
           Questions you get wrong, or get right only after a hint, collect here so you can come back
@@ -65,7 +65,7 @@ export function ReviewList({ questions }: { questions: Question[] }) {
           const section = SECTION_BY_ID[attempt.sectionId]
 
           return (
-            <li key={attempt.questionId} className="border-border bg-card rounded-xl border p-4">
+            <li key={attempt.questionId} className="border-border bg-card rounded-2xl border p-4">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
                 <span className="text-sm font-medium">{section.title}</span>
                 <DifficultyBadge difficulty={attempt.difficulty} />

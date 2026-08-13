@@ -26,7 +26,6 @@ const FIELDS = [
 export default function ExamLogisticsPage() {
   return (
     <PageShell
-      title="Dates & Logistics"
       description="Deadlines, fee, centres, and how the dMAT connects to the APS process."
       wide
     >
@@ -54,19 +53,19 @@ export default function ExamLogisticsPage() {
           description="Payment is electronic; paying at the test centre is allowed only in exceptional cases."
         >
           <div className="grid gap-4 sm:grid-cols-3">
-            <div className="border-border bg-card rounded-xl border p-4">
+            <div className="border-border bg-card rounded-2xl border p-4">
               <p className="text-sm font-medium">Within 14 days</p>
               <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                 You may revoke the contract and be refunded in full.
               </p>
             </div>
-            <div className="border-border bg-card rounded-xl border p-4">
+            <div className="border-border bg-card rounded-2xl border p-4">
               <p className="text-sm font-medium">Before the deadline</p>
               <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                 Deregistering is refunded minus an administrative fee of up to 15%.
               </p>
             </div>
-            <div className="border-danger/25 bg-danger-tint/40 rounded-xl border p-4">
+            <div className="border-danger/25 bg-danger-tint/40 rounded-2xl border p-4">
               <p className="text-danger-fg text-sm font-medium">After the deadline</p>
               <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
                 No refund — for late deregistration, non-attendance, or discontinuing the exam.
@@ -88,14 +87,14 @@ export default function ExamLogisticsPage() {
         >
           <div className="grid gap-4 sm:grid-cols-3">
             {FIELDS.map(([title, detail]) => (
-              <div key={title} className="border-border bg-card rounded-xl border p-4">
+              <div key={title} className="border-border bg-card rounded-2xl border p-4">
                 <p className="text-sm font-medium">{title}</p>
                 <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">{detail}</p>
               </div>
             ))}
           </div>
 
-          <div className="border-border bg-muted/50 rounded-xl border p-4">
+          <div className="border-border bg-muted/50 rounded-2xl border p-4">
             <p className="text-sm font-medium">The field list is guidance, not a closed list</p>
             <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
               APS India states its list is not exhaustive. The official degree title, branch, major,
@@ -118,7 +117,7 @@ export default function ExamLogisticsPage() {
                 'You are on a confirmed exchange, double-degree or partnership programme',
               ]}
             />
-            <div className="border-border bg-card space-y-3 rounded-xl border p-4">
+            <div className="border-border bg-card space-y-3 rounded-2xl border p-4">
               <h3 className="text-sm font-semibold">How it fits with APS</h3>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 The certificate accompanies your APS application documents and the result is

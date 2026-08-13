@@ -1,17 +1,14 @@
 import type { ReactNode } from 'react'
 
-import { TopBar } from '@/components/layout/top-bar'
 import { cn } from '@/lib/utils'
 
 /**
  * The one container that decides horizontal alignment, everywhere.
  *
- * Pages used to set their own max-width — 6xl on the hubs, 4xl on the subtest
- * layout, 3xl on prose pages — so the left and right edges moved as you
- * navigated from Prepare into a section into practice. There is now a single
- * outer measure and a single set of gutters; a page that reads better narrow
- * constrains its *content* inside this, which keeps the left edge and the
- * gutters fixed while the line length changes.
+ * Width and gutters come from the design: at its 1280px frame the content
+ * column is 1016px wide with 24px padding, so that is the cap. Pages that read
+ * better narrow constrain their *content* inside this, which keeps the left
+ * edge and the gutters fixed while the line length changes.
  */
 export function PageContainer({
   children,
@@ -21,25 +18,23 @@ export function PageContainer({
   className?: string
 }) {
   return (
-    <div className={cn('mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8', className)}>{children}</div>
+    <div className={cn('mx-auto w-full max-w-[1016px] px-4 sm:px-6', className)}>{children}</div>
   )
 }
 
 /**
- * Standard page frame: context bar, then content.
+ * Standard page frame.
  *
- * `wide` no longer changes the page's outer alignment — it only decides whether
- * the content runs the full width of the container or is held to a comfortable
- * reading measure.
+ * There is no `title` prop: the design carries no page heading in the content
+ * area, because the breadcrumb's last segment is the page title and is rendered
+ * as the `<h1>` in the top bar.
  */
 export function PageShell({
-  title,
   description,
   actions,
   wide = false,
   children,
 }: {
-  title: string
   description?: ReactNode
   actions?: ReactNode
   /** Full container width for grid-heavy pages; otherwise a reading measure. */
@@ -47,17 +42,19 @@ export function PageShell({
   children?: ReactNode
 }) {
   return (
-    <PageContainer className="pb-10 lg:pb-12">
-      <TopBar title={title} actions={actions} />
+    <PageContainer className="py-6">
+      {description || actions ? (
+        <div className={cn('mb-6 flex items-start justify-between gap-4', !wide && 'max-w-3xl')}>
+          {description ? (
+            <div className="text-muted-foreground text-sm leading-5 text-pretty">{description}</div>
+          ) : (
+            <span />
+          )}
+          {actions ? <div className="flex shrink-0 gap-2">{actions}</div> : null}
+        </div>
+      ) : null}
 
-      <div className={cn(!wide && 'max-w-3xl')}>
-        {description ? (
-          <div className="text-muted-foreground mb-6 text-sm leading-relaxed text-pretty">
-            {description}
-          </div>
-        ) : null}
-        {children}
-      </div>
+      <div className={cn(!wide && 'max-w-3xl')}>{children}</div>
     </PageContainer>
   )
 }
@@ -65,7 +62,7 @@ export function PageShell({
 /** Placeholder for routes whose content lands in a later phase. */
 export function ComingSoon({ note }: { note: string }) {
   return (
-    <div className="text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
+    <div className="text-muted-foreground rounded-2xl border border-dashed p-8 text-center text-sm">
       {note}
     </div>
   )

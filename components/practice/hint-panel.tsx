@@ -33,7 +33,7 @@ export function HintPanel({
 
   return (
     <aside
-      className="border-border bg-muted/40 space-y-3 rounded-xl border p-4"
+      className="border-border bg-muted/40 space-y-3 rounded-2xl border p-4"
       aria-label="Hints"
     >
       <div className="text-muted-foreground flex items-center gap-2 text-xs font-medium tracking-wide uppercase">

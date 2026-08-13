@@ -31,7 +31,7 @@ export function HubCard({
     <Link
       href={href}
       className={cn(
-        'group border-border bg-card flex flex-col gap-2 rounded-xl border p-5 transition-colors',
+        'group border-border bg-card flex flex-col gap-2 rounded-2xl border p-5 transition-colors',
         'hover:bg-muted/40 focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
       )}
     >

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { SECTION_ACCENT } from '@/lib/nav'
 import type { SectionId } from '@/lib/sections'
 import { cn } from '@/lib/utils'
 
@@ -12,15 +11,8 @@ const TABS = [
   { segment: 'practice', label: 'Practice' },
 ] as const
 
-const ACTIVE = {
-  figures: 'border-figures text-foreground',
-  equations: 'border-equations text-foreground',
-  latin: 'border-latin text-foreground',
-} as const
-
 export function SectionTabs({ sectionId }: { sectionId: SectionId }) {
   const pathname = usePathname()
-  const accent = SECTION_ACCENT[sectionId]
 
   // The section landing page offers the same three routes as cards; showing
   // tabs there too would be two navigations for one decision.
@@ -42,7 +34,7 @@ export function SectionTabs({ sectionId }: { sectionId: SectionId }) {
                 'flex h-10 items-center rounded-t-md border-b-2 px-3 text-sm transition-colors',
                 'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
                 active
-                  ? `${ACTIVE[accent]} font-medium`
+                  ? 'border-brand text-foreground font-semibold'
                   : 'text-muted-foreground hover:text-foreground border-transparent',
               )}
             >

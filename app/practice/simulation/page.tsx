@@ -14,7 +14,6 @@ const UNIT: Record<string, string> = {
 export default function SimulationPage() {
   return (
     <PageShell
-      title="Module A mock"
       description="The three Core subtests back to back, 25 minutes each, in the order the preparatory materials present them."
     >
       <TimedLauncher

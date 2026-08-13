@@ -6,7 +6,6 @@ export const metadata = { title: 'Module B — General Academic' }
 export default function ModuleBPage() {
   return (
     <PageShell
-      title="Module B — General Academic Module"
       description="The subject module sat after the 30-minute break."
     >
       <Alert>

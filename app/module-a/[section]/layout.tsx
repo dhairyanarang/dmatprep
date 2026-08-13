@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 
 import { PageContainer } from '@/components/layout/page-shell'
 import { SectionTabs } from '@/components/layout/section-tabs'
-import { TopBar } from '@/components/layout/top-bar'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 
 export function generateStaticParams() {
@@ -25,10 +24,8 @@ export default async function SectionLayout({
   const meta = SECTION_BY_ID[section]
 
   return (
-    <PageContainer className="pb-10 lg:pb-12">
-      <TopBar />
-
-      <p className="text-muted-foreground -mt-2 mb-4 max-w-prose text-sm leading-relaxed text-pretty">
+    <PageContainer className="py-6">
+      <p className="text-muted-foreground mb-4 max-w-prose text-sm leading-relaxed text-pretty">
         {meta.oneLiner}{' '}
         <span className="whitespace-nowrap">
           In the exam: {meta.officialTiming.minutes} minutes for {meta.officialTiming.items} items.

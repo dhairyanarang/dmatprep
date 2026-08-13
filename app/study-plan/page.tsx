@@ -8,7 +8,6 @@ export const metadata = { title: 'Study plan' }
 export default function StudyPlanPage() {
   return (
     <PageShell
-      title="Study plan"
       description="Seven weeks to Saturday 26 September 2026. Optional — the home page recommends a next step whether you follow this or not."
     >
       <div className="space-y-10">

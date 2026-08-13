@@ -14,7 +14,6 @@ const UNIT: Record<string, string> = {
 export default function DiagnosticPage() {
   return (
     <PageShell
-      title="Diagnostic"
       description="Fifteen questions — five from each Core subtest — to find where to start. No clock, no hints."
     >
       <TimedLauncher

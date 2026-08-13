@@ -2,75 +2,118 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import type { ReactNode } from 'react'
+import { Command, Search, UserRound } from 'lucide-react'
 
-import { ProfileButton } from '@/components/layout/profile-button'
-import { breadcrumbsFor, currentCrumb } from '@/lib/breadcrumbs'
+import { breadcrumbsFor } from '@/lib/breadcrumbs'
+import { NAV, isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
 /**
- * The context bar every page opens with: where you are, then how you got here.
+ * The context bar: where you are on the left, account controls on the right.
  *
- * The title is the dominant element and the trail sits under it at a quieter
- * weight — this is orientation, not a second navigation system, so the crumbs
- * are small and the sidebar stays the way you move around. The title defaults
- * to the last crumb, so a page and its breadcrumb cannot drift apart.
+ * The design carries no separate page heading — the trail's last segment *is*
+ * the page title, set in semibold against muted parents. So it is the `<h1>`,
+ * which keeps one heading per page and stops the title and the breadcrumb from
+ * ever disagreeing.
  */
-export function TopBar({
-  title,
-  actions,
-  className,
-}: {
-  /** Overrides the crumb-derived title, e.g. the home page. */
-  title?: string
-  actions?: ReactNode
-  className?: string
-}) {
+export function TopBar() {
   const pathname = usePathname()
   const crumbs = breadcrumbsFor(pathname)
-  const heading = title ?? currentCrumb(pathname) ?? 'dMAT Prep'
+  if (crumbs.length === 0) return null
+
   const trail = crumbs.slice(0, -1)
+  const current = crumbs[crumbs.length - 1]
+
+  // The icon of whichever top-level destination owns this route.
+  const owner = NAV.flatMap((g) => g.links).find((l) => isActive(pathname, l.href))
+  const Icon = owner?.icon ?? Search
 
   return (
-    <div className={cn('flex items-start justify-between gap-4 pt-6 pb-5 lg:pt-8', className)}>
-      <div className="min-w-0">
-        <h1 className="truncate text-2xl font-semibold tracking-tight">{heading}</h1>
+    <header className="border-sidebar-border bg-background flex h-16 shrink-0 items-center gap-2.5 border-b px-4 py-3 sm:px-6">
+      <nav aria-label="Breadcrumb" className="flex min-w-0 flex-1 items-center gap-1.5">
+        <Icon className="text-muted-foreground hidden size-5 shrink-0 sm:block" aria-hidden />
+        <ol className="flex min-w-0 items-center gap-1.5">
+          {trail.map((crumb) => (
+            <li key={crumb.label} className="hidden shrink-0 items-center gap-1.5 sm:flex">
+              {crumb.href ? (
+                <Link
+                  href={crumb.href}
+                  className="text-muted-foreground hover:text-foreground focus-visible:ring-ring rounded text-base tracking-tight transition-colors focus-visible:ring-2 focus-visible:outline-none"
+                >
+                  {crumb.label}
+                </Link>
+              ) : (
+                <span className="text-muted-foreground text-base tracking-tight">{crumb.label}</span>
+              )}
+              <span aria-hidden className="text-muted-foreground/60 text-base">
+                /
+              </span>
+            </li>
+          ))}
+          <li className="min-w-0">
+            {/* The current page is the heading, and is never a link. */}
+            <h1
+              aria-current="page"
+              className="text-foreground truncate text-base font-semibold tracking-tight"
+            >
+              {current.label}
+            </h1>
+          </li>
+        </ol>
+      </nav>
 
-        {crumbs.length > 1 ? (
-          <nav aria-label="Breadcrumb" className="mt-1.5">
-            <ol className="text-muted-foreground flex flex-wrap items-center gap-x-1.5 text-xs">
-              {trail.map((crumb) => (
-                <li key={crumb.label} className="flex items-center gap-1.5">
-                  {crumb.href ? (
-                    <Link
-                      href={crumb.href}
-                      className="hover:text-foreground focus-visible:ring-ring rounded transition-colors focus-visible:ring-2 focus-visible:outline-none"
-                    >
-                      {crumb.label}
-                    </Link>
-                  ) : (
-                    <span>{crumb.label}</span>
-                  )}
-                  <span aria-hidden className="text-muted-foreground/50">
-                    /
-                  </span>
-                </li>
-              ))}
-              <li className="min-w-0">
-                {/* The current page is never a link. */}
-                <span aria-current="page" className="text-foreground/70 block truncate">
-                  {crumbs[crumbs.length - 1].label}
-                </span>
-              </li>
-            </ol>
-          </nav>
-        ) : null}
-      </div>
-
-      <div className="flex shrink-0 items-center gap-2">
-        {actions}
+      <div className="flex shrink-0 items-center gap-3 sm:gap-5">
+        <SearchAffordance />
         <ProfileButton />
       </div>
-    </div>
+    </header>
+  )
+}
+
+/**
+ * Search is in the design but there is nothing to search yet — no index, no
+ * backend. Shown at the right size so the bar is not redesigned later, and
+ * labelled as unavailable rather than pretending to work.
+ */
+function SearchAffordance() {
+  return (
+    <button
+      type="button"
+      aria-disabled="true"
+      aria-label="Search — not available yet"
+      title="Search is not available yet."
+      className={cn(
+        'border-border hidden items-center justify-between gap-2 rounded-xl border bg-[#f9fbfc] px-3 py-2.5 md:flex md:w-64 lg:w-[309px]',
+        'focus-visible:ring-ring cursor-default focus-visible:ring-2 focus-visible:outline-none',
+      )}
+    >
+      <span className="text-muted-foreground flex items-center gap-1 text-sm">
+        <Search className="size-4" aria-hidden />
+        Search
+      </span>
+      <span
+        aria-hidden
+        className="text-muted-foreground flex items-center gap-0.5 rounded-sm bg-black/[0.04] px-1.5 py-1 text-sm"
+      >
+        <Command className="size-4" />+ F
+      </span>
+    </button>
+  )
+}
+
+/** Placeholder for a future account. There is no auth and no backend. */
+function ProfileButton() {
+  return (
+    <button
+      type="button"
+      aria-label="Account — not available yet"
+      title="Accounts are not available yet. Your progress is saved in this browser."
+      className={cn(
+        'border-border bg-card text-foreground/70 flex shrink-0 items-center justify-center rounded-full border p-2.5',
+        'hover:text-foreground hover:bg-muted focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
+      )}
+    >
+      <UserRound className="size-5" aria-hidden />
+    </button>
   )
 }

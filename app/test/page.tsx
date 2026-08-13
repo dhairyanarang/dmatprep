@@ -14,7 +14,6 @@ const UNIT: Record<string, string> = {
 export default function TestPage() {
   return (
     <PageShell
-      title="Test"
       description="Practice under the clock. Timings and item counts follow the official preparatory materials; the questions are ours."
       wide
     >

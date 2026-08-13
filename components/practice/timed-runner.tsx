@@ -383,7 +383,7 @@ function Brief({
           <li>· Practise the way you will sit it: no notes, no calculator.</li>
         </ul>
 
-        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-xl border p-4">
+        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-2xl border p-4">
           <AlertTriangle className="text-warning-fg mt-px size-4 shrink-0" aria-hidden />
           <p className="text-muted-foreground text-sm leading-relaxed">
             This is a{' '}

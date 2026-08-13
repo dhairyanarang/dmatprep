@@ -117,9 +117,11 @@ removes it from the production graph. Verify with
   and the runner's `timing` prop optional so it stays a drop-in.
 - Mobile and laptop are both first-class.
 
-## Design system — Linear-derived (see DESIGN.md)
+## Design system — PrepdMAT (Figma is the source of truth)
 
-**One theme: light.** The dark palette, the theme toggle and next-themes were
+Figma: `LjpnjICgqimazVDo1Tw9IB` (PrepdMAT), Home at node `61:1781`. Values come
+from `get_variable_defs` / `get_design_context`, never estimated off a
+screenshot. **One theme: light.** The dark palette, the theme toggle and next-themes were
 removed — there is no theme switching and no system detection. Tokens live in
 `app/globals.css` — change values there, never at the call site. The
 `@custom-variant dark` line survives only because the shadcn components still

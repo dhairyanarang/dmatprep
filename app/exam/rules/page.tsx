@@ -17,7 +17,6 @@ const CONDUCT = [
 export default function ExamRulesPage() {
   return (
     <PageShell
-      title="Exam-Day Rules"
       description="Most of these carry exclusion as the penalty, with no refund."
       wide
     >
@@ -60,7 +59,7 @@ export default function ExamRulesPage() {
         <Section title="Conduct">
           <ul className="grid gap-3 sm:grid-cols-2">
             {CONDUCT.map(([title, detail]) => (
-              <li key={title} className="border-border bg-card rounded-xl border p-4">
+              <li key={title} className="border-border bg-card rounded-2xl border p-4">
                 <p className="text-sm font-medium">{title}</p>
                 <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">{detail}</p>
               </li>
@@ -68,7 +67,7 @@ export default function ExamRulesPage() {
           </ul>
         </Section>
 
-        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-xl border p-4">
+        <div className="border-warning/35 bg-warning-tint/50 flex gap-3 rounded-2xl border p-4">
           <AlertTriangle className="text-warning-fg mt-px size-4 shrink-0" aria-hidden />
           <div>
             <p className="text-sm font-medium">Practise the way you will sit</p>
