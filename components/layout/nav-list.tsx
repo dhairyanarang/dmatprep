@@ -45,7 +45,7 @@ export function NavList({ onNavigate }: { onNavigate?: () => void }) {
             onClick={onNavigate}
             aria-current={isCurrentPage ? 'page' : undefined}
             className={cn(
-              'flex items-center gap-2.5 px-2.5 py-2 transition-colors',
+              'flex items-center gap-2.5 px-2.5 py-2 transition-colors duration-150',
               'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
               active
                 ? 'bg-sidebar-accent text-sidebar-accent-foreground rounded-lg shadow-[0_4px_3px_rgba(0,0,0,0.06)]'

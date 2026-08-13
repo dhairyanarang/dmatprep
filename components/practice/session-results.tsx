@@ -1,6 +1,7 @@
 'use client'
 
 
+import { SaveProgressInvite } from '@/components/auth/save-progress-invite'
 import { Disclosure } from '@/components/content/disclosure'
 import { ResultBanner } from '@/components/practice/result-banner'
 import { SolutionViewer } from '@/components/practice/solution-viewer'
@@ -80,6 +81,10 @@ export function SessionResults({
       </Card>
 
       {mode === 'diagnostic' ? <StartingPoint graded={graded} stages={stages} /> : null}
+
+      {/* Value first: the offer to save comes after there is something worth
+          saving, never before the test. */}
+      <SaveProgressInvite moment={mode === 'diagnostic' ? 'diagnostic' : 'mock'} />
 
       <Disclosure summary="How you did by difficulty" hint={`${byDifficulty.length} tiers`}>
         <ul className="space-y-2.5">

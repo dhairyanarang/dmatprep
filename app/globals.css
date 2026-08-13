@@ -223,3 +223,40 @@
     letter-spacing: -0.025em;
   }
 }
+
+/**
+ * Motion.
+ *
+ * Every animation in dMAT Prep answers one of: did my action register, what
+ * changed, where did I go, or is something being worked on. Nothing decorative,
+ * and nothing during a timed question that could pull the eye off the task.
+ *
+ * Two speeds only: 150ms for a control responding to a touch, 200ms for a panel
+ * arriving or leaving. Both are below the threshold where an interface starts to
+ * feel like it is waiting for you.
+ */
+@theme inline {
+  --duration-control: 150ms;
+  --duration-panel: 200ms;
+}
+
+@layer base {
+  /*
+   * The honest reading of "reduce": not "slightly less", but "none". Anything
+   * built from a transition still lands in its final state instantly, so no
+   * interface depends on motion to be usable.
+   *
+   * This backs up the `motion-safe:` prefixes at the call sites rather than
+   * replacing them — a utility added later without one is still covered.
+   */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

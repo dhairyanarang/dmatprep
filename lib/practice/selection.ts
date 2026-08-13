@@ -81,13 +81,22 @@ export function planSession({
   pool,
   count,
   seen = new Set<string>(),
+  softSeen = new Set<string>(),
   avoid = new Set<string>(),
   split,
   seed,
 }: {
   pool: Question[]
   count: number
+  /** Already spent from *this* pool — a mock's own earlier questions. */
   seen?: Set<string>
+  /**
+   * Met somewhere else: answered in practice, or shown in the diagnostic.
+   * Ranked below fresh material but above anything this pool has already used,
+   * which is what keeps working through the bank in practice from emptying the
+   * mock pool rather than merely making it second choice.
+   */
+  softSeen?: Set<string>
   /** Questions from the immediately preceding session. */
   avoid?: Set<string>
   split?: Record<Difficulty, number>
@@ -96,9 +105,11 @@ export function planSession({
   const rng = makeRng(seed)
   const targets = split ?? evenDifficultySplit(count)
 
-  // Fresh first, then seen-but-not-recent, then anything. Ordering the pool this
-  // way means the balancing pass below never has to think about staleness.
-  const rank = (q: Question) => (seen.has(q.id) ? (avoid.has(q.id) ? 2 : 1) : 0)
+  // Fresh first, then met-elsewhere, then already spent from this pool, and last
+  // of all whatever the previous session used. Ordering the pool this way means
+  // the balancing pass below never has to think about staleness.
+  const rank = (q: Question) =>
+    avoid.has(q.id) ? 3 : seen.has(q.id) ? 2 : softSeen.has(q.id) ? 1 : 0
   const ordered = shuffle(rng, pool).sort((a, b) => rank(a) - rank(b))
 
   const chosen: Question[] = []
@@ -131,7 +142,9 @@ export function planSession({
   // Top up if a tier could not fill its quota.
   takeFrom(ordered, count - chosen.length)
 
-  const reused = chosen.filter((q) => seen.has(q.id)).length
+  // Anything the candidate has met before, wherever they met it: the warning
+  // this feeds is about a score reading high through familiarity.
+  const reused = chosen.filter((q) => seen.has(q.id) || softSeen.has(q.id)).length
   return { questions: chosen, shortfall: Math.max(0, count - chosen.length), reused }
 }
 

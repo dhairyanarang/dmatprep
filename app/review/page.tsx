@@ -1,5 +1,6 @@
 import { ChartArea } from 'lucide-react'
 
+import { SaveProgressInvite } from '@/components/auth/save-progress-invite'
 import { ProgressPanel } from '@/components/dashboard/progress-panel'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
@@ -24,6 +25,10 @@ export default function ReviewPage() {
         <SectionHeading title="Start here">
           <ProgressPanel bankSizes={bankSizes} />
         </SectionHeading>
+
+        {/* The one place a guest sees the offer outside a result screen, and only
+            once there is a history here substantial enough to be worth losing. */}
+        <SaveProgressInvite moment="history" />
 
         <SectionHeading title="Mistakes" note={<MistakeCount questions={questions} />}>
           <ReviewList questions={questions} />

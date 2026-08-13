@@ -3,8 +3,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Command, Search, UserRound } from 'lucide-react'
+import { Command, Search } from 'lucide-react'
 
+import { AccountMenu } from '@/components/auth/account-menu'
 import { PageContainer } from '@/components/layout/page-shell'
 import { SearchDialog } from '@/components/search/search-dialog'
 import { breadcrumbsFor } from '@/lib/breadcrumbs'
@@ -98,7 +99,7 @@ export function TopBar() {
 
         <div ref={triggerRef} className="flex shrink-0 items-center gap-2 sm:gap-3">
           <SearchTrigger onOpen={() => setSearchOpen(true)} />
-          <ProfileButton />
+          <AccountMenu />
         </div>
       </PageContainer>
 
@@ -147,22 +148,5 @@ function SearchTrigger({ onOpen }: { onOpen: () => void }) {
         <Search className="size-4" aria-hidden />
       </button>
     </>
-  )
-}
-
-/** Placeholder for a future account. There is no auth and no backend. */
-function ProfileButton() {
-  return (
-    <button
-      type="button"
-      aria-label="Account — not available yet"
-      title="Accounts are not available yet. Your progress is saved in this browser."
-      className={cn(
-        'border-border bg-card text-foreground/70 flex size-9 shrink-0 items-center justify-center rounded-full border',
-        'hover:text-foreground hover:bg-muted focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
-      )}
-    >
-      <UserRound className="size-5" aria-hidden />
-    </button>
   )
 }

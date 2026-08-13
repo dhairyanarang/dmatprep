@@ -109,6 +109,10 @@ export function SearchDialog({
         'bg-card border-border m-0 w-[calc(100vw-2rem)] max-w-xl rounded-2xl border p-0 shadow-lg',
         'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
         'backdrop:bg-foreground/20 backdrop:backdrop-blur-[2px]',
+        // The palette covers the page, so it says where it came from: a short
+        // rise and fade rather than appearing fully formed over the content.
+        'motion-safe:open:animate-in motion-safe:open:fade-in-0 motion-safe:open:zoom-in-95 motion-safe:open:slide-in-from-top-2 motion-safe:open:duration-200',
+        'motion-safe:open:backdrop:animate-in motion-safe:open:backdrop:fade-in-0 motion-safe:open:backdrop:duration-200',
       )}
       onClick={(e) => {
         // Clicking the backdrop (the dialog element itself) dismisses.
@@ -185,7 +189,7 @@ export function SearchDialog({
                           onMouseEnter={() => setActive(index)}
                           onClick={() => go(entry)}
                           className={cn(
-                            'flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors',
+                            'flex w-full items-center gap-3 rounded-lg px-2 py-2 text-left transition-colors duration-150',
                             'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
                             isActive ? 'bg-muted' : 'hover:bg-muted/60',
                           )}

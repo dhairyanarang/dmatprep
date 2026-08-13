@@ -54,13 +54,53 @@ export type SessionResult = {
   questionIds: string[]
 }
 
+/**
+ * Which pool a question has been spent from.
+ *
+ * Three contexts rather than one "seen" flag, because they must not consume each
+ * other: meeting an item in the diagnostic should not disqualify it from a mock,
+ * where unseen material is the whole point. `timed` and `simulation` share the
+ * 'mock' context — a single-subtest mock and the full simulation are the same
+ * kind of exposure.
+ */
+export type ExposureContext = 'practice' | 'diagnostic' | 'mock'
+
+export function exposureContextOf(mode: PracticeMode | undefined): ExposureContext {
+  switch (mode) {
+    case 'diagnostic':
+      return 'diagnostic'
+    case 'timed':
+    case 'simulation':
+      return 'mock'
+    default:
+      return 'practice'
+  }
+}
+
+export type ExposureEntry = {
+  questionId: string
+  context: ExposureContext
+  sectionId: SectionId
+  timesSeen: number
+  /** ISO timestamps. */
+  firstSeenAt: string
+  lastSeenAt: string
+}
+
 export type AttemptRecord = {
+  /**
+   * Minted on the client so a write retried after a network failure collides on
+   * the primary key rather than counting the same answer twice.
+   */
+  id: string
   questionId: string
   sectionId: SectionId
   difficulty: Difficulty
   correct: boolean
   selection: Selection
   mode?: PracticeMode
+  /** Set when the attempt came from a timed or mock session. */
+  sessionId?: string
   /** ISO timestamp. */
   at: string
   /**
@@ -75,6 +115,9 @@ export type AttemptRecord = {
   hintsUsed?: 0 | 1 | 2 | 3
 }
 
+/** Everything needed to record an attempt; the store mints the id. */
+export type AttemptInput = Omit<AttemptRecord, 'id'> & { id?: string }
+
 /** A date the user adds themselves. The two fixed exam dates are content, not state. */
 export type KeyDate = {
   id: string
@@ -83,14 +126,75 @@ export type KeyDate = {
   date: string
 }
 
+/** The questions a session was built from, frozen so a resume is the same test. */
+export type ActiveSessionStage = {
+  sectionId: SectionId
+  label: string
+  unitNoun: string
+  questionIds: string[]
+}
+
+/**
+ * A timed or mock session that has started and not yet finished.
+ *
+ * Held so that closing the tab does not destroy 20 minutes of work. Timing is an
+ * absolute `stageEndsAt`, never a remaining-seconds counter: a counter is a lie
+ * the moment the browser is closed, whereas a deadline can always be compared
+ * against the clock on the way back in.
+ */
+export type ActiveSession = {
+  id: string
+  mode: PracticeMode
+  /** The route that owns it, so the prompt only appears where it belongs. */
+  route: string
+  title: string
+  stages: ActiveSessionStage[]
+  stageIndex: number
+  currentIndex: number
+  answers: Record<string, Selection>
+  phase: 'running' | 'break'
+  /** ISO timestamps. `stageEndsAt` is null for the untimed diagnostic. */
+  startedAt: string
+  stageEndsAt: string | null
+  minutesPerStage: number
+  untimed: boolean
+  updatedAt: string
+}
+
+/**
+ * Where an untimed practice run had got to.
+ *
+ * Kept apart from `activeSession` because the two want different behaviour on
+ * return: a mock asks before resuming, since restarting one is a real decision,
+ * while practice simply picks up where it was — there is nothing to decide.
+ */
+export type PracticeDraft = {
+  /** Route key, e.g. `practice:latin-squares` or `quick`. */
+  key: string
+  questionIds: string[]
+  index: number
+  selection: Selection
+  hintsUsed: number
+  submitted: boolean
+  filter: Difficulty | 'all'
+  updatedAt: string
+}
+
+/** Current schema version. v1 stores are migrated on read, never discarded. */
+export const PROGRESS_VERSION = 2
+
 export type ProgressState = {
   /** Bumped when the shape changes, so a migration has something to switch on. */
-  version: 1
+  version: typeof PROGRESS_VERSION
   attempts: AttemptRecord[]
   milestones: Record<string, boolean>
   keyDates: KeyDate[]
   /** Completed timed sessions. Defaulted on read, so older stores still load. */
   sessions: SessionResult[]
+  /** What has been shown, per context. Derived from history on first upgrade. */
+  exposure: ExposureEntry[]
+  activeSession: ActiveSession | null
+  practiceDrafts: Record<string, PracticeDraft>
   lastSession?: {
     sectionId: SectionId
     questionId: string
@@ -99,11 +203,14 @@ export type ProgressState = {
 }
 
 export const EMPTY_PROGRESS: ProgressState = {
-  version: 1,
+  version: PROGRESS_VERSION,
   attempts: [],
   milestones: {},
   keyDates: [],
   sessions: [],
+  exposure: [],
+  activeSession: null,
+  practiceDrafts: {},
 }
 
 export type DifficultyStats = { attempts: number; correct: number }
@@ -165,6 +272,43 @@ export function sectionStats(
   stats.uniqueQuestions = seen.size
   stats.accuracy = stats.attempts > 0 ? stats.correct / stats.attempts : null
   return stats
+}
+
+/** Question ids already shown in one context. */
+export function exposedIn(state: ProgressState, context: ExposureContext): Set<string> {
+  const out = new Set<string>()
+  for (const e of state.exposure) if (e.context === context) out.add(e.questionId)
+  return out
+}
+
+/** Merge a batch of newly-shown questions into the exposure log. */
+export function withExposure(
+  entries: readonly ExposureEntry[],
+  shown: readonly { questionId: string; sectionId: SectionId }[],
+  context: ExposureContext,
+  at: string,
+): ExposureEntry[] {
+  const byKey = new Map(entries.map((e) => [`${e.context}:${e.questionId}`, e]))
+
+  for (const q of shown) {
+    const key = `${context}:${q.questionId}`
+    const existing = byKey.get(key)
+    byKey.set(
+      key,
+      existing
+        ? { ...existing, timesSeen: existing.timesSeen + 1, lastSeenAt: at }
+        : {
+            questionId: q.questionId,
+            context,
+            sectionId: q.sectionId,
+            timesSeen: 1,
+            firstSeenAt: at,
+            lastSeenAt: at,
+          },
+    )
+  }
+
+  return [...byKey.values()]
 }
 
 /**

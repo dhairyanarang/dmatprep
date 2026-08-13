@@ -31,7 +31,7 @@ export function ProgressSnapshot({ bankSizes }: { bankSizes: Record<SectionId, n
           <Link
             key={section.id}
             href={`/module-a/${section.id}/practice`}
-            className="group border-border bg-card hover:border-brand/40 focus-visible:ring-ring flex flex-col gap-4 rounded-2xl border p-5 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            className="group border-border bg-card hover:border-brand/40 focus-visible:ring-ring flex flex-col gap-4 rounded-2xl border p-5 transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
           >
             <div className="flex items-center justify-between gap-3">
               <span className="flex min-w-0 items-center gap-2">
@@ -71,7 +71,10 @@ export function ProgressBar({ value }: { value: number }) {
   const pct = Math.round(Math.min(1, Math.max(0, value)) * 100)
   return (
     <span className="bg-surface-muted block h-1 w-full overflow-hidden rounded-full">
-      <span className="bg-brand block h-full rounded-full transition-[width]" style={{ width: `${pct}%` }} />
+      <span
+        className="bg-brand block h-full rounded-full transition-[width] duration-500 ease-out"
+        style={{ width: `${pct}%` }}
+      />
     </span>
   )
 }

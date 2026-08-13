@@ -59,6 +59,25 @@ export function PageShell({
   )
 }
 
+/**
+ * The reading measure, applied *inside* a full-width shell.
+ *
+ * A runner's chrome — the stage header, the clock, the jump strip, the action
+ * bar — belongs on the page's own left and right edges, the same ones every
+ * other route uses. Only the question itself wants a shorter line, so the
+ * constraint goes here rather than on the page container. Narrowing the whole
+ * page is what made the mock sit 100px inside every other screen.
+ */
+export function ReadingMeasure({
+  children,
+  className,
+}: {
+  children: ReactNode
+  className?: string
+}) {
+  return <div className={cn('mx-auto w-full max-w-3xl', className)}>{children}</div>
+}
+
 /** Placeholder for routes whose content lands in a later phase. */
 export function ComingSoon({ note }: { note: string }) {
   return (

@@ -15,6 +15,7 @@ export default function DiagnosticPage() {
   return (
     <PageShell
       description="Fifteen questions — five from each Core subtest — to find where to start. No clock, no hints."
+      wide
     >
       <TimedLauncher
         mode="diagnostic"

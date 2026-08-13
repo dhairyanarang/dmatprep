@@ -38,7 +38,9 @@ export function OptionButton({
       aria-pressed={state === 'selected' || state === 'correct' || state === 'incorrect'}
       aria-label={label}
       className={cn(
-        'relative flex items-center gap-3 rounded-md border p-3 text-left transition-colors',
+        'relative flex items-center gap-3 rounded-md border p-3 text-left transition-colors duration-150',
+        // A press that registers instantly, without the button jumping.
+        !disabled && 'active:translate-y-px',
         'focus-visible:ring-ring focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
         !disabled && 'hover:border-foreground/40 cursor-pointer',
         state === 'idle' && 'border-border',
@@ -53,11 +55,20 @@ export function OptionButton({
     >
       {children}
 
+      {/* The verdict marks arrive rather than appear: after a submission the eye
+          is on the option it chose, and a mark that fades in there is the cue
+          that says look — this is the answer. */}
       {(state === 'correct' || state === 'missed') && (
-        <Check className="text-success-fg absolute top-2 right-2 size-4" aria-hidden />
+        <Check
+          className="text-success-fg motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-75 absolute top-2 right-2 size-4 motion-safe:duration-200"
+          aria-hidden
+        />
       )}
       {state === 'incorrect' && (
-        <X className="text-danger-fg absolute top-2 right-2 size-4" aria-hidden />
+        <X
+          className="text-danger-fg motion-safe:animate-in motion-safe:fade-in-0 motion-safe:zoom-in-75 absolute top-2 right-2 size-4 motion-safe:duration-200"
+          aria-hidden
+        />
       )}
     </button>
   )

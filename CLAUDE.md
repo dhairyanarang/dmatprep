@@ -55,8 +55,15 @@ never as a plausible-sounding guess.
 ## Stack
 
 Next.js 16 (App Router, Turbopack) · React 19 · TypeScript · Tailwind v4 ·
-shadcn/ui as owned source in `components/ui/` · Vercel · GitHub.
-**No backend, database or auth** — progress lives in `localStorage`.
+shadcn/ui as owned source in `components/ui/` · Vercel · GitHub ·
+**Supabase (optional)** for accounts and cross-device progress.
+
+**Guest mode is a supported mode, not a degraded one.** With no Supabase
+environment variables set the app builds and runs exactly as it always has —
+every route static, progress in `localStorage`, and no sign-in affordance
+rendered anywhere. Signing in adds durability across devices and nothing else;
+nothing is ever gated behind it. See `docs/SUPABASE.md` before touching
+`lib/progress/`, `lib/supabase/` or `supabase/migrations/`.
 
 Repo: `github.com/dhairyanarang/dmatprep`, branch `main`. Every route is static;
 nothing needs a server at request time.
@@ -102,6 +109,31 @@ removes it from the production graph. Verify with
 - **All progress access goes through `ProgressStore`.** Only the localStorage adapter may
   touch `window.localStorage`; read through `useProgress()` (built on
   `useSyncExternalStore`) — direct reads cause hydration mismatches.
+- **The local store is the render source, signed in or not.** The cloud layer
+  writes *into* it rather than replacing it, so no component knows where the
+  data came from and answering a question never waits on the network. Writes go
+  local-first and queue in an outbox; every attempt carries a client-minted id
+  and every push is an upsert, so a retry can never count an answer twice.
+- **Aggregates are never stored** — accuracy, readiness and hint rate are always
+  derived from attempts, in both the browser and the cloud read path.
+- **Attempts are immutable.** There is no update policy on the table, and the
+  merge is a set union by id. Rewriting one would change every derived figure.
+- **A reload must never silently cost work.** Mocks keep a restore point and ask
+  before resuming; practice restores itself silently. Session timing is an
+  absolute `stageEndsAt`, never a remaining-seconds counter — a counter is a lie
+  the moment the browser is closed.
+- **Question exposure is tracked per context** — `practice`, `diagnostic`,
+  `mock` — so the pools never consume each other. A question met in the
+  diagnostic is not disqualified from a mock; it is only ranked below fresh
+  material.
+- **The mock runner uses the same `PageContainer` as every other route.** The
+  reading measure is an *inner* constraint (`ReadingMeasure`), never a narrower
+  page — narrowing the page is what made the mock sit 100px inside every other
+  screen.
+- **Motion answers a question or it does not ship** — did my action register,
+  what changed, where did I go, is something being worked on. 150ms for
+  controls, 200ms for panels, and `prefers-reduced-motion` is honoured globally
+  in `app/globals.css` as well as per call site.
 - **Every question stores an `explanation` plus a `distractorNotes` entry for every wrong
   option.** Enforced by the types and re-checked by `verify-bank`.
 - **No question ships unverified.** A solver must confirm a unique solution and all

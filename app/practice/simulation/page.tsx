@@ -15,6 +15,7 @@ export default function SimulationPage() {
   return (
     <PageShell
       description="The three Core subtests back to back, 25 minutes each, in the order the preparatory materials present them."
+      wide
     >
       <TimedLauncher
         mode="simulation"

@@ -62,7 +62,7 @@ export function TileCard({
   const shell = cn(
     'border-border bg-card flex items-start gap-3 rounded-2xl border p-4',
     href &&
-      'group hover:border-brand/40 focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
+      'group hover:border-brand/40 focus-visible:ring-ring transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none',
     className,
   )
 

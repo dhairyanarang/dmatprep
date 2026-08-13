@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Manrope } from 'next/font/google'
 
+import { SyncProvider } from '@/components/auth/sync-provider'
 import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
@@ -52,6 +53,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             </div>
           </div>
           <Toaster />
+          {/* Moves progress between this browser and the cloud. Renders nothing,
+              and does nothing at all for a guest. */}
+          <SyncProvider />
         </TooltipProvider>
 
         {/* Visual feedback toolbar; dev-only, and dropped from production builds. */}
