@@ -229,6 +229,18 @@ could not reach it with a naked single.
 **Module A only** — Figure Sequences, Mathematical Equations, Latin Squares.
 Module B (General Academic Module) is a "coming soon" placeholder; do not build it out.
 
+**Four primary destinations, and no more**: Home, About the Exam, Prepare, Test.
+Review was removed from the public-beta IA — its data model, calculations and
+components all remain, and mistakes now surface at the end of a practice set,
+which is when they are worth looking at. `/review` redirects to Home. Do not
+re-add a fifth destination without evidence that someone asked for it.
+
+**`content/exam/updates.ts` is the only update surface**, and it is a content
+file on purpose: nothing can publish to it except a commit, so there is no path
+by which unverified news reaches a candidate. Every entry carries the official
+source it was fetched from. An empty list renders "No new official updates" —
+never a placeholder.
+
 ## Commands
 
 ```bash

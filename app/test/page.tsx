@@ -1,5 +1,6 @@
 import { Info, TestTubeDiagonal } from 'lucide-react'
 
+import { Recommendation } from '@/components/dashboard/recommendation'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
 import { SectionHeading } from '@/components/layout/section-heading'
@@ -19,11 +20,16 @@ const UNIT: Record<SectionId, string> = {
 
 export default function TestPage() {
   const perSection = getBankSize(SECTIONS[0].id)
+  const bankSizes = Object.fromEntries(
+    SECTIONS.map((s) => [s.id, getBankSize(s.id)]),
+  ) as Record<SectionId, number>
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
       <PageContainer className="flex flex-col gap-7 py-6">
         <PageHeader icon={TestTubeDiagonal} title="Test" description="Practice under the clock." />
+
+        <Recommendation bankSizes={bankSizes} intent="test" />
 
         <SectionHeading title="Module A" meta={`${perSection} questions each`}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">

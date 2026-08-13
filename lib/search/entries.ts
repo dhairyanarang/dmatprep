@@ -60,14 +60,6 @@ const PAGES: SearchEntry[] = [
     group: 'Go to',
   },
   {
-    id: 'review',
-    title: 'Review',
-    description: 'Mistakes and progress',
-    href: '/review',
-    group: 'Go to',
-    keywords: ['readiness', 'accuracy', 'progress'],
-  },
-  {
     id: 'exam',
     title: 'About the Exam',
     description: 'Format, rules and dates',
@@ -145,6 +137,15 @@ const PAGES: SearchEntry[] = [
     href: '/exam/checklist',
     group: 'The exam',
   },
+  {
+    id: 'privacy',
+    title: 'Your data',
+    description: 'What dMAT Prep stores, and where',
+    href: '/privacy',
+    group: 'Go to',
+    keywords: ['privacy', 'account', 'delete', 'data'],
+  },
+
   {
     id: 'exam-sources',
     title: 'Sources',

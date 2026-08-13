@@ -1,7 +1,6 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { RotateCcw } from 'lucide-react'
 
 import { ReadingMeasure } from '@/components/layout/page-shell'
 import { PracticeActionBar } from '@/components/practice/action-bar'
@@ -10,6 +9,7 @@ import { FeedbackPanel } from '@/components/practice/feedback-panel'
 import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
+import { SetComplete } from '@/components/practice/set-complete'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
@@ -101,6 +101,7 @@ function PracticeSession({
   const [selection, setSelection] = useState<Selection>(initialDraft?.selection ?? {})
   const [submitted, setSubmitted] = useState(initialDraft?.submitted ?? false)
   const [hintsUsed, setHintsUsed] = useState(initialDraft?.hintsUsed ?? 0)
+  const [finished, setFinished] = useState(false)
   // Set in an effect, not during render: Date.now() is impure and the React
   // Compiler rejects it in the render path.
   const startedAt = useRef<number>(0)
@@ -156,6 +157,7 @@ function PracticeSession({
   }, [draftKey, pool, index, selection, hintsUsed, submitted, filter, setPracticeDraft])
 
   const advance = useCallback((nextIndex: number) => {
+    setFinished(false)
     setIndex(nextIndex)
     setSelection({})
     setSubmitted(false)
@@ -226,6 +228,20 @@ function PracticeSession({
   const correct = submitted && isCorrect(question, selection)
   const atEnd = index >= pool.length - 1
 
+  if (finished && sectionId) {
+    return (
+      <SetComplete
+        sectionId={sectionId}
+        questions={pool}
+        answered={pool.length}
+        onRestart={() => {
+          clearPracticeDraft(draftKey)
+          advance(0)
+        }}
+      />
+    )
+  }
+
   return (
     <div className="space-y-5">
       {showProgress && sectionId ? (
@@ -278,21 +294,7 @@ function PracticeSession({
 
       <PracticeActionBar
         secondary={
-          submitted ? (
-            atEnd ? (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => {
-                  clearPracticeDraft(draftKey)
-                  advance(0)
-                }}
-              >
-                <RotateCcw className="size-4" aria-hidden />
-                Start again
-              </Button>
-            ) : null
-          ) : (
+          submitted ? null : (
             <>
               {question.hints?.length && hintsUsed === 0 ? (
                 <HintTrigger onReveal={() => setHintsUsed(1)} />
@@ -312,10 +314,10 @@ function PracticeSession({
             <Button onClick={handleSubmit} disabled={!answered}>
               Check answer
             </Button>
+          ) : atEnd ? (
+            <Button onClick={() => setFinished(true)}>Finish this set</Button>
           ) : (
-            <Button onClick={() => advance(index + 1)} disabled={atEnd}>
-              {atEnd ? 'End of this set' : 'Next question'}
-            </Button>
+            <Button onClick={() => advance(index + 1)}>Next question</Button>
           )
         }
       />

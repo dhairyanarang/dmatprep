@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Manrope } from 'next/font/google'
 
+import { AuthNotice } from '@/components/auth/auth-notice'
 import { SyncProvider } from '@/components/auth/sync-provider'
 import { DevAnnotations } from '@/components/dev/annotations'
 
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
             <div className="flex min-w-0 flex-1 flex-col">
               <MobileNav />
               <TopBar />
+              <AuthNotice />
               <main className="flex-1">{children}</main>
             </div>
           </div>

@@ -1,6 +1,5 @@
 import {
   BookOpenCheck,
-  ChartArea,
   Grid3x3,
   LayoutDashboard,
   LayoutGrid,
@@ -41,8 +40,13 @@ export type NavGroup = {
 }
 
 /**
- * Five destinations, in the design's order and wording. Each hub page lists
+ * Four destinations, in the design's order and wording. Each hub page lists
  * what is inside it, so the sidebar never has to grow.
+ *
+ * Review was removed for the public beta. Its data model, its calculations and
+ * its components all stay — mistakes now surface where they are actually
+ * useful, at the end of a practice set, rather than as a fifth place to visit
+ * that answered a question nobody had yet asked.
  */
 export const NAV: NavGroup[] = [
   {
@@ -52,7 +56,6 @@ export const NAV: NavGroup[] = [
       { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
-      { href: '/review', label: 'Review', hint: 'Mistakes and progress', icon: ChartArea },
     ],
   },
 ]
@@ -69,7 +72,6 @@ const OWNS: Record<string, (path: string) => boolean> = {
   '/test': (path) =>
     path.startsWith('/test') ||
     (path.startsWith('/practice') && !path.startsWith('/practice/quick')),
-  '/review': (path) => path.startsWith('/review'),
   '/exam': (path) => path.startsWith('/exam'),
 }
 

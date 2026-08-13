@@ -114,6 +114,14 @@ function SignedIn({
 
       <SyncLine status={status} pending={pending} />
 
+      <a
+        href="/privacy"
+        role="menuitem"
+        className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2"
+      >
+        What we store
+      </a>
+
       <button
         type="button"
         role="menuitem"
@@ -162,6 +170,12 @@ function SignedOut() {
         </p>
       </div>
       <GoogleButton size="sm" />
+      <a
+        href="/privacy"
+        className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2"
+      >
+        What we store
+      </a>
     </div>
   )
 }

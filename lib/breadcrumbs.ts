@@ -24,7 +24,6 @@ const STATIC: Record<string, Crumb[]> = {
   '/': [{ label: 'Home' }],
   '/prepare': [{ label: 'Prepare' }],
   '/test': [{ label: 'Test' }],
-  '/review': [{ label: 'Review' }],
   '/exam': [{ label: 'About the Exam' }],
   '/study-plan': [PREPARE, { label: 'Study plan' }],
   '/practice/quick': [PREPARE, { label: 'Quick practice' }],

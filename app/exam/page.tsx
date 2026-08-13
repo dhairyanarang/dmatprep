@@ -1,5 +1,6 @@
 import { BookOpenCheck } from 'lucide-react'
 
+import { LatestUpdate } from '@/components/exam/latest-update'
 import { StartHere } from '@/components/exam/start-here'
 import { ExamDetailCards } from '@/components/exam/exam-detail-cards'
 import { PageContainer } from '@/components/layout/page-shell'
@@ -21,6 +22,8 @@ export default function ExamPage() {
           title="About the dMAT"
           description="Understand everything about this exam"
         />
+
+        <LatestUpdate />
 
         <section className="flex flex-col gap-2.5">
           <h2 className="text-sm font-medium">Start here</h2>

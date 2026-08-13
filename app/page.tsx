@@ -1,7 +1,10 @@
+import { LayoutDashboard } from 'lucide-react'
+
 import { CountdownCard } from '@/components/dashboard/countdown-card'
 import { NextStep } from '@/components/dashboard/next-step'
 import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
 import { ExamLinks } from '@/components/exam/exam-links'
+import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
 import { FIXED_DATES } from '@/content/exam/key-dates'
 import { getBankSize } from '@/lib/content/registry'
@@ -21,23 +24,35 @@ export default function HomePage() {
   const exam = FIXED_DATES.find((d) => d.id === 'exam-date')!
 
   return (
-    <PageContainer className="flex flex-col gap-6 py-6">
-      <div className="grid gap-4 sm:grid-cols-2">
-        <CountdownCard label="Registration closes" date={registration.date} unit="Days to Register" />
-        <CountdownCard label="Exam day" date={exam.date} unit="Days to the Exam" />
-      </div>
+    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+      <PageContainer className="flex flex-col gap-6 py-6">
+        <PageHeader
+          icon={LayoutDashboard}
+          title="Home"
+          description="View your performance at a glance"
+        />
 
-      <NextStep bankSizes={bankSizes} />
+        <div className="grid gap-4 sm:grid-cols-2">
+          <CountdownCard
+            label="Registration closes"
+            date={registration.date}
+            unit="Days to Register"
+          />
+          <CountdownCard label="Exam day" date={exam.date} unit="Days to the Exam" />
+        </div>
 
-      <section className="flex flex-col gap-2.5">
-        <h2 className="text-sm font-medium">Your Progress</h2>
-        <ProgressSnapshot bankSizes={bankSizes} />
-      </section>
+        <NextStep bankSizes={bankSizes} />
 
-      <section className="flex flex-col gap-2.5">
-        <h2 className="text-sm font-medium">Know about the Exam</h2>
-        <ExamLinks />
-      </section>
-    </PageContainer>
+        <section className="flex flex-col gap-2.5">
+          <h2 className="text-sm font-medium">Your Progress</h2>
+          <ProgressSnapshot bankSizes={bankSizes} />
+        </section>
+
+        <section className="flex flex-col gap-2.5">
+          <h2 className="text-sm font-medium">Know about the Exam</h2>
+          <ExamLinks />
+        </section>
+      </PageContainer>
+    </div>
   )
 }
