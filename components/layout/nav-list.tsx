@@ -36,13 +36,17 @@ export function NavList({ onNavigate }: { onNavigate?: () => void }) {
         }
 
         const active = isActive(pathname, link.href)
+        // Highlighted for the whole branch, but only the exact match is "the
+        // current page" — otherwise this and the breadcrumb both claim it, and
+        // a screen reader is told the page is in two places at once.
+        const isCurrentPage = pathname === link.href
 
         return (
           <Link
             key={link.href}
             href={link.href}
             onClick={onNavigate}
-            aria-current={active ? 'page' : undefined}
+            aria-current={isCurrentPage ? 'page' : undefined}
             className={cn(
               'group relative flex flex-col justify-center gap-0.5 rounded-md px-3 py-2 transition-colors',
               'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',

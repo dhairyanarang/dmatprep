@@ -11,7 +11,7 @@ import { SECTION_ACCENT } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 import { cn } from '@/lib/utils'
 
-export const metadata = { title: 'Format & Structure' }
+export const metadata = { title: 'Format & structure' }
 
 const SCHEDULE: Segment[] = [
   { label: 'Figure Sequences', minutes: 25, tone: 'figures' },
@@ -40,7 +40,7 @@ const UNIT: Record<SectionId, string> = {
 export default function ExamFormatPage() {
   return (
     <PageShell
-      title="Format & Structure"
+      title="Format & structure"
       description="Two modules, four sittings, 195 minutes of scheduled time."
       wide
     >
