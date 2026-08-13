@@ -9,7 +9,7 @@ import { ArrowAffordance } from '@/components/ui/arrow-affordance'
  * places to look, not as six things demanding attention.
  */
 const LINKS = [
-  { href: '/exam/format', label: 'About dMAT', icon: Info },
+  { href: '/exam', label: 'About dMAT', icon: Info },
   { href: '/exam/format', label: 'Format & Structure', icon: LayoutPanelTop },
   { href: '/exam/scoring', label: 'Scoring & Results', icon: Tally5 },
   { href: '/exam/logistics', label: 'Dates and Logistics', icon: Calendar1 },

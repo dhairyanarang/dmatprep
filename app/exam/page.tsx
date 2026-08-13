@@ -1,67 +1,42 @@
-import { HubCard, HubSection } from '@/components/layout/hub'
+import { BookOpenCheck } from 'lucide-react'
+
 import { StartHere } from '@/components/exam/start-here'
-import { PageShell } from '@/components/layout/page-shell'
+import { ExamDetailCards } from '@/components/exam/exam-detail-cards'
+import { PageContainer } from '@/components/layout/page-shell'
+import { PageHeader } from '@/components/layout/page-header'
 import { SOURCES } from '@/content/exam/sources'
 
-export const metadata = { title: 'The exam' }
-
-const PAGES = [
-  {
-    href: '/exam/format',
-    title: 'Format & structure',
-    description: 'The two modules, the three Core subtests, and how the day is timed.',
-  },
-  {
-    href: '/exam/rules',
-    title: 'Exam-day rules',
-    description: 'What you may bring, what counts as exclusion, and what happens if you break a rule.',
-  },
-  {
-    href: '/exam/scoring',
-    title: 'Scoring & results',
-    description: 'The 0–200 scale, the percentile rank, and when the certificate arrives.',
-  },
-  {
-    href: '/exam/logistics',
-    title: 'Dates & logistics',
-    description: 'Deadlines, the fee, test centres, and who the requirement applies to.',
-  },
-  {
-    href: '/exam/checklist',
-    title: 'Pre-exam checklist',
-    description: 'Everything to settle before the day, official requirements kept apart from our advice.',
-  },
-  {
-    href: '/exam/sources',
-    title: 'Sources',
-    description: 'Every factual claim in dMAT Prep, listed against the official document behind it.',
-  },
-]
+export const metadata = { title: 'About the Exam' }
 
 export default function ExamPage() {
   return (
-    <PageShell
-      description="Start with the short answers. Every detail behind them is one click away, with its official source."
-      wide
-    >
-      <div className="space-y-10">
-        <HubSection title="Start here">
-          <StartHere />
-        </HubSection>
+    // The wash is full-bleed across the content area, so it sits outside the
+    // container the way the design has it. Fixed 120px rather than the design's
+    // 14% — a percentage would stretch the gradient down a long page, and this
+    // page is far taller than the frame it was drawn in.
+    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+      <PageContainer className="flex flex-col gap-7 py-6">
+        <PageHeader
+          icon={BookOpenCheck}
+          title="About the dMAT"
+          description="Understand everything about this exam"
+        />
 
-        <HubSection title="In detail">
-          <div className="grid gap-4 sm:grid-cols-2">
-            {PAGES.map((page) => (
-              <HubCard key={page.href} {...page} />
-            ))}
-          </div>
-        </HubSection>
+        <section className="flex flex-col gap-2.5">
+          <h2 className="text-sm font-medium">Start here</h2>
+          <StartHere />
+        </section>
+
+        <section className="flex flex-col gap-2.5">
+          <h2 className="text-sm font-medium">In detail</h2>
+          <ExamDetailCards />
+        </section>
 
         <p className="text-muted-foreground text-xs leading-relaxed">
           Everything here traces to g.a.s.t. or APS India — no third-party guides. Checked against
           the {SOURCES['gam-pdf'].asAt} preparatory materials.
         </p>
-      </div>
-    </PageShell>
+      </PageContainer>
+    </div>
   )
 }

@@ -69,7 +69,7 @@ const PAGES: SearchEntry[] = [
   },
   {
     id: 'exam',
-    title: 'About The Exam',
+    title: 'About the Exam',
     description: 'Format, rules and dates',
     href: '/exam',
     group: 'Go to',

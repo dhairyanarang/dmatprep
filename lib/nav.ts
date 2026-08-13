@@ -46,7 +46,7 @@ export const NAV: NavGroup[] = [
     label: 'dMAT Prep',
     links: [
       { href: '/', label: 'Home', hint: 'What to do next', icon: LayoutDashboard },
-      { href: '/exam', label: 'About The Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
       { href: '/review', label: 'Review', hint: 'Mistakes and progress', icon: ChartArea },

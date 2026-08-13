@@ -31,19 +31,19 @@ export function Disclosure({
     >
       <summary
         className={cn(
-          'flex cursor-pointer list-none items-center gap-2 rounded-2xl px-4 py-3',
+          'flex cursor-pointer list-none items-center gap-2 rounded-2xl p-3',
           'hover:bg-muted/50 focus-visible:ring-ring transition-colors focus-visible:ring-2 focus-visible:outline-none',
           '[&::-webkit-details-marker]:hidden',
         )}
       >
         <ChevronRight
-          className="text-muted-foreground size-4 shrink-0 transition-transform group-open:rotate-90"
+          className="text-muted-foreground size-5 shrink-0 transition-transform group-open:rotate-90"
           aria-hidden
         />
         <span className="flex-1 text-sm font-medium">{summary}</span>
         {hint ? <span className="text-muted-foreground text-xs tabular-nums">{hint}</span> : null}
       </summary>
-      <div className="border-border border-t px-4 py-4">{children}</div>
+      <div className="border-border border-t px-3 py-4">{children}</div>
     </details>
   )
 }
