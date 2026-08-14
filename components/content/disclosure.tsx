@@ -44,7 +44,7 @@ export function Disclosure({
       >
         <ChevronRight
           className={cn(
-            'text-muted-foreground size-5 shrink-0 transition-transform group-open:rotate-90',
+            'text-muted-foreground size-5 shrink-0 transition-transform duration-[var(--duration-control)] ease-out group-open:rotate-90',
             chevron === 'end' && 'order-last',
           )}
           aria-hidden
@@ -52,7 +52,13 @@ export function Disclosure({
         <span className="min-w-0 flex-1 text-sm font-medium">{summary}</span>
         {hint ? <span className="text-muted-foreground text-xs tabular-nums">{hint}</span> : null}
       </summary>
-      <div className="border-border border-t px-3 py-4">{children}</div>
+      {/* Opacity and a 4px lift only. Animating the height of arbitrary content
+          is where disclosures get janky, and the panel is already in flow by the
+          time this runs — so it reads as connected to the chevron without the
+          browser measuring anything. */}
+      <div className="border-border motion-safe:group-open:animate-in motion-safe:group-open:fade-in-0 motion-safe:group-open:slide-in-from-top-1 border-t px-3 py-4 motion-safe:group-open:duration-200">
+        {children}
+      </div>
     </details>
   )
 }

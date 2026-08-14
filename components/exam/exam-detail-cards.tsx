@@ -67,7 +67,7 @@ export function ExamDetailCards() {
           <Link
             key={item.href}
             href={item.href}
-            className="group border-border bg-card hover:border-brand/40 focus-visible:ring-ring flex items-start gap-3 rounded-2xl border p-4 transition-colors focus-visible:ring-2 focus-visible:outline-none"
+            className="group border-border bg-card hover:border-brand/40 focus-visible:ring-ring flex items-start gap-3 rounded-2xl border p-4 transition-[border-color,translate] duration-200 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:outline-none"
           >
             <span aria-hidden className="bg-brand/8 flex shrink-0 items-center rounded-md p-2">
               <Icon className="text-brand size-5" />

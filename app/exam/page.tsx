@@ -16,7 +16,7 @@ export default function ExamPage() {
     // 14% — a percentage would stretch the gradient down a long page, and this
     // page is far taller than the frame it was drawn in.
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="flex flex-col gap-7 py-6">
+      <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
         <PageHeader
           icon={BookOpenCheck}
           title="About the dMAT"

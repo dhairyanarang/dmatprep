@@ -231,13 +231,69 @@
  * changed, where did I go, or is something being worked on. Nothing decorative,
  * and nothing during a timed question that could pull the eye off the task.
  *
- * Two speeds only: 150ms for a control responding to a touch, 200ms for a panel
- * arriving or leaving. Both are below the threshold where an interface starts to
- * feel like it is waiting for you.
+ * Three speeds and one curve:
+ *
+ *   control  120ms  a button, an icon, a hover — fast enough to read as the
+ *                   surface responding rather than as an animation;
+ *   panel    200ms  a card, a disclosure, page content arriving;
+ *   group    300ms  reserved for a whole group moving together, which in
+ *                   practice is only the staggered page entrance.
+ *
+ * The curve is a plain decelerate — no overshoot, no spring. Content that
+ * bounces into place reads as a marketing site; content that slows to a stop
+ * reads as a product.
  */
 @theme inline {
-  --duration-control: 150ms;
+  --duration-control: 120ms;
   --duration-panel: 200ms;
+  --duration-group: 300ms;
+  --ease-out-soft: cubic-bezier(0, 0, 0.2, 1);
+}
+
+@layer utilities {
+  /*
+   * The page entrance: content lifts 8px into place as it fades.
+   *
+   * `both` matters — the element holds the opening frame through its delay and
+   * the closing frame afterwards, so nothing flashes at full opacity before its
+   * turn and nothing is left transparent once it has had it.
+   */
+  @keyframes enter-up {
+    from {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /*
+   * Applied to a page's own container, so the *sections* stagger — header, then
+   * banner, then the first group of cards. Deliberately one level deep: every
+   * heading, icon and paragraph animating in turn is the thing that would make
+   * this feel like a landing page rather than a tool.
+   *
+   * The delay stops climbing after the fourth child. On a long page the fifth
+   * section is usually below the fold anyway, and a visible element should
+   * never be waiting half a second for permission to exist.
+   */
+  .stagger-enter > * {
+    animation: enter-up var(--duration-panel) var(--ease-out-soft) both;
+  }
+  .stagger-enter > *:nth-child(2) {
+    animation-delay: 45ms;
+  }
+  .stagger-enter > *:nth-child(3) {
+    animation-delay: 90ms;
+  }
+  .stagger-enter > *:nth-child(4) {
+    animation-delay: 135ms;
+  }
+  .stagger-enter > *:nth-child(n + 5) {
+    animation-delay: 160ms;
+  }
 }
 
 @layer base {
@@ -257,6 +313,15 @@
       animation-iteration-count: 1 !important;
       transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      /*
+       * Delays have to go too, and this is not a detail. The staggered entrance
+       * holds each section at opacity 0 until its turn; zeroing the duration
+       * without zeroing the delay would leave real content invisible for the
+       * length of the stagger — motion preferences turning into missing content
+       * is the one failure this block exists to prevent.
+       */
+      animation-delay: 0.01ms !important;
+      transition-delay: 0.01ms !important;
     }
   }
 }

@@ -27,7 +27,7 @@ export function ExamLinks() {
             key={item.label}
             href={item.href}
             className={[
-              'group hover:bg-muted/50 focus-visible:ring-ring flex items-center justify-between gap-3 p-6 transition-colors focus-visible:ring-2 focus-visible:outline-none',
+              'group hover:bg-muted/50 focus-visible:ring-ring flex items-center justify-between gap-3 p-6 transition-colors duration-150 ease-out focus-visible:ring-2 focus-visible:outline-none',
               // Interior hairlines only — the block's own border is the outside.
               i % 2 === 0 ? 'sm:border-r' : '',
               i < LINKS.length - 2 ? 'border-b' : 'max-sm:border-b max-sm:last:border-b-0',

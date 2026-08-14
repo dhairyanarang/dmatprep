@@ -111,8 +111,8 @@ export function SearchDialog({
         'backdrop:bg-foreground/20 backdrop:backdrop-blur-[2px]',
         // The palette covers the page, so it says where it came from: a short
         // rise and fade rather than appearing fully formed over the content.
-        'motion-safe:open:animate-in motion-safe:open:fade-in-0 motion-safe:open:zoom-in-95 motion-safe:open:slide-in-from-top-2 motion-safe:open:duration-200',
-        'motion-safe:open:backdrop:animate-in motion-safe:open:backdrop:fade-in-0 motion-safe:open:backdrop:duration-200',
+        'motion-safe:open:animate-in motion-safe:open:fade-in-0 motion-safe:open:zoom-in-95 motion-safe:open:slide-in-from-top-2 motion-safe:open:duration-150',
+        'motion-safe:open:backdrop:animate-in motion-safe:open:backdrop:fade-in-0 motion-safe:open:backdrop:duration-150',
       )}
       onClick={(e) => {
         // Clicking the backdrop (the dialog element itself) dismisses.

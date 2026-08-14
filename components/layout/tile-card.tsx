@@ -62,7 +62,9 @@ export function TileCard({
   const shell = cn(
     'border-border bg-card flex items-start gap-3 rounded-2xl border p-4',
     href &&
-      'group hover:border-brand/40 focus-visible:ring-ring transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none',
+      'group hover:border-brand/40 focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+      // Transform and colour only — nothing here can reflow the grid.
+      'transition-[border-color,translate] duration-200 ease-out hover:-translate-y-0.5',
     className,
   )
 
