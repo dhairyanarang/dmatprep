@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Star } from 'lucide-react'
 import type { ReactNode } from 'react'
 
+import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { cn } from '@/lib/utils'
 
 /**
@@ -36,19 +36,7 @@ export function NextStepCard({
       className={cn('bg-brand relative overflow-hidden rounded-2xl p-5', className)}
       aria-label={eyebrow}
     >
-      {/* Decorative only: the gradient dissolves it into the surface so the text
-          never sits on top of the busy part of the pattern. */}
-      <div aria-hidden className="pointer-events-none absolute inset-y-0 -right-16 w-[451px]">
-        <Image
-          src="/brand/next-step-pattern.png"
-          alt=""
-          fill
-          sizes="451px"
-          className="object-cover opacity-25"
-          priority={false}
-        />
-        <div className="from-brand absolute inset-0 bg-gradient-to-l from-40% to-transparent" />
-      </div>
+      <BrandPattern />
 
       <div className="relative flex flex-col gap-5">
         <p className="text-eyebrow flex items-center gap-2 text-white">

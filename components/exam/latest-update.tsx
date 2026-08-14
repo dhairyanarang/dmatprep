@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, Star } from 'lucide-react'
 
+import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { CATEGORY_LABEL, latestUpdate } from '@/content/exam/updates'
 import { formatDate } from '@/lib/dates/countdown'
 import { useToday } from '@/lib/dates/use-today'
@@ -44,6 +45,8 @@ export function LatestUpdate() {
       aria-label="Latest dMAT updates"
       className="bg-brand relative overflow-hidden rounded-2xl p-5"
     >
+      <BrandPattern />
+
       <div className="relative flex flex-col gap-5">
         <p className="text-eyebrow flex items-center gap-2 text-white">
           <Star className="size-5 shrink-0" aria-hidden />

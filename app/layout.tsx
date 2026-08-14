@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Manrope } from 'next/font/google'
 
+import { Clarity } from '@/components/analytics/clarity'
 import { AuthNotice } from '@/components/auth/auth-notice'
 import { SyncProvider } from '@/components/auth/sync-provider'
 import { DevAnnotations } from '@/components/dev/annotations'
@@ -62,6 +63,10 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
 
         {/* Visual feedback toolbar; dev-only, and dropped from production builds. */}
         <DevAnnotations />
+
+        {/* Behavioural analytics. Renders nothing outside a production
+            deployment, and never identifies anyone. */}
+        <Clarity />
       </body>
     </html>
   )

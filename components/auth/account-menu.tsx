@@ -105,7 +105,9 @@ function SignedIn({
 
   return (
     <div className="flex flex-col gap-3">
-      <div className="min-w-0">
+      {/* Redacted in Clarity session replays — the one place the product puts
+          a real name and email on screen. */}
+      <div className="min-w-0" data-clarity-mask="true">
         <p className="truncate text-sm font-medium">{user.name ?? 'Signed in'}</p>
         {user.email ? (
           <p className="text-muted-foreground truncate text-xs">{user.email}</p>

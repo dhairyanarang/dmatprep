@@ -43,8 +43,25 @@ export default function PrivacyPage() {
             basic profile information.
           </p>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Your records are readable only by your own account. They are never sold, never shared,
-            and never used to train anything.
+            Your practice records are readable only by your own account. They are never sold and
+            never used to train anything.
+          </p>
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-base font-semibold">How we see the site being used</h2>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            We use Microsoft Clarity to understand how people actually move through dMAT Prep —
+            which pages get used, where something is confusing, and what quietly gets in the way.
+            It records how you interact with the pages: clicks, scrolling, and which screens you
+            visit.
+          </p>
+          <p className="text-muted-foreground text-sm leading-relaxed">
+            We never send it your name, email address or account details, and nothing identifies
+            you to it — the one place your email appears on screen is hidden from its recordings.
+            It does capture the pages as you saw them, so a recording of a practice session can
+            show the question in front of you and the option you chose. Blocking third-party
+            scripts in your browser will stop it loading.
           </p>
         </section>
 
