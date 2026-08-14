@@ -28,13 +28,54 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ['latin'],
 })
 
+const SITE_URL = 'https://dmatprep.vercel.app'
+const TITLE = 'dMAT Prep — Prepare smarter for the dMAT'
+const DESCRIPTION =
+  'An independent preparation tool to help candidates learn, practise and simulate the dMAT.'
+
+/**
+ * All site metadata lives here and nowhere else.
+ *
+ * The icon, Apple touch icon and Open Graph image are supplied by the App
+ * Router's file conventions — `icon.png`, `apple-icon.png` and
+ * `opengraph-image.jpeg` beside this file. That is deliberate: those files are
+ * their own source of truth, so Next emits the tags with correct absolute URLs,
+ * dimensions and content types, and there is no second declaration here to
+ * contradict them. Adding `openGraph.images` as well would produce exactly the
+ * duplicate og:image this is written to avoid.
+ *
+ * `metadataBase` is what turns the relative asset paths into the absolute URLs
+ * that WhatsApp, LinkedIn and Facebook require — without it they resolve
+ * against nothing and the preview silently comes back blank.
+ *
+ * The wording is careful and stays that way: dMAT Prep is independent, and
+ * nothing here may imply it is official, endorsed or approved, or that its
+ * questions are real examination material.
+ */
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
-    default: 'dMAT Prep',
+    default: TITLE,
     template: '%s · dMAT Prep',
   },
-  description:
-    'Preparation hub for the dMAT Core Module: reference material, study plan and practice questions.',
+  description: DESCRIPTION,
+  applicationName: 'dMAT Prep',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    siteName: 'dMAT Prep',
+    url: SITE_URL,
+    title: TITLE,
+    description: DESCRIPTION,
+    locale: 'en_GB',
+  },
+  twitter: {
+    // No `images` entry: X falls back to the Open Graph image, so the 429KB
+    // asset is served once rather than declared twice.
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
