@@ -1,0 +1,85 @@
+{
+  "batchId": "b5",
+  "generatorVersion": "3.3.0",
+  "structuralConstraints": {
+    "fingerprint": "see scripts/lib/fingerprint.mjs",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "name": "Production expansion b5 \u2014 Latin Squares +50 (measured capacity)",
+  "section": "latin-squares",
+  "counts": {
+    "low": 13,
+    "medium": 19,
+    "high": 18
+  },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against 75 active items (b1x45, b2x15, b4x15)",
+    "patterns": {
+      "multi-step-deduction": 25,
+      "deep-chain": 25,
+      "one-step-deduction": 18,
+      "direct-column": 3,
+      "row-column-intersection": 3,
+      "direct-row": 1
+    },
+    "depthByTier": {
+      "medium:d3": 20,
+      "low:d2": 18,
+      "high:d7": 9,
+      "high:d6": 9,
+      "low:d1": 7,
+      "high:d5": 7,
+      "medium:d4": 5
+    },
+    "measuredTierCeilings": {
+      "low": 13,
+      "medium": 19,
+      "high": 18,
+      "note": "binary-searched against the current bank; this is the generator's real limit, which is why the target is +50 and not +100"
+    }
+  },
+  "overrepresented": [
+    "targetDistance 0"
+  ],
+  "gaps": [
+    "medium items with prerequisites off the target's lines"
+  ],
+  "mechanics": {
+    "allowed": [
+      "5x5 grid, letters A-E, once per row and column",
+      "exactly one marked cell",
+      "naked single",
+      "pair elimination on a line missing exactly two letters",
+      "prerequisite placements",
+      "deduction depth 1-7"
+    ],
+    "review": [
+      "deduction depth 6-7",
+      "clue density below 0.20"
+    ],
+    "forbidden": [
+      "hidden singles",
+      "any path requiring a guess",
+      "grids where more than one letter completes the target",
+      "invalid row or column structure",
+      "any claim that an item requires Technique B"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "forced placement depth, clue density band, target distance",
+    "low": "depth 1-2, density 0.30-0.60",
+    "medium": "depth 3-4, density 0.20-0.50",
+    "high": "depth 5-7, density 0.20-0.45, must exercise pair elimination"
+  },
+  "distractorConstraints": {
+    "structure": "the four wrong letters are the four that genuinely clash; each note names the exact clashing cell",
+    "requireCaveatForDerivedCells": true
+  },
+  "expectedDistribution": {
+    "low": "13 at depth 1-2 (tier ceiling)",
+    "medium": "19 at depth 3-4 (tier ceiling)",
+    "high": "18 at depth 5-7 (tier ceiling), all exercising pair elimination"
+  }
+}

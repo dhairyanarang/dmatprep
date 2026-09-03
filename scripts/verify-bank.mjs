@@ -2,258 +2,23 @@
 /**
  * Independent re-verification of every committed question.
  *
- * This deliberately re-derives each answer from the data actually in
- * questions.json rather than trusting the generator that produced it: equations
- * are re-parsed from their rendered strings and re-solved, Latin squares are
- * re-propagated, and figure sequences are re-simulated from the first panel.
- * A bank that passes this has been checked, not asserted.
+ * Every check re-derives its answer from the data actually in questions.json
+ * rather than trusting the generator that produced it: equations are re-parsed
+ * from their rendered strings and re-solved exhaustively over 1..20, Latin
+ * squares are re-propagated and their paths strictly replayed, and figure
+ * sequences are re-simulated *and* inverted — the shown matrices must imply
+ * exactly one continuation under the documented mechanics.
+ *
+ * The per-question logic lives in scripts/lib/verify.mjs so that generation runs
+ * the identical checks. A candidate that would fail here can never reach the
+ * bank in the first place.
  */
 import { readFileSync } from 'node:fs'
 
-import { verifyLatinSquare } from './generate/latin-squares.mjs'
-import { parseEquation, satisfies, solveAll } from './lib/equations.mjs'
-import { panelsEqual, simulate } from './lib/figures.mjs'
-
-const SECTIONS = ['figure-sequences', 'mathematical-equations', 'latin-squares']
-const DIFFICULTIES = ['low', 'medium', 'high']
-
-function verifyCommon(q) {
-  const errors = []
-  if (!q.id) errors.push('missing id')
-  if (!DIFFICULTIES.includes(q.difficulty)) errors.push(`bad difficulty: ${q.difficulty}`)
-  if (!q.explanation || q.explanation.trim().length < 20) errors.push('missing or trivial explanation')
-  if (!q.generator?.name) errors.push('missing generator stamp')
-  return errors
-}
-
-/**
- * Hints and the structured walkthrough. Both are optional so that questions
- * predating the Phase 3 upgrade still pass — but anything present must be
- * complete and, for hints, must not give the answer away.
- */
-function verifyLearningAids(q) {
-  const errors = []
-
-  if (q.hints) {
-    const levels = q.hints.map((h) => h.level)
-    if (levels.join(',') !== '1,2,3') errors.push(`hint levels are ${levels.join(',')}, expected 1,2,3`)
-    for (const hint of q.hints) {
-      if (!hint.text || hint.text.trim().length < 15) errors.push(`hint ${hint.level} is too thin`)
-    }
-
-    // Answer leakage. A hint that states the answer is not a hint.
-    const text = q.hints.map((h) => h.text).join(' ')
-    if (q.kind === 'math-equations') {
-      const answer = q.solution[q.asked]
-      if (new RegExp(`(^|[^0-9])${answer}([^0-9]|$)`).test(text)) {
-        errors.push(`a hint contains the answer value ${answer}`)
-      }
-    }
-    if (q.kind === 'latin-square') {
-      if (new RegExp(`\\b${q.correctOptionId}\\b`).test(text)) {
-        errors.push(`a hint names the answer letter ${q.correctOptionId}`)
-      }
-    }
-    if (q.kind === 'figure-sequence' && /\bmatrix\s*[123]\b/i.test(text)) {
-      errors.push('a hint names a specific answer option')
-    }
-  }
-
-  if (q.walkthrough) {
-    const w = q.walkthrough
-    if (!w.keyInsight || w.keyInsight.length < 20) errors.push('walkthrough has no key insight')
-    if (!Array.isArray(w.steps) || w.steps.length < 2) errors.push('walkthrough needs at least two steps')
-    if (!w.answer) errors.push('walkthrough states no answer')
-    if (!w.takeaway || w.takeaway.length < 20) errors.push('walkthrough has no takeaway')
-    for (const step of w.steps ?? []) {
-      if (!step.title || !step.detail) errors.push('a walkthrough step is missing its title or detail')
-    }
-
-    // The stated answer must agree with the key that is actually marked correct.
-    if (q.kind === 'math-equations' && !w.answer.includes(String(q.solution[q.asked]))) {
-      errors.push('walkthrough answer disagrees with the solution')
-    }
-    if (q.kind === 'latin-square' && !w.answer.includes(q.correctOptionId)) {
-      errors.push('walkthrough answer disagrees with correctOptionId')
-    }
-  }
-
-  if (q.meta) {
-    const allowed = ['officially_documented', 'reasonable_extrapolation', 'uncertain']
-    if (!allowed.includes(q.meta.dmatAlignment)) {
-      errors.push(`unknown dmatAlignment: ${q.meta.dmatAlignment}`)
-    }
-    if (q.meta.dmatAlignment === 'uncertain') {
-      errors.push('an item classified `uncertain` must not ship without human review')
-    }
-    if (!Array.isArray(q.meta.patternType) || q.meta.patternType.length === 0) {
-      errors.push('meta.patternType is empty')
-    }
-  }
-
-  return errors
-}
-
-/** Every wrong option must carry a note saying why it is wrong. */
-function verifyDistractorCoverage(q) {
-  const errors = []
-  const notes = q.distractorNotes ?? {}
-
-  const expectKey = (key, label) => {
-    if (!notes[key] || notes[key].trim().length < 10) {
-      errors.push(`no distractor note for ${label}`)
-    }
-  }
-
-  if (q.kind === 'figure-sequence') {
-    for (const image of q.images) {
-      for (const option of image.options) {
-        if (option.id === image.correctOptionId) continue
-        expectKey(`${image.label}:${option.id}`, `${image.label}/${option.id}`)
-      }
-    }
-  } else {
-    for (const option of q.options) {
-      if (option.id === q.correctOptionId) continue
-      expectKey(option.id, option.id)
-    }
-  }
-  return errors
-}
-
-function verifyMathEquations(q) {
-  const errors = []
-  let parsed
-  try {
-    parsed = q.equations.map(parseEquation)
-  } catch (e) {
-    return [`unparseable equation: ${e.message}`]
-  }
-
-  const solutions = solveAll(parsed, q.variables, 2)
-  if (solutions.length === 0) errors.push('system has no solution over 1..20')
-  if (solutions.length > 1) errors.push('system does not have a unique solution')
-
-  if (solutions.length === 1) {
-    for (const name of q.variables) {
-      if (solutions[0][name] !== q.solution[name]) {
-        errors.push(`stored ${name}=${q.solution[name]}, re-solved ${name}=${solutions[0][name]}`)
-      }
-    }
-    const correct = q.options.find((o) => o.id === q.correctOptionId)
-    if (!correct) errors.push('correctOptionId is not among the options')
-    else if (correct.value !== solutions[0][q.asked]) {
-      errors.push(`correct option is ${correct.value}, but ${q.asked} = ${solutions[0][q.asked]}`)
-    }
-  }
-
-  const values = q.options.map((o) => o.value)
-  if (new Set(values).size !== values.length) errors.push('duplicate option values')
-  if (!q.variables.includes(q.asked)) errors.push(`asked letter ${q.asked} is not in the system`)
-
-  // Every stored value must be a legal dMAT value and satisfy every equation.
-  for (const [name, value] of Object.entries(q.solution)) {
-    if (!Number.isInteger(value) || value < 1 || value > 20) {
-      errors.push(`${name} = ${value} is outside the documented 1..20 range`)
-    }
-  }
-  if (!satisfies(parsed, q.solution)) errors.push('stored solution does not satisfy every equation')
-
-  const answer = q.solution[q.asked]
-  if (q.options.filter((o) => o.value === answer).length !== 1) {
-    errors.push('the answer value does not appear on exactly one option')
-  }
-
-  // Distractor notes must open with their own option's value, so a note can
-  // never end up describing a different option.
-  for (const option of q.options) {
-    if (option.id === q.correctOptionId) continue
-    const note = q.distractorNotes[option.id]
-    if (note && !note.startsWith(`${option.value} `)) {
-      errors.push(`note for ${option.id} does not describe the value ${option.value}`)
-    }
-  }
-
-  // Spec §3.4: at most one off-by-one distractor per item.
-  if (q.meta?.distractorTypes) {
-    const offByOne = Object.values(q.meta.distractorTypes).filter((f) => f === 'off-by-one').length
-    if (offByOne > 1) errors.push(`${offByOne} off-by-one distractors; the policy allows one`)
-  }
-
-  return errors
-}
-
-function verifyFigureSequence(q) {
-  const errors = []
-
-  // Rebuild the starting state: panels carry no heading, so it comes from the rule.
-  const symbols = q.given[0].symbols.map((s) => ({
-    ...s,
-    direction: q.rules[s.id]?.movement?.direction ?? null,
-  }))
-
-  const panels = simulate(symbols, q.rules, 6)
-  if (!panels) return ['re-simulation failed: a symbol leaves the grid or two overlap']
-
-  for (let i = 0; i < 4; i++) {
-    if (!panelsEqual(panels[i], q.given[i])) errors.push(`given panel ${i + 1} does not match the rules`)
-  }
-
-  const expected = [panels[4], panels[5]]
-  q.images.forEach((image, i) => {
-    const correct = image.options.find((o) => o.id === image.correctOptionId)
-    if (!correct) {
-      errors.push(`${image.label}: correctOptionId missing from options`)
-      return
-    }
-    if (!panelsEqual(correct.panel, expected[i])) {
-      errors.push(`${image.label}: the marked answer is not the panel the rules produce`)
-    }
-    if (image.options.length !== 3) errors.push(`${image.label}: expected 3 options`)
-
-    // No two options may be identical, or more than one would be defensible.
-    for (let a = 0; a < image.options.length; a++) {
-      for (let b = a + 1; b < image.options.length; b++) {
-        if (panelsEqual(image.options[a].panel, image.options[b].panel)) {
-          errors.push(`${image.label}: options ${a + 1} and ${b + 1} are identical`)
-        }
-      }
-    }
-
-    // And no distractor may also satisfy the rules.
-    for (const option of image.options) {
-      if (option.id === image.correctOptionId) continue
-      if (panelsEqual(option.panel, expected[i])) {
-        errors.push(`${image.label}: distractor ${option.id} is also correct`)
-      }
-    }
-  })
-
-  if (q.given.length !== 4) errors.push(`expected 4 given matrices, found ${q.given.length}`)
-  if (q.images.length !== 2) errors.push(`expected 2 images, found ${q.images.length}`)
-
-  // Official invariants must hold in every panel the candidate ever sees,
-  // including the wrong options: figures cannot disappear, overlap or leave
-  // the matrix (GAM PDF p. 8).
-  const symbolCount = q.given[0].symbols.length
-  if (symbolCount > 3) errors.push(`${symbolCount} symbols; the official exercises never exceed 3`)
-
-  const everyPanel = [...q.given, ...q.images.flatMap((im) => im.options.map((o) => o.panel))]
-  for (const panel of everyPanel) {
-    if (panel.symbols.length !== symbolCount) errors.push('a panel has a different symbol count')
-    const cells = new Set()
-    for (const s of panel.symbols) {
-      if (s.cell.row < 0 || s.cell.row >= q.grid.rows || s.cell.col < 0 || s.cell.col >= q.grid.cols) {
-        errors.push('a symbol sits outside the matrix')
-      }
-      const key = `${s.cell.row},${s.cell.col}`
-      if (cells.has(key)) errors.push('two symbols overlap in a panel')
-      cells.add(key)
-    }
-  }
-
-  return errors
-}
+import { parseEquation, solveAll } from './lib/equations.mjs'
+import { isLegacy, verifyQuestion } from './lib/verify.mjs'
+import { fingerprintFor, MAX_PER_FINGERPRINT } from './lib/fingerprint.mjs'
+import { readRetired, SECTIONS } from './lib/bank.mjs'
 
 /**
  * Before trusting the solver on our own items, prove it reproduces g.a.s.t.'s
@@ -289,8 +54,7 @@ let fixtureFailures = 0
 for (const [i, fixture] of OFFICIAL_FIXTURES.entries()) {
   const solutions = solveAll(fixture.equations.map(parseEquation), fixture.variables, 2)
   const ok =
-    solutions.length === 1 &&
-    fixture.variables.every((v) => solutions[0][v] === fixture.expect[v])
+    solutions.length === 1 && fixture.variables.every((v) => solutions[0][v] === fixture.expect[v])
   if (!ok) {
     fixtureFailures++
     console.error(
@@ -304,6 +68,8 @@ console.log(
 
 let totalFailures = fixtureFailures
 let totalChecked = 0
+let totalWarnings = 0
+const warningLines = []
 
 for (const section of SECTIONS) {
   const path = new URL(`../content/sections/${section}/questions.json`, import.meta.url)
@@ -311,22 +77,37 @@ for (const section of SECTIONS) {
   const ids = new Set()
   const counts = { low: 0, medium: 0, high: 0 }
   let failures = 0
+  let warned = 0
+
+  // An id must never be reused, including by a retired item.
+  const retiredIds = new Set(readRetired(section).map((e) => e.question?.id ?? e.id))
+
+  const fingerprints = new Map()
 
   for (const q of questions) {
     totalChecked++
-    const errors = [
-      ...verifyCommon(q),
-      ...verifyLearningAids(q),
-      ...verifyDistractorCoverage(q),
-      ...(q.kind === 'latin-square' ? verifyLatinSquare(q) : []),
-      ...(q.kind === 'math-equations' ? verifyMathEquations(q) : []),
-      ...(q.kind === 'figure-sequence' ? verifyFigureSequence(q) : []),
-    ]
+    const { errors, warnings } = verifyQuestion(q)
 
     if (ids.has(q.id)) errors.push('duplicate id')
     ids.add(q.id)
+    if (retiredIds.has(q.id)) errors.push(`id ${q.id} is retired and must not be reused`)
     if (q.section !== section) errors.push(`section mismatch: ${q.section}`)
     if (counts[q.difficulty] !== undefined) counts[q.difficulty]++
+
+    // Structural over-concentration is a warning for the legacy bank and an
+    // error for anything the append-only pipeline produced.
+    try {
+      const fp = fingerprintFor(q)
+      const seen = (fingerprints.get(fp.key) ?? []).concat(q.id)
+      fingerprints.set(fp.key, seen)
+      if (seen.length > MAX_PER_FINGERPRINT) {
+        const message = `structural fingerprint shared with ${seen.slice(0, -1).join(', ')} (${fp.readable})`
+        if (isLegacy(q)) warnings.push(message)
+        else errors.push(message)
+      }
+    } catch {
+      /* unfingerprintable kinds simply do not constrain */
+    }
 
     if (errors.length) {
       failures++
@@ -334,11 +115,31 @@ for (const section of SECTIONS) {
       console.error(`✗ ${q.id}`)
       for (const e of errors) console.error(`    ${e}`)
     }
+    if (warnings.length) {
+      warned++
+      totalWarnings += warnings.length
+      warningLines.push(`  ${q.id} [${q.generator?.batchId ?? 'b1'} · generator ${q.generator?.version ?? 'pre-3.0.0'}]`)
+      for (const w of warnings) warningLines.push(`      ${w}`)
+    }
   }
 
-  const summary = `${questions.length} items (low ${counts.low}, medium ${counts.medium}, high ${counts.high})`
-  console.log(`${failures === 0 ? '✓' : '✗'} ${section}: ${summary}${failures ? ` — ${failures} FAILED` : ''}`)
+  const retired = readRetired(section)
+  const summary = `${questions.length} items (low ${counts.low}, medium ${counts.medium}, high ${counts.high})${retired.length ? `, ${retired.length} retired` : ''}`
+  console.log(
+    `${failures === 0 ? '✓' : '✗'} ${section}: ${summary}${failures ? ` — ${failures} FAILED` : ''}${warned ? ` — ${warned} with warnings` : ''}`,
+  )
 }
 
-console.log(`\n${totalChecked} questions checked, ${totalFailures} failed.`)
+if (warningLines.length) {
+  console.log(`\n⚠ ${totalWarnings} warning(s) on items made by superseded generator versions.`)
+  console.log(
+    '  Each is a check added after the item was generated. None of these items is wrong —\n' +
+      '  every answer is correct and uniquely determined — but they carry defects the current\n' +
+      '  gates reject outright, so no newly generated item can repeat them. Listed with the\n' +
+      '  batch and generator version that produced them, so they are not forgotten:\n',
+  )
+  console.log(warningLines.join('\n'))
+}
+
+console.log(`\n${totalChecked} questions checked, ${totalFailures} failed, ${totalWarnings} warnings.`)
 if (totalFailures > 0) process.exit(1)

@@ -1,0 +1,101 @@
+{
+  "batchId": "b4",
+  "generatorVersion": "3.2.0",
+  "counts": {
+    "low": 5,
+    "medium": 5,
+    "high": 5
+  },
+  "structuralConstraints": {
+    "fingerprint": "see scripts/lib/fingerprint.mjs",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "name": "Pilot 2 b4 \u2014 Figure Sequences, 5/5/5 with a four-symbol high target",
+  "section": "figure-sequences",
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against the 58 active items (b1x43, b2x14, b3x1)",
+    "patterns": {
+      "rotation": 41,
+      "colour-cycle": 41,
+      "multiple-symbol": 41,
+      "compound-rule": 41,
+      "boundary-bounce": 35,
+      "boundary-travel": 32,
+      "linear-movement": 23,
+      "diagonal-movement": 21,
+      "direction-cycle": 20,
+      "x-plus-one": 16
+    },
+    "symbolsByTier": {
+      "medium:2": 20,
+      "high:3": 19,
+      "low:1": 17,
+      "medium:3": 2
+    },
+    "observation": "No item anywhere in the bank uses four symbols. Pilot 1 drew none across five high slots; the untargeted yield is roughly one batch in two."
+  },
+  "overrepresented": [
+    "three-symbol high items (every high item in the bank)",
+    "border travel"
+  ],
+  "gaps": [
+    "four-symbol high items \u2014 the official Ex 5 and Ex 6 shape, still absent from the bank"
+  ],
+  "mechanics": {
+    "allowed": [
+      "linear/diagonal at 1 field with bounce-as-reversal",
+      "x+1 on movement or rotation",
+      "border travel cw/ccw at 1, 2 or x+1",
+      "four-step direction cycles",
+      "90 degree rotation either way",
+      "colour cycles of 2 or 3, all visible in the shown matrices",
+      "1 to 4 symbols"
+    ],
+    "review": [
+      "static rotating symbol",
+      "180/270 rotation",
+      "white in a cycle",
+      "rotation on shapes beyond triangle and arrow"
+    ],
+    "forbidden": [
+      "wrap-around or teleportation",
+      "reflection as the correct boundary behaviour",
+      "linear/diagonal above one field per step other than x+1, including in distractors",
+      "disappearing, overlapping or leaving the matrix",
+      "more than 4 symbols",
+      "mid-sequence movement-type switches",
+      "shown matrices admitting more than one legal continuation",
+      "a colour cycle containing a colour never shown",
+      "accelerating colour cycles"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "peak transformation load, measured after simulation",
+    "low": "1 symbol, peakLoad <= 2",
+    "medium": "2-3 symbols, peakLoad == 3",
+    "high": "3-4 symbols, peakLoad >= 4"
+  },
+  "distractorConstraints": {
+    "perImage": "two distinct families, at most one positional nudge, at least one rule-based error",
+    "forbidden": [
+      "two-field linear or diagonal movement"
+    ]
+  },
+  "slotTargets": {
+    "high": [
+      {
+        "symbols": 4
+      },
+      {
+        "symbols": 4
+      }
+    ]
+  },
+  "expectedDistribution": {
+    "low": "5 single-symbol movement-only items",
+    "medium": "5 at peakLoad 3, mixed 2 and 3 symbols",
+    "high": "5 at peakLoad >= 4, at least two using four symbols, x+1 in roughly half"
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "batchId": "b4",
+  "generatorVersion": "3.2.0",
+  "counts": {
+    "low": 5,
+    "medium": 5,
+    "high": 5
+  },
+  "structuralConstraints": {
+    "fingerprint": "see scripts/lib/fingerprint.mjs",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "name": "Pilot 2 b4 \u2014 Latin Squares, 5/5/5",
+  "section": "latin-squares",
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against the 60 active items (b1x45, b2x15)",
+    "patterns": {
+      "multi-step-deduction": 20,
+      "deep-chain": 20,
+      "one-step-deduction": 13,
+      "direct-column": 3,
+      "row-column-intersection": 3,
+      "direct-row": 1
+    },
+    "depthByTier": {
+      "medium:d3": 17,
+      "low:d2": 13,
+      "high:d7": 9,
+      "low:d1": 7,
+      "high:d6": 7,
+      "high:d5": 4,
+      "medium:d4": 3
+    },
+    "targetDistance": {
+      "dist0": 36,
+      "dist2": 9,
+      "dist1": 6,
+      "dist3": 5,
+      "dist4": 4
+    },
+    "observation": "Target distance 0 remains the most common shape. No targeting applied here \u2014 the brief asks for a normal distribution using documented mechanisms only."
+  },
+  "overrepresented": [
+    "targetDistance 0"
+  ],
+  "gaps": [
+    "medium items with prerequisites off the target's lines"
+  ],
+  "mechanics": {
+    "allowed": [
+      "5x5 grid, letters A-E, once per row and column",
+      "exactly one marked cell",
+      "naked single",
+      "pair elimination on a line missing exactly two letters",
+      "prerequisite placements",
+      "deduction depth 1-7"
+    ],
+    "review": [
+      "deduction depth 6-7",
+      "clue density below 0.20"
+    ],
+    "forbidden": [
+      "hidden singles",
+      "any path requiring a guess",
+      "grids where more than one letter completes the target",
+      "invalid row or column structure",
+      "any claim that an item requires Technique B"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "forced placement depth, clue density band, target distance",
+    "low": "depth 1-2, density 0.30-0.60",
+    "medium": "depth 3-4, density 0.20-0.50",
+    "high": "depth 5-7, density 0.20-0.45, must exercise pair elimination"
+  },
+  "distractorConstraints": {
+    "structure": "the four wrong letters are the four that genuinely clash; each note names the exact clashing cell",
+    "requireCaveatForDerivedCells": true
+  },
+  "expectedDistribution": {
+    "low": "5 at depth 1-2",
+    "medium": "5 at depth 3-4",
+    "high": "5 at depth 5-7, all exercising pair elimination"
+  }
+}

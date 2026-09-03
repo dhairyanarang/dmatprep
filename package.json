@@ -7,9 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "generate:questions": "node scripts/generate-all.mjs",
+    "generate:questions": "node scripts/generate-batch.mjs",
     "verify:bank": "node scripts/verify-bank.mjs",
-    "verify:rls": "node scripts/verify-rls.mjs"
+    "verify:rls": "node scripts/verify-rls.mjs",
+    "generate:batch": "node scripts/generate-batch.mjs",
+    "test": "node --test scripts/test/"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

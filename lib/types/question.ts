@@ -10,12 +10,37 @@ export const DIFFICULTY_LABEL: Record<Difficulty, string> = {
   high: 'High',
 }
 
-/** Provenance for a generated item, so a stale bank is obvious. */
+/**
+ * Provenance for a generated item, so a stale bank is obvious — and so a single
+ * question can be reproduced on its own.
+ *
+ * Everything from `batchId` down is absent on the original bank (batch b1),
+ * which predates append-only generation. For anything generated since,
+ * `section + tier + batchId + index + attempt` hashes back to `seed`, and that
+ * seed plus `version` and `config` regenerates the item byte for byte. The
+ * Phase 3 audit found the old three-field stamp insufficient to reproduce
+ * anything smaller than a whole section.
+ */
 export type GeneratorStamp = {
   name: string
   version: string
   /** ISO date the solver last confirmed this item. */
   verifiedAt: string
+  /** `b1` is the original bank; later batches are append-only. */
+  batchId?: string
+  /** 32-bit seed for this item's own RNG stream. */
+  seed?: number
+  /** What `seed` was hashed from — the item's address in the batch. */
+  seedCoordinates?: {
+    section: string
+    tier: Difficulty
+    batchId: string
+    index: number
+    /** Which rejection-sampling attempt was accepted. */
+    attempt: number
+  }
+  /** Generator settings in force for the batch, so a rerun is comparable. */
+  config?: Record<string, unknown>
 }
 
 /**

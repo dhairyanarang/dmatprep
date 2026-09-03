@@ -30,6 +30,7 @@ never as a plausible-sounding guess.
 | Core Module: 3 subtests, each **25 min / 20 items** | GAM PDF pp. 8, 18, 25 |
 | Figure Sequences: **4×4 grid**, 4 matrices shown, predict the **5th and 6th**, **3 options each** | GAM PDF pp. 7–8, 13–16; confirmed visually from the embedded diagrams |
 | Figure rules: colour change; rotation about own axis; vertical/horizontal/diagonal movement; a diagonal mover cannot switch to another movement type; **x+1** acceleration; figures cannot disappear or overlap; at a boundary they **either bounce off or travel along it** | GAM PDF pp. 7–8 |
+| Figure symbol counts per exercise: **1, 1, 2, 3, 4, 4** (Ex 1–6). Ex 4 (medium) has 3; Ex 5 and Ex 6 (high) have **4** | GAM PDF pp. 10–12, counted from the rasterised diagrams |
 | Math Equations: exactly one solution per letter; **each letter is an integer 1–20**; operators `+ − × ÷` | GAM PDF p. 17 |
 | Latin Squares: **5×5**, letters A–E, each once per row and column; only response-row letters may appear | GAM PDF p. 24 |
 | Subject Module: **90 min total**, 4 options, exactly one correct | GAM PDF p. 34 |
@@ -144,6 +145,22 @@ removes it from the production graph. Verify with
   difficulty model. The contract is below.
 - **Latin Squares difficulty is measured, never assigned** — `forcedPlacementDepth`,
   computed by constraint propagation. 1 → low, 2–3 → medium, 4+ → high.
+- **Pair elimination is a faster search, not a stronger technique.** On a
+  two-missing line it is the logical dual of a naked single at the partner cell,
+  so no item can require it — every committed item falls to naked singles alone.
+  Label it, teach it as a shortcut, never claim an item needs it. Do **not** add
+  hidden singles to manufacture a requirement; they are unattested.
+- **A Figure Sequences item must admit exactly one continuation.** The four shown
+  matrices are inverted against the documented rule space
+  (`scripts/lib/fs-inversion.mjs`) at generation and in `verify-bank`. Checking
+  that the stored rule reproduces the marked panel is circular and was how two
+  genuinely ambiguous items shipped. Border travel and linear movement are
+  identical while a symbol runs an edge without turning a corner.
+- **Generation is append-only.** `scripts/generate-batch.mjs` is the only way to
+  add questions; each slot is seeded from its own coordinates. Full-bank
+  regeneration was removed because a quota change rewrote most of the bank under
+  unchanged ids, which corrupts attempt and exposure records. Retired ids
+  (`content/sections/*/retired.json`) are reserved forever and never reassigned.
 - **Figure Sequences renders as SVG from state.** No image assets, ever.
 - **No timers in practice.** Timed mode is a later addition: keep `durationMs` recorded
   and the runner's `timing` prop optional so it stays a drop-in.
@@ -203,9 +220,9 @@ Before generating questions for any section:
 3. Run `node scripts/audit-bank.mjs` to see the **actual** current distribution —
    never assume it from memory.
 4. Identify which patterns are already overrepresented.
-5. **Write a `generation_plan` before generating a batch** (spec §6): count,
-   difficulty split, current coverage, gaps being filled, expected distribution.
-   This is what stops successive batches from re-producing the same easy pattern.
+5. **Write a `generation_plan` before generating a batch** (spec §6) — see
+   `content/question-authoring/GENERATION_PLAN.md`. `generate-batch.mjs` requires
+   `--plan` above 20 items and validates its shape.
 6. Generate only within documented mechanics, preferring underrepresented ones.
 7. Run the solver, prove uniqueness, validate distractors, validate the
    explanation, and **measure** difficulty rather than inheriting the label.
@@ -215,9 +232,9 @@ Difficulty is measured in all three sections, never assigned:
 
 | Section | Metric |
 |---|---|
-| Figure Sequences | transformation load — rules stacked on one symbol, **not** symbol count. Max 3 symbols. |
-| Mathematical Equations | substitution depth to the asked letter, **not** variable count. |
-| Latin Squares | deduction depth × clue density × technique. |
+| Figure Sequences | transformation load — rules stacked on one symbol, **not** symbol count. 1–4 symbols, ranges overlapping across tiers. |
+| Mathematical Equations | substitution depth to the asked letter, **not** letter count. A combining-equation collapse costs one step per definition pushed into it. |
+| Latin Squares | deduction depth × clue density × technique × target distance. |
 
 Both official Latin Squares techniques must stay represented: naked single, and
 line-based pair elimination. Four of the six official solution paths lead with
@@ -247,6 +264,12 @@ never a placeholder.
 npm run dev      # local dev server
 npm run build    # production build (also the type check)
 npm run lint
+npm test         # generator, solver, contract and append-only regression tests
+npm run verify:bank   # re-verify every committed question independently
+
+# Adding questions — append-only, never regenerates:
+node scripts/generate-batch.mjs --batch b2 --section figure-sequences \
+     --low 5 --medium 5 --high 5 [--plan <path>] [--dry-run]
 ```
 
 <!-- BEGIN:nextjs-agent-rules -->

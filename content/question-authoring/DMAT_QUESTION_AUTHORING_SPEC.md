@@ -74,7 +74,7 @@ Verbatim rules (pp. 7–8):
 |---|---|---|
 | Four matrices shown; predict the 5th and 6th | `officially_documented` | p. 7; solutions read "Image 1: Matrix n / Image 2: Matrix n" |
 | Three options per image, two selections per item | `officially_documented` | pp. 13–16 |
-| **4×4 grid** | `reasonable_extrapolation` | Never stated in words. Read from every diagram, from "the four middle fields" (p. 7), and from solutions never naming a row or column past the fourth. |
+| **4×4 grid** | `officially_documented` | Never stated in words, but unambiguous in every diagram — confirmed visually during the Phase 3 audit by rasterising pp. 10-12. Also implied by "the four middle fields" (p. 7). |
 | Vertical / horizontal / diagonal movement | `officially_documented` | p. 7 |
 | A diagonal mover may not switch movement type | `officially_documented` | p. 7 |
 | Travel along the outer boundary | `officially_documented` | p. 8; Ex 3, 5 |
@@ -85,11 +85,13 @@ Verbatim rules (pp. 7–8):
 | Colour cycling, 3 colours | `officially_documented` | Ex 5: "changes its colour from white to pink to yellow, and so on" |
 | x+1 on movement | `officially_documented` | p. 8 rule and its own example; Ex 5 on border travel |
 | x+1 on rotation | `officially_documented` | Ex 6: "always turns x + 1 times to the right by 90 degrees" |
-| **x+1 on colour** | `reasonable_extrapolation` | The p. 8 rule names colour explicitly, but no exercise demonstrates it. |
+| **x+1 on colour** | `reasonable_extrapolation` — **not generated** | The p. 8 rule names colour explicitly, but no exercise demonstrates it, and at the attested cycle lengths the mechanic has no usable form. The colour index runs `p(p+1)/2` = 0,1,3,6,10,15 across the six panels, which is `0,1,0,0,1,0` modulo 3: a **three-colour accelerating cycle never renders its third colour in any panel**, while the explanation still names it. All five such items in batch b1 carry that defect. Two colours reduce to an alternation. Do not generate. |
+| **1 to 4 symbols** | `officially_documented` | Ex 1-2 show 1, Ex 3 shows 2, **Ex 4 shows 3**, **Ex 5 and Ex 6 show 4** — verified visually from the diagrams, pp. 10-12. |
 | Repeating direction cycle | `officially_documented` | Ex 5: "The sequence of directions in which the symbol moves is: down, …"; also the p. 7 instructions example, "moves one field clockwise within the four middle fields" |
 | Figures cannot disappear, overlap, or leave the matrix | `officially_documented` | p. 8 |
 | Border travel at 1 or 2 fields per step | `officially_documented` | Ex 3 ("two squares at a time"), Ex 5 |
-| Linear/diagonal movement at more than one field per step, other than x+1 | **not attested** | Every official linear/diagonal example moves "one field at a time". Do not generate it. |
+| Linear/diagonal movement at more than one field per step, other than x+1 | **not attested** | Every official linear/diagonal example moves "one field at a time". Do not generate it — **including as a distractor**. The Phase 3 audit found 30 of 180 committed distractors showing a two-field linear or diagonal step, which puts a movement on screen that the exam never uses. |
+| A sequence whose four shown matrices admit more than one legal continuation | **forbidden** | Not a mechanic but a property, and the one the old validator could not see. See §2.5. |
 
 #### The boundary question that is genuinely open
 
@@ -108,14 +110,21 @@ flag it for human review.
 transformations onto a single symbol; symbol count rises alongside but never past
 three.
 
+**Symbol counts corrected 3 September 2026.** The table below previously recorded
+Ex 4 as 2 symbols and Ex 5/Ex 6 as 3, and derived from that a hard cap of three
+symbols enforced in the generator and in `verify-bank`. The Phase 3 audit
+rasterised the exercise pages and counted the diagrams directly: **Ex 4 has 3
+symbols and Ex 5 and Ex 6 have 4.** The old cap meant our high tier was built at
+the official *medium* level.
+
 | Official | Symbols | Composition |
 |---|---|---|
 | Ex 1 (low) | 1 | vertical movement + bounce |
 | Ex 2 (low) | 1 | diagonal movement + bounce |
 | Ex 3 (medium) | 2 | **one symbol: border travel + 2-colour cycle + 90° rotation**; one symbol: border travel |
-| Ex 4 (medium) | 2 | one symbol: linear + bounce + rotation |
-| Ex 5 (high) | 3 | border travel **x+1**; linear + rotation + 3-colour cycle; direction cycle |
-| Ex 6 (high) | 3 | diagonal + bounce + **x+1 rotation**; vertical + bounce + rotation |
+| Ex 4 (medium) | **3** | linear + bounce + rotation; direction cycle (left, up, right, down); diagonal + bounce |
+| Ex 5 (high) | **4** | border travel **x+1**; linear + bounce + rotation + 3-colour cycle; direction cycle + rotation + 2-colour cycle; diagonal + bounce |
+| Ex 6 (high) | **4** | diagonal + bounce + **x+1 rotation**; vertical + bounce + rotation; border travel; border travel ×2 + 3-colour cycle |
 
 Score each item on **transformation load** — the number of simultaneous rules the
 candidate must hold — and set difficulty from that, not from the symbol count:
@@ -131,34 +140,76 @@ peakLoad  = max load over the item's symbols
 totalLoad = sum of loads
 ```
 
-| Difficulty | Requirement |
-|---|---|
-| **low** | 1 symbol. `peakLoad ≤ 2`. Movement only, plus its boundary behaviour. No rotation, no colour. |
-| **medium** | 2 symbols. **`peakLoad ≥ 3`** — at least one symbol must stack movement with rotation and/or colour. This is the Ex 3 / Ex 4 standard and it is the tier's defining requirement. |
-| **high** | 3 symbols. `peakLoad ≥ 4` **or** an x+1 rule present. Prefer compound rules over extra symbols. |
+**Symbol count is an independent dimension, not the difficulty lever.** The tiers'
+ranges overlap deliberately, so a 3-symbol item may be medium or high depending on
+what is stacked on its busiest symbol. Before the Phase 3 fixes, symbol count was
+100% determined by tier (low=1, medium=2, high=3 across all 45 items), which is
+precisely what §2.3 forbids — and it made the tier readable off the picture.
+
+| Difficulty | Symbols | Requirement |
+|---|---|---|
+| **low** | 1 | `peakLoad ≤ 2`. Movement only, plus its boundary behaviour. No rotation, no colour. |
+| **medium** | **2-3** | **`peakLoad = 3`** — at least one symbol must stack movement with rotation and/or colour. This is the Ex 3 / Ex 4 standard. |
+| **high** | **3-4** | `peakLoad ≥ 4`. Reachable by accelerating, *or* by stacking movement + rotation + colour on a symbol that also meets a wall. Prefer compound rules over extra symbols. |
 
 **On x+1 and high difficulty.** Both official high exercises use x+1 and neither
 medium one does. That is a calibration observation from two examples, **not a
 documented rule** — the materials nowhere say high items must accelerate. Treat
-x+1 as a strong high-difficulty signal and generate it in the majority of high
-items, but a high item built from a genuinely deep compound rule without x+1 is
-legitimate.
+x+1 as a strong high-difficulty signal, but a high item built from a genuinely
+deep compound rule without x+1 is legitimate. Batch b1 put x+1 in **15 of 15**
+high items, which made the tier guessable; the generator now targets roughly half
+and the `peakLoad ≥ 4` gate is satisfied either way.
 
 ### 2.3 Generation constraints
 
-- **Never exceed 3 symbols.** Four independent symbols add bookkeeping and time
-  cost, not reasoning depth, and exceed anything the official materials show.
+- **Never exceed 4 symbols** — the ceiling the official high exercises reach.
+  Five would exceed anything the material shows.
 - **Never use extra symbols to manufacture difficulty.** If an item is not hard
   enough, stack another transformation onto an existing symbol.
 - Only `triangle` and `arrow` may rotate — a rotating circle or square is
   unanswerable, not difficult.
-- An accelerating colour cycle needs **three** colours; with two, x+1 lands on
-  the same alternation an ordinary cycle produces.
+- **Do not generate accelerating colour cycles at all.** With three colours the
+  third is never rendered (see §2.1); with two the pattern degenerates. The
+  mechanic is `reasonable_extrapolation` and has no usable form at attested
+  lengths.
+- **Every colour in a cycle must be visible in the four shown matrices.** A
+  candidate cannot infer a colour they have never seen; official Ex 5 shows all
+  three of white→pink→yellow within the shown panels.
 - Keep `white` out of colour cycles: it needs a stroke to read on a light panel.
 - Reject any sequence where a symbol visits fewer than 3 distinct cells, where
   two consecutive panels are identical, or where nothing moves.
 - Maintain a spread across movement families. Do not let single-symbol linear
   movement dominate the low tier as it did before this spec existed.
+
+### 2.5 The shown matrices must imply exactly one continuation
+
+This is the property the old validator could not see, and the one that matters
+most. `verify-bank` used to re-simulate the *stored rules* and confirm the marked
+panel matched — which is circular. It can only catch a rule/panel mismatch, never
+an item whose shown panels admit a second legal reading.
+
+The Phase 3 audit inverted the documented rule space over the committed bank and
+found **7 of 45 items admitting more than one legal continuation**, and **2 of
+those offering the alternative reading as a distractor**, marked wrong. Every case
+had one cause:
+
+> **Border travel and linear movement are observationally identical while a
+> symbol runs along an edge without turning a corner.**
+
+`scripts/lib/fs-inversion.mjs` is now the authoritative gate, applied at
+generation *and* in `verify-bank`. For each symbol it enumerates every documented
+movement, rotation and colour rule consistent with the four shown panels and
+requires exactly one surviving continuation. The three aspects evolve
+independently in `stepSymbol`, so the continuation set factorises and each aspect
+is inverted separately — cheap, and it names which aspect is ambiguous.
+
+Rules:
+
+- **More than one legal continuation ⇒ reject the item.** Never pick one
+  arbitrarily, and never use the stored rule to break the tie.
+- Never "fix" ambiguity by changing what the official mechanics allow.
+- The cheap structural predicate — all four shown cells on the perimeter with an
+  unchanging heading — is kept as an early reject, but the inversion is the gate.
 
 ### 2.4 Distractor policy
 
@@ -206,7 +257,14 @@ Verbatim (p. 17):
 | Operators `+ − × ÷`, written with `×` and `÷` | `officially_documented` — observed in every official exercise |
 | Two to four letters | `officially_documented` — Ex 1–2 use two, Ex 3–4 three, Ex 5–6 four |
 | Alternating-sign combining equation (`A − B + C − D = 2`) | `officially_documented` — Ex 5, 6 |
+| Combining equation over a **subset** of the letters (`C + D − A = 1`, leaving B out) | `officially_documented` — Ex 6 |
+| Bare pin (`B = 6`) | `officially_documented` — Example 1 |
+| Two unknowns equal to a constant (`A + C = 8`) | `officially_documented` — Ex 3 |
+| Multiple multiplicative terms (`2 × A + 2 × C = B`) | `officially_documented` — Ex 3 |
+| Compound coefficient plus offset (`3 × C − 1 = B`) | `officially_documented` — Ex 6 |
+| **Star topology** — several letters each defined from one root (`10 × B = C`, `5 × B = A`, `11 + B = D`) | `officially_documented` — Ex 5; Ex 6 is a star on C |
 | **Asking for one letter, with four options** | `reasonable_extrapolation` — the exam is single-choice, but the materials present these exercises with no options at all, and the task text says "find out which numbers must be used for the unknowns" (plural). Keep this flagged `unconfirmed` in the section guide. |
+| Numeric constants above 18 | `reasonable_extrapolation` — no official constant exceeds 18 |
 | Operators beyond `+ − × ÷` | **not attested** — do not generate |
 | Negative or zero values, fractions | **excluded** by the 1–20 integer rule |
 
@@ -232,12 +290,27 @@ Define `reasoningDepth` as the number of substitution steps a competent solver
 must perform *before the asked letter's value is known*:
 
 ```
-1. Find every equation with exactly one unknown; solving one is a step.
+1. Find every equation with exactly one unknown; solving one costs 1.
 2. Substitute known values; repeat.
-3. If no equation has a single unknown, substituting the definitions into a
-   combining equation to collapse it is one step.
-4. reasoningDepth = steps taken when `asked` becomes known.
+3. If no equation has a single unknown, collapsing a combining equation costs
+   1 + (the number of definitions pushed into it).
+4. reasoningDepth = total cost when `asked` becomes known.
 ```
+
+**On step 3.** Collapsing a combining equation is not one move, and costing it as
+one put a three-equation collapse at depth 1 — in the *low* tier. Official Ex 5
+pushes three definitions into `A − B + C − D = 2` and simplifies
+`5B − B + 10B − (11 + B) = 2` before B falls out, and both exercises that work
+this way are graded high. Under the corrected model the six official exercises
+measure: Ex 1 (low) 1-2, Ex 2 (low) 2-3, Ex 3 (medium) 3-5, Ex 4 (medium) 3-5,
+Ex 5 (high) 4-7, Ex 6 (high) 4-7.
+
+**Letter count and depth are independent dimensions.** Batch b1 tied them
+exactly — low=2 letters, medium=3, high=4, in 45/45 items — and every low item
+asked for the root letter, so the whole tier was one template. The generator now
+draws a letter count, builds a system, *measures* the depth of every letter, and
+asks one whose depth lands in the tier's band. Which letter plays the root is
+drawn too, so the asked letter is no longer almost always `A`.
 
 | Difficulty | reasoningDepth | Additional requirement |
 |---|---|---|
@@ -327,14 +400,43 @@ Technique B reasons about *which cell a letter must occupy*; Technique A reasons
 about *which letter a cell must take*. **Four of the six official solution paths
 lead with Technique B.**
 
+#### Technique B is a faster search, not a more powerful one
+
+**Corrected 3 September 2026.** This section previously required the generator to
+build items that "genuinely **require** Technique B — items where no naked single
+is available at the point where the candidate is stuck". That requirement is
+**unsatisfiable**, and not for want of trying.
+
+On a line missing exactly two letters — the only form the official material
+demonstrates — pair elimination is the *logical dual* of a naked single at the
+partner cell. If letter L fits only one of the two open cells, the other cell has
+exactly one remaining candidate, which is a naked single by definition. The
+official examples have exactly this shape:
+
+> "In column β, C and D are missing. C is already in row 4, so D must be inserted
+> in β4. Consequently, C must be inserted in the place of the question mark."
+
+The Phase 3 audit confirmed it empirically: **all 45 committed items and all 145
+in a dry run fall to naked singles alone, in no more rounds than the stored path.**
+25 of the 45 were nonetheless presented as pair-elimination items, with
+walkthroughs telling the candidate that a two-missing line was "the way in".
+
+What Technique B actually is: a **quicker way to find the same placement**. That
+is why four of the six official paths lead with it — spotting a line short of two
+letters is faster than testing cells one at a time. Teach it that way.
+
 Requirements:
 
-- The generator must be able to construct items that genuinely **require**
-  Technique B — items where no naked single is available at the point where the
-  candidate is stuck.
-- A step may only be labelled `pair-elimination` if the solver actually used it.
-  Never label a technique the solver did not need.
+- A step may only be labelled `pair-elimination` if the solver actually took that
+  route. Never label a technique the solver did not use.
+- **Never claim an item requires it.** Walkthrough copy says "a quicker way in",
+  not "the way in".
 - No tier may consist entirely of one technique.
+- **Do not introduce hidden singles** (a letter with one possible cell in a line
+  missing three or more) to manufacture a genuine requirement. That technique is
+  not demonstrated anywhere in the official material, and reaching for it to
+  satisfy a spec requirement would be exactly the unsupported-mechanic drift this
+  document exists to prevent.
 
 ### 4.3 Difficulty model
 
@@ -357,6 +459,11 @@ Official calibration: Example 2 (low) is a direct read; Exercise 1 (low) needs
 one prerequisite; Exercise 6 (high) lists roughly six sequential placements. A
 depth of 7 is the ceiling — beyond that the chain stops being holdable without
 notes, which the exam forbids.
+
+**`targetDistance` is a generation constraint, not just a statistic.** It was
+defined here from the start but never constrained on, so batch b1's entire low
+tier and 11 of 15 medium items had *every* prerequisite sitting on the target's
+own lines. It is now part of the structural fingerprint.
 
 **Clue-density control.** A depth-1 item with 4 givens and a depth-1 item with 21
 givens are not the same task: one has its relevant cells alone on an empty grid,
@@ -394,7 +501,10 @@ Required order, for every item, with no step skippable:
 4. uniqueness       prove exactly one answer exists
                     ME: exhaustive search over 1..20
                     LS: exhaustive completion count per candidate letter
-                    FS: exactly one option panel matches the simulated result
+                    FS: rule-space inversion — the four shown matrices must
+                        admit exactly one legal continuation (§2.5). Checking
+                        that one option panel matches the simulated result is
+                        NOT sufficient; that is the circular check.
 5. distractors      every wrong option has a named error family and a note;
                     no distractor is also correct; no two options identical
 6. explanation      re-derive the stated solution path and compare
@@ -404,8 +514,21 @@ Required order, for every item, with no step skippable:
 ```
 
 `npm run verify:bank` re-runs steps 2–7 against the committed JSON, re-parsing
-rendered equation strings and re-simulating figure panels rather than trusting
+rendered equation strings, re-propagating and strictly replaying Latin-square
+paths, and re-simulating *and inverting* figure panels rather than trusting
 in-memory state. A bank that passes has been checked, not asserted.
+
+The per-question checks live in `scripts/lib/verify.mjs` and are called by both
+`verify-bank` and the generator, so a candidate that would fail the bank check can
+never reach the bank. Generation and verification cannot drift apart.
+
+**Generation is append-only.** `scripts/generate-batch.mjs` is the only supported
+way to add questions. Each slot is seeded from
+`hash(generator, section, tier, batchId, index, attempt)`, so enlarging a batch
+adds slots without perturbing earlier ones, and a new batch cannot touch an older
+one. Full-bank regeneration has been removed: it mutated 34/45, 36/45 and 40/45
+items under their existing ids when a quota changed, which silently corrupts the
+attempt and exposure records keyed to those ids.
 
 ---
 
@@ -467,3 +590,126 @@ target.
 
 Hints are validated mechanically: `verify-bank` fails any item whose hint text
 contains the answer value or the answer letter as a standalone token.
+
+---
+
+## 9. The mechanics contract
+
+Added 3 September 2026, from the Phase 3 audit. This is the gate every generated
+question passes through. It is mirrored in machine-readable form in
+`scripts/lib/contract.mjs`, and enforced at generation and in `verify-bank`.
+
+**A generator must be structurally incapable of producing a FORBIDDEN mechanic.**
+Not discouraged from it — incapable. Where a check cannot be structural, it is a
+hard error in the shared verifier, which generation also runs.
+
+### Figure Sequences
+
+**ALLOWED** — generate freely.
+
+- Linear and diagonal movement at one field per step, with bounce-as-reversal
+- x+1 on movement or rotation
+- Border travel, clockwise or counter-clockwise, at 1, 2 or x+1 fields
+- Four-step repeating direction cycles
+- Rotation of 90°, either direction
+- Colour cycles of 2 or 3 colours, every colour visible in the shown matrices
+- **1 to 4 symbols**
+
+**REVIEW REQUIRED** — label `reasonable_extrapolation`, sign off per batch.
+
+- A static symbol that only rotates (Ex 3 and Ex 6 each carry a rotation clause
+  with no movement clause; the reading is genuinely ambiguous from the text)
+- 180° / 270° rotation
+- `white` in a colour cycle — documented in Ex 5, excluded only for legibility
+- Rotation on shapes beyond triangle and arrow
+
+**FORBIDDEN.**
+
+- Wrap-around or teleportation
+- Billiard reflection as the *correct* boundary behaviour (fine as a distractor)
+- Linear or diagonal movement above one field per step other than x+1 —
+  **including in distractors**
+- Figures disappearing, overlapping, or leaving the matrix
+- More than 4 symbols
+- A mid-sequence switch from one movement type to another
+- **Shown matrices admitting more than one legal continuation** (§2.5)
+- A colour cycle containing a colour never shown in the four given matrices
+- Accelerating colour cycles — REVIEW-class in principle, but with no usable form
+  at attested cycle lengths (§2.1)
+
+### Mathematical Equations
+
+**ALLOWED.**
+
+- Integer letter values in 1..20, exactly one solution per letter
+- Operators `+ − × ÷` only
+- 2 to 4 letters
+- Chain, star and mixed definition topologies
+- Bare pins (`B = 6`), operated pins (`7 + A = 14`)
+- Linear, multiplicative and compound definitions (`3 × C − 1 = B`)
+- Two unknowns equal to a constant (`A + C = 8`)
+- Multiple multiplicative terms (`2 × A + 2 × C = B`)
+- Combining equations over all letters *or a subset*
+
+**REVIEW REQUIRED.**
+
+- Numeric constants above 18
+- The one-letter/four-option question format — Example 1 does ask for a single
+  letter, so the *asking* is documented; the four-option presentation is not.
+  Keep it flagged `unconfirmed` in the section guide.
+
+**FORBIDDEN.**
+
+- Operators beyond `+ − × ÷`
+- Quadratic or higher-power terms, including a letter multiplied by a letter
+- Non-integer, zero or negative letter values; anything outside 1..20
+- Systems without exactly one solution
+- An `inverted-operation` distractor note blaming an operator the system does not
+  contain
+- A level-2 hint quoting an equation that contains only the asked letter
+
+### Latin Squares
+
+**ALLOWED.**
+
+- 5×5 grid, letters A–E, each once per row and column
+- Exactly one marked cell
+- Naked single (Technique A)
+- Pair elimination on a line missing exactly two letters (Technique B)
+- Prerequisite placements before the target
+- Deduction depth 1–7
+
+**REVIEW REQUIRED.**
+
+- Deduction depth 6–7 — beyond that the chain stops being holdable without notes,
+  which the exam forbids
+- Clue density below 0.20
+
+**FORBIDDEN.**
+
+- Hidden singles — a letter with one possible cell in a line missing three or
+  more. Not demonstrated anywhere in the official material
+- Any path requiring a guess or trial and error
+- Grids where more than one letter completes the target
+- Invalid row or column structure
+- Any claim that an item *requires* Technique B (§4.2)
+
+---
+
+## 10. Batch acceptance criteria
+
+Every batch is checked against these before it is committed. They are the
+standing bar; a batch that misses one is not shipped with a note, it is fixed.
+
+| Criterion | Gate |
+|---|---|
+| **Content fidelity** | 100% of mechanics ALLOWED, or REVIEW with sign-off. Zero FORBIDDEN, enforced structurally. |
+| **Correctness** | 100% independently verified. ME exhaustive over 1..20; LS exhaustive completion at the target plus strict path replay; FS rule-space inversion. |
+| **Validity** | Official invariants hold in every panel the candidate sees, distractors included. |
+| **Uniqueness** | 0 exact duplicates; ≤2 items per structural fingerprint across the whole bank; symmetry-equivalent figure items collide. |
+| **Difficulty** | Measured, never inherited. Symbol count and letter count must not be readable off the tier. |
+| **Diversity** | Every ALLOWED mechanic represented; no family above its cap. |
+| **Explanations** | Re-derived and compared; every claim true of *that* item. |
+| **Hints** | Three levels, no answer value or letter, and no level-2 hint one step from the answer. |
+| **Walkthroughs** | Independently reflect the solution; no technique claimed that the item does not need. |
+| **Reproducibility** | Same coordinates → identical output; per-item seed recorded; **existing items byte-identical after the batch**. |

@@ -8,8 +8,14 @@
  *
  * Difficulty is *transformation load*, not symbol count. The official exercises
  * escalate by stacking rules onto one symbol — Exercise 3 (medium) has a symbol
- * carrying border travel, a colour alternation and a rotation at once — and
- * never exceed three symbols. See DMAT_QUESTION_AUTHORING_SPEC.md §2.2.
+ * carrying border travel, a colour alternation and a rotation at once — and run
+ * to four symbols at the high tier (Ex 5, Ex 6). Symbol count is an independent
+ * dimension with overlapping ranges per tier, so it can no longer be read off
+ * the label. See DMAT_QUESTION_AUTHORING_SPEC.md §2.2.
+ *
+ * Every item must pass the rule-space disambiguation gate: the four shown
+ * matrices have to imply exactly one continuation under the documented
+ * mechanics. See scripts/lib/fs-inversion.mjs.
  */
 import {
   COLOURS,
@@ -21,9 +27,25 @@ import {
   simulateStates,
   stepSymbol,
 } from '../lib/figures.mjs'
-import { VERIFIED_AT, pick, randInt, shuffle } from '../lib/rng.mjs'
+import { generateBatch } from '../lib/batch.mjs'
+import { disambiguationErrors } from '../lib/fs-inversion.mjs'
+import { pick, randInt, shuffle } from '../lib/rng.mjs'
 
-const GENERATOR = { name: 'figure-sequences', version: '2.0.0', verifiedAt: VERIFIED_AT }
+export const GENERATOR_NAME = 'figure-sequences'
+/**
+ * 3.0.0 — Phase 3 fixes: rule-space disambiguation gate, symbol count decoupled
+ * from difficulty and raised to 4, accelerating colour cycles dropped, no
+ * unattested two-field linear/diagonal distractors.
+ *
+ * 3.1.0 — Phase 5 pilot fixes: explanations describe the heading the candidate
+ * actually observes rather than the pre-bounce internal heading, and every image
+ * must offer two distinct distractor families with at most one positional nudge.
+ *
+ * 3.2.0 — a generation plan may set a per-slot symbol-count target, so the
+ * four-symbol high shape (official Ex 5, Ex 6) is exercised deliberately instead
+ * of by a ~10% draw. Targets steer construction only; every gate is unchanged.
+ */
+export const GENERATOR_VERSION = '3.2.0'
 
 /** Only shapes whose orientation is visible may rotate. */
 const ROTATABLE = ['triangle', 'arrow']
@@ -53,25 +75,65 @@ function loadOf(rule, bounced) {
   )
 }
 
-/** How each tier is composed. `extras` = how many of {rotation, colour} to add. */
-const PLANS = {
-  low: () => [{ extras: 0, accel: false }],
-  medium: (rng) =>
-    shuffle(rng, [
-      { extras: 2, accel: false },
-      { extras: rng() < 0.5 ? 1 : 0, accel: false },
-    ]),
-  high: (rng) =>
-    shuffle(rng, [
-      { extras: 2, accel: true },
-      { extras: 1, accel: rng() < 0.4 },
-      { extras: rng() < 0.6 ? 1 : 0, accel: false },
-    ]),
+/**
+ * Symbol count is an independent generation dimension, not the difficulty lever.
+ *
+ * The Phase 3 audit found symbol count was 100% determined by tier (low=1,
+ * medium=2, high=3) — exactly what spec §2.3 forbids — and that the ceiling was
+ * one symbol too low: official Exercise 4 (medium) shows 3 symbols and Exercises
+ * 5 and 6 (high) show 4, verified visually from the diagrams on pp. 10-12.
+ *
+ * Difficulty is now carried by transformation load, measured after simulation.
+ * The ranges overlap on purpose, so a 3-symbol item may be medium or high
+ * depending on how much is stacked on its busiest symbol.
+ */
+const SYMBOL_RANGE = { low: [1, 1], medium: [2, 3], high: [3, 4] }
+
+/**
+ * How a tier is composed. `extras` = how many of {rotation, colour} to stack.
+ *
+ * x+1 is deliberately *not* universal in the high tier. Both official high
+ * exercises use it, but spec §2.2 is explicit that this is a calibration
+ * observation from two examples and "**not** a documented rule" — a high item
+ * built from a genuinely deep compound rule without acceleration is legitimate.
+ * The old generator put it in 15/15 high items, making the tier guessable.
+ */
+function makePlans(rng, difficulty, target = null) {
+  const [min, max] = SYMBOL_RANGE[difficulty]
+  // A plan may ask a slot for a particular symbol count, to guarantee that the
+  // official four-symbol high shape (Ex 5, Ex 6) is actually exercised rather
+  // than left to a ~10% draw. Still bounded by the tier's range.
+  const count =
+    target?.symbols && target.symbols >= min && target.symbols <= max
+      ? target.symbols
+      : randInt(rng, min, max)
+
+  if (difficulty === 'low') return [{ extras: 0, accel: false, wantBounce: false }]
+
+  if (difficulty === 'medium') {
+    // At least one symbol must stack movement with rotation and/or colour, which
+    // is what makes peakLoad >= 3 reachable. This is the Ex 3 / Ex 4 standard.
+    const plans = [{ extras: 2, accel: false, wantBounce: false }]
+    while (plans.length < count) plans.push({ extras: rng() < 0.5 ? 1 : 0, accel: false, wantBounce: false })
+    return shuffle(rng, plans)
+  }
+
+  // High needs peakLoad >= 4, reachable either by accelerating or by stacking
+  // movement + rotation + colour on a symbol that also interacts with a wall.
+  const accelerate = rng() < 0.6
+  const plans = [{ extras: 2, accel: accelerate, wantBounce: !accelerate }]
+  while (plans.length < count) {
+    plans.push({ extras: rng() < 0.6 ? 1 : 0, accel: accelerate && rng() < 0.3, wantBounce: false })
+  }
+  return shuffle(rng, plans)
 }
 
-function makeMovement(rng, difficulty, wantAccel) {
-  const kinds =
-    difficulty === 'low'
+function makeMovement(rng, difficulty, wantAccel, wantBounce = false) {
+  // Only linear and diagonal movers can meet a wall and reverse, so a plan that
+  // needs a boundary interaction to reach its load target must pick one.
+  const kinds = wantBounce
+    ? ['linear', 'diagonal']
+    : difficulty === 'low'
       ? ['linear', 'linear', 'diagonal', 'border', 'direction-cycle']
       : ['linear', 'diagonal', 'border', 'direction-cycle']
   const kind = pick(rng, kinds)
@@ -143,7 +205,7 @@ function makeSymbol(rng, id, difficulty, plan, usedShapes) {
   usedShapes.add(shape)
 
   const canRotate = ROTATABLE.includes(shape)
-  const { movement, cell, direction } = makeMovement(rng, difficulty, plan.accel)
+  const { movement, cell, direction } = makeMovement(rng, difficulty, plan.accel, plan.wantBounce)
   if (movement.type === 'border' && !onRing(cell)) return null
 
   const rotate = wantsRotation && canRotate
@@ -157,15 +219,20 @@ function makeSymbol(rng, id, difficulty, plan, usedShapes) {
     : { type: 'none' }
 
   // Colour makes up the remaining extras.
+  //
+  // Never accelerating. The colour index runs p(p+1)/2 = 0,1,3,6,10,15 across the
+  // six panels, which is 0,1,0,0,1,0 modulo 3 — so a three-colour accelerating
+  // cycle never renders its third colour in any panel, while the explanation
+  // still names it. Two colours reduce to an alternation. x+1 on colour is only
+  // `reasonable_extrapolation` in the first place (p. 8 names colour in the rule;
+  // no exercise demonstrates it), so at the attested cycle lengths the mechanic
+  // has no usable form. See scripts/lib/contract.mjs.
   const wantColour = plan.extras - (rotate ? 1 : 0) > 0
-  const accelColour = wantColour && plan.accel && !rotation.accelerating && rng() < 0.35
   const colour = wantColour
     ? {
         type: 'cycle',
-        // An accelerating cycle needs three colours: with two, x+1 lands on the
-        // same alternation an ordinary cycle would give.
-        colours: shuffle(rng, CYCLE_COLOURS).slice(0, accelColour || rng() < 0.5 ? 3 : 2),
-        accelerating: accelColour,
+        colours: shuffle(rng, CYCLE_COLOURS).slice(0, rng() < 0.5 ? 3 : 2),
+        accelerating: false,
       }
     : { type: 'constant' }
 
@@ -198,6 +265,12 @@ function perturbRule(rule, family) {
     case 'movement-step': {
       if (move.type === 'direction-cycle') return null
       if (move.step === 'x+1') return null
+      // Only border travel is attested above one field per step ("two squares at
+      // a time", Ex 3). Perturbing a one-field linear or diagonal mover into a
+      // two-field one puts a movement on screen that the exam never shows — the
+      // audit counted 30 of 180 committed distractors doing this. A wrong option
+      // should still be built from documented mechanics.
+      if (move.type !== 'border') return null
       const step = move.step === 1 ? 2 : move.step - 1
       return { ...rule, movement: { ...move, step } }
     }
@@ -315,9 +388,9 @@ const NOTE = {
     `The ${shape} has moved by a constant amount. This sequence accelerates by x + 1, so each transition is one field longer than the last.`,
 }
 
-function makeDistractor(rng, states, rules, panelIndex, correctPanel, taken) {
+function makeDistractor(rng, states, rules, panelIndex, correctPanel, taken, exclude = new Set()) {
   const previous = states[panelIndex - 1]
-  const order = shuffle(rng, FAMILIES)
+  const order = shuffle(rng, FAMILIES).filter((f) => !exclude.has(f))
   const symbolOrder = shuffle(rng, previous.map((s) => s.id))
 
   for (const family of order) {
@@ -402,14 +475,26 @@ function buildImage(rng, label, panelIndex, panels, states, rules) {
   const correctPanel = panels[panelIndex]
   const distractors = []
 
-  for (let i = 0; i < 2; i++) {
-    const taken = [correctPanel, ...distractors]
-    const d =
-      makeDistractor(rng, states, rules, panelIndex, correctPanel, taken) ??
-      nudgeDistractor(rng, correctPanel, panels[panelIndex - 1], taken)
-    if (!d) return null
-    distractors.push(d)
-  }
+  // Spec §2.4, tightened per image after the Phase 5 pilot.
+  //
+  // The old loop only required two distinct families across the *item*, so an
+  // image could offer two arbitrary `position` nudges — neither encoding a
+  // nameable error — as long as the other image supplied variety. Two of the 30
+  // pilot images did exactly that. Now: the first wrong panel must be a real
+  // rule-based misreading, and the second must be a *different* family, with the
+  // positional nudge available only as the second option and only when no other
+  // rule-based error fits (which the spec permits: a single-symbol linear mover
+  // genuinely affords just one family).
+  const first = makeDistractor(rng, states, rules, panelIndex, correctPanel, [correctPanel])
+  if (!first) return null
+  distractors.push(first)
+
+  const taken = [correctPanel, first]
+  const second =
+    makeDistractor(rng, states, rules, panelIndex, correctPanel, taken, new Set([first.family])) ??
+    nudgeDistractor(rng, correctPanel, panels[panelIndex - 1], taken)
+  if (!second || second.family === first.family) return null
+  distractors.push(second)
 
   const ordered = shuffle(rng, [
     { panel: correctPanel, correct: true },
@@ -439,7 +524,7 @@ function aspectsOf(rule) {
   return list
 }
 
-function buildWalkthrough(symbols, rules, panels, bouncedBy) {
+function buildWalkthrough(symbols, rules, panels, bouncedBy, observedDirection = {}) {
   const steps = []
   const multi = symbols.length > 1
 
@@ -463,7 +548,11 @@ function buildWalkthrough(symbols, rules, panels, bouncedBy) {
 
     steps.push({
       title: `How the ${symbol.shape} moves`,
-      detail: describeRule(symbol, { ...rule, rotation: { type: 'none' }, colour: { type: 'constant' } }),
+      detail: describeRule(
+        symbol,
+        { ...rule, rotation: { type: 'none' }, colour: { type: 'constant' } },
+        observedDirection[symbol.id],
+      ),
       visual: { type: 'fs-aspect', symbolId: symbol.id, aspect: 'movement', panels: [0, 1, 2, 3] },
     })
 
@@ -550,8 +639,8 @@ function buildHints(symbols, rules, bouncedBy) {
 
 /* ---------------------------------------------------------------- assembly */
 
-function buildQuestion(rng, index, difficulty) {
-  const plans = PLANS[difficulty](rng)
+export function buildFigureSequence(rng, difficulty, ctx = {}) {
+  const plans = makePlans(rng, difficulty, ctx.target)
 
   const symbols = []
   const rules = {}
@@ -610,9 +699,19 @@ function buildQuestion(rng, index, difficulty) {
     return r.movement.step === 'x+1' || r.rotation.accelerating || r.colour.accelerating
   })
 
-  if (difficulty === 'low' && (symbols.length !== 1 || peakLoad > 2)) return null
-  if (difficulty === 'medium' && (symbols.length !== 2 || peakLoad < 3)) return null
-  if (difficulty === 'high' && (symbols.length !== 3 || (peakLoad < 4 && !accelerates))) return null
+  // Difficulty gates are on measured load. Symbol count only has to sit inside
+  // the tier's (overlapping) range — it is no longer the thing being tested.
+  const [minSymbols, maxSymbols] = SYMBOL_RANGE[difficulty]
+  if (symbols.length < minSymbols || symbols.length > maxSymbols) return null
+  if (difficulty === 'low' && peakLoad > 2) return null
+  if (difficulty === 'medium' && (peakLoad < 3 || peakLoad >= 4)) return null
+  if (difficulty === 'high' && peakLoad < 4) return null
+
+  // The shown matrices must imply exactly one continuation. This is the
+  // authoritative gate: it asks what the candidate is actually asked, rather
+  // than re-confirming that our own stored rule produces our own stored answer.
+  // Run before the expensive distractor construction.
+  if (disambiguationErrors(panels.slice(0, 4), rules).length > 0) return null
 
   const image1 = buildImage(rng, 'image1', 4, panels, states, rules)
   if (!image1) return null
@@ -625,7 +724,19 @@ function buildQuestion(rng, index, difficulty) {
   const distinct = new Set(Object.values(families))
   if (distinct.size < 2 && peakLoad > 1) return null
 
-  const ruleText = symbols.map((s) => describeRule(s, rules[s.id])).join(' ')
+  // The heading the candidate actually sees, which is not the stored heading when
+  // a symbol starts against a boundary and reverses before matrix 1 is drawn.
+  const observedDirection = {}
+  for (const symbol of symbols) {
+    const a = panels[0].symbols.find((x) => x.id === symbol.id).cell
+    const b = panels[1].symbols.find((x) => x.id === symbol.id).cell
+    const dr = Math.sign(b.row - a.row)
+    const dc = Math.sign(b.col - a.col)
+    observedDirection[symbol.id] =
+      dr && dc ? `${dr < 0 ? 'up' : 'down'}-${dc < 0 ? 'left' : 'right'}` : dr ? (dr < 0 ? 'up' : 'down') : dc ? (dc < 0 ? 'left' : 'right') : null
+  }
+
+  const ruleText = symbols.map((s) => describeRule(s, rules[s.id], observedDirection[s.id])).join(' ')
   const explanation = `${ruleText} Continuing that from the fourth matrix gives the fifth matrix with ${panels[4].symbols
     .map((s) => `the ${s.shape} at ${cellName(s.cell)}`)
     .join(', ')}, and the sixth with ${panels[5].symbols
@@ -645,10 +756,7 @@ function buildQuestion(rng, index, difficulty) {
     ]),
   ]
 
-  const usesAcceleratedColour = symbols.some((s) => rules[s.id].colour.accelerating)
-
   return {
-    id: `fs-${difficulty}-${String(index).padStart(3, '0')}`,
     kind: 'figure-sequence',
     section: 'figure-sequences',
     difficulty,
@@ -659,54 +767,37 @@ function buildQuestion(rng, index, difficulty) {
     explanation,
     distractorNotes: { ...image1.notes, ...image2.notes },
     hints: buildHints(symbols, rules, bouncedBy),
-    walkthrough: buildWalkthrough(symbols, rules, panels, bouncedBy),
+    walkthrough: buildWalkthrough(symbols, rules, panels, bouncedBy, observedDirection),
     meta: {
       patternType,
       skill: peakLoad >= 3 ? 'reading stacked transformations on one symbol' : 'reading a single transformation',
-      // The p.8 rule names colour explicitly, but no official exercise shows an
-      // accelerating colour cycle — so those items are extrapolative.
-      dmatAlignment: usesAcceleratedColour ? 'reasonable_extrapolation' : 'officially_documented',
+      // Every mechanic the generator can now emit is officially documented:
+      // accelerating colour cycles were the only extrapolative one and they are
+      // no longer produced (see makeSymbol).
+      dmatAlignment: 'officially_documented',
       reasoningDepth: totalLoad,
       distractorTypes: families,
       generationNotes: `${symbols.length} symbol(s), peak transformation load ${peakLoad}, total ${totalLoad}${accelerates ? ', accelerating' : ''}`,
     },
-    generator: GENERATOR,
   }
 }
 
-export function generateFigureSequences(rng, quotas = { low: 12, medium: 18, high: 15 }) {
-  const out = []
-
-  for (const [difficulty, count] of Object.entries(quotas)) {
-    const seen = new Set()
-    const shapeMix = new Map()
-    let made = 0
-    let attempts = 0
-
-    while (made < count && attempts < 400000) {
-      attempts++
-      const q = buildQuestion(rng, made + 1, difficulty)
-      if (!q) continue
-
-      const fingerprint = JSON.stringify([q.given, q.rules])
-      if (seen.has(fingerprint)) continue
-
-      // Structural variety guard: the old low tier was 11 identical shapes.
-      // Cap how many items may share one movement/transformation signature.
-      const signature = q.meta.patternType.slice().sort().join('|')
-      const cap = Math.max(2, Math.ceil(count / 3))
-      if ((shapeMix.get(signature) ?? 0) >= cap) continue
-
-      seen.add(fingerprint)
-      shapeMix.set(signature, (shapeMix.get(signature) ?? 0) + 1)
-      out.push(q)
-      made++
-    }
-
-    if (made < count) {
-      throw new Error(`figure-sequences: only produced ${made}/${count} ${difficulty} items`)
-    }
-  }
-
-  return out
+/**
+ * Append-only batch entry point. The driver owns ids, seeds and stamping; this
+ * module only knows how to build one candidate from one stream.
+ */
+export function generateFigureSequences({ batchId, quotas, existing = [], verifiedAt, slotTargets = {} }) {
+  return generateBatch({
+    section: 'figure-sequences',
+    prefix: 'fs',
+    generatorName: GENERATOR_NAME,
+    version: GENERATOR_VERSION,
+    batchId,
+    quotas,
+    existing,
+    verifiedAt,
+    config: { symbolRange: SYMBOL_RANGE, rotatable: ROTATABLE, cycleColours: CYCLE_COLOURS },
+    slotTargets,
+    build: (rng, difficulty, ctx) => buildFigureSequence(rng, difficulty, ctx),
+  })
 }

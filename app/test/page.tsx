@@ -19,10 +19,13 @@ const UNIT: Record<SectionId, string> = {
 }
 
 export default function TestPage() {
-  const perSection = getBankSize(SECTIONS[0].id)
   const bankSizes = Object.fromEntries(
     SECTIONS.map((s) => [s.id, getBankSize(s.id)]),
   ) as Record<SectionId, number>
+  // Sections no longer necessarily hold the same number of questions — retiring
+  // an item changes one section's count — so report the total rather than
+  // claiming "N each" off the first section.
+  const totalQuestions = Object.values(bankSizes).reduce((a, b) => a + b, 0)
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
@@ -31,7 +34,7 @@ export default function TestPage() {
 
         <Recommendation bankSizes={bankSizes} intent="test" />
 
-        <SectionHeading title="Module A" meta={`${perSection} questions each`}>
+        <SectionHeading title="Module A" meta={`${totalQuestions} questions`}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SECTIONS.map((section) => (
               <TileCard

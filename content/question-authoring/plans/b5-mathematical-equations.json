@@ -1,0 +1,214 @@
+{
+  "batchId": "b5",
+  "generatorVersion": "3.3.0",
+  "structuralConstraints": {
+    "fingerprint": "see scripts/lib/fingerprint.mjs",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "name": "Production expansion b5 \u2014 Mathematical Equations +100",
+  "section": "mathematical-equations",
+  "counts": {
+    "low": 33,
+    "medium": 33,
+    "high": 34
+  },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against 75 active items (b1x45, b2x14, b3x1, b4x15)",
+    "patterns": {
+      "mixed-operations": 45,
+      "four-variable-system": 29,
+      "two-variable-chain": 25,
+      "direct-substitution": 25,
+      "three-variable-system": 21,
+      "multi-step-substitution": 19,
+      "elimination": 9
+    },
+    "varsByTier": {
+      "high:v4": 25,
+      "low:v2": 20,
+      "medium:v3": 17,
+      "medium:v2": 5,
+      "low:v3": 4,
+      "medium:v4": 3,
+      "low:v4": 1
+    },
+    "measuredTierCeilings": {
+      "low": 36,
+      "medium": 36,
+      "high": "60+"
+    }
+  },
+  "overrepresented": [
+    "chain topology",
+    "operated pins"
+  ],
+  "gaps": [
+    "the exact two-coefficient multi-term form `2 x A + 2 x C = B` (Ex 3), newly reachable at 3.3.0",
+    "bare pins used as given support (Example 1)",
+    "subset-spanning combining equations (Ex 6)"
+  ],
+  "mechanics": {
+    "allowed": [
+      "integer values 1..20, exactly one solution per letter",
+      "operators + - x / only",
+      "2 to 4 letters",
+      "chain, star and mixed topologies",
+      "bare and operated pins",
+      "linear, multiplicative and compound definitions",
+      "two unknowns equal to a constant",
+      "multiple multiplicative terms, with or without a coefficient on each",
+      "combining equations over all letters or a subset"
+    ],
+    "review": [
+      "numeric constants above 18",
+      "the one-letter/four-option question format"
+    ],
+    "forbidden": [
+      "operators beyond + - x /",
+      "quadratic or higher-power terms",
+      "non-integer, zero or negative values",
+      "values outside 1..20",
+      "systems without exactly one solution",
+      "an inverted-operation note blaming an absent operator",
+      "a misapplied-constant note whose mechanism does not produce the value",
+      "two equations sharing a left-hand side",
+      "a level-2 hint quoting an equation containing only the asked letter",
+      "a level-2 hint promising an operation to undo where none exists",
+      "an equation stating the asked letter outright"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "measured substitution depth; a combining collapse costs one move per definition pushed into it",
+    "low": "depth 1",
+    "medium": "depth 2",
+    "high": "depth >= 3, asked letter not determined first"
+  },
+  "distractorConstraints": {
+    "families": [
+      "wrong-variable",
+      "stopped-early",
+      "inverted-operation",
+      "misapplied-constant",
+      "off-by-one"
+    ],
+    "maxOffByOnePerItem": 1,
+    "invertedOperationRequiresOperatorPresent": true,
+    "misappliedConstantMustReproduceValue": true
+  },
+  "slotTargets": {
+    "medium": [
+      {
+        "shape": "pin-constant"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "pin-constant"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "pin-constant"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "pin-constant"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "pin-constant"
+      }
+    ],
+    "high": [
+      {
+        "shape": "combining-subset"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "combining-subset"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "combining-subset"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "combining-subset"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "multi-term-coefficients"
+      },
+      null,
+      null,
+      null,
+      {
+        "shape": "combining-subset"
+      },
+      null
+    ]
+  },
+  "expectedDistribution": {
+    "low": "33 at depth 1",
+    "medium": "33 at depth 2, some bare-pin-supported and some two-coefficient multi-term",
+    "high": "34 at depth >= 3, some subset-spanning combining"
+  }
+}

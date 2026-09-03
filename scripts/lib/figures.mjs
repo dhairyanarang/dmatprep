@@ -218,8 +218,19 @@ export const cellName = ({ row, col }) => `R${row + 1}C${col + 1}`
 const ORDINAL = ['first', 'second', 'third', 'fourth']
 const NUMBER_WORD = { 2: 'two', 3: 'three', 4: 'four' }
 
-/** Plain-language description of a symbol's rule, in the style of the official solutions. */
-export function describeRule(symbol, rule) {
+/**
+ * Plain-language description of a symbol's rule, in the style of the official
+ * solutions.
+ *
+ * `observedDirection` is the heading the candidate actually sees between the
+ * first two shown matrices, and it overrides the rule's stored heading for
+ * diagonal movers. The two differ whenever a symbol starts against a boundary in
+ * its nominal direction: the reversal then happens before matrix 1 is drawn, so
+ * the stored heading is never visible. The Phase 5 pilot caught fs-low-b2-002
+ * telling the candidate a hexagon "moves diagonally upwards to the left" when it
+ * visibly travels down-right in every shown transition.
+ */
+export function describeRule(symbol, rule, observedDirection = null) {
   const subject = `The ${symbol.colour} ${symbol.shape}`
   const parts = []
   const move = rule.movement
@@ -237,8 +248,9 @@ export function describeRule(symbol, rule) {
       `moves ${move.axis === 'vertical' ? 'vertically' : 'horizontally'} along the ${lane}, ${amountOf(move.step)}, bouncing off the ${move.axis === 'vertical' ? 'upper and lower' : 'left and right'} boundary and returning the same way`,
     )
   } else if (move.type === 'diagonal') {
+    const heading = observedDirection ?? move.direction
     parts.push(
-      `moves diagonally ${move.direction.replace('-', 'wards to the ')}, ${amountOf(move.step)}, and when it meets a boundary it reverses and returns the same way`,
+      `moves diagonally ${heading.replace('-', 'wards to the ')}, ${amountOf(move.step)}, and when it meets a boundary it reverses and returns the same way`,
     )
   } else if (move.type === 'border') {
     parts.push(

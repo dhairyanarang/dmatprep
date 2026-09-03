@@ -1,49 +1,30 @@
 #!/usr/bin/env node
 /**
- * Regenerate all three question banks.
+ * Retired. Full-bank regeneration is no longer a supported operation.
  *
- * Seeded, so the same seed reproduces the same bank byte for byte — a
- * regenerated file diffs cleanly and reviewed items stay reviewed. Bump the
- * seed only when you actually want fresh content.
+ * This script used to rebuild all three banks from one seed. The Phase 3 audit
+ * measured what that cost: enlarging the quotas by five mutated 34/45 Figure
+ * Sequence, 36/45 Mathematical Equation and 40/45 Latin Square items **under
+ * their existing ids**, because a single RNG stream per section advances once
+ * per candidate and a quota change shifts everything after it.
+ *
+ * `CLAUDE.md` records that attempts are immutable and that question exposure is
+ * tracked per id per context. An id whose content changes silently corrupts both
+ * — every stored answer against `fs-low-003` would now refer to a question the
+ * candidate never saw.
+ *
+ * Questions are added with `scripts/generate-batch.mjs`, which is append-only by
+ * construction and refuses to write if any existing item would change.
  */
-import { writeFileSync } from 'node:fs'
+console.error(`
+Full-bank regeneration has been removed.
 
-import { generateFigureSequences } from './generate/figure-sequences.mjs'
-import { generateLatinSquares } from './generate/latin-squares.mjs'
-import { generateMathEquations } from './generate/math-equations.mjs'
-import { makeRng } from './lib/rng.mjs'
+  Adding questions:   node scripts/generate-batch.mjs --batch b2 --section <section> --low N --medium N --high N
+  Verifying the bank: npm run verify:bank
 
-const SEED = 20260926
-
-// Per-section quotas. Figure Sequences is weighted towards medium because that
-// is the widest band in the official material — Exercises 3 and 4 carry more
-// distinct mechanics than the low pair — and because the low tier only supports
-// a handful of genuinely different shapes.
-const banks = [
-  {
-    section: 'figure-sequences',
-    generate: generateFigureSequences,
-    quotas: { low: 12, medium: 18, high: 15 },
-  },
-  {
-    section: 'mathematical-equations',
-    generate: generateMathEquations,
-    quotas: { low: 15, medium: 15, high: 15 },
-  },
-  {
-    section: 'latin-squares',
-    generate: generateLatinSquares,
-    quotas: { low: 15, medium: 15, high: 15 },
-  },
-]
-
-for (const { section, generate, quotas } of banks) {
-  // A fresh stream per section, so changing one bank never reshuffles another.
-  const rng = makeRng(SEED)
-  const questions = generate(rng, quotas)
-  const path = new URL(`../content/sections/${section}/questions.json`, import.meta.url)
-  writeFileSync(path, `${JSON.stringify(questions, null, 2)}\n`)
-  console.log(`${section}: wrote ${questions.length} questions`)
-}
-
-console.log('\nNow run: npm run verify:bank')
+Regenerating in place would rewrite existing questions under their existing ids,
+which breaks stored attempts and exposure tracking. If you genuinely need to
+rebuild a section from scratch, retire the old items first (scripts/lib/bank.mjs
+exports retireQuestion) so their ids are never reused.
+`)
+process.exit(1)

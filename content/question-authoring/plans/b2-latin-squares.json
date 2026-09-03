@@ -1,0 +1,66 @@
+{
+  "batchId": "b2",
+  "name": "Pilot b2 — Latin Squares, 5/5/5",
+  "section": "latin-squares",
+  "generatorVersion": "3.0.0",
+  "counts": { "low": 5, "medium": 5, "high": 5 },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against the 45 active b1 items",
+    "patterns": {
+      "multi-step-deduction": 15, "deep-chain": 15, "one-step-deduction": 10,
+      "direct-column": 3, "row-column-intersection": 2
+    },
+    "depthByTier": { "low:1": 5, "low:2": 10, "medium:3": 12, "medium:4": 3, "high:5": 2, "high:6": 6, "high:7": 7 },
+    "targetDistance": { "0": 26, "1": 5, "2": 6, "3": 4, "4": 4 },
+    "observation": "26 of 45 items have every prerequisite on the target's own lines, including the entire low tier and 11 of 15 medium items. 25 items are presented as pair-elimination, though none requires it."
+  },
+  "overrepresented": [
+    "targetDistance 0 (26 of 45)",
+    "depth 7 at high (7 of 15)",
+    "low tier at depth 2 (10 of 15)"
+  ],
+  "gaps": [
+    "medium items with prerequisites off the target's lines",
+    "low items at depth 1 (only 5 of 15)"
+  ],
+  "mechanics": {
+    "allowed": [
+      "5x5 grid, letters A-E, each once per row and column",
+      "exactly one marked cell",
+      "naked single (Technique A)",
+      "pair elimination on a line missing exactly two letters (Technique B)",
+      "prerequisite placements before the target",
+      "deduction depth 1-7"
+    ],
+    "review": ["deduction depth 6-7", "clue density below 0.20"],
+    "forbidden": [
+      "hidden singles",
+      "any path requiring a guess or trial and error",
+      "grids where more than one letter completes the target",
+      "invalid row or column structure",
+      "any claim that an item requires Technique B"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "forced placement depth by constraint propagation, plus clue density band and target distance",
+    "low": "depth 1-2, density 0.30-0.60",
+    "medium": "depth 3-4, density 0.20-0.50",
+    "high": "depth 5-7, density 0.20-0.45, must exercise pair elimination"
+  },
+  "distractorConstraints": {
+    "structure": "the four wrong letters are the four that genuinely clash; each note names the exact clashing cell",
+    "requireCaveatForDerivedCells": true,
+    "preferGivenCells": true
+  },
+  "structuralConstraints": {
+    "fingerprint": "tier | depth | clue-density band | ordered technique sequence | targetDistance | prerequisites on row vs column | target on diagonal",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "expectedDistribution": {
+    "low": "5 items at depth 1-2, mixed technique",
+    "medium": "5 items at depth 3-4, some with targetDistance >= 1",
+    "high": "5 items at depth 5-7, all exercising pair elimination"
+  }
+}

@@ -1,0 +1,177 @@
+{
+  "batchId": "b5",
+  "generatorVersion": "3.3.0",
+  "structuralConstraints": {
+    "fingerprint": "see scripts/lib/fingerprint.mjs",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot",
+  "name": "Production expansion b5 \u2014 Figure Sequences +100",
+  "section": "figure-sequences",
+  "counts": {
+    "low": 10,
+    "medium": 45,
+    "high": 45
+  },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against 73 active items (b1x43, b2x14, b3x1, b4x15)",
+    "patterns": {
+      "rotation": 51,
+      "colour-cycle": 51,
+      "multiple-symbol": 51,
+      "compound-rule": 51,
+      "boundary-bounce": 42,
+      "boundary-travel": 42,
+      "linear-movement": 27,
+      "direction-cycle": 26,
+      "diagonal-movement": 26,
+      "x-plus-one": 18
+    },
+    "symbolsByTier": {
+      "medium:2": 24,
+      "low:1": 22,
+      "high:3": 22,
+      "medium:3": 3,
+      "high:4": 2
+    },
+    "measuredTierCeilings": {
+      "low": 12,
+      "medium": "60+",
+      "high": "60+",
+      "note": "binary-searched against the current bank; the low tier is inherently small (about 26 symmetry-distinct single-symbol tasks exist)"
+    }
+  },
+  "overrepresented": [
+    "three-symbol high items",
+    "border travel"
+  ],
+  "gaps": [
+    "four-symbol high items (official Ex 5/Ex 6) \u2014 only 2 in the bank",
+    "three-symbol medium items (official Ex 4)"
+  ],
+  "mechanics": {
+    "allowed": [
+      "linear/diagonal at 1 field with bounce-as-reversal",
+      "x+1 on movement or rotation",
+      "border travel cw/ccw at 1, 2 or x+1",
+      "four-step direction cycles",
+      "90 degree rotation either way",
+      "colour cycles of 2 or 3, all visible in the shown matrices",
+      "1 to 4 symbols"
+    ],
+    "review": [
+      "static rotating symbol",
+      "180/270 rotation",
+      "white in a cycle",
+      "rotation on shapes beyond triangle and arrow"
+    ],
+    "forbidden": [
+      "wrap-around or teleportation",
+      "reflection as the correct boundary behaviour",
+      "linear/diagonal above one field per step other than x+1, including in distractors",
+      "disappearing, overlapping or leaving the matrix",
+      "more than 4 symbols",
+      "mid-sequence movement-type switches",
+      "shown matrices admitting more than one legal continuation",
+      "a colour cycle containing a colour never shown",
+      "accelerating colour cycles"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "peak transformation load, measured after simulation",
+    "low": "1 symbol, peakLoad <= 2",
+    "medium": "2-3 symbols, peakLoad == 3",
+    "high": "3-4 symbols, peakLoad >= 4"
+  },
+  "distractorConstraints": {
+    "perImage": "two distinct families, at most one positional nudge, at least one rule-based error",
+    "forbidden": [
+      "two-field linear or diagonal movement"
+    ]
+  },
+  "slotTargets": {
+    "high": [
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null,
+      {
+        "symbols": 4
+      },
+      null,
+      null
+    ]
+  },
+  "expectedDistribution": {
+    "low": "10 single-symbol movement-only items (tier ceiling is 12)",
+    "medium": "45 at peakLoad 3, mixed 2 and 3 symbols",
+    "high": "45 at peakLoad >= 4, roughly a third targeted at four symbols"
+  }
+}

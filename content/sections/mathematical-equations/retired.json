@@ -1,0 +1,175 @@
+[
+  {
+    "id": "me-low-b2-005",
+    "retiredAt": "2026-09-03",
+    "reason": "Structurally degenerate: `A ÷ 4 = 3` and `A ÷ 4 = D` share an identical left-hand side, so the second equation only restates D = 3. No official exercise repeats a left-hand side and it reads as a typo. Its two misapplied-constant distractors (8 and 16) were also correct∓4 with a fabricated rationale — no misapplication of `A ÷ 4 = 3` yields either. Identified by the Phase 5 pilot quality review. Superseded by math-equations generator 3.1.0 (duplicate left-hand sides forbidden, misapplied-constant derived from a real misapplication). Replaced by me-low-b3-001.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 4 = 3",
+        "A ÷ 4 = D"
+      ],
+      "variables": [
+        "A",
+        "D"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-3",
+          "value": 3
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-16",
+          "value": 16
+        },
+        {
+          "id": "opt-12",
+          "value": 12
+        }
+      ],
+      "correctOptionId": "opt-12",
+      "solution": {
+        "A": 12,
+        "D": 3
+      },
+      "solutionSteps": [
+        "A ÷ 4 = 3. Multiplying both sides by 4 gives A = 12.",
+        "A ÷ 4 = D, so D = 12 ÷ 4 = 3.",
+        "Full solution: A = 12, D = 3. The question asks for A, so the answer is 12."
+      ],
+      "explanation": "A ÷ 4 = 3. Multiplying both sides by 4 gives A = 12. A ÷ 4 = D, so D = 12 ÷ 4 = 3. Full solution: A = 12, D = 3. The question asks for A, so the answer is 12.",
+      "distractorNotes": {
+        "opt-3": "3 is the value of D, not A — this is the right system solved for the wrong letter.",
+        "opt-8": "8 is what you get by applying the constant 4 the wrong way round when rearranging the first equation.",
+        "opt-16": "16 is what you get by applying the constant 4 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 4 = 3 has A as its only unknown, so A = 12.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 4 = 3",
+              "note": "A = 12"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes D = 3. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 12,
+                "D": 3
+              }
+            }
+          }
+        ],
+        "answer": "A = 12.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 4 = 3 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "chain-topology",
+          "single-step",
+          "mixed-operations",
+          "pin-operated",
+          "define-multiplicative"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-3": "wrong-variable",
+          "opt-8": "misapplied-constant",
+          "opt-16": "misapplied-constant"
+        },
+        "generationNotes": "2 letters, chain topology, depth 1, 2 multiplicative operation(s), shapes: pin-operated/define-multiplicative"
+      },
+      "id": "me-low-b2-005",
+      "generator": {
+        "name": "math-equations",
+        "version": "3.0.0",
+        "batchId": "b2",
+        "seed": 2369324675,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "low",
+          "batchId": "b2",
+          "index": 4,
+          "attempt": 0
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-09-03"
+      }
+    }
+  }
+]

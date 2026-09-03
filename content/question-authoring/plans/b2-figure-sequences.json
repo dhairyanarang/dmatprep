@@ -1,0 +1,79 @@
+{
+  "batchId": "b2",
+  "name": "Pilot b2 — Figure Sequences, 5/5/5",
+  "section": "figure-sequences",
+  "generatorVersion": "3.0.0",
+  "counts": { "low": 5, "medium": 5, "high": 5 },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs, 3 September 2026, against the 43 active b1 items (2 retired)",
+    "patterns": {
+      "rotation": 31, "colour-cycle": 31, "multiple-symbol": 31, "compound-rule": 31,
+      "boundary-bounce": 26, "boundary-travel": 22, "linear-movement": 17,
+      "diagonal-movement": 15, "direction-cycle": 14, "x-plus-one": 14
+    },
+    "symbolsByTier": { "low:1": 12, "medium:2": 17, "high:3": 14 },
+    "observation": "b1 tied symbol count to tier exactly (low=1, medium=2, high=3) and put x+1 in 14 of 14 surviving high items. No item anywhere has 4 symbols."
+  },
+  "overrepresented": [
+    "symbol count as a proxy for difficulty",
+    "x+1 in every high item",
+    "border travel (34 of 93 symbol-rules in the pre-retirement bank)"
+  ],
+  "gaps": [
+    "four-symbol high items (official Ex 5 and Ex 6) — zero in the bank",
+    "three-symbol medium items (official Ex 4) — zero in the bank",
+    "high items whose peakLoad reaches 4 without acceleration"
+  ],
+  "mechanics": {
+    "allowed": [
+      "linear and diagonal movement at 1 field, bounce-as-reversal",
+      "x+1 on movement or rotation",
+      "border travel cw/ccw at 1, 2 or x+1 fields",
+      "four-step repeating direction cycles",
+      "rotation of 90 degrees either direction",
+      "colour cycles of 2 or 3 colours, all visible in the shown matrices",
+      "1 to 4 symbols"
+    ],
+    "review": [
+      "static rotating symbol",
+      "180/270 degree rotation",
+      "white in a colour cycle",
+      "rotation on shapes beyond triangle and arrow"
+    ],
+    "forbidden": [
+      "wrap-around or teleportation",
+      "billiard reflection as the correct boundary behaviour",
+      "linear or diagonal movement above one field per step other than x+1, including in distractors",
+      "figures disappearing, overlapping or leaving the matrix",
+      "more than 4 symbols",
+      "mid-sequence movement-type switches",
+      "shown matrices admitting more than one legal continuation",
+      "a colour cycle containing a colour never shown",
+      "accelerating colour cycles"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "peak transformation load, measured after simulation, never inherited from the plan",
+    "low": "1 symbol, peakLoad <= 2, movement only",
+    "medium": "2-3 symbols, peakLoad == 3",
+    "high": "3-4 symbols, peakLoad >= 4; x+1 optional, targeted at roughly half"
+  },
+  "distractorConstraints": {
+    "minFamiliesPerItem": 2,
+    "families": ["movement-step", "movement-direction", "boundary", "rotation", "colour", "acceleration"],
+    "fallback": "position, only when no rule-based error is available",
+    "forbidden": ["two-field linear or diagonal movement"]
+  },
+  "structuralConstraints": {
+    "fingerprint": "tier | per-symbol (movement family, step class, rotation, colour-cycle length, symmetry-canonical track)",
+    "maxPerFingerprint": 2,
+    "maxPerFamily": 6,
+    "note": "fingerprint cap counts the existing bank; family cap is a within-batch spread heuristic"
+  },
+  "seedStrategy": "seed = SHA-256(generator, section, tier, batchId, index, attempt); one independent stream per slot, so batch size cannot perturb earlier slots",
+  "expectedDistribution": {
+    "low": "5 single-symbol movement-only items, spread across linear/diagonal/border/direction-cycle",
+    "medium": "5 items at peakLoad 3, expected mix of 2 and 3 symbols",
+    "high": "5 items at peakLoad >= 4, expecting 1-2 four-symbol items and roughly half using x+1"
+  }
+}

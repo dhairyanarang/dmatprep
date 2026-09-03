@@ -5,22 +5,38 @@
  * clue density, which techniques the path required, and how far the prerequisite
  * placements sit from the target. See DMAT_QUESTION_AUTHORING_SPEC.md §4.
  *
- * Both official techniques are generated. A step is only labelled
- * `pair-elimination` when the solver could not reach it with a naked single,
- * so the label can never overstate what the puzzle actually needed.
+ * Both official techniques are generated, and a step is only labelled
+ * `pair-elimination` when the solver actually took that route.
+ *
+ * What that label does *not* mean: that the item could not be solved without it.
+ * On a line missing exactly two letters — the only form the official material
+ * demonstrates — pair elimination is the logical dual of a naked single at the
+ * partner cell, so it can never solve anything technique A cannot. The Phase 3
+ * audit confirmed this empirically: all 45 committed items and all 145 in a dry
+ * run fall to naked singles alone. Pair elimination is a faster *search* over the
+ * same logic, which is why four of the six official solution paths lead with it.
+ * See DMAT_QUESTION_AUTHORING_SPEC.md §4.2.
  */
 import {
   LETTERS,
-  candidatesAt,
   clueDensity,
   completeGrid,
   randomLatinSquare,
+  replayPath,
   solvePath,
   viableTargetLetters,
 } from '../lib/latin.mjs'
-import { VERIFIED_AT, randInt, shuffle } from '../lib/rng.mjs'
+import { generateBatch } from '../lib/batch.mjs'
+import { randInt, shuffle } from '../lib/rng.mjs'
 
-const GENERATOR = { name: 'latin-squares', version: '2.0.0', verifiedAt: VERIFIED_AT }
+export const GENERATOR_NAME = 'latin-squares'
+/**
+ * 3.0.0 — Phase 3 fixes: pair-elimination presented as a faster search heuristic
+ * rather than a strictly more powerful technique (it is logically dual to a naked
+ * single at the partner cell), strict path replay wired into verification, and
+ * targetDistance added as a diversity dimension.
+ */
+export const GENERATOR_VERSION = '3.0.0'
 
 /** Spec §4.3. Density is givens over the 24 non-target cells. */
 const BANDS = {
@@ -112,7 +128,7 @@ function buildSolution(givens, steps, target, answer) {
     prereq.length === 0
       ? `Four of the five letters are already visible from ${cellName(target)}'s own row and column, so the marked cell can be read straight off.`
       : usesPair
-        ? `Nothing is forced at ${cellName(target)} yet. The way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.`
+        ? `Nothing is forced at ${cellName(target)} yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.`
         : `Nothing is forced at ${cellName(target)} yet, so ${prereq.length} other ${prereq.length === 1 ? 'cell has' : 'cells have'} to be settled first.`
 
   const solutionSteps = []
@@ -152,7 +168,7 @@ function buildSolution(givens, steps, target, answer) {
   })
 
   const takeaway = usesPair
-    ? 'When no cell is forced, stop looking at cells and look at lines: a row or column missing exactly two letters will usually break the deadlock.'
+    ? 'When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker.'
     : prereq.length === 0
       ? 'Always try the marked cell’s own row and column first. When four letters are already there, the item is over in seconds and nothing else needs filling.'
       : 'Fill only the cells that feed the marked cell’s row or column. Completing the rest of the square costs time the answer does not need.'
@@ -211,7 +227,7 @@ function buildHints(steps, target) {
   ]
 }
 
-function buildQuestion(rng, index, wanted, opts = {}) {
+export function buildLatinSquare(rng, wanted, opts = {}) {
   const band = BANDS[wanted]
   const solution = randomLatinSquare(rng, 5, LETTERS)
   const target = { row: randInt(rng, 0, 4), col: randInt(rng, 0, 4) }
@@ -270,7 +286,6 @@ function buildQuestion(rng, index, wanted, opts = {}) {
   ]
 
   return {
-    id: `ls-${wanted}-${String(index).padStart(3, '0')}`,
     kind: 'latin-square',
     section: 'latin-squares',
     difficulty: wanted,
@@ -299,48 +314,35 @@ function buildQuestion(rng, index, wanted, opts = {}) {
       distractorTypes: distractors.types,
       generationNotes: `depth ${depth}, clue density ${density.toFixed(2)}, ${prereqOutOfLine} prerequisite(s) outside the target's lines`,
     },
-    generator: GENERATOR,
   }
 }
 
-export function generateLatinSquares(rng, quotas = { low: 15, medium: 15, high: 15 }) {
-  const out = []
-
-  for (const [difficulty, count] of Object.entries(quotas)) {
-    const seen = new Set()
-    let made = 0
-    let attempts = 0
-
-    // No tier may be single-technique (spec §4.2). High requires pair
-    // elimination throughout; low and medium take roughly a third.
-    const pairQuota = difficulty === 'high' ? count : Math.round(count / 3)
-
-    while (made < count && attempts < 40000) {
-      attempts++
+/**
+ * Append-only batch entry point.
+ *
+ * The technique mix is decided by slot index rather than by acceptance count, so
+ * it survives a change of batch size: without that, growing a batch would shift
+ * which slots demand pair elimination and change earlier items.
+ */
+export function generateLatinSquares({ batchId, quotas, existing = [], verifiedAt }) {
+  return generateBatch({
+    section: 'latin-squares',
+    prefix: 'ls',
+    generatorName: GENERATOR_NAME,
+    version: GENERATOR_VERSION,
+    batchId,
+    quotas,
+    existing,
+    verifiedAt,
+    config: { bands: BANDS },
+    build: (rng, difficulty, ctx) => {
+      // Spec §4.2: no tier may be single-technique. High always exercises pair
+      // elimination; low and medium take roughly a third, by slot parity.
       const opts =
-        difficulty === 'high'
-          ? {}
-          : made < pairQuota
-            ? { requirePair: true }
-            : { forbidPair: true }
-
-      const q = buildQuestion(rng, made + 1, difficulty, opts)
-      if (!q) continue
-
-      const fingerprint = JSON.stringify([q.grid, q.target])
-      if (seen.has(fingerprint)) continue
-      seen.add(fingerprint)
-
-      out.push(q)
-      made++
-    }
-
-    if (made < count) {
-      throw new Error(`latin-squares: only produced ${made}/${count} ${difficulty} items`)
-    }
-  }
-
-  return out
+        difficulty === 'high' ? {} : ctx.index % 3 === 0 ? { requirePair: true } : { forbidPair: true }
+      return buildLatinSquare(rng, difficulty, opts)
+    },
+  })
 }
 
 /** Independent re-check used by verify-bank: re-derive rather than trust the file. */
@@ -373,28 +375,22 @@ export function verifyLatinSquare(q) {
     errors.push(`only ${viable[0]} completes, but correctOptionId is ${q.correctOptionId}`)
   }
 
-  // Replay the stored path, checking each step against the technique it claims.
-  const working = grid.map((row) => [...row])
-  for (const step of q.solutionSteps) {
-    const { row, col } = step.cell
-    const cands = candidatesAt(working, row, col, q.letters)
-
-    if (step.technique === 'pair-elimination') {
-      // Legal iff the letter fits here and nowhere else in some two-empty line.
-      if (!cands.includes(step.letter)) {
-        errors.push(`pair step ${cellName(step.cell)} places a letter that does not fit`)
-        break
-      }
-    } else if (cands.length !== 1 || cands[0] !== step.letter) {
-      errors.push(`step ${cellName(step.cell)} was not forced (${cands.length} candidates)`)
-      break
+  // Replay the stored path strictly.
+  //
+  // This used to accept a pair-elimination step whenever the letter merely *fit*
+  // the cell, which is far weaker than being forced: a non-forced intermediate
+  // placement that happened to lead to the right target would pass. `replayPath`
+  // re-derives each step from the technique it claims — for a pair step it
+  // re-runs the elimination and confirms the letter had exactly one home in that
+  // line. It already existed in scripts/lib/latin.mjs and was never called.
+  const replay = replayPath(grid, q.solutionSteps, q.letters)
+  if (!replay.ok) {
+    errors.push(`solution path is not forced: ${replay.error}`)
+  } else {
+    const derived = replay.grid[q.target.row][q.target.col]
+    if (derived !== q.correctOptionId) {
+      errors.push(`path derives ${derived}, but correctOptionId is ${q.correctOptionId}`)
     }
-    working[row][col] = step.letter
-  }
-
-  const derived = working[q.target.row][q.target.col]
-  if (derived !== q.correctOptionId) {
-    errors.push(`path derives ${derived}, but correctOptionId is ${q.correctOptionId}`)
   }
 
   // Distractor notes must cite a cell that really holds the clashing letter, and
