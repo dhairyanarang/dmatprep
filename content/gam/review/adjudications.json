@@ -1,0 +1,2523 @@
+{
+  "note": "Adjudication rounds for spec §5.3, §5.6 and §5.8. A round counts as independent only if kind is \"independent\", adjudicator.independentOfAuthor is true, and adjudicator.identity is not an author of the packs it covers.",
+  "schema": {
+    "perQuestion": {
+      "chosenOption": "option id picked blind, before seeing the key",
+      "dependency": "source-determined | source-supported | source-independent (spec §5.6 — our classification, not an official dMAT one)",
+      "requiresOutsideKnowledge": "true if answering needs a fact the pack does not supply",
+      "sourceMateriallySupportsAnswer": "true if the pack actually carries the weight of the answer",
+      "exactlyOneDefensibleOption": "false if a second option can be argued for",
+      "rationale": "the adjudicator reasoning, in their own words",
+      "adjudicator": "{ identity, model, kind: model|human, independentOfAuthor }",
+      "adjudicatedAt": "ISO date"
+    }
+  },
+  "packAuthors": [
+    "pilot-b1",
+    "pilot-b2"
+  ],
+  "rounds": [
+    {
+      "id": "self-2026-09-04",
+      "kind": "self",
+      "countsAsIndependentReview": false,
+      "caveat": "Performed by the same model that authored the packs. An author already knows the answer and cannot judge blind, so this round is evidence, not review. It must never satisfy the independent-adjudication gate.",
+      "adjudicator": {
+        "identity": "pilot-b1",
+        "model": "authoring model",
+        "kind": "model",
+        "independentOfAuthor": false
+      },
+      "adjudicatedAt": "2026-09-04",
+      "questions": {
+        "gam-ba-be-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Constant demand is the textbook assumption, so a business-literate reader could pick it; the pack lists it.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Contribution margin behaviour is standard, but the value 15 comes only from the pack.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "The stem supplies all three numbers and F/(p-v) is standard; the pack supplies the rule and the comparison baseline.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-ba-be-001-q7": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Zero contribution margin implying no break-even is standard reasoning; the pack states it in p4.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "PAIR being quadratic could be guessed from the routine name by a CS-literate reader, but the factor still follows from the supplied rule.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-cs-oc-001-q7": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q1": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "A reader who knows insulation resists heat could pick the layer without the numbers; the pack supplies the values that justify it.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Author-side judgement made while drafting; see the round caveat.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q5": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Series resistances adding is standard physics; the pack states it, and the distractor pairs outcome with reason so the pack is needed to choose between c and d.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-eng-tr-001-q6": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "A sum of positive terms exceeding each term is general reasoning; the pack states the claim explicitly.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "The three check names are transparent English, so their meanings are partly guessable; the pack fixes the exact scope of each.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q2": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Physical dating evidence pointing at authenticity is inferable from the word attribution.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "A later compiler being distant from events is common sense; the pack supplies the ranking.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "A trained historian would know a forgery evidences its own period; the pack states it.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "The common-source principle is standard textual criticism; the pack states it explicitly.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        },
+        "gam-hum-sc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Independence of the checks is stated in the pack but also follows from how they are introduced.",
+          "adjudicator": {
+            "identity": "pilot-b1",
+            "model": "authoring model",
+            "kind": "model",
+            "independentOfAuthor": false
+          },
+          "adjudicatedAt": "2026-09-04"
+        }
+      },
+      "status": "superseded",
+      "supersededOn": "2026-09-04",
+      "supersededBecause": "The four packs were repaired on 4 September 2026 to close the cross-question leakage this round itself uncovered (spec §5.9). Nine questions were rewritten. This round judged content that no longer exists, and it records no adjudicatedContent, so it cannot be shown to cover anything that does. It is kept as the historical record of what was found, and counts for nothing."
+    },
+    {
+      "id": "independent-2026-09-04-r1",
+      "kind": "independent",
+      "countsAsIndependentReview": true,
+      "status": "superseded",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-04",
+      "questions": {
+        "gam-ba-be-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): Block l1 lists the assumptions and opens with 'Every unit produced is sold within the same period, so output and sales are equal', which is option a verbatim in paraphrase. Options b, c and d each directly contradict a stated assumption (constant price, unchanged fixed costs, single product). No second option is arguable. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"a\", confidence 0.75) — Standard CVP/break-even assumptions are textbook: production equals sales in the period, constant unit price, constant unit variable cost, single product, fixed costs constant over the range. Options b, c and d each name something the linear model explicitly excludes, so a is forced without any source.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": 0.75,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-ba-be-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.98): From f1 and p3: c = 40 - 25 = 15, q_BE = 90,000 / 15 = 6,000 units. The distractors are the classic wrong denominators — 2,250 = F/p and 3,600 = F/v — so each wrong method lands on a listed option. Only c is defensible. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.7) — Cross-question leakage supplies every input: q3's stem gives fixed costs of 90,000 euros, q5's options give price 40 and variable cost 25 (contribution 15), so 90,000/15 = 6,000. q3's option b ('It stays at 6,000 units') independently confirms the baseline.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.7,
+            "blindConfidence": 0.98
+          }
+        },
+        "gam-ba-be-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.98): Contribution margin is unchanged at 15, so q_BE = 120,000 / 15 = 8,000 units, a rise. Option d (12,000) is F/10 or a mis-scaling; b and a contradict the direction of the change. Single defensible answer. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.75) — The stem itself gives the new fixed cost (120,000) and the contribution margin of 15 is recoverable from q5's options (40 - 25), giving 8,000. Option d (12,000) is the 'scale by 120/90 wrongly' lure and a is directionally impossible.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.75,
+            "blindConfidence": 0.98
+          }
+        },
+        "gam-ba-be-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.98): Figure 1's legend names Line A total revenue, Line B total cost and Line C fixed costs. Pure figure lookup, and the figure is unambiguous, so only c stands. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"a\", confidence 0.3) — Purely a figure-read; nothing in the stem or options identifies which plotted line is which. The only leverage is an answer-shape cue: in a 'which line is X' identification item the catch-all 'none of the three lines' is almost always a distractor, which narrows it to one in three. Beyond that I am guessing.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": 0.3,
+            "blindConfidence": 0.98
+          }
+        },
+        "gam-ba-be-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.96): Block p2 states that beyond break-even every further unit adds its contribution margin to profit; c = 40 - 25 = 15 euros. Option a offers gross revenue and c misdescribes variable cost as a saving, both clearly wrong under the text. The reason clause in b matches the text as well as the number. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.85) — Option b is the only conceptually correct statement irrespective of the numbers: past break-even each additional unit adds its contribution margin, not its revenue (a), not its variable cost (c), and profit certainly changes (d). The 15 also reconciles with 40 - 25 in the same option set.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.85,
+            "blindConfidence": 0.96
+          }
+        },
+        "gam-ba-be-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): Second workshop: c = 60 - 30 = 30, q_BE = 90,000 / 30 = 3,000, against the first workshop's 6,000, so 'lower, at 3,000 units'. The comparison clause needs the pack's p = 40 / v = 25 figures to establish the 6,000 baseline, so the source is load-bearing. My only reservation is redundancy, not correctness: this exercises exactly the same computation as q2 and q3, so as a seventh item in the pack it adds little discriminating power, and option d (1,500 = F/p) is the only trap that a wrong method reaches. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.85) — The stem supplies all three inputs: 90,000 / (60 - 30) = 3,000, and the direction (lower than the first workshop's 6,000) is stated in the option. No source needed.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.85,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-ba-be-001-q7": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): Block p4 states that if variable cost equals or exceeds price, no output level lets the workshop cover its costs and no break-even quantity exists. Option d is the closest rival but fails because fixed costs are still incurred at zero output, so the workshop loses F rather than breaking even; the text also forecloses it explicitly. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.9) — Contribution margin of zero means no output level ever covers fixed costs; the break-even formula divides by zero. Options a, b and d are each internally incoherent. Pure domain knowledge.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.9,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-cs-oc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.98): Table 1 gives SPLIT at n = 256 as 240, which the formula 25*log2(256) + 40 = 25*8 + 40 confirms. Straight table read; the distractors are the other two SPLIT entries and SCAN's 256 value. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.65) — Recovered by exact arithmetic across the item set rather than from Table 1: q5's distractor 252,960 equals 240 x 1054 exactly and its option 1,294 equals 240 + 1054, while q7's 61,440 equals 256 x 240. Two independent exact products pin SPLIT(256) = 240.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.65,
+            "blindConfidence": 0.98
+          }
+        },
+        "gam-cs-oc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): 25*log2(1024) + 40 = 25*10 + 40 = 290. It is also reachable without any logarithm knowledge from the table alone: each quadrupling of n adds 50 to SPLIT, so 240 at n = 256 becomes 290 at n = 1024. That redundancy is why I judged no outside knowledge needed. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"b\", confidence 0.5) — Given SPLIT(256) = 240 recovered above and SPLIT growing only from 240 to the 265-315 band as n quadruples, SPLIT must be logarithmic of the form a*log2(n) + b; only a = 25, b = 40 gives integer-friendly values (240 at n=256, 290 at n=1024). Option d (1,064 = n + 40) is the linear lure. Reconstruction, not knowledge.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.5,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-cs-oc-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): At n = 16, SCAN 94 < PAIR 128 < SPLIT 140, so SCAN is lowest. At n = 256 (1054 vs SPLIT 240) and n = 4096 (16414 vs SPLIT 340) it is not. Only 'n = 16 only' survives; the comparison must be against both rivals, and PAIR being cheaper than SPLIT at n = 16 is exactly the trap. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"a\", confidence 0.45) — Table 1 is missing, but the reconstructed profile (SCAN linear with a large constant, ~1054 at n=256; SPLIT logarithmic, 240 at n=256) puts SCAN ahead only at the smallest size, and an item asking where a routine wins is normally written around a real crossover rather than keyed to 'none'. Design inference plus reconstruction, not a read.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": 0.45,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-cs-oc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): T_PAIR = n^2/2 from f1, so doubling n multiplies the count by 4 (8192^2/2 divided by 4096^2/2 = 4). 'Roughly' is generous here since the factor is exactly 4. No second reading. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.6) — The routine name PAIR signals all-pairs comparison, i.e. quadratic cost, so doubling n roughly quadruples the count. Standard complexity knowledge; the three-routine linear/logarithmic/quadratic set-up is also the conventional shape of such a table.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.6,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-cs-oc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): Block p3 says sequential runs add: 240 + 1054 = 1294. Option d (252,960 = 240*1054) is the multiply-instead-of-add trap and option c (1314) a slip. Only b is defensible. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.7) — The option set is self-solving: 252,960 = 240 x 1054 and 1,294 = 240 + 1054, so the two table values must be 240 and 1054 and the sum asked for is 1,294. Option a is one addend alone and d is the product trap. No table required.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.7,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-cs-oc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.95): Checked all four against Table 1: SCAN is fewest at n = 16 (94), SPLIT at n = 256 and n = 4096, so neither a nor d holds, and b fails because at n = 16 SPLIT's 140 exceeds PAIR's 128. That leaves c, which is true. This is the strongest item in the pack because both b and d are near-misses that require the n = 16 row to refute. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"c\", confidence 0.55) — Cannot verify without Table 1, but q3's presence implies a genuine crossover, which makes 'no single routine is cheapest at every size' true and makes a, b and d each falsifiable at one size. I am partly using the self-describing shape of option c, which is a known key-shape cue.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.55,
+            "blindConfidence": 0.95
+          }
+        },
+        "gam-cs-oc-001-q7": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.95): Block p3's multiplication rule applies: SPLIT runs once per record examined, 256 * 240 = 61,440, and the stem tells us to ignore SCAN's own steps. Option b (496 = 240 + 256) and c (1,294, the q5 answer) are the additive traps. The 'ignoring SCAN's own steps' clause removes the only ambiguity I could find. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"d\", confidence 0.6) — A scan examines all 256 records, and with SPLIT(256) = 240 recovered from the option arithmetic the total is 256 x 240 = 61,440, which appears verbatim as option d. The smaller options are the single-run and sum lures.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": 0.6,
+            "blindConfidence": 0.95
+          }
+        },
+        "gam-eng-tr-001-q1": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.98): Figure 2 states the brick layer is 0.24 m thick with conductivity 0.60. The distractors are the insulation thickness (0.08), the insulation conductivity (0.05) and the brick conductivity (0.60) — a clean figure-read item that punishes reading the wrong column. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.6) — Domain plausibility settles it: 0.24 m is the standard masonry wall thickness, 0.05 and 0.08 m are insulation-board thicknesses, and 0.60 m is implausible for the wall described. q3's option a also asserts brick is the thicker of the two layers, which excludes the two small values.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.6,
+            "blindConfidence": 0.98
+          }
+        },
+        "gam-eng-tr-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.97): R_brick = 0.24/0.60 = 0.4 and R_ins = 0.08/0.05 = 1.6, total 2.0; Q = A*dT/R_total = 18*20/2.0 = 180 W, using only f1 and Figure 2. I tried the obvious wrong routes (using one layer's resistance alone, or averaging the conductivities) and none of them produces 90, 144 or 900, so the distractors are unreachable by a coherent alternative reading and 180 stands alone. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"c\", confidence 0.45) — Conductivities, area and temperature difference are all in the missing figure, so no direct computation. But physics bounds it against q4: adding a second identical insulation layer can at most double total resistance, so the new flow lies in [Q/2, Q). That kills 900 W (no q4 partner) and 90 W (nothing lower available), leaving 144 or 180; the pair (180, 100) yields the clean R_insulation = 4 x R_brick that q3's key requires, whereas (144, 100) would make brick dominant and contradict q3.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.45,
+            "blindConfidence": 0.97
+          }
+        },
+        "gam-eng-tr-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.96): R_ins = 1.6 against R_brick = 0.4, so insulation carries four fifths of the resistance, and p2's 'a layer of low conductivity contributes a large resistance even when it is thin' supplies the reason. Option a picks the right kind of reason but the wrong layer; both halves of b are correct, which is what makes it uniquely defensible. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.8) — R = d/lambda, and insulation conductivity is roughly an order of magnitude below brick, so insulation dominates total resistance despite being thinner. Option d also misstates series behaviour (equal heat flow does not mean equal resistance). No figure needed.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.8,
+            "blindConfidence": 0.96
+          }
+        },
+        "gam-eng-tr-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.96): New R_ins = 0.16/0.05 = 3.2, total 3.6, Q = 360/3.6 = 100 W. Option a (90 W) is the 'halve the flow' error that p3 explicitly warns against — doubling one layer does not double the total resistance — so the item tests the paragraph as well as the arithmetic. Full ablation (independent-ablation-1): above-chance without the pack (would have chosen \"b\", confidence 0.45) — Same bounded reasoning as q2: the answer must be between half and all of the original flow, and only the (180 W -> 100 W) pairing gives an insulation-dominant wall consistent with q3's key. Derived from cross-question constraints, not from the figure's numbers.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.45,
+            "blindConfidence": 0.96
+          }
+        },
+        "gam-eng-tr-001-q5": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.95): Block p2 states that because the resistances are added, layer order does not change the total, so the steady flow is unchanged. Option d reaches the same verdict by a false reason (temperature difference alone does not fix the flow — resistance does too), so a careless marker could call d half-right, but the text's own justification is the one in c and d's reason is contradicted by f1. I still count exactly one defensible option because the stem asks 'according to the text' and demands the reason. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.9) — Series thermal resistances add, and addition is commutative, so layer order cannot change the steady-state flow. Option d gives the right verdict for the wrong reason (it ignores resistance entirely), which is the standard near-miss distractor.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.9,
+            "blindConfidence": 0.95
+          }
+        },
+        "gam-eng-tr-001-q6": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.94): Block p3 states the total is a sum of positive terms and so always larger than any single layer's resistance, and that adding a layer can only reduce the flow — which refutes c. Option d is refuted by p1 (the same heat passes through every layer). The one wrinkle is that a is only strictly true because every layer has positive resistance, which the text asserts rather than proves; the stem's 'several layers' framing keeps it safe. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"a\", confidence 0.85) — In series the total is the sum of strictly positive resistances, so it exceeds any single layer; c is false because any added layer adds resistance, and d is false because the same heat flow passes through every layer in steady state. Pure physics.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": 0.85,
+            "blindConfidence": 0.94
+          }
+        },
+        "gam-hum-sc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.96): Block p3 says proximity 'concerns the route by which the information reached the author'. Options a and c restate the attribution and interest checks and d restates the independence discussion in p5, so all three are the pack's own other concepts. The checks are named by this text, so the pack defines the term being tested. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.8) — The framework's three names are recoverable from the sibling questions (attribution, proximity, interest). Proximity is by definition how close the author stood to the events, i.e. the route by which the information reached them; a is attribution, c is interest and d is textual filiation.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.8,
+            "blindConfidence": 0.96
+          }
+        },
+        "gam-hum-sc-001-q2": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.95): Block p2 defines attribution as whether the document was written by the named person at the claimed time and place, and says physical evidence such as the writing material can settle it on its own — which is exactly the paper-dating fact in the stem. Option d is the only rival worth weighing: a mis-copied date would still mean the document is not what it presents itself as, so it fails attribution either way. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"a\", confidence 0.8) — Paper postdating the claimed date shows the document was not produced by the named signatory, which is precisely the authenticity/attribution question. Option d is the hedged escape and does not survive an 80-year material anachronism. Standard source criticism.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": 0.8,
+            "blindConfidence": 0.95
+          }
+        },
+        "gam-hum-sc-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.9): The stem removes the interest check by stipulation ('gained nothing') and p3's ladder — witness, told by a participant, later compiler — places a monk working sixty years later from circulating stories at the far end, so proximity is at issue and fares badly. Option d inverts the concept (community closeness is not informational proximity) and c misapplies attribution. Mild looseness: the stem does not absolutely exclude that some circulating story came from a participant, so 'nor told by one' is a slightly stronger claim than the stem strictly licenses — not enough to make d or a defensible. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.85) — The stem deliberately neutralises the interest check ('gained nothing') and the attribution check is not in question, leaving proximity, which sixty years of oral transmission fails. Option d inverts the meaning of proximity (community closeness is not closeness to the event).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.85,
+            "blindConfidence": 0.9
+          }
+        },
+        "gam-hum-sc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.96): Block p6 supplies exactly this case: a forged charter is worthless for the transactions it records but direct evidence for the concerns of the period in which it was forged, and the historian's question here is about that very period. Option a contradicts p6's opening sentence. Worth noting that the item reuses the pack's own worked example almost unchanged, so it tests recognition more than transfer. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.9) — The standard historiographical point: a forgery is authentic evidence for its own moment of production, and the stem has been constructed so that the forgery date coincides with the period under investigation. No source text required.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.9,
+            "blindConfidence": 0.96
+          }
+        },
+        "gam-hum-sc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.95): Block p5 states that where several texts descend from one lost original their agreement establishes only that the copying was faithful, and that the number of copies makes no difference — option b is that sentence restated, and a is the fallacy it names. My reservation is not correctness but weight: the stem itself supplies the common-descent fact, and the inference from 'all three copy one lost source' to 'agreement shows only faithful copying' is available to ordinary reasoning, so the pack is close to decorative here; a candidate who never read p5 lands on b anyway. Option d is also unsupported in either direction (the text nowhere says close agreement suggests invention). Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"b\", confidence 0.9) — Texts descending from a common exemplar are one witness, not three, so their agreement establishes only faithful copying and adds no independent attestation. Textbook stemmatics.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": 0.9,
+            "blindConfidence": 0.95
+          }
+        },
+        "gam-hum-sc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "rationale": "Blind re-answer (independent-blind-1, confidence 0.94): Option c is p1 almost verbatim ('a document may pass one and fail another, and each has to be applied on its own'), a is refuted by p6, b by p1's 'rather than blurred into a single impression', and d by p4's 'unaffected by how near the author stood'. So the answer is right and unique — but the three distractors are all absolutist or self-evidently overreaching, and c is the generically sensible statement, so a test-wise candidate picks it without reading the pack. That plus the verbatim lift is why I marked the source non-load-bearing: the item measures option plausibility rather than comprehension. Full ablation (independent-ablation-1): determinable without the pack (would have chosen \"c\", confidence 0.85) — The three checks test different properties, so they are logically independent and applied separately; a is refuted by q4's forgery case in the same set, b collapses distinct dimensions into one score, and d asserts an entailment that plainly does not hold.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "independent-ablation-1 (full ablation) + independent-blind-1 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": 0.85,
+            "blindConfidence": 0.94
+          }
+        }
+      },
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own.",
+      "supersededOn": "2026-09-04",
+      "supersededBecause": "The four packs were repaired on 4 September 2026 to close the cross-question leakage this round itself uncovered (spec §5.9). Nine questions were rewritten. This round judged content that no longer exists, and it records no adjudicatedContent, so it cannot be shown to cover anything that does. It is kept as the historical record of what was found, and counts for nothing."
+    },
+    {
+      "id": "independent-2026-09-04-r2",
+      "kind": "independent",
+      "status": "superseded",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-04",
+      "scope": "All 26 questions, as repaired on 4 September 2026.",
+      "questions": {
+        "gam-ba-be-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): List block l1 states directly that every unit produced is sold in the same period, matching option a verbatim; b, c and d each contradict the other listed assumptions (constant price, constant fixed costs, single product). Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"a\", confidence high) — Standard CVP/break-even model assumption is that everything produced in a period is sold in that period (no inventory build-up). Options b, c, d each contradict other standard CVP assumptions (constant selling price, constant/fixed fixed-costs, single product) that a model stating one clean assumption would not simultaneously deny.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ba-be-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 gives p=40, v=25, F=90000; f1's q_BE=F/(p-v)=90000/15=6000, matching option c. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence low) — Break-even quantity = fixed costs / contribution margin, neither of which is given in the stem, so the exact figure cannot be computed. See leak for a partial narrowing; among the surviving candidates I lean toward the roundest value (6,000) with low confidence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-be-001-q6"
+            ],
+            "ablationLeakDetail": "q6 asks for the units needed to reach a 30,000-euro profit at the SAME price/variable-cost/fixed-cost as q2's workshop. A profit target requires selling more than break-even, so the true q6 answer must exceed the true q2 answer. Checking every (q2 option, q6 option) pair where q6>q2 and solving CM=30000/(q6-q2), FC=CM*q2: option d (9,000) in q2 has no q6 option above it, so it is arithmetically impossible and is eliminated. Exactly three valid pairs remain: (2250,3000)->CM40/FC90000, (3600,4800)->CM25/FC90000, (6000,8000)->CM15/FC90000 - all three give the identical clean FC=90,000, meaning the whole option set for both questions was evidently built from that one fixed-cost figure. The true answer is one of these three coupled pairs, but which of the three cannot be determined.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ba-be-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): f1's q_BE=F/c is linear in F with c fixed, so a one-third rise in F (90,000 to 120,000) produces exactly a one-third rise in q_BE (6,000 to 8,000). Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"c\", confidence high) — Break-even quantity = FC/CM. Raising FC by one third while CM (price minus variable cost) is unchanged raises BE by exactly one third - a direct algebraic consequence that needs no source numbers.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ba-be-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): fig1 explicitly labels 'Line C: fixed costs.' Full ablation (Claude Sonnet 5): not-determinable without the pack (would have chosen \"a\", confidence low) — Requires seeing the actual lines drawn in Figure 1; nothing in the stem or options identifies which line is which, and no sibling question describes the figure.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ba-be-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): The new workshop's contribution margin c=32-20=12 (f1); p2 states that once break-even is reached, every further unit adds its full contribution margin to profit, so the extra unit adds 12 euros, not the full 32-euro price or 20-euro cost. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — Standard CVP principle: once break-even is covered, each additional unit's profit contribution equals its contribution margin (price minus variable cost) = 32-20 = 12 euros, since fixed costs are already paid off.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ba-be-001-q6": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): For target profit 30,000: c*q - F = 30,000 => 15q = 120,000 => q = 8,000, using p3's p=40, v=25, F=90,000. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"d\", confidence low) — Requires the source's fixed cost and contribution margin, not given in the stem. See leak for a partial narrowing; among the surviving candidates I lean toward 8,000 with low confidence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-be-001-q2"
+            ],
+            "ablationLeakDetail": "Symmetric to q2's leak: since the target-profit quantity must exceed break-even quantity, option a (2,000) here has no q2 option below it (q2's minimum is 2,250), making it arithmetically impossible and eliminating it. The three remaining options each pair uniquely with one q2 option under a shared implied fixed cost of 90,000 (see q2's leak detail), but which pairing is correct is not determinable.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ba-be-001-q7": {
+          "chosenOption": "c",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p4 states directly that if variable cost equals or exceeds price, 'no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all,' matching option c; this also follows from f1 since c=0 makes q_BE=F/c undefined. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"c\", confidence high) — If variable cost equals selling price, contribution margin is zero, so profit = revenue - variable cost - fixed cost = -fixed cost at every output level. The firm can never cover its costs at any output - a direct algebraic consequence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Table 1 lists PAIR=128 at n=16. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence low) — The exact table value cannot be known, but option d (32,768 = 2^15) is wildly out of scale versus the other three answers (94-140), reading as an obvious wrong-formula distractor. That narrows the field to three, with no basis to choose among them.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): T_SPLIT(1024)=25*log2(1024)+40=25*10+40=290, using f1's formula with log2(1024)=10. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence low) — Cannot compute the exact table value. Option d (1,064 ≈ n+40) reads as a 'mistook the record count for the step count' distractor. See leak for further (conditional) support for eliminating d.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q7"
+            ],
+            "ablationLeakDetail": "q7's own arithmetic (see its entry) leaves exactly two arithmetically valid values for SPLIT at n=4,096: 340 or 16,414. If the true value is 340, then SPLIT at n=1,024 cannot be 1,064 (option d here), since a routine's step count should not decrease as the catalogue grows fourfold - conditionally reinforcing that d is not the answer.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Comparing Table 1 rows: at n=16, SPLIT=140 > SCAN=94; at n=256, 240<1054; at n=4096, 340<16414 -- SPLIT exceeds SCAN only at n=16. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"d\", confidence low) — No SCAN values appear anywhere in the pack to compare directly against SPLIT, so the true crossover point cannot be pinned down.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q2"
+            ],
+            "ablationLeakDetail": "q2's SPLIT@1024 options (265-315, discounting the likely-bogus 1,064) are all well below n=1,024 itself. If SCAN's step count scales roughly with catalogue size (a 'scan' touches every record, so SCAN(n) is roughly on the order of n), SCAN@1024 would exceed SPLIT@1024, suggesting SPLIT stays below SCAN at that size and plausibly at the others - weakly favoring 'at none of the three'. This is inferential extrapolation, not proof.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): T_PAIR(n)=n^2/2 (f1); doubling n from 4096 to 8192 multiplies the count by 2^2=4, an exact quadrupling. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence low) — No table data anywhere in the pack gives PAIR at two sizes to compute an empirical growth trend. The name 'PAIR' suggests an all-pairs comparison, conventionally O(n^2), under which doubling n roughly quadruples the count - a plausible but unproven naming-based inference.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 states sequential runs add their counts; Table 1 gives SPLIT(256)=240 and SCAN(256)=1054, summing to 1,294. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence low) — Cannot compute the exact sum without Table 1, but option d (252,960) is wildly out of scale versus the coherent trio of options (~1,050-1,320), reading as an evident wrong-formula distractor. That narrows the field to three, with no basis to pick among them.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Checking the minimum performer at each size in Table 1: SCAN is smallest at n=16 (94), but SPLIT is smallest at n=256 (240) and n=4096 (340) -- no single routine is fewest-step at all three sizes. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence medium) — Full table knowledge would be needed to confirm literally, but general reasoning plus a leak (below) favour the hedge statement that no single routine is smallest at every size.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q3"
+            ],
+            "ablationLeakDetail": "q3 asks at which single listed size SPLIT exceeds SCAN, with options structured as exactly-one-size or none (no 'all three' option offered). If q3's true answer is one of the specific sizes (not 'none'), that proves SPLIT and SCAN swap relative order across the three sizes, meaning neither is uniformly the smallest - directly supporting q6's option c ('no single routine performs the fewest elementary steps at every listed size').",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q7": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3: running one routine once per record processed by another means the counts multiply. SCAN examines all 4096 records, so SPLIT runs 4096 times, each costing T_SPLIT(4096)=340 (Table 1); 4096*340=1,392,640. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence medium) — The scenario requires total = (records SCAN examines, presumably all 4,096) x (SPLIT's step count at n=4,096), so the true total must be an exact multiple of 4,096. Checking each option: 16,754/4,096 and 5,580,760/4,096 are not integers, so options a and c are arithmetically impossible outright. Only b (=340 exactly) and d (=16,414 exactly) survive.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q1",
+              "gam-cs-oc-001-q2"
+            ],
+            "ablationLeakDetail": "Between the two arithmetically valid candidates, b (implying SPLIT@4096=340) is far more consistent in scale with SPLIT@1024 from q2 (~265-315, a modest, sub-linear-looking range) than d (implying SPLIT@4096=16,414, a roughly 56x jump for only a 4x increase in catalogue size, wildly inconsistent with the modest growth PAIR/SPLIT values show elsewhere in the pack, e.g. q1's PAIR@16 values in the low hundreds).",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): f1's glossary defines 'R' as the thermal resistance of a layer per unit area, distinct from R_total (whole-wall resistance) used in the Q formula. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"a\", confidence low) — Genuinely ambiguous without the formula itself. Textbook convention typically introduces a single layer's resistance (R=L/k) before summing to a wall total, weakly favouring 'per layer' - but this is a guess about exposition order, not something the options alone settle.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-eng-tr-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Fig2 gives brick R=0.24/0.60=0.4 and insulation R=0.08/0.05=1.6 (f1's R=d/lambda); R_total=2.0, so Q=A*dT/R_total=18*20/2.0=180 W. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence medium) — Cannot compute the heat-flow rate directly without Figure 2's numbers (temperatures, conductivities, thicknesses). See leak for why 180 W stands out as the likely intended value.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q4"
+            ],
+            "ablationLeakDetail": "q4's distractors for 'heat flow after doubling insulation thickness' line up suspiciously with q2's other options: 180 x (4/5) = 144 (q2's option b) exactly, and 180 / 2 = 90 (q2's option a) exactly, while no other q2 option produces clean matches under q4's listed multipliers. This is the signature of a distractor set generated by applying plausible-but-wrong multipliers to the correct q2 value, which happened to reproduce other q2 options - strongly suggesting q2's answer is 180 W.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Computed from Fig2's data, brick R=0.4 and insulation R=1.6 -- insulation dominates because its much lower conductivity (0.05 vs 0.60) gives it the larger resistance despite being the thinner layer, matching p2. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — Well-established building-physics fact: insulation materials have far lower thermal conductivity than brick/masonry, so for comparable (or even thinner) layers, insulation contributes the dominant share of a wall's total thermal resistance.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-eng-tr-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Doubling insulation thickness doubles its resistance to 3.2 (R=d/lambda), giving R_total=3.6 instead of 2.0; new Q=18*20/3.6=100 W, which is 100/180=5/9 of the original 180 W. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence medium) — Doubling a layer's thickness doubles its resistance (R=L/k). If insulation already dominates total resistance (see q3), doubling it should push the flow multiplier close to, but a bit more than, one half. 'Four fifths' would imply insulation barely mattered (contradicting q3), and 'exactly half' would require the brick's resistance to be exactly zero; 'five ninths' is the only option consistent with a dominant-but-nonzero brick contribution.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q3"
+            ],
+            "ablationLeakDetail": "q3 establishes that the insulation layer dominates the wall's total resistance. That rules out 'four fifths' (which implies insulation contributed only a small share) and makes 'exactly half' implausible (it would require the brick's resistance to be zero, contradicting q3's framing of two contributing layers), leaving 'five ninths' as the physically consistent choice.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q5": {
+          "chosenOption": "c",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p2 states resistances are added and 'the order in which the layers are arranged does not change the total,' so moving the insulation layer leaves R_total, and hence Q, unchanged. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"c\", confidence high) — Standard steady-state 1D conduction fact: total series resistance is a simple sum (R1+R2+...), and addition is commutative, so reordering the layers cannot change the total resistance or the steady heat-flow rate (only transient response or condensation risk would be affected, which the question doesn't ask about).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-eng-tr-001-q6": {
+          "chosenOption": "a",
+          "dependency": "source-independent",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 states the total resistance 'is always larger than the resistance of any single layer taken alone,' a direct consequence of summing positive terms. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"a\", confidence high) — Total resistance = sum of positive individual layer resistances, so it must exceed any single layer's resistance (confirms a, rules out b). In steady-state series conduction the same heat flow passes through every layer (conservation of energy rules out d). Adding any further layer only adds positive resistance, which can only reduce flow, never raise it (rules out c).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 states directly that 'Proximity concerns the route by which the information reached the author, and says nothing about whether the author is honest,' matching option b almost verbatim and explicitly ruling out option d. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence medium) — Ambiguous at face value between 'time since event' (a) and 'route/chain of transmission' (b). See leak for why b is favoured.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-hum-sc-001-q6",
+              "gam-hum-sc-001-q3"
+            ],
+            "ablationLeakDetail": "q6 illustrates a scenario where the proximity check evidently passes purely because the printer 'watched from his own window' (a directness-of-witnessing claim), with no information about elapsed time given at all - suggesting the check concerns the route by which information reached the author rather than time elapsed. q3's option labels are also the first place all three checks (attribution, proximity, interest) are named explicitly, confirming proximity is the residual 'closeness' concept distinct from authenticity (attribution) and motive (interest), though it does not itself disambiguate time vs. route.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-hum-sc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p2: physical evidence (paper postdating the claimed date) settles a failed attribution check, and 'any statement whose force depends on the claimed origin must be set aside' -- matching b; p2 also states failing this check does not make the document worthless, ruling out option a. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — Standard historical-method principle: physical evidence contradicting a document's claimed date/authorship does not make the whole document worthless, but any conclusion that specifically rests on the false claim (its being a genuine 1421 document by that official) must be set aside. The other options are, respectively, an overreach, an unsupported leap about motive, and a denial of the evidence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence medium): The monk's 60-year-later, hearsay-based account matches p3's weakest proximity category ('a compiler assembling an account several generations later'); interest passes since he 'gained nothing,' so proximity is the check at issue and it fares poorly. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — A monk writing sixty years after the event, relying on secondhand monastery stories rather than his own witnessing, clearly fails any reasonable closeness-to-the-event standard (whether defined by elapsed time, directness of testimony, or both). The account is explicitly cleared of bias (no stake in the outcome), so the salient issue is proximity, and it fares poorly.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "medium",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p6 states a document failing one check 'may still be valuable, provided the historian's question does not depend on what the failed check governs'; the misattribution is irrelevant to a question about general supply-management practice, matching option c and ruling out the 'worthless' claim in option a (directly contradicted by p2/p6). Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"c\", confidence high) — A document's compromised or uncertain fact (here, misattributed authorship) only disqualifies uses that depend on that specific fact. Since this historian's question concerns general household supply practice, not the individual author's identity, the document remains sound evidence for that purpose.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-hum-sc-001-q2"
+            ],
+            "ablationLeakDetail": "q2 establishes and answers the identical underlying principle (only claims resting on the compromised fact must be set aside) in a different scenario; q4 directly re-applies that same rule, reinforcing the answer even though it is also independently reachable through general critical-thinking knowledge of source criticism.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-hum-sc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p5: two accounts corroborate only if independent, and a later account 'derived from' an earlier one cannot confirm it; here the added detail appears only in the derivative chronicle (absent from the eyewitness original), so it rests on the copy alone. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — Classic historiography pitfall: a later account merely copied from an earlier one is not independent corroboration. A detail present only in the derivative, later copy (absent from the original witness account) is attested by that one derivative source alone - ruling out 'well attested, because two accounts' as a false-multiplication-of-witnesses fallacy, and ruling out the two extreme options (that it must be genuine, or must be invented) as unsupported overreaches.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q6": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Attribution passes (workshop confirmed operating in the claimed year, p2); proximity passes at the strongest level (eyewitness who watched from his own window, p3's best category); interest fails because the printer was paid by the council he praises for restoring order, i.e. he had something to gain (p4). Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"b\", confidence high) — Attribution: the workshop verifiably operated in the stated year, matching the claimed printer - passes. Proximity: the printer claims to have watched the riot directly from his own window, a direct firsthand-observation claim - passes. Interest: the printer was paid by the city council, which the pamphlet then praises - a clear conflict of interest - fails. This matches 'attribution and proximity pass; interest does not.'",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-hum-sc-001-q1",
+              "gam-hum-sc-001-q2",
+              "gam-hum-sc-001-q3"
+            ],
+            "ablationLeakDetail": "The stem refers to 'the three checks' without naming or defining them itself; the reader needs q2 (which exemplifies the attribution check) and q3 (the first place all three check names - attribution, proximity, interest - appear explicitly as options) to know what is even being asked about, though the final answer follows straightforwardly by applying the scenario's facts once the checks are identified.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-business-administration-break-even-001": "1f6ad4ee475b35ce0b52711c2a1fa6b5",
+        "gam-computational-sciences-operation-counts-001": "1a8b025bff50089493238df216b41fa2",
+        "gam-engineering-thermal-resistance-001": "c49c0e36395bcb16d263c72ee1e822da",
+        "gam-humanities-source-checks-001": "8bc028240f6da60aba5ec403cbc2a738"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-04",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "supersededOn": "2026-09-04",
+      "supersededBecause": "Superseded the same day by the §5.10 pass. Its own finding — that six questions were answerable with no pack at all — caused the engineering pack to be rebuilt around a stipulated U-value limit and the business-administration pack to be retired. It judged content that no longer stands."
+    },
+    {
+      "id": "independent-2026-09-04",
+      "kind": "independent",
+      "status": "complete",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-04",
+      "scope": "The 19 questions of the three active packs, after the §5.10 pass. The retired business-administration pack is out of scope.",
+      "questions": {
+        "gam-cs-oc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Table 1 (t1) directly lists PAIR at n=16 as 128; this is a straight cell lookup, also consistent with n^2/2 = 128. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"c\", confidence low) — Explicit reference to Table 1 which is not provided. Without the table's values for PAIR across different catalogue sizes, no mathematical reasoning can derive the answer from the options alone. All four options (94, 128, 140, 32768) could theoretically be step counts; 32768 is suspiciously large (2^15) but not clearly implausible without knowing the algorithm.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): 1024 is not in Table 1, so I applied the formula from f1: 25*log2(1024)+40 = 25*10+40 = 290; distractors 265/315 come from off-by-one log2 errors. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"c\", confidence low) — No algorithmic knowledge of SPLIT is provided. The options (265, 290, 315, 1064) do not reveal an obvious pattern. Note that 1064 ≈ 1024 + 40, which could suggest a linear formula, but this is speculation without the source material.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q5",
+              "gam-cs-oc-001-q7"
+            ],
+            "ablationLeakDetail": "If SPLIT scales linearly with catalogue size n, then SPLIT(256) ≈ (this answer) × 256/1024, which would allow a test-taker to compute the SCAN(256) residual in q5 by subtraction. Similarly, SPLIT(4096) ≈ (this answer) × 4, and q7 requires 4096 × SPLIT(4096), creating an arithmetic link.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Comparing t1 rows: n=16 SPLIT(140)>SCAN(94); n=256 SPLIT(240)<SCAN(1054); n=4096 SPLIT(340)<SCAN(16414). Only n=16 qualifies. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"d\", confidence low) — Requires knowing the relative performance of SPLIT and SCAN at three specific catalogue sizes (n = 16, 256, 4096) from Table 1. Without these values, cannot determine whether SPLIT ever exceeds SCAN or at which size(s).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q6"
+            ],
+            "ablationLeakDetail": "If a test-taker determines that SPLIT > SCAN at exactly one size (or at none, or at multiple), this directly constrains q6's answer about what holds across all sizes. For example, if q3's answer is 'at n = 4096 only', then q6 cannot claim a rule holds at every size.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): PAIR(n)=n^2/2 from f1 is quadratic, so doubling n from 4096 to 8192 multiplies the count by 2^2=4, i.e. it roughly quadruples. Full ablation (claude-haiku-4-5-20251001): above-chance without the pack (would have chosen \"b\", confidence medium) — Doubling the catalogue size from 4096 to 8192 (factor of 2) changes the operation count by an unknown factor. Without knowing PAIR's algorithmic complexity: O(1)→factor 1 (option a), O(log n)→factor ~1.08 (option a), O(n)→factor 2 (option b), O(n log n)→factor ~2.17 (option b), O(n²)→factor 4 (option c). For most realistic catalogue operations, O(n) or O(n log n) dominates, pointing to option b. However, this is educated guessing without the algorithm specification.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-oc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3's sequential-composition rule says counts add: SPLIT(256)+SCAN(256) = 240+1054 = 1294 from t1; option d wrongly multiplies the two. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"c\", confidence low) — Explicitly states 'Using the values in Table 1', requiring specific SPLIT(256) and SCAN(256) values. The options (1054, 1294, 1314, 252960) span a huge range; 252960 is orders of magnitude larger than the others, suggesting either a multiplication error or a completely different calculation path. Cannot solve without the table.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q2"
+            ],
+            "ablationLeakDetail": "If SPLIT scales linearly, q2's answer constrains SPLIT(256) = (q2 answer) × 256/1024. Subtracting this from the total (q5 options) would reveal SCAN(256), and the options become narrower. For instance, if q2 = 315 (option c), then SPLIT(256) ≈ 79, meaning SCAN(256) ≈ option - 79. This creates a strong narrowing leak.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): From t1: minimum at n=16 is SCAN(94), but at n=256 and n=4096 the minimum is SPLIT; no routine is fewest at all three sizes, so (c) holds and (a),(b),(d) each fail at n=16. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"c\", confidence low) — Requires Table 1 values to verify which of the four statements about PAIR, SPLIT, and SCAN holds across all three sizes. Without the table, cannot check whether any single routine performs most/fewest at every size or whether the ranking changes.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q3"
+            ],
+            "ablationLeakDetail": "If q3 determines that SPLIT > SCAN at exactly one size, this rules out q6 option d ('at none of the three sizes'). Conversely, if q3 says SPLIT > SCAN at multiple sizes, this affects which routing statement in q6 is universally true.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-oc-001-q7": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3's rule: multiply SPLIT's per-run cost by the number of records SCAN processes (4096), not by SCAN's own step count. SPLIT(4096)=340 from t1, so 4096*340=1,392,640; option c is the trap of using SCAN(4096)=16414 instead. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"b\", confidence low) — Requires knowing how many steps SPLIT takes on a 4096-record catalogue, then multiplying by 4096 (the number of times SCAN examines a record). The options span a massive range (16k to 67M). Without Table 1 or algorithmic knowledge, cannot compute this product.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-oc-001-q2"
+            ],
+            "ablationLeakDetail": "If SPLIT scales predictably (e.g., linearly) with catalogue size, q2's answer for SPLIT(1024) allows estimation of SPLIT(4096) ≈ (q2 answer) × 4. Then total ≈ 4096 × (q2 answer × 4) ≈ 16384 × (q2 answer). For q2 option c (315), this gives ~5.2M, close to q7 option c. This arithmetic link is a narrowing leak.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q1": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p4 states the guidance is expressed as a U-value, which 'does not depend on how large the wall is'; since both walls share the same layers/thicknesses their U-values are identical regardless of area, so they stand identically. Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"c\", confidence high) — Thermal resistance R = Σ(thickness / conductivity) for each layer. Crucially, R does NOT depend on wall area A. Heat flow rate Q = ΔT / R also does not depend on area in the resistance formula (U-value, which is what building guidance typically limits, is H / R, also area-independent). Two walls with identical composition but different areas have identical U-values. Guidance is applied per U-value, not total heat loss.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-eng-tr-001-q2": {
+          "chosenOption": "a",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Using fig2's values: R_brick=0.24/0.60=0.4, R_insulation=0.08/0.05=1.6, R_total=2.0; Q=A*dT/R_total=18*20/2.0=180 W. Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"b\", confidence low) — Requires Figure 2, which specifies the wall composition (layer materials and thicknesses) and the temperature difference across it. Heat flow Q = ΔT / R_total requires both values. Without the figure, cannot compute Q.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q5"
+            ],
+            "ablationLeakDetail": "If Q is known and ΔT is constant (or recoverable from context), then R_total = ΔT / Q. This constrains whether the wall's U-value = 1/R_total meets guidance. A test-taker could use q2's numerical answer to refine their assessment in q5.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): R_brick=0.4 vs R_insulation=1.6 (fig2 values via R=d/lambda): insulation contributes 1.6 of the 2.0 total despite being thinner, because its conductivity (0.05) is much lower than brick's (0.60). Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"b\", confidence high) — Thermal resistance of a layer = thickness / thermal conductivity (λ). Insulation materials (e.g., foam, fibreglass) have thermal conductivity ~0.03–0.1 W/(m·K). Brick has λ ≈ 0.5–1.0 W/(m·K), roughly 5–30× higher. Even if brick is thicker, insulation's much lower conductivity dominates total resistance. This is a well-established principle in building physics. Answer is B.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q4",
+              "gam-eng-tr-001-q6"
+            ],
+            "ablationLeakDetail": "If q3 answer is B (insulation dominates), then q4's question 'By what factor does heat flow change if brick thickness doubles?' becomes nearly deterministic: Q' / Q = R_total / (2×R_brick + R_insulation) ≈ R_total / R_total ≈ 1 (option a, unchanged). Similarly, q6 asks which change reduces U-value to compliance; if insulation dominates, adding more insulation (option c) is the only effective answer.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-eng-tr-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Doubling brick thickness gives R_brick=0.8, R_total=0.8+1.6=2.4; Q_new=18*20/2.4=150; 150/180=5/6, i.e. falls to about five sixths. Full ablation (claude-haiku-4-5-20251001): above-chance without the pack (would have chosen \"a\", confidence medium) — If brick is one of two layers and insulation (from q3, which most candidates would solve correctly) dominates total thermal resistance, then doubling brick thickness adds ΔR_brick to the total, but ΔR_brick << R_total. The new heat flow Q' = ΔT / (R_total + ΔR_brick) ≈ ΔT / R_total = Q, so Q' ≈ Q. However, this reasoning depends on solving q3 first and correctly recognizing insulation's dominance. Without that insight, the question is above-chance but not certain.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q3"
+            ],
+            "ablationLeakDetail": "q3 establishes that insulation contributes much more resistance than brick. If this answer is accepted, then q4 becomes nearly solved: doubling brick barely changes the total when insulation dominates. The answer is option a, making this a decisive leak from q3.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-eng-tr-001-q5": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): U=1/R_total=1/2.0=0.5 W/m2K vs the guidance's 0.28 (p4): 0.5/0.28≈1.79, i.e. nearly twice the allowed maximum, and clearly not 'more than ten times' (d). Full ablation (claude-haiku-4-5-20251001): not-determinable without the pack (would have chosen \"c\", confidence low) — Requires Figure 2 and the specific U-value guidance limit from the text. Must compute U = 1/R_total for the figure's wall and compare to guidance. Without both Figure 2 and the guidance value, cannot judge compliance.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q2"
+            ],
+            "ablationLeakDetail": "If q2 gives Q and ΔT is known, then R_total = ΔT/Q, and U = 1/R_total. This directly determines whether the wall meets guidance, assuming the guidance U-value threshold is constant across questions or can be inferred.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-eng-tr-001-q6": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Adding a second insulation layer gives R_total=0.4+1.6+1.6=3.6, U=1/3.6=0.278<0.28 (meets guidance, barely); reordering (a) and halving area (b) don't change U per p2/p4, and a second brick layer (d) gives U=1/2.4=0.417, still over 0.28. Full ablation (claude-haiku-4-5-20251001): above-chance without the pack (would have chosen \"c\", confidence medium) — To reduce U-value, must increase total thermal resistance R_total. Options: (a) reversing layers does not change total R or U-value; (b) halving area does not change U-value (it is per-unit-area); (c) adding a second insulation layer increases R by ΔR_insulation, reducing U; (d) adding brick increases R but much less than insulation. Physics strongly suggests C. However, without Figure 2 to confirm the wall's current U-value exceeds guidance, cannot be certain C solves the specific problem.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-eng-tr-001-q3"
+            ],
+            "ablationLeakDetail": "q3 establishes that insulation controls thermal resistance. Therefore, the change that most effectively reduces U-value (increases R) is adding insulation. q3's answer makes q6 option c nearly forced. This is a decisive leak.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-hum-sc-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 states almost verbatim: 'Proximity concerns the route by which the information reached the author, and says nothing about whether the author is honest,' which directly rules out (d) and matches (b). Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"a\", confidence high) — In historical source criticism, 'proximity' refers to how close in time the account is to the events described. A document written shortly after an event has high proximity; one written decades later has poor proximity. Option A correctly identifies this as temporal closeness to events. Options B (transmission route), C (detail level), and D (honesty/bias) refer to other checks (transmission, content analysis, interest) but not proximity.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Paper made after 1500 contradicts the claimed 1421 date, so the document fails the attribution check; p2 says a document that fails attribution is 'not thereby worthless' but 'any statement whose force depends on the claimed origin must be set aside,' ruling out (a) and matching (b). Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"b\", confidence high) — Document anachronism: the letter is dated 1421 but the paper is not from before 1500. This proves the document was NOT written in 1421 as signed. However, it does not make the letter entirely worthless. The correct reasoning is that any claims resting on the document being authentically from 1421 and written by that official must be rejected. Option B captures this precisely. Option A (worthless) is too strong; C and D do not logically follow from the anachronism.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-hum-sc-001-q4"
+            ],
+            "ablationLeakDetail": "q2 establishes a key principle: failing a source check does not disqualify a document for all purposes. This principle is central to q4, which asks whether a document with wrong attribution is usable for a question that does not turn on who wrote it. The principle demonstrated in q2 directly informs q4's reasoning.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-hum-sc-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p3 explicitly describes 'a compiler assembling an account several generations later' as furthest from events; the monk (60 years later, secondhand stories) matches this, so proximity is the check at issue and it fares poorly - interest is a red herring since he had nothing at stake (passes cleanly). Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"b\", confidence high) — The monk wrote 60 years after the events, drawing from oral sources in his monastery, but had no personal interest in the outcome. The 60-year gap is the primary issue: this is poor temporal proximity to the events. Although he draws from secondhand stories (transmission issue) and had no interest (passes interest check), the explicit focus of the question is 'which check is most directly at issue', and the 60-year delay is the dominant weakness. Answer is B.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Attribution fails (wrong author named), but p6 says a document failing a check remains valuable 'provided the historian's question does not depend on what the failed check governs'; the supply-management question doesn't depend on who wrote it, so (c) applies and (a)/(b)/(d) are unsupported. Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"c\", confidence high) — The accounts fail the attribution check (attributed to steward, actually written by assistant). However, the historian's question is 'how households managed supplies', which is about household practice, not about who wrote the accounts. Source reliability is question-dependent: a document can fail a check yet remain sound evidence for a question that does not depend on that failed check. Option C articulates this principle correctly. This tests deep understanding of when source criticism is relevant.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-hum-sc-001-q2"
+            ],
+            "ablationLeakDetail": "q2 demonstrates that a document failing a check (anachronism/authenticity) does not automatically make it worthless. This exact principle applies to q4: an attribution failure does not disqualify the document for questions independent of authorship. The principle is reinforced across both questions.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-hum-sc-001-q5": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): p5 requires independence for confirmation ('neither is derived from the other'); the later chronicle is copied from the earlier, so it cannot confirm anything, and since the added detail is absent from the earlier witness account, it rests on the derivative, non-independent later text alone. Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"b\", confidence high) — The new detail (official's name) appears only in the later chronicle, which is copied from the earlier. A derived source cannot independently confirm information absent in its original. It can copy information accurately, but it cannot add corroboration. Option B correctly identifies this: the detail rests on the later chronicle alone, and derivation does not create independent attestation. Option C mistakenly suggests the later source adds new weight; D is too strong.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-hum-sc-001-q6": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Attribution passes (workshop confirmed active that year); proximity passes (eyewitness, watched from his own window); interest fails (paid by the council he praises) per p4's stake criterion. Full ablation (claude-haiku-4-5-20251001): determinable without the pack (would have chosen \"b\", confidence high) — Apply three source checks to the pamphlet: (1) Attribution: printer's name and workshop confirmed for that year → PASSES; (2) Proximity: printer claims direct witness observation (watched from window) → PASSES (direct, near-contemporary); (3) Interest: printer was paid by city council, which the pamphlet praises → FAILS (clear financial bias and interested outcome). Option B correctly identifies this configuration. The other options mischaracterize the outcome of at least one check.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-computational-sciences-operation-counts-001": "1c4ea305e321ace70e4b837935ea7209",
+        "gam-engineering-thermal-resistance-001": "5c114d85ad8d1c5dec3415c23cb78500",
+        "gam-humanities-source-checks-001": "8bc028240f6da60aba5ec403cbc2a738"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-04",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "packContributions": {
+        "gam-computational-sciences-operation-counts-001": {
+          "contributesNonGenericElement": true,
+          "whatItContributes": "The stipulated convention (p3) that a 'run once per record' nested composition multiplies by the number of records the outer routine processes, not by the outer routine's own operation count - a distinction that resolves a genuine ambiguity specific to this invented scenario and is what the q7 distractors are built to trap.",
+          "questionsRequiringIt": [
+            "gam-cs-oc-001-q7"
+          ]
+        },
+        "gam-engineering-thermal-resistance-001": {
+          "contributesNonGenericElement": true,
+          "whatItContributes": "The specific adequacy guidance (p4: U-value must not exceed 0.28 W/m2K) that this text stipulates for judging a wall's compliance - a threshold and choice of quantity (U rather than Q or R) that cannot be derived from thermal physics alone.",
+          "questionsRequiringIt": [
+            "gam-eng-tr-001-q1",
+            "gam-eng-tr-001-q5",
+            "gam-eng-tr-001-q6"
+          ]
+        },
+        "gam-humanities-source-checks-001": {
+          "contributesNonGenericElement": true,
+          "whatItContributes": "A specific three-part source-evaluation framework (attribution/proximity/interest checks) with precise scope boundaries (e.g. proximity excludes honesty; interest excludes distance; corroboration requires independence, not copy count; a failed check only disqualifies evidence for questions that check governs) that must be applied exactly as defined to classify each scenario correctly.",
+          "questionsRequiringIt": [
+            "gam-hum-sc-001-q1",
+            "gam-hum-sc-001-q2",
+            "gam-hum-sc-001-q3",
+            "gam-hum-sc-001-q4",
+            "gam-hum-sc-001-q5",
+            "gam-hum-sc-001-q6"
+          ]
+        }
+      },
+      "caveat": "The two halves of this round were run by different models: the blind re-answer by Claude Sonnet 5, the full ablation by Claude Haiku 4.5, because a session rate limit stopped the Sonnet ablation agent mid-run. Both are independent of the pack author, which is what §5.8 requires, but the ablation half is the weaker adversary of the two: it answered 11 of 19 correctly with no source at all against Sonnet's 17 of 19 on the immediately preceding content, while rating more couplings as leaks. Its three decisive findings all rest on the same coupling, which two earlier Sonnet rounds rated narrowing. Recorded here so the difference is visible to the reviewer rather than buried."
+    },
+    {
+      "id": "independent-2026-09-04-r3",
+      "kind": "independent",
+      "status": "complete",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-04",
+      "scope": "The 5 questions of the replacement business-administration pack. The three packs already covered by independent-2026-09-04 are out of scope; coverage is per pack.",
+      "questions": {
+        "gam-ba-sr-001-q1": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): 950 units falls in the 900-1499 band (t1), rate 7%. Per f1/l1 the rate applies to the whole quantity, not just the excess: rebate = 0.07 x 60 x 950 = 3,990 euros. Full ablation (Claude Sonnet 5): not-determinable without the pack (would have chosen \"c\", confidence low) — Requires the scheme's actual band thresholds and per-unit list price to compute a rebate on 950 units. None of that is recoverable from the stem or the four bare euro figures (210 / 2,280 / 3,990 / 6,270), which carry no wording tell (no hedging, no length asymmetry, no shape mismatch). Picking one option here is a guess between four plausible-looking numbers.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling question states, or gives arithmetic that yields, a per-unit price or a rebate percentage. Siblings do let you infer which 300-unit band 950 falls into (see q3's leakDetail), but band identity alone can't produce a euro figure without a price/rate that never appears anywhere in the pack.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ba-sr-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): At 880 units (4% band) net cost is 880x60 - 0.04x60x880 = 50,688; at 900 units (7% band) it is 900x60 - 0.07x60x900 = 50,220 — a fall of 468 euros, because l1's retrospective rule applies the improved rate to every unit bought that year, not just the marginal ones. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence medium) — Options (a) ignores the existence of any rebate at all once a threshold is crossed, and (d) claims a suspiciously exact offset — both read as throwaway distractors, which narrows the real contest to (b) marginal-only vs (c) retroactive/all-units. Annual-volume bonus schemes settled as a single year-end credit (the common real-world convention this stem evokes) are more often retroactive on the whole year's purchases than incremental, so I lean (c), but the stem alone doesn't nail down which design this specific scheme uses.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-sr-001-q1",
+              "gam-ba-sr-001-q3",
+              "gam-ba-sr-001-q4",
+              "gam-ba-sr-001-q5"
+            ],
+            "ablationLeakDetail": "Every sibling treats 'the rebate' as one lump value attached to a buyer's annual unit total, never as a sum of per-band marginal slices: q1 asks for a single 'rebate due' on a total; q3 talks about withdrawing and re-settling a single rebate per buyer; q4 asks what a single rebate is 'worked out on'; q5's option (d) frames clearing a threshold as unlocking one rebate on that year's total. That consistent all-units framing across four independent items is exactly the fact q2 turns on, and it points at option (c).",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-ba-sr-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): 1,520-40=1,480 drops below 1,500, the lower limit of the band it was credited under, so per p2 the whole rebate is recovered and reworked at the 900-1499 band; 1,700-40=1,660 stays at or above 1,500, so per p2's second sentence only the amount changes, not the rate — the rebate is not withdrawn and re-settled. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"c\", confidence low) — Options split structurally into 'no difference' (a, b) vs 'the two buyers differ' (c, d). Setting up two buyers with different totals (1,520 vs 1,700) rather than one is weak evidence the intended point is a differentiated outcome, but whether it's (c) or (d) hinges on where the scheme's band boundaries actually sit relative to 1,480/1,520 and 1,660/1,700 — information the stem and options don't supply on their own.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-sr-001-q1",
+              "gam-ba-sr-001-q2",
+              "gam-ba-sr-001-q4",
+              "gam-ba-sr-001-q5"
+            ],
+            "ablationLeakDetail": "Laying every unit figure in the pack side by side (620, 880, 900, 950, 1,520, 1,700, 1,800) shows a consistent multiple-of-300 pattern: q2's boundary sits right at 900, q5's 1,800 is a clean multiple of 300, q1's 950 sits just above 900, and q4's 620 sits just above 600 — all consistent with band edges at 300/600/900/1,200/1,500/1,800. Under that reconstructed spacing, buyer 1's 1,520 (just above the 1,500 edge) drops to 1,480 (below it) after returning 40 units, while buyer 2's 1,700 drops only to 1,660, staying inside the same 1,500-1,799 band. That arithmetic, built entirely from sibling numbers, directly resolves the mechanic q3 asks about and points decisively at option (c).",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-ba-sr-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): l1 states every unit counts towards the band regardless of price actually paid, and the rebate is always calculated on list price, never a price a separate discount already reduced — so the 200-unit order counts and its rebate is worked out on the 60-euro list price. Full ablation (Claude Sonnet 5): above-chance without the pack (would have chosen \"b\", confidence low) — All four options are individually plausible real-world rebate-scheme rules (unit-based accrual regardless of price paid; rebate on price paid vs. list price; an anti-stacking exclusion). General commercial convention leans toward rebate percentages being quoted off list price, giving a weak lean to (b), but nothing in the stem itself rules out (a), (c), or (d).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "above-chance",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-sr-001-q1",
+              "gam-ba-sr-001-q3"
+            ],
+            "ablationLeakDetail": "q1 ('purchases ... come to 950 units') and q3 ('credited with a rebate ... on a year's total of 1,520 units') both establish that band membership in this scheme is counted in physical units, not purchase value. That decisively rules out option (c) ('does not count towards the band'), since a price cut on one order doesn't change how many units were bought. It doesn't settle the a/b/d contest over what the rebate is computed on.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ba-sr-001-q5": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallySupportsAnswer": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Sonnet 5, confidence high): Concentrating all 1,800 units in one calendar year hits the 1,500+ band (11%) on the full total: 0.11x60x1800=11,880. Splitting evenly (900+900) only reaches the 7% band each year: 2x(0.07x60x900)=7,560. Because l1 fixes banding per calendar year, timing matters (ruling out option c), and any split necessarily pushes some units into a lower band than concentrating does, so (a) dominates. Full ablation (Claude Sonnet 5): determinable without the pack (would have chosen \"a\", confidence medium) — Tiered volume-rebate schemes generically reward concentration: putting all 1,800 units in one calendar year reaches the single highest band and applies its rate to the full amount, whereas splitting into two years caps each year at a lower band applied to a smaller total. The stem's 'can place the orders whenever it suits' line exists specifically to pre-empt a feasibility objection to concentrating the purchases in one year, which is a strong tell that (a) is the intended answer over the more elaborate-sounding (d).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-04",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ba-sr-001-q2",
+              "gam-ba-sr-001-q3"
+            ],
+            "ablationLeakDetail": "q2 and q3 together establish (see their own leakDetail entries) that this is an all-units/retroactive scheme with fixed calendar-year bands roughly 300 units wide. Under a retroactive scheme, concentrating volume in one year yields a strictly bigger blended rate than splitting, which reinforces (rather than creates) the standalone lean toward option (a).",
+            "ablationLeakSeverity": "narrowing"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-business-administration-step-rebate-001": "4ec543926ab3b573343ecc7d9a52fe23"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-04",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "packContributions": {
+        "gam-business-administration-step-rebate-001": {
+          "contributesNonGenericElement": true,
+          "whatItContributes": "An entirely invented, non-standard rebate mechanism — the band thresholds and rates, the formula applying the band's rate to the whole year's quantity rather than marginally, the list-price-only basis, and the retrospective withdraw-and-resettle-on-return rule — none of which is generic business knowledge a candidate could supply unaided.",
+          "questionsRequiringIt": [
+            "gam-ba-sr-001-q1",
+            "gam-ba-sr-001-q2",
+            "gam-ba-sr-001-q3",
+            "gam-ba-sr-001-q4",
+            "gam-ba-sr-001-q5"
+          ]
+        }
+      }
+    }
+  ]
+}

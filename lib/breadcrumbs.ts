@@ -1,3 +1,4 @@
+import { getPack } from '@/lib/gam/registry'
 import { SECTION_BY_ID, isSectionId } from '@/lib/sections'
 
 export type Crumb = {
@@ -36,6 +37,7 @@ const STATIC: Record<string, Crumb[]> = {
   '/exam/checklist': [EXAM, { label: 'Pre-exam checklist' }],
   '/exam/sources': [EXAM, { label: 'Sources' }],
   '/module-b': [PREPARE, { label: 'Module B' }],
+  '/module-b/timed': [TEST, { label: 'Module B', href: '/module-b' }, { label: 'Timed session' }],
 }
 
 const SECTION_TABS: Record<string, string> = {
@@ -64,6 +66,14 @@ export function breadcrumbsFor(pathname: string): Crumb[] {
       { label: section.title, href: `/module-a/${sectionSegment}` },
       { label: tab },
     ]
+  }
+
+  // /module-b/practice/<packId>
+  if (parts[0] === 'module-b' && parts[1] === 'practice' && parts[2]) {
+    const file = getPack(parts[2])
+    if (file) {
+      return [PREPARE, { label: 'Module B', href: '/module-b' }, { label: file.pack.title }]
+    }
   }
 
   // /practice/timed/<section>

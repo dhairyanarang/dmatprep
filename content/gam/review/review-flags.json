@@ -1,0 +1,353 @@
+{
+  "note": "Targeted review flags for the GAM pilot. These are open questions for the human reviewer, not defects. Derived from the current independent adjudication round by scripts/gam/build-review-flags.mjs, never hand-edited, so they cannot outlive the content they describe. Held outside the pack files so the pilot questions stay untouched by review bookkeeping.",
+  "raisedBy": "independent-2026-09-04, independent-2026-09-04-r3",
+  "raisedAt": "2026-09-04",
+  "questionFlags": {
+    "gam-ba-sr-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-ba-sr-001-q1, gam-ba-sr-001-q3, gam-ba-sr-001-q4, gam-ba-sr-001-q5. Every sibling treats 'the rebate' as one lump value attached to a buyer's annual unit total, never as a sum of per-band marginal slices: q1 asks for a single 'rebate due' on a total; q3 talks about withdrawing and re-settling a single rebate per buyer; q4 asks what a single rebate is 'worked out on'; q5's option (d) frames clearing a threshold as unlocking one rebate on that year's total. That consistent all-units framing across four independent items is exactly the fact q2 turns on, and it points at option (c)."
+      }
+    ],
+    "gam-ba-sr-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-ba-sr-001-q1, gam-ba-sr-001-q2, gam-ba-sr-001-q4, gam-ba-sr-001-q5. Laying every unit figure in the pack side by side (620, 880, 900, 950, 1,520, 1,700, 1,800) shows a consistent multiple-of-300 pattern: q2's boundary sits right at 900, q5's 1,800 is a clean multiple of 300, q1's 950 sits just above 900, and q4's 620 sits just above 600 — all consistent with band edges at 300/600/900/1,200/1,500/1,800. Under that reconstructed spacing, buyer 1's 1,520 (just above the 1,500 edge) drops to 1,480 (below it) after returning 40 units, while buyer 2's 1,700 drops only to 1,660, staying inside the same 1,500-1,799 band. That arithmetic, built entirely from sibling numbers, directly resolves the mechanic q3 asks about and points decisively at option (c)."
+      }
+    ],
+    "gam-ba-sr-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ba-sr-001-q1, gam-ba-sr-001-q3. q1 ('purchases ... come to 950 units') and q3 ('credited with a rebate ... on a year's total of 1,520 units') both establish that band membership in this scheme is counted in physical units, not purchase value. That decisively rules out option (c) ('does not count towards the band'), since a price cut on one order doesn't change how many units were bought. It doesn't settle the a/b/d contest over what the rebate is computed on."
+      }
+    ],
+    "gam-ba-sr-001-q5": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ba-sr-001-q2, gam-ba-sr-001-q3. q2 and q3 together establish (see their own leakDetail entries) that this is an all-units/retroactive scheme with fixed calendar-year bands roughly 300 units wide. Under a retroactive scheme, concentrating volume in one year yields a strictly bigger blended rate than splitting, which reinforces (rather than creates) the standalone lean toward option (a)."
+      }
+    ],
+    "gam-cs-oc-001-q1": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      }
+    ],
+    "gam-cs-oc-001-q2": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q5, gam-cs-oc-001-q7. If SPLIT scales linearly with catalogue size n, then SPLIT(256) ≈ (this answer) × 256/1024, which would allow a test-taker to compute the SCAN(256) residual in q5 by subtraction. Similarly, SPLIT(4096) ≈ (this answer) × 4, and q7 requires 4096 × SPLIT(4096), creating an arithmetic link."
+      }
+    ],
+    "gam-cs-oc-001-q3": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q6. If a test-taker determines that SPLIT > SCAN at exactly one size (or at none, or at multiple), this directly constrains q6's answer about what holds across all sizes. For example, if q3's answer is 'at n = 4096 only', then q6 cannot claim a rule holds at every size."
+      }
+    ],
+    "gam-cs-oc-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      }
+    ],
+    "gam-cs-oc-001-q5": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q2. If SPLIT scales linearly, q2's answer constrains SPLIT(256) = (q2 answer) × 256/1024. Subtracting this from the total (q5 options) would reveal SCAN(256), and the options become narrower. For instance, if q2 = 315 (option c), then SPLIT(256) ≈ 79, meaning SCAN(256) ≈ option - 79. This creates a strong narrowing leak."
+      }
+    ],
+    "gam-cs-oc-001-q6": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q3. If q3 determines that SPLIT > SCAN at exactly one size, this rules out q6 option d ('at none of the three sizes'). Conversely, if q3 says SPLIT > SCAN at multiple sizes, this affects which routing statement in q6 is universally true."
+      }
+    ],
+    "gam-cs-oc-001-q7": [
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q2. If SPLIT scales predictably (e.g., linearly) with catalogue size, q2's answer for SPLIT(1024) allows estimation of SPLIT(4096) ≈ (q2 answer) × 4. Then total ≈ 4096 × (q2 answer × 4) ≈ 16384 × (q2 answer). For q2 option c (315), this gives ~5.2M, close to q7 option c. This arithmetic link is a narrowing leak."
+      }
+    ],
+    "gam-eng-tr-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-eng-tr-001-q2": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-eng-tr-001-q5. If Q is known and ΔT is constant (or recoverable from context), then R_total = ΔT / Q. This constrains whether the wall's U-value = 1/R_total meets guidance. A test-taker could use q2's numerical answer to refine their assessment in q5."
+      }
+    ],
+    "gam-eng-tr-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q4, gam-eng-tr-001-q6. If q3 answer is B (insulation dominates), then q4's question 'By what factor does heat flow change if brick thickness doubles?' becomes nearly deterministic: Q' / Q = R_total / (2×R_brick + R_insulation) ≈ R_total / R_total ≈ 1 (option a, unchanged). Similarly, q6 asks which change reduces U-value to compliance; if insulation dominates, adding more insulation (option c) is the only effective answer."
+      }
+    ],
+    "gam-eng-tr-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q3. q3 establishes that insulation contributes much more resistance than brick. If this answer is accepted, then q4 becomes nearly solved: doubling brick barely changes the total when insulation dominates. The answer is option a, making this a decisive leak from q3."
+      }
+    ],
+    "gam-eng-tr-001-q5": [
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-eng-tr-001-q2. If q2 gives Q and ΔT is known, then R_total = ΔT/Q, and U = 1/R_total. This directly determines whether the wall meets guidance, assuming the guidance U-value threshold is constant across questions or can be inferred."
+      }
+    ],
+    "gam-eng-tr-001-q6": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q3. q3 establishes that insulation controls thermal resistance. Therefore, the change that most effectively reduces U-value (increases R) is adding insulation. q3's answer makes q6 option c nearly forced. This is a decisive leak."
+      }
+    ],
+    "gam-hum-sc-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-hum-sc-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-hum-sc-001-q4. q2 establishes a key principle: failing a source check does not disqualify a document for all purposes. This principle is central to q4, which asks whether a document with wrong attribution is usable for a question that does not turn on who wrote it. The principle demonstrated in q2 directly informs q4's reasoning."
+      }
+    ],
+    "gam-hum-sc-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-hum-sc-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-hum-sc-001-q2. q2 demonstrates that a document failing a check (anachronism/authenticity) does not automatically make it worthless. This exact principle applies to q4: an attribution failure does not disqualify the document for questions independent of authorship. The principle is reinforced across both questions."
+      }
+    ],
+    "gam-hum-sc-001-q5": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-hum-sc-001-q6": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ]
+  },
+  "packFlags": {
+    "gam-business-administration-step-rebate-001": [
+      {
+        "flag": "section-5-10",
+        "severity": "review",
+        "reason": "§5.10 satisfied: the pack contributes “An entirely invented, non-standard rebate mechanism — the band thresholds and rates, the formula applying the band's rate to the whole year's quantity rather than marginally, the list-price-only basis, and the retrospective withdraw-and-resettle-on-return rule — none of which is generic business knowledge a candidate could supply unaided.”, required by 5 of its 5 questions (gam-ba-sr-001-q1, gam-ba-sr-001-q2, gam-ba-sr-001-q3, gam-ba-sr-001-q4, gam-ba-sr-001-q5). The reviewer should confirm that this is a real contribution rather than one the adjudicator was generous about."
+      }
+    ],
+    "gam-computational-sciences-operation-counts-001": [
+      {
+        "flag": "section-5-10",
+        "severity": "blocking",
+        "reason": "§5.10: the adjudicator recorded the pack’s non-generic contribution as “The stipulated convention (p3) that a 'run once per record' nested composition multiplies by the number of records the outer routine processes, not by the outer routine's own operation count - a distinction that resolves a genuine ambiguity specific to this invented scenario and is what the q7 distractors are built to trap.” and found 1 question(s) requiring it. A contribution one question touches is decoration. The reviewer should decide whether the adjudicator has identified everything the pack contributes, or whether the pack genuinely rests on knowledge the candidate already holds."
+      }
+    ],
+    "gam-engineering-thermal-resistance-001": [
+      {
+        "flag": "section-5-10",
+        "severity": "review",
+        "reason": "§5.10 satisfied: the pack contributes “The specific adequacy guidance (p4: U-value must not exceed 0.28 W/m2K) that this text stipulates for judging a wall's compliance - a threshold and choice of quantity (U rather than Q or R) that cannot be derived from thermal physics alone.”, required by 3 of its 6 questions (gam-eng-tr-001-q1, gam-eng-tr-001-q5, gam-eng-tr-001-q6). The reviewer should confirm that this is a real contribution rather than one the adjudicator was generous about."
+      }
+    ],
+    "gam-humanities-source-checks-001": [
+      {
+        "flag": "section-5-10",
+        "severity": "review",
+        "reason": "§5.10 satisfied: the pack contributes “A specific three-part source-evaluation framework (attribution/proximity/interest checks) with precise scope boundaries (e.g. proximity excludes honesty; interest excludes distance; corroboration requires independence, not copy count; a failed check only disqualifies evidence for questions that check governs) that must be applied exactly as defined to classify each scenario correctly.”, required by 6 of its 6 questions (gam-hum-sc-001-q1, gam-hum-sc-001-q2, gam-hum-sc-001-q3, gam-hum-sc-001-q4, gam-hum-sc-001-q5, gam-hum-sc-001-q6). The reviewer should confirm that this is a real contribution rather than one the adjudicator was generous about."
+      },
+      {
+        "flag": "all-source-supported",
+        "severity": "review",
+        "reason": "All 6 questions are classified source-supported, none source-determined. Spec §5.6 does not forbid this — the module is a knowledge-and-application test — but it does require the pack to be shown to be doing real work rather than decorating questions that would stand without it. That judgement is the reviewer's, and calibration across packs follows the repaired pilot."
+      },
+      {
+        "flag": "text-only-pack",
+        "severity": "review",
+        "reason": "A text-only pack in a familiar domain is the structurally hardest shape to make genuinely source-dependent, and the case where the line between source-supported and source-independent is thinnest. It warrants the closest reading of the four."
+      }
+    ]
+  }
+}

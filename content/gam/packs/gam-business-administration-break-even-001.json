@@ -1,0 +1,711 @@
+{
+  "pack": {
+    "id": "gam-business-administration-break-even-001",
+    "domain": "business-administration",
+    "title": "The break-even quantity of a single-product operation",
+    "defines": [
+      "break-even quantity",
+      "contribution margin",
+      "fixed costs",
+      "variable cost per unit"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "pilot-b1",
+      "reviewStatus": "rejected",
+      "notes": "Prices, costs and the chart values are specific to this pack so that the numerical questions cannot be answered from a remembered worked example.",
+      "retiredOn": "2026-09-04",
+      "retiredBecause": "Fails spec §5.10. The independent round of 4 September 2026 judged 3 of its 7 questions answerable with no pack at all, and the remaining questions substitute the pack’s numerals into q = F / (p - v), a relationship the candidate already holds. Every block is textbook cost-volume-profit: the assumption list, the formula and the no-break-even case are all standard. There is no non-generic element in the subject to retarget the failing questions onto, and adding one would be replacement dressed as repair. Kept as the evidence for §5.10; counts for nothing. A replacement should keep the text-plus-assumptions-plus-formula-plus-figure shape and the business-administration or economics domain, and be built on a scheme the source defines itself — a stated costing or allocation rule with its own conventions — rather than on a formula the candidate can be assumed to know."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "The break-even quantity of a single-product operation"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+      },
+      {
+        "kind": "list",
+        "id": "l1",
+        "ordered": false,
+        "items": [
+          "Every unit produced is sold within the same period, so output and sales are equal.",
+          "The selling price per unit is the same regardless of how many units are sold.",
+          "The variable cost per unit is the same for every unit produced.",
+          "Fixed costs do not change over the range of output being considered.",
+          "The workshop makes a single product, so costs need not be shared between products."
+        ]
+      },
+      {
+        "kind": "formula",
+        "id": "f1",
+        "latex": "c = p - v;   q_BE = F / c",
+        "caption": "Contribution margin per unit and the resulting break-even quantity.",
+        "legend": [
+          {
+            "symbol": "p",
+            "meaning": "selling price of one unit"
+          },
+          {
+            "symbol": "v",
+            "meaning": "variable cost of producing one unit"
+          },
+          {
+            "symbol": "c",
+            "meaning": "contribution margin per unit"
+          },
+          {
+            "symbol": "F",
+            "meaning": "fixed costs for the period"
+          },
+          {
+            "symbol": "q_BE",
+            "meaning": "break-even quantity in units"
+          }
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+      },
+      {
+        "kind": "figure",
+        "id": "fig1",
+        "caption": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above.",
+        "spec": {
+          "type": "line-chart",
+          "xLabel": "Units produced and sold",
+          "yLabel": "Euros",
+          "series": [
+            {
+              "id": "A",
+              "label": "Line A: total revenue",
+              "points": [
+                [
+                  0,
+                  0
+                ],
+                [
+                  10000,
+                  400000
+                ]
+              ]
+            },
+            {
+              "id": "B",
+              "label": "Line B: total cost",
+              "points": [
+                [
+                  0,
+                  90000
+                ],
+                [
+                  10000,
+                  340000
+                ]
+              ]
+            },
+            {
+              "id": "C",
+              "label": "Line C: fixed costs",
+              "points": [
+                [
+                  0,
+                  90000
+                ],
+                [
+                  10000,
+                  90000
+                ]
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "at": [
+                6000,
+                240000
+              ],
+              "label": "Lines A and B cross here"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+      }
+    ],
+    "contentHash": "bccc0d3776922fc2b49847e4cb553117"
+  },
+  "questions": [
+    {
+      "id": "gam-ba-be-001-q1",
+      "packId": "gam-business-administration-break-even-001",
+      "stem": "Which of the following is one of the assumptions the model states?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Everything produced in the period is also sold in that period."
+        },
+        {
+          "id": "b",
+          "text": "The selling price falls as the quantity sold rises."
+        },
+        {
+          "id": "c",
+          "text": "Fixed costs rise in steps as output grows."
+        },
+        {
+          "id": "d",
+          "text": "Costs are shared across several products made in the same workshop."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "retrieve",
+      "dependsOn": [
+        "l1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "l1",
+          "quote": "Every unit produced is sold within the same period, so output and sales are equal."
+        }
+      ],
+      "explanation": "The list of assumptions states that output and sales are equal within the period, which is exactly what the first option says.",
+      "refutations": {
+        "b": {
+          "blockId": "l1",
+          "family": "contradicts-source",
+          "reason": "The assumptions state the opposite: the selling price per unit is the same regardless of how many units are sold."
+        },
+        "c": {
+          "blockId": "l1",
+          "family": "contradicts-source",
+          "reason": "The assumptions state that fixed costs do not change over the range of output being considered."
+        },
+        "d": {
+          "blockId": "l1",
+          "family": "contradicts-source",
+          "reason": "The model assumes a single product precisely so that costs need not be shared between products."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The assumptions are listed explicitly; the answer does not have to be inferred."
+        },
+        {
+          "level": 2,
+          "text": "Three of the four options describe conditions the model rules out rather than assumes."
+        },
+        {
+          "level": 3,
+          "text": "Compare each option in turn against the bulleted list and discard any that reverses what the list says."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 0,
+        "requiresExhibit": false
+      }
+    },
+    {
+      "id": "gam-ba-be-001-q2",
+      "packId": "gam-business-administration-break-even-001",
+      "stem": "How many units must the workshop sell in the period in order to break even?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2,250 units"
+        },
+        {
+          "id": "b",
+          "text": "3,600 units"
+        },
+        {
+          "id": "c",
+          "text": "6,000 units"
+        },
+        {
+          "id": "d",
+          "text": "9,000 units"
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "f1",
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "c = p - v;   q_BE = F / c"
+        },
+        {
+          "blockId": "p3",
+          "quote": "sells each unit for 40 euros and incurs a variable cost of 25 euros per unit"
+        }
+      ],
+      "computation": {
+        "expression": "90000/(40-25)",
+        "expected": 6000,
+        "unit": "units"
+      },
+      "explanation": "The contribution margin is 40 - 25 = 15 euros per unit. Dividing the fixed costs of 90,000 euros by that margin gives 90,000 / 15 = 6,000 units.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "2,250 divides the fixed costs by the selling price of 40 rather than by the contribution margin."
+        },
+        "b": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "3,600 divides the fixed costs by the variable cost of 25, which is not the margin each unit contributes."
+        },
+        "d": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "9,000 would follow from a contribution margin of 10 euros rather than the 15 the figures give."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Two of the three figures in the text combine into a single per-unit quantity before the division."
+        },
+        {
+          "level": 2,
+          "text": "Work out what each unit sold contributes towards the fixed costs."
+        },
+        {
+          "level": 3,
+          "text": "Subtract the variable cost from the price, then divide the fixed costs by the result."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      }
+    },
+    {
+      "stem": "The workshop's fixed costs for the period rise by one third, while the selling price and the variable cost per unit stay as given. What happens to the break-even quantity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It falls by one third."
+        },
+        {
+          "id": "b",
+          "text": "It is unchanged."
+        },
+        {
+          "id": "c",
+          "text": "It rises by one third."
+        },
+        {
+          "id": "d",
+          "text": "It more than doubles."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "sensitivity",
+      "dependsOn": [
+        "f1",
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "c = p - v;   q_BE = F / c"
+        },
+        {
+          "blockId": "p2",
+          "quote": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin."
+        }
+      ],
+      "explanation": "The break-even quantity is the fixed costs divided by the contribution margin. Neither the price nor the variable cost changes, so the contribution margin is unchanged and the quantity is simply proportional to the fixed costs: raising them by one third raises the break-even quantity by one third.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "wrong-direction-of-effect",
+          "reason": "The fixed costs are the numerator. Raising them cannot lower the quantity needed to cover them."
+        },
+        "b": {
+          "blockId": "f1",
+          "family": "right-concept-wrong-scope",
+          "reason": "The contribution margin is indeed unchanged, but it is only the divisor. The quantity still moves with the fixed costs above it."
+        },
+        "d": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "A rise of one third in the numerator is a rise of one third in the quotient, not a doubling; the increase is not being added on top of the original quantity a second time."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Write down what the break-even quantity is divided by, and ask whether that divisor has moved."
+        },
+        {
+          "level": 2,
+          "text": "Only one of the three quantities in the formula has changed."
+        },
+        {
+          "level": 3,
+          "text": "When only the numerator of a quotient changes, the quotient changes in the same proportion."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-ba-be-001-q3",
+      "packId": "gam-business-administration-break-even-001"
+    },
+    {
+      "id": "gam-ba-be-001-q4",
+      "packId": "gam-business-administration-break-even-001",
+      "stem": "Which line in Figure 1 shows the fixed costs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Line A"
+        },
+        {
+          "id": "b",
+          "text": "Line B"
+        },
+        {
+          "id": "c",
+          "text": "Line C"
+        },
+        {
+          "id": "d",
+          "text": "None of the three lines"
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "fig1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "fig1",
+          "quote": "Line C: fixed costs"
+        },
+        {
+          "blockId": "p1",
+          "quote": "fixed costs, which are incurred whatever the output"
+        }
+      ],
+      "explanation": "Fixed costs are incurred whatever the output, so they are shown by a line that does not change with quantity. Line C runs level at 90,000 euros across the whole range, and is labelled as the fixed cost line.",
+      "refutations": {
+        "a": {
+          "blockId": "fig1",
+          "family": "swapped-quantities",
+          "reason": "Line A starts at the origin and climbs with output; it is the total revenue line, not a cost that is independent of output."
+        },
+        "b": {
+          "blockId": "fig1",
+          "family": "right-concept-wrong-scope",
+          "reason": "Line B begins at the fixed cost level but rises with output, so it is total cost rather than the fixed component alone."
+        },
+        "d": {
+          "blockId": "fig1",
+          "family": "contradicts-source",
+          "reason": "The figure does plot fixed costs as one of its three labelled lines."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Think about how a cost that does not vary with output must appear when plotted against output."
+        },
+        {
+          "level": 2,
+          "text": "Compare the value of each line at the left-hand edge of the chart with its value at the right-hand edge."
+        },
+        {
+          "level": 3,
+          "text": "Only one of the three lines has the same value at every quantity; find its label in the figure."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 2,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "stem": "A different workshop sells each unit for 32 euros and incurs a variable cost of 20 euros per unit. It sells one unit more than its break-even quantity. By how much does its profit for the period change, and why?",
+      "options": [
+        {
+          "id": "a",
+          "text": "By 32 euros, because that is the revenue the extra unit brings in."
+        },
+        {
+          "id": "b",
+          "text": "By 12 euros, which is what one unit is left with once the fixed costs are already covered."
+        },
+        {
+          "id": "c",
+          "text": "By 20 euros, because that is the variable cost incurred on the extra unit."
+        },
+        {
+          "id": "d",
+          "text": "It does not change, because the fixed costs have already been covered."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p2",
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "every further unit adds its contribution margin to profit"
+        },
+        {
+          "blockId": "f1",
+          "quote": "c = p - v"
+        }
+      ],
+      "explanation": "The contribution margin is the selling price less the variable cost, here 32 − 20 = 12 euros. At the break-even quantity the fixed costs are exactly covered, so the contribution of every unit sold beyond that point is added to profit.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "The extra unit does bring in 32 euros of revenue, but producing it also costs 20 euros. Only the difference reaches profit."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "swapped-quantities",
+          "reason": "The variable cost is incurred, not saved, and it is subtracted from the price to give the contribution margin rather than being the answer itself."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The text says the opposite: once the fixed costs are covered, every further unit adds its contribution margin to profit rather than nothing."
+        }
+      },
+      "computation": {
+        "expression": "32-20",
+        "expected": 12,
+        "unit": "euros"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The fixed costs are already paid for at this point, so ask what is left of the price of one more unit."
+        },
+        {
+          "level": 2,
+          "text": "Find the quantity the text says each unit contributes towards the fixed costs."
+        },
+        {
+          "level": 3,
+          "text": "Take the variable cost away from the selling price for a single unit."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-ba-be-001-q5",
+      "packId": "gam-business-administration-break-even-001"
+    },
+    {
+      "stem": "The workshop described in the source wants to end the period with a profit of 30,000 euros. At the price, variable cost and fixed costs given there, how many units must it sell?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2,000 units"
+        },
+        {
+          "id": "b",
+          "text": "3,000 units"
+        },
+        {
+          "id": "c",
+          "text": "4,800 units"
+        },
+        {
+          "id": "d",
+          "text": "8,000 units"
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "generalisation",
+      "dependsOn": [
+        "p2",
+        "p3",
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+        },
+        {
+          "blockId": "p3",
+          "quote": "sells each unit for 40 euros and incurs a variable cost of 25 euros per unit"
+        },
+        {
+          "blockId": "f1",
+          "quote": "q_BE = F / c"
+        }
+      ],
+      "explanation": "The formula in the source covers break-even only, but the text says what happens beyond it: each further unit adds its contribution margin to profit. Contributions must therefore cover the fixed costs and the wanted profit together. With a contribution margin of 15 euros, the workshop needs (90,000 + 30,000) ÷ 15 = 8,000 units.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "2,000 units covers the wanted profit alone. The contributions have to pay off the fixed costs first, and only what accumulates after that becomes profit."
+        },
+        "b": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "3,000 divides the total to be covered by the selling price rather than by the contribution margin, which ignores the variable cost incurred on every unit."
+        },
+        "c": {
+          "blockId": "f1",
+          "family": "swapped-quantities",
+          "reason": "4,800 divides by the variable cost instead of by the difference between the price and the variable cost."
+        }
+      },
+      "computation": {
+        "expression": "(90000+30000)/(40-25)",
+        "expected": 8000,
+        "unit": "units"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The formula given covers break-even only. Ask what the sentence after it says happens once break-even is passed."
+        },
+        {
+          "level": 2,
+          "text": "Contributions have two jobs here: covering the fixed costs, and then building the wanted profit."
+        },
+        {
+          "level": 3,
+          "text": "Add the wanted profit to the fixed costs, and divide the total by the contribution margin per unit."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 4,
+        "blockSpan": 3,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ba-be-001-q6",
+      "packId": "gam-business-administration-break-even-001"
+    },
+    {
+      "id": "gam-ba-be-001-q7",
+      "packId": "gam-business-administration-break-even-001",
+      "stem": "Suppose a workshop's variable cost per unit were exactly equal to its selling price. According to the text, what follows?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The break-even quantity equals the fixed costs divided by the selling price."
+        },
+        {
+          "id": "b",
+          "text": "The workshop breaks even as soon as its fixed costs are paid off."
+        },
+        {
+          "id": "c",
+          "text": "There is no output level at which the workshop covers its costs."
+        },
+        {
+          "id": "d",
+          "text": "The workshop breaks even at zero output, since nothing is lost on each unit."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "generalisation",
+      "dependsOn": [
+        "p4",
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all"
+        }
+      ],
+      "explanation": "If the variable cost equals the price, each unit contributes nothing towards the fixed costs. The text states that in this case no output level lets the workshop cover its costs and no break-even quantity exists.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "The divisor in the expression is the contribution margin, which is zero here, not the selling price."
+        },
+        "b": {
+          "blockId": "p4",
+          "family": "plausible-but-unstated",
+          "reason": "With a contribution margin of zero the fixed costs are never paid off by sales, however many units are sold."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "At zero output no contribution is earned at all while the fixed costs are still incurred, so the workshop makes a loss rather than breaking even."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Work out what each unit contributes towards the fixed costs under this condition."
+        },
+        {
+          "level": 2,
+          "text": "Consider what happens to the division when the contribution margin becomes zero."
+        },
+        {
+          "level": 3,
+          "text": "The final paragraph addresses this case directly."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      }
+    }
+  ]
+}

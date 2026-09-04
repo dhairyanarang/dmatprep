@@ -11,7 +11,9 @@
     "verify:bank": "node scripts/verify-bank.mjs",
     "verify:rls": "node scripts/verify-rls.mjs",
     "generate:batch": "node scripts/generate-batch.mjs",
-    "test": "node --test scripts/test/"
+    "test": "node --test \"scripts/test/**/*.test.mjs\"",
+    "verify:gam": "node scripts/gam/verify-packs.mjs",
+    "review:gam": "node scripts/gam/review-handoff.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

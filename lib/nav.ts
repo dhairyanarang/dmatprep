@@ -66,11 +66,14 @@ const OWNS: Record<string, (path: string) => boolean> = {
   '/prepare': (path) =>
     path.startsWith('/prepare') ||
     path.startsWith('/module-a') ||
-    path.startsWith('/module-b') ||
+    // Module B's untimed practice sits under Prepare; its timed session does
+    // not, for the same reason Module A's timed runs belong to Test.
+    (path.startsWith('/module-b') && !path.startsWith('/module-b/timed')) ||
     path.startsWith('/study-plan') ||
     path.startsWith('/practice/quick'),
   '/test': (path) =>
     path.startsWith('/test') ||
+    path.startsWith('/module-b/timed') ||
     (path.startsWith('/practice') && !path.startsWith('/practice/quick')),
   '/exam': (path) => path.startsWith('/exam'),
 }

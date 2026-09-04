@@ -1,0 +1,470 @@
+{
+  "packId": "gam-business-administration-break-even-001",
+  "domain": "business-administration",
+  "generatedFor": "independent blind re-answer and full-ablation adjudication (spec §5.3, §5.6)",
+  "instructions": "For each question below: (1) FULL ABLATION — using only the stem and options, with no access to the source pack, decide whether the answer can be determined. If it can, the question fails. (2) BLIND RE-ANSWER — read the pack, then choose an option without seeing the answer key. Disagreement with the key, or a defensible case for a second option, rejects the item.",
+  "questions": [
+    {
+      "questionId": "gam-ba-be-001-q1",
+      "stem": "Which of the following is one of the assumptions the model states?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Everything produced in the period is also sold in that period."
+        },
+        {
+          "id": "b",
+          "text": "The selling price falls as the quantity sold rises."
+        },
+        {
+          "id": "c",
+          "text": "Fixed costs rise in steps as output grows."
+        },
+        {
+          "id": "d",
+          "text": "Costs are shared across several products made in the same workshop."
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q2",
+      "stem": "How many units must the workshop sell in the period in order to break even?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2,250 units"
+        },
+        {
+          "id": "b",
+          "text": "3,600 units"
+        },
+        {
+          "id": "c",
+          "text": "6,000 units"
+        },
+        {
+          "id": "d",
+          "text": "9,000 units"
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q3",
+      "stem": "The workshop's fixed costs for the period rise by one third, while the selling price and the variable cost per unit stay as given. What happens to the break-even quantity?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It falls by one third."
+        },
+        {
+          "id": "b",
+          "text": "It is unchanged."
+        },
+        {
+          "id": "c",
+          "text": "It rises by one third."
+        },
+        {
+          "id": "d",
+          "text": "It more than doubles."
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q4",
+      "stem": "Which line in Figure 1 shows the fixed costs?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Line A"
+        },
+        {
+          "id": "b",
+          "text": "Line B"
+        },
+        {
+          "id": "c",
+          "text": "Line C"
+        },
+        {
+          "id": "d",
+          "text": "None of the three lines"
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q5",
+      "stem": "A different workshop sells each unit for 32 euros and incurs a variable cost of 20 euros per unit. It sells one unit more than its break-even quantity. By how much does its profit for the period change, and why?",
+      "options": [
+        {
+          "id": "a",
+          "text": "By 32 euros, because that is the revenue the extra unit brings in."
+        },
+        {
+          "id": "b",
+          "text": "By 12 euros, which is what one unit is left with once the fixed costs are already covered."
+        },
+        {
+          "id": "c",
+          "text": "By 20 euros, because that is the variable cost incurred on the extra unit."
+        },
+        {
+          "id": "d",
+          "text": "It does not change, because the fixed costs have already been covered."
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q6",
+      "stem": "The workshop described in the source wants to end the period with a profit of 30,000 euros. At the price, variable cost and fixed costs given there, how many units must it sell?",
+      "options": [
+        {
+          "id": "a",
+          "text": "2,000 units"
+        },
+        {
+          "id": "b",
+          "text": "3,000 units"
+        },
+        {
+          "id": "c",
+          "text": "4,800 units"
+        },
+        {
+          "id": "d",
+          "text": "8,000 units"
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    },
+    {
+      "questionId": "gam-ba-be-001-q7",
+      "stem": "Suppose a workshop's variable cost per unit were exactly equal to its selling price. According to the text, what follows?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The break-even quantity equals the fixed costs divided by the selling price."
+        },
+        {
+          "id": "b",
+          "text": "The workshop breaks even as soon as its fixed costs are paid off."
+        },
+        {
+          "id": "c",
+          "text": "There is no output level at which the workshop covers its costs."
+        },
+        {
+          "id": "d",
+          "text": "The workshop breaks even at zero output, since nothing is lost on each unit."
+        }
+      ],
+      "withPack": {
+        "blocks": [
+          {
+            "id": "h1",
+            "kind": "heading",
+            "text": "The break-even quantity of a single-product operation"
+          },
+          {
+            "id": "p1",
+            "kind": "paragraph",
+            "text": "A workshop covers its costs at the output level where total revenue and total cost are equal. Below that level it makes a loss, above it a profit. Total cost is made up of fixed costs, which are incurred whatever the output, and variable costs, which are incurred once per unit produced. The output level at which the two totals meet is called the break-even quantity."
+          },
+          {
+            "id": "p2",
+            "kind": "paragraph",
+            "text": "The difference between the selling price of one unit and the variable cost of producing that unit is the contribution margin. Each unit sold contributes this amount towards the fixed costs. Once enough units have been sold for the accumulated contributions to equal the fixed costs, every further unit adds its contribution margin to profit."
+          },
+          {
+            "id": "l1",
+            "kind": "list",
+            "text": "Every unit produced is sold within the same period, so output and sales are equal. The selling price per unit is the same regardless of how many units are sold. The variable cost per unit is the same for every unit produced. Fixed costs do not change over the range of output being considered. The workshop makes a single product, so costs need not be shared between products."
+          },
+          {
+            "id": "f1",
+            "kind": "formula",
+            "text": "c = p - v;   q_BE = F / c Contribution margin per unit and the resulting break-even quantity. p selling price of one unit v variable cost of producing one unit c contribution margin per unit F fixed costs for the period q_BE break-even quantity in units"
+          },
+          {
+            "id": "p3",
+            "kind": "paragraph",
+            "text": "The workshop in this example sells each unit for 40 euros and incurs a variable cost of 25 euros per unit. Its fixed costs amount to 90,000 euros for the period. These figures are used throughout the questions unless a question states otherwise."
+          },
+          {
+            "id": "fig1",
+            "kind": "figure",
+            "text": "Figure 1. Total revenue, total cost and fixed costs plotted against output for the workshop described above. Units produced and sold Euros Line A: total revenue Line B: total cost Line C: fixed costs Lines A and B cross here "
+          },
+          {
+            "id": "p4",
+            "kind": "paragraph",
+            "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
+          }
+        ]
+      }
+    }
+  ]
+}

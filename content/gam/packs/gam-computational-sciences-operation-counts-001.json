@@ -1,0 +1,650 @@
+{
+  "pack": {
+    "id": "gam-computational-sciences-operation-counts-001",
+    "domain": "computational-sciences",
+    "title": "Comparing the operation counts of catalogue routines",
+    "defines": [
+      "operation count",
+      "SCAN",
+      "SPLIT",
+      "PAIR",
+      "elementary step"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "pilot-b1",
+      "reviewStatus": "automated-pass",
+      "notes": "Constants and the three routine names are invented for this pack so that every question turns on the supplied figures rather than on remembered complexity results."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Comparing the operation counts of catalogue routines"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "The operation count of a routine, written T(n), is the number of elementary steps it carries out on an input of n records. An elementary step is a single comparison, assignment or arithmetic operation. Two routines can grow at the same rate and still differ by a large constant factor, and at the input sizes a program actually meets, that constant is often what decides which routine finishes first."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "Three routines are compared here, all of which search a catalogue of records. SCAN examines every record once. SPLIT repeatedly halves the range still under consideration. PAIR compares every record with every other record. Their operation counts on a catalogue of n records are given below."
+      },
+      {
+        "kind": "formula",
+        "id": "f1",
+        "latex": "T_SCAN(n) = 4n + 30;  T_SPLIT(n) = 25 log2(n) + 40;  T_PAIR(n) = n^2 / 2",
+        "caption": "Operation counts of the three routines on a catalogue of n records.",
+        "legend": [
+          {
+            "symbol": "n",
+            "meaning": "number of records in the catalogue"
+          },
+          {
+            "symbol": "T",
+            "meaning": "number of elementary steps"
+          },
+          {
+            "symbol": "log2",
+            "meaning": "logarithm to base 2"
+          }
+        ]
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Operation counts of the three routines at three catalogue sizes.",
+        "columns": [
+          "Routine",
+          "n = 16",
+          "n = 256",
+          "n = 4096"
+        ],
+        "rows": [
+          [
+            "SCAN",
+            "94",
+            "1054",
+            "16414"
+          ],
+          [
+            "SPLIT",
+            "140",
+            "240",
+            "340"
+          ],
+          [
+            "PAIR",
+            "128",
+            "32768",
+            "8388608"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "When two routines run one after the other on the same catalogue, their operation counts are added. When one routine is run once for every record that another routine processes, the inner routine’s count is multiplied by the number of records processed, and not by the outer routine’s own count."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "A routine is only worth replacing if the replacement performs fewer steps at the catalogue sizes that actually occur. Below a certain size a routine whose count grows faster may still perform fewer steps than one whose count grows more slowly, because the slower-growing routine begins with a larger fixed cost."
+      }
+    ],
+    "contentHash": "1c4ea305e321ace70e4b837935ea7209"
+  },
+  "questions": [
+    {
+      "stem": "According to Table 1, how many elementary steps does PAIR perform on a catalogue of 16 records?",
+      "options": [
+        {
+          "id": "a",
+          "text": "94"
+        },
+        {
+          "id": "b",
+          "text": "128"
+        },
+        {
+          "id": "c",
+          "text": "140"
+        },
+        {
+          "id": "d",
+          "text": "32768"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "PAIR 128 32768 8388608"
+        }
+      ],
+      "explanation": "Table 1 lists the operation counts of each routine at three catalogue sizes. Reading along the PAIR row to the n = 16 column gives 128 elementary steps.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "94 is SCAN's count at n = 16 — the right column but the wrong row."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "140 is SPLIT's count at n = 16 — again the right column and the wrong row."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "32768 is PAIR's count at n = 256, one column too far to the right."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Everything you need is in the table; no calculation is required."
+        },
+        {
+          "level": 2,
+          "text": "Find the row for the routine named in the question, then the column for the catalogue size named in the question."
+        },
+        {
+          "level": 3,
+          "text": "Read across the PAIR row until you reach the column headed n = 16."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      },
+      "id": "gam-cs-oc-001-q1",
+      "packId": "gam-computational-sciences-operation-counts-001"
+    },
+    {
+      "id": "gam-cs-oc-001-q2",
+      "packId": "gam-computational-sciences-operation-counts-001",
+      "stem": "A catalogue holds 1,024 records. How many elementary steps does SPLIT perform on it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "265"
+        },
+        {
+          "id": "b",
+          "text": "290"
+        },
+        {
+          "id": "c",
+          "text": "315"
+        },
+        {
+          "id": "d",
+          "text": "1,064"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "T_SPLIT(n) = 25 log2(n) + 40"
+        }
+      ],
+      "computation": {
+        "expression": "25*10+40",
+        "expected": 290,
+        "unit": "elementary steps"
+      },
+      "explanation": "SPLIT's count is 25 log2(n) + 40. Since 1,024 is 2 to the power 10, log2(1,024) = 10, so the count is 25 x 10 + 40 = 290 elementary steps.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "265 uses log2(1,024) = 9, which would be the exponent for 512 rather than 1,024."
+        },
+        "c": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "315 uses log2(1,024) = 11, one power of two too many."
+        },
+        "d": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "1,064 applies SCAN's rule 4n + 30 in the shape 1,024 + 40 rather than SPLIT's logarithmic rule."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The catalogue size in this question is not one of the sizes listed in the table, so the rule has to be applied directly."
+        },
+        {
+          "level": 2,
+          "text": "Use the expression given for SPLIT. Its first term depends on the logarithm to base 2 of the catalogue size."
+        },
+        {
+          "level": 3,
+          "text": "Work out which power of two gives 1,024, substitute that for log2(n), then apply the multiplier and the constant."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      }
+    },
+    {
+      "stem": "At which of the catalogue sizes listed in Table 1 does SPLIT perform more elementary steps than SCAN?",
+      "options": [
+        {
+          "id": "a",
+          "text": "At n = 16 only"
+        },
+        {
+          "id": "b",
+          "text": "At n = 256 only"
+        },
+        {
+          "id": "c",
+          "text": "At n = 4096 only"
+        },
+        {
+          "id": "d",
+          "text": "At none of the three listed sizes"
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "comparative",
+      "dependsOn": [
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "SCAN 94 1054 16414"
+        },
+        {
+          "blockId": "t1",
+          "quote": "SPLIT 140 240 340"
+        }
+      ],
+      "explanation": "Comparing the two rows column by column: at the smallest size SPLIT takes more steps than SCAN, and at both larger sizes it takes far fewer. The routine that looks worse on a small catalogue is the one that wins on a large one.",
+      "refutations": {
+        "b": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "At this size SPLIT takes 240 steps against SCAN's 1054, so SPLIT performs fewer, not more."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "At the largest size the gap is wider still in SPLIT's favour, at 340 steps against 16414."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "contradicts-source",
+          "reason": "At the smallest listed size SPLIT does take more steps than SCAN, so there is one such size."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Only two of the three rows matter here."
+        },
+        {
+          "level": 2,
+          "text": "Compare those two rows one column at a time rather than looking for a pattern first."
+        },
+        {
+          "level": 3,
+          "text": "The comparison goes one way at the smallest size and the other way at both larger ones."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 1,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      },
+      "id": "gam-cs-oc-001-q3",
+      "packId": "gam-computational-sciences-operation-counts-001"
+    },
+    {
+      "id": "gam-cs-oc-001-q4",
+      "packId": "gam-computational-sciences-operation-counts-001",
+      "stem": "A catalogue grows from 4,096 records to 8,192 records. By approximately what factor does PAIR's operation count change?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It stays about the same."
+        },
+        {
+          "id": "b",
+          "text": "It roughly doubles."
+        },
+        {
+          "id": "c",
+          "text": "It roughly quadruples."
+        },
+        {
+          "id": "d",
+          "text": "It roughly halves."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "sensitivity",
+      "dependsOn": [
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "T_PAIR(n) = n^2 / 2"
+        }
+      ],
+      "computation": {
+        "expression": "(8192^2/2)/(4096^2/2)",
+        "expected": 4
+      },
+      "explanation": "PAIR's count is n squared divided by two. Doubling n multiplies n squared by four, and the division by two is unchanged, so the count is multiplied by about four.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "wrong-direction-of-effect",
+          "reason": "PAIR's count depends on n, so it cannot stay the same when n changes."
+        },
+        "b": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "Doubling would follow if the count were proportional to n, which is SCAN's rule rather than PAIR's."
+        },
+        "d": {
+          "blockId": "f1",
+          "family": "wrong-direction-of-effect",
+          "reason": "The count rises with n, so a larger catalogue cannot reduce it."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "You do not need the table for this — only the rule that governs PAIR."
+        },
+        {
+          "level": 2,
+          "text": "Look at how n enters PAIR's expression, and ask what happens to that term when n is doubled."
+        },
+        {
+          "level": 3,
+          "text": "Write the count for the new size as a multiple of the count for the old size and cancel the common divisor."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      }
+    },
+    {
+      "id": "gam-cs-oc-001-q5",
+      "packId": "gam-computational-sciences-operation-counts-001",
+      "stem": "A program runs SPLIT once and then runs SCAN once, both on the same catalogue of 256 records. Using the values in Table 1, how many elementary steps does the program perform in total?",
+      "options": [
+        {
+          "id": "a",
+          "text": "1,054"
+        },
+        {
+          "id": "b",
+          "text": "1,294"
+        },
+        {
+          "id": "c",
+          "text": "1,314"
+        },
+        {
+          "id": "d",
+          "text": "252,960"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p3",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "When two routines run one after the other on the same catalogue, their operation counts are added."
+        },
+        {
+          "blockId": "t1",
+          "quote": "SPLIT 140 240 340"
+        }
+      ],
+      "computation": {
+        "expression": "240+1054",
+        "expected": 1294,
+        "unit": "elementary steps"
+      },
+      "explanation": "The two routines run one after the other, so their counts are added. Table 1 gives SPLIT 240 steps and SCAN 1054 steps at n = 256, and 240 + 1054 = 1294.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "1054 counts only SCAN and ignores the SPLIT run that precedes it."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "1314 adds SPLIT's count at n = 4096 (340) instead of its count at n = 256."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "misapplied-formula",
+          "reason": "252,960 multiplies the two counts, which the text reserves for the case where one routine runs once per record processed by another."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text states how counts combine in two different situations. Decide which one this is."
+        },
+        {
+          "level": 2,
+          "text": "The two routines run in sequence on the same catalogue, not one inside the other."
+        },
+        {
+          "level": 3,
+          "text": "Take both counts from the n = 256 column and combine them in the way the text prescribes for routines run one after the other."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "stem": "Which statement holds across all three catalogue sizes listed in Table 1?",
+      "options": [
+        {
+          "id": "a",
+          "text": "PAIR performs the most elementary steps at every listed size."
+        },
+        {
+          "id": "b",
+          "text": "SCAN performs more elementary steps than PAIR at every listed size."
+        },
+        {
+          "id": "c",
+          "text": "No single routine performs the fewest elementary steps at every listed size."
+        },
+        {
+          "id": "d",
+          "text": "PAIR performs the fewest elementary steps at the smallest listed size."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "comparative",
+      "dependsOn": [
+        "t1",
+        "p4"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "PAIR 128 32768 8388608"
+        },
+        {
+          "blockId": "p4",
+          "quote": "Below a certain size a routine whose count grows faster may still perform fewer steps than one whose count grows more slowly"
+        }
+      ],
+      "explanation": "The routine with the fewest steps changes as the catalogue grows: at the smallest size it is SCAN, and at both larger sizes it is SPLIT. That is the situation the text describes, where a faster-growing count can still be the smaller one below a certain size.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "right-concept-wrong-scope",
+          "reason": "PAIR does take the most steps at the two larger sizes, but not at the smallest, where SPLIT's 140 exceeds its 128."
+        },
+        "b": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "The comparison runs the other way at every listed size: SCAN takes fewer steps than PAIR at all three, not more."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "contradicts-source",
+          "reason": "At the smallest size SCAN takes 94 steps against PAIR's 128, so PAIR is not the fewest there."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Test each statement against all three columns; one column is enough to defeat a claim."
+        },
+        {
+          "level": 2,
+          "text": "The smallest catalogue size behaves differently from the other two."
+        },
+        {
+          "level": 3,
+          "text": "Ask which routine has the smallest entry in each column, and whether it is the same routine each time."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 4,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-cs-oc-001-q6",
+      "packId": "gam-computational-sciences-operation-counts-001"
+    },
+    {
+      "stem": "A program processes a catalogue of 4,096 records with SCAN, and for every record that SCAN examines it runs SPLIT once over the whole catalogue. Ignoring SCAN's own steps, how many elementary steps do the SPLIT runs contribute in total?",
+      "options": [
+        {
+          "id": "a",
+          "text": "16,754"
+        },
+        {
+          "id": "b",
+          "text": "1,392,640"
+        },
+        {
+          "id": "c",
+          "text": "5,580,760"
+        },
+        {
+          "id": "d",
+          "text": "67,231,744"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p3",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "the inner routine’s count is multiplied by the number of records processed, and not by the outer routine’s own count"
+        },
+        {
+          "blockId": "t1",
+          "quote": "SPLIT 140 240 340"
+        }
+      ],
+      "explanation": "SCAN examines each of the 4,096 records once, and each examination triggers one full run of SPLIT. Table 1 gives SPLIT 340 elementary steps at n = 4096, so the SPLIT runs contribute 4,096 × 340 = 1,392,640 elementary steps.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "misapplied-formula",
+          "reason": "16,754 adds SCAN's 16,414 steps to SPLIT's 340. The text reserves addition for routines run one after the other; here one runs inside the other, so the counts multiply."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "swapped-quantities",
+          "reason": "5,580,760 multiplies the two routines’ counts together, which is the reading the text rules out. What multiplies SPLIT’s count is the number of records processed, not the number of steps SCAN takes to process them."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "67,231,744 multiplies the 4,096 records by SCAN's own count. It is SPLIT that runs inside the loop, so it is SPLIT's count that is multiplied."
+        }
+      },
+      "computation": {
+        "expression": "4096*340",
+        "expected": 1392640,
+        "unit": "elementary steps"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Decide first whether the two counts should be added or multiplied, and find the sentence that settles it."
+        },
+        {
+          "level": 2,
+          "text": "One SPLIT run happens for each record SCAN examines, and SCAN examines every record once."
+        },
+        {
+          "level": 3,
+          "text": "Read SPLIT's count at the catalogue size given, then multiply it by the number of records."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": true
+      },
+      "id": "gam-cs-oc-001-q7",
+      "packId": "gam-computational-sciences-operation-counts-001"
+    }
+  ]
+}

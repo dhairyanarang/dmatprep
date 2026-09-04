@@ -1,4 +1,4 @@
-import { CalendarRange, Info, Library, Zap } from 'lucide-react'
+import { CalendarRange, FlaskConical, Library, Zap } from 'lucide-react'
 
 import { Recommendation } from '@/components/dashboard/recommendation'
 import { PageHeader } from '@/components/layout/page-header'
@@ -6,6 +6,7 @@ import { PageContainer } from '@/components/layout/page-shell'
 import { SectionHeading } from '@/components/layout/section-heading'
 import { TileCard } from '@/components/layout/tile-card'
 import { getBankSize } from '@/lib/content/registry'
+import { getPacks, totalGamQuestions } from '@/lib/gam/registry'
 import { SECTION_ICON } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
@@ -19,6 +20,8 @@ export default function PreparePage() {
   // an item changes one section's count — so report the total rather than
   // claiming "N each" off the first section.
   const totalQuestions = Object.values(bankSizes).reduce((a, b) => a + b, 0)
+  const gamPacks = getPacks().length
+  const gamQuestions = totalGamQuestions()
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
@@ -64,12 +67,13 @@ export default function PreparePage() {
           </div>
         </SectionHeading>
 
-        <SectionHeading title="Module B">
+        <SectionHeading title="Module B" meta={`${gamPacks} packs · ${gamQuestions} questions`}>
           <TileCard
-            icon={Info}
-            tone="muted"
-            title="Coming soon"
-            description="The General Academic Module runs 90 minutes with four options per question. dMAT Prep does not cover it yet."
+            href="/module-b"
+            icon={FlaskConical}
+            title="General Academic Module"
+            description="Source packs — a text with figures, tables or formulas — and the questions answered against them. Pilot material, not yet reviewed by a person."
+            meta="90 mins in the exam"
           />
         </SectionHeading>
       </PageContainer>

@@ -1,4 +1,4 @@
-import { Info, TestTubeDiagonal } from 'lucide-react'
+import { Info, TestTubeDiagonal, Timer } from 'lucide-react'
 
 import { Recommendation } from '@/components/dashboard/recommendation'
 import { PageHeader } from '@/components/layout/page-header'
@@ -7,6 +7,7 @@ import { SectionHeading } from '@/components/layout/section-heading'
 import { TileCard } from '@/components/layout/tile-card'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTION_ICON } from '@/lib/nav'
+import { GAM_TOTAL_MINUTES } from '@/lib/gam/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
 export const metadata = { title: 'Test' }
@@ -58,10 +59,11 @@ export default function TestPage() {
 
         <SectionHeading title="Module B">
           <TileCard
-            icon={Info}
-            tone="muted"
-            title="Coming soon"
-            description="The General Academic Module runs 90 minutes with four options per question. dMAT Prep does not cover it yet."
+            href="/module-b/timed"
+            icon={Timer}
+            title="General Academic Module"
+            description="Every source pack end to end under the module's official 90-minute clock, with answers held until you submit. Pilot material, not yet reviewed by a person."
+            meta={`${GAM_TOTAL_MINUTES} mins`}
           />
         </SectionHeading>
 
