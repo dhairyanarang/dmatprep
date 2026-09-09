@@ -32,6 +32,12 @@ const REQUESTED = [
   { label: 'large', quotas: { low: 6, medium: 12, high: 12 } },
 ]
 
+/**
+ * These generate into a scratch batch, `b900` — a number far beyond anything the
+ * bank will reach. It used to be `b9`, which the 5 September 2026 remediation
+ * then consumed for a real replacement, so the test began colliding with its own
+ * fixture rather than with a genuine defect.
+ */
 describe('append-only generation', () => {
   for (const [section, generate] of SECTIONS) {
     test(`${section}: existing items survive every batch size`, () => {
@@ -41,7 +47,7 @@ describe('append-only generation', () => {
       for (const { label, quotas: requested } of REQUESTED) {
         const quotas = feasibleQuota(generate, existing, requested)
         if (quotaSize(quotas) === 0) continue
-        const { questions } = generate({ batchId: 'b9', quotas, existing, verifiedAt: '2026-09-03' })
+        const { questions } = generate({ batchId: 'b900', quotas, existing, verifiedAt: '2026-09-03' })
         const merged = [...existing, ...questions]
         const after = merged.slice(0, existing.length).map(canonicalHash)
 
@@ -57,8 +63,8 @@ describe('append-only generation', () => {
       const big = feasibleQuota(generate, existing, { low: 4, medium: 6, high: 6 })
       const half = Object.fromEntries(Object.entries(big).map(([k, v]) => [k, Math.floor(v / 2)]))
       if (quotaSize(half) === 0) return
-      const small = generate({ batchId: 'b9', quotas: half, existing, verifiedAt: '2026-09-03' }).questions
-      const large = generate({ batchId: 'b9', quotas: big, existing, verifiedAt: '2026-09-03' }).questions
+      const small = generate({ batchId: 'b900', quotas: half, existing, verifiedAt: '2026-09-03' }).questions
+      const large = generate({ batchId: 'b900', quotas: big, existing, verifiedAt: '2026-09-03' }).questions
 
       // Per-tier prefixes must match: slot N does not depend on the batch size.
       for (const tier of ['low', 'medium', 'high']) {
@@ -77,7 +83,7 @@ describe('append-only generation', () => {
         ...readRetired(section).map((e) => e.question?.id ?? e.id),
       ])
       const quotas = feasibleQuota(generate, existing, { low: 2, medium: 2, high: 2 })
-      const { questions } = generate({ batchId: 'b9', quotas, existing, verifiedAt: '2026-09-03' })
+      const { questions } = generate({ batchId: 'b900', quotas, existing, verifiedAt: '2026-09-03' })
       for (const q of questions) assert.ok(!taken.has(q.id), `${q.id} collides with an existing or retired id`)
     })
   }
@@ -96,7 +102,7 @@ describe('append-only generation', () => {
   test('appendToBank refuses a batch containing a duplicate id', () => {
     const bank = readBank('latin-squares')
     const item = structuredClone(bank[0])
-    item.id = 'ls-low-b9-999'
+    item.id = 'ls-low-b900-999'
     assert.throws(() => appendToBank('latin-squares', [item, structuredClone(item)], { dryRun: true }), /twice/)
   })
 })

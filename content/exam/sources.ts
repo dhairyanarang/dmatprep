@@ -31,9 +31,9 @@ export const SOURCES: Record<SourceId, Source> = {
     id: 'gam-pdf',
     title: 'dMAT — Preparatory Materials for Test Takers, General Academic Module',
     publisher: 'g.a.s.t.',
-    url: 'https://www.d-mat.de/wp-content/uploads/2026/08/260804_dMAT_General-Academic-Module_Preparatoy-Materials_EN.pdf',
-    asAt: '4 August 2026',
-    note: 'The single most detailed official source on the Core Module task types. g.a.s.t. re-dates this file when it is updated, so the URL changes — this is the version everything here was checked against.',
+    url: 'https://www.d-mat.de/wp-content/uploads/2026/09/260902_dMAT_General-Academic-Module_Preparatoy-Materials_EN.pdf',
+    asAt: '2 September 2026',
+    note: 'The single most detailed official source on the Core Module task types. g.a.s.t. re-dates this file when it is updated, so the URL changes — this is the version everything here was checked against. The previous 4 August 2026 build was downloaded and compared page by page against this one on 5 September 2026: no substantive rule changed, only typography and layout (58 pages became 57).',
   },
   'dmat-home': {
     id: 'dmat-home',

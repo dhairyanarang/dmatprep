@@ -75,6 +75,25 @@ export function ResultBanner({
 
 type Row = { label: string; yours: string | null; answer: string; correct: boolean }
 
+/**
+ * The value behind an option id that the item no longer carries.
+ *
+ * An attempt recorded before a content repair can name an option that has since
+ * been rebuilt: the 5 September 2026 remediation replaced the wrong options on
+ * 32 Mathematical Equations items whose distractor values described a mistake
+ * no candidate could make. The verdict on those attempts is unaffected — it is
+ * stored, and the correct option's id never moved — but the *value the learner
+ * chose* would otherwise render as a dash, which reads as a bug rather than as
+ * history.
+ *
+ * Option ids encode their value (`opt-6`), so the choice survives in the id
+ * itself. A current attempt never reaches this: its id always resolves.
+ */
+function historicValue(chosen: string | undefined): string | null {
+  const match = typeof chosen === 'string' ? /^opt-(\d+)$/.exec(chosen) : null
+  return match ? match[1] : null
+}
+
 /** Your answer against the right one, per selection the item required. */
 function answerRows(question: Question, selection: Selection): Row[] {
   if (question.kind === 'figure-sequence') {
@@ -96,7 +115,7 @@ function answerRows(question: Question, selection: Selection): Row[] {
     return [
       {
         label: `${question.asked} =`,
-        yours: yours ? String(yours.value) : null,
+        yours: yours ? String(yours.value) : historicValue(chosen),
         answer: String(answer?.value ?? ''),
         correct: chosen === question.correctOptionId,
       },

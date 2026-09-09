@@ -24,6 +24,18 @@ export function readBank(section) {
 }
 
 /**
+ * Write a bank back.
+ *
+ * Only two callers may use this: append-only generation, and a targeted repair
+ * of teaching content that leaves every answer key untouched. It is deliberately
+ * not a general-purpose door — full-bank regeneration was removed because a
+ * quota change rewrote most of the bank under unchanged ids.
+ */
+export function writeBank(section, bank) {
+  writeFileSync(bankUrl(section), `${JSON.stringify(bank, null, 2)}\n`)
+}
+
+/**
  * Retired items: kept, never served, and their ids permanently reserved.
  *
  * An id that once meant one question must never later mean another — otherwise a

@@ -18,7 +18,7 @@ import { readFileSync } from 'node:fs'
 import { parseEquation, solveAll } from './lib/equations.mjs'
 import { isLegacy, verifyQuestion } from './lib/verify.mjs'
 import { fingerprintFor, MAX_PER_FINGERPRINT } from './lib/fingerprint.mjs'
-import { readRetired, SECTIONS } from './lib/bank.mjs'
+import { readBank, readRetired, SECTIONS } from './lib/bank.mjs'
 
 /**
  * Before trusting the solver on our own items, prove it reproduces g.a.s.t.'s
@@ -139,6 +139,57 @@ if (warningLines.length) {
       '  batch and generator version that produced them, so they are not forgotten:\n',
   )
   console.log(warningLines.join('\n'))
+}
+
+/**
+ * Mathematical Equations difficulty, both ways round.
+ *
+ * The official material tiers this task type strictly by size — GAM PDF pp. 17–19
+ * put 2 letters and 2 equations in both low exercises, 3 and 3 in both medium, 4
+ * and 4 in both high. This bank tiers by reasoning depth instead, because letter
+ * count was a perfect proxy for tier in the original bank and made the whole low
+ * tier one template.
+ *
+ * Both readings are defensible and they disagree, so neither is allowed to stand
+ * in silently for the other. This prints them side by side. It is a report, not a
+ * gate: re-tiering is a decision, not a repair.
+ */
+function meCalibration(bank) {
+  const OFFICIAL_LETTERS = { low: 2, medium: 3, high: 4 }
+  const rows = []
+  for (const tier of ['low', 'medium', 'high']) {
+    const items = bank.filter((q) => q.difficulty === tier)
+    if (!items.length) continue
+    const letters = {}
+    for (const q of items) {
+      const n = q.meta?.officialStructure?.letters ?? Object.keys(q.solution ?? {}).length
+      letters[n] = (letters[n] ?? 0) + 1
+    }
+    const matching = letters[OFFICIAL_LETTERS[tier]] ?? 0
+    rows.push({
+      tier,
+      total: items.length,
+      matching,
+      spread: Object.keys(letters)
+        .sort()
+        .map((n) => `${n}L×${letters[n]}`)
+        .join(' '),
+    })
+  }
+  return rows
+}
+
+const meBank = readBank('mathematical-equations')
+if (meBank) {
+  console.log('\nMathematical Equations — difficulty, our metric against the official one')
+  console.log('  official ladder (GAM PDF pp. 17–19): low 2 letters · medium 3 · high 4')
+  for (const r of meCalibration(meBank)) {
+    const pct = Math.round((r.matching / r.total) * 100)
+    console.log(
+      `  ${r.tier.padEnd(6)} ${String(r.total).padStart(3)} items · ${String(r.matching).padStart(3)} at the official letter count (${String(pct).padStart(3)}%) · ${r.spread}`,
+    )
+  }
+  console.log('  Reported, not enforced: our tiers measure reasoning depth. Re-tiering is a decision.')
 }
 
 console.log(`\n${totalChecked} questions checked, ${totalFailures} failed, ${totalWarnings} warnings.`)

@@ -14,9 +14,40 @@ never as a plausible-sounding guess.
 - Third-party dMAT guides contain known errors — wrong item counts, incomplete topic
   lists. Do not cite them, ever, even to corroborate.
 - The prep PDF is **re-dated whenever g.a.s.t. updates it**. Current version:
-  `d-mat.de/wp-content/uploads/2026/08/260804_dMAT_General-Academic-Module_Preparatoy-Materials_EN.pdf`
-  (04.08.2026). It is linked from the **India page**, not the English preparation page.
-  Re-check the URL before any content work — third-party sites still cite a July build.
+  `www.d-mat.de/wp-content/uploads/2026/09/260902_dMAT_General-Academic-Module_Preparatoy-Materials_EN.pdf`
+  (02.09.2026, 57 pages). It is linked from the **India page**, not the English preparation
+  page. Re-check the URL before any content work — third-party sites still cite a July build.
+  Use the `www.` host; the bare `d-mat.de` certificate has expired.
+- **The 04.08.2026 build (58 pages) was superseded on 02.09.2026.** Both were downloaded and
+  compared on 5 September 2026: **no substantive rule changed.** Every statement this
+  repository relies on — the Core task rules, the 25 min / 20 item timings, the 1–20 integer
+  range, the 5×5 A–E grid, the Subject Module's 4 options and 90 minutes, the topic list —
+  is present and unaltered in the new build. The differences are typography, line-breaking
+  and layout. A future re-date must be diffed the same way before anything is assumed.
+
+### How a fact is known
+
+Every dMAT claim in this repository carries one of four grades, and the grade is part of the
+fact. `content/exam/claims.ts` records them for the exam pages; the same vocabulary applies
+to anything the generators encode.
+
+| Grade | Meaning |
+|---|---|
+| **stated** | The official material says it in words. |
+| **demonstrated** | The official examples or worked solutions show it, without stating it. |
+| **inferred** | We concluded it from what is stated or shown. It may be wrong. |
+| **unknown** | The official material does not settle it. Never fill this with an assumption. |
+
+Two live consequences of that grading, both found by the 5 September audit:
+
+- **Mathematical Equations answer format is `unknown`.** Figure Sequences and Latin Squares
+  both name "response options" and the Subject Module names "4 answer options"; Mathematical
+  Equations names none — its exercises are open-response with worked solutions. Our
+  four-option multiple choice is **inferred**, not stated, and must not be presented
+  otherwise.
+- **Both question forms are `demonstrated`.** Official Example 1 asks for one letter;
+  Example 2 asks "What numbers do A and B correspond to?", and every exercise solution
+  reports a value for every letter. The earlier note that this was unconfirmed is resolved.
 - These PDFs use subset font encodings; naive text extraction returns mojibake and
   `pdftotext` is not installed. Use `node scripts/extract-pdf.mjs <file.pdf>`.
 - **Never commit the source PDFs or images extracted from them.** They carry an explicit
@@ -50,8 +81,16 @@ never as a plausible-sounding guess.
   *"If you do not know an answer, please guess which answer might be correct"* (GAM PDF
   pp. 8, 25, 34) and score = *"a conversion of the total number of correct answers"*
   (d-mat.de). Always render with `confidence: 'inferred'`, never as a rule.
-- **Mathematical Equations phrasing** — whether the exam asks for one letter or all is
-  unconfirmed. Modelled as one asked letter, flagged `inferred`.
+- **Mathematical Equations phrasing — RESOLVED 5 Sep 2026, and now a coverage gap.**
+  It is no longer unconfirmed: the official material *demonstrates both forms*. Example 1
+  asks "What number does A correspond to?"; Example 2 asks "What numbers do **A and B**
+  correspond to?"; and all six exercise solutions report a value for every letter. The bank
+  is 175/175 single-letter, so an officially demonstrated form is absent. The schema
+  supports the multi-letter form (see `docs/ME_MULTI_LETTER.md`); adding items is deferred
+  to a later pass by decision, not by uncertainty.
+- **Mathematical Equations answer format — `unknown`.** The material states an answer format
+  for the other three task types and none for this one. Four-option multiple choice is our
+  inference and is recorded as such above.
 
 ## Stack
 

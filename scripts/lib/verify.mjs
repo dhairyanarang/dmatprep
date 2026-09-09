@@ -45,6 +45,20 @@ const cmpVersion = (a = '0.0.0', b = '0.0.0') => {
  */
 export const predates = (q, version) => cmpVersion(q.generator?.version, version) < 0
 
+/**
+ * Teaching content — explanations, distractor notes, hints — can be repaired
+ * without regenerating the item it belongs to, so its currency is tracked
+ * separately from the generator that built the equations.
+ *
+ * An item whose notes were rebuilt to a later generator's rules is held to that
+ * generator's standard even though its `generator.version` still records what
+ * produced the mathematics. Without this, a repair would land in the bank and
+ * the very checks it satisfies would stay downgraded to warnings, so nothing
+ * would stop the defect returning.
+ */
+export const teachingPredates = (q, version) =>
+  cmpVersion(q.generator?.teachingContent?.version ?? q.generator?.version, version) < 0
+
 function verifyCommon(q) {
   const errors = []
   if (!q.id) errors.push('missing id')
@@ -159,14 +173,29 @@ export const operatorsIn = (equations) => new Set((equations.join(' ').match(/[+
  * the whole question away.
  */
 export function hintRevealsAnswer(q) {
-  const level2 = q.hints?.find((h) => h.level === 2)?.text
-  if (!level2) return null
-  const quoted = /Look at ([^.]+)\./.exec(level2)
-  if (!quoted) return null
-  const equation = quoted[1]
-  const letters = [...new Set(equation.match(/[A-Z]/g) ?? [])]
-  if (letters.length === 1 && letters[0] === q.asked) {
-    return `level-2 hint quotes "${equation}", which contains only the asked letter — one step from the answer`
+  const answer = q.solution?.[q.asked]
+  for (const hint of q.hints ?? []) {
+    const text = hint.text ?? ''
+
+    // Quoting an equation that holds only the asked letter *is* the answer, one
+    // arithmetic step away. This was checked at level 2 alone, which is where the
+    // generator puts the quotation; a hint at any level does the same damage.
+    const quoted = /Look at ([^.]+)\./.exec(text)
+    if (quoted) {
+      const letters = [...new Set(quoted[1].match(/[A-Z]/g) ?? [])]
+      if (letters.length === 1 && letters[0] === q.asked) {
+        return `level-${hint.level} hint quotes "${quoted[1]}", which contains only the asked letter — one step from the answer`
+      }
+    }
+
+    // And no hint may simply state the solved value, however it is phrased.
+    if (
+      answer !== undefined &&
+      new RegExp(`(^|[^0-9])${answer}([^0-9]|$)`).test(text) &&
+      new RegExp(`\\b${q.asked}\\b`).test(text)
+    ) {
+      return `level-${hint.level} hint states ${q.asked} = ${answer}, which is the answer rather than a hint`
+    }
   }
   return null
 }
@@ -232,10 +261,14 @@ function verifyMathEquations(q) {
     const note = q.distractorNotes[id] ?? ''
     if (family !== 'inverted-operation') continue
     if (/multiply where the equation divides/.test(note) && !ops.has('÷')) {
-      ;(isLegacy(q) ? warnings : errors).push(`note for ${id} blames division, but the system contains no ÷`)
+      ;(teachingPredates(q, '3.1.0') ? warnings : errors).push(
+        `note for ${id} blames division, but the system contains no ÷`,
+      )
     }
     if (/divide where the equation multiplies/.test(note) && !ops.has('×')) {
-      ;(isLegacy(q) ? warnings : errors).push(`note for ${id} blames multiplication, but the system contains no ×`)
+      ;(teachingPredates(q, '3.1.0') ? warnings : errors).push(
+        `note for ${id} blames multiplication, but the system contains no ×`,
+      )
     }
   }
 
@@ -258,7 +291,7 @@ function verifyMathEquations(q) {
     if (option.id === q.correctOptionId) continue
     const family = q.meta?.distractorTypes?.[option.id]
     const note = q.distractorNotes[option.id] ?? ''
-    const push = (m) => (predates(q, '3.1.0') ? warnings : errors).push(m)
+    const push = (m) => (teachingPredates(q, '3.1.0') ? warnings : errors).push(m)
 
     if (family === 'off-by-one' && Math.abs(option.value - answer) !== 1) {
       push(`${option.id} is labelled off-by-one but is ${option.value} against an answer of ${answer}`)
@@ -299,7 +332,7 @@ function verifyMathEquations(q) {
   }
 
   const leak = hintRevealsAnswer(q)
-  if (leak) (isLegacy(q) ? warnings : errors).push(leak)
+  if (leak) (teachingPredates(q, '3.1.0') ? warnings : errors).push(leak)
 
   // A hint may only promise an operation to undo when there is one. A bare pin
   // (`C = 14`, official Example 1) has nothing on either side to undo, and the
@@ -424,16 +457,23 @@ function verifyFigureSequence(q) {
   // Every image must offer two distinct distractor families, and never two
   // positional nudges — a wrong panel that encodes no nameable error teaches
   // nothing, and two of them leave the image with nothing to learn from.
+  //
+  // A hard error for every item, legacy included: the eight items that carried
+  // this were repaired or retired on 5 September 2026, so nothing in the bank
+  // needs the exemption and leaving one open would let the defect back in. The
+  // loop covers *both* predicted matrices — the earlier version of this rule
+  // only required two families across the item as a whole, which let one image
+  // ship two nudges as long as the other supplied the variety.
   for (const image of q.images) {
     const families = image.options
       .filter((o) => o.id !== image.correctOptionId)
       .map((o) => q.meta?.distractorTypes?.[`${image.label}:${o.id}`])
     if (families.length === 2 && families[0] && families[1]) {
       if (families[0] === families[1]) {
-        push(`${image.label}: both distractors are the same family (${families[0]})`)
+        errors.push(`${image.label}: both distractors are the same family (${families[0]})`)
       }
       if (families.every((f) => f === 'position')) {
-        push(`${image.label}: both distractors are the arbitrary positional nudge`)
+        errors.push(`${image.label}: both distractors are the arbitrary positional nudge`)
       }
     }
   }

@@ -388,7 +388,12 @@ const NOTE = {
     `The ${shape} has moved by a constant amount. This sequence accelerates by x + 1, so each transition is one field longer than the last.`,
 }
 
-function makeDistractor(rng, states, rules, panelIndex, correctPanel, taken, exclude = new Set()) {
+/**
+ * Exported so a targeted repair can rebuild one wrong panel with exactly the
+ * logic that generates them, rather than a second implementation that could
+ * drift from it. Repairs must not invent their own notion of a plausible error.
+ */
+export function makeDistractor(rng, states, rules, panelIndex, correctPanel, taken, exclude = new Set()) {
   const previous = states[panelIndex - 1]
   const order = shuffle(rng, FAMILIES).filter((f) => !exclude.has(f))
   const symbolOrder = shuffle(rng, previous.map((s) => s.id))
@@ -432,7 +437,7 @@ function makeDistractor(rng, states, rules, panelIndex, correctPanel, taken, exc
 }
 
 /** Last resort: nudge a symbol to a neighbouring cell, when no rule error fits. */
-function nudgeDistractor(rng, correctPanel, previousPanel, taken) {
+export function nudgeDistractor(rng, correctPanel, previousPanel, taken) {
   for (let attempt = 0; attempt < 40; attempt++) {
     const panel = { symbols: correctPanel.symbols.map((s) => ({ ...s, cell: { ...s.cell } })) }
     const target = pick(rng, panel.symbols)

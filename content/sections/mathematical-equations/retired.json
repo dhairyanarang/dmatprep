@@ -171,5 +171,2815 @@
         "verifiedAt": "2026-09-03"
       }
     }
+  },
+  {
+    "id": "me-low-001",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-001",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 3 = 3",
+        "2 × A = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-10",
+          "value": 10
+        },
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-9",
+          "value": 9
+        }
+      ],
+      "correctOptionId": "opt-9",
+      "solution": {
+        "A": 9,
+        "B": 18
+      },
+      "solutionSteps": [
+        "A ÷ 3 = 3. Multiplying both sides by 3 gives A = 9.",
+        "2 × A = B, so B = 2 × 9 = 18.",
+        "Full solution: A = 9, B = 18. The question asks for A, so the answer is 9."
+      ],
+      "explanation": "A ÷ 3 = 3. Multiplying both sides by 3 gives A = 9. 2 × A = B, so B = 2 × 9 = 18. Full solution: A = 9, B = 18. The question asks for A, so the answer is 9.",
+      "distractorNotes": {
+        "opt-6": "6 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-12": "12 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-10": "10 is one more than the correct value — an off-by-one slip when adding or subtracting a constant."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 3 = 3 has A as its only unknown, so A = 9.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 3 = 3",
+              "note": "A = 9"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 18. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 9,
+                "B": 18
+              }
+            }
+          }
+        ],
+        "answer": "A = 9.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 3 = 3 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-6": "misapplied-constant",
+          "opt-12": "misapplied-constant",
+          "opt-10": "off-by-one"
+        },
+        "generationNotes": "depth 1, 2 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-002",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-002",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "3 × A = 15",
+        "2 × A = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-4",
+          "value": 4
+        },
+        {
+          "id": "opt-2",
+          "value": 2
+        },
+        {
+          "id": "opt-5",
+          "value": 5
+        }
+      ],
+      "correctOptionId": "opt-5",
+      "solution": {
+        "A": 5,
+        "B": 10
+      },
+      "solutionSteps": [
+        "3 × A = 15. Dividing both sides by 3 gives A = 5.",
+        "2 × A = B, so B = 2 × 5 = 10.",
+        "Full solution: A = 5, B = 10. The question asks for A, so the answer is 5."
+      ],
+      "explanation": "3 × A = 15. Dividing both sides by 3 gives A = 5. 2 × A = B, so B = 2 × 5 = 10. Full solution: A = 5, B = 10. The question asks for A, so the answer is 5.",
+      "distractorNotes": {
+        "opt-8": "8 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-2": "2 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-4": "4 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that multiplies A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "3 × A = 15 has A as its only unknown, so A = 5.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "3 × A = 15",
+              "note": "A = 5"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 10. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 5,
+                "B": 10
+              }
+            }
+          }
+        ],
+        "answer": "A = 5.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 3 × A = 15 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-8": "misapplied-constant",
+          "opt-2": "misapplied-constant",
+          "opt-4": "off-by-one"
+        },
+        "generationNotes": "depth 1, 2 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-003",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-003",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 2 = 7",
+        "A ÷ 2 = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-14",
+          "value": 14
+        },
+        {
+          "id": "opt-13",
+          "value": 13
+        },
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-16",
+          "value": 16
+        }
+      ],
+      "correctOptionId": "opt-14",
+      "solution": {
+        "A": 14,
+        "B": 7
+      },
+      "solutionSteps": [
+        "A ÷ 2 = 7. Multiplying both sides by 2 gives A = 14.",
+        "A ÷ 2 = B, so B = 14 ÷ 2 = 7.",
+        "Full solution: A = 14, B = 7. The question asks for A, so the answer is 14."
+      ],
+      "explanation": "A ÷ 2 = 7. Multiplying both sides by 2 gives A = 14. A ÷ 2 = B, so B = 14 ÷ 2 = 7. Full solution: A = 14, B = 7. The question asks for A, so the answer is 14.",
+      "distractorNotes": {
+        "opt-16": "16 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-12": "12 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-13": "13 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 2 = 7 has A as its only unknown, so A = 14.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 2 = 7",
+              "note": "A = 14"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 7. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 14,
+                "B": 7
+              }
+            }
+          }
+        ],
+        "answer": "A = 14.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 2 = 7 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-16": "misapplied-constant",
+          "opt-12": "misapplied-constant",
+          "opt-13": "off-by-one"
+        },
+        "generationNotes": "depth 1, 2 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-004",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-004",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "7 + A = B",
+        "6 + A = 19"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-19",
+          "value": 19
+        },
+        {
+          "id": "opt-20",
+          "value": 20
+        },
+        {
+          "id": "opt-13",
+          "value": 13
+        }
+      ],
+      "correctOptionId": "opt-13",
+      "solution": {
+        "A": 13,
+        "B": 20
+      },
+      "solutionSteps": [
+        "6 + A = 19. Subtracting 6 from both sides gives A = 13.",
+        "7 + A = B, so B = 7 + 13 = 20.",
+        "Full solution: A = 13, B = 20. The question asks for A, so the answer is 13."
+      ],
+      "explanation": "6 + A = 19. Subtracting 6 from both sides gives A = 13. 7 + A = B, so B = 7 + 13 = 20. Full solution: A = 13, B = 20. The question asks for A, so the answer is 13.",
+      "distractorNotes": {
+        "opt-20": "20 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-19": "19 is what you get by applying the constant 6 the wrong way round when rearranging the first equation.",
+        "opt-7": "7 is what you get by applying the constant 6 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that adds to A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "6 + A = 19 has A as its only unknown, so A = 13.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "6 + A = 19",
+              "note": "A = 13"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 20. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 13,
+                "B": 20
+              }
+            }
+          }
+        ],
+        "answer": "A = 13.",
+        "takeaway": "Scan for the equation with one unknown before reading the rest. Here that is 6 + A = 19, and it is not always the first line in the list."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-20": "wrong-variable",
+          "opt-19": "misapplied-constant",
+          "opt-7": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 0 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-006",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-006",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 4 = B",
+        "A ÷ 2 = 2"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-1",
+          "value": 1
+        },
+        {
+          "id": "opt-4",
+          "value": 4
+        }
+      ],
+      "correctOptionId": "opt-4",
+      "solution": {
+        "A": 4,
+        "B": 1
+      },
+      "solutionSteps": [
+        "A ÷ 2 = 2. Multiplying both sides by 2 gives A = 4.",
+        "A ÷ 4 = B, so B = 4 ÷ 4 = 1.",
+        "Full solution: A = 4, B = 1. The question asks for A, so the answer is 4."
+      ],
+      "explanation": "A ÷ 2 = 2. Multiplying both sides by 2 gives A = 4. A ÷ 4 = B, so B = 4 ÷ 4 = 1. Full solution: A = 4, B = 1. The question asks for A, so the answer is 4.",
+      "distractorNotes": {
+        "opt-1": "1 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-8": "8 is double the correct value, which is what you get if you multiply where the equation divides.",
+        "opt-6": "6 is what you get by applying the constant 2 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 2 = 2 has A as its only unknown, so A = 4.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 2 = 2",
+              "note": "A = 4"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 1. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 4,
+                "B": 1
+              }
+            }
+          }
+        ],
+        "answer": "A = 4.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 2 = 2 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-1": "wrong-variable",
+          "opt-8": "inverted-operation",
+          "opt-6": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 2 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-007",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-007",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "3 × A = 33",
+        "12 − A = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-14",
+          "value": 14
+        },
+        {
+          "id": "opt-1",
+          "value": 1
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        }
+      ],
+      "correctOptionId": "opt-11",
+      "solution": {
+        "A": 11,
+        "B": 1
+      },
+      "solutionSteps": [
+        "3 × A = 33. Dividing both sides by 3 gives A = 11.",
+        "12 − A = B, so B = 12 − 11 = 1.",
+        "Full solution: A = 11, B = 1. The question asks for A, so the answer is 11."
+      ],
+      "explanation": "3 × A = 33. Dividing both sides by 3 gives A = 11. 12 − A = B, so B = 12 − 11 = 1. Full solution: A = 11, B = 1. The question asks for A, so the answer is 11.",
+      "distractorNotes": {
+        "opt-1": "1 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-8": "8 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-14": "14 is what you get by applying the constant 3 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that multiplies A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "3 × A = 33 has A as its only unknown, so A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "3 × A = 33",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 1. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 11,
+                "B": 1
+              }
+            }
+          }
+        ],
+        "answer": "A = 11.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 3 × A = 33 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-1": "wrong-variable",
+          "opt-8": "misapplied-constant",
+          "opt-14": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 1 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-009",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-009",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A − 12 = B",
+        "A − 6 = 7"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-1",
+          "value": 1
+        },
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-13",
+          "value": 13
+        },
+        {
+          "id": "opt-19",
+          "value": 19
+        }
+      ],
+      "correctOptionId": "opt-13",
+      "solution": {
+        "A": 13,
+        "B": 1
+      },
+      "solutionSteps": [
+        "A − 6 = 7. Adding 6 to both sides gives A = 13.",
+        "A − 12 = B, so B = 13 − 12 = 1.",
+        "Full solution: A = 13, B = 1. The question asks for A, so the answer is 13."
+      ],
+      "explanation": "A − 6 = 7. Adding 6 to both sides gives A = 13. A − 12 = B, so B = 13 − 12 = 1. Full solution: A = 13, B = 1. The question asks for A, so the answer is 13.",
+      "distractorNotes": {
+        "opt-1": "1 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-19": "19 is what you get by applying the constant 6 the wrong way round when rearranging the first equation.",
+        "opt-7": "7 is what you get by applying the constant 6 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that subtracts from A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A − 6 = 7 has A as its only unknown, so A = 13.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A − 6 = 7",
+              "note": "A = 13"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 1. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 13,
+                "B": 1
+              }
+            }
+          }
+        ],
+        "answer": "A = 13.",
+        "takeaway": "Scan for the equation with one unknown before reading the rest. Here that is A − 6 = 7, and it is not always the first line in the list."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-1": "wrong-variable",
+          "opt-19": "misapplied-constant",
+          "opt-7": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 0 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-010",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-010",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "8 + A = 22",
+        "25 − A = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-14",
+          "value": 14
+        }
+      ],
+      "correctOptionId": "opt-14",
+      "solution": {
+        "A": 14,
+        "B": 11
+      },
+      "solutionSteps": [
+        "8 + A = 22. Subtracting 8 from both sides gives A = 14.",
+        "25 − A = B, so B = 25 − 14 = 11.",
+        "Full solution: A = 14, B = 11. The question asks for A, so the answer is 14."
+      ],
+      "explanation": "8 + A = 22. Subtracting 8 from both sides gives A = 14. 25 − A = B, so B = 25 − 14 = 11. Full solution: A = 14, B = 11. The question asks for A, so the answer is 14.",
+      "distractorNotes": {
+        "opt-11": "11 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-7": "7 is half the correct value, which is what you get if you divide where the equation multiplies.",
+        "opt-6": "6 is what you get by applying the constant 8 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that adds to A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "8 + A = 22 has A as its only unknown, so A = 14.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "8 + A = 22",
+              "note": "A = 14"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 11. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 14,
+                "B": 11
+              }
+            }
+          }
+        ],
+        "answer": "A = 14.",
+        "takeaway": "Scan for the equation with one unknown before reading the rest. Here that is 8 + A = 22, and it is not always the first line in the list."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-11": "wrong-variable",
+          "opt-7": "inverted-operation",
+          "opt-6": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 0 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-011",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-011",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "30 − A = B",
+        "2 × A = 22"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-19",
+          "value": 19
+        },
+        {
+          "id": "opt-9",
+          "value": 9
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-13",
+          "value": 13
+        }
+      ],
+      "correctOptionId": "opt-11",
+      "solution": {
+        "A": 11,
+        "B": 19
+      },
+      "solutionSteps": [
+        "2 × A = 22. Dividing both sides by 2 gives A = 11.",
+        "30 − A = B, so B = 30 − 11 = 19.",
+        "Full solution: A = 11, B = 19. The question asks for A, so the answer is 11."
+      ],
+      "explanation": "2 × A = 22. Dividing both sides by 2 gives A = 11. 30 − A = B, so B = 30 − 11 = 19. Full solution: A = 11, B = 19. The question asks for A, so the answer is 11.",
+      "distractorNotes": {
+        "opt-19": "19 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-13": "13 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-9": "9 is what you get by applying the constant 2 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that multiplies A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "2 × A = 22 has A as its only unknown, so A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "2 × A = 22",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 19. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 11,
+                "B": 19
+              }
+            }
+          }
+        ],
+        "answer": "A = 11.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 2 × A = 22 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-19": "wrong-variable",
+          "opt-13": "misapplied-constant",
+          "opt-9": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 1 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-013",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-013",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 4 = 3",
+        "8 + A = B"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-20",
+          "value": 20
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        }
+      ],
+      "correctOptionId": "opt-12",
+      "solution": {
+        "A": 12,
+        "B": 20
+      },
+      "solutionSteps": [
+        "A ÷ 4 = 3. Multiplying both sides by 4 gives A = 12.",
+        "8 + A = B, so B = 8 + 12 = 20.",
+        "Full solution: A = 12, B = 20. The question asks for A, so the answer is 12."
+      ],
+      "explanation": "A ÷ 4 = 3. Multiplying both sides by 4 gives A = 12. 8 + A = B, so B = 8 + 12 = 20. Full solution: A = 12, B = 20. The question asks for A, so the answer is 12.",
+      "distractorNotes": {
+        "opt-20": "20 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-6": "6 is half the correct value, which is what you get if you divide where the equation multiplies.",
+        "opt-8": "8 is what you get by applying the constant 4 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 4 = 3 has A as its only unknown, so A = 12.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 4 = 3",
+              "note": "A = 12"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 20. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 12,
+                "B": 20
+              }
+            }
+          }
+        ],
+        "answer": "A = 12.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 4 = 3 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-20": "wrong-variable",
+          "opt-6": "inverted-operation",
+          "opt-8": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 1 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-014",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-low-014",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "13 + A = B",
+        "9 + A = 15"
+      ],
+      "variables": [
+        "A",
+        "B"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-15",
+          "value": 15
+        },
+        {
+          "id": "opt-19",
+          "value": 19
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-3",
+          "value": 3
+        }
+      ],
+      "correctOptionId": "opt-6",
+      "solution": {
+        "A": 6,
+        "B": 19
+      },
+      "solutionSteps": [
+        "9 + A = 15. Subtracting 9 from both sides gives A = 6.",
+        "13 + A = B, so B = 13 + 6 = 19.",
+        "Full solution: A = 6, B = 19. The question asks for A, so the answer is 6."
+      ],
+      "explanation": "9 + A = 15. Subtracting 9 from both sides gives A = 6. 13 + A = B, so B = 13 + 6 = 19. Full solution: A = 6, B = 19. The question asks for A, so the answer is 6.",
+      "distractorNotes": {
+        "opt-19": "19 is the value of B, not A — this is the right system solved for the wrong letter.",
+        "opt-3": "3 is half the correct value, which is what you get if you divide where the equation multiplies.",
+        "opt-15": "15 is what you get by applying the constant 9 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that adds to A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "9 + A = 15 has A as its only unknown, so A = 6.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "9 + A = 15",
+              "note": "A = 6"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 19. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 6,
+                "B": 19
+              }
+            }
+          }
+        ],
+        "answer": "A = 6.",
+        "takeaway": "Scan for the equation with one unknown before reading the rest. Here that is 9 + A = 15, and it is not always the first line in the list."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "single-step"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-19": "wrong-variable",
+          "opt-3": "inverted-operation",
+          "opt-15": "misapplied-constant"
+        },
+        "generationNotes": "depth 1, 0 multiplicative operation(s), asked letter determined at position 1 of 2"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-medium-001",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-medium-001",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "8 × B = C",
+        "A ÷ 10 = B",
+        "A ÷ 2 = 5"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-1",
+          "value": 1
+        },
+        {
+          "id": "opt-10",
+          "value": 10
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-3",
+          "value": 3
+        }
+      ],
+      "correctOptionId": "opt-1",
+      "solution": {
+        "A": 10,
+        "B": 1,
+        "C": 8
+      },
+      "solutionSteps": [
+        "A ÷ 2 = 5. Multiplying both sides by 2 gives A = 10.",
+        "A ÷ 10 = B, so B = 10 ÷ 10 = 1.",
+        "8 × B = C, so C = 8 × 1 = 8.",
+        "Full solution: A = 10, B = 1, C = 8. The question asks for B, so the answer is 1."
+      ],
+      "explanation": "A ÷ 2 = 5. Multiplying both sides by 2 gives A = 10. A ÷ 10 = B, so B = 10 ÷ 10 = 1. 8 × B = C, so C = 8 × 1 = 8. Full solution: A = 10, B = 1, C = 8. The question asks for B, so the answer is 1.",
+      "distractorNotes": {
+        "opt-8": "8 is the value of C, not B — this is the right system solved for the wrong letter.",
+        "opt-3": "3 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-10": "10 is the value of A, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for B."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at A ÷ 2 = 5."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 2 = 5 has A as its only unknown, so A = 10.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 2 = 5",
+              "note": "A = 10"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "A ÷ 10 = B has B as its only unknown, so B = 1.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 10 = B",
+              "note": "B = 1"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 10, C = 8. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 10,
+                "B": 1,
+                "C": 8
+              }
+            }
+          }
+        ],
+        "answer": "B = 1.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 10 = B the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "two-step-substitution",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-8": "wrong-variable",
+          "opt-3": "misapplied-constant",
+          "opt-10": "stopped-early"
+        },
+        "generationNotes": "depth 2, 3 multiplicative operation(s), asked letter determined at position 2 of 3"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-medium-003",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-medium-003",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "3 × A = 30",
+        "B ÷ 4 = C",
+        "2 × A = B"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-17",
+          "value": 17
+        },
+        {
+          "id": "opt-5",
+          "value": 5
+        },
+        {
+          "id": "opt-19",
+          "value": 19
+        },
+        {
+          "id": "opt-20",
+          "value": 20
+        }
+      ],
+      "correctOptionId": "opt-20",
+      "solution": {
+        "A": 10,
+        "B": 20,
+        "C": 5
+      },
+      "solutionSteps": [
+        "3 × A = 30. Dividing both sides by 3 gives A = 10.",
+        "2 × A = B, so B = 2 × 10 = 20.",
+        "B ÷ 4 = C, so C = 20 ÷ 4 = 5.",
+        "Full solution: A = 10, B = 20, C = 5. The question asks for B, so the answer is 20."
+      ],
+      "explanation": "3 × A = 30. Dividing both sides by 3 gives A = 10. 2 × A = B, so B = 2 × 10 = 20. B ÷ 4 = C, so C = 20 ÷ 4 = 5. Full solution: A = 10, B = 20, C = 5. The question asks for B, so the answer is 20.",
+      "distractorNotes": {
+        "opt-5": "5 is the value of C, not B — this is the right system solved for the wrong letter.",
+        "opt-17": "17 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-19": "19 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at 3 × A = 30."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "3 × A = 30 has A as its only unknown, so A = 10.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "3 × A = 30",
+              "note": "A = 10"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "2 × A = B has B as its only unknown, so B = 20.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "2 × A = B",
+              "note": "B = 20"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 10, C = 5. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 10,
+                "B": 20,
+                "C": 5
+              }
+            }
+          }
+        ],
+        "answer": "B = 20.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 2 × A = B the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "two-step-substitution",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-5": "wrong-variable",
+          "opt-17": "misapplied-constant",
+          "opt-19": "off-by-one"
+        },
+        "generationNotes": "depth 2, 3 multiplicative operation(s), asked letter determined at position 2 of 3"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-medium-007",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-medium-007",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "B ÷ 2 = C",
+        "7 × A = B",
+        "A ÷ 2 = 1"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-2",
+          "value": 2
+        },
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-14",
+          "value": 14
+        },
+        {
+          "id": "opt-16",
+          "value": 16
+        }
+      ],
+      "correctOptionId": "opt-14",
+      "solution": {
+        "A": 2,
+        "B": 14,
+        "C": 7
+      },
+      "solutionSteps": [
+        "A ÷ 2 = 1. Multiplying both sides by 2 gives A = 2.",
+        "7 × A = B, so B = 7 × 2 = 14.",
+        "B ÷ 2 = C, so C = 14 ÷ 2 = 7.",
+        "Full solution: A = 2, B = 14, C = 7. The question asks for B, so the answer is 14."
+      ],
+      "explanation": "A ÷ 2 = 1. Multiplying both sides by 2 gives A = 2. 7 × A = B, so B = 7 × 2 = 14. B ÷ 2 = C, so C = 14 ÷ 2 = 7. Full solution: A = 2, B = 14, C = 7. The question asks for B, so the answer is 14.",
+      "distractorNotes": {
+        "opt-2": "2 is the value of A, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for B.",
+        "opt-16": "16 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-12": "12 is what you get by applying the constant 2 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at A ÷ 2 = 1."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 2 = 1 has A as its only unknown, so A = 2.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 2 = 1",
+              "note": "A = 2"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "7 × A = B has B as its only unknown, so B = 14.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "7 × A = B",
+              "note": "B = 14"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 2, C = 7. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 2,
+                "B": 14,
+                "C": 7
+              }
+            }
+          }
+        ],
+        "answer": "B = 14.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 7 × A = B the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "two-step-substitution",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-2": "stopped-early",
+          "opt-16": "misapplied-constant",
+          "opt-12": "misapplied-constant"
+        },
+        "generationNotes": "depth 2, 3 multiplicative operation(s), asked letter determined at position 2 of 3"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-medium-008",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-medium-008",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "A ÷ 8 = B",
+        "A ÷ 4 = 2",
+        "9 × B = C"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-5",
+          "value": 5
+        },
+        {
+          "id": "opt-9",
+          "value": 9
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-1",
+          "value": 1
+        }
+      ],
+      "correctOptionId": "opt-1",
+      "solution": {
+        "A": 8,
+        "B": 1,
+        "C": 9
+      },
+      "solutionSteps": [
+        "A ÷ 4 = 2. Multiplying both sides by 4 gives A = 8.",
+        "A ÷ 8 = B, so B = 8 ÷ 8 = 1.",
+        "9 × B = C, so C = 9 × 1 = 9.",
+        "Full solution: A = 8, B = 1, C = 9. The question asks for B, so the answer is 1."
+      ],
+      "explanation": "A ÷ 4 = 2. Multiplying both sides by 4 gives A = 8. A ÷ 8 = B, so B = 8 ÷ 8 = 1. 9 × B = C, so C = 9 × 1 = 9. Full solution: A = 8, B = 1, C = 9. The question asks for B, so the answer is 1.",
+      "distractorNotes": {
+        "opt-8": "8 is the value of A, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for B.",
+        "opt-5": "5 is what you get by applying the constant 4 the wrong way round when rearranging the first equation.",
+        "opt-9": "9 is the value of C, not B — this is the right system solved for the wrong letter."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at A ÷ 4 = 2."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 4 = 2 has A as its only unknown, so A = 8.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 4 = 2",
+              "note": "A = 8"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "A ÷ 8 = B has B as its only unknown, so B = 1.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 8 = B",
+              "note": "B = 1"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 8, C = 9. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 8,
+                "B": 1,
+                "C": 9
+              }
+            }
+          }
+        ],
+        "answer": "B = 1.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 8 = B the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "two-step-substitution",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-8": "stopped-early",
+          "opt-5": "misapplied-constant",
+          "opt-9": "wrong-variable"
+        },
+        "generationNotes": "depth 2, 3 multiplicative operation(s), asked letter determined at position 2 of 3"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-medium-011",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-medium-011",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "16 − B = C",
+        "A ÷ 5 = 2",
+        "21 − A = B"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-16",
+          "value": 16
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-5",
+          "value": 5
+        }
+      ],
+      "correctOptionId": "opt-11",
+      "solution": {
+        "A": 10,
+        "B": 11,
+        "C": 5
+      },
+      "solutionSteps": [
+        "A ÷ 5 = 2. Multiplying both sides by 5 gives A = 10.",
+        "21 − A = B, so B = 21 − 10 = 11.",
+        "16 − B = C, so C = 16 − 11 = 5.",
+        "Full solution: A = 10, B = 11, C = 5. The question asks for B, so the answer is 11."
+      ],
+      "explanation": "A ÷ 5 = 2. Multiplying both sides by 5 gives A = 10. 21 − A = B, so B = 21 − 10 = 11. 16 − B = C, so C = 16 − 11 = 5. Full solution: A = 10, B = 11, C = 5. The question asks for B, so the answer is 11.",
+      "distractorNotes": {
+        "opt-5": "5 is the value of C, not B — this is the right system solved for the wrong letter.",
+        "opt-16": "16 is what you get by applying the constant 5 the wrong way round when rearranging the first equation.",
+        "opt-6": "6 is what you get by applying the constant 5 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at A ÷ 5 = 2."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 5 = 2 has A as its only unknown, so A = 10.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 5 = 2",
+              "note": "A = 10"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "21 − A = B has B as its only unknown, so B = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "21 − A = B",
+              "note": "B = 11"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 10, C = 5. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 10,
+                "B": 11,
+                "C": 5
+              }
+            }
+          }
+        ],
+        "answer": "B = 11.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 21 − A = B the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "two-step-substitution"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-5": "wrong-variable",
+          "opt-16": "misapplied-constant",
+          "opt-6": "misapplied-constant"
+        },
+        "generationNotes": "depth 2, 1 multiplicative operation(s), asked letter determined at position 2 of 3"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-high-008",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "id": "me-high-008",
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "high",
+      "equations": [
+        "2 × A = B",
+        "C ÷ 4 = D",
+        "A ÷ 2 = 1",
+        "3 × B = C"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "asked": "D",
+      "options": [
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-5",
+          "value": 5
+        },
+        {
+          "id": "opt-3",
+          "value": 3
+        },
+        {
+          "id": "opt-1",
+          "value": 1
+        }
+      ],
+      "correctOptionId": "opt-3",
+      "solution": {
+        "A": 2,
+        "B": 4,
+        "C": 12,
+        "D": 3
+      },
+      "solutionSteps": [
+        "A ÷ 2 = 1. Multiplying both sides by 2 gives A = 2.",
+        "2 × A = B, so B = 2 × 2 = 4.",
+        "3 × B = C, so C = 3 × 4 = 12.",
+        "C ÷ 4 = D, so D = 12 ÷ 4 = 3.",
+        "Full solution: A = 2, B = 4, C = 12, D = 3. The question asks for D, so the answer is 3."
+      ],
+      "explanation": "A ÷ 2 = 1. Multiplying both sides by 2 gives A = 2. 2 × A = B, so B = 2 × 2 = 4. 3 × B = C, so C = 3 × 4 = 12. C ÷ 4 = D, so D = 12 ÷ 4 = 3. Full solution: A = 2, B = 4, C = 12, D = 3. The question asks for D, so the answer is 3.",
+      "distractorNotes": {
+        "opt-12": "12 is the value of C, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for D.",
+        "opt-5": "5 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-1": "1 is what you get by applying the constant 2 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at A ÷ 2 = 1."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach D."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 2 = 1 has A as its only unknown, so A = 2.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 2 = 1",
+              "note": "A = 2"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "2 × A = B has B as its only unknown, so B = 4.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "2 × A = B",
+              "note": "B = 4"
+            }
+          },
+          {
+            "title": "Substitute to reach C",
+            "detail": "3 × B = C has C as its only unknown, so C = 12.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "3 × B = C",
+              "note": "C = 12"
+            }
+          },
+          {
+            "title": "Substitute to reach D",
+            "detail": "C ÷ 4 = D has D as its only unknown, so D = 3.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "C ÷ 4 = D",
+              "note": "D = 3"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 2, B = 4, C = 12. The question asks for D.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 2,
+                "B": 4,
+                "C": 12,
+                "D": 3
+              }
+            }
+          }
+        ],
+        "answer": "D = 3.",
+        "takeaway": "Divisibility narrows this kind of item fast: in C ÷ 4 = D the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "4-variable-system",
+          "multi-step-substitution",
+          "mixed-operations"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 4,
+        "distractorTypes": {
+          "opt-12": "stopped-early",
+          "opt-5": "misapplied-constant",
+          "opt-1": "misapplied-constant"
+        },
+        "generationNotes": "depth 4, 4 multiplicative operation(s), asked letter determined at position 4 of 4"
+      },
+      "generator": {
+        "name": "math-equations",
+        "version": "2.0.0",
+        "verifiedAt": "2026-08-11"
+      }
+    }
+  },
+  {
+    "id": "me-low-b2-003",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "A ÷ 9 = D",
+        "A ÷ 3 = 3"
+      ],
+      "variables": [
+        "A",
+        "D"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-9",
+          "value": 9
+        },
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-12",
+          "value": 12
+        },
+        {
+          "id": "opt-1",
+          "value": 1
+        }
+      ],
+      "correctOptionId": "opt-9",
+      "solution": {
+        "A": 9,
+        "D": 1
+      },
+      "solutionSteps": [
+        "A ÷ 3 = 3. Multiplying both sides by 3 gives A = 9.",
+        "A ÷ 9 = D, so D = 9 ÷ 9 = 1.",
+        "Full solution: A = 9, D = 1. The question asks for A, so the answer is 9."
+      ],
+      "explanation": "A ÷ 3 = 3. Multiplying both sides by 3 gives A = 9. A ÷ 9 = D, so D = 9 ÷ 9 = 1. Full solution: A = 9, D = 1. The question asks for A, so the answer is 9.",
+      "distractorNotes": {
+        "opt-1": "1 is the value of D, not A — this is the right system solved for the wrong letter.",
+        "opt-12": "12 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-6": "6 is what you get by applying the constant 3 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that divides A and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for A: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "A ÷ 3 = 3 has A as its only unknown, so A = 9.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A ÷ 3 = 3",
+              "note": "A = 9"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes D = 1. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 9,
+                "D": 1
+              }
+            }
+          }
+        ],
+        "answer": "A = 9.",
+        "takeaway": "Divisibility narrows this kind of item fast: in A ÷ 3 = 3 the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "chain-topology",
+          "single-step",
+          "mixed-operations",
+          "pin-operated",
+          "define-multiplicative"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-1": "wrong-variable",
+          "opt-12": "misapplied-constant",
+          "opt-6": "misapplied-constant"
+        },
+        "generationNotes": "2 letters, chain topology, depth 1, 2 multiplicative operation(s), shapes: pin-operated/define-multiplicative"
+      },
+      "id": "me-low-b2-003",
+      "generator": {
+        "name": "math-equations",
+        "version": "3.0.0",
+        "batchId": "b2",
+        "seed": 2071041143,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "low",
+          "batchId": "b2",
+          "index": 2,
+          "attempt": 5
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-09-03"
+      }
+    }
+  },
+  {
+    "id": "me-medium-b2-002",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "3 + C = D",
+        "C ÷ 3 = 3",
+        "2 + C = A"
+      ],
+      "variables": [
+        "A",
+        "C",
+        "D"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-14",
+          "value": 14
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-9",
+          "value": 9
+        }
+      ],
+      "correctOptionId": "opt-11",
+      "solution": {
+        "C": 9,
+        "A": 11,
+        "D": 12
+      },
+      "solutionSteps": [
+        "C ÷ 3 = 3. Multiplying both sides by 3 gives C = 9.",
+        "2 + C = A, so A = 2 + 9 = 11.",
+        "3 + C = D, so D = 3 + 9 = 12.",
+        "Full solution: A = 11, C = 9, D = 12. The question asks for A, so the answer is 11."
+      ],
+      "explanation": "C ÷ 3 = 3. Multiplying both sides by 3 gives C = 9. 2 + C = A, so A = 2 + 9 = 11. 3 + C = D, so D = 3 + 9 = 12. Full solution: A = 11, C = 9, D = 12. The question asks for A, so the answer is 11.",
+      "distractorNotes": {
+        "opt-9": "9 is the value of C, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for A.",
+        "opt-8": "8 is what you get by applying the constant 3 the wrong way round when rearranging the first equation.",
+        "opt-14": "14 is what you get by applying the constant 3 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at C ÷ 3 = 3."
+        },
+        {
+          "level": 3,
+          "text": "Solve for C first, then substitute it into the equation that defines A, and keep going until you reach A."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "C ÷ 3 = 3 has C as its only unknown, so C = 9.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "C ÷ 3 = 3",
+              "note": "C = 9"
+            }
+          },
+          {
+            "title": "Substitute to reach A",
+            "detail": "2 + C = A has A as its only unknown, so A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "2 + C = A",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes C = 9, D = 12. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "C": 9,
+                "A": 11,
+                "D": 12
+              }
+            }
+          }
+        ],
+        "answer": "A = 11.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 2 + C = A the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "star-topology",
+          "two-step-substitution",
+          "pin-operated",
+          "define-linear"
+        ],
+        "skill": "forward substitution along a star",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-9": "stopped-early",
+          "opt-8": "misapplied-constant",
+          "opt-14": "misapplied-constant"
+        },
+        "generationNotes": "3 letters, star topology, depth 2, 1 multiplicative operation(s), shapes: pin-operated/define-linear"
+      },
+      "id": "me-medium-b2-002",
+      "generator": {
+        "name": "math-equations",
+        "version": "3.0.0",
+        "batchId": "b2",
+        "seed": 2047776740,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "medium",
+          "batchId": "b2",
+          "index": 1,
+          "attempt": 0
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-09-03"
+      }
+    }
+  },
+  {
+    "id": "me-medium-b2-004",
+    "retiredAt": "2026-09-05",
+    "reason": "Its wrong options cannot be explained. The distractor values are the superseded correct ± constant family: no misstep in this system reaches them, so every note on them describes a mistake the candidate could not have made. The item admits fewer honest mechanisms than it has distractor slots, so the notes cannot be repaired in place — 32 sibling items were. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "medium",
+      "equations": [
+        "5 + D = A",
+        "D ÷ 2 = 3"
+      ],
+      "variables": [
+        "A",
+        "D"
+      ],
+      "asked": "A",
+      "options": [
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-9",
+          "value": 9
+        },
+        {
+          "id": "opt-13",
+          "value": 13
+        }
+      ],
+      "correctOptionId": "opt-11",
+      "solution": {
+        "D": 6,
+        "A": 11
+      },
+      "solutionSteps": [
+        "D ÷ 2 = 3. Multiplying both sides by 2 gives D = 6.",
+        "5 + D = A, so A = 5 + 6 = 11.",
+        "Full solution: A = 11, D = 6. The question asks for A, so the answer is 11."
+      ],
+      "explanation": "D ÷ 2 = 3. Multiplying both sides by 2 gives D = 6. 5 + D = A, so A = 5 + 6 = 11. Full solution: A = 11, D = 6. The question asks for A, so the answer is 11.",
+      "distractorNotes": {
+        "opt-6": "6 is the value of D, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for A.",
+        "opt-9": "9 is what you get by applying the constant 2 the wrong way round when rearranging the first equation.",
+        "opt-13": "13 is what you get by applying the constant 2 the wrong way round when rearranging the first equation."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "Look at D ÷ 2 = 3."
+        },
+        {
+          "level": 3,
+          "text": "Solve for D first, then substitute it into the equation that defines A, and keep going until you reach A."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "D ÷ 2 = 3 has D as its only unknown, so D = 6.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "D ÷ 2 = 3",
+              "note": "D = 6"
+            }
+          },
+          {
+            "title": "Substitute to reach A",
+            "detail": "5 + D = A has A as its only unknown, so A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "5 + D = A",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes D = 6. The question asks for A.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "D": 6,
+                "A": 11
+              }
+            }
+          }
+        ],
+        "answer": "A = 11.",
+        "takeaway": "Divisibility narrows this kind of item fast: in 5 + D = A the coefficient tells you which multiples are even possible, which is often quicker than solving forward."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "2-variable-system",
+          "chain-topology",
+          "two-step-substitution",
+          "pin-operated",
+          "define-linear"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 2,
+        "distractorTypes": {
+          "opt-6": "stopped-early",
+          "opt-9": "misapplied-constant",
+          "opt-13": "misapplied-constant"
+        },
+        "generationNotes": "2 letters, chain topology, depth 2, 1 multiplicative operation(s), shapes: pin-operated/define-linear"
+      },
+      "id": "me-medium-b2-004",
+      "generator": {
+        "name": "math-equations",
+        "version": "3.0.0",
+        "batchId": "b2",
+        "seed": 649602601,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "medium",
+          "batchId": "b2",
+          "index": 3,
+          "attempt": 6
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-09-03"
+      }
+    }
+  },
+  {
+    "id": "me-low-b4-001",
+    "retiredAt": "2026-09-05",
+    "reason": "The asked letter's value is printed on the page: the system contains the equation C = 14 and asks for C, so the item is a reading exercise rather than a reasoning one, and its level-2 hint compounds this by promising an operation to undo where a bare pin has none. The generator has refused this shape since 3.3.0; this item is 3.2.0 and predates the guard by one version. It cannot be reworded — the defect is the system. Retired and replaced like for like on 5 September 2026.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "low",
+      "equations": [
+        "C ÷ 2 = A",
+        "C = 14",
+        "C ÷ 7 = B"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "C",
+      "options": [
+        {
+          "id": "opt-2",
+          "value": 2
+        },
+        {
+          "id": "opt-15",
+          "value": 15
+        },
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-14",
+          "value": 14
+        }
+      ],
+      "correctOptionId": "opt-14",
+      "solution": {
+        "C": 14,
+        "A": 7,
+        "B": 2
+      },
+      "solutionSteps": [
+        "C = 14 is given directly.",
+        "C ÷ 2 = A, so A = 14 ÷ 2 = 7.",
+        "C ÷ 7 = B, so B = 14 ÷ 7 = 2.",
+        "Full solution: A = 7, B = 2, C = 14. The question asks for C, so the answer is 14."
+      ],
+      "explanation": "C = 14 is given directly. C ÷ 2 = A, so A = 14 ÷ 2 = 7. C ÷ 7 = B, so B = 14 ÷ 7 = 2. Full solution: A = 7, B = 2, C = 14. The question asks for C, so the answer is 14.",
+      "distractorNotes": {
+        "opt-7": "7 is the value of A, not C — this is the right system solved for the wrong letter.",
+        "opt-15": "15 is one more than the correct value — an off-by-one slip when adding or subtracting a constant.",
+        "opt-2": "2 is the value of B, not C — this is the right system solved for the wrong letter."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One of the equations has only a single unknown. Find it before you read the others."
+        },
+        {
+          "level": 2,
+          "text": "The equation you want is the one that operates on C and nothing else. Find it, then undo that operation on both sides."
+        },
+        {
+          "level": 3,
+          "text": "Rearrange it for C: undo the constant on the left, then the coefficient."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "One equation has only a single unknown. Solve that first, then every other letter follows from it — and it is the letter the question asks for.",
+        "steps": [
+          {
+            "title": "Start where only one letter is unknown",
+            "detail": "C = 14 has C as its only unknown, so C = 14.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "C = 14",
+              "note": "C = 14"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes B = 2, A = 7. The question asks for C.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "C": 14,
+                "A": 7,
+                "B": 2
+              }
+            }
+          }
+        ],
+        "answer": "C = 14.",
+        "takeaway": "Scan for the equation with one unknown before reading the rest. Here that is C = 14, and it is not always the first line in the list."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "star-topology",
+          "single-step",
+          "mixed-operations",
+          "pin-constant",
+          "define-multiplicative"
+        ],
+        "skill": "forward substitution along a star",
+        "dmatAlignment": "officially_documented",
+        "reasoningDepth": 1,
+        "distractorTypes": {
+          "opt-7": "wrong-variable",
+          "opt-15": "off-by-one",
+          "opt-2": "wrong-variable"
+        },
+        "generationNotes": "3 letters, star topology, depth 1, 2 multiplicative operation(s), shapes: pin-constant/define-multiplicative",
+        "officialStructure": {
+          "letters": 3,
+          "equations": 3
+        }
+      },
+      "id": "me-low-b4-001",
+      "generator": {
+        "name": "math-equations",
+        "version": "3.2.0",
+        "batchId": "b4",
+        "seed": 3921428468,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "low",
+          "batchId": "b4",
+          "index": 0,
+          "attempt": 0
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-09-03"
+      }
+    }
   }
 ]

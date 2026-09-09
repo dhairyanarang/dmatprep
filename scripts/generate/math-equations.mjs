@@ -942,6 +942,19 @@ export function buildMathEquations(rng, difficulty, ctx = {}) {
             : `forward substitution along a ${plan.topology}`,
       dmatAlignment: 'officially_documented',
       reasoningDepth: depth,
+      /**
+       * The official ladder, recorded alongside ours and never instead of it.
+       *
+       * GAM PDF pp. 17–19 tiers Mathematical Equations strictly by size: the two
+       * low exercises use 2 letters and 2 equations, the two medium 3 and 3, the
+       * two high 4 and 4. This generator tiers by reasoning depth instead, on the
+       * grounds that letter count was a perfect proxy for tier in the original
+       * bank and made every low item one template. Both readings are defensible
+       * and they disagree, so the structural figures are stamped here and
+       * reported separately — a re-tiering decision needs the two side by side,
+       * not one silently standing in for the other.
+       */
+      officialStructure: { letters: names.length, equations: equations.length },
       distractorTypes,
       generationNotes: `${names.length} letters, ${plan.topology} topology, depth ${depth}, ${multiplicativeCount} multiplicative operation(s), shapes: ${shapes.join('/')}`,
     },
