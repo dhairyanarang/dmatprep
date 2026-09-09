@@ -3,14 +3,13 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { ReadingMeasure } from '@/components/layout/page-shell'
-import { PracticeActionBar } from '@/components/practice/action-bar'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
-import { FeedbackPanel } from '@/components/practice/feedback-panel'
+import { ExplanationSheet } from '@/components/practice/explanation-sheet'
+import { FeedbackSummary } from '@/components/practice/feedback-panel'
 import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
-import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
 import {
   Select,
@@ -53,6 +52,14 @@ type RunnerProps = {
 }
 
 /**
+ * Practice is the whole bank on one page.
+ *
+ * It used to be one question at a time behind a Check answer button and a Next
+ * question button, which is the shape an exam has and the wrong shape for
+ * study: two clicks of ceremony per item, and no way to look at the question
+ * before or after. Now every question matching the filter is on the page, an
+ * answer is committed by choosing it, and moving on is scrolling.
+ *
  * Practice restores itself rather than asking.
  *
  * A mock is a commitment worth confirming before you resume it; an untimed
@@ -101,44 +108,45 @@ function PracticeSession({
     useProgressActions()
 
   const [filter, setFilter] = useState<Filter>(initialDraft?.filter ?? 'all')
-  const [index, setIndex] = useState(initialDraft?.index ?? 0)
   /**
    * What has been done to each question, keyed by question id.
    *
-   * This is the single source of truth for selection, hints and whether an
-   * answer has been committed. It used to be three pieces of state describing
-   * the current question only, which cannot survive a Back button: stepping back
-   * has to restore the answer that was actually given, and stepping forward
-   * again has to find it still there. Keying by question id also means a change
-   * of difficulty filter cannot strand an answer, and — the part that matters —
-   * a question already committed stays committed, so no attempt is ever recorded
-   * against it twice.
+   * The single source of truth for selection, hints and whether an answer has
+   * been committed. Keying by id rather than by position is what lets every
+   * question be on the page at once and still restore correctly, and it is what
+   * guarantees a question already committed stays committed — so no attempt is
+   * ever recorded against one twice.
    */
   const [answers, setAnswers] = useState<Record<string, PracticeAnswer>>(() => {
     if (!initialDraft) return {}
     const seeded = { ...(initialDraft.answered ?? {}) }
-    // A draft written before this field existed still knows about the question
-    // it was left on; keep it rather than dropping the learner's place.
+    // A draft written before this field existed knows only the question it was
+    // left on; keep that rather than dropping the learner's work.
     const current = initialDraft.questionIds[initialDraft.index]
-    if (current && !seeded[current]) {
+    if (current && !seeded[current] && initialDraft.submitted) {
       seeded[current] = {
         selection: initialDraft.selection ?? {},
         hintsUsed: initialDraft.hintsUsed ?? 0,
-        submitted: initialDraft.submitted ?? false,
+        submitted: true,
       }
     }
     return seeded
   })
-  const [finished, setFinished] = useState(false)
-  // Set in an effect, not during render: Date.now() is impure and the React
-  // Compiler rejects it in the render path.
-  const startedAt = useRef<number>(0)
-  useEffect(() => {
-    startedAt.current = Date.now()
-  }, [index, filter])
 
-  // State rather than a ref: it decides what renders, and the React Compiler
-  // rightly refuses a ref read in the render path.
+  /** The question whose working is open in the side panel, if any. */
+  const [detailId, setDetailId] = useState<string | null>(null)
+
+  /**
+   * Time is measured between commits rather than from when a question was first
+   * shown, because on a page where everything is visible there is no moment a
+   * question "starts". The gap between one answer and the next is what the
+   * learner actually spent on it, scrolling included.
+   */
+  const lastCommitAt = useRef<number>(0)
+  useEffect(() => {
+    lastCommitAt.current = Date.now()
+  }, [])
+
   const [restoredOrder, setRestoredOrder] = useState<string[] | null>(
     initialDraft?.questionIds ?? null,
   )
@@ -147,8 +155,8 @@ function PracticeSession({
     const filtered =
       filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
 
-    // A restored run keeps the order it had, so "question 7 of 45" still means
-    // the question it meant before the reload.
+    // A restored run keeps the order it had, so a question stays where it was
+    // on the page across a reload.
     if (restoredOrder) {
       const byId = new Map(filtered.map((q) => [q.id, q]))
       const kept = restoredOrder.map((id) => byId.get(id)).filter((q): q is Question => !!q)
@@ -163,73 +171,55 @@ function PracticeSession({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [questions, filter, sectionId, restoredOrder])
 
-  const question = pool[index]
-  const current = (question && answers[question.id]) || UNANSWERED
-  const selection = current.selection
-  const submitted = current.submitted
-  const hintsUsed = current.hintsUsed
-
-  const patchCurrent = useCallback(
-    (patch: Partial<PracticeAnswer>) => {
-      if (!question) return
-      setAnswers((prev) => ({
-        ...prev,
-        [question.id]: { ...UNANSWERED, ...prev[question.id], ...patch },
-      }))
-    },
-    [question],
-  )
+  const answeredCount = pool.reduce((n, q) => n + (answers[q.id]?.submitted ? 1 : 0), 0)
 
   /**
    * The restore point, written on every change.
    *
-   * Cheap — one small object into localStorage — and it is the whole reason a
-   * mid-question reload costs nothing.
+   * `index`, `selection`, `hintsUsed` and `submitted` describe one question and
+   * no longer mean anything to this view, but they are still written, and they
+   * point at the first unanswered question. A draft saved here therefore opens
+   * in the right place in a build that predates the scrolling page.
    */
   useEffect(() => {
+    const nextUp = Math.max(
+      0,
+      pool.findIndex((q) => !answers[q.id]?.submitted),
+    )
+    const at = pool[nextUp]
+    const legacy = (at && answers[at.id]) || UNANSWERED
     setPracticeDraft({
       key: draftKey,
       questionIds: pool.map((q) => q.id),
-      index,
-      selection,
-      hintsUsed,
-      submitted,
+      index: nextUp,
+      selection: legacy.selection,
+      hintsUsed: legacy.hintsUsed,
+      submitted: legacy.submitted,
       filter,
       answered: answers,
       updatedAt: new Date().toISOString(),
     })
-  }, [draftKey, pool, index, selection, hintsUsed, submitted, filter, answers, setPracticeDraft])
+  }, [draftKey, pool, answers, filter, setPracticeDraft])
 
-  /**
-   * Move to another question in the run, forwards or back.
-   *
-   * The order is pinned on the first move. `pool` sorts unseen questions first,
-   * so letting it recompute mid-run would reshuffle the deck under the learner
-   * and "question 7 of 45" would stop meaning the question it meant a moment
-   * ago — which a Back button would make immediately visible.
-   */
-  const goTo = useCallback(
-    (nextIndex: number) => {
-      if (nextIndex < 0 || nextIndex >= pool.length || nextIndex === index) return
-      setRestoredOrder((prev) => prev ?? pool.map((q) => q.id))
-      setFinished(false)
-      setIndex(nextIndex)
-    },
-    [pool, index],
-  )
+  const patch = useCallback((questionId: string, next: Partial<PracticeAnswer>) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [questionId]: { ...UNANSWERED, ...prev[questionId], ...next },
+    }))
+  }, [])
 
   /**
    * Commit the answer. Called the moment the last required option is chosen,
-   * not from a separate confirm button.
+   * never from a button.
    *
-   * Takes the selection as an argument rather than reading it from state: the
-   * click that completes the answer is the click that commits it, and the state
-   * update from that same click has not landed yet.
+   * Takes the selection as an argument rather than reading it back from state:
+   * the click that completes the answer is the click that commits it, and that
+   * click's state update has not landed yet.
    */
   const commit = useCallback(
-    (sel: Selection) => {
-      if (!question || submitted) return
-      patchCurrent({ selection: sel, submitted: true })
+    (question: Question, sel: Selection, hintsUsed: number) => {
+      patch(question.id, { selection: sel, submitted: true })
+      const now = Date.now()
       recordAttempt({
         questionId: question.id,
         sectionId: question.section,
@@ -237,36 +227,41 @@ function PracticeSession({
         mode,
         correct: isCorrect(question, sel),
         selection: sel,
-        at: new Date().toISOString(),
-        durationMs: Date.now() - startedAt.current,
+        at: new Date(now).toISOString(),
+        durationMs: Math.max(0, now - lastCommitAt.current),
         hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
       })
+      lastCommitAt.current = now
       // Answered, so it is spent — from the practice pool, and only that one.
       recordExposure(
         [{ questionId: question.id, sectionId: question.section }],
         exposureContextOf(mode),
       )
+      // Past the first answer the order is fixed, so nothing reshuffles under a
+      // page the learner is part-way down.
+      setRestoredOrder((prev) => prev ?? pool.map((q) => q.id))
     },
-    [question, submitted, patchCurrent, recordAttempt, recordExposure, hintsUsed, mode],
+    [patch, recordAttempt, recordExposure, mode, pool],
   )
 
   const handleSelect = useCallback(
-    (key: string, optionId: string) => {
-      if (!question || submitted) return
-      const next = { ...selection, [key]: optionId }
-      patchCurrent({ selection: next })
+    (question: Question, key: string, optionId: string) => {
+      const current = answers[question.id] ?? UNANSWERED
+      if (current.submitted) return
+      const next = { ...current.selection, [key]: optionId }
+      patch(question.id, { selection: next })
       // Choosing is answering. A single-answer question commits on the click; a
       // Figure Sequences item waits until both panels have been chosen, because
       // until then the answer is not yet an answer.
-      if (Object.keys(next).length >= requiredSelectionCount(question)) commit(next)
+      if (Object.keys(next).length >= requiredSelectionCount(question)) {
+        commit(question, next, current.hintsUsed)
+      }
     },
-    [question, submitted, selection, patchCurrent, commit],
+    [answers, patch, commit],
   )
 
   const handleFilter = useCallback((value: Filter) => {
     setFilter(value)
-    setFinished(false)
-    setIndex(0)
     // The filter changes which questions are in play, so the pinned order goes
     // with it. Answers are kept: they are keyed by question id, so a question
     // met under one filter is still answered under another.
@@ -281,37 +276,8 @@ function PracticeSession({
     )
   }
 
-  if (!question) {
-    return (
-      <div className="space-y-4">
-        <FilterBar filter={filter} onChange={handleFilter} />
-        <p className="text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
-          No {filter} questions in this section.
-        </p>
-      </div>
-    )
-  }
-
-  const answered = Object.keys(selection).length >= requiredSelectionCount(question)
-  const correct = submitted && isCorrect(question, selection)
-  const atEnd = index >= pool.length - 1
-
-  if (finished && sectionId) {
-    return (
-      <SetComplete
-        sectionId={sectionId}
-        questions={pool}
-        answered={pool.length}
-        onRestart={() => {
-          clearPracticeDraft(draftKey)
-          setAnswers({})
-          setRestoredOrder(null)
-          setFinished(false)
-          setIndex(0)
-        }}
-      />
-    )
-  }
+  const detail = detailId ? pool.find((q) => q.id === detailId) : undefined
+  const detailAnswer = (detail && answers[detail.id]) || UNANSWERED
 
   return (
     <div className="space-y-5">
@@ -319,85 +285,132 @@ function PracticeSession({
         <SectionProgress sectionId={sectionId} bankSize={questions.length} />
       ) : null}
 
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-muted-foreground text-sm">
-            Question {index + 1} of {pool.length}
-          </span>
-          <DifficultyBadge difficulty={question.difficulty} />
-        </div>
+      {/* Sticky so the count and the filter stay reachable however far down the
+          bank the learner has scrolled. */}
+      <div className="bg-background/95 supports-[backdrop-filter]:bg-background/85 sticky top-0 z-10 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
+        <span className="text-muted-foreground text-sm tabular-nums">
+          {answeredCount} / {pool.length} answered
+        </span>
         {showFilter ? <FilterBar filter={filter} onChange={handleFilter} /> : null}
       </div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <ReadingMeasure>
-            {/* Keyed on the question, so moving on fades the next one in instead
-                of swapping it under the eye — the only signal that the page has
-                changed at all when two questions look alike. */}
-            <div
-              key={question.id}
-              className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:duration-150"
-            >
-              <QuestionView
-                question={question}
-                selection={selection}
-                submitted={submitted}
-                onSelect={handleSelect}
-              />
-            </div>
-          </ReadingMeasure>
-        </CardContent>
-      </Card>
+      {pool.length === 0 ? (
+        <p className="text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
+          No {filter} questions in this section.
+        </p>
+      ) : null}
 
-      {!submitted && question.hints?.length ? (
-        <HintPanel
-          hints={question.hints}
-          revealed={hintsUsed}
-          onReveal={(n) => patchCurrent({ hintsUsed: n })}
+      {pool.map((question, i) => (
+        <QuestionCard
+          key={question.id}
+          question={question}
+          position={i + 1}
+          answer={answers[question.id] ?? UNANSWERED}
+          onSelect={handleSelect}
+          onReveal={(n) => patch(question.id, { hintsUsed: n })}
+          onSeeMore={() => setDetailId(question.id)}
+        />
+      ))}
+
+      {pool.length > 0 && answeredCount === pool.length && sectionId ? (
+        <SetComplete
+          sectionId={sectionId}
+          questions={pool}
+          answered={pool.length}
+          onRestart={() => {
+            clearPracticeDraft(draftKey)
+            setAnswers({})
+            setRestoredOrder(null)
+            window.scrollTo({ top: 0 })
+          }}
         />
       ) : null}
 
-      {submitted && (
-        <FeedbackPanel
-          question={question}
-          selection={selection}
-          correct={correct}
-          hintsUsed={hintsUsed}
-        />
-      )}
-
-      <PracticeActionBar
-        secondary={
-          <>
-            {index > 0 ? (
-              <Button variant="ghost" onClick={() => goTo(index - 1)}>
-                Back
-              </Button>
-            ) : null}
-            {!submitted && question.hints?.length && hintsUsed === 0 ? (
-              <HintTrigger onReveal={() => patchCurrent({ hintsUsed: 1 })} />
-            ) : null}
-            {!submitted && !answered ? (
-              <p className="text-muted-foreground text-sm">
-                {requiredSelectionCount(question) === 2
-                  ? 'Choose an option for both images.'
-                  : 'Choose an option.'}
-              </p>
-            ) : null}
-          </>
-        }
-        /* No confirm step: the answer is committed by the choice itself, so the
-           only forward action left is the one that moves on. */
-        primary={
-          !submitted ? null : atEnd ? (
-            <Button onClick={() => setFinished(true)}>Finish this set</Button>
-          ) : (
-            <Button onClick={() => goTo(index + 1)}>Next question</Button>
-          )
-        }
+      <ExplanationSheet
+        question={detail ?? null}
+        selection={detailAnswer.selection}
+        hintsUsed={detailAnswer.hintsUsed}
+        position={detail ? pool.findIndex((q) => q.id === detail.id) + 1 : 0}
+        onClose={() => setDetailId(null)}
       />
     </div>
+  )
+}
+
+/**
+ * One question, self-contained.
+ *
+ * `content-visibility` is the whole reason a hundred and seventy of these can
+ * share a page: every card is in the DOM and reachable, but the browser skips
+ * layout and paint for the ones off screen. The intrinsic size keeps the
+ * scrollbar honest so the page does not jump as cards come into view.
+ */
+function QuestionCard({
+  question,
+  position,
+  answer,
+  onSelect,
+  onReveal,
+  onSeeMore,
+}: {
+  question: Question
+  position: number
+  answer: PracticeAnswer
+  onSelect: (question: Question, key: string, optionId: string) => void
+  onReveal: (next: number) => void
+  onSeeMore: () => void
+}) {
+  const { selection, submitted, hintsUsed } = answer
+  const answered = Object.keys(selection).length >= requiredSelectionCount(question)
+
+  return (
+    <Card
+      id={`question-${question.id}`}
+      className="scroll-mt-20 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
+    >
+      <CardContent className="space-y-5 pt-6">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-muted-foreground text-sm tabular-nums">Question {position}</span>
+          <DifficultyBadge difficulty={question.difficulty} />
+        </div>
+
+        <ReadingMeasure>
+          <QuestionView
+            question={question}
+            selection={selection}
+            submitted={submitted}
+            onSelect={(key, optionId) => onSelect(question, key, optionId)}
+            compactOptions
+          />
+        </ReadingMeasure>
+
+        {!submitted && question.hints?.length ? (
+          <>
+            <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
+            <div className="flex flex-wrap items-center gap-2">
+              {hintsUsed === 0 ? <HintTrigger onReveal={() => onReveal(1)} /> : null}
+              {!answered ? (
+                <p className="text-muted-foreground text-sm">
+                  {requiredSelectionCount(question) === 2
+                    ? 'Choose an option for both images.'
+                    : 'Choose an option.'}
+                </p>
+              ) : null}
+            </div>
+          </>
+        ) : null}
+
+        {submitted ? (
+          <FeedbackSummary
+            question={question}
+            selection={selection}
+            correct={isCorrect(question, selection)}
+            hintsUsed={hintsUsed}
+            onSeeMore={onSeeMore}
+          />
+        ) : null}
+      </CardContent>
+    </Card>
   )
 }
 

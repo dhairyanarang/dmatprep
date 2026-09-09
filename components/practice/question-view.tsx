@@ -5,12 +5,24 @@ import { FigureMatrix, FigureUnknown, describePanel } from '@/components/render/
 import { LatinGrid, LatinLetterKey } from '@/components/render/latin-grid'
 import { OptionButton, optionState } from '@/components/practice/option-button'
 import type { Question, Selection } from '@/lib/types/question'
+import { cn } from '@/lib/utils'
 
 type Props = {
   question: Question
   selection: Selection
   submitted: boolean
   onSelect: (key: string, optionId: string) => void
+  /**
+   * Draw the answer options at roughly the density of the sequence they
+   * continue. Opt-in, and only Practice asks for it: the timed runner keeps the
+   * sizing it shipped with, so nothing about the exam view moves.
+   *
+   * It matters for Figure Sequences and nothing else. The task is comparing the
+   * candidate panels against the four given ones, and at the old size a single
+   * option was wider than any matrix in the sequence, which made the comparison
+   * a matter of memory rather than of looking.
+   */
+  compactOptions?: boolean
 }
 
 export function QuestionView(props: Props) {
@@ -29,6 +41,7 @@ function FigureSequenceView({
   selection,
   submitted,
   onSelect,
+  compactOptions,
 }: Props & { question: Extract<Question, { kind: 'figure-sequence' }> }) {
   return (
     <div className="space-y-6">
@@ -68,7 +81,12 @@ function FigureSequenceView({
           <legend className="text-sm font-medium">
             {imageIndex === 0 ? 'Image 1 — the fifth matrix' : 'Image 2 — the sixth matrix'}
           </legend>
-          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+          <div
+            className={cn(
+              'grid grid-cols-3 gap-2',
+              compactOptions ? 'max-w-[22rem]' : 'sm:gap-3',
+            )}
+          >
             {image.options.map((option, i) => (
               <OptionButton
                 key={option.id}
@@ -81,12 +99,15 @@ function FigureSequenceView({
                 onSelect={() => onSelect(image.label, option.id)}
                 disabled={submitted}
                 label={`Matrix ${i + 1}: ${describePanel(option.panel)}`}
-                className="justify-center p-2"
+                className={cn('justify-center', compactOptions ? 'p-1.5' : 'p-2')}
               >
                 <FigureMatrix
                   panel={option.panel}
                   rows={question.grid.rows}
                   cols={question.grid.cols}
+                  // Large enough that a cell, a rotation and a colour all stay
+                  // unambiguous; small enough to sit beside the sequence.
+                  className={compactOptions ? 'max-w-[6.5rem]' : undefined}
                 />
               </OptionButton>
             ))}

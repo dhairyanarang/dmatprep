@@ -1,8 +1,11 @@
 'use client'
 
+import { ChevronRight } from 'lucide-react'
+
 import { Disclosure } from '@/components/content/disclosure'
 import { ResultBanner } from '@/components/practice/result-banner'
 import { SolutionViewer } from '@/components/practice/solution-viewer'
+import { Button } from '@/components/ui/button'
 import type { Question, Selection } from '@/lib/types/question'
 
 type WrongOption = { key: string; label: string; note: string }
@@ -41,13 +44,60 @@ function wrongOptions(question: Question): WrongOption[] {
 }
 
 /**
- * Everything shown after submitting, in the order a student needs it:
- * result, then the reasoning, then why the other options fail.
+ * What the card shows the moment an answer is committed: the verdict, and one
+ * line of reasoning.
  *
- * The next action is not here — it lives in the sticky action bar, so the
- * length of this panel never decides how far the student has to scroll.
+ * Deliberately short. On a page where every question is present at once, a full
+ * walkthrough opening under each answered card would bury the next question
+ * under six matrices of working nobody asked for. The line shown is the item's
+ * own key insight — already written to be the one transferable sentence — and
+ * everything longer is a click away in the side panel.
  */
-export function FeedbackPanel({
+export function FeedbackSummary({
+  question,
+  selection,
+  correct,
+  hintsUsed = 0,
+  onSeeMore,
+}: {
+  question: Question
+  selection: Selection
+  correct: boolean
+  hintsUsed?: number
+  onSeeMore: () => void
+}) {
+  const gist = question.walkthrough?.keyInsight ?? question.explanation
+
+  return (
+    // The verdict pushes the card's own content down as it arrives, so it fades
+    // and rises into place rather than shunting under the reader's eye.
+    <div className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1 space-y-3 motion-safe:duration-200">
+      <ResultBanner
+        question={question}
+        selection={selection}
+        correct={correct}
+        hintsUsed={hintsUsed}
+      />
+
+      <div className="space-y-2">
+        <p className="text-muted-foreground text-sm leading-relaxed">{gist}</p>
+        <Button variant="outline" size="sm" onClick={onSeeMore}>
+          See more
+          <ChevronRight className="size-4" aria-hidden />
+        </Button>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * The long form, for the side panel: the full walkthrough and every wrong
+ * option with the note that explains it.
+ *
+ * The content is exactly what the card used to unfold inline — the same
+ * components, the same prose. Only where it is shown has changed.
+ */
+export function FeedbackDetail({
   question,
   selection,
   correct,
@@ -61,9 +111,7 @@ export function FeedbackPanel({
   const wrong = wrongOptions(question)
 
   return (
-    // The verdict pushes the page down as it arrives, so it fades and rises into
-    // place instead of shunting the content under the reader's eye.
-    <div className="motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1 space-y-3 motion-safe:duration-200">
+    <div className="space-y-3">
       <ResultBanner
         question={question}
         selection={selection}
@@ -71,9 +119,7 @@ export function FeedbackPanel({
         hintsUsed={hintsUsed}
       />
 
-      {/* Open the working straight away when the answer was wrong — that is the
-          moment the explanation is actually wanted. */}
-      <SolutionViewer question={question} defaultOpen={!correct} />
+      <SolutionViewer question={question} defaultOpen />
 
       {wrong.length > 0 && (
         <Disclosure summary="Why the other options are wrong" hint={`${wrong.length}`}>
