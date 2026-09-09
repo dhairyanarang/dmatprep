@@ -1,0 +1,404 @@
+{
+  "pack": {
+    "id": "gam-economics-port-tariff-001",
+    "domain": "economics",
+    "title": "A port’s tariff for handling cargo",
+    "defines": [
+      "handling fee",
+      "class minimum",
+      "transhipped"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "A port’s tariff for handling cargo"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "The port charges a handling fee on cargo it lands. The fee is worked out on the tonnage of the consignment at a rate that depends on the class the cargo falls in, and each class also carries a minimum charge."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "The classes of cargo, with the rate and the minimum for each.",
+        "columns": [
+          "Class",
+          "Rate per tonne",
+          "Class minimum"
+        ],
+        "rows": [
+          [
+            "General",
+            "4 euros",
+            "200 euros"
+          ],
+          [
+            "Bulk grain",
+            "2 euros",
+            "300 euros"
+          ],
+          [
+            "Refrigerated",
+            "9 euros",
+            "450 euros"
+          ],
+          [
+            "Hazardous",
+            "15 euros",
+            "600 euros"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "Where the tonnage produces a fee below the class minimum, the minimum is charged in its place. The minimum is never added to the tonnage fee, and a consignment is never charged both."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "A part tonne is rounded up to the next whole tonne before the rate is applied, however small the part."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "Cargo that is transhipped, meaning that it passes between vessels without leaving the port area, is not handled by the port and pays nothing at all. Its class makes no difference to that, and neither does its tonnage."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "production-candidate-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+    },
+    "contentHash": "975eb7cdcc2bb06f45e4e4120cc67345"
+  },
+  "questions": [
+    {
+      "stem": "A consignment of 120.4 tonnes of general cargo is landed. What is the handling fee?",
+      "options": [
+        {
+          "id": "a",
+          "text": "200 euros"
+        },
+        {
+          "id": "b",
+          "text": "480 euros"
+        },
+        {
+          "id": "c",
+          "text": "481.60 euros"
+        },
+        {
+          "id": "d",
+          "text": "484 euros"
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "t1",
+        "p3",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "A part tonne is rounded up to the next whole tonne before the rate is applied, however small the part."
+        },
+        {
+          "blockId": "t1",
+          "quote": "General"
+        },
+        {
+          "blockId": "p1",
+          "quote": "The fee is worked out on the tonnage of the consignment at a rate that depends on the class the cargo falls in"
+        }
+      ],
+      "explanation": "The rounding rule comes first and it goes upward however small the fraction, so the tonnage charged is 121 rather than 120.4 or 120. The general rate is then applied to that figure. The result is comfortably above the class minimum, so the minimum does not come into it.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This charges the class minimum. The minimum takes over only when the tonnage fee falls below it, and here the tonnage fee is more than twice that figure."
+        },
+        "b": {
+          "blockId": "p3",
+          "family": "wrong-direction-of-effect",
+          "reason": "This rounds the part tonne down. The text says the rounding is upward, and says so in terms that leave no room for a small fraction to be dropped."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "misapplied-formula",
+          "reason": "This applies the rate to the tonnage as landed, without rounding at all. The rule is that the rounding happens first and the rate is applied to the whole tonne."
+        }
+      },
+      "computation": {
+        "expression": "121 * 4",
+        "expected": 484,
+        "unit": "euros"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Two rules apply here, and one of them has to be used before the other."
+        },
+        {
+          "level": 2,
+          "text": "Settle the tonnage the port will charge for before looking up any rate."
+        },
+        {
+          "level": 3,
+          "text": "Once you have a fee, check it against the class minimum to see whether the minimum changes anything."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 3,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-econ-pt-001-q1",
+      "packId": "gam-economics-port-tariff-001"
+    },
+    {
+      "stem": "A consignment is small enough that its tonnage fee comes to less than the minimum for its class. According to the text, what does the port charge?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The tonnage fee, since it is the lower of the two."
+        },
+        {
+          "id": "b",
+          "text": "The class minimum, and nothing besides."
+        },
+        {
+          "id": "c",
+          "text": "The class minimum together with the tonnage fee."
+        },
+        {
+          "id": "d",
+          "text": "The class minimum, with the difference returned once the cargo is cleared."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "Where the tonnage produces a fee below the class minimum, the minimum is charged in its place."
+        },
+        {
+          "blockId": "p2",
+          "quote": "The minimum is never added to the tonnage fee, and a consignment is never charged both."
+        }
+      ],
+      "explanation": "The text settles both halves of this. The minimum replaces the tonnage fee rather than sitting alongside it — it is charged in its place — and the second sentence closes off the other reading in as many words: the two are never charged together.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "A minimum that gave way to any smaller figure would never apply to anything. Its purpose is to set a floor, so it takes over precisely when the tonnage fee is lower."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The text rules this out explicitly, which suggests it is the reading it expects. The minimum stands in place of the fee and is not an addition to it."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the tariff provides for a refund of any kind. The minimum is simply what is charged."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The rule is stated in two sentences, and the second is there to close off a particular misreading."
+        },
+        {
+          "level": 2,
+          "text": "Ask what a minimum is for, and what would follow if the smaller figure always won."
+        },
+        {
+          "level": 3,
+          "text": "Decide whether the minimum replaces the tonnage fee or joins it."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-econ-pt-001-q2",
+      "packId": "gam-economics-port-tariff-001"
+    },
+    {
+      "stem": "Which class of cargo carries the highest rate per tonne?",
+      "options": [
+        {
+          "id": "a",
+          "text": "General"
+        },
+        {
+          "id": "b",
+          "text": "Bulk grain"
+        },
+        {
+          "id": "c",
+          "text": "Refrigerated"
+        },
+        {
+          "id": "d",
+          "text": "Hazardous"
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "Rate per tonne"
+        },
+        {
+          "blockId": "t1",
+          "quote": "Hazardous"
+        }
+      ],
+      "explanation": "The table has two money columns and the question asks about one of them. Reading down the rate column alone, one class stands well above the others; the minimum charges are a separate matter and are not what is being compared.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This class sits in the middle of the rate column, above bulk grain and below the two dearer classes."
+        },
+        "b": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "This is the cheapest class per tonne in the table, which suits a cargo that arrives in very large quantities."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This class is dear per tonne and is not the dearest. One class is charged at a higher rate still."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The table carries two figures for each class; only one of them is asked about."
+        },
+        {
+          "level": 2,
+          "text": "The minimum charge and the rate per tonne do not run in the same order."
+        },
+        {
+          "level": 3,
+          "text": "Read down the rate column on its own and take the largest figure in it."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-econ-pt-001-q3",
+      "packId": "gam-economics-port-tariff-001"
+    },
+    {
+      "stem": "According to the text, what decides whether a consignment is charged a handling fee at all?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Whether the port handles it, that is whether it leaves the port area."
+        },
+        {
+          "id": "b",
+          "text": "The class the cargo falls in."
+        },
+        {
+          "id": "c",
+          "text": "Whether the port has room to store it once it is landed."
+        },
+        {
+          "id": "d",
+          "text": "Whether its tonnage comes to a whole number."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p4",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "passes between vessels without leaving the port area, is not handled by the port and pays nothing at all"
+        },
+        {
+          "blockId": "p4",
+          "quote": "Its class makes no difference to that, and neither does its tonnage."
+        },
+        {
+          "blockId": "p1",
+          "quote": "The port charges a handling fee on cargo it lands."
+        }
+      ],
+      "explanation": "The tariff is a charge for handling, so the question of whether anything is owed comes before any question of how much. Cargo that moves between vessels is never handled and so is outside the tariff altogether. The text closes off the alternatives itself: neither class nor tonnage has any bearing on whether the exemption applies.",
+      "refutations": {
+        "b": {
+          "blockId": "p4",
+          "family": "right-concept-wrong-scope",
+          "reason": "Class decides the rate and the minimum, which is how much is charged. The text says in terms that it makes no difference to whether anything is charged."
+        },
+        "c": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Storage is nowhere in the tariff. The fee is described throughout as a charge for handling the cargo, and nothing is said to turn on what happens to it afterwards."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "A part tonne is rounded up and charged like any other. Nothing in the text makes a whole tonnage a condition of being charged."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Distinguish what decides whether anything is owed from what decides how much."
+        },
+        {
+          "level": 2,
+          "text": "One paragraph describes cargo that pays nothing at all; find the condition it turns on."
+        },
+        {
+          "level": 3,
+          "text": "That paragraph also says which two things make no difference — use it to clear three of the options."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-econ-pt-001-q4",
+      "packId": "gam-economics-port-tariff-001"
+    }
+  ]
+}

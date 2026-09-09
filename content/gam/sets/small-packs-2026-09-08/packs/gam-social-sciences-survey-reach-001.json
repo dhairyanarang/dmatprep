@@ -1,0 +1,399 @@
+{
+  "pack": {
+    "id": "gam-social-sciences-survey-reach-001",
+    "domain": "social-sciences",
+    "title": "Who a survey actually reaches",
+    "defines": [
+      "target population",
+      "sampling frame",
+      "coverage error",
+      "non-response"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Who a survey actually reaches"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A survey is designed for a target population, meaning the whole group it sets out to describe. In practice the researcher draws names from a sampling frame, which is whatever list happens to be available. Where the frame leaves out part of the population, the survey carries coverage error, and however carefully the names are then drawn from that frame the omission stays exactly where it was."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "Of those approached, some do not answer, and this is non-response. Its effect on the result turns on whether the people who did not answer differ from those who did on the very thing being measured, and not on how many of them there were. A low response rate is a warning rather than a finding: a survey with few replies can be accurate, and one with many can be badly wrong."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "Replies are often weighted so that the groups in the achieved sample appear in the same proportions as they do in the population. Weighting corrects the difference that the weighting variable captures, and nothing beyond it. Where those who did not answer differ in some further respect the weighting variable does not track, the weighted result is wrong in that respect still."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Replies to a survey of one town, by age group.",
+        "columns": [
+          "Age group",
+          "Approached",
+          "Replied",
+          "Share of the town"
+        ],
+        "rows": [
+          [
+            "18 to 34",
+            "600",
+            "120",
+            "30 per cent"
+          ],
+          [
+            "35 to 54",
+            "600",
+            "240",
+            "34 per cent"
+          ],
+          [
+            "55 to 74",
+            "600",
+            "300",
+            "24 per cent"
+          ],
+          [
+            "75 and over",
+            "600",
+            "180",
+            "12 per cent"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "Enlarging a sample narrows the range within which repeated surveys of the same design would fall. It does not touch coverage error or non-response bias, either of which survives at any size, because both come from who is missing rather than from how many were asked."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "experiment-small-packs-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the smaller-pack authoring experiment of 8 September 2026. The source states four distinct rules and each question targets a different one, and at most one question offers options that are a function of the source’s own constants — the two design rules the retired operation-counts pack produced. The scheme and every figure in it are invented for this pack."
+    },
+    "contentHash": "676a9af694cb2c4fc811554e45159166"
+  },
+  "questions": [
+    {
+      "stem": "A survey sets out to describe everyone living in a town, and draws its names from the register of library members. According to the text, what does this introduce, and can more careful sampling remove it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Non-response, which a higher rate of reply would remove."
+        },
+        {
+          "id": "b",
+          "text": "Coverage error; the fault lies in the list, not in how names are taken from it."
+        },
+        {
+          "id": "c",
+          "text": "Coverage error, which weighting the replies by age would remove."
+        },
+        {
+          "id": "d",
+          "text": "Nothing, so long as the names are drawn from the register at random."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "Where the frame leaves out part of the population, the survey carries coverage error"
+        },
+        {
+          "blockId": "p1",
+          "quote": "however carefully the names are then drawn from that frame the omission stays exactly where it was"
+        }
+      ],
+      "explanation": "The register of library members is the sampling frame, and it is not the town. Everyone in the town who is not a member is outside the list before any name is drawn, which is what the text calls coverage error. The point the text presses is that the defect is upstream of the sampling: drawing better from an incomplete list does not reach the people the list never contained.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "Non-response is about people who were approached and did not reply. The people missing here were never on the list to be approached at all."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "The error is named correctly and the remedy is not. Weighting adjusts the replies the survey did obtain; it cannot represent a part of the town the frame never covered."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "Random drawing is exactly the care the text says is beside the point. It makes the sample a fair picture of the register, which is not the group the survey means to describe."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Separate the list the names came from and the group the survey is meant to describe."
+        },
+        {
+          "level": 2,
+          "text": "Ask at which stage the people who are missing went missing."
+        },
+        {
+          "level": 3,
+          "text": "Three options offer a remedy; check each against what the text says a better draw can achieve."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-sr-001-q1",
+      "packId": "gam-social-sciences-survey-reach-001"
+    },
+    {
+      "stem": "A survey achieves a low rate of reply. According to the text, what follows about the accuracy of its result?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is unreliable; a rate that low cannot support a finding."
+        },
+        {
+          "id": "b",
+          "text": "Nothing on its own; what matters is whether those who did not reply differ on what is being measured."
+        },
+        {
+          "id": "c",
+          "text": "It is reliable, provided a large enough number was approached to begin with."
+        },
+        {
+          "id": "d",
+          "text": "It is unreliable unless the replies are weighted to the population."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "A low response rate is a warning rather than a finding"
+        },
+        {
+          "blockId": "p2",
+          "quote": "turns on whether the people who did not answer differ from those who did on the very thing being measured, and not on how many of them there were"
+        }
+      ],
+      "explanation": "The text refuses to read accuracy off the rate of reply in either direction, and says so twice: a survey with few replies can be accurate and one with many can be badly wrong. What decides the matter is whether the people who stayed silent are different, on the thing being measured, from the people who answered. The rate is a reason to ask that question, not an answer to it.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "This treats the warning as the finding, which is the distinction the text draws in as many words. Few replies can still be accurate ones."
+        },
+        "c": {
+          "blockId": "p4",
+          "family": "right-concept-wrong-scope",
+          "reason": "Approaching more people narrows the spread of repeated surveys and leaves bias untouched. It cannot make a low rate of reply safe."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "Weighting corrects only what its variable captures, so it is neither necessary nor sufficient here. The text makes accuracy turn on how the silent differ, not on whether an adjustment was applied."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text says plainly what a low rate of reply is, and what it is not."
+        },
+        {
+          "level": 2,
+          "text": "Ask what would have to be true of the people who did not answer for the result to be wrong."
+        },
+        {
+          "level": 3,
+          "text": "Notice that the text allows a survey with few replies to be accurate, and rules out reading the rate on its own."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-sr-001-q2",
+      "packId": "gam-social-sciences-survey-reach-001"
+    },
+    {
+      "stem": "A researcher weights the replies so that each age group appears in the same proportion as it does in the town, and states that this has removed the non-response bias. According to the text, is that right?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; weighting to known population proportions removes non-response bias."
+        },
+        {
+          "id": "b",
+          "text": "Yes, provided every group returned at least some replies."
+        },
+        {
+          "id": "c",
+          "text": "No; it corrects what age captures and leaves any further difference untouched."
+        },
+        {
+          "id": "d",
+          "text": "No; weighting applies to coverage error and cannot be used on non-response at all."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "Weighting corrects the difference that the weighting variable captures, and nothing beyond it."
+        },
+        {
+          "blockId": "p3",
+          "quote": "the weighted result is wrong in that respect still"
+        }
+      ],
+      "explanation": "Weighting by age puts the age groups back into their right proportions, and that is the whole of what it does. If those who stayed silent also differ in some way age does not track — in how far they travel to work, say, or in what they think of the subject being asked about — the weighted figure is still wrong on that count, because nothing in the procedure knew about it.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "The text sets a limit on weighting in the same sentence that describes it. Correcting the difference one variable captures is not the same as removing the bias."
+        },
+        "b": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "Having some replies in every group is what makes the arithmetic possible, not what makes the answer right. The limit the text names is about which differences are captured, not about how many replies each group returned."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "The text describes weighting as an adjustment to replies that were obtained, which is a treatment for non-response. The objection to the researcher is that it is partial, not that it is inapplicable."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The sentence that describes weighting also limits it; read to the end of it."
+        },
+        {
+          "level": 2,
+          "text": "Ask what happens if the silent differ in some way that age does not track."
+        },
+        {
+          "level": 3,
+          "text": "Two options reject the claim; separate them by asking whether the objection is that weighting is wrong here or only partial."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 3,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-sr-001-q3",
+      "packId": "gam-social-sciences-survey-reach-001"
+    },
+    {
+      "stem": "Judged against its share of the town, which age group in Table 1 is the most under-represented among those who replied?",
+      "options": [
+        {
+          "id": "a",
+          "text": "18 to 34"
+        },
+        {
+          "id": "b",
+          "text": "35 to 54"
+        },
+        {
+          "id": "c",
+          "text": "55 to 74"
+        },
+        {
+          "id": "d",
+          "text": "75 and over"
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1",
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "Share of the town"
+        },
+        {
+          "blockId": "t1",
+          "quote": "18 to 34"
+        },
+        {
+          "blockId": "p2",
+          "quote": "Of those approached, some do not answer, and this is non-response."
+        }
+      ],
+      "explanation": "The same number of people was approached in every group, so the number of replies is what decides each group’s share of the achieved sample. Set each group’s share of the replies beside its share of the town: the youngest group supplied much the smallest number of replies while accounting for nearly a third of the town, and no other group falls anything like as far short.",
+      "refutations": {
+        "b": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This group is under-represented as well, and by the largest margin after the youngest. Its shortfall is a few points; the youngest group’s is more than half of what its share of the town would require."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "This group returned the most replies of the four while making up under a quarter of the town, so it is over-represented among those who answered, not under."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "The oldest group is the smallest part of the town and returned more replies than the youngest did, so it too is over-represented rather than under."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The number approached is the same in every row, which makes the replies directly comparable."
+        },
+        {
+          "level": 2,
+          "text": "Work out what share of all the replies each group supplied before looking at the town at all."
+        },
+        {
+          "level": 3,
+          "text": "Set each group’s share of the replies beside its share of the town and look for the largest shortfall."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": true
+      },
+      "id": "gam-ss-sr-001-q4",
+      "packId": "gam-social-sciences-survey-reach-001"
+    }
+  ]
+}

@@ -137,11 +137,23 @@ export function buildArtifacts(file) {
     packId: pack.id,
     domain: pack.domain,
     generatedFor: 'independent blind re-answer and full-ablation adjudication (spec §5.3, §5.6)',
+    // §5.10 as corrected on 5 September 2026. The old wording said a question the
+    // ablation adjudicator could answer without the pack "fails", which is the
+    // rule the official material itself breaks — Exercise 3 applies a textbook
+    // formula to source-supplied values. Determinability is now evidence to be
+    // recorded, and the single failing condition is a source that contributed
+    // nothing the task used.
     instructions:
       'For each question below: (1) FULL ABLATION — using only the stem and options, with no access to ' +
-      'the source pack, decide whether the answer can be determined. If it can, the question fails. ' +
-      '(2) BLIND RE-ANSWER — read the pack, then choose an option without seeing the answer key. ' +
-      'Disagreement with the key, or a defensible case for a second option, rejects the item.',
+      'the source pack, decide whether the answer can be determined, and say separately whether any ' +
+      'sibling question in the same pack narrows it and how decisively. Determinability is evidence to be ' +
+      'recorded, not an automatic failure: the official material demonstrates questions a domain-literate ' +
+      'candidate could answer unaided. (2) BLIND RE-ANSWER — read the pack, then choose an option without ' +
+      'seeing the answer key, and judge whether the question needs knowledge the pack does not supply, ' +
+      'whether the source materially contributes something the task uses, what kind of contribution that ' +
+      'is (data, rule, framework, definition, assumption, exhibit), whether the task asks the candidate to ' +
+      'do something with it, and whether more than one option is defensible. Disagreement with the key, a ' +
+      'second defensible option, or a source that contributes nothing the task uses rejects the item.',
     questions: questions.map((q) => ({
       ...blindView(q),
       withPack: {

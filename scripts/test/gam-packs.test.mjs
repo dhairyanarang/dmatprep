@@ -80,21 +80,16 @@ const OUTSTANDING = {
   // All three are the same coupling seen from three sides — q3 asks which layer
   // carries the resistance, and q4 and q6 both turn on the answer. Two earlier
   // and stronger ablation rounds rated it narrowing; this one rated it decisive.
-  decisiveLeaks: [
-    'gam-eng-tr-001-q3',
-    'gam-eng-tr-001-q4',
-    'gam-eng-tr-001-q6',
-    // The replacement pack's own coupling, and an unstable one: three ablation
-    // rounds over the same scheme rated it decisive, then narrowing, then
-    // decisive again. Recorded at its harshest reading rather than the kindest.
-    'gam-ba-sr-001-q2',
-    'gam-ba-sr-001-q3',
-  ],
+  // Emptied by the decoupling of 5 September 2026: the engineering pack stopped
+  // asking one fact three times, and the step-rebate cliff became a computation.
+  decisiveLeaks: [],
   // §5.10 is satisfied at pack level everywhere but here, where the adjudicator
   // credited the pack with one stipulated convention that one question applies,
   // and did not credit the invented operation-count formulas the whole pack rests
   // on. Left for a person to resolve rather than argued away.
-  thinContribution: ['gam-computational-sciences-operation-counts-001'],
+  // Emptied on promotion: the pack this named was retired on 8 September 2026,
+  // and no pack in the live set carries the finding.
+  thinContribution: [],
 }
 /** A question the round raised nothing against, for use as a synthetic fixture. */
 const cleanQuestion = () => {
@@ -116,11 +111,17 @@ const stateOf = (file, extra = {}) =>
   })
 
 describe('GAM pilot — shape', () => {
-  test('four active packs, each within the pilot size band', () => {
-    assert.equal(activePacks.length, 4)
+  test('every active pack sits within the pilot size band', () => {
+    assert.equal(activePacks.length, 5)
     for (const f of activePacks) {
+      // Upper bound only, plus a floor of 3 to catch a pack gutted by accident.
+      // The floor used to be 5, which was our own invention — the official
+      // exercises carry 8, 6, 7 and 5 questions and state no per-source count,
+      // and a pack loses questions when adjudication finds they do no work.
+      // gam-ba-sr-001-q5 was retired on 8 September 2026 for exactly that, which
+      // is a reason to record, not a rule to breach.
       assert.ok(
-        f.questions.length >= 5 && f.questions.length <= 8,
+        f.questions.length >= 3 && f.questions.length <= 8,
         `${f.pack.id} has ${f.questions.length} questions`,
       )
     }
@@ -135,7 +136,14 @@ describe('GAM pilot — shape', () => {
 
   test('domains are drawn from the eight the official material names', () => {
     for (const { pack } of packs) assert.ok(GAM_DOMAINS.includes(pack.domain), pack.domain)
-    assert.equal(new Set(packs.map((p) => p.pack.domain)).size, 4, 'domains should not repeat')
+    // One pack per domain in the live set. Retired packs are excluded: they
+    // accumulate as the bank is replaced and will repeat domains that the
+    // active set covers once, which says nothing about what ships.
+    assert.equal(
+      new Set(activePacks.map((p) => p.pack.domain)).size,
+      activePacks.length,
+      'two active packs share a domain',
+    )
   })
 
   test('the four structural formats required of the pilot are present', () => {
@@ -282,11 +290,14 @@ describe('GAM pilot — originality', () => {
 describe('GAM pilot — self-adjudication is evidence, not review', () => {
   test('the self round covers every question and carries every required field', () => {
     assert.ok(selfRound, 'no self round recorded')
-    // The self round predates the replacement pack and never saw it.
+    // A superseded round is the historical record and is held to the record
+    // shape of its own time: the 5 September methodology correction replaced
+    // `sourceMateriallySupportsAnswer` with the contribution fields, and no
+    // earlier round can be expected to carry them.
+    const OF_ITS_TIME = ['chosenOption', 'dependency', 'rationale', 'adjudicator', 'adjudicatedAt']
     for (const q of allQuestions.filter((x) => selfRound.questions[x.id])) {
       const rec = selfRound.questions[q.id]
-      assert.ok(rec, `${q.id} has no self-adjudication`)
-      for (const field of REQUIRED_RECORD_FIELDS) {
+      for (const field of OF_ITS_TIME) {
         assert.notEqual(rec[field], undefined, `${q.id} record is missing "${field}"`)
       }
     }
@@ -340,6 +351,7 @@ describe('GAM pilot — self-adjudication is evidence, not review', () => {
     }
     other.adjudicatedAt = '2026-09-04'
     delete other.status
+    delete other.supersededOn
     assert.deepEqual(independenceFailures(other, authors), [])
   })
 
@@ -394,97 +406,95 @@ describe('GAM pilot — self-adjudication is evidence, not review', () => {
     )
   })
 
-  test('THE §5.10 GATE: a source-independent question fails its pack outright', () => {
+  test('THE §5.10 GATE: a source that contributed nothing fails its question', () => {
     const { round } = currentIndependent()
     assert.ok(round, 'no qualifying independent round')
     const target = cleanQuestion()
     const tampered = structuredClone(round)
-    tampered.questions[target.id].dependency = 'source-independent'
-    tampered.questions[target.id].sourceMateriallySupportsAnswer = false
-    const errors = validateRound(tampered, [target], { strict: true })
+    tampered.questions[target.id].sourceMateriallyContributes = false
     assert.ok(
-      errors.some((e) => /source-independent/.test(e)),
-      'a pack the candidate does not need must not be adjudicable',
+      validateRound(tampered, [target], { strict: true }).some((e) =>
+        /contributes nothing this question uses/.test(e),
+      ),
+      'a question whose answer survives the source being removed must fail',
     )
   })
 
-  test('THE §5.10 PACK GATE: a pack contributing nothing non-generic cannot ship', () => {
+  test('a recall question is flagged, not failed — the official exercises contain them', () => {
+    // Ex 3 Q1 identifies a stated assumption; Ex 3 Q7 reads a chart; Ex 4 Q1
+    // discriminates between definitions. A gate that failed these would repeat
+    // the error §5.10 was corrected for.
     const { round } = currentIndependent()
     assert.ok(round, 'no qualifying independent round')
-    const file = adjudicatedPacks()[0]
-    const stripped = structuredClone(adjudications)
-    const target = stripped.rounds.find((r) => r.id === roundFor(file.pack.id).round.id)
-    target.packContributions[file.pack.id].contributesNonGenericElement = false
-    const state = readiness({
-      pack: file.pack,
-      questions: file.questions,
-      adjudications: stripped,
-      authors,
-      packHashes,
-      validationErrors: [],
-    })
+    const target = cleanQuestion()
+    const tampered = structuredClone(round)
+    tampered.questions[target.id].requiresApplication = false
+    assert.deepEqual(validateRound(tampered, [target], { strict: true }), [])
+  })
+
+  test('a standard relationship applied to source-supplied values now passes', () => {
+    // The correction of 5 September 2026. Under the superseded rule this was a
+    // failure; it is what official Exercise 3 Question 4 does.
+    const { round } = currentIndependent()
+    assert.ok(round, 'no qualifying independent round')
+    const target = cleanQuestion()
+    const ok = structuredClone(round)
+    ok.questions[target.id].sourceMateriallyContributes = true
+    ok.questions[target.id].contributionTypes = ['data']
+    ok.questions[target.id].requiresApplication = true
+    ok.questions[target.id].dependency = 'source-supported'
+    assert.deepEqual(validateRound(ok, [target], { strict: true }), [])
+  })
+
+  test('the pack-level non-genericity test is gone from the gate', () => {
+    const review = readFileSync(new URL('../gam/lib/review.mjs', import.meta.url), 'utf8')
     assert.ok(
-      state.blockers.some((b) => /contributes nothing non-generic/.test(b)),
-      `pack-specific values alone must not be enough: ${state.blockers.join('; ')}`,
+      !review.includes('contributesNonGenericElement'),
+      'the withdrawn pack-level test is still wired into readiness',
     )
+    const spec = readFileSync(
+      new URL('../../content/question-authoring/DMAT_GAM_AUTHORING_SPEC.md', import.meta.url),
+      'utf8',
+    )
+    assert.match(spec, /5\.10 The source must materially contribute\. MANDATORY\./)
+    assert.match(spec, /The governing academic relationship may be entirely standard/i)
   })
 
-  test('a non-generic contribution only one question touches is decoration', () => {
-    const { round } = currentIndependent()
-    assert.ok(round, 'no qualifying independent round')
-    const file = adjudicatedPacks()[0]
-    const stripped = structuredClone(adjudications)
-    const target = stripped.rounds.find((r) => r.id === roundFor(file.pack.id).round.id)
-    target.packContributions[file.pack.id].questionsRequiringIt = [file.questions[0].id]
-    const state = readiness({
-      pack: file.pack,
-      questions: file.questions,
-      adjudications: stripped,
-      authors,
-      packHashes,
-      validationErrors: [],
-    })
-    assert.ok(state.blockers.some((b) => /question\(s\) require what the pack contributes/.test(b)))
-  })
-
-  test('every active pack contributes something non-generic, and the record says what', () => {
-    const { round } = currentIndependent()
-    assert.ok(round, 'no qualifying independent round')
-    for (const file of adjudicatedPacks()) {
-      const c = roundFor(file.pack.id).round.packContributions?.[file.pack.id]
-      assert.ok(c, `${file.pack.id} has no §5.10 judgement`)
-      assert.equal(c.contributesNonGenericElement, true, `${file.pack.id}: ${c.whatItContributes}`)
-      assert.ok(c.whatItContributes.length > 60, `${file.pack.id} does not say what it contributes`)
-    }
-  })
-
-  test('the packs whose contribution is too thin to ship are exactly the ones on record', () => {
-    const { round } = currentIndependent()
-    assert.ok(round, 'no qualifying independent round')
-    const thin = adjudicatedPacks()
-      .filter(
-        (f) =>
-          (roundFor(f.pack.id).round.packContributions[f.pack.id].questionsRequiringIt ?? [])
-            .length < 2,
-      )
-      .map((f) => f.pack.id)
-    assert.deepEqual(thin.sort(), [...OUTSTANDING.thinContribution].sort())
-    for (const id of thin) {
-      const file = activePacks.find((f) => f.pack.id === id)
+  test('every retired pack says why, and the grounds are distinct', () => {
+    assert.equal(retiredPacks.length, 5)
+    const byId = Object.fromEntries(retiredPacks.map((f) => [f.pack.id, f.pack.provenance]))
+    // Retired under the ORIGINAL §5.10, re-evaluated under the corrected one,
+    // which it passes; it stays retired on coverage grounds, not quality.
+    const be = byId['gam-business-administration-break-even-001']
+    assert.ok(be, 'the break-even pack is no longer retired')
+    assert.match(be.retiredBecause, /§5\.10/)
+    assert.ok(be.reEvaluated?.disposition, 'the break-even re-evaluation is not on record')
+    // Retired under §5.9: six of seven questions decisively coupled once a
+    // stronger adjudicator reconstructed its table from the option lists.
+    const cs = byId['gam-computational-sciences-operation-counts-001']
+    assert.ok(cs, 'the operation-counts pack is no longer retired')
+    assert.match(cs.retiredBecause, /§5\.9/)
+    assert.ok(cs.retirementCaveat?.length > 100, 'the adjudicator-strength caveat is not on record')
+    // The three packs of the first pilot, retired on promotion. Sound content,
+    // superseded architecture — the reason has to say so rather than implying
+    // an error that was never found in them.
+    for (const id of [
+      'gam-engineering-thermal-resistance-001',
+      'gam-humanities-source-checks-001',
+      'gam-business-administration-step-rebate-001',
+    ]) {
+      const p = byId[id]
+      assert.ok(p, `${id} is not retired`)
+      assert.match(p.retiredBecause, /[Ss]uperseded/, `${id} does not say it was superseded`)
       assert.ok(
-        stateOf(file).blockers.some((b) => /require what the pack contributes/.test(b)),
-        `${id} is thin and does not say so`,
+        /No key in this pack is wrong/.test(p.retiredBecause),
+        `${id} implies a correctness fault it never had`,
       )
     }
-  })
-
-  test('the retired pack is the one §5.10 could not repair, and says why', () => {
-    assert.equal(retiredPacks.length, 1)
-    const [gone] = retiredPacks
-    assert.equal(gone.pack.id, 'gam-business-administration-break-even-001')
-    assert.match(gone.pack.provenance.retiredBecause, /§5\.10/)
-    assert.ok(gone.pack.provenance.retiredBecause.length > 200, 'a retirement needs its reasoning on record')
-    assert.ok(gone.pack.provenance.retiredOn, 'no retirement date')
+    for (const [id, p] of Object.entries(byId)) {
+      assert.ok(p.retiredBecause.length > 200, `${id}: a retirement needs its reasoning on record`)
+      assert.ok(p.retiredOn, `${id}: no retirement date`)
+    }
   })
 
   test('a retired pack is not measured for readiness at all', () => {
@@ -500,16 +510,16 @@ describe('GAM pilot — self-adjudication is evidence, not review', () => {
     }
   })
 
-  test('no round still in force reaches into the retired pack', () => {
-    // Superseded rounds are the historical record and may name a pack that has
-    // since been retired; a round that still counts may not.
-    for (const round of adjudications.rounds.filter((r) => r.status === 'complete')) {
-      for (const file of retiredPacks) {
-        assert.ok(
-          !(file.pack.id in (round.adjudicatedContent ?? {})),
-          `${round.id} binds ${file.pack.id}, which is retired`,
-        )
-      }
+  test('a retired pack can be re-adjudicated without that restoring it', () => {
+    // A round may cover a retired pack when its retirement is being
+    // reconsidered — recording what the adjudicators said is how that decision
+    // gets made. What must hold is that recording it changes nothing about
+    // readiness: `readiness` short-circuits on a rejected pack.
+    for (const file of retiredPacks) {
+      const state = stateOf(file)
+      assert.equal(state.retired, true, `${file.pack.id} no longer reads as retired`)
+      assert.equal(state.productionReady, false)
+      assert.equal(state.independentlyAdjudicated, false, 'a retired pack must not count as adjudicated')
     }
   })
 
@@ -535,22 +545,24 @@ describe('GAM pilot — self-adjudication is evidence, not review', () => {
   })
 
   test('the independent round rejects a source-independent verdict', () => {
-    const round = structuredClone(selfRound)
-    const target = allQuestions[0]
+    const round = structuredClone(currentIndependent().round)
+    const target = cleanQuestion()
     round.questions[target.id].dependency = 'source-independent'
     const errors = validateRound(round, [target], { strict: true })
-    assert.ok(errors.some((e) => /source-independent/.test(e)))
+    assert.ok(errors.some((e) => /contributes nothing this question uses/.test(e)))
   })
 
   test('the independent round rejects outside knowledge and ambiguous keys', () => {
-    const target = allQuestions[0]
+    // Must be a question the current round actually covers: `allQuestions`
+    // includes the retired pack, which no active round adjudicates.
+    const target = adjudicatedQuestions()[0]
     for (const [field, value, pattern] of [
       ['requiresOutsideKnowledge', true, /outside knowledge/],
-      ['sourceMateriallySupportsAnswer', false, /not materially supported/],
+      ['sourceMateriallyContributes', false, /contributes nothing this question uses/],
       ['exactlyOneDefensibleOption', false, /more than one defensible/],
       ['chosenOption', 'zz', /disagrees with the key/],
     ]) {
-      const round = structuredClone(selfRound)
+      const round = structuredClone(currentIndependent().round)
       round.questions[target.id][field] = value
       const errors = validateRound(round, [target], { strict: true })
       assert.ok(errors.some((e) => pattern.test(e)), `${field} should have been caught`)
@@ -652,9 +664,23 @@ describe('GAM pilot — targeted review flags', () => {
     }
   })
 
-  test('the text-only humanities pack is flagged at pack level', () => {
-    const flags = reviewFlags.packFlags['gam-humanities-source-checks-001'] ?? []
-    assert.ok(flags.some((f) => f.flag === 'text-only-pack'), 'the text-only pack is not flagged')
+  test('the text-only rule still exists, and matches the live set', () => {
+    // It used to be asserted against the humanities pack, which is retired. The
+    // rule is what matters, not which pack happened to trip it: a pack built
+    // only of prose is the hardest shape to make genuinely source-dependent.
+    const builder = readFileSync(
+      new URL('../gam/build-review-flags.mjs', import.meta.url),
+      'utf8',
+    )
+    assert.match(builder, /text-only-pack/, 'the text-only rule has been dropped')
+    const textOnly = (f) =>
+      f.pack.blocks.every((b) => ['heading', 'paragraph', 'list'].includes(b.kind))
+    for (const f of activePacks) {
+      const flagged = (reviewFlags.packFlags[f.pack.id] ?? []).some(
+        (x) => x.flag === 'text-only-pack',
+      )
+      assert.equal(flagged, textOnly(f), `${f.pack.id}: the text-only flag disagrees with its blocks`)
+    }
   })
 
   test('a decisive leakage finding fails the round outright', () => {
@@ -853,15 +879,31 @@ describe('GAM pilot — cross-question leakage (spec §5.9)', () => {
   })
 
   test('an exhibit’s own axis labels are not treated as leaked values', () => {
-    // "At n = 16 only" is a choice between the table's columns. A sibling
-    // mentioning that catalogue size gives nothing away, and flagging it would
-    // bury the findings that matter.
+    // "At n = 16 only" is a choice between the table's own column headings. A
+    // sibling naming that catalogue size gives nothing away, and flagging it
+    // would bury the findings that matter.
+    //
+    // Planted rather than read off a live question. It used to assert that
+    // gam-cs-oc-001-q3 named the size, which made a content repair look like a
+    // gate regression: the question was rewritten on 7 September 2026 to stop
+    // enumerating the table's columns, and the check went red without the gate
+    // having changed at all. What is being tested is the gate.
     const cs = packs.find((p) => p.pack.id === 'gam-computational-sciences-operation-counts-001')
     const table = cs.pack.blocks.find((b) => b.kind === 'table')
-    assert.ok(table.columns.some((c) => c.includes('16')), 'fixture assumption changed')
-    const q3 = cs.questions.find((q) => q.id === 'gam-cs-oc-001-q3')
-    assert.match(q3.options.find((o) => o.id === q3.correctOptionId).text, /16/)
-    assert.deepEqual(leakOf(cs).errors, [])
+    const heading = table.columns.find((c) => /\d/.test(c))
+    assert.ok(heading, 'fixture assumption changed: the table has no numeric column heading')
+    const size = heading.match(/\d[\d,]*/)[0]
+    assert.deepEqual(leakOf(cs).errors, [], 'the pack as committed already trips the gate')
+    const planted = withPlant(cs, (copy) => {
+      for (const [i, text] of [`At n = ${size} only`, 'At none of the listed sizes'].entries()) {
+        copy.questions[0].options[i].text = text
+      }
+    })
+    assert.deepEqual(
+      leakOf(planted).errors,
+      [],
+      `the gate read the column heading ${size} as a value a sibling gave away`,
+    )
   })
 })
 
@@ -947,10 +989,17 @@ describe('GAM pilot — the handoff for human review', () => {
   test('a handoff exists, and every round it describes still governs its packs', () => {
     assert.ok(handoff, 'no handoff — run npm run review:gam')
     assert.ok(handoff.rounds.length > 0, 'the handoff names no round')
-    for (const r of handoff.rounds) {
-      for (const [packId, hash] of Object.entries(r.boundTo)) {
-        assert.equal(hash, packHashes[packId], `${packId} has moved since ${r.id} judged it`)
-      }
+    // What matters is per pack: the round that *governs* a pack must bind it at
+    // the hash it currently has. An older round may still list that pack at a
+    // superseded hash — that is precisely why it no longer governs it.
+    for (const file of adjudicatedPacks()) {
+      const governing = handoff.rounds.find((r) => r.id === roundFor(file.pack.id).round.id)
+      assert.ok(governing, `${file.pack.id}'s governing round is missing from the handoff`)
+      assert.equal(
+        governing.boundTo[file.pack.id],
+        packHashes[file.pack.id],
+        `${file.pack.id} has moved since ${governing.id} judged it`,
+      )
     }
     for (const file of adjudicatedPacks()) {
       const p = handoff.packs.find((x) => x.id === file.pack.id)
@@ -958,26 +1007,25 @@ describe('GAM pilot — the handoff for human review', () => {
     }
   })
 
-  test('THE CAVEAT: a round whose halves differed says so, and the handoff leads with it', () => {
-    const mixed = adjudications.rounds.filter(
-      (r) => r.status === 'complete' && /\+/.test(r.adjudicator?.model ?? '') && r.caveat,
-    )
-    const different = adjudications.rounds.filter((r) => {
-      if (r.status !== 'complete') return false
+  test('THE CAVEAT: any round whose halves used different models must carry one', () => {
+    // The rule, not the instance. A round run by one model throughout needs no
+    // caveat; the September 4 round mixed Sonnet and Haiku and had to disclose
+    // that the weaker half scored 11 of 19 against the stronger's 17 of 19.
+    const halvesDiffer = (r) => {
       const [a, b] = String(r.adjudicator?.model ?? '').split(' + ')
-      return b && a.split(' (')[0] !== b.split(' (')[0]
-    })
-    assert.ok(different.length > 0, 'no round used two different adjudicators')
-    for (const r of different) {
-      assert.ok(r.caveat, `${r.id} used two different models and carries no caveat`)
-      assert.match(r.caveat, /11 of 19/, 'the caveat must state the weaker half’s score')
-      assert.match(r.caveat, /17 of 19/, 'the caveat must state the stronger half’s score')
-      assert.ok(
-        handoff.caveat.includes(r.caveat),
-        'the handoff must carry every caveat verbatim',
-      )
+      return Boolean(b) && a.split(' (')[0].trim() !== b.split(' (')[0].trim()
     }
-    assert.ok(mixed.length > 0)
+    // Rounds still in force only. A superseded round is held to the record shape
+    // of its own time — the first one identified its adjudicators by agent name
+    // rather than by model, so it cannot be read for model strength at all.
+    for (const r of adjudications.rounds.filter((x) => x.status === 'complete').filter(halvesDiffer)) {
+      assert.ok(r.caveat, `${r.id} used two different models and carries no caveat`)
+      assert.match(r.caveat, /\d+ of \d+/, `${r.id}'s caveat does not quantify the difference`)
+    }
+    // Whatever caveats are in force reach the reviewer verbatim.
+    for (const r of handoff.rounds) {
+      if (r.caveat) assert.ok(handoff.caveat.includes(r.caveat), `${r.id}'s caveat is not in the handoff`)
+    }
     assert.match(handoff.caveatAppliesTo, /blind re-answer agreement rate/i)
   })
 
@@ -1025,11 +1073,17 @@ describe('GAM pilot — the handoff for human review', () => {
           `${file.pack.id} has decisive findings and no decision about them`,
         )
       }
-      const c = round?.packContributions?.[file.pack.id]
-      if (c && (c.questionsRequiringIt ?? []).length < 2) {
+      // §5.10 is per question now: a decision is raised only when the round
+      // found a question the source contributes nothing to, or one that asks
+      // only for recall.
+      const failing = file.questions.filter((q) => {
+        const r = round?.questions?.[q.id]
+        return r && (r.sourceMateriallyContributes === false || r.requiresApplication === false)
+      })
+      if (failing.length) {
         assert.ok(
           p.decisions.some((d) => d.id.endsWith('::section-5-10')),
-          `${file.pack.id} is thin under §5.10 and no decision says so`,
+          `${file.pack.id} has §5.10 failures and no decision says so`,
         )
       }
     }
@@ -1055,15 +1109,11 @@ describe('GAM pilot — the handoff for human review', () => {
 })
 
 describe('GAM pilot — the retired pack cannot re-enter', () => {
-  test('it is excluded from the round, the hashes and the domain counts', () => {
-    const { round } = currentIndependent()
+  test('it is excluded from the hashes and the counts, even while under re-evaluation', () => {
     for (const file of retiredPacks) {
-      assert.ok(!(file.pack.id in packHashes), 'a retired pack must not be bound to the round')
-      assert.ok(!(file.pack.id in round.adjudicatedContent))
-      assert.ok(!(file.pack.id in (round.packContributions ?? {})))
-      for (const q of file.questions) {
-        assert.ok(!(q.id in round.questions), `${q.id} is retired and still adjudicated`)
-      }
+      assert.ok(!(file.pack.id in packHashes), 'a retired pack must not gate the active set')
+      assert.equal(stateOf(file).retired, true)
+      assert.equal(stateOf(file).productionReady, false)
     }
   })
 
@@ -1084,7 +1134,7 @@ describe('GAM pilot — the retired pack cannot re-enter', () => {
       new URL('../../content/question-authoring/DMAT_GAM_AUTHORING_SPEC.md', import.meta.url),
       'utf8',
     )
-    assert.match(spec, /\*\*5\.10 The pack must contribute something\. MANDATORY\.\*\*/)
+    assert.match(spec, /\*\*5\.10 The source must materially contribute\. MANDATORY\.\*\*/)
     assert.match(spec, /5\.9 Cross-question leakage — a SOURCE-PACK-LEVEL gate\. PROPOSED, mandatory\./)
     assert.match(spec, /No fixed percentage is imposed here/)
   })

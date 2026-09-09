@@ -17,10 +17,34 @@ import { analyseLeakage } from './lib/leakage.mjs'
 import { findIndependentRound, findSelfRound, isCurrent, readiness, validateRound } from './lib/review.mjs'
 import { contentHash, validatePack } from './lib/validate.mjs'
 
-const packsDir = new URL('../../content/gam/packs/', import.meta.url)
+/**
+ * `--set <name>` verifies a cohort other than the deployed pilot.
+ *
+ * The default is content/gam/packs, which is what the product imports. An
+ * authoring experiment lives under content/gam/sets/<name>/ with its own
+ * adjudication log, so its packs are gated by exactly these checks without ever
+ * being counted as part of the pilot or reachable by the app. Nothing about the
+ * gates changes with the flag — only where they read from.
+ */
+const setArg = process.argv.indexOf('--set')
+const set = setArg === -1 ? null : process.argv[setArg + 1]
+if (setArg !== -1 && !set) {
+  console.error('--set needs a cohort name, e.g. --set small-packs-2026-09-08')
+  process.exit(1)
+}
+const root = set
+  ? new URL(`../../content/gam/sets/${set}/`, import.meta.url)
+  : new URL('../../content/gam/', import.meta.url)
+if (set && !existsSync(root)) {
+  console.error(`no such cohort: content/gam/sets/${set}/`)
+  process.exit(1)
+}
+
+const packsDir = set ? new URL('packs/', root) : new URL('packs/', root)
 const corpusUrl = new URL('../../content/gam/official-ngram-hashes.json', import.meta.url)
-const reviewUrl = new URL('../../content/gam/review/adjudications.json', import.meta.url)
-const flagsUrl = new URL('../../content/gam/review/review-flags.json', import.meta.url)
+const reviewUrl = new URL('review/adjudications.json', root)
+const flagsUrl = new URL('review/review-flags.json', root)
+if (set) console.log(`cohort: ${set} — an authoring experiment, not the deployed pilot\n`)
 
 const corpus = existsSync(corpusUrl)
   ? new Set(JSON.parse(readFileSync(corpusUrl, 'utf8')).hashes)
@@ -131,7 +155,7 @@ for (const file of loaded) {
   }
 
   if (wantArtifacts) {
-    const dir = new URL('../../content/gam/review/', import.meta.url)
+    const dir = new URL('review/', root)
     if (!existsSync(dir)) mkdirSync(dir, { recursive: true })
     writeFileSync(
       new URL(`artifacts-${pack.id}.json`, dir),

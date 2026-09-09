@@ -12,8 +12,30 @@
     "provenance": {
       "originality": "original",
       "draftedBy": "pilot-b2",
-      "reviewStatus": "automated-pass",
-      "notes": "Replaces the retired break-even pack. The scheme, its four bands, its rates and its four stipulations are invented for this pack; nothing here is a textbook relationship a candidate could bring with them, which is what §5.10 requires and what the retired pack could not satisfy."
+      "reviewStatus": "rejected",
+      "notes": "Replaces the retired break-even pack. The scheme, its four bands, its rates and its four stipulations are invented for this pack; nothing here is a textbook relationship a candidate could bring with them, which is what §5.10 requires and what the retired pack could not satisfy.",
+      "repairs": [
+        {
+          "on": "2026-09-07",
+          "reason": "q2 could be narrowed using q3. q3’s answer establishes that a band re-rates the whole year’s quantity rather than the units above the band’s lower limit, and q2’s smallest option was the only one consistent with re-rating the marginal units alone — so knowing the scheme is retrospective eliminated it without any arithmetic. Repairing that moved the same fault onto q1, whose own marginal-only option could then be eliminated on the scale q2’s remaining options reveal; q1 is repaired in the same way and for the same reason.",
+          "changed": {
+            "gam-ba-sr-001-q2": "Option set replaced. All four options are now consistent with whole-quantity re-rating and differ only in which rate is applied to which year total, so q3’s answer separates none of them. The stem, the key, the computation and the learning objective are unchanged.",
+            "gam-ba-sr-001-q1": "Moved from 950 units to 1,600, and its marginal-only distractor retired. Repairing q2 by dropping its one small option tightened the visible spread of its remaining three, which sharpened rather than removed the signal that this scheme pays in thousands — and that signal was enough to eliminate q1’s 210-euro option on scale alone. A question one band up, whose four options all sit in the same order of magnitude, cannot be attacked that way. The retrospective-rule trap survives in a form that scale cannot pick off: applying the rate to the band’s lower limit instead of to the year’s total."
+          },
+          "unchanged": "q1, q3, q4 and q5 keep their content; q3 was the leak source and its own content is sound."
+        }
+      ],
+      "retiredQuestions": [
+        {
+          "id": "gam-ba-sr-001-q5",
+          "retiredOn": "2026-09-08",
+          "stem": "A buyer expects to need 1,800 units over the next fourteen months and can place the orders whenever it suits. According to the scheme, which arrangement earns the larger rebate?",
+          "correctOptionId": "a",
+          "reason": "Retired as non-discriminating, not as incorrect. Two independent adjudication rounds agreed with its key. Both ablation halves answered it with no source at all — Claude Sonnet 5 on 7 September, Claude Opus 5 on 8 September at high confidence — and the Opus round rated it decisively leaked by q1 and q2: q2 shows numerically that twenty units inside one calendar year move the rebate by roughly 1,600 euros, which eliminates the \"timing does not matter\" option outright, and q1 shows the per-unit rate rising with the year’s total, which is the rest of the argument. An item answerable without the pack and readable off its siblings adds nothing. Reworking it as a computation was rejected: every numeric option in this pack is a unit count times a band rate, so a further numeric item would expose one more point on the rate ladder the Opus round showed is already recoverable across siblings. The id is reserved and never reused."
+        }
+      ],
+      "retiredOn": "2026-09-09",
+      "retiredBecause": "Superseded by the production candidate set of 8-9 September 2026, and retired on promotion rather than deleted. No key in this pack is wrong: two independent rounds agreed with every one of them, and it carries no ambiguity, outside-knowledge or §5.10 finding. It is retired because of how it was built. It predates the independent-source architecture, and under the same adjudicator that cleared the candidate set every one of the pilot’s sixteen questions carried a narrowing sibling coupling, against seven of nineteen in the set replacing it. Keeping both active would ship two authoring standards at once. Its questions, provenance and adjudication history are kept in full as the record of how the architecture was arrived at; the ids are reserved and never reused."
     },
     "blocks": [
       {
@@ -157,32 +179,30 @@
         }
       }
     ],
-    "contentHash": "4ec543926ab3b573343ecc7d9a52fe23"
+    "contentHash": "49fc5b62c271f98784762ed103abf62e"
   },
   "questions": [
     {
-      "id": "gam-ba-sr-001-q1",
-      "packId": "gam-business-administration-step-rebate-001",
-      "stem": "A buyer’s purchases for the calendar year come to 950 units. What rebate is due?",
+      "stem": "A buyer’s purchases for the calendar year come to 1,600 units. What rebate is due?",
       "options": [
         {
           "id": "a",
-          "text": "210 euros"
+          "text": "3,840 euros"
         },
         {
           "id": "b",
-          "text": "2,280 euros"
+          "text": "6,720 euros"
         },
         {
           "id": "c",
-          "text": "3,990 euros"
+          "text": "9,900 euros"
         },
         {
           "id": "d",
-          "text": "6,270 euros"
+          "text": "10,560 euros"
         }
       ],
-      "correctOptionId": "c",
+      "correctOptionId": "d",
       "reasoning": "apply-formula",
       "dependsOn": [
         "t1",
@@ -191,53 +211,53 @@
       ],
       "supportSpans": [
         {
-          "blockId": "l1",
-          "quote": "the band’s rate applies to every unit bought in the year, and not only to the units above the band’s lower limit"
+          "blockId": "t1",
+          "quote": "1500 or more"
         },
         {
-          "blockId": "t1",
-          "quote": "900 to 1499 7 per cent"
+          "blockId": "l1",
+          "quote": "The rebate is retrospective: the band’s rate applies to every unit bought in the year, and not only to the units above the band’s lower limit."
         },
         {
           "blockId": "p1",
           "quote": "a list price of 60 euros per unit"
         }
       ],
-      "explanation": "950 units falls in the band from 900 to 1499, which carries 7 per cent. The scheme is retrospective, so that rate applies to all 950 units and not only to the 50 above the band’s lower limit: 950 × 60 × 0.07 = 3,990 euros.",
+      "explanation": "1,600 units falls in the top band, where the rate is 11 per cent. The rate applies to every unit bought in the year, and the rebate is worked out on the list price of 60 euros: 11 per cent of 1,600 × 60 euros, which is 11 per cent of 96,000 euros.",
       "refutations": {
         "a": {
-          "blockId": "l1",
-          "family": "misapplied-formula",
-          "reason": "210 euros is 7 per cent of the 50 units above the band’s lower limit. That is the incremental reading the scheme explicitly rules out: the rate applies to every unit bought in the year."
+          "blockId": "t1",
+          "family": "right-concept-wrong-scope",
+          "reason": "This uses the 4 per cent of the 400-to-899 band. The year’s total is 1,600, which is past two further boundaries, and it is the band the total falls in that fixes the rate."
         },
         "b": {
           "blockId": "t1",
-          "family": "swapped-quantities",
-          "reason": "2,280 euros applies 4 per cent, which is the rate of the band below. 950 units is past 900 and so falls in the next band up."
+          "family": "right-concept-wrong-scope",
+          "reason": "This uses the 7 per cent of the 900-to-1499 band. 1,600 is above 1,499, so the year falls in the band above it."
         },
-        "d": {
-          "blockId": "t1",
-          "family": "swapped-quantities",
-          "reason": "6,270 euros applies 11 per cent, the rate of the top band. That band begins at 1500 units, which this buyer has not reached."
+        "c": {
+          "blockId": "l1",
+          "family": "misapplied-formula",
+          "reason": "This applies the rate to the band’s lower limit of 1,500 rather than to the year’s total. The scheme is retrospective: the rate applies to every unit bought in the year, so all 1,600 count."
         }
       },
       "computation": {
-        "expression": "950*60*0.07",
-        "expected": 3990,
+        "expression": "1600*60*0.11",
+        "expected": 10560,
         "unit": "euros"
       },
       "hints": [
         {
           "level": 1,
-          "text": "Find the band the year’s total falls in before doing any arithmetic."
+          "text": "Place the year’s total in the table of bands before doing any arithmetic."
         },
         {
           "level": 2,
-          "text": "Then check how many of the year’s units the band’s rate applies to; the scheme is explicit about this."
+          "text": "The rate is a percentage of what the buyer spent, not of the number of units."
         },
         {
           "level": 3,
-          "text": "Multiply the units by the list price and then by the rate for the band."
+          "text": "Ask how many of the 1,600 units the rate applies to — the list says."
         }
       ],
       "difficulty": "medium",
@@ -246,95 +266,96 @@
         "blockSpan": 3,
         "transferDistance": 1,
         "requiresExhibit": true
-      }
+      },
+      "id": "gam-ba-sr-001-q1",
+      "packId": "gam-business-administration-step-rebate-001"
     },
     {
-      "id": "gam-ba-sr-001-q2",
-      "packId": "gam-business-administration-step-rebate-001",
-      "stem": "A buyer has bought 880 units and the calendar year is almost over. The buyer is considering one further order that would take the year’s total to 900. What happens to the amount the buyer is out of pocket for the year?",
+      "stem": "A buyer has bought 880 units and the calendar year is almost over. One further order would take the year’s total to 900. By how much would the year’s rebate increase?",
       "options": [
         {
           "id": "a",
-          "text": "It rises, by the list value of the extra units."
+          "text": "1,584 euros"
         },
         {
           "id": "b",
-          "text": "It rises, because the improved rate applies only to the units above the new band’s lower limit."
+          "text": "1,620 euros"
         },
         {
           "id": "c",
-          "text": "It falls, because the improved rate applies to everything bought in the year."
+          "text": "1,668 euros"
         },
         {
           "id": "d",
-          "text": "It is unchanged, because the extra rebate exactly offsets the cost of the extra units."
+          "text": "3,780 euros"
         }
       ],
       "correctOptionId": "c",
-      "reasoning": "generalisation",
+      "reasoning": "apply-formula",
       "dependsOn": [
         "l1",
         "t1",
-        "fig1"
+        "p1"
       ],
       "supportSpans": [
         {
           "blockId": "l1",
-          "quote": "The rebate is retrospective"
+          "quote": "The rebate is retrospective: the band’s rate applies to every unit bought in the year, and not only to the units above the band’s lower limit."
         },
         {
           "blockId": "t1",
-          "quote": "400 to 899 4 per cent"
-        },
-        {
-          "blockId": "fig1",
-          "quote": "The price of every unit falls when a band is reached"
+          "quote": "900 to 1499"
         }
       ],
-      "explanation": "At 880 units the buyer is in the 4 per cent band and the rebate is 2,112 euros. Reaching 900 moves the whole year into the 7 per cent band, and because the scheme is retrospective the better rate is applied to all 900 units, giving 3,780 euros. The rebate improves by 1,668 euros while the extra goods cost 1,200, so the buyer ends the year 468 euros better off and holds twenty more units.",
+      "explanation": "At 880 units the year sits in the 400-to-899 band, so the rebate is 4 per cent of 880 units at the 60-euro list price: 2,112 euros. The further order takes the total to 900, which falls in the next band at 7 per cent, and that rate applies to every unit bought in the year, not only to the twenty that crossed the line: 7 per cent of 900 units at 60 euros is 3,780 euros. The increase is the difference between the two, 3,780 − 2,112.",
       "refutations": {
         "a": {
-          "blockId": "l1",
-          "family": "plausible-but-unstated",
-          "reason": "This would be so under a scheme with no bands, or one whose rate did not change. Here the extra order changes the rate that applies to the whole year."
+          "blockId": "t1",
+          "family": "right-concept-wrong-scope",
+          "reason": "This works both rebates on 880 units, so the twenty units that carry the year into the higher band earn nothing themselves. They are bought within the year and count like any others."
         },
         "b": {
-          "blockId": "l1",
-          "family": "misapplied-formula",
-          "reason": "The incremental reading is the one the scheme rules out. Under it the better rate would earn only a few euros on the extra units and the bill would indeed rise; that is not this scheme."
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This works both rebates on 900 units. The rebate the buyer already stands to receive is the one due on the year as it is now — 880 units — and it is that figure the increase is measured from."
         },
         "d": {
-          "blockId": "t1",
-          "family": "arithmetic-slip",
-          "reason": "The two do not offset. The gain in rebate is larger than the cost of the extra units, which is why the position improves rather than holding level."
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the whole rebate the year would earn at 900 units, not the increase. The buyer was already owed a rebate at 880 units, and the question asks by how much the figure moves."
         }
+      },
+      "computation": {
+        "expression": "900*60*0.07 - 880*60*0.04",
+        "expected": 1668,
+        "unit": "euros"
       },
       "hints": [
         {
           "level": 1,
-          "text": "Work out which band the buyer is in now, and which band the further order would reach."
+          "text": "Work out the rebate the year earns as it stands, and then the rebate it would earn after the order."
         },
         {
           "level": 2,
-          "text": "The scheme says how much of the year the new rate would apply to. That is the whole of this question."
+          "text": "Check which band each of the two totals falls in before choosing a rate."
         },
         {
           "level": 3,
-          "text": "Compare the rebate on 880 units at the lower rate with the rebate on 900 at the higher one, and set the difference against what the extra units cost."
+          "text": "The higher rate applies to every unit bought in the year, not only to the ones above the band’s lower limit."
         }
       ],
       "difficulty": "high",
       "meta": {
         "stepCount": 5,
         "blockSpan": 3,
-        "transferDistance": 3,
-        "requiresExhibit": true
-      }
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ba-sr-001-q2",
+      "packId": "gam-business-administration-step-rebate-001"
     },
     {
-      "id": "gam-ba-sr-001-q3",
-      "packId": "gam-business-administration-step-rebate-001",
-      "stem": "Two buyers have each been credited with a rebate, one on a year’s total of 1,520 units and the other on 1,700. Before the year ends each of them returns 40 units. According to the scheme, how do the two returns differ in their effect?",
+      "stem": "Two buyers have each been credited with a rebate, one on a year’s total of 420 units and the other on 600. Before the year ends each of them returns 40 units. According to the scheme, how do the two returns differ in their effect?",
       "options": [
         {
           "id": "a",
@@ -342,15 +363,15 @@
         },
         {
           "id": "b",
-          "text": "Both rebates are withdrawn and settled again."
+          "text": "Both rebates are withdrawn, and neither buyer is due anything."
         },
         {
           "id": "c",
-          "text": "The first buyer’s rebate is withdrawn and settled again; the second’s is not withdrawn."
+          "text": "The first buyer’s rebate is withdrawn and nothing is due in its place; the second’s is not withdrawn."
         },
         {
           "id": "d",
-          "text": "The second buyer’s rebate is withdrawn and settled again; the first’s is not."
+          "text": "The second buyer’s rebate is withdrawn and nothing is due in its place; the first’s is not."
         }
       ],
       "correctOptionId": "c",
@@ -362,19 +383,19 @@
       ],
       "supportSpans": [
         {
-          "blockId": "p2",
-          "quote": "the whole of the rebate credited under that band is recovered from the buyer, and the rebate is worked out again at the band the reduced total now falls in"
-        },
-        {
           "blockId": "l1",
           "quote": "Units returned are taken out of the year’s total on the day they are returned."
         },
         {
           "blockId": "t1",
-          "quote": "1500 or more 11 per cent"
+          "quote": "fewer than 400 no rebate"
+        },
+        {
+          "blockId": "p2",
+          "quote": "the whole of the rebate credited under that band is recovered from the buyer"
         }
       ],
-      "explanation": "Both returns come out of the year’s total. The first buyer drops to 1,480, which is below the lower limit of the band already credited, so that rebate is recovered in full and worked out again one band down. The second drops to 1,660, which is still inside the same band, so only the amount changes and not the rate.",
+      "explanation": "Both returns come out of the year’s total. The first buyer falls to 380, below the lowest threshold the scheme sets, so the rebate credited is withdrawn and the reduced total earns none at all. The second falls to 560, still inside the band that was credited, so that rebate stands and only its amount changes.",
       "refutations": {
         "a": {
           "blockId": "l1",
@@ -384,12 +405,12 @@
         "b": {
           "blockId": "p2",
           "family": "right-concept-wrong-scope",
-          "reason": "Withdrawal is not triggered by any return, only by one that takes the total below the lower limit of the band already credited. The second return leaves the total inside that band."
+          "reason": "Withdrawal follows only from a return that takes the total below the lower limit of the band already credited. The second buyer stays well inside it."
         },
         "d": {
           "blockId": "t1",
           "family": "swapped-quantities",
-          "reason": "This has the two buyers the wrong way round. It is the smaller total that falls below the lower limit of the band it was credited under; the larger one stays comfortably inside it."
+          "reason": "This has the two buyers the wrong way round. It is the smaller total that falls through the scheme’s lowest threshold; the larger one has room to spare."
         }
       },
       "hints": [
@@ -399,11 +420,11 @@
         },
         {
           "level": 2,
-          "text": "Then ask, for each, whether the reduced total is still inside the band that was credited."
+          "text": "Then ask, for each, whether the reduced total still reaches the band it was credited under."
         },
         {
           "level": 3,
-          "text": "The scheme treats a return that crosses a band’s lower limit differently from one that does not."
+          "text": "One of the two falls below the point at which the scheme pays anything at all."
         }
       ],
       "difficulty": "high",
@@ -411,8 +432,10 @@
         "stepCount": 4,
         "blockSpan": 3,
         "transferDistance": 3,
-        "requiresExhibit": false
-      }
+        "requiresExhibit": true
+      },
+      "id": "gam-ba-sr-001-q3",
+      "packId": "gam-business-administration-step-rebate-001"
     },
     {
       "id": "gam-ba-sr-001-q4",
@@ -488,84 +511,6 @@
         "stepCount": 3,
         "blockSpan": 1,
         "transferDistance": 2,
-        "requiresExhibit": false
-      }
-    },
-    {
-      "id": "gam-ba-sr-001-q5",
-      "packId": "gam-business-administration-step-rebate-001",
-      "stem": "A buyer expects to need 1,800 units over the next fourteen months and can place the orders whenever it suits. According to the scheme, which arrangement earns the larger rebate?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Placing all of the orders within one calendar year."
-        },
-        {
-          "id": "b",
-          "text": "Splitting the orders evenly between the two calendar years."
-        },
-        {
-          "id": "c",
-          "text": "Either; the rebate turns on how many units are bought, not on when."
-        },
-        {
-          "id": "d",
-          "text": "Splitting them, so that each calendar year’s total clears the scheme’s lowest threshold."
-        }
-      ],
-      "correctOptionId": "a",
-      "reasoning": "generalisation",
-      "dependsOn": [
-        "l1",
-        "t1"
-      ],
-      "supportSpans": [
-        {
-          "blockId": "l1",
-          "quote": "A year’s purchases do not carry over. Each calendar year is banded on its own."
-        },
-        {
-          "blockId": "t1",
-          "quote": "1500 or more 11 per cent"
-        }
-      ],
-      "explanation": "Because each calendar year is banded on its own, splitting the orders would put roughly half the units in each year and land both halves in a middling band. Keeping them together reaches the top band, and the retrospective rule then applies its rate to all 1,800 units. Concentration is worth more than spreading under a scheme banded this way.",
-      "refutations": {
-        "b": {
-          "blockId": "l1",
-          "family": "wrong-direction-of-effect",
-          "reason": "Each year would earn its own rebate, but at a lower rate on half the units apiece. Two middling bands are worth less than one top band applied to everything."
-        },
-        "c": {
-          "blockId": "l1",
-          "family": "contradicts-source",
-          "reason": "When the units are bought is exactly what the scheme turns on, because a year’s purchases do not carry over and each year is banded on its own."
-        },
-        "d": {
-          "blockId": "t1",
-          "family": "right-concept-wrong-scope",
-          "reason": "Clearing the lowest threshold is not the object. Both arrangements clear it, and the one that reaches the highest band is worth far more than two that merely qualify."
-        }
-      },
-      "hints": [
-        {
-          "level": 1,
-          "text": "Find the condition that says what a band is measured over."
-        },
-        {
-          "level": 2,
-          "text": "Then work out which band each arrangement would reach."
-        },
-        {
-          "level": 3,
-          "text": "Remember which units the rate is then applied to."
-        }
-      ],
-      "difficulty": "medium",
-      "meta": {
-        "stepCount": 4,
-        "blockSpan": 2,
-        "transferDistance": 3,
         "requiresExhibit": false
       }
     }

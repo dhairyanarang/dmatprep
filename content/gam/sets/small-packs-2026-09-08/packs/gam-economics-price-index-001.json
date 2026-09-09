@@ -1,0 +1,411 @@
+{
+  "pack": {
+    "id": "gam-economics-price-index-001",
+    "domain": "economics",
+    "title": "Measuring the change in the general price level",
+    "defines": [
+      "price index",
+      "base year",
+      "fixed basket"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Measuring the change in the general price level"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A price index tracks what one fixed basket of goods and services costs from one period to the next. The basket is chosen to represent a typical household’s spending and is then held fixed, so that a movement in the index reflects a change in prices rather than a change in what is being bought. The index is set to 100 in a chosen base year, and every later figure is expressed against it."
+      },
+      {
+        "kind": "figure",
+        "id": "fig1",
+        "caption": "Figure 1. The price index in each of five successive years.",
+        "spec": {
+          "type": "line-chart",
+          "xLabel": "Year",
+          "yLabel": "Price index",
+          "series": [
+            {
+              "id": "idx",
+              "label": "Price index",
+              "points": [
+                [
+                  1,
+                  100
+                ],
+                [
+                  2,
+                  104
+                ],
+                [
+                  3,
+                  110
+                ],
+                [
+                  4,
+                  121
+                ],
+                [
+                  5,
+                  127
+                ]
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "label": "The first year is the base year",
+              "detail": "set to 100"
+            },
+            {
+              "label": "Readings by year",
+              "detail": "100 in the first year, then 104, 110, 121 and 127"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "The index is a level, not a rate. The rate of change between two years is the difference between their index figures divided by the earlier of the two, written as a percentage. A rate that is smaller this year than last still means that prices rose; it means only that they rose more slowly than before."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "When the basket is revised, because households have changed what they buy, the new series is linked to the old at the year of the revision and the earlier figures are not recomputed. A comparison that spans a revision is therefore not a like-for-like comparison of one basket."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "Because the basket is held fixed, the index does not follow a household that answers a price rise by buying a cheaper substitute instead. For such a household the index overstates the increase in the cost of living, and it does so by more the more readily the household substitutes."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "experiment-small-packs-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the smaller-pack authoring experiment of 8 September 2026. The source states four distinct rules and each question targets a different one, and at most one question offers options that are a function of the source’s own constants — the two design rules the retired operation-counts pack produced. The scheme and every figure in it are invented for this pack."
+    },
+    "contentHash": "2fe26313e680c7a783226d10ab3142a3"
+  },
+  "questions": [
+    {
+      "stem": "By what percentage did the index rise between the third year and the fourth?",
+      "options": [
+        {
+          "id": "a",
+          "text": "9.1 per cent"
+        },
+        {
+          "id": "b",
+          "text": "10 per cent"
+        },
+        {
+          "id": "c",
+          "text": "11 per cent"
+        },
+        {
+          "id": "d",
+          "text": "21 per cent"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "fig1",
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "fig1",
+          "quote": "100 in the first year, then 104, 110, 121 and 127"
+        },
+        {
+          "blockId": "p2",
+          "quote": "The rate of change between two years is the difference between their index figures divided by the earlier of the two"
+        }
+      ],
+      "explanation": "The two readings the question names are the third and fourth in the series. Their difference is eleven index points, and the text is specific about what that difference is then divided by: the earlier of the two figures, not the later one and not the base year. Dividing accordingly and writing the result as a percentage gives the answer.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "swapped-quantities",
+          "reason": "This divides by the later figure instead of the earlier one. The text names which of the two goes underneath, and swapping them makes every rise look smaller than it was."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This reports the movement in index points and calls it a percentage. Points and per cent coincide only when the earlier figure happens to be 100, which is true of the base year alone."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This measures from the base year rather than between the two years the question names. It is a real quantity — the rise since the base — but it answers a different question."
+        }
+      },
+      "computation": {
+        "expression": "(121 - 110) / 110 * 100",
+        "expected": 10,
+        "unit": "per cent"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The question asks for a rate of change, and the text says exactly what a rate of change is made from."
+        },
+        {
+          "level": 2,
+          "text": "Two readings are needed, and the text is specific about which of them goes underneath."
+        },
+        {
+          "level": 3,
+          "text": "A movement in index points is not yet a percentage; ask what it has to be divided by first."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-econ-pi-001-q1",
+      "packId": "gam-economics-price-index-001"
+    },
+    {
+      "stem": "A newspaper reports that the index rose by less this year than it did last year, and concludes that prices have come down. According to the text, is that conclusion right?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes; a smaller figure this year means the level is lower than it was."
+        },
+        {
+          "id": "b",
+          "text": "No; the level went on climbing, just less steeply than it had."
+        },
+        {
+          "id": "c",
+          "text": "Yes, but only if the base year has not been changed in the meantime."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be judged without knowing which basket the index was built on."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "A rate that is smaller this year than last still means that prices rose; it means only that they rose more slowly than before."
+        },
+        {
+          "blockId": "p2",
+          "quote": "The index is a level, not a rate."
+        }
+      ],
+      "explanation": "Two different quantities are being confused. The level is what the index reports; the rate is how fast that level is moving. A rate that falls from one year to the next is a level still climbing, just less steeply. For prices to have come down the level itself would have to be lower, and a smaller positive rate is not that.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "This is the confusion the text is written to head off, and it says so directly: a smaller rate still means prices rose."
+        },
+        "c": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "The base year fixes what the index is measured against, not whether a rise is a rise. Changing it would renumber the series without turning an increase into a decrease."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "Which basket was used matters for what the index measures and for comparisons across a revision. It is not needed to say whether a positive but smaller rate is a fall."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text opens this passage by separating two things that are easily run together."
+        },
+        {
+          "level": 2,
+          "text": "Ask what would have to be true of the index itself for prices to have come down."
+        },
+        {
+          "level": 3,
+          "text": "A figure that grows more slowly is still growing; decide what that leaves the newspaper claiming."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-econ-pi-001-q2",
+      "packId": "gam-economics-price-index-001"
+    },
+    {
+      "stem": "A researcher compares the first year shown in Figure 1 with a figure published several years later, after the basket had been revised. According to the text, what should be said about that comparison?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is sound, because the new series is linked to the old at the year of the revision."
+        },
+        {
+          "id": "b",
+          "text": "It is sound once the earlier figures have been recomputed on the new basket."
+        },
+        {
+          "id": "c",
+          "text": "The two ends of it price different baskets, so they do not measure the same thing."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be made at all, because a revision starts the series again from its base value."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "A comparison that spans a revision is therefore not a like-for-like comparison of one basket."
+        },
+        {
+          "blockId": "p3",
+          "quote": "the earlier figures are not recomputed"
+        }
+      ],
+      "explanation": "Linking is what makes the series continuous to look at; it is not what would make the two ends measure the same thing. The text says the earlier figures are left as they were, so the first year describes the cost of the old basket and the later figure the cost of the new one. The comparison can be made, and it is not like for like.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "The linking is real and the text describes it. It joins the two series at the revision so the line does not jump; it does not make the baskets at either end the same basket."
+        },
+        "b": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "The text states that the earlier figures are not recomputed. The condition offered here is one the procedure never satisfies."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the text restarts the series at a revision; the base value belongs to the chosen base year and stays there. The comparison is possible, and the objection to it is about what it means rather than whether it can be done."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Find what the text says actually happens to the old figures when a revision takes place."
+        },
+        {
+          "level": 2,
+          "text": "Linking and recomputing are two different operations, and only one of them is performed."
+        },
+        {
+          "level": 3,
+          "text": "Ask whether the objection is that the comparison is impossible or that it does not mean what it appears to."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-econ-pi-001-q3",
+      "packId": "gam-economics-price-index-001"
+    },
+    {
+      "stem": "A household answers a rise in the price of beef by buying chicken instead. According to the text, how does the index stand in relation to that household?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It follows the switch, because the basket is chosen to represent typical spending."
+        },
+        {
+          "id": "b",
+          "text": "It shows a larger increase than the household has actually met, because it goes on pricing what was given up."
+        },
+        {
+          "id": "c",
+          "text": "It understates the rise, because the substitute costs less than what it replaced."
+        },
+        {
+          "id": "d",
+          "text": "It treats the household as no longer belonging to the group the basket represents."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p4",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "the index does not follow a household that answers a price rise by buying a cheaper substitute instead"
+        },
+        {
+          "blockId": "p1",
+          "quote": "is then held fixed"
+        }
+      ],
+      "explanation": "The basket does not change when a household changes what it buys, so the index goes on pricing the beef the household has stopped buying. The household has found a cheaper way through the same rise than the index allows for, and the index therefore shows a larger increase in its cost of living than it has actually met.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "The basket is chosen to be typical and then held fixed, which is the whole of the difficulty. Being representative when it was drawn up is not the same as moving with a household afterwards."
+        },
+        "c": {
+          "blockId": "p4",
+          "family": "wrong-direction-of-effect",
+          "reason": "The substitute being cheaper is exactly why the index runs high rather than low: the household escapes part of the rise and the fixed basket does not."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the text removes a household from the population when its spending changes. The index simply goes on pricing the basket it was given."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Ask what the basket does when a household changes what it buys."
+        },
+        {
+          "level": 2,
+          "text": "The household has found a cheaper way through the same price rise than the basket allows for."
+        },
+        {
+          "level": 3,
+          "text": "Decide whether that makes the published figure too large or too small for this particular household."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 3,
+        "requiresExhibit": false
+      },
+      "id": "gam-econ-pi-001-q4",
+      "packId": "gam-economics-price-index-001"
+    }
+  ]
+}

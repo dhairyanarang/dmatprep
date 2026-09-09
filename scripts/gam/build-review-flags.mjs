@@ -18,9 +18,15 @@ import { readFileSync, readdirSync, writeFileSync } from 'node:fs'
 import { findIndependentRound } from './lib/review.mjs'
 import { contentHash } from './lib/validate.mjs'
 
-const packsDir = new URL('../../content/gam/packs/', import.meta.url)
-const reviewUrl = new URL('../../content/gam/review/adjudications.json', import.meta.url)
-const flagsUrl = new URL('../../content/gam/review/review-flags.json', import.meta.url)
+// `--set <name>` derives flags for an authoring experiment instead of the pilot.
+const setArg = process.argv.indexOf('--set')
+const set = setArg === -1 ? null : process.argv[setArg + 1]
+const base = set
+  ? new URL(`../../content/gam/sets/${set}/`, import.meta.url)
+  : new URL('../../content/gam/', import.meta.url)
+const packsDir = new URL('packs/', base)
+const reviewUrl = new URL('review/adjudications.json', base)
+const flagsUrl = new URL('review/review-flags.json', base)
 
 const files = readdirSync(packsDir)
   .filter((f) => f.endsWith('.json'))
@@ -59,6 +65,18 @@ for (const file of covered) {
         'Classified source-supported: a domain-literate candidate could reason to the answer without ' +
           'reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no ' +
           'memorised outside fact is required — the human reviewer should confirm both.',
+      )
+    }
+    if (rec.requiresApplication === false) {
+      add(
+        q.id,
+        'recall-only',
+        'review',
+        'The independent adjudicator judged this to ask the candidate to find something in the source ' +
+          'rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a ' +
+          'stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the ' +
+          'reviewer should weigh is the balance across the pack: a pack made entirely of these would be a ' +
+          'reading test.',
       )
     }
     if (rec.requiresPackReasoning === false && rec.requiresPackData === true) {
@@ -112,29 +130,20 @@ for (const file of covered) {
   const recs = file.questions.map((q) => round.questions[q.id]).filter(Boolean)
   const supported = recs.filter((r) => r.dependency === 'source-supported').length
   const recognition = recs.filter((r) => r.recognitionNotTransfer === true).length
-  const contribution = round.packContributions?.[file.pack.id]
-  if (contribution) {
-    const requiring = contribution.questionsRequiringIt ?? []
-    if (contribution.contributesNonGenericElement !== true || requiring.length < 2) {
-      ;(packFlags[file.pack.id] ??= []).push({
-        flag: 'section-5-10',
-        severity: 'blocking',
-        reason:
-          `§5.10: the adjudicator recorded the pack’s non-generic contribution as “${contribution.whatItContributes}” ` +
-          `and found ${requiring.length} question(s) requiring it. A contribution one question touches is ` +
-          'decoration. The reviewer should decide whether the adjudicator has identified everything the pack ' +
-          'contributes, or whether the pack genuinely rests on knowledge the candidate already holds.',
-      })
-    } else {
-      ;(packFlags[file.pack.id] ??= []).push({
-        flag: 'section-5-10',
-        severity: 'review',
-        reason:
-          `§5.10 satisfied: the pack contributes “${contribution.whatItContributes}”, required by ` +
-          `${requiring.length} of its ${recs.length} questions (${requiring.join(', ')}). The reviewer should ` +
-          'confirm that this is a real contribution rather than one the adjudicator was generous about.',
-      })
-    }
+  // §5.10 is judged per question since 5 September 2026; the pack-level
+  // non-genericity test was withdrawn with the rule that created it. What a pack
+  // draws on is still worth putting in front of a reviewer, as description.
+  const kinds = new Set(recs.flatMap((r) => r.contributionTypes ?? []))
+  if (kinds.size) {
+    ;(packFlags[file.pack.id] ??= []).push({
+      flag: 'source-contribution',
+      severity: 'review',
+      reason:
+        `Across its ${recs.length} questions the pack contributes: ${[...kinds].sort().join(', ')}. ` +
+        'The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits ' +
+        'in varying mixtures, so no particular mixture is required — the reviewer should judge whether ' +
+        'this one gives the candidate enough to work with.',
+    })
   }
 
   if (supported === recs.length) {

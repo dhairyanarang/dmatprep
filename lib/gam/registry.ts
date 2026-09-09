@@ -1,8 +1,8 @@
-import stepRebate from '@/content/gam/packs/gam-business-administration-step-rebate-001.json'
-import breakEven from '@/content/gam/packs/gam-business-administration-break-even-001.json'
-import operationCounts from '@/content/gam/packs/gam-computational-sciences-operation-counts-001.json'
-import thermalResistance from '@/content/gam/packs/gam-engineering-thermal-resistance-001.json'
-import sourceChecks from '@/content/gam/packs/gam-humanities-source-checks-001.json'
+import cachePolicy from '@/content/gam/packs/gam-computational-sciences-cache-policy-001.json'
+import portTariff from '@/content/gam/packs/gam-economics-port-tariff-001.json'
+import twoStageInspection from '@/content/gam/packs/gam-mathematics-two-stage-inspection-001.json'
+import lakeOxygen from '@/content/gam/packs/gam-natural-sciences-lake-oxygen-001.json'
+import codingAgreement from '@/content/gam/packs/gam-social-sciences-coding-agreement-001.json'
 
 import type { GamPackFile, GamQuestion, SourcePack } from '@/lib/types/gam'
 
@@ -18,16 +18,21 @@ import type { GamPackFile, GamQuestion, SourcePack } from '@/lib/types/gam'
  * gives the app the narrow types a JSON import cannot infer.
  */
 const FILES = [
-  operationCounts,
-  thermalResistance,
-  stepRebate,
-  sourceChecks,
-  breakEven,
+  twoStageInspection,
+  lakeOxygen,
+  portTariff,
+  codingAgreement,
+  cachePolicy,
 ] as unknown as GamPackFile[]
 
 /**
  * A retired pack is kept in the repository as the record of why it was retired
  * (spec §5.10). It is not content, and nothing in the product may reach it.
+ *
+ * Retired packs are not imported at all — a JSON import is bundled whether or
+ * not anything renders it, and there are five of them. The filter stays as the
+ * second lock: if a pack listed above is ever retired, it drops out here rather
+ * than reaching the interface while someone remembers to edit the list.
  */
 const isRetired = (file: GamPackFile) => file.pack.provenance.reviewStatus === 'rejected'
 

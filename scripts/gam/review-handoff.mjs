@@ -31,10 +31,17 @@ import { analyseLeakage } from './lib/leakage.mjs'
 import { findIndependentRound, readiness, validateRound } from './lib/review.mjs'
 import { contentHash, validatePack } from './lib/validate.mjs'
 
-const packsDir = new URL('../../content/gam/packs/', import.meta.url)
-const reviewUrl = new URL('../../content/gam/review/adjudications.json', import.meta.url)
-const flagsUrl = new URL('../../content/gam/review/review-flags.json', import.meta.url)
-const outUrl = new URL('../../content/gam/review/handoff.json', import.meta.url)
+// `--set <name>` prepares the handoff for a candidate set under
+// content/gam/sets/<name>/ rather than for the deployed pilot.
+const setArg = process.argv.indexOf('--set')
+const set = setArg === -1 ? null : process.argv[setArg + 1]
+const base = set
+  ? new URL(`../../content/gam/sets/${set}/`, import.meta.url)
+  : new URL('../../content/gam/', import.meta.url)
+const packsDir = new URL('packs/', base)
+const reviewUrl = new URL('review/adjudications.json', base)
+const flagsUrl = new URL('review/review-flags.json', base)
+const outUrl = new URL('review/handoff.json', base)
 const corpusUrl = new URL('../../content/gam/official-ngram-hashes.json', import.meta.url)
 
 const corpus = existsSync(corpusUrl)
@@ -91,7 +98,6 @@ const packs = active.map((file) => {
   const decisive = questions.filter((q) => sev(q) === 'decisive')
   const narrowing = questions.filter((q) => sev(q) === 'narrowing')
   const contribution = round?.packContributions?.[pack.id] ?? {}
-  const requiring = contribution.questionsRequiringIt ?? []
 
   const decisions = []
 
@@ -126,25 +132,28 @@ const packs = active.map((file) => {
     )
   }
 
-  if (round && (contribution.contributesNonGenericElement !== true || requiring.length < 2)) {
+  const recallOnly = questions.filter((q) => rec(q).requiresApplication === false)
+  const noContribution = questions.filter((q) => rec(q).sourceMateriallyContributes === false)
+  if (recallOnly.length || noContribution.length) {
     decisions.push(
       decision(
         `${pack.id}::section-5-10`,
-        'Spec §5.10 requires the pack to contribute something materially non-generic that more than one ' +
-          `question applies. The adjudicator recorded the contribution as “${contribution.whatItContributes}” ` +
-          `and found ${requiring.length} question(s) requiring it. Did the adjudicator identify everything ` +
-          'the pack contributes, or does the pack rest on knowledge the candidate already holds?',
+        'Spec §5.10 requires the source to contribute something the question uses, and the question to ' +
+          `apply it rather than repeat it. The adjudicator found ${noContribution.length} question(s) the ` +
+          `source contributes nothing to and ${recallOnly.length} that ask only for recall. Are those ` +
+          'judgements right?',
         [
-          { whatTheAdjudicatorCredited: contribution.whatItContributes, questionsRequiringIt: requiring },
+          { noContribution: noContribution.map((q) => q.id) },
+          { recallOnly: recallOnly.map((q) => q.id) },
           {
             note:
-              '§5.10 names "a rule invented for the pack — a routine\'s operation count" as a qualifying ' +
-              'contribution in its own table. Whether this pack\'s invented formulas count is exactly the ' +
-              'judgement being asked for, and the author must not settle it.',
+              'The rule was corrected on 5 September 2026: a standard relationship applied to ' +
+              'source-supplied values passes, because that is what official Exercise 3 does. Only a ' +
+              'question whose answer is unchanged with the source removed entirely fails.',
           },
         ],
-        'The pack clears §5.10 and needs only sign-off; the round should record the wider contribution.',
-        'The pack is retired under §5.10, as the break-even pack was.',
+        'The pack clears §5.10 and needs only sign-off.',
+        'The named questions are rebuilt or retired.',
       ),
     )
   }

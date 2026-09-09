@@ -21,7 +21,12 @@ import { readFileSync, writeFileSync, readdirSync } from 'node:fs'
 
 import { contentHash } from './lib/validate.mjs'
 
-const [ablationPath, blindPath] = process.argv.slice(2)
+// `--set <name>` targets an authoring experiment's own packs and adjudication
+// log under content/gam/sets/<name>/, so an experiment can never write
+// into the deployed pilot's record.
+const setArg = process.argv.indexOf('--set')
+const set = setArg === -1 ? null : process.argv[setArg + 1]
+const [ablationPath, blindPath] = process.argv.slice(2).filter((a) => a !== '--set' && a !== set)
 if (!ablationPath || !blindPath) {
   console.error('usage: node scripts/gam/ingest-adjudication.mjs <ablation-results> <blind-results>')
   process.exit(1)
@@ -30,18 +35,23 @@ if (!ablationPath || !blindPath) {
 const ablation = JSON.parse(readFileSync(ablationPath, 'utf8'))
 const blind = JSON.parse(readFileSync(blindPath, 'utf8'))
 
-const packsDir = new URL('../../content/gam/packs/', import.meta.url)
+const base = set
+  ? new URL(`../../content/gam/sets/${set}/`, import.meta.url)
+  : new URL('../../content/gam/', import.meta.url)
+const packsDir = new URL('packs/', base)
 const files = readdirSync(packsDir)
   .filter((f) => f.endsWith('.json'))
   .map((f) => JSON.parse(readFileSync(new URL(f, packsDir), 'utf8')))
-// Retired packs are not adjudicated: a round covers the content in play (§5.10).
-const active = files.filter((f) => f.pack.provenance.reviewStatus !== 'rejected')
-
 // A round covers the packs its adjudicators were actually shown, which need not
 // be all of them — a pack added to the pilot is adjudicated on its own rather
 // than re-opening the ones already judged. Coverage is read from the results.
+//
+// A retired pack may appear here: when its retirement is being reconsidered it
+// is put back in front of the adjudicators, and the round has to record what
+// they said about it. Recording is not restoring — `readiness` short-circuits on
+// a rejected pack, so nothing retired can reach a production count this way.
 const judged = new Set(Object.keys(blind.results ?? {}))
-const covered = active.filter((f) => f.questions.some((q) => judged.has(q.id)))
+const covered = files.filter((f) => f.questions.some((q) => judged.has(q.id)))
 if (!covered.length) {
   console.error('the results cover no active pack')
   process.exit(1)
@@ -65,12 +75,16 @@ const adjudicatedContent = Object.fromEntries(covered.map((f) => [f.pack.id, con
  *     but with the pack genuinely carrying the answer — is source-supported.
  */
 function deriveDependency(abl, bl) {
-  if (bl.sourceMateriallySupportsAnswer === false) return 'source-independent'
+  // §5.10 as corrected on 5 September 2026: only a source that contributed
+  // nothing this task used makes a question source-independent. A standard
+  // relationship applied to source-supplied values is source-supported, which
+  // passes — it is what the official Optimal Order Quantity exercise does.
+  if (bl.sourceMateriallyContributes === false) return 'source-independent'
   if (abl.verdict === 'not-determinable') return 'source-determined'
   return 'source-supported'
 }
 
-const reviewUrl = new URL('../../content/gam/review/adjudications.json', import.meta.url)
+const reviewUrl = new URL('review/adjudications.json', base)
 const adjudications = JSON.parse(readFileSync(reviewUrl, 'utf8'))
 const round = adjudications.rounds.find((r) => r.kind === 'independent' && r.status === 'pending')
 if (!round) {
@@ -99,7 +113,9 @@ for (const q of questions) {
     chosenOption: bl.chosenOption,
     dependency: deriveDependency(abl, bl),
     requiresOutsideKnowledge: bl.requiresOutsideKnowledge,
-    sourceMateriallySupportsAnswer: bl.sourceMateriallySupportsAnswer,
+    sourceMateriallyContributes: bl.sourceMateriallyContributes,
+    contributionTypes: bl.contributionTypes ?? [],
+    requiresApplication: bl.requiresApplication,
     exactlyOneDefensibleOption: bl.exactlyOneDefensibleOption,
     recognitionNotTransfer: bl.recognitionNotTransfer ?? null,
     requiresPackData: bl.requiresPackData ?? null,
@@ -148,6 +164,7 @@ delete round.instructions
 round.questions = filled
 // §5.10 is judged at pack level as well as per question; the adjudicator's
 // pack-level verdicts are recorded verbatim and gate readiness.
+// Kept for the record; §5.10 is judged per question now, so this no longer gates.
 round.packContributions = blind.packs ?? {}
 
 writeFileSync(reviewUrl, `${JSON.stringify(adjudications, null, 2)}\n`)
@@ -163,8 +180,7 @@ console.log(
 )
 for (const [id, c] of Object.entries(blind.packs ?? {})) {
   console.log(
-    `  §5.10 ${c.contributesNonGenericElement ? '✓' : '✗'} ${id}: ` +
-      `${c.whatItContributes} (${(c.questionsRequiringIt ?? []).length} question(s) require it)`,
+    `  source  ${c.sourceIsSufficient === false ? '✗' : '✓'} ${id}: ${c.whatItContributes}`,
   )
 }
 
@@ -177,7 +193,12 @@ for (const [id, r] of disagreements) {
 for (const [id, r] of Object.entries(filled)) {
   if (r.requiresOutsideKnowledge) console.log(`  outside knowledge: ${id}`)
   if (r.exactlyOneDefensibleOption === false) console.log(`  multi-defensible: ${id}`)
-  if (r.sourceMateriallySupportsAnswer === false) console.log(`  not source-supported: ${id}`)
+  if (r.sourceMateriallyContributes === false) console.log(`  §5.10 FAIL (no contribution): ${id}`)
+  // Recall is a reviewer flag, not a failure: the official exercises contain
+  // assumption identification, exhibit reading and definition discrimination.
+  // This line used to read "§5.10 FAIL", which contradicted the corrected rule
+  // and the gate in review.mjs.
+  if (r.requiresApplication === false) console.log(`  recall-flagged for review (not a failure): ${id}`)
   if (r.evidence?.ablationLeaks === true) {
     console.log(
       `  LEAKS (${r.evidence.ablationLeakSeverity}): ${id} — by ${r.evidence.ablationLeakedBy.join(', ')}`,

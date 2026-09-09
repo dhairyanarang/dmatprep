@@ -6,48 +6,98 @@
     "independentAdjudication": "Evidence from adjudicators who are not the author and never saw the key. Strong evidence, not proof.",
     "humanReview": "A person taking responsibility. Nothing substitutes for it and no pack ships without it."
   },
-  "caveat": "The two halves of this round were run by different models: the blind re-answer by Claude Sonnet 5, the full ablation by Claude Haiku 4.5, because a session rate limit stopped the Sonnet ablation agent mid-run. Both are independent of the pack author, which is what §5.8 requires, but the ablation half is the weaker adversary of the two: it answered 11 of 19 correctly with no source at all against Sonnet's 17 of 19 on the immediately preceding content, while rating more couplings as leaks. Its three decisive findings all rest on the same coupling, which two earlier Sonnet rounds rated narrowing. Recorded here so the difference is visible to the reviewer rather than buried.",
+  "caveat": "Both halves ran on Claude Opus 5, the reader used for every set in this project. It is also the author's own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof.\n\nBoth halves ran on Claude Opus 5, the same reader used for the deployed pilot and the small-pack experiment, so all three sets are measured against one standard. Opus is also the author’s own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof.",
   "caveatAppliesTo": "Every figure drawn from the round that carries it, including the blind re-answer agreement rate. Do not quote that rate without this qualification.",
   "rounds": [
     {
-      "id": "independent-2026-09-04-r3",
+      "id": "independent-2026-09-09-r3",
       "adjudicator": {
         "identity": "independent-adjudication-round-1",
-        "model": "Claude Sonnet 5 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
         "kind": "model",
         "independentOfAuthor": true
       },
       "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
       "boundTo": {
-        "gam-business-administration-step-rebate-001": "4ec543926ab3b573343ecc7d9a52fe23"
+        "gam-computational-sciences-cache-policy-001": "c3e1b95dfd642d1db2241298326bd462"
       },
-      "caveat": null
+      "caveat": "Both halves ran on Claude Opus 5, the reader used for every set in this project. It is also the author's own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof."
     },
     {
-      "id": "independent-2026-09-04",
+      "id": "independent-2026-09-09",
       "adjudicator": {
         "identity": "independent-adjudication-round-1",
-        "model": "claude-haiku-4-5-20251001 (full ablation) + Claude Sonnet 5 (blind re-answer)",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
         "kind": "model",
         "independentOfAuthor": true
       },
       "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
       "boundTo": {
-        "gam-computational-sciences-operation-counts-001": "1c4ea305e321ace70e4b837935ea7209",
-        "gam-engineering-thermal-resistance-001": "5c114d85ad8d1c5dec3415c23cb78500",
-        "gam-humanities-source-checks-001": "8bc028240f6da60aba5ec403cbc2a738"
+        "gam-computational-sciences-cache-policy-001": "71d891911cdbfc55d539b1223cd3ce6f",
+        "gam-economics-port-tariff-001": "975eb7cdcc2bb06f45e4e4120cc67345",
+        "gam-mathematics-two-stage-inspection-001": "6d86d06bf228502867bef5dec6b9549b",
+        "gam-natural-sciences-lake-oxygen-001": "c48602e977de48a4e7124c6c12d3f062",
+        "gam-social-sciences-coding-agreement-001": "a9f552c6cc6cbb03013b6f9b4cca174b"
       },
-      "caveat": "The two halves of this round were run by different models: the blind re-answer by Claude Sonnet 5, the full ablation by Claude Haiku 4.5, because a session rate limit stopped the Sonnet ablation agent mid-run. Both are independent of the pack author, which is what §5.8 requires, but the ablation half is the weaker adversary of the two: it answered 11 of 19 correctly with no source at all against Sonnet's 17 of 19 on the immediately preceding content, while rating more couplings as leaks. Its three decisive findings all rest on the same coupling, which two earlier Sonnet rounds rated narrowing. Recorded here so the difference is visible to the reviewer rather than buried."
+      "caveat": "Both halves ran on Claude Opus 5, the same reader used for the deployed pilot and the small-pack experiment, so all three sets are measured against one standard. Opus is also the author’s own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof."
     }
   ],
-  "activePacks": 4,
-  "activeQuestions": 24,
+  "activePacks": 5,
+  "activeQuestions": 19,
   "retiredPacks": [
     {
       "id": "gam-business-administration-break-even-001",
       "questions": 7,
       "retiredOn": "2026-09-04",
-      "retiredBecause": "Fails spec §5.10. The independent round of 4 September 2026 judged 3 of its 7 questions answerable with no pack at all, and the remaining questions substitute the pack’s numerals into q = F / (p - v), a relationship the candidate already holds. Every block is textbook cost-volume-profit: the assumption list, the formula and the no-break-even case are all standard. There is no non-generic element in the subject to retarget the failing questions onto, and adding one would be replacement dressed as repair. Kept as the evidence for §5.10; counts for nothing. A replacement should keep the text-plus-assumptions-plus-formula-plus-figure shape and the business-administration or economics domain, and be built on a scheme the source defines itself — a stated costing or allocation rule with its own conventions — rather than on a formula the candidate can be assumed to know.",
+      "retiredBecause": "SUPERSEDED REASON, kept for the record: it was retired on 4 September 2026 for failing the original §5.10, which required a pack to contribute a materially non-generic relationship. That rule was withdrawn on 5 September 2026 because the official material fails it — Exercise 3 is the optimal order quantity model, a textbook formula, with a stated-assumption question, comparative statics, a pure plug-in on source-supplied values and a chart-reading question. This pack matched that exercise question for question, which is why it was retired.",
+      "excludedFrom": [
+        "pilot counts",
+        "readiness calculations",
+        "the adjudication round",
+        "production"
+      ]
+    },
+    {
+      "id": "gam-business-administration-step-rebate-001",
+      "questions": 4,
+      "retiredOn": "2026-09-09",
+      "retiredBecause": "Superseded by the production candidate set of 8-9 September 2026, and retired on promotion rather than deleted. No key in this pack is wrong: two independent rounds agreed with every one of them, and it carries no ambiguity, outside-knowledge or §5.10 finding. It is retired because of how it was built. It predates the independent-source architecture, and under the same adjudicator that cleared the candidate set every one of the pilot’s sixteen questions carried a narrowing sibling coupling, against seven of nineteen in the set replacing it. Keeping both active would ship two authoring standards at once. Its questions, provenance and adjudication history are kept in full as the record of how the architecture was arrived at; the ids are reserved and never reused.",
+      "excludedFrom": [
+        "pilot counts",
+        "readiness calculations",
+        "the adjudication round",
+        "production"
+      ]
+    },
+    {
+      "id": "gam-computational-sciences-operation-counts-001",
+      "questions": 7,
+      "retiredOn": "2026-09-08",
+      "retiredBecause": "Fails spec §5.9 at pack level. The independent round of 8 September 2026 — Claude Opus 5 on both halves, neither shown the answer key — rated six of the pack’s seven questions DECISIVELY coupled, and demonstrated the mechanism: the option lists reconstruct Table 1 in full without the table being seen. q7’s options factor exactly into SPLIT(4096) = 340 and SCAN(4096) = 16,414; q2’s options are spaced by exactly 25 and q3 asserts a constant rise per doubling, giving SPLIT(n) = 40 + 25 log2 n; q5’s first option is SCAN(256), giving SCAN(n) = 4n + 30; q1’s 128 and 32,768 stand in the ratio of one table step squared, giving PAIR(n) = n^2 / 2. Every row of the table follows, and with it six of the seven answers. No key is wrong — both rounds agreed with all seven — and there is no ambiguity, outside-knowledge or §5.10 finding against it. The fault is the arithmetic relationship between the option lists, which is a pack-level design fault: each item is individually sound. Retiring the six coupled questions would leave one, so this is retirement under its proper name. A replacement should carry at most two numeric items on one table, or use a source whose questions do not all reduce to arithmetic on the same few constants. Kept in full as the evidence; counts for nothing.",
+      "excludedFrom": [
+        "pilot counts",
+        "readiness calculations",
+        "the adjudication round",
+        "production"
+      ]
+    },
+    {
+      "id": "gam-engineering-thermal-resistance-001",
+      "questions": 6,
+      "retiredOn": "2026-09-09",
+      "retiredBecause": "Superseded by the production candidate set of 8-9 September 2026, and retired on promotion rather than deleted. No key in this pack is wrong: two independent rounds agreed with every one of them, and it carries no ambiguity, outside-knowledge or §5.10 finding. It is retired because of how it was built. It predates the independent-source architecture, and under the same adjudicator that cleared the candidate set every one of the pilot’s sixteen questions carried a narrowing sibling coupling, against seven of nineteen in the set replacing it. Keeping both active would ship two authoring standards at once. Its questions, provenance and adjudication history are kept in full as the record of how the architecture was arrived at; the ids are reserved and never reused.",
+      "excludedFrom": [
+        "pilot counts",
+        "readiness calculations",
+        "the adjudication round",
+        "production"
+      ]
+    },
+    {
+      "id": "gam-humanities-source-checks-001",
+      "questions": 6,
+      "retiredOn": "2026-09-09",
+      "retiredBecause": "Superseded by the production candidate set of 8-9 September 2026, and retired on promotion rather than deleted. No key in this pack is wrong: two independent rounds agreed with every one of them, and it carries no ambiguity, outside-knowledge or §5.10 finding. It is retired because of how it was built. It predates the independent-source architecture, and under the same adjudicator that cleared the candidate set every one of the pilot’s sixteen questions carried a narrowing sibling coupling, against seven of nineteen in the set replacing it. Keeping both active would ship two authoring standards at once. Its questions, provenance and adjudication history are kept in full as the record of how the architecture was arrived at; the ids are reserved and never reused.",
       "excludedFrom": [
         "pilot counts",
         "readiness calculations",
@@ -58,376 +108,11 @@
   ],
   "packs": [
     {
-      "id": "gam-business-administration-step-rebate-001",
-      "domain": "business-administration",
-      "title": "A supplier’s step rebate scheme",
-      "questions": 5,
-      "contentHash": "4ec543926ab3b573343ecc7d9a52fe23",
-      "reviewStatus": "automated-pass",
-      "automated": {
-        "errors": 0,
-        "warnings": 7,
-        "leakageErrors": 0,
-        "leakageWarnings": 0
-      },
-      "independent": {
-        "round": "independent-2026-09-04-r3",
-        "raisedIssues": [
-          "gam-ba-sr-001-q2: an independent adjudicator found it settled by gam-ba-sr-001-q1, gam-ba-sr-001-q3, gam-ba-sr-001-q4, gam-ba-sr-001-q5 (spec §5.9)",
-          "gam-ba-sr-001-q3: an independent adjudicator found it settled by gam-ba-sr-001-q1, gam-ba-sr-001-q2, gam-ba-sr-001-q4, gam-ba-sr-001-q5 (spec §5.9)"
-        ],
-        "dependency": {
-          "determined": 1,
-          "supported": 4,
-          "independent": 0
-        },
-        "contributesUnderSection510": {
-          "contributesNonGenericElement": true,
-          "whatItContributes": "An entirely invented, non-standard rebate mechanism — the band thresholds and rates, the formula applying the band's rate to the whole year's quantity rather than marginally, the list-price-only basis, and the retrospective withdraw-and-resettle-on-return rule — none of which is generic business knowledge a candidate could supply unaided.",
-          "questionsRequiringIt": [
-            "gam-ba-sr-001-q1",
-            "gam-ba-sr-001-q2",
-            "gam-ba-sr-001-q3",
-            "gam-ba-sr-001-q4",
-            "gam-ba-sr-001-q5"
-          ]
-        }
-      },
-      "blockers": [
-        "independent adjudication raised 2 issue(s)",
-        "2 question(s) an adjudicator could narrow using a sibling: gam-ba-sr-001-q4, gam-ba-sr-001-q5",
-        "not signed off by a person"
-      ],
-      "decisions": [
-        {
-          "id": "gam-business-administration-step-rebate-001::decisive-coupling",
-          "question": "An adjudicator shown these questions with no source at all judged 2 of them settled by a sibling: gam-ba-sr-001-q2, gam-ba-sr-001-q3. Is that judgement right, and if it is, does the pack need rebuilding?",
-          "evidence": [
-            {
-              "questionId": "gam-ba-sr-001-q2",
-              "leakedBy": [
-                "gam-ba-sr-001-q1",
-                "gam-ba-sr-001-q3",
-                "gam-ba-sr-001-q4",
-                "gam-ba-sr-001-q5"
-              ],
-              "detail": "Every sibling treats 'the rebate' as one lump value attached to a buyer's annual unit total, never as a sum of per-band marginal slices: q1 asks for a single 'rebate due' on a total; q3 talks about withdrawing and re-settling a single rebate per buyer; q4 asks what a single rebate is 'worked out on'; q5's option (d) frames clearing a threshold as unlocking one rebate on that year's total. That consistent all-units framing across four independent items is exactly the fact q2 turns on, and it points at option (c)."
-            },
-            {
-              "questionId": "gam-ba-sr-001-q3",
-              "leakedBy": [
-                "gam-ba-sr-001-q1",
-                "gam-ba-sr-001-q2",
-                "gam-ba-sr-001-q4",
-                "gam-ba-sr-001-q5"
-              ],
-              "detail": "Laying every unit figure in the pack side by side (620, 880, 900, 950, 1,520, 1,700, 1,800) shows a consistent multiple-of-300 pattern: q2's boundary sits right at 900, q5's 1,800 is a clean multiple of 300, q1's 950 sits just above 900, and q4's 620 sits just above 600 — all consistent with band edges at 300/600/900/1,200/1,500/1,800. Under that reconstructed spacing, buyer 1's 1,520 (just above the 1,500 edge) drops to 1,480 (below it) after returning 40 units, while buyer 2's 1,700 drops only to 1,660, staying inside the same 1,500-1,799 band. That arithmetic, built entirely from sibling numbers, directly resolves the mechanic q3 asks about and points decisively at option (c)."
-            }
-          ],
-          "ifAccepted": "The pack clears its last automated blocker and needs only sign-off.",
-          "ifNotAccepted": "The coupled questions must be rebuilt, which retires this round and requires a fresh one."
-        },
-        {
-          "id": "gam-business-administration-step-rebate-001::narrowing-couplings",
-          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-ba-sr-001-q4, gam-ba-sr-001-q5. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
-          "evidence": [
-            {
-              "questionId": "gam-ba-sr-001-q4",
-              "leakedBy": [
-                "gam-ba-sr-001-q1",
-                "gam-ba-sr-001-q3"
-              ],
-              "detail": "q1 ('purchases ... come to 950 units') and q3 ('credited with a rebate ... on a year's total of 1,520 units') both establish that band membership in this scheme is counted in physical units, not purchase value. That decisively rules out option (c) ('does not count towards the band'), since a price cut on one order doesn't change how many units were bought. It doesn't settle the a/b/d contest over what the rebate is computed on."
-            },
-            {
-              "questionId": "gam-ba-sr-001-q5",
-              "leakedBy": [
-                "gam-ba-sr-001-q2",
-                "gam-ba-sr-001-q3"
-              ],
-              "detail": "q2 and q3 together establish (see their own leakDetail entries) that this is an all-units/retroactive scheme with fixed calendar-year bands roughly 300 units wide. Under a retroactive scheme, concentrating volume in one year yields a strictly bigger blended rate than splitting, which reinforces (rather than creates) the standalone lean toward option (a)."
-            }
-          ],
-          "ifAccepted": "The findings are recorded as accepted and stop blocking.",
-          "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
-        },
-        {
-          "id": "gam-business-administration-step-rebate-001::sign-off",
-          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
-          "evidence": [
-            {
-              "contentHash": "4ec543926ab3b573343ecc7d9a52fe23",
-              "questions": 5
-            },
-            {
-              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
-            }
-          ],
-          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
-          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
-        }
-      ],
-      "flaggedQuestions": {
-        "gam-ba-sr-001-q2": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-ba-sr-001-q1, gam-ba-sr-001-q3, gam-ba-sr-001-q4, gam-ba-sr-001-q5. Every sibling treats 'the rebate' as one lump value attached to a buyer's annual unit total, never as a sum of per-band marginal slices: q1 asks for a single 'rebate due' on a total; q3 talks about withdrawing and re-settling a single rebate per buyer; q4 asks what a single rebate is 'worked out on'; q5's option (d) frames clearing a threshold as unlocking one rebate on that year's total. That consistent all-units framing across four independent items is exactly the fact q2 turns on, and it points at option (c)."
-          }
-        ],
-        "gam-ba-sr-001-q3": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-ba-sr-001-q1, gam-ba-sr-001-q2, gam-ba-sr-001-q4, gam-ba-sr-001-q5. Laying every unit figure in the pack side by side (620, 880, 900, 950, 1,520, 1,700, 1,800) shows a consistent multiple-of-300 pattern: q2's boundary sits right at 900, q5's 1,800 is a clean multiple of 300, q1's 950 sits just above 900, and q4's 620 sits just above 600 — all consistent with band edges at 300/600/900/1,200/1,500/1,800. Under that reconstructed spacing, buyer 1's 1,520 (just above the 1,500 edge) drops to 1,480 (below it) after returning 40 units, while buyer 2's 1,700 drops only to 1,660, staying inside the same 1,500-1,799 band. That arithmetic, built entirely from sibling numbers, directly resolves the mechanic q3 asks about and points decisively at option (c)."
-          }
-        ],
-        "gam-ba-sr-001-q4": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "recognition-not-transfer",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ba-sr-001-q1, gam-ba-sr-001-q3. q1 ('purchases ... come to 950 units') and q3 ('credited with a rebate ... on a year's total of 1,520 units') both establish that band membership in this scheme is counted in physical units, not purchase value. That decisively rules out option (c) ('does not count towards the band'), since a price cut on one order doesn't change how many units were bought. It doesn't settle the a/b/d contest over what the rebate is computed on."
-          }
-        ],
-        "gam-ba-sr-001-q5": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "specific-concern",
-            "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ba-sr-001-q2, gam-ba-sr-001-q3. q2 and q3 together establish (see their own leakDetail entries) that this is an all-units/retroactive scheme with fixed calendar-year bands roughly 300 units wide. Under a retroactive scheme, concentrating volume in one year yields a strictly bigger blended rate than splitting, which reinforces (rather than creates) the standalone lean toward option (a)."
-          }
-        ]
-      }
-    },
-    {
-      "id": "gam-computational-sciences-operation-counts-001",
+      "id": "gam-computational-sciences-cache-policy-001",
       "domain": "computational-sciences",
-      "title": "Comparing the operation counts of catalogue routines",
-      "questions": 7,
-      "contentHash": "1c4ea305e321ace70e4b837935ea7209",
-      "reviewStatus": "automated-pass",
-      "automated": {
-        "errors": 0,
-        "warnings": 1,
-        "leakageErrors": 0,
-        "leakageWarnings": 0
-      },
-      "independent": {
-        "round": "independent-2026-09-04",
-        "raisedIssues": [],
-        "dependency": {
-          "determined": 6,
-          "supported": 1,
-          "independent": 0
-        },
-        "contributesUnderSection510": {
-          "contributesNonGenericElement": true,
-          "whatItContributes": "The stipulated convention (p3) that a 'run once per record' nested composition multiplies by the number of records the outer routine processes, not by the outer routine's own operation count - a distinction that resolves a genuine ambiguity specific to this invented scenario and is what the q7 distractors are built to trap.",
-          "questionsRequiringIt": [
-            "gam-cs-oc-001-q7"
-          ]
-        }
-      },
-      "blockers": [
-        "§5.10: only 1 question(s) require what the pack contributes",
-        "5 question(s) an adjudicator could narrow using a sibling: gam-cs-oc-001-q2, gam-cs-oc-001-q3, gam-cs-oc-001-q5, gam-cs-oc-001-q6, gam-cs-oc-001-q7",
-        "not signed off by a person"
-      ],
-      "decisions": [
-        {
-          "id": "gam-computational-sciences-operation-counts-001::section-5-10",
-          "question": "Spec §5.10 requires the pack to contribute something materially non-generic that more than one question applies. The adjudicator recorded the contribution as “The stipulated convention (p3) that a 'run once per record' nested composition multiplies by the number of records the outer routine processes, not by the outer routine's own operation count - a distinction that resolves a genuine ambiguity specific to this invented scenario and is what the q7 distractors are built to trap.” and found 1 question(s) requiring it. Did the adjudicator identify everything the pack contributes, or does the pack rest on knowledge the candidate already holds?",
-          "evidence": [
-            {
-              "whatTheAdjudicatorCredited": "The stipulated convention (p3) that a 'run once per record' nested composition multiplies by the number of records the outer routine processes, not by the outer routine's own operation count - a distinction that resolves a genuine ambiguity specific to this invented scenario and is what the q7 distractors are built to trap.",
-              "questionsRequiringIt": [
-                "gam-cs-oc-001-q7"
-              ]
-            },
-            {
-              "note": "§5.10 names \"a rule invented for the pack — a routine's operation count\" as a qualifying contribution in its own table. Whether this pack's invented formulas count is exactly the judgement being asked for, and the author must not settle it."
-            }
-          ],
-          "ifAccepted": "The pack clears §5.10 and needs only sign-off; the round should record the wider contribution.",
-          "ifNotAccepted": "The pack is retired under §5.10, as the break-even pack was."
-        },
-        {
-          "id": "gam-computational-sciences-operation-counts-001::narrowing-couplings",
-          "question": "5 question(s) can be narrowed — not settled — using a sibling: gam-cs-oc-001-q2, gam-cs-oc-001-q3, gam-cs-oc-001-q5, gam-cs-oc-001-q6, gam-cs-oc-001-q7. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
-          "evidence": [
-            {
-              "questionId": "gam-cs-oc-001-q2",
-              "leakedBy": [
-                "gam-cs-oc-001-q5",
-                "gam-cs-oc-001-q7"
-              ],
-              "detail": "If SPLIT scales linearly with catalogue size n, then SPLIT(256) ≈ (this answer) × 256/1024, which would allow a test-taker to compute the SCAN(256) residual in q5 by subtraction. Similarly, SPLIT(4096) ≈ (this answer) × 4, and q7 requires 4096 × SPLIT(4096), creating an arithmetic link."
-            },
-            {
-              "questionId": "gam-cs-oc-001-q3",
-              "leakedBy": [
-                "gam-cs-oc-001-q6"
-              ],
-              "detail": "If a test-taker determines that SPLIT > SCAN at exactly one size (or at none, or at multiple), this directly constrains q6's answer about what holds across all sizes. For example, if q3's answer is 'at n = 4096 only', then q6 cannot claim a rule holds at every size."
-            },
-            {
-              "questionId": "gam-cs-oc-001-q5",
-              "leakedBy": [
-                "gam-cs-oc-001-q2"
-              ],
-              "detail": "If SPLIT scales linearly, q2's answer constrains SPLIT(256) = (q2 answer) × 256/1024. Subtracting this from the total (q5 options) would reveal SCAN(256), and the options become narrower. For instance, if q2 = 315 (option c), then SPLIT(256) ≈ 79, meaning SCAN(256) ≈ option - 79. This creates a strong narrowing leak."
-            },
-            {
-              "questionId": "gam-cs-oc-001-q6",
-              "leakedBy": [
-                "gam-cs-oc-001-q3"
-              ],
-              "detail": "If q3 determines that SPLIT > SCAN at exactly one size, this rules out q6 option d ('at none of the three sizes'). Conversely, if q3 says SPLIT > SCAN at multiple sizes, this affects which routing statement in q6 is universally true."
-            },
-            {
-              "questionId": "gam-cs-oc-001-q7",
-              "leakedBy": [
-                "gam-cs-oc-001-q2"
-              ],
-              "detail": "If SPLIT scales predictably (e.g., linearly) with catalogue size, q2's answer for SPLIT(1024) allows estimation of SPLIT(4096) ≈ (q2 answer) × 4. Then total ≈ 4096 × (q2 answer × 4) ≈ 16384 × (q2 answer). For q2 option c (315), this gives ~5.2M, close to q7 option c. This arithmetic link is a narrowing leak."
-            }
-          ],
-          "ifAccepted": "The findings are recorded as accepted and stop blocking.",
-          "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
-        },
-        {
-          "id": "gam-computational-sciences-operation-counts-001::sign-off",
-          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
-          "evidence": [
-            {
-              "contentHash": "1c4ea305e321ace70e4b837935ea7209",
-              "questions": 7
-            },
-            {
-              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
-            }
-          ],
-          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
-          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
-        }
-      ],
-      "flaggedQuestions": {
-        "gam-cs-oc-001-q1": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "recognition-not-transfer",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
-          }
-        ],
-        "gam-cs-oc-001-q2": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q5, gam-cs-oc-001-q7. If SPLIT scales linearly with catalogue size n, then SPLIT(256) ≈ (this answer) × 256/1024, which would allow a test-taker to compute the SCAN(256) residual in q5 by subtraction. Similarly, SPLIT(4096) ≈ (this answer) × 4, and q7 requires 4096 × SPLIT(4096), creating an arithmetic link."
-          }
-        ],
-        "gam-cs-oc-001-q3": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q6. If a test-taker determines that SPLIT > SCAN at exactly one size (or at none, or at multiple), this directly constrains q6's answer about what holds across all sizes. For example, if q3's answer is 'at n = 4096 only', then q6 cannot claim a rule holds at every size."
-          }
-        ],
-        "gam-cs-oc-001-q4": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          }
-        ],
-        "gam-cs-oc-001-q5": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q2. If SPLIT scales linearly, q2's answer constrains SPLIT(256) = (q2 answer) × 256/1024. Subtracting this from the total (q5 options) would reveal SCAN(256), and the options become narrower. For instance, if q2 = 315 (option c), then SPLIT(256) ≈ 79, meaning SCAN(256) ≈ option - 79. This creates a strong narrowing leak."
-          }
-        ],
-        "gam-cs-oc-001-q6": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q3. If q3 determines that SPLIT > SCAN at exactly one size, this rules out q6 option d ('at none of the three sizes'). Conversely, if q3 says SPLIT > SCAN at multiple sizes, this affects which routing statement in q6 is universally true."
-          }
-        ],
-        "gam-cs-oc-001-q7": [
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-oc-001-q2. If SPLIT scales predictably (e.g., linearly) with catalogue size, q2's answer for SPLIT(1024) allows estimation of SPLIT(4096) ≈ (q2 answer) × 4. Then total ≈ 4096 × (q2 answer × 4) ≈ 16384 × (q2 answer). For q2 option c (315), this gives ~5.2M, close to q7 option c. This arithmetic link is a narrowing leak."
-          }
-        ]
-      }
-    },
-    {
-      "id": "gam-engineering-thermal-resistance-001",
-      "domain": "engineering",
-      "title": "Heat flow through layered building walls",
-      "questions": 6,
-      "contentHash": "5c114d85ad8d1c5dec3415c23cb78500",
+      "title": "A cache and its replacement policy",
+      "questions": 3,
+      "contentHash": "c3e1b95dfd642d1db2241298326bd462",
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
@@ -436,92 +121,65 @@
         "leakageWarnings": 0
       },
       "independent": {
-        "round": "independent-2026-09-04",
-        "raisedIssues": [
-          "gam-eng-tr-001-q3: an independent adjudicator found it settled by gam-eng-tr-001-q4, gam-eng-tr-001-q6 (spec §5.9)",
-          "gam-eng-tr-001-q4: an independent adjudicator found it settled by gam-eng-tr-001-q3 (spec §5.9)",
-          "gam-eng-tr-001-q6: an independent adjudicator found it settled by gam-eng-tr-001-q3 (spec §5.9)"
-        ],
+        "round": "independent-2026-09-09-r3",
+        "raisedIssues": [],
         "dependency": {
           "determined": 2,
-          "supported": 4,
+          "supported": 1,
           "independent": 0
         },
         "contributesUnderSection510": {
-          "contributesNonGenericElement": true,
-          "whatItContributes": "The specific adequacy guidance (p4: U-value must not exceed 0.28 W/m2K) that this text stipulates for judging a wall's compliance - a threshold and choice of quantity (U rather than Q or R) that cannot be derived from thermal physics alone.",
-          "questionsRequiringIt": [
-            "gam-eng-tr-001-q1",
-            "gam-eng-tr-001-q5",
-            "gam-eng-tr-001-q6"
-          ]
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 and p2 supply the hit/miss definitions, the full-cache eviction requirement and the eviction rule including the decisive clause that a hit re-counts as an asking - without that clause Q1's answer flips from Q to P, so the source is genuinely load-bearing there. t1 supplies the four measured hit rates Q3 reads off, and p3 supplies the caveat Q4 restates that hit rates describe a cache-plus-traffic pairing rather than ranking the caches."
         }
       },
       "blockers": [
-        "independent adjudication raised 3 issue(s)",
-        "2 question(s) an adjudicator could narrow using a sibling: gam-eng-tr-001-q2, gam-eng-tr-001-q5",
+        "1 question(s) an adjudicator could narrow using a sibling: gam-cs-cp-001-q4",
         "not signed off by a person"
       ],
       "decisions": [
         {
-          "id": "gam-engineering-thermal-resistance-001::decisive-coupling",
-          "question": "An adjudicator shown these questions with no source at all judged 3 of them settled by a sibling: gam-eng-tr-001-q3, gam-eng-tr-001-q4, gam-eng-tr-001-q6. Is that judgement right, and if it is, does the pack need rebuilding?",
+          "id": "gam-computational-sciences-cache-policy-001::section-5-10",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 2 that ask only for recall. Are those judgements right?",
           "evidence": [
             {
-              "questionId": "gam-eng-tr-001-q3",
-              "leakedBy": [
-                "gam-eng-tr-001-q4",
-                "gam-eng-tr-001-q6"
-              ],
-              "detail": "If q3 answer is B (insulation dominates), then q4's question 'By what factor does heat flow change if brick thickness doubles?' becomes nearly deterministic: Q' / Q = R_total / (2×R_brick + R_insulation) ≈ R_total / R_total ≈ 1 (option a, unchanged). Similarly, q6 asks which change reduces U-value to compliance; if insulation dominates, adding more insulation (option c) is the only effective answer."
+              "noContribution": []
             },
             {
-              "questionId": "gam-eng-tr-001-q4",
-              "leakedBy": [
-                "gam-eng-tr-001-q3"
-              ],
-              "detail": "q3 establishes that insulation contributes much more resistance than brick. If this answer is accepted, then q4 becomes nearly solved: doubling brick barely changes the total when insulation dominates. The answer is option a, making this a decisive leak from q3."
+              "recallOnly": [
+                "gam-cs-cp-001-q3",
+                "gam-cs-cp-001-q4"
+              ]
             },
             {
-              "questionId": "gam-eng-tr-001-q6",
-              "leakedBy": [
-                "gam-eng-tr-001-q3"
-              ],
-              "detail": "q3 establishes that insulation controls thermal resistance. Therefore, the change that most effectively reduces U-value (increases R) is adding insulation. q3's answer makes q6 option c nearly forced. This is a decisive leak."
+              "note": "The rule was corrected on 5 September 2026: a standard relationship applied to source-supplied values passes, because that is what official Exercise 3 does. Only a question whose answer is unchanged with the source removed entirely fails."
             }
           ],
-          "ifAccepted": "The pack clears its last automated blocker and needs only sign-off.",
-          "ifNotAccepted": "The coupled questions must be rebuilt, which retires this round and requires a fresh one."
+          "ifAccepted": "The pack clears §5.10 and needs only sign-off.",
+          "ifNotAccepted": "The named questions are rebuilt or retired."
         },
         {
-          "id": "gam-engineering-thermal-resistance-001::narrowing-couplings",
-          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-eng-tr-001-q2, gam-eng-tr-001-q5. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "id": "gam-computational-sciences-cache-policy-001::narrowing-couplings",
+          "question": "1 question(s) can be narrowed — not settled — using a sibling: gam-cs-cp-001-q4. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
           "evidence": [
             {
-              "questionId": "gam-eng-tr-001-q2",
+              "questionId": "gam-cs-cp-001-q4",
               "leakedBy": [
-                "gam-eng-tr-001-q5"
+                "gam-cs-cp-001-q3"
               ],
-              "detail": "If Q is known and ΔT is constant (or recoverable from context), then R_total = ΔT / Q. This constrains whether the wall's U-value = 1/R_total meets guidance. A test-taker could use q2's numerical answer to refine their assessment in q5."
-            },
-            {
-              "questionId": "gam-eng-tr-001-q5",
-              "leakedBy": [
-                "gam-eng-tr-001-q2"
-              ],
-              "detail": "If q2 gives Q and ΔT is known, then R_total = ΔT/Q, and U = 1/R_total. This directly determines whether the wall meets guidance, assuming the guidance U-value threshold is constant across questions or can be inferred."
+              "detail": "DOCTRINAL COUPLING succeeds in the stem-presupposition direction, and it is the one real coupling in this pack. q3's stem asks the reader to identify which cache 'met the smallest share of its requests without going to the slow store' — an ordinary comparative read across the table's rows, which the pack evidently treats as a legitimate and answerable question. That presupposition directly undercuts two of this item's four options. Option c claims the figures 'cannot be compared because the caches hold different numbers of records'; if that were the text's position, q3 would be asking the reader to perform a comparison the same source declares impossible. Option d claims a single day's hit rate is 'too short a period to be used at all'; that likewise would void the read q3 requires. Both are therefore improbable as the intended answer, narrowing this item from four options to a and b before any domain reasoning is applied. From there a falls to ordinary knowledge, leaving b. The narrowing is real but not decisive on its own, and it is redundant here because I reach b with high confidence from domain knowledge alone — so it inflates a solver's odds on this item without being the reason a competent solver gets it right. The remaining patterns fail: NUMERIC RECONSTRUCTION has no numbers to work with; SCALE DISCLOSURE is inapplicable, since q3's options are row labels with no magnitudes and cannot calibrate anything here; SHARED PARAMETER holds between this item and q3 (both read the same four-design table) but is inherent to a pack built on one source rather than a leak; CONVENTION AS CONSTANT fails, since no eviction policy figures in this item; ANSWER-AS-DISTRACTOR fails, since no sibling's correct answer appears among these options. q1 contributes nothing in either direction — I checked whether its 'a cache holds three records' could inform option c's claim about differing record counts and it cannot, as q1's cache is a separate hypothetical."
             }
           ],
           "ifAccepted": "The findings are recorded as accepted and stop blocking.",
           "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
         },
         {
-          "id": "gam-engineering-thermal-resistance-001::sign-off",
+          "id": "gam-computational-sciences-cache-policy-001::sign-off",
           "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
           "evidence": [
             {
-              "contentHash": "5c114d85ad8d1c5dec3415c23cb78500",
-              "questions": 6
+              "contentHash": "c3e1b95dfd642d1db2241298326bd462",
+              "questions": 3
             },
             {
               "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
@@ -532,40 +190,33 @@
         }
       ],
       "flaggedQuestions": {
-        "gam-eng-tr-001-q1": [
+        "gam-cs-cp-001-q3": [
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          }
+        ],
+        "gam-cs-cp-001-q4": [
           {
             "flag": "source-supported",
             "severity": "review",
             "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
           },
           {
-            "flag": "specific-concern",
+            "flag": "recall-only",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
-          }
-        ],
-        "gam-eng-tr-001-q2": [
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
           },
           {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-eng-tr-001-q5. If Q is known and ΔT is constant (or recoverable from context), then R_total = ΔT / Q. This constrains whether the wall's U-value = 1/R_total meets guidance. A test-taker could use q2's numerical answer to refine their assessment in q5."
-          }
-        ],
-        "gam-eng-tr-001-q3": [
-          {
-            "flag": "source-supported",
+            "flag": "recognition-not-transfer",
             "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
           },
           {
             "flag": "specific-concern",
@@ -575,115 +226,87 @@
           {
             "flag": "cross-question-leakage",
             "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q4, gam-eng-tr-001-q6. If q3 answer is B (insulation dominates), then q4's question 'By what factor does heat flow change if brick thickness doubles?' becomes nearly deterministic: Q' / Q = R_total / (2×R_brick + R_insulation) ≈ R_total / R_total ≈ 1 (option a, unchanged). Similarly, q6 asks which change reduces U-value to compliance; if insulation dominates, adding more insulation (option c) is the only effective answer."
-          }
-        ],
-        "gam-eng-tr-001-q4": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "data-dependence-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q3. q3 establishes that insulation contributes much more resistance than brick. If this answer is accepted, then q4 becomes nearly solved: doubling brick barely changes the total when insulation dominates. The answer is option a, making this a decisive leak from q3."
-          }
-        ],
-        "gam-eng-tr-001-q5": [
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-eng-tr-001-q2. If q2 gives Q and ΔT is known, then R_total = ΔT/Q, and U = 1/R_total. This directly determines whether the wall meets guidance, assuming the guidance U-value threshold is constant across questions or can be inferred."
-          }
-        ],
-        "gam-eng-tr-001-q6": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-eng-tr-001-q3. q3 establishes that insulation controls thermal resistance. Therefore, the change that most effectively reduces U-value (increases R) is adding insulation. q3's answer makes q6 option c nearly forced. This is a decisive leak."
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-cp-001-q3. DOCTRINAL COUPLING succeeds in the stem-presupposition direction, and it is the one real coupling in this pack. q3's stem asks the reader to identify which cache 'met the smallest share of its requests without going to the slow store' — an ordinary comparative read across the table's rows, which the pack evidently treats as a legitimate and answerable question. That presupposition directly undercuts two of this item's four options. Option c claims the figures 'cannot be compared because the caches hold different numbers of records'; if that were the text's position, q3 would be asking the reader to perform a comparison the same source declares impossible. Option d claims a single day's hit rate is 'too short a period to be used at all'; that likewise would void the read q3 requires. Both are therefore improbable as the intended answer, narrowing this item from four options to a and b before any domain reasoning is applied. From there a falls to ordinary knowledge, leaving b. The narrowing is real but not decisive on its own, and it is redundant here because I reach b with high confidence from domain knowledge alone — so it inflates a solver's odds on this item without being the reason a competent solver gets it right. The remaining patterns fail: NUMERIC RECONSTRUCTION has no numbers to work with; SCALE DISCLOSURE is inapplicable, since q3's options are row labels with no magnitudes and cannot calibrate anything here; SHARED PARAMETER holds between this item and q3 (both read the same four-design table) but is inherent to a pack built on one source rather than a leak; CONVENTION AS CONSTANT fails, since no eviction policy figures in this item; ANSWER-AS-DISTRACTOR fails, since no sibling's correct answer appears among these options. q1 contributes nothing in either direction — I checked whether its 'a cache holds three records' could inform option c's claim about differing record counts and it cannot, as q1's cache is a separate hypothetical."
           }
         ]
       }
     },
     {
-      "id": "gam-humanities-source-checks-001",
-      "domain": "humanities",
-      "title": "Three checks on a historical document",
-      "questions": 6,
-      "contentHash": "8bc028240f6da60aba5ec403cbc2a738",
+      "id": "gam-economics-port-tariff-001",
+      "domain": "economics",
+      "title": "A port’s tariff for handling cargo",
+      "questions": 4,
+      "contentHash": "975eb7cdcc2bb06f45e4e4120cc67345",
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
-        "warnings": 2,
+        "warnings": 1,
         "leakageErrors": 0,
         "leakageWarnings": 0
       },
       "independent": {
-        "round": "independent-2026-09-04",
+        "round": "independent-2026-09-09",
         "raisedIssues": [],
         "dependency": {
-          "determined": 0,
-          "supported": 6,
+          "determined": 1,
+          "supported": 3,
           "independent": 0
         },
         "contributesUnderSection510": {
-          "contributesNonGenericElement": true,
-          "whatItContributes": "A specific three-part source-evaluation framework (attribution/proximity/interest checks) with precise scope boundaries (e.g. proximity excludes honesty; interest excludes distance; corroboration requires independence, not copy count; a failed check only disqualifies evidence for questions that check governs) that must be applied exactly as defined to classify each scenario correctly.",
-          "questionsRequiringIt": [
-            "gam-hum-sc-001-q1",
-            "gam-hum-sc-001-q2",
-            "gam-hum-sc-001-q3",
-            "gam-hum-sc-001-q4",
-            "gam-hum-sc-001-q5",
-            "gam-hum-sc-001-q6"
-          ]
+          "sourceIsSufficient": true,
+          "whatItContributes": "The table gives per-tonne rates and class minima; p2 sets the minimum as a replacement rather than an addition, p3 forces rounding a part tonne up (which is the whole difference between 481.60 and 484), and p4 exempts transhipped cargo entirely. Nothing in the four questions can be answered without them."
         }
       },
       "blockers": [
-        "2 question(s) an adjudicator could narrow using a sibling: gam-hum-sc-001-q2, gam-hum-sc-001-q4",
+        "1 question(s) an adjudicator could narrow using a sibling: gam-econ-pt-001-q4",
         "not signed off by a person"
       ],
       "decisions": [
         {
-          "id": "gam-humanities-source-checks-001::narrowing-couplings",
-          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-hum-sc-001-q2, gam-hum-sc-001-q4. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "id": "gam-economics-port-tariff-001::section-5-10",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 3 that ask only for recall. Are those judgements right?",
           "evidence": [
             {
-              "questionId": "gam-hum-sc-001-q2",
-              "leakedBy": [
-                "gam-hum-sc-001-q4"
-              ],
-              "detail": "q2 establishes a key principle: failing a source check does not disqualify a document for all purposes. This principle is central to q4, which asks whether a document with wrong attribution is usable for a question that does not turn on who wrote it. The principle demonstrated in q2 directly informs q4's reasoning."
+              "noContribution": []
             },
             {
-              "questionId": "gam-hum-sc-001-q4",
+              "recallOnly": [
+                "gam-econ-pt-001-q2",
+                "gam-econ-pt-001-q3",
+                "gam-econ-pt-001-q4"
+              ]
+            },
+            {
+              "note": "The rule was corrected on 5 September 2026: a standard relationship applied to source-supplied values passes, because that is what official Exercise 3 does. Only a question whose answer is unchanged with the source removed entirely fails."
+            }
+          ],
+          "ifAccepted": "The pack clears §5.10 and needs only sign-off.",
+          "ifNotAccepted": "The named questions are rebuilt or retired."
+        },
+        {
+          "id": "gam-economics-port-tariff-001::narrowing-couplings",
+          "question": "1 question(s) can be narrowed — not settled — using a sibling: gam-econ-pt-001-q4. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "evidence": [
+            {
+              "questionId": "gam-econ-pt-001-q4",
               "leakedBy": [
-                "gam-hum-sc-001-q2"
+                "gam-econ-pt-001-q3",
+                "gam-econ-pt-001-q1",
+                "gam-econ-pt-001-q2"
               ],
-              "detail": "q2 demonstrates that a document failing a check (anachronism/authenticity) does not automatically make it worthless. This exact principle applies to q4: an attribution failure does not disqualify the document for questions independent of authorship. The principle is reinforced across both questions."
+              "detail": "ANSWER-AS-DISTRACTOR. q3's stem establishes that the cargo class fixes the rate per tonne, and q1/q2 show the fee is tonnage x class rate subject to a class minimum. A candidate carrying that in from the siblings knows class sets how much is charged, which is a reason to discount q4's option b as what decides whether anything is charged — a reason obtained without reading the source. It removes the only competitive distractor but does not by itself select a over c or d."
             }
           ],
           "ifAccepted": "The findings are recorded as accepted and stop blocking.",
           "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
         },
         {
-          "id": "gam-humanities-source-checks-001::sign-off",
+          "id": "gam-economics-port-tariff-001::sign-off",
           "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
           "evidence": [
             {
-              "contentHash": "8bc028240f6da60aba5ec403cbc2a738",
-              "questions": 6
+              "contentHash": "975eb7cdcc2bb06f45e4e4120cc67345",
+              "questions": 4
             },
             {
               "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
@@ -694,7 +317,202 @@
         }
       ],
       "flaggedQuestions": {
-        "gam-hum-sc-001-q1": [
+        "gam-econ-pt-001-q2": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ],
+        "gam-econ-pt-001-q3": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "data-dependence-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ],
+        "gam-econ-pt-001-q4": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+          },
+          {
+            "flag": "cross-question-leakage",
+            "severity": "blocking",
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q3, gam-econ-pt-001-q1, gam-econ-pt-001-q2. ANSWER-AS-DISTRACTOR. q3's stem establishes that the cargo class fixes the rate per tonne, and q1/q2 show the fee is tonnage x class rate subject to a class minimum. A candidate carrying that in from the siblings knows class sets how much is charged, which is a reason to discount q4's option b as what decides whether anything is charged — a reason obtained without reading the source. It removes the only competitive distractor but does not by itself select a over c or d."
+          }
+        ]
+      }
+    },
+    {
+      "id": "gam-mathematics-two-stage-inspection-001",
+      "domain": "mathematics",
+      "title": "A two-stage inspection",
+      "questions": 4,
+      "contentHash": "6d86d06bf228502867bef5dec6b9549b",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": "independent-2026-09-09",
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 2,
+          "supported": 2,
+          "independent": 0
+        },
+        "contributesUnderSection510": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 and p2 define the two-stage chain and state that the rejection rate applies to the flagged subset only, which is the arithmetic in q1 and the trap in q4; the table gives the per-line rates; p3 makes the rates volume-invariant (q3) and p4 forbids carrying them across a tooling change (q2)."
+        }
+      },
+      "blockers": [
+        "2 question(s) an adjudicator could narrow using a sibling: gam-math-tsi-001-q2, gam-math-tsi-001-q3",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-mathematics-two-stage-inspection-001::section-5-10",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 2 that ask only for recall. Are those judgements right?",
+          "evidence": [
+            {
+              "noContribution": []
+            },
+            {
+              "recallOnly": [
+                "gam-math-tsi-001-q2",
+                "gam-math-tsi-001-q4"
+              ]
+            },
+            {
+              "note": "The rule was corrected on 5 September 2026: a standard relationship applied to source-supplied values passes, because that is what official Exercise 3 does. Only a question whose answer is unchanged with the source removed entirely fails."
+            }
+          ],
+          "ifAccepted": "The pack clears §5.10 and needs only sign-off.",
+          "ifNotAccepted": "The named questions are rebuilt or retired."
+        },
+        {
+          "id": "gam-mathematics-two-stage-inspection-001::narrowing-couplings",
+          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-math-tsi-001-q2, gam-math-tsi-001-q3. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "evidence": [
+            {
+              "questionId": "gam-math-tsi-001-q2",
+              "leakedBy": [
+                "gam-math-tsi-001-q3"
+              ],
+              "detail": "DOCTRINAL COUPLING. q3's correct answer is that a rate is unchanged when only volume changes — the pack's posture that rates are properties of the process, independent of scale. Carrying that posture across kills q2's option d ('adjusted in proportion to the change in output'), which is the same scaling error q3's option b commits. One distractor falls without the source; the remaining choice among a, b and c still needs the text."
+            },
+            {
+              "questionId": "gam-math-tsi-001-q3",
+              "leakedBy": [
+                "gam-math-tsi-001-q2"
+              ],
+              "detail": "The converse of the coupling on q2: q2 asks what must happen when the process itself changes, and its option set treats re-measurement as the live issue, which signals that the pack holds rates constant under volume and revisable only under process change. That reinforces a and undercuts b and c here. The item is independently determinable, so this is reinforcement rather than a decision."
+            }
+          ],
+          "ifAccepted": "The findings are recorded as accepted and stop blocking.",
+          "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
+        },
+        {
+          "id": "gam-mathematics-two-stage-inspection-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "6d86d06bf228502867bef5dec6b9549b",
+              "questions": 4
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {
+        "gam-math-tsi-001-q2": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+          },
+          {
+            "flag": "cross-question-leakage",
+            "severity": "blocking",
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-tsi-001-q3. DOCTRINAL COUPLING. q3's correct answer is that a rate is unchanged when only volume changes — the pack's posture that rates are properties of the process, independent of scale. Carrying that posture across kills q2's option d ('adjusted in proportion to the change in output'), which is the same scaling error q3's option b commits. One distractor falls without the source; the remaining choice among a, b and c still needs the text."
+          }
+        ],
+        "gam-math-tsi-001-q3": [
           {
             "flag": "source-supported",
             "severity": "review",
@@ -709,26 +527,113 @@
             "flag": "specific-concern",
             "severity": "review",
             "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-          }
-        ],
-        "gam-hum-sc-001-q2": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "specific-concern",
-            "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
           },
           {
             "flag": "cross-question-leakage",
             "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-hum-sc-001-q4. q2 establishes a key principle: failing a source check does not disqualify a document for all purposes. This principle is central to q4, which asks whether a document with wrong attribution is usable for a question that does not turn on who wrote it. The principle demonstrated in q2 directly informs q4's reasoning."
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-tsi-001-q2. The converse of the coupling on q2: q2 asks what must happen when the process itself changes, and its option set treats re-measurement as the live issue, which signals that the pack holds rates constant under volume and revisable only under process change. That reinforces a and undercuts b and c here. The item is independently determinable, so this is reinforcement rather than a decision."
           }
         ],
-        "gam-hum-sc-001-q3": [
+        "gam-math-tsi-001-q4": [
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          }
+        ]
+      }
+    },
+    {
+      "id": "gam-natural-sciences-lake-oxygen-001",
+      "domain": "natural-sciences",
+      "title": "Oxygen in a lake, by depth and season",
+      "questions": 4,
+      "contentHash": "c48602e977de48a4e7124c6c12d3f062",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": "independent-2026-09-09",
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 0,
+          "supported": 4,
+          "independent": 0
+        },
+        "contributesUnderSection510": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "Figure 1 supplies the summer and winter oxygen-by-depth readings, p3 supplies the 5 mg/l trout threshold that turns those readings into an answer, p1 defines the thermocline, p2 explains winter turnover, and p4 supplies the dawn-versus-midday caveat. Every question depends on one of these."
+        }
+      },
+      "blockers": [
+        "1 question(s) an adjudicator could narrow using a sibling: gam-ns-lox-001-q1",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-natural-sciences-lake-oxygen-001::section-5-10",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 3 that ask only for recall. Are those judgements right?",
+          "evidence": [
+            {
+              "noContribution": []
+            },
+            {
+              "recallOnly": [
+                "gam-ns-lox-001-q2",
+                "gam-ns-lox-001-q3",
+                "gam-ns-lox-001-q4"
+              ]
+            },
+            {
+              "note": "The rule was corrected on 5 September 2026: a standard relationship applied to source-supplied values passes, because that is what official Exercise 3 does. Only a question whose answer is unchanged with the source removed entirely fails."
+            }
+          ],
+          "ifAccepted": "The pack clears §5.10 and needs only sign-off.",
+          "ifNotAccepted": "The named questions are rebuilt or retired."
+        },
+        {
+          "id": "gam-natural-sciences-lake-oxygen-001::narrowing-couplings",
+          "question": "1 question(s) can be narrowed — not settled — using a sibling: gam-ns-lox-001-q1. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "evidence": [
+            {
+              "questionId": "gam-ns-lox-001-q1",
+              "leakedBy": [
+                "gam-ns-lox-001-q2",
+                "gam-ns-lox-001-q3"
+              ],
+              "detail": "DOCTRINAL COUPLING. q3's stem asserts that oxygen is close to the same at every depth in winter, which presupposes that in summer it is not — and q2 establishes the thermocline as a sharp stratifying band. Together they make a summer depth gradient certain from the siblings alone, which argues strongly against q1's option d ('none of the depths shown') and points the answer to the deepest depth. Not decisive: a gradient need not cross the trout threshold anywhere."
+            }
+          ],
+          "ifAccepted": "The findings are recorded as accepted and stop blocking.",
+          "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
+        },
+        {
+          "id": "gam-natural-sciences-lake-oxygen-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "c48602e977de48a4e7124c6c12d3f062",
+              "questions": 4
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {
+        "gam-ns-lox-001-q1": [
           {
             "flag": "source-supported",
             "severity": "review",
@@ -737,48 +642,260 @@
           {
             "flag": "specific-concern",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+          },
+          {
+            "flag": "cross-question-leakage",
+            "severity": "blocking",
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-lox-001-q2, gam-ns-lox-001-q3. DOCTRINAL COUPLING. q3's stem asserts that oxygen is close to the same at every depth in winter, which presupposes that in summer it is not — and q2 establishes the thermocline as a sharp stratifying band. Together they make a summer depth gradient certain from the siblings alone, which argues strongly against q1's option d ('none of the depths shown') and points the answer to the deepest depth. Not decisive: a gradient need not cross the trout threshold anywhere."
           }
         ],
-        "gam-hum-sc-001-q4": [
+        "gam-ns-lox-001-q2": [
           {
             "flag": "source-supported",
             "severity": "review",
             "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ],
+        "gam-ns-lox-001-q3": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
           },
           {
             "flag": "specific-concern",
             "severity": "review",
             "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ],
+        "gam-ns-lox-001-q4": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ]
+      }
+    },
+    {
+      "id": "gam-social-sciences-coding-agreement-001",
+      "domain": "social-sciences",
+      "title": "Coding open answers, and checking the coders",
+      "questions": 4,
+      "contentHash": "a9f552c6cc6cbb03013b6f9b4cca174b",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": "independent-2026-09-09",
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 1,
+          "supported": 3,
+          "independent": 0
+        },
+        "contributesUnderSection510": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 defines double-coding and the agreement rate, the table gives four pairs on an equal base of 300 answers, p2 gives the earliest-category-plus-contested tie-break rule, p3 states what the rate does and does not measure, and p4 names independence as the one condition the procedure rests on."
+        }
+      },
+      "blockers": [
+        "2 question(s) an adjudicator could narrow using a sibling: gam-ss-ca-001-q3, gam-ss-ca-001-q4",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-social-sciences-coding-agreement-001::section-5-10",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 3 that ask only for recall. Are those judgements right?",
+          "evidence": [
+            {
+              "noContribution": []
+            },
+            {
+              "recallOnly": [
+                "gam-ss-ca-001-q1",
+                "gam-ss-ca-001-q3",
+                "gam-ss-ca-001-q4"
+              ]
+            },
+            {
+              "note": "The rule was corrected on 5 September 2026: a standard relationship applied to source-supplied values passes, because that is what official Exercise 3 does. Only a question whose answer is unchanged with the source removed entirely fails."
+            }
+          ],
+          "ifAccepted": "The pack clears §5.10 and needs only sign-off.",
+          "ifNotAccepted": "The named questions are rebuilt or retired."
+        },
+        {
+          "id": "gam-social-sciences-coding-agreement-001::narrowing-couplings",
+          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-ss-ca-001-q3, gam-ss-ca-001-q4. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "evidence": [
+            {
+              "questionId": "gam-ss-ca-001-q3",
+              "leakedBy": [
+                "gam-ss-ca-001-q4"
+              ],
+              "detail": "DOCTRINAL COUPLING. Every option q4 offers as the condition for a figure to count as an agreement rate is procedural — independence, equal double-coding, an unrevised frame, exclusions — which tells a candidate the statistic is a coder-level, procedural one. That argues against q3's a and d, which are validity claims, without any recourse to the source. The item is independently answerable, so the coupling reinforces rather than decides."
+            },
+            {
+              "questionId": "gam-ss-ca-001-q4",
+              "leakedBy": [
+                "gam-ss-ca-001-q3",
+                "gam-ss-ca-001-q2"
+              ],
+              "detail": "Two coupled routes. From q3: if the rate measures whether two coders read the frame the same way, independence is the condition that makes that reading possible, so q3's answer supports a. From q2: q2's answer has contested answers marked and still coded, which undercuts d ('contested answers were excluded before the rate was worked out'). Both are reasons available from siblings rather than from the source, and together they leave a against two weak procedural rivals."
+            }
+          ],
+          "ifAccepted": "The findings are recorded as accepted and stop blocking.",
+          "ifNotAccepted": "The affected questions are rebuilt, which retires this round."
+        },
+        {
+          "id": "gam-social-sciences-coding-agreement-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "a9f552c6cc6cbb03013b6f9b4cca174b",
+              "questions": 4
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {
+        "gam-ss-ca-001-q1": [
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "data-dependence-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          }
+        ],
+        "gam-ss-ca-001-q2": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+          }
+        ],
+        "gam-ss-ca-001-q3": [
+          {
+            "flag": "source-supported",
+            "severity": "review",
+            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+          },
+          {
+            "flag": "recall-only",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
+          {
+            "flag": "recognition-not-transfer",
+            "severity": "review",
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+          },
+          {
+            "flag": "specific-concern",
+            "severity": "review",
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
           },
           {
             "flag": "cross-question-leakage",
             "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-hum-sc-001-q2. q2 demonstrates that a document failing a check (anachronism/authenticity) does not automatically make it worthless. This exact principle applies to q4: an attribution failure does not disqualify the document for questions independent of authorship. The principle is reinforced across both questions."
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-ca-001-q4. DOCTRINAL COUPLING. Every option q4 offers as the condition for a figure to count as an agreement rate is procedural — independence, equal double-coding, an unrevised frame, exclusions — which tells a candidate the statistic is a coder-level, procedural one. That argues against q3's a and d, which are validity claims, without any recourse to the source. The item is independently answerable, so the coupling reinforces rather than decides."
           }
         ],
-        "gam-hum-sc-001-q5": [
+        "gam-ss-ca-001-q4": [
           {
             "flag": "source-supported",
             "severity": "review",
             "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
           },
           {
-            "flag": "specific-concern",
+            "flag": "recall-only",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
-          }
-        ],
-        "gam-hum-sc-001-q6": [
+            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
+          },
           {
-            "flag": "source-supported",
+            "flag": "recognition-not-transfer",
             "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
           },
           {
             "flag": "specific-concern",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+          },
+          {
+            "flag": "cross-question-leakage",
+            "severity": "blocking",
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-ca-001-q3, gam-ss-ca-001-q2. Two coupled routes. From q3: if the rate measures whether two coders read the frame the same way, independence is the condition that makes that reading possible, so q3's answer supports a. From q2: q2's answer has contested answers marked and still coded, which undercuts d ('contested answers were excluded before the rate was worked out'). Both are reasons available from siblings rather than from the source, and together they leave a against two weak procedural rivals."
           }
         ]
       }

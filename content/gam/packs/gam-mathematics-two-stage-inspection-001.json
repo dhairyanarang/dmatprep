@@ -1,0 +1,391 @@
+{
+  "pack": {
+    "id": "gam-mathematics-two-stage-inspection-001",
+    "domain": "mathematics",
+    "title": "A two-stage inspection",
+    "defines": [
+      "flag rate",
+      "rejection rate",
+      "two-stage inspection"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "A two-stage inspection"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "Every item made on a line goes through a first inspection, and a proportion of items is flagged there for a closer look. This proportion is the line’s flag rate. Only flagged items go on to the second inspection, where some are rejected and the rest are returned to stock. The share of all the line’s items that end up rejected is therefore the flag rate applied first and the rejection rate applied to what it leaves."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "The rejection rate is quoted as a proportion of the items that reach the second inspection, and not as a proportion of everything the line makes. A line with a high rejection rate may reject very few items overall if it flags almost nothing at the first inspection, and this is the commonest misreading of the table below."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Flag and rejection rates for four production lines.",
+        "columns": [
+          "Line",
+          "Flag rate",
+          "Rejection rate"
+        ],
+        "rows": [
+          [
+            "Line A",
+            "12 per cent",
+            "25 per cent"
+          ],
+          [
+            "Line B",
+            "8 per cent",
+            "15 per cent"
+          ],
+          [
+            "Line C",
+            "20 per cent",
+            "5 per cent"
+          ],
+          [
+            "Line D",
+            "5 per cent",
+            "40 per cent"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "Both rates are properties of the line as it is currently set up. Neither moves with the number of items put through it, so a line that runs for longer rejects more items but does not reject a larger share of them."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "The rates in the table were measured on the tooling in use at the time. A change of tooling alters what the first inspection catches, and the figures must then be measured again rather than adjusted or carried across."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "production-candidate-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+    },
+    "contentHash": "6d86d06bf228502867bef5dec6b9549b"
+  },
+  "questions": [
+    {
+      "stem": "Line B runs 5,000 items. How many of them are rejected at the second inspection?",
+      "options": [
+        {
+          "id": "a",
+          "text": "6"
+        },
+        {
+          "id": "b",
+          "text": "60"
+        },
+        {
+          "id": "c",
+          "text": "400"
+        },
+        {
+          "id": "d",
+          "text": "750"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "t1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "Line B"
+        },
+        {
+          "blockId": "p1",
+          "quote": "the flag rate applied first and the rejection rate applied to what it leaves"
+        }
+      ],
+      "explanation": "Only flagged items reach the second inspection, so the two rates are applied one after the other rather than either being applied to the whole run. Line B flags eight items in every hundred, which out of 5,000 is 400 items; of those 400, fifteen in every hundred are rejected.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "arithmetic-slip",
+          "reason": "This is the right calculation with a decimal place lost. Both rates are percentages, so each division by a hundred has to be carried through, and only one has been."
+        },
+        "c": {
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the number of items Line B sends to the second inspection, not the number it rejects there. Most flagged items are returned to stock."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "This applies the rejection rate to the whole run. The text is explicit that the rate is quoted against the items reaching the second inspection, which is a small part of what the line makes."
+        }
+      },
+      "computation": {
+        "expression": "5000 * 0.08 * 0.15",
+        "expected": 60,
+        "unit": "items"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Work out how many of the 5,000 items reach the second inspection before doing anything else."
+        },
+        {
+          "level": 2,
+          "text": "The second rate is not applied to everything the line makes — find the sentence that says what it is applied to."
+        },
+        {
+          "level": 3,
+          "text": "Take the flagged items you have just counted, and apply the second rate to that number alone."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-math-tsi-001-q1",
+      "packId": "gam-mathematics-two-stage-inspection-001"
+    },
+    {
+      "stem": "Line D is fitted with new tooling. According to the text, what must be done with the figures Table 1 gives for it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "They must be measured again."
+        },
+        {
+          "id": "b",
+          "text": "They may be carried across unchanged, since it is the same line."
+        },
+        {
+          "id": "c",
+          "text": "Only the rejection rate need be measured again."
+        },
+        {
+          "id": "d",
+          "text": "They may be adjusted in proportion to the change in output."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p4"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "the figures must then be measured again rather than adjusted or carried across"
+        },
+        {
+          "blockId": "p4",
+          "quote": "A change of tooling alters what the first inspection catches"
+        }
+      ],
+      "explanation": "The text ties the figures to the tooling they were measured on, and rules out both of the shortcuts a reader might reach for: they are not to be adjusted, and they are not to be carried across. New tooling changes what the first inspection catches, so the measurement has to be made again.",
+      "refutations": {
+        "b": {
+          "blockId": "p4",
+          "family": "contradicts-source",
+          "reason": "The text names carrying the figures across as one of the two things not to do. What was measured belongs to the tooling in use at the time, not to the line in the abstract."
+        },
+        "c": {
+          "blockId": "p4",
+          "family": "right-concept-wrong-scope",
+          "reason": "The text says the tooling alters what the first inspection catches, which changes the group the second inspection then sees. Neither figure survives the change untouched."
+        },
+        "d": {
+          "blockId": "p4",
+          "family": "plausible-but-unstated",
+          "reason": "Adjustment is the other course the text rules out, and output is not what changed in any case. The text offers no factor by which any adjustment could be made."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "One short paragraph deals with what happens when the equipment changes."
+        },
+        {
+          "level": 2,
+          "text": "That paragraph rules out two courses of action by name; find them."
+        },
+        {
+          "level": 3,
+          "text": "Ask whether a change to the first inspection can leave the second inspection’s figure untouched."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-math-tsi-001-q2",
+      "packId": "gam-mathematics-two-stage-inspection-001"
+    },
+    {
+      "stem": "Line A is scheduled to run three times as many items next month, with no other change. According to the text, what happens to the share of its items that are rejected?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It is unchanged."
+        },
+        {
+          "id": "b",
+          "text": "It trebles, along with the number of items."
+        },
+        {
+          "id": "c",
+          "text": "It falls, because the first inspection is spread more thinly."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be said without knowing how many items the line rejected before."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "sensitivity",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "Neither moves with the number of items put through it, so a line that runs for longer rejects more items but does not reject a larger share of them."
+        }
+      ],
+      "explanation": "The question asks about a share, and the text separates that from a count in as many words. Three times the items means three times the rejections, but both grow together, so the proportion they stand in is exactly what it was. Nothing about the line’s set-up has changed.",
+      "refutations": {
+        "b": {
+          "blockId": "p3",
+          "family": "swapped-quantities",
+          "reason": "The number of rejected items does treble. The share is that number set against a run which has trebled as well, so it stays put."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the text makes either rate depend on how hard the inspection is working. Both are described as properties of the line’s set-up."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "A share is a ratio, and it can be stated from the rates alone without any count of past rejections. The text gives both rates as properties of the line’s current set-up."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Notice that the question asks about a share and not about a number of items."
+        },
+        {
+          "level": 2,
+          "text": "The text states directly what does and does not move when a line runs for longer."
+        },
+        {
+          "level": 3,
+          "text": "If both the rejections and the run grow by the same factor, ask what happens to the ratio between them."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-math-tsi-001-q3",
+      "packId": "gam-mathematics-two-stage-inspection-001"
+    },
+    {
+      "stem": "Which line sends the largest share of its items on to the second inspection?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Line A"
+        },
+        {
+          "id": "b",
+          "text": "Line B"
+        },
+        {
+          "id": "c",
+          "text": "Line C"
+        },
+        {
+          "id": "d",
+          "text": "Line D"
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "Only flagged items go on to the second inspection"
+        },
+        {
+          "blockId": "t1",
+          "quote": "Flag rate"
+        }
+      ],
+      "explanation": "What reaches the second inspection is what the first inspection flags, so the question is answered by the flag-rate column alone and the rejection rates play no part in it. Reading down that column, one line flags a larger share than any other.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This line flags a substantial share, and it is the second largest in that column rather than the largest."
+        },
+        "b": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This line flags one of the smaller shares in the table, so relatively little of its output ever reaches the second inspection."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This line has much the highest rejection rate, which is the other column. The rejection rate decides what happens to flagged items, not how many are flagged."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Only one of the two columns has any bearing on this question."
+        },
+        {
+          "level": 2,
+          "text": "Ask what decides whether an item reaches the second inspection at all."
+        },
+        {
+          "level": 3,
+          "text": "Read down the flag-rate column and ignore what happens afterwards."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-math-tsi-001-q4",
+      "packId": "gam-mathematics-two-stage-inspection-001"
+    }
+  ]
+}

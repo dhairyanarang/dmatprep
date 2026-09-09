@@ -1,0 +1,385 @@
+{
+  "pack": {
+    "id": "gam-social-sciences-coding-agreement-001",
+    "domain": "social-sciences",
+    "title": "Coding open answers, and checking the coders",
+    "defines": [
+      "coding frame",
+      "double-coded",
+      "agreement rate"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Coding open answers, and checking the coders"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "Answers written in a respondent’s own words are turned into categories before they can be counted. The list of categories, with a written rule for what belongs in each, is the coding frame. A share of the answers is double-coded, meaning that two coders work on the same answers without seeing each other’s decisions, and the proportion of those answers they place in the same category is the pair’s agreement rate."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Agreement rates for four pairs of coders, on the same set of double-coded answers.",
+        "columns": [
+          "Pair",
+          "Answers double-coded",
+          "Agreement rate"
+        ],
+        "rows": [
+          [
+            "Pair 1",
+            "300",
+            "91 per cent"
+          ],
+          [
+            "Pair 2",
+            "300",
+            "74 per cent"
+          ],
+          [
+            "Pair 3",
+            "300",
+            "88 per cent"
+          ],
+          [
+            "Pair 4",
+            "300",
+            "83 per cent"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "Where an answer could be placed in more than one category, the frame directs the coder to the category named earliest in the list, and to record the answer as contested. Contested answers are counted in the category they were given and are also set aside for the frame to be revised at the end of the round."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "An agreement rate measures whether two coders read the frame the same way. It says nothing about whether the frame captures what the respondents meant: two coders can apply a poorly drawn category with perfect consistency, and their agreement will be as high as if the category were a good one."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "A coder who has seen the other coder’s decisions is no longer coding independently, and the pair’s figure is not an agreement rate at all. The one condition the procedure rests on is that the two work unaware of each other."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "production-candidate-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+    },
+    "contentHash": "a9f552c6cc6cbb03013b6f9b4cca174b"
+  },
+  "questions": [
+    {
+      "stem": "Which pair placed the fewest of their answers in the same category as one another?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Pair 1"
+        },
+        {
+          "id": "b",
+          "text": "Pair 2"
+        },
+        {
+          "id": "c",
+          "text": "Pair 3"
+        },
+        {
+          "id": "d",
+          "text": "Pair 4"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "Agreement rate"
+        },
+        {
+          "blockId": "p1",
+          "quote": "the proportion of those answers they place in the same category is the pair’s agreement rate"
+        }
+      ],
+      "explanation": "Reading the frame differently shows up as disagreement, so the pair wanted is the one with the lowest agreement rate rather than the highest. Every pair coded the same number of answers, so the rates can be set side by side without any adjustment, and one of them sits well below the other three.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "This pair agreed more often than any other, so of the four they read the frame most alike. It is the answer to the opposite question."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This pair is among the closer-agreeing of the four, second only to the highest. Another pair disagreed a great deal more often."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This pair sits in the middle of the four. Its rate is lower than two of the others and clearly higher than the lowest."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Decide first whether reading the frame differently means a high figure or a low one."
+        },
+        {
+          "level": 2,
+          "text": "Every pair coded the same number of answers, so the rates compare directly."
+        },
+        {
+          "level": 3,
+          "text": "Look for the smallest figure in the agreement column, not the largest."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-ss-ca-001-q1",
+      "packId": "gam-social-sciences-coding-agreement-001"
+    },
+    {
+      "stem": "A coder finds an answer that fits two of the frame’s categories equally well. According to the frame, what should the coder do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Leave it uncoded and come back to it once the whole batch has been read."
+        },
+        {
+          "id": "b",
+          "text": "Place it in whichever category holds the fewest answers so far."
+        },
+        {
+          "id": "c",
+          "text": "Use whichever of the two stands earlier in the list, and mark the answer as one in dispute."
+        },
+        {
+          "id": "d",
+          "text": "Place it in both categories, so that neither reading is lost."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "the frame directs the coder to the category named earliest in the list, and to record the answer as contested"
+        }
+      ],
+      "explanation": "The frame gives an arbitrary but definite tie-break — the earlier category — precisely so that two coders meeting the same difficulty resolve it the same way. The second half of the instruction matters as much: marking the answer contested is what lets the difficulty be found again when the frame is revised.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Deferring the answer is not what the frame asks for. It gives a decision rule to be applied when the difficulty arises, precisely so that the answer does not wait."
+        },
+        "b": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Balancing the categories is a rule the frame does not give, and it would make a coder’s decision depend on the order the answers happened to arrive in."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The instruction is to place the answer in one category and flag it. Counting it twice would make the categories add to more than the number of answers."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The frame anticipates this difficulty and gives an instruction with two parts."
+        },
+        {
+          "level": 2,
+          "text": "The tie-break does not depend on the content of the answer at all."
+        },
+        {
+          "level": 3,
+          "text": "Having placed the answer, ask what the coder is told to record about it."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-ca-001-q2",
+      "packId": "gam-social-sciences-coding-agreement-001"
+    },
+    {
+      "stem": "According to the text, what does a pair’s agreement rate measure?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Whether the categories capture what the respondents meant."
+        },
+        {
+          "id": "b",
+          "text": "Whether the two coders read the frame the same way."
+        },
+        {
+          "id": "c",
+          "text": "How many answers were difficult enough to be contested."
+        },
+        {
+          "id": "d",
+          "text": "How closely the coded results match the population being described."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "retrieve",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "An agreement rate measures whether two coders read the frame the same way."
+        },
+        {
+          "blockId": "p3",
+          "quote": "two coders can apply a poorly drawn category with perfect consistency"
+        }
+      ],
+      "explanation": "The figure is about the coders and not about the frame. The text presses the distinction with an example: a badly drawn category applied consistently by both coders produces just as high a rate as a well drawn one, so a high figure cannot be read as evidence that the categories are any good.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "This is the reading the text sets out to block. Consistency between two readers and fidelity to what respondents meant are separate things, and the rate speaks only to the first."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "Contested answers are recorded, but they are a separate count. An answer can be contested by both coders and still placed in the same category by both, which counts as agreement."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the text connects the rate to the population. It is computed entirely within the set of double-coded answers."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text states what the rate measures and then, at more length, what it does not."
+        },
+        {
+          "level": 2,
+          "text": "Ask whose behaviour the figure is computed from."
+        },
+        {
+          "level": 3,
+          "text": "The example about a poorly drawn category is there to rule one of these options out."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-ca-001-q3",
+      "packId": "gam-social-sciences-coding-agreement-001"
+    },
+    {
+      "stem": "According to the text, which single condition must hold for a pair’s figure to be an agreement rate at all?",
+      "options": [
+        {
+          "id": "a",
+          "text": "That the two coders worked unaware of each other’s decisions."
+        },
+        {
+          "id": "b",
+          "text": "That the same number of answers was double-coded for every pair."
+        },
+        {
+          "id": "c",
+          "text": "That the frame was left unrevised until the end of the round."
+        },
+        {
+          "id": "d",
+          "text": "That contested answers were excluded before the rate was worked out."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p4"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "The one condition the procedure rests on is that the two work unaware of each other."
+        },
+        {
+          "blockId": "p4",
+          "quote": "A coder who has seen the other coder’s decisions is no longer coding independently"
+        }
+      ],
+      "explanation": "The text singles this out and says why: once one coder has seen the other’s decisions, the second set of codes is no longer arrived at separately, so what looks like agreement may be nothing more than one coder following the first. The figure then measures nothing about how the frame was read.",
+      "refutations": {
+        "b": {
+          "blockId": "t1",
+          "family": "right-concept-wrong-scope",
+          "reason": "Equal numbers make the four pairs easy to compare with one another. They are not what makes any one of the figures an agreement rate."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Revision at the end of the round is what happens to contested answers. The text attaches no condition about revision to the rate itself."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "Contested answers are counted in the category they were given, so they are inside the coded set rather than removed from it."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text names one condition explicitly and calls it the one the procedure rests on."
+        },
+        {
+          "level": 2,
+          "text": "Ask what would go wrong if one coder could see the other’s work."
+        },
+        {
+          "level": 3,
+          "text": "Separate what makes the four pairs comparable from what makes any single figure meaningful."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ss-ca-001-q4",
+      "packId": "gam-social-sciences-coding-agreement-001"
+    }
+  ]
+}

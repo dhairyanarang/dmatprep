@@ -1,0 +1,604 @@
+{
+  "note": "Adjudication log for the smaller-pack authoring experiment of 8 September 2026. Separate from the deployed pilot's log on purpose: an experiment must not be able to write into the record of content that has shipped.",
+  "schema": "as content/gam/review/adjudications.json",
+  "packAuthors": [
+    "experiment-small-packs-2026-09-08"
+  ],
+  "rounds": [
+    {
+      "id": "independent-2026-09-08",
+      "kind": "independent",
+      "status": "complete",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-08",
+      "scope": "All 16 questions of the four experimental packs — mathematics, natural sciences, economics and social sciences — at four questions each.",
+      "caveat": "Both halves ran on Claude Opus 5, the same reader that judged the deployed pilot on 8 September. That is deliberate: the whole point of the experiment is a comparison, and comparing packs read by adjudicators of different strength would say nothing. Opus is also the pack author's own model, in a fresh context that saw neither the answer key nor any author reasoning — a weaker kind of independence than a different model disagreeing, and the same caveat the pilot carries.",
+      "adjudicatedContent": {
+        "gam-economics-price-index-001": "2fe26313e680c7a783226d10ab3142a3",
+        "gam-mathematics-uncertainty-convention-001": "614d2fb625c14cdb03179809cea88200",
+        "gam-natural-sciences-solubility-001": "1b348e9a4a0ef7c86c8a6e21dc135336",
+        "gam-social-sciences-survey-reach-001": "676a9af694cb2c4fc811554e45159166"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-08",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "questions": {
+        "gam-econ-pi-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "exhibit",
+            "rule"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): fig1 gives the readings 100, 104, 110, 121, 127. Third year = 110, fourth = 121. p2 defines the rate of change as the difference between the two index figures divided by the earlier of the two: (121 - 110) / 110 = 11 / 110 = 0.10 = 10 per cent. The distractors are the classic wrong denominators and misreadings: 11/121 = 9.1 per cent (option a, dividing by the later year), 11 as a bare index-point difference read as a percentage (option c), and 121 - 100 = 21 taken against the base year rather than the previous year (option d). The pack's own rule in p2 is what rules out 9.1 per cent, so it is load-bearing. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence medium) — The four numbers admit essentially one coherent underlying series: an index at 110 rising to 121. Then 10 per cent is the rise, 11 is the point difference misread as a percentage, 9.1 is 11/121 (dividing by the later value), and 21 is the cumulative rise from a base of 100. No other pair of index values generates all four options, so the distractor set reconstructs the figure I was not shown. Recovered from option structure, not from the data.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling carries a number, a base year, or a rate. q2 confirms only that the index kept rising, which every option here already assumes.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pi-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2 states it in terms: 'The index is a level, not a rate... A rate that is smaller this year than last still means that prices rose; it means only that they rose more slowly than before.' Option b is that sentence applied to the newspaper's claim. Option a is the error the paragraph exists to correct. Option c makes the conclusion conditional on the base year, which p2 does not do and which would not rescue a false inference anyway. Option d imports an indeterminacy the text does not assert. Only b survives. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Standard confusion of a falling rate of increase with a falling level. A smaller rise is still a rise, so the level is higher, not lower. Option b is the only one that says so; c and d are hedges that do not bear on the arithmetic of an index that went up.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q3 and q4 both concern the basket, which touches option d in passing, but neither eliminates it or supports b specifically. The item stands on ordinary knowledge alone.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pi-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: on revision 'the new series is linked to the old at the year of the revision and the earlier figures are not recomputed. A comparison that spans a revision is therefore not a like-for-like comparison of one basket.' The researcher's comparison spans a revision, so its two ends price different baskets — option c. Option a states a true fact from p3 (the linking) but draws the conclusion p3 explicitly denies; option b describes a recomputation p3 says does not happen; option d overstates, since the series is linked rather than restarted at base. The only mild tension is that option a quotes real pack content, but p3's 'therefore' resolves it directly. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence medium) — The taught caveat is that a basket revision breaks the like-for-like comparison across the revision point. Confidence is only medium because real statistical practice does chain-link series precisely so long comparisons can be made, which makes option a defensible outside a text that says otherwise; the 'according to the text' framing and the wording of c mark it as the intended reading.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pi-001-q4"
+            ],
+            "ablationLeakDetail": "q4's correct answer establishes the pack's doctrine that the basket is fixed and goes on pricing goods the household has abandoned. A candidate who has settled q4 knows the pack treats basket fixity as a limitation rather than something the methodology repairs, which shifts weight away from a and b ('it is sound...') and toward c. It narrows without settling: the fixed-basket doctrine does not by itself say what happens at a revision.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pi-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p4: 'Because the basket is held fixed, the index does not follow a household that answers a price rise by buying a cheaper substitute... For such a household the index overstates the increase in the cost of living.' Beef-to-chicken is exactly that case, so the index shows a larger increase than the household met, because it goes on pricing the beef that was given up — option b. Option a contradicts 'does not follow'; option c reverses the direction (understates); option d invents an exclusion from the reference group that the text never makes. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Textbook substitution bias: a fixed basket keeps pricing the beef the household stopped buying, so the measured rise exceeds the rise the household actually met. Option c inverts the direction; a denies the fixity; d is a non-sequitur.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pi-001-q3"
+            ],
+            "ablationLeakDetail": "q3's stem states as fact that the basket was revised only 'several years later'. That premise, which is source information smuggled into a sibling stem, contradicts option a here ('it follows the switch'): a basket revised on a multi-year cycle cannot track a household's month-to-month switch from beef to chicken. One option is eliminated with no reference to the source text.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-math-uc-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2 states a worst-case convention: added or subtracted quantities have their absolute uncertainties added, and it closes the loophole explicitly — 'a difference is treated exactly as a sum is'. So 24.0 - 15.0 = 9.0 cm and 0.3 + 0.2 = 0.5 cm, giving 9.0 +/- 0.5 cm. p3 is satisfied: 0.5 is one significant figure and 9.0 is written to the same decimal place. Option c (0.36) is the real-world quadrature result sqrt(0.3^2 + 0.2^2) = 0.3606, which this pack deliberately overrides; option a subtracts the uncertainties, the exact error p2's last sentence forbids; option b averages them. Only d follows the stated convention. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"d\", confidence low) — The answer turns entirely on which convention the source states. Both live conventions are on the option list: 0.5 is the linear sum of absolute uncertainties, 0.36 is the quadrature sum (sqrt(0.09+0.04)). 0.1 (subtracting, because the quantities were subtracted) and 0.25 (averaging) are the error traps. Nothing in the stem picks a convention, so in isolation this is a coin toss between c and d with a mild prior for linear addition at this level.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-uc-001-q2",
+              "gam-math-uc-001-q3"
+            ],
+            "ablationLeakDetail": "Two independent sibling channels settle it. (1) q2 asks for the uncertainty in the area of a rectangle whose sides are each good to 1 per cent, and its options are 0.5, 1, 2 per cent. Quadrature would give 1.4 per cent, which is absent; 2 per cent is the linear sum of relative uncertainties. So the pack's convention is linear addition, which forces 0.5 here and rules out 0.36 — the source's combination rule is recovered from a sibling's option list. (2) q3's correct answer states that the uncertainty is rounded to one significant figure. Under the pack's own stated formatting rule, '± 0.25' and '± 0.36' are not writable results at all, killing b and c for a reason that has nothing to do with the two rods. Between the survivors a and d, a is the transparent subtract-the-uncertainties trap. Answer forced without reading the source.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-math-uc-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): Area is a product of the two sides. p2: 'When two measured quantities are multiplied or divided, their relative uncertainties are added.' Each side is known to 1 per cent, so the area carries 1 + 1 = 2 per cent — option c. (The exact worst case, 1.01^2 = 1.0201, is 2.01 per cent, consistent with 'about 2 per cent'.) Option b applies the addition rule for sums to a product; option a halves rather than adds; option d is wrong because a relative uncertainty is by construction independent of the absolute lengths, which p1's definition makes plain. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence high) — For a product, relative uncertainties combine; under linear addition 1 + 1 = 2 per cent. The option list itself excludes the alternative scheme, since quadrature would give about 1.4 per cent and no such option exists, and d is wrong because a relative uncertainty needs no absolute lengths.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-uc-001-q1"
+            ],
+            "ablationLeakDetail": "The coupling is real but adds little here, since q2 is already settled by its own options. q1's presence of a 0.5 option (the linear sum for a difference) corroborates the linear scheme and so reinforces c; had the pack used quadrature, q1 would have been its natural showcase and 0.36 the answer. The information flow in this pair runs overwhelmingly q2 to q1, not the reverse.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-math-uc-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: 'An uncertainty is quoted to one significant figure, and the measured value is then written to the same decimal place as its uncertainty.' 0.12 rounds to 0.1 (one significant figure, first decimal place), so the length is written to one decimal place: 7.5 m, giving 7.5 +/- 0.1 m. That is option c. Option a rounds only the uncertainty and leaves 7.4863, which p3 forbids ('digits beyond that place are not reported at all'); option b keeps 0.12 uncut and matches to two decimals, inverting the rule's order; option d refuses to round at all. Only c matches. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence high) — The universal reporting convention: round the uncertainty to one significant figure (0.1 m), then round the value to the same decimal place (7.5 m). Option a leaves an absurd 7.4863 ± 0.1; b keeps two significant figures in the uncertainty; d ignores that digits beyond the uncertainty are not information.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling narrows this one. q1's option list happens to contain two-significant-figure uncertainties (0.25, 0.36), which if anything is a misleading counter-signal against the correct answer rather than a leak toward it; the flow runs the other way, from this item's answer into q1.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-math-uc-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "definition",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1 defines relative uncertainty as the absolute uncertainty as a fraction of the measured value. From t1: Rod A 5/250 = 0.020 = 2.0 per cent; Rod B 1/40 = 0.025 = 2.5 per cent; Rod C 0.3/8.0 = 0.0375 = 3.75 per cent; Rod D 30/1200 = 0.025 = 2.5 per cent. Rod C is the largest by a clear margin, and it is also the rod with the smallest absolute uncertainty, so the table is built to punish reading the absolute column. Rod D has the largest absolute uncertainty (30 mm) but ties with B on relative. Unambiguous. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — A pure table lookup: the relative uncertainty of each of four rods. Nothing in the stem or the bare labels Rod A to Rod D carries a number, and domain knowledge cannot supply one.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-uc-001-q1"
+            ],
+            "ablationLeakDetail": "q1's stem quotes two rods verbatim — 24.0 ± 0.3 cm and 15.0 ± 0.2 cm — which are almost certainly two rows of the same Table 1. Their relative uncertainties are 1.25 and 1.33 per cent, so of that pair the shorter rod wins, and if the quoted pair is the first two rows in order it points at Rod B. This eliminates at most one option and leaves the two unquoted rods entirely unknown, so it narrows rather than decides; it is nonetheless a straight transfer of table cells out of a sibling stem.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-sol-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "rule",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): t1 gives Salt P as 58 g per 100 g of water at 60 degrees and 32 g per 100 g at 20 degrees. p3 gives the rule: the mass that crystallises out is the difference between the two solubilities, scaled to the mass of water actually present. Difference = 58 - 32 = 26 g per 100 g of water; the flask holds 200 g of water, so 26 x (200/100) = 52 g. Option d. Option b (26 g) is the unscaled per-100-g figure — the intended trap; option c (28 g) is the Salt Q-flavoured / mis-read difference; option a (16 g) does not follow from any defensible route. Note the water mass does not change on cooling, so no further correction applies. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"d\", confidence medium) — Recovered from the distractor geometry rather than from chemistry. 26 and 52 stand in an exact 2:1 ratio, which is the signature of the 'forgot to scale from 100 g to 200 g' trap, and the stem goes out of its way to specify 200 grams. Neither 16 nor 28 has its halving partner on the list, so neither sits in the correct-answer position of that design. That makes 52 the intended value, with a per-100-gram difference of 26 in the source table. The actual table cells remain unknown to me.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "The other three items in this pack are entirely qualitative — supersaturation, seawater, stirring — and none quotes a solubility figure, a temperature reading or a mass. No numeric channel exists.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ns-sol-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "definition",
+            "rule"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2: a solution 'can be brought to hold more than the figure by dissolving the salt hot and then cooling it slowly and without disturbance. Such a solution is supersaturated, and it is unstable: a single crystal dropped into it, or a knock, will bring the excess out of solution at once.' The stem describes that preparation verbatim in substance, so option c. Options a and b misname a state the pack defines precisely; option d denies a possibility p2 explicitly asserts. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence high) — The described preparation — dissolve hot, cool slowly, undisturbed, now holding more than the tabulated figure — is the standard definition of a supersaturated solution, and its known behaviour is that a shock or a seed crystal precipitates the surplus. The stem states the excess, which contradicts a and b outright and refutes d.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling bears on this. q4 concerns the ceiling for an ordinary saturated solution, which is the same table figure but neither confirms nor excludes the metastable case described here.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ns-sol-001-q3": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p4: 'The figures in the table are for pure water. Where some other substance is already dissolved, the water is no longer pure, the tabulated figure cannot be relied on, and a separate measurement has to be made for the mixture itself.' Seawater has other substances already dissolved, so option d. Option a is the sharpest distractor because it quotes p1's true statement that solubility depends on the pair of substances and the temperature — but the pair here is no longer Salt P and pure water, and p4 is the governing sentence. Option b makes stirring the issue, which p1 rules out as irrelevant to how much dissolves; option c invents a halving factor found nowhere in the pack. One defensible answer, though a reader who stops at p1 could be led astray. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"d\", confidence high) — Solubility is defined for a specified solute in a specified solvent; seawater is not the pure water the table was measured in, so the tabulated figure does not transfer. Option a states the definition correctly and then misapplies it, which is the intended trap; c invents an arbitrary halving.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ns-sol-001-q4"
+            ],
+            "ablationLeakDetail": "q4's correct answer states the rule that stirring does not change how much a solvent will hold. That rule directly voids option b here ('yes, provided the tank is stirred long enough to reach the tabulated figure'), since stirring cannot be the thing that makes a wrong figure right. One option removed by a sibling's answer, leaving a two-way choice among the remaining substantive options rather than settling it.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-sol-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: solubility 'does not depend on how vigorously the mixture is stirred or on how long it is left standing; stirring changes how quickly the salt goes into solution, and nothing about how much of it will.' The beaker has already stopped dissolving at a fixed temperature, so it is at the solubility limit and a further hour of stirring changes nothing — option b. Option a is the misconception p1 names; option c describes a dissolve-and-reprecipitate cycle the pack never suggests; option d claims an indeterminacy that the starting mass would not resolve, since the limit is set by temperature alone. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Stirring changes the rate at which equilibrium is reached, not the position of it. The stem already establishes saturation ('no more will dissolve'), so further stirring at constant temperature changes nothing; c is physically incoherent and d ignores that the stem states the endpoint.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q2 does affirm generally that the tabulated figure is the ceiling for a stable solution, but it does so via the metastable supersaturation route (slow cooling), a different mechanism from agitation, and it eliminates none of these options. I judge this thematic reinforcement rather than a coupling.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-sr-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "definition",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: the target population is everyone in the town; the sampling frame is the library register, which omits every non-member. 'Where the frame leaves out part of the population, the survey carries coverage error, and however carefully the names are then drawn from that frame the omission stays exactly where it was.' That is option b, including its second clause that the fault lies in the list rather than in the drawing. Option a misnames it as non-response (p2's separate concept, about those approached who do not answer); option c names it correctly but claims age weighting removes it, which p1's 'stays exactly where it was' and p4's 'does not touch coverage error' both deny; option d is the error the paragraph rebuts. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — The canonical frame problem: the sampling list (library members) does not cover the target population (everyone in the town), so this is coverage error and no amount of care in drawing names from a defective list repairs it. The stem's two-part question — what does it introduce, can better sampling remove it — is answered only by b.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ss-sr-001-q2",
+              "gam-ss-sr-001-q3"
+            ],
+            "ablationLeakDetail": "Two options fall to sibling answers. q2's correct answer says a low reply rate implies nothing on its own, which undercuts option a's claim that a higher rate of reply would remove the problem. q3's correct answer says weighting by age corrects only what age captures, which undercuts option c's claim that weighting by age would remove it. That leaves b against d, and d is the naive 'random draw fixes everything' foil. The elimination uses only the pack's internal rulings.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ss-sr-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2: the effect of non-response 'turns on whether the people who did not answer differ from those who did on the very thing being measured, and not on how many of them there were. A low response rate is a warning rather than a finding: a survey with few replies can be accurate, and one with many can be badly wrong.' Option b is that. Options a and d both convert the warning into a verdict of unreliability, which the text explicitly refuses; option c makes accuracy follow from the size approached, which p4 also denies ('enlarging a sample... does not touch coverage error or non-response bias'). Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — A low response rate is a risk factor, not a bias: bias arises only if non-responders differ from responders on the quantity being measured. Options a and c both treat the rate itself as decisive, in opposite directions; d asserts a fix that does not follow from a rate.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ss-sr-001-q3"
+            ],
+            "ablationLeakDetail": "q3's correct answer holds that weighting to known age proportions does not remove non-response bias. That is precisely the claim option d here depends on, so d falls to a sibling's ruling rather than to the source. The remaining options are separable on ordinary knowledge, so this narrows rather than decides.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ss-sr-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "framework"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: 'Weighting corrects the difference that the weighting variable captures, and nothing beyond it. Where those who did not answer differ in some further respect the weighting variable does not track, the weighted result is wrong in that respect still.' Age weighting therefore corrects only what age captures, so the claim to have removed non-response bias is too strong — option c. Options a and b endorse that overclaim (b merely adding an irrelevant proviso about every group returning replies). Option d is the opposite overcorrection: p3 describes weighting as applied precisely to the achieved sample, i.e. to non-response, so 'cannot be used on non-response at all' is false. Only c. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence high) — Weighting on a demographic aligns the sample to the population on that demographic only; any difference between responders and non-responders not captured by age survives the weighting untouched. a and b claim the fix works, d overclaims in the other direction by denying weighting can be applied to non-response at all.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ss-sr-001-q2",
+              "gam-ss-sr-001-q1"
+            ],
+            "ablationLeakDetail": "This is the clearest case of one item's correct answer stating the rule another item needs. q2's answer b supplies the governing principle verbatim — what matters is whether non-responders differ on what is being measured, not whether demographic proportions match — and that principle by itself rejects both 'yes' options here, a and b. q1's answer then supplies the coverage/non-response distinction that kills d's claim that weighting belongs only to coverage error. With all three eliminated by siblings, c is left standing without the source being consulted.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-ss-sr-001-q4": {
+          "chosenOption": "a",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): From t1 the replies total 120 + 240 + 300 + 180 = 840. Each group's share of the respondents: 18-34 = 120/840 = 14.3 per cent; 35-54 = 240/840 = 28.6 per cent; 55-74 = 300/840 = 35.7 per cent; 75+ = 180/840 = 21.4 per cent. Against the town shares of 30, 34, 24 and 12 per cent the achieved-to-population ratios are 0.48, 0.84, 1.49 and 1.79, and the percentage-point gaps are -15.7, -5.4, +11.7 and +9.4. On either measure 18 to 34 is the most under-represented, and it is the only group under-represented by a wide margin. The two metrics agree, so there is no second defensible reading. (Consistently, response rates on an equal 600 approached each are 20, 40, 50 and 30 per cent, lowest for 18-34.) Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"a\", confidence low) — Requires two columns of Table 1 — each age band's share of the town and its share of the replies — neither of which is available. My choice rests only on the real-world regularity that young adults under-respond to surveys, which is a prior about the world, not a reading of this source; 75 and over is a defensible alternative.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-08",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling names an age band, a share or a count. q3's stem confirms only that an age imbalance exists, which q4's own stem already presupposes, and q1's library-register frame concerns coverage of the town rather than the composition of the replies in this table. Any inference from library membership to a particular under-responding band would be manufactured.",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "packContributions": {
+        "gam-economics-price-index-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "It supplies the five-year index series in Figure 1 (100, 104, 110, 121, 127) and the definition of a rate of change as the gap between two index figures divided by the earlier one, which is what fixes 10 per cent rather than 9.1. It also supplies the three conceptual rules the other items turn on: a falling rate still means rising prices, a comparison spanning a basket revision is not like-for-like, and a fixed basket overstates the cost of living for a household that substitutes."
+        },
+        "gam-mathematics-uncertainty-convention-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "It states the laboratory's worst-case combination convention — absolute uncertainties add for sums and differences, relative uncertainties add for products and quotients — which deliberately departs from the usual quadrature rule and is the only thing that makes 0.5 cm rather than 0.36 cm correct. It also gives the definition of relative uncertainty, the one-significant-figure reporting rule, and the four-rod table needed for the relative-uncertainty comparison."
+        },
+        "gam-natural-sciences-solubility-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "It supplies the solubility table in grams per 100 grams of water for two salts at four temperatures, plus the rule that the mass crystallising on cooling is the difference between the two solubilities scaled to the water actually present. It also defines unsaturated, saturated and supersaturated, states that stirring affects rate and not amount, and restricts the table to pure water — the three conceptual items are decided entirely by those statements."
+        },
+        "gam-social-sciences-survey-reach-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "It defines target population, sampling frame, coverage error and non-response, and states the three rules the items test: careful drawing cannot repair a defective frame, a low response rate is a warning rather than a finding, and weighting corrects only what the weighting variable captures. The table supplies the approached, replied and town-share figures needed to identify the most under-represented age group."
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,401 @@
+{
+  "pack": {
+    "id": "gam-mathematics-uncertainty-convention-001",
+    "domain": "mathematics",
+    "title": "Stating and combining measurement uncertainty",
+    "defines": [
+      "absolute uncertainty",
+      "relative uncertainty",
+      "worst-case convention"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Stating and combining measurement uncertainty"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "Every measurement in this laboratory is reported with an uncertainty, written as a value followed by a plus-or-minus figure in the same unit. A length written as 50.0 ± 0.5 centimetres means the true length is taken to lie between 49.5 and 50.5 centimetres. The plus-or-minus figure is called the absolute uncertainty. The same uncertainty expressed as a fraction of the measured value is called the relative uncertainty, and is written as a percentage."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "This laboratory follows a worst-case convention. When two measured quantities are added or subtracted, their absolute uncertainties are added. When two measured quantities are multiplied or divided, their relative uncertainties are added. The convention is deliberately cautious: it assumes the two errors fall the same way rather than partly cancelling, so the figure it gives is never smaller than the true combined uncertainty. Note that a difference is treated exactly as a sum is — subtracting one measurement from another cannot make the result more certain than either of them."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "An uncertainty is quoted to one significant figure, and the measured value is then written to the same decimal place as its uncertainty. Digits beyond that place are not reported at all, because the uncertainty shows that they carry no information."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Four rods, as measured.",
+        "columns": [
+          "Rod",
+          "Measured length",
+          "Absolute uncertainty"
+        ],
+        "rows": [
+          [
+            "Rod A",
+            "250 mm",
+            "5 mm"
+          ],
+          [
+            "Rod B",
+            "40 mm",
+            "1 mm"
+          ],
+          [
+            "Rod C",
+            "8.0 mm",
+            "0.3 mm"
+          ],
+          [
+            "Rod D",
+            "1200 mm",
+            "30 mm"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "The convention holds only for measurements made independently of one another. Where two quantities are read from the same instrument at one setting, an error in that setting shifts both the same way, and combining them in the ordinary manner understates the uncertainty of the result."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "experiment-small-packs-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the smaller-pack authoring experiment of 8 September 2026. The source states four distinct rules and each question targets a different one, and at most one question offers options that are a function of the source’s own constants — the two design rules the retired operation-counts pack produced. The scheme and every figure in it are invented for this pack."
+    },
+    "contentHash": "614d2fb625c14cdb03179809cea88200"
+  },
+  "questions": [
+    {
+      "stem": "One rod measures 24.0 ± 0.3 centimetres and another 15.0 ± 0.2 centimetres. According to the convention, what is the difference between their lengths?",
+      "options": [
+        {
+          "id": "a",
+          "text": "9.0 ± 0.1 cm"
+        },
+        {
+          "id": "b",
+          "text": "9.0 ± 0.25 cm"
+        },
+        {
+          "id": "c",
+          "text": "9.0 ± 0.36 cm"
+        },
+        {
+          "id": "d",
+          "text": "9.0 ± 0.5 cm"
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p2",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "When two measured quantities are added or subtracted, their absolute uncertainties are added."
+        },
+        {
+          "blockId": "p2",
+          "quote": "subtracting one measurement from another cannot make the result more certain than either of them"
+        },
+        {
+          "blockId": "p1",
+          "quote": "The plus-or-minus figure is called the absolute uncertainty."
+        }
+      ],
+      "explanation": "The lengths subtract to give 24.0 − 15.0 = 9.0 centimetres. The uncertainties do not. The convention treats a difference exactly as it treats a sum, so the two absolute uncertainties are added: 0.3 + 0.2. The text says why in as many words — a subtraction cannot leave the answer more certain than either measurement that went into it.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "This subtracts the uncertainties along with the lengths, which would make the difference of two rough measurements more certain than either. The text rules that out explicitly."
+        },
+        "b": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "This averages the two figures. The convention adds them; averaging would give a result smaller than the larger of the two uncertainties on its own."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "This combines the two in quadrature, which is a real convention but not the one this text sets out. Quadrature assumes the errors partly cancel; this laboratory assumes they do not."
+        }
+      },
+      "computation": {
+        "expression": "0.3 + 0.2",
+        "expected": 0.5,
+        "unit": "cm"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Work out the difference in the lengths first, then deal with the two plus-or-minus figures separately."
+        },
+        {
+          "level": 2,
+          "text": "Find the sentence that says how this laboratory treats a difference, as against how you might expect it to."
+        },
+        {
+          "level": 3,
+          "text": "The convention assumes the two errors fall the same way, so ask what that does to the figures."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-math-uc-001-q1",
+      "packId": "gam-mathematics-uncertainty-convention-001"
+    },
+    {
+      "stem": "The two sides of a rectangle are each measured to within 1 per cent. According to the convention, what can be said about the uncertainty in its area?",
+      "options": [
+        {
+          "id": "a",
+          "text": "About half a per cent."
+        },
+        {
+          "id": "b",
+          "text": "About 1 per cent, since that is how well each side is known."
+        },
+        {
+          "id": "c",
+          "text": "About 2 per cent."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be given as a percentage until the two lengths themselves are known."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "sensitivity",
+      "dependsOn": [
+        "p2",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "When two measured quantities are multiplied or divided, their relative uncertainties are added."
+        },
+        {
+          "blockId": "p1",
+          "quote": "The same uncertainty expressed as a fraction of the measured value is called the relative uncertainty"
+        }
+      ],
+      "explanation": "An area is the product of two lengths, and for a product the convention adds the relative uncertainties rather than the absolute ones. Each side is known to within 1 per cent, and 1 per cent added to 1 per cent gives the figure for the area. Nothing in the calculation needs the lengths themselves, because a relative uncertainty is already a fraction of whatever was measured.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "This halves the two figures instead of adding them. Nothing in the convention ever reduces an uncertainty when two quantities are combined; the whole of it is cautious in the other direction."
+        },
+        "b": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "How well one side is known is not how well the area is known. The area depends on both sides, and an error in either carries through to it."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "A relative uncertainty is a fraction of the measurement, so it can be combined without knowing what the measurement was. The lengths would be needed only to turn the answer back into millimetres."
+        }
+      },
+      "computation": {
+        "expression": "1 + 1",
+        "expected": 2,
+        "unit": "per cent"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "An area is made by multiplying, so find the rule the text gives for a product rather than for a sum."
+        },
+        {
+          "level": 2,
+          "text": "The figures you are given are fractions of a measurement, not lengths in their own right."
+        },
+        {
+          "level": 3,
+          "text": "Combine the two percentages the way the text says relative uncertainties combine, and ask whether the lengths are needed at all."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 3,
+        "requiresExhibit": false
+      },
+      "id": "gam-math-uc-001-q2",
+      "packId": "gam-mathematics-uncertainty-convention-001"
+    },
+    {
+      "stem": "A calculation gives a length of 7.4863 metres with an uncertainty of 0.12 metres. According to the convention, how should the result be written?",
+      "options": [
+        {
+          "id": "a",
+          "text": "With the uncertainty rounded to one significant figure and the length left as calculated."
+        },
+        {
+          "id": "b",
+          "text": "With the uncertainty as calculated and the length rounded to two decimal places to match it."
+        },
+        {
+          "id": "c",
+          "text": "With the uncertainty rounded to one significant figure and the length rounded to the same decimal place."
+        },
+        {
+          "id": "d",
+          "text": "With both figures exactly as calculated, since rounding either of them discards information."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "An uncertainty is quoted to one significant figure, and the measured value is then written to the same decimal place as its uncertainty."
+        }
+      ],
+      "explanation": "The convention does two things at once, and both have to be applied. The uncertainty is first cut to a single significant figure. The value is then written to whatever decimal place that leaves — not to more, because the text says the digits beyond it carry no information, and not to fewer, because that would throw away a place the uncertainty still supports.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "This applies the first half of the rule and stops. Leaving the length at four decimal places keeps three digits the rounded uncertainty says nothing can be known about."
+        },
+        "b": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "This rounds the value but keeps two significant figures in the uncertainty. The convention asks for one, and it is the uncertainty that fixes where the value stops, not the other way round."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "The text takes the opposite view: digits past the uncertainty are not information to be preserved, which is why it says they are not reported at all."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The rule has two parts, and they are applied in a particular order."
+        },
+        {
+          "level": 2,
+          "text": "Decide what happens to the plus-or-minus figure before deciding anything about the length."
+        },
+        {
+          "level": 3,
+          "text": "Once the uncertainty is cut down, ask which decimal place it leaves the length able to reach."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-math-uc-001-q3",
+      "packId": "gam-mathematics-uncertainty-convention-001"
+    },
+    {
+      "stem": "Which of the rods in Table 1 was measured with the largest relative uncertainty?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Rod A"
+        },
+        {
+          "id": "b",
+          "text": "Rod B"
+        },
+        {
+          "id": "c",
+          "text": "Rod C"
+        },
+        {
+          "id": "d",
+          "text": "Rod D"
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "t1",
+          "quote": "0.3 mm"
+        },
+        {
+          "blockId": "p1",
+          "quote": "The same uncertainty expressed as a fraction of the measured value is called the relative uncertainty"
+        }
+      ],
+      "explanation": "Relative uncertainty is the plus-or-minus figure divided by the measurement it belongs to, so each rod has to be judged against its own length rather than against the others. Rod C is the shortest rod in the table and carries the smallest uncertainty in millimetres, and it is nonetheless the least precisely measured of the four: three tenths of a millimetre is a larger share of eight millimetres than any other rod’s figure is of its own length.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "Rod A’s five millimetres is larger than Rod C’s figure in millimetres, but it belongs to a rod of 250 millimetres. As a fraction of what was measured it is one of the smaller uncertainties here."
+        },
+        "b": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "Rod B is one millimetre in forty, which is indeed worse than Rod A and Rod D. It is still a smaller share of its own length than three tenths of a millimetre is of eight."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "Rod D carries the largest uncertainty in the table in millimetres, which is what makes it tempting. Spread over 1200 millimetres it is among the smallest relative uncertainties of the four."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The largest plus-or-minus figure in millimetres is not what the question asks for."
+        },
+        {
+          "level": 2,
+          "text": "Each rod has to be compared with its own measured length, not with the other rods."
+        },
+        {
+          "level": 3,
+          "text": "Turn each rod’s uncertainty into a fraction of its own length before putting the four side by side."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-math-uc-001-q4",
+      "packId": "gam-mathematics-uncertainty-convention-001"
+    }
+  ]
+}

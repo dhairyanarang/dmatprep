@@ -12,8 +12,20 @@
     "provenance": {
       "originality": "original",
       "draftedBy": "pilot-b1",
-      "reviewStatus": "automated-pass",
-      "notes": "The three checks are this pack's own organising scheme, named and defined here so that every question turns on the supplied definitions rather than on remembered terminology. Text-only pack, matching the structure of the text-only official exercise."
+      "reviewStatus": "rejected",
+      "notes": "The three checks are this pack's own organising scheme, named and defined here so that every question turns on the supplied definitions rather than on remembered terminology. Text-only pack, matching the structure of the text-only official exercise.",
+      "repairs": [
+        {
+          "on": "2026-09-07",
+          "reason": "q1 could be narrowed using q3 and q6. It asked what the proximity check concerns and set \"elapsed time\" against \"the route by which the information reached the author\"; both worked scenarios turn on the route, so the definition could be read off them without the source. It was also the pack’s only recall-only item.",
+          "changed": {
+            "gam-hum-sc-001-q1": "Replaced. Was a definition of the proximity check; is now the case the two worked scenarios cannot settle, because each of them confounds route with recency — the monk in q3 is both late and second-hand, the printer in q6 both contemporary and an eyewitness. The new question pulls the two apart: a second-hand account written within the week against an eyewitness account written two years later."
+          },
+          "unchanged": "q2 to q6 keep their content; they were leak sources, and their own content is sound."
+        }
+      ],
+      "retiredOn": "2026-09-09",
+      "retiredBecause": "Superseded by the production candidate set of 8-9 September 2026, and retired on promotion rather than deleted. No key in this pack is wrong: two independent rounds agreed with every one of them, and it carries no ambiguity, outside-knowledge or §5.10 finding. It is retired because of how it was built. It predates the independent-source architecture, and under the same adjudicator that cleared the candidate set every one of the pilot’s sixteen questions carried a narrowing sibling coupling, against seven of nineteen in the set replacing it. Keeping both active would ship two authoring standards at once. Its questions, provenance and adjudication history are kept in full as the record of how the architecture was arrived at; the ids are reserved and never reused."
     },
     "blocks": [
       {
@@ -52,77 +64,82 @@
         "text": "A document that fails one of the checks may still be valuable, provided the historian's question does not depend on what the failed check governs. A charter forged long after the date it claims is worthless as evidence for the transactions it records, but it is direct evidence for the concerns of the period in which the forgery was actually made."
       }
     ],
-    "contentHash": "8bc028240f6da60aba5ec403cbc2a738"
+    "contentHash": "c0ee9ae37499544b9b81077671a9c4a8"
   },
   "questions": [
     {
-      "stem": "According to the text, what does the proximity check concern?",
+      "stem": "Two accounts of the same shipwreck survive. One was written the week after it happened, by a man who had the story from a survivor he spoke to himself. The other was written two years later, by a passenger who had been aboard. According to the text, how do the two stand on the proximity check?",
       "options": [
         {
           "id": "a",
-          "text": "How soon after the events described the document was written down."
+          "text": "The first stands closer, because it was set down while the events were still fresh."
         },
         {
           "id": "b",
-          "text": "The route by which the information reached the author."
+          "text": "The second stands closer, because its author saw the wreck himself."
         },
         {
           "id": "c",
-          "text": "How much detail the author gives about what is described."
+          "text": "They stand equally close, since each rests on the testimony of someone who was there."
         },
         {
           "id": "d",
-          "text": "Whether the author reported honestly what he believed to be true."
+          "text": "Neither can be placed until it is known what either author stood to gain."
         }
       ],
       "correctOptionId": "b",
-      "reasoning": "retrieve",
+      "reasoning": "comparative",
       "dependsOn": [
-        "p3"
+        "p3",
+        "p4"
       ],
       "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "An author who saw an event is closer to it than one who was told of it by a participant"
+        },
         {
           "blockId": "p3",
           "quote": "Proximity concerns the route by which the information reached the author"
         }
       ],
-      "explanation": "The text defines proximity as how close the author stood to what is described, and spells out that this is a matter of the route the information took: seeing an event, being told of it by a participant, or compiling it generations later.",
+      "explanation": "The text places an author who saw an event closer than one who was told of it by a participant, and says plainly that proximity concerns the route by which the information reached the author. The passenger was aboard, so his route to the events is the shortest there is; the other man’s runs through a survivor, one step longer, however soon afterwards he wrote it down. The two-year delay lengthens no route.",
       "refutations": {
         "a": {
           "blockId": "p3",
-          "family": "plausible-but-unstated",
-          "reason": "Delay is suggestive but is not what the text measures. A witness writing forty years later still saw the event; a contemporary who only heard a rumour did not."
+          "family": "contradicts-source",
+          "reason": "The text measures proximity by the route the information travelled, not by how soon the writing followed. It ranks the eyewitness above the person told by a participant without any condition about when either wrote."
         },
         "c": {
           "blockId": "p3",
-          "family": "plausible-but-unstated",
-          "reason": "The text says nothing about how much detail an account gives. Detail can be invented as easily as it can be remembered."
+          "family": "right-concept-wrong-scope",
+          "reason": "Both accounts do go back to someone who was there, but the text distinguishes the two positions explicitly: being told of an event by a participant is one step further from it than seeing it."
         },
         "d": {
-          "blockId": "p3",
-          "family": "contradicts-source",
-          "reason": "The text closes the paragraph by saying the opposite: proximity says nothing about whether the author is honest."
+          "blockId": "p4",
+          "family": "right-concept-wrong-scope",
+          "reason": "What an author stood to gain is the interest check. The text keeps the two apart: interest concerns motive and is unaffected by how near the author stood to the events."
         }
       },
       "hints": [
         {
           "level": 1,
-          "text": "The paragraph on proximity ends by ruling one common answer out explicitly."
+          "text": "Find the sentence that says what proximity is a measure of, and take it literally."
         },
         {
           "level": 2,
-          "text": "It describes a chain: seeing something, being told of it, compiling it much later."
+          "text": "The text ranks three positions against one another; place each of these two authors in that ranking."
         },
         {
           "level": 3,
-          "text": "What the check measures is how the information travelled, not when it arrived or how honest the teller was."
+          "text": "Ask how many hands the information passed through before it was written down, rather than how long it waited."
         }
       ],
-      "difficulty": "low",
+      "difficulty": "medium",
       "meta": {
-        "stepCount": 1,
-        "blockSpan": 1,
-        "transferDistance": 0,
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
         "requiresExhibit": false
       },
       "id": "gam-hum-sc-001-q1",

@@ -1,0 +1,324 @@
+{
+  "note": "Targeted review flags for the GAM pilot. These are open questions for the human reviewer, not defects. Derived from the current independent adjudication round by scripts/gam/build-review-flags.mjs, never hand-edited, so they cannot outlive the content they describe. Held outside the pack files so the pilot questions stay untouched by review bookkeeping.",
+  "raisedBy": "independent-2026-09-08",
+  "raisedAt": "2026-09-08",
+  "questionFlags": {
+    "gam-econ-pi-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-econ-pi-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-econ-pi-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pi-001-q4. q4's correct answer establishes the pack's doctrine that the basket is fixed and goes on pricing goods the household has abandoned. A candidate who has settled q4 knows the pack treats basket fixity as a limitation rather than something the methodology repairs, which shifts weight away from a and b ('it is sound...') and toward c. It narrows without settling: the fixed-basket doctrine does not by itself say what happens at a revision."
+      }
+    ],
+    "gam-econ-pi-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pi-001-q3. q3's stem states as fact that the basket was revised only 'several years later'. That premise, which is source information smuggled into a sibling stem, contradicts option a here ('it follows the switch'): a basket revised on a multi-year cycle cannot track a household's month-to-month switch from beef to chicken. One option is eliminated with no reference to the source text."
+      }
+    ],
+    "gam-math-uc-001-q1": [
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-math-uc-001-q2, gam-math-uc-001-q3. Two independent sibling channels settle it. (1) q2 asks for the uncertainty in the area of a rectangle whose sides are each good to 1 per cent, and its options are 0.5, 1, 2 per cent. Quadrature would give 1.4 per cent, which is absent; 2 per cent is the linear sum of relative uncertainties. So the pack's convention is linear addition, which forces 0.5 here and rules out 0.36 — the source's combination rule is recovered from a sibling's option list. (2) q3's correct answer states that the uncertainty is rounded to one significant figure. Under the pack's own stated formatting rule, '± 0.25' and '± 0.36' are not writable results at all, killing b and c for a reason that has nothing to do with the two rods. Between the survivors a and d, a is the transparent subtract-the-uncertainties trap. Answer forced without reading the source."
+      }
+    ],
+    "gam-math-uc-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-uc-001-q1. The coupling is real but adds little here, since q2 is already settled by its own options. q1's presence of a 0.5 option (the linear sum for a difference) corroborates the linear scheme and so reinforces c; had the pack used quadrature, q1 would have been its natural showcase and 0.36 the answer. The information flow in this pair runs overwhelmingly q2 to q1, not the reverse."
+      }
+    ],
+    "gam-math-uc-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-math-uc-001-q4": [
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-uc-001-q1. q1's stem quotes two rods verbatim — 24.0 ± 0.3 cm and 15.0 ± 0.2 cm — which are almost certainly two rows of the same Table 1. Their relative uncertainties are 1.25 and 1.33 per cent, so of that pair the shorter rod wins, and if the quoted pair is the first two rows in order it points at Rod B. This eliminates at most one option and leaves the two unquoted rods entirely unknown, so it narrows rather than decides; it is nonetheless a straight transfer of table cells out of a sibling stem."
+      }
+    ],
+    "gam-ns-sol-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-ns-sol-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-ns-sol-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-sol-001-q4. q4's correct answer states the rule that stirring does not change how much a solvent will hold. That rule directly voids option b here ('yes, provided the tank is stirred long enough to reach the tabulated figure'), since stirring cannot be the thing that makes a wrong figure right. One option removed by a sibling's answer, leaving a two-way choice among the remaining substantive options rather than settling it."
+      }
+    ],
+    "gam-ns-sol-001-q4": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
+    "gam-ss-sr-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-sr-001-q2, gam-ss-sr-001-q3. Two options fall to sibling answers. q2's correct answer says a low reply rate implies nothing on its own, which undercuts option a's claim that a higher rate of reply would remove the problem. q3's correct answer says weighting by age corrects only what age captures, which undercuts option c's claim that weighting by age would remove it. That leaves b against d, and d is the naive 'random draw fixes everything' foil. The elimination uses only the pack's internal rulings."
+      }
+    ],
+    "gam-ss-sr-001-q2": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-sr-001-q3. q3's correct answer holds that weighting to known age proportions does not remove non-response bias. That is precisely the claim option d here depends on, so d falls to a sibling's ruling rather than to the source. The remaining options are separable on ordinary knowledge, so this narrows rather than decides."
+      }
+    ],
+    "gam-ss-sr-001-q3": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recognition-not-transfer",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-ss-sr-001-q2, gam-ss-sr-001-q1. This is the clearest case of one item's correct answer stating the rule another item needs. q2's answer b supplies the governing principle verbatim — what matters is whether non-responders differ on what is being measured, not whether demographic proportions match — and that principle by itself rejects both 'yes' options here, a and b. q1's answer then supplies the coverage/non-response distinction that kills d's claim that weighting belongs only to coverage error. With all three eliminated by siblings, c is left standing without the source being consulted."
+      }
+    ],
+    "gam-ss-sr-001-q4": [
+      {
+        "flag": "data-dependence-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
+      }
+    ]
+  },
+  "packFlags": {
+    "gam-economics-price-index-001": [
+      {
+        "flag": "source-contribution",
+        "severity": "review",
+        "reason": "Across its 4 questions the pack contributes: data, exhibit, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
+      },
+      {
+        "flag": "all-source-supported",
+        "severity": "review",
+        "reason": "All 4 questions are classified source-supported, none source-determined. Spec §5.6 does not forbid this — the module is a knowledge-and-application test — but it does require the pack to be shown to be doing real work rather than decorating questions that would stand without it. That judgement is the reviewer's, and calibration across packs follows the repaired pilot."
+      },
+      {
+        "flag": "recognition-heavy",
+        "severity": "review",
+        "reason": "3 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
+      }
+    ],
+    "gam-mathematics-uncertainty-convention-001": [
+      {
+        "flag": "source-contribution",
+        "severity": "review",
+        "reason": "Across its 4 questions the pack contributes: data, definition, exhibit, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
+      }
+    ],
+    "gam-natural-sciences-solubility-001": [
+      {
+        "flag": "source-contribution",
+        "severity": "review",
+        "reason": "Across its 4 questions the pack contributes: data, definition, exhibit, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
+      },
+      {
+        "flag": "all-source-supported",
+        "severity": "review",
+        "reason": "All 4 questions are classified source-supported, none source-determined. Spec §5.6 does not forbid this — the module is a knowledge-and-application test — but it does require the pack to be shown to be doing real work rather than decorating questions that would stand without it. That judgement is the reviewer's, and calibration across packs follows the repaired pilot."
+      },
+      {
+        "flag": "recognition-heavy",
+        "severity": "review",
+        "reason": "3 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
+      }
+    ],
+    "gam-social-sciences-survey-reach-001": [
+      {
+        "flag": "source-contribution",
+        "severity": "review",
+        "reason": "Across its 4 questions the pack contributes: data, definition, exhibit, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
+      },
+      {
+        "flag": "recognition-heavy",
+        "severity": "review",
+        "reason": "3 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
+      }
+    ]
+  }
+}

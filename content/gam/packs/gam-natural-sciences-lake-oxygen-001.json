@@ -1,0 +1,430 @@
+{
+  "pack": {
+    "id": "gam-natural-sciences-lake-oxygen-001",
+    "domain": "natural-sciences",
+    "title": "Oxygen in a lake, by depth and season",
+    "defines": [
+      "thermocline",
+      "dissolved oxygen"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Oxygen in a lake, by depth and season"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "Dissolved oxygen enters a lake at its surface, from the air and from plants growing in the lit upper water. It is consumed near the bottom, where material that has sunk is broken down. Between the two lies the thermocline, a band of depth across which the temperature falls sharply; water above it and water below it do not readily mix across that band."
+      },
+      {
+        "kind": "figure",
+        "id": "fig1",
+        "caption": "Figure 1. Dissolved oxygen against depth, in milligrams per litre, on two dates.",
+        "spec": {
+          "type": "line-chart",
+          "xLabel": "Depth in metres",
+          "yLabel": "Dissolved oxygen in milligrams per litre",
+          "series": [
+            {
+              "id": "summer",
+              "label": "Summer",
+              "points": [
+                [
+                  0,
+                  9.5
+                ],
+                [
+                  4,
+                  9
+                ],
+                [
+                  6,
+                  8.5
+                ],
+                [
+                  8,
+                  4
+                ],
+                [
+                  12,
+                  2.5
+                ],
+                [
+                  16,
+                  1.5
+                ]
+              ]
+            },
+            {
+              "id": "winter",
+              "label": "Winter",
+              "points": [
+                [
+                  0,
+                  11
+                ],
+                [
+                  4,
+                  10.8
+                ],
+                [
+                  8,
+                  10.6
+                ],
+                [
+                  12,
+                  10.5
+                ],
+                [
+                  16,
+                  10.4
+                ]
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "label": "Summer readings",
+              "detail": "about 9.5 at the surface, 9.0 at four metres, 8.5 at six metres, 4.0 at eight metres and 1.5 at sixteen"
+            },
+            {
+              "label": "Winter readings",
+              "detail": "close to 11 at every depth from the surface down to sixteen metres"
+            },
+            {
+              "label": "The summer thermocline",
+              "detail": "lies between six and eight metres"
+            }
+          ]
+        }
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "In summer the thermocline holds the deep water apart from the surface, so the oxygen used up below it is not replaced and falls away as the season goes on. In winter the surface water cools until it is no denser than the water beneath, the lake turns over from top to bottom, and oxygen is carried down with it, so a winter profile is close to uniform at every depth."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "A trout needs at least five milligrams of oxygen per litre and cannot remain where there is less than that, whatever the temperature suits it."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "Both profiles were recorded at dawn, when a lake’s oxygen is at its lowest for the day: plants have consumed oxygen through the night and have not yet begun to produce it. A reading taken at midday runs higher for that reason alone, and cannot be set against these figures without allowing for the hour."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "production-candidate-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+    },
+    "contentHash": "c48602e977de48a4e7124c6c12d3f062"
+  },
+  "questions": [
+    {
+      "stem": "Which of these depths, if any, holds too little oxygen for trout in summer?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Four metres"
+        },
+        {
+          "id": "b",
+          "text": "Six metres"
+        },
+        {
+          "id": "c",
+          "text": "Eight metres"
+        },
+        {
+          "id": "d",
+          "text": "None of the depths shown"
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "fig1",
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "A trout needs at least five milligrams of oxygen per litre and cannot remain where there is less than that"
+        },
+        {
+          "blockId": "fig1",
+          "quote": "4.0 at eight metres"
+        }
+      ],
+      "explanation": "Two things have to be brought together: the threshold the text states for trout, and the summer readings at the depths offered. At four and six metres the summer water is well above the threshold. Between six and eight metres the profile falls away steeply, and by eight metres it has dropped below what the text says a trout can live in.",
+      "refutations": {
+        "a": {
+          "blockId": "fig1",
+          "family": "arithmetic-slip",
+          "reason": "The summer reading at this depth is nearly twice the threshold. It is close to the surface value, because the steep fall has not yet begun."
+        },
+        "b": {
+          "blockId": "fig1",
+          "family": "arithmetic-slip",
+          "reason": "This is the last depth before the fall, and the water there still holds well over the stated threshold. It is the depth at which the thermocline begins, not where the oxygen has gone."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "The summer profile does drop below the threshold within the range shown, which is the whole point of the contrast the figure draws between the two seasons."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text gives a single number that decides this, and the figure gives the readings to compare it with."
+        },
+        {
+          "level": 2,
+          "text": "Only the summer profile is in question; the winter one is a different date."
+        },
+        {
+          "level": 3,
+          "text": "Take the three depths offered in turn and ask whether the summer reading at each is above or below the threshold."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-ns-lox-001-q1",
+      "packId": "gam-natural-sciences-lake-oxygen-001"
+    },
+    {
+      "stem": "According to the text, what is the thermocline?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The depth below which no light reaches."
+        },
+        {
+          "id": "b",
+          "text": "A band of depth across which the temperature falls sharply."
+        },
+        {
+          "id": "c",
+          "text": "The depth at which oxygen first falls below what fish require."
+        },
+        {
+          "id": "d",
+          "text": "The layer in which sunken material is broken down."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "retrieve",
+      "dependsOn": [
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "the thermocline, a band of depth across which the temperature falls sharply"
+        }
+      ],
+      "explanation": "The text defines the thermocline by temperature and by nothing else. Its consequences for oxygen follow from that definition — water above and below it do not readily mix — but the definition itself is thermal, which is what the name says.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Light is mentioned only as one of the ways oxygen enters the upper water. The text nowhere ties the thermocline to a depth of light."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "This confuses the definition with one of its effects, and with a threshold given for a particular fish. The thermocline sits where it sits whether or not any fish is present."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "Breakdown of sunken material is what happens near the bottom and is why oxygen is consumed there. It is below the thermocline, not the thermocline itself."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The definition is given in a single clause, in the first paragraph."
+        },
+        {
+          "level": 2,
+          "text": "Ask what quantity the name of the band itself refers to."
+        },
+        {
+          "level": 3,
+          "text": "Separate what the band is from what follows from it for the water on either side."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-lox-001-q2",
+      "packId": "gam-natural-sciences-lake-oxygen-001"
+    },
+    {
+      "stem": "According to the text, why is a lake’s oxygen close to the same at every depth in winter?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Because cold water holds more oxygen, so even the deep water is well supplied."
+        },
+        {
+          "id": "b",
+          "text": "Because little material sinks in winter, so almost no oxygen is consumed near the bottom."
+        },
+        {
+          "id": "c",
+          "text": "Because the surface water cools until the lake turns over and carries oxygen down."
+        },
+        {
+          "id": "d",
+          "text": "Because the thermocline moves to the bottom in winter and stops mixing there."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "the surface water cools until it is no denser than the water beneath, the lake turns over from top to bottom, and oxygen is carried down with it"
+        }
+      ],
+      "explanation": "The text gives a mechanism rather than a property. What changes in winter is not how much oxygen the water can hold but whether the water moves: once the surface has cooled to the density of what lies below, the whole lake circulates, and circulation is what carries surface oxygen to the bottom.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Cold water holding more oxygen is true of lakes and is not the reason the text gives. It would raise the readings everywhere without explaining why the deep water stops being cut off."
+        },
+        "b": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "The text says nothing about how much material sinks in one season or another. Its account of winter turns on movement of the water, not on a pause in decay."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The thermocline does not descend in this account; the temperature difference that sustains it disappears, which is why the lake can turn over at all."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text explains winter by something the water does, not by something it is."
+        },
+        {
+          "level": 2,
+          "text": "Ask what has to become true of the surface water before the lake can circulate."
+        },
+        {
+          "level": 3,
+          "text": "Density is doing the work in the passage; find the sentence where it appears."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-lox-001-q3",
+      "packId": "gam-natural-sciences-lake-oxygen-001"
+    },
+    {
+      "stem": "A colleague measures the same lake at midday and wants to set the result against Figure 1. According to the text, what does that require?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nothing; a reading is a reading, whatever the hour."
+        },
+        {
+          "id": "b",
+          "text": "Allowing for the hour, since the figures were taken when oxygen is at its daily lowest."
+        },
+        {
+          "id": "c",
+          "text": "Taking the midday reading below the thermocline, where the hour makes no difference."
+        },
+        {
+          "id": "d",
+          "text": "Repeating the measurement in the other season before either can be used."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p4"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "cannot be set against these figures without allowing for the hour"
+        },
+        {
+          "blockId": "p4",
+          "quote": "recorded at dawn, when a lake’s oxygen is at its lowest for the day"
+        }
+      ],
+      "explanation": "Both profiles share a condition the reader would not guess: they were taken at dawn, at the daily minimum. A midday figure is higher for that reason alone, so any difference between it and the chart would be partly an artefact of the clock. The text asks for that to be allowed for, not for the comparison to be abandoned.",
+      "refutations": {
+        "a": {
+          "blockId": "p4",
+          "family": "contradicts-source",
+          "reason": "The text states the opposite, and gives the mechanism: plants consume oxygen overnight and only begin producing it once there is light."
+        },
+        "c": {
+          "blockId": "p4",
+          "family": "plausible-but-unstated",
+          "reason": "The text makes no claim that the daily swing is confined to the surface. It attributes the swing to plants and to the hour, without exempting any depth."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "Season is a real distinction in this text and it is not the one at issue. The obstacle named here is the time of day."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Both profiles share a condition stated only once; find it."
+        },
+        {
+          "level": 2,
+          "text": "Ask what is special about the hour at which the readings were taken."
+        },
+        {
+          "level": 3,
+          "text": "Decide whether the text rules the comparison out or attaches a condition to it."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-lox-001-q4",
+      "packId": "gam-natural-sciences-lake-oxygen-001"
+    }
+  ]
+}

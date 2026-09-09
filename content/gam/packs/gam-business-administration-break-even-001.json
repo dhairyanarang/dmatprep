@@ -15,7 +15,14 @@
       "reviewStatus": "rejected",
       "notes": "Prices, costs and the chart values are specific to this pack so that the numerical questions cannot be answered from a remembered worked example.",
       "retiredOn": "2026-09-04",
-      "retiredBecause": "Fails spec §5.10. The independent round of 4 September 2026 judged 3 of its 7 questions answerable with no pack at all, and the remaining questions substitute the pack’s numerals into q = F / (p - v), a relationship the candidate already holds. Every block is textbook cost-volume-profit: the assumption list, the formula and the no-break-even case are all standard. There is no non-generic element in the subject to retarget the failing questions onto, and adding one would be replacement dressed as repair. Kept as the evidence for §5.10; counts for nothing. A replacement should keep the text-plus-assumptions-plus-formula-plus-figure shape and the business-administration or economics domain, and be built on a scheme the source defines itself — a stated costing or allocation rule with its own conventions — rather than on a formula the candidate can be assumed to know."
+      "retiredBecause": "SUPERSEDED REASON, kept for the record: it was retired on 4 September 2026 for failing the original §5.10, which required a pack to contribute a materially non-generic relationship. That rule was withdrawn on 5 September 2026 because the official material fails it — Exercise 3 is the optimal order quantity model, a textbook formula, with a stated-assumption question, comparative statics, a pure plug-in on source-supplied values and a chart-reading question. This pack matched that exercise question for question, which is why it was retired.",
+      "reEvaluated": {
+        "on": "2026-09-05",
+        "under": "the corrected §5.10 (the source must materially contribute; the governing relationship may be standard)",
+        "result": "PASSES. The independent round of 5 September 2026 judged all 7 questions to draw materially on the source, agreed with all 7 keys, and found no ambiguity, no outside-knowledge dependence and no correctness defect. Two questions (q2, q6) can be narrowed using a sibling; three (q1, q4, q7) are recall-flagged, and all three match forms the official material demonstrates — Ex 3 Q1 identifies a stated assumption and Ex 3 Q7 reads a chart.",
+        "disposition": "ELIGIBLE FOR RESTORATION, NOT RESTORED.",
+        "why": "Eligibility is a content judgement and it is met. Restoration is a bank-composition decision and it is not required: the step-rebate pack already fills the business-administration slot it vacated, so restoring would take the active pilot from 24 questions to 31 — scaling, which this pass was told not to do. It stays retired pending that decision, and the decision is now about coverage rather than about quality."
+      }
     },
     "blocks": [
       {
@@ -147,7 +154,7 @@
         "text": "If the variable cost per unit were to equal or exceed the selling price, each unit sold would contribute nothing towards the fixed costs, or would deepen the loss. In that case no output level would allow the workshop to cover its costs, and a break-even quantity would not exist at all."
       }
     ],
-    "contentHash": "bccc0d3776922fc2b49847e4cb553117"
+    "contentHash": "e1711d81069aa47dc59659def2b6e782"
   },
   "questions": [
     {

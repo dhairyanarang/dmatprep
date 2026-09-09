@@ -18,6 +18,15 @@
  * them moves.
  */
 
+/**
+ * The three dependency classes, as §5.6 defines them and §5.10 now reads them.
+ *
+ * `source-determined` and `source-supported` both pass: the first cannot be
+ * answered without the source at all, the second is answerable by a
+ * domain-literate reader but still draws on what the source supplies. The
+ * distinction is descriptive and is kept for calibration; only
+ * `source-independent` — the source contributed nothing this task used — fails.
+ */
 export const DEPENDENCY_CLASSES = ['source-determined', 'source-supported', 'source-independent']
 
 /** Every field a per-question adjudication record must carry (spec §5.8). */
@@ -25,7 +34,9 @@ export const REQUIRED_RECORD_FIELDS = [
   'chosenOption',
   'dependency',
   'requiresOutsideKnowledge',
-  'sourceMateriallySupportsAnswer',
+  'sourceMateriallyContributes',
+  'contributionTypes',
+  'requiresApplication',
   'exactlyOneDefensibleOption',
   'rationale',
   'adjudicator',
@@ -93,6 +104,13 @@ export function independenceFailures(round, authors) {
   if (round.countsAsIndependentReview !== true) failures.push('countsAsIndependentReview is not true')
   if (round.status === 'pending') failures.push('round is still pending')
   if (round.status === 'superseded') failures.push('round is marked superseded')
+  // Belt and braces. A round is superseded the moment a later one replaces it,
+  // and the date is written before the status in more than one repair script.
+  // Without this a round carrying `supersededOn` but still saying "complete"
+  // keeps qualifying, and — because the first qualifying round in file order
+  // wins — an OLDER round can quietly outlive the one that replaced it. That
+  // happened on 8 September 2026 and hid a stricter round's findings.
+  else if (round.supersededOn) failures.push(`round was superseded on ${round.supersededOn}`)
 
   const a = round.adjudicator ?? {}
   if (a.independentOfAuthor !== true) failures.push('adjudicator.independentOfAuthor is not true')
@@ -165,18 +183,31 @@ export function validateRound(round, questions, { strict = true } = {}) {
     if (rec.dependency && !DEPENDENCY_CLASSES.includes(rec.dependency)) {
       errors.push(`${q.id}: unknown dependency "${rec.dependency}"`)
     }
-    if (rec.dependency === 'source-independent') {
-      errors.push(`${q.id}: adjudged source-independent — the pack contributes nothing material`)
+    // §5.10, as corrected on 5 September 2026. Exactly one way to fail: the
+    // source contributed nothing this task used. A standard relationship applied
+    // to source-supplied values passes — that is what the official Optimal Order
+    // Quantity exercise does. (An earlier draft of this correction also failed
+    // recall; that clause was withdrawn the same day and survives below only as a
+    // flag. The comment used to say "two ways to fail" and no longer matched the
+    // code.)
+    if (rec.sourceMateriallyContributes === false || rec.dependency === 'source-independent') {
+      errors.push(
+        `${q.id}: the source contributes nothing this question uses — its answer is unchanged with the source removed`,
+      )
     }
+    // `requiresApplication` is recorded and flagged, not failed. Assumption
+    // identification, exhibit reading and definition discrimination are all
+    // forms the official exercises demonstrate (Ex 3 Q1, Ex 3 Q7, Ex 4 Q1), so a
+    // gate that failed them would repeat this section's original error. Balance
+    // across a pack is the reviewer's judgement.
+
     if (rec.chosenOption && rec.chosenOption !== q.correctOptionId) {
       errors.push(`${q.id}: blind answer "${rec.chosenOption}" disagrees with the key "${q.correctOptionId}"`)
     }
     if (rec.requiresOutsideKnowledge === true) {
       errors.push(`${q.id}: adjudged to require outside knowledge, which GAM PDF p. 6 rules out`)
     }
-    if (rec.sourceMateriallySupportsAnswer === false) {
-      errors.push(`${q.id}: adjudged not materially supported by its source`)
-    }
+
     if (rec.exactlyOneDefensibleOption === false) {
       errors.push(`${q.id}: adjudged to leave more than one defensible option`)
     }
@@ -236,25 +267,14 @@ export function readiness({ pack, questions, adjudications, authors, packHashes,
     else independentlyAdjudicated = true
   }
 
-  // §5.10 at pack level. A question may depend on the source for its data alone;
-  // a pack may not. What the pack contributes, and which of its questions
-  // actually require it, is the independent adjudicator's judgement, recorded on
-  // the round.
-  if (independent) {
-    const contribution = independent.packContributions?.[pack.id]
-    if (!contribution) {
-      blockers.push('the round records no §5.10 judgement for this pack')
-    } else if (contribution.contributesNonGenericElement !== true) {
-      blockers.push(
-        `§5.10: the pack contributes nothing non-generic — ${contribution.whatItContributes ?? 'no reason recorded'}`,
-      )
-    } else if ((contribution.questionsRequiringIt ?? []).length < 2) {
-      // One question touching it is decoration, not a contribution.
-      blockers.push(
-        `§5.10: only ${(contribution.questionsRequiringIt ?? []).length} question(s) require what the pack contributes`,
-      )
-    }
-  }
+  // §5.10 is judged per question, not per pack.
+  //
+  // The pack-level test — that a non-generic contribution be load-bearing across
+  // more than one question — is withdrawn with the rule that created it. It
+  // failed the computational-sciences pack for crediting one stipulated
+  // convention to one question, while the official exercises carry no such
+  // element at all. Coverage and balance across a pack are a matter for the
+  // human reviewer, not a gate.
 
   // Narrowing leaks do not fail validation, but nothing ships with one open.
   if (independent) {

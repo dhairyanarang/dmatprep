@@ -1,0 +1,315 @@
+{
+  "pack": {
+    "id": "gam-computational-sciences-cache-policy-001",
+    "domain": "computational-sciences",
+    "title": "A cache and its replacement policy",
+    "defines": [
+      "cache",
+      "hit rate",
+      "replacement policy"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "A cache and its replacement policy"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A cache keeps a small number of records close at hand so that they need not be fetched from the slow store each time. When a record is asked for and is already in the cache the request is a hit; otherwise it is a miss, the record is fetched and placed in the cache, and if the cache is full one record must be dropped to make room. The share of requests that are hits is the cache’s hit rate."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "This system drops whichever record has gone longest without being asked for. A hit counts as an asking, so a record that is found in the cache is thereby moved to the back of the queue for eviction; a record that is merely written back to the slow store is not, because writing is not a request for the record."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Four caches on one machine, as measured over a working day.",
+        "columns": [
+          "Cache",
+          "Records held",
+          "Hit rate"
+        ],
+        "rows": [
+          [
+            "Index cache",
+            "64",
+            "97 per cent"
+          ],
+          [
+            "Document cache",
+            "512",
+            "61 per cent"
+          ],
+          [
+            "Thumbnail cache",
+            "2048",
+            "88 per cent"
+          ],
+          [
+            "Session cache",
+            "128",
+            "79 per cent"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "A hit rate is a property of the pairing of a cache with the pattern of requests it happens to meet. The figures above were measured on one working day’s traffic; a different pattern of requests would give different figures on the same caches, and they are not a ranking of the caches in themselves."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "production-candidate-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here.",
+      "retiredQuestions": [
+        {
+          "id": "gam-cs-cp-001-q2",
+          "retiredOn": "2026-09-09",
+          "reason": "Withdrawn for decisive sibling coupling, not for incorrectness. The question asked what the system does on a miss. q1’s stem states as a given fact that on a request for a record not in the cache one record \"is dropped to make room\" for it — which is q2’s correct option almost word for word, and is incompatible with its other three. The adjudicator of 9 September 2026 (Claude Opus 5, blind to the key) called the coupling total: a candidate who reads q1 first can answer q2 without the source at all. Three earlier rewrites of this slot each closed one channel and opened another, so the slot is withdrawn rather than patched a fourth time. The id is reserved and never reused; the pack keeps the three questions that were clean."
+        }
+      ]
+    },
+    "contentHash": "c3e1b95dfd642d1db2241298326bd462"
+  },
+  "questions": [
+    {
+      "stem": "A cache holds three records. It currently holds P, Q and R, which were last asked for in that order, P longest ago. A request arrives for P, and then a request arrives for S. According to the policy, which record is dropped to make room for S?",
+      "options": [
+        {
+          "id": "a",
+          "text": "P"
+        },
+        {
+          "id": "b",
+          "text": "Q"
+        },
+        {
+          "id": "c",
+          "text": "R"
+        },
+        {
+          "id": "d",
+          "text": "S is added without dropping anything, since the request for P was a hit."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p2",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "This system drops whichever record has gone longest without being asked for."
+        },
+        {
+          "blockId": "p2",
+          "quote": "A hit counts as an asking, so a record that is found in the cache is thereby moved to the back of the queue for eviction"
+        }
+      ],
+      "explanation": "P was the record that had waited longest, so it is the one an eviction would have taken. The request for P is a hit, and the text is explicit that a hit counts as an asking: P is thereby moved to the back of the queue and becomes the most recently used of the three. That leaves Q and R, and Q was asked for before R. So when S arrives and the cache is full, it is Q that has now gone longest without being asked for.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "P had indeed waited longest, and it is the answer only if the request for it is ignored. The text says a hit counts as an asking, and that request is a hit, so P has just become the most recently used record of the three."
+        },
+        "c": {
+          "blockId": "p2",
+          "family": "arithmetic-slip",
+          "reason": "R was asked for more recently than Q, and the hit on P does not change how those two stand relative to one another. Dropping R would evict the newer of the pair still waiting."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "A hit frees no space: the record was already in the cache and still is. S is not in the cache, so it is a miss, and the text says a miss on a full cache requires a record to be dropped."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Settle what the first of the two requests does to the order before considering the second at all."
+        },
+        {
+          "level": 2,
+          "text": "The text says whether being found in the cache counts as being asked for; that sentence is the whole of this question."
+        },
+        {
+          "level": 3,
+          "text": "The record that had waited longest has just been asked for, so ask which one has waited longest now."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-cs-cp-001-q1",
+      "packId": "gam-computational-sciences-cache-policy-001"
+    },
+    {
+      "stem": "Which cache met the smallest share of its requests without going to the slow store?",
+      "options": [
+        {
+          "id": "a",
+          "text": "The index cache"
+        },
+        {
+          "id": "b",
+          "text": "The document cache"
+        },
+        {
+          "id": "c",
+          "text": "The thumbnail cache"
+        },
+        {
+          "id": "d",
+          "text": "The session cache"
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "t1",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "The share of requests that are hits is the cache’s hit rate."
+        },
+        {
+          "blockId": "t1",
+          "quote": "Hit rate"
+        }
+      ],
+      "explanation": "A request met without going to the slow store is a hit, so the question asks for the lowest hit rate. The table also gives how many records each cache holds, and that column plays no part here: a cache can be large and still meet few of its requests, which is what the figures show.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "wrong-direction-of-effect",
+          "reason": "This cache has the highest hit rate of the four and holds the fewest records. It is the answer to the opposite question."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This cache holds far more records than any other, which makes it tempting if the size column is read instead of the hit rate. Its hit rate is among the higher ones."
+        },
+        "d": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This cache sits in the middle of the hit-rate column. Another cache met a distinctly smaller share of its requests."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Translate the question into the table’s own vocabulary before reading anything."
+        },
+        {
+          "level": 2,
+          "text": "A request met without going to the slow store has a name in the first paragraph."
+        },
+        {
+          "level": 3,
+          "text": "One of the table’s two number columns is irrelevant here; decide which."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      },
+      "id": "gam-cs-cp-001-q3",
+      "packId": "gam-computational-sciences-cache-policy-001"
+    },
+    {
+      "stem": "An engineer proposes using the table to decide which of the four designs is the better cache. According to the text, what is wrong with that?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Nothing, provided the caches are compared over an equal number of requests."
+        },
+        {
+          "id": "b",
+          "text": "The figures depend on the requests each cache happened to meet, so they do not rank the caches themselves."
+        },
+        {
+          "id": "c",
+          "text": "The figures cannot be compared because the caches hold different numbers of records."
+        },
+        {
+          "id": "d",
+          "text": "A hit rate measured over a single day is too short a period to be used at all."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "A hit rate is a property of the pairing of a cache with the pattern of requests it happens to meet."
+        },
+        {
+          "blockId": "p3",
+          "quote": "they are not a ranking of the caches in themselves"
+        }
+      ],
+      "explanation": "The text locates a hit rate in a pairing rather than in a cache. Each of the four met a different stream of requests over the day — one serving an index, another documents — so the figures describe four different situations, and the differences between them are as much about the traffic as about the designs.",
+      "refutations": {
+        "a": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "Equal numbers of requests would not help, because the objection is about what the requests were rather than how many there were."
+        },
+        "c": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "Differing sizes are a real difference between the four and are not the objection the text raises. It puts the difficulty in the request patterns."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "plausible-but-unstated",
+          "reason": "The text records the measurement period without calling it too short, and says the figures would differ under a different pattern rather than a longer one."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The last paragraph says what kind of thing a hit rate is a property of."
+        },
+        {
+          "level": 2,
+          "text": "Ask whether the four caches were meeting the same work as one another."
+        },
+        {
+          "level": 3,
+          "text": "Three options name real differences between the caches; only one names the one the text objects on."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-cs-cp-001-q4",
+      "packId": "gam-computational-sciences-cache-policy-001"
+    }
+  ]
+}

@@ -406,115 +406,134 @@ be a general-knowledge quiz. Both miss what this module measures.
 and §5.8. An author already knows the answer and cannot judge whether it is
 reachable without the source.
 
-**5.10 The pack must contribute something. MANDATORY.**
+**5.10 The source must materially contribute. MANDATORY.**
 
-> Discovered by the first pilot, 4 September 2026, and made a gate the same day.
+> Written 4 September 2026, **corrected 5 September 2026** against the official
+> exercises. The first version of this section was wrong, and it is worth saying
+> plainly how, because the error cost a compliant pack.
 
-**A question fails this section when a candidate who knows the field would answer
-it the same way with the source removed.** Restating a generic truth is not
-contributing it. A source that says "the resistances of the layers are added"
-has told a physics-literate candidate nothing they did not have.
+### What the earlier version got wrong
 
-**Two dependencies, and they are not the same thing.**
+It required the pack to contribute a *materially non-generic* relationship, and
+failed any question a domain-literate candidate could answer with the source
+removed. **The official material does not work that way, and could not survive
+that test.**
 
-- **Data dependence** — the question cannot be answered without values only this
-  source supplies. *What is the heat flow through the wall in Figure 2?* has it:
-  strip the source and there is no wall.
-- **Reasoning dependence** — the question cannot be answered without a rule,
-  condition, framework or stipulation only this source supplies. *Does that wall
-  meet the guidance?* has it: the limit is a convention no candidate can derive.
+Official Exercise 3 is the optimal order quantity model — a textbook formula,
+`Q* = √(2DS/H)` — and its seven questions are: identify a stated assumption;
+comparative statics; why the model uses `Q/2`; **a pure plug-in with D = 1800,
+S = 50, H = 2**; two further comparative statics; and which line of a plotted
+chart shows total ordering costs. Official Exercise 2 explains `p = ρgh`,
+standard hydrostatics, then asks what happens to a flooded compartment when
+trapped air compresses. Official Exercise 1 is vector algebra: a
+vector-literate reader answers much of it unaided.
 
-**A question with neither is source-independent and fails outright.** That is the
-whole of the pilot's failure: every one of the six was a direct read of a sentence
-stating something universally known — resistances in series add, a sum exceeds its
-terms, break-even is fixed costs over contribution margin — needing no value from
-the pack and no rule from it either.
+Under the earlier rule, all three would fail. **A rule the exam's own material
+fails is not a standard; it is a bug.** It retired a break-even pack that matched
+Exercise 3 question for question.
 
-**A question with data dependence alone is legitimate but thin.** Reading a source
-and applying knowledge to it is what a subject module is for, and ruling it out
-would forbid every quantitative exhibit question the official material contains.
-But a pack made only of these has contributed numerals and nothing else, which is
-what this section exists to stop.
+### The corrected principle
 
-**So the gate is at two levels.** Each question must have at least one of the two
-dependencies. **And the pack must contribute a materially non-generic element that
-a substantial share of its questions require the candidate to apply.** Neither
-alone is enough: pack-specific values without a non-generic contribution is the
-failure this section names, and a non-generic contribution that only one question
-touches is decoration.
+**A question passes when the supplied source materially contributes to solving
+that specific task, and the task requires the candidate to do something with it
+— apply, transfer, interpret, calculate, compare, test sensitivity, classify or
+reason — rather than merely recall a fact.**
 
-> **This distinction was drawn on 4 September 2026, after an adjudicator applied
-> an earlier and blunter wording of this section to the repaired engineering
-> pack and judged its three arithmetic questions unsupported** — reading "with the
-> source removed" as "with the prose removed and the numbers kept". The gap was
-> real and had to be closed one way or the other. It was closed this way because
-> the alternative forbids exhibit arithmetic altogether, which the official
-> material plainly contains.
->
-> **It was checked against the decision it might have overturned, and does not
-> overturn it.** The retired break-even pack fails at the pack level, where it
-> contributes no non-generic element at all; how its individual questions
-> classify does not arise. Nor does the refinement rescue any of the six failing
-> questions, none of which had either dependence. A refinement that saved the
-> pack it was prompted by would have been a weakened gate; this one saves
-> nothing that was failing.
+**The governing academic relationship may be entirely standard.** A formula every
+candidate knows, applied to values only this source supplies, is a legitimate GAM
+question, because it is what the official material does. p. 6 is explicit that the
+Subject Module is *knowledge-based* and asks for "developed transfer and
+application skills, rather than memorised factual knowledge" — the discriminator
+is **transfer**, not novelty of the relationship.
 
-**Pack-specific values are necessary and not sufficient.** Where the governing
-relationship is generic textbook knowledge, changing the numbers only changes the
-arithmetic. A candidate who knows that break-even is fixed costs over contribution
-margin answers a break-even question from the stem whatever the price is.
+### What a question may legitimately depend on
 
-**A pack must contribute a materially non-generic relationship, condition,
-interpretation, transformation, classification, assumption, exception or
-framework, and each of its questions must require the candidate to apply it.**
-Any of the following will do, and something must:
+Any of these, alone or combined:
 
-| Contribution | What it looks like |
+| Contribution | Example from the official exercises |
 |---|---|
-| relationship | a rule invented for the pack — a routine's operation count, a scheme's costing formula |
-| condition | a threshold, limit or eligibility test the source stipulates |
-| interpretation | a reading the source imposes on an otherwise ambiguous case |
-| transformation | a procedure the source defines for converting one quantity into another |
-| classification | a taxonomy the source names and delimits |
-| assumption | a stipulation that departs from the default a candidate would bring |
-| exception | a case the source rules in or out against the general rule |
-| framework | a set of tests the source defines and requires to be applied separately |
+| **data** | Ex 3 Q4 plugs D, S and H, all given in the source, into the stated formula |
+| **rule** | Ex 2 states pressure rises ~1 bar per 10 m; Q1 applies it to 10,000 m |
+| **framework** | Ex 4 defines deductive and inductive strategies; every question classifies against them |
+| **assumption** | Ex 3 Q1 asks which stated assumption the model rests on |
+| **definition** | Ex 1's legend fixes what the scalar, vector and triple products return; Q3 turns on it |
+| **exhibit** | Ex 3 Q7 asks which plotted line is which; Ex 1 Q1 reads vectors off a diagram |
 
-**Generic knowledge belongs in the distractors, not the key.** A general law is
-best used to refute a wrong option — that is the position in which it does real
-work without deciding the item. The repaired engineering pack does exactly this:
-the order-independence of series resistances and the area-independence of a
-U-value each refute an option, and neither is an answer.
+### The one thing that fails
 
-**How this is enforced.** It is not mechanical and cannot be. The independent
-adjudicator of §5.8 answers each question with the pack in hand and records
-`sourceMateriallySupportsAnswer`, set false when they would have answered the same
-way with no pack at all. A false there classifies the question `source-independent`
-under §5.6, **and a source-independent question fails the round** — so a pack
-carrying one cannot be independently adjudicated and cannot ship. This is the one
-gate a pack can fail while passing every automated check, and the pilot's two
-textbook-formula packs did exactly that.
+**A question whose answer is unchanged when the source is removed entirely** —
+needing none of its data, none of its rules, none of its exhibits — is not a GAM
+question. It is a general-knowledge question with a passage attached. **That is
+the whole of the bar**, and it is much lower than the bar this section used to
+set.
 
-**Evidence from the pilot.** The four packs split cleanly, and the line was not
-domain, exhibit type or question style:
+> **Recall does not fail. Corrected the same day, for the same reason.**
+>
+> A first draft of this section also failed any question that asked the candidate
+> to find something in the source rather than do something with it. Applied to the
+> pilot it flagged five questions — and every one of them turned out to match a
+> form the official material demonstrates:
+>
+> - **Assumption identification.** Official Ex 3 Q1: *"Which statement correctly
+>   describes a central assumption of the optimal order quantity model?"*, with
+>   four plausible rival assumptions as options.
+> - **Exhibit reading.** Official Ex 3 Q7: *"Which line shows the total fixed
+>   ordering costs?"*, answered with bare line labels. Official Ex 1 Q1 reads
+>   vectors off a diagram.
+> - **Definition discrimination.** Official Ex 4 Q1 and Q2 ask which statement
+>   applies to the deductive and inductive strategies.
+>
+> A rule that fails what the exam's own exercises do is wrong, however
+> reasonable it sounds — which is the lesson of this whole section. `retrieve`
+> and `read-exhibit` are legitimate GAM reasoning types.
 
-| Pack | Built on | Verdict |
-|---|---|---|
-| Computational sciences | invented routines with invented constants — `4n + 30`, `25 log2 n + 40`, `n² / 2` | 7/7 source-supported, nothing raised |
-| Humanities | a three-check taxonomy the source defines and delimits itself | 6/6 source-supported, nothing raised |
-| Business administration | textbook cost-volume-profit, `q = F / (p − v)` | 3 of 7 answerable with no pack at all |
-| Engineering | textbook series thermal resistance, `R = d / λ` | 3 of 6 answerable with no pack at all |
+`requiresApplication` is still recorded per question, and a false lands as a
+review flag rather than a failure. **Balance is the reviewer's judgement**: the
+official exercises mix computation, application, classification, assumption
+identification and exhibit reading, and a pack made *entirely* of lookups would
+be a reading test even though no single lookup is a defect. There is no
+officially stated ratio, so none is imposed here. <span>UNKNOWN</span>
 
-The adjudicator's reason was the same each time: *a standard, universally-taught
-formula*; *a textbook relationship*; *a standard notation convention*; *basic,
-universally-known physics*. **Both failing packs passed every automated gate.**
+### How it is judged
 
-**Repair or retire.** A pack whose subject naturally carries a non-generic
-element — a stipulated limit, a defined procedure, a convention that varies
-between standards — can be repaired by adding it and retargeting the failing
-questions onto it. A pack whose content is textbook end to end cannot: bolting a
-rule onto it is replacement dressed as repair, and **the pack should be retired
-rather than the gate weakened.** The pilot did one of each.
+Not mechanically, and it cannot be. The independent adjudicator of §5.8 answers
+each question with the source in hand and records:
+
+- **`sourceMateriallyContributes`** — did the source supply data, a rule, a
+  framework, a definition or an exhibit that this task actually used? Set false
+  only when the answer would be identical with the source removed entirely.
+- **`contributionTypes`** — which of `data`, `rule`, `framework`, `definition`,
+  `exhibit`, `other` were used.
+- **`requiresApplication`** — did the task require doing something with the
+  material, rather than repeating it?
+
+A question fails §5.10 when `sourceMateriallyContributes` is false. That is the
+only failure. `requiresApplication` is recorded and flagged for the reviewer but
+does not fail an item on its own — see below. Both are judgements, and both are
+recorded per question so a reviewer can disagree with a specific one rather than
+with a score.
+
+### What is no longer required
+
+- **Not required:** that the governing relationship be invented for the pack.
+- **Not required:** that a domain expert be unable to answer without the source.
+- **Not required:** that every question apply some single non-generic element,
+  or that such an element exist at all.
+
+The pack-level test that a contribution be "load-bearing across more than one
+question" is withdrawn with the rule that created it. Coverage and balance across
+a pack remain a matter for the human reviewer.
+
+### What the earlier rule got right, and keeps
+
+Two findings from the strict period survive it, because they were never about
+genericity:
+
+- **§5.9 cross-question leakage** stands unchanged. A question settled by a
+  sibling is broken regardless of where its content comes from.
+- **Recall-only items are still weak.** The official exercises ask the candidate
+  to *use* what the source says. An item that only asks them to find it again is
+  thin, and is recorded as `recognitionNotTransfer` for the reviewer to weigh.
 
 **5.7 Originality.** N-gram overlap (proposed: any shared 8-gram) against the
 extracted official PDF text and any reference corpus used while drafting. Any hit
@@ -659,7 +678,9 @@ per-question record carries, separately from any author or reviewer field:
 |---|---|
 | `dependency` | one of the three classes in §5.6 |
 | `requiresOutsideKnowledge` | whether answering needs a fact the pack does not supply |
-| `sourceMateriallySupportsAnswer` | whether the pack actually carries the answer's weight |
+| `sourceMateriallyContributes` | whether the source supplied something this task used — data, a rule, a framework, a definition or an exhibit. False only when the answer is unchanged with the source removed entirely (§5.10) |
+| `contributionTypes` | which of those the task actually used |
+| `requiresApplication` | whether the task asked the candidate to do something with the material, rather than repeat it (§5.10) |
 | `exactlyOneDefensibleOption` | whether a second option can be argued for |
 | `chosenOption` | the option picked blind, before seeing the key |
 | `rationale` | why, in the adjudicator's own words |
@@ -745,6 +766,18 @@ difficulty-representative; we have no calibration yet either.
 Criteria 6 and 7 are the two the first pilot failed. It passed every mechanical
 gate on the first attempt and still had to be rebuilt in nine of its
 twenty-six questions.
+
+**What three rounds of leakage repair taught about pack size.** Coupling scales
+with questions per source, not with how carefully a question is written. Every
+leak the pilot had to repair was the same source read one time too many: a table
+read five ways, a framework applied twice, one invariance fact asked from two
+sides. Rewording never fixed one of them; what fixed them was changing what a
+question asks, or moving it onto data of its own. Where a question genuinely
+needs a scenario the source does not carry, giving it self-contained figures is a
+legitimate repair rather than a retreat — the official material does the same in
+Exercise 3, where the source supplies the rule and the question supplies the
+case. **Fewer questions per source is the cheaper lever than cleverer questions,
+and the count in the table above is a ceiling rather than a target.**
 
 **Explicitly out of scope for the pilot:** difficulty calibration, question-count
 targets for a full exam, and any UI.

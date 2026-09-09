@@ -1,0 +1,395 @@
+{
+  "pack": {
+    "id": "gam-natural-sciences-solubility-001",
+    "domain": "natural-sciences",
+    "title": "How much solute a solution will hold",
+    "defines": [
+      "solubility",
+      "saturated",
+      "supersaturated"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "How much solute a solution will hold"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "The solubility of a salt is the greatest mass of it that will dissolve in a fixed mass of water at a stated temperature, and it is given here as grams of salt per 100 grams of water. Solubility is a property of the pair of substances and of the temperature. It does not depend on how vigorously the mixture is stirred or on how long it is left standing; stirring changes how quickly the salt goes into solution, and nothing about how much of it will."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Solubility of two salts, in grams per 100 grams of water.",
+        "columns": [
+          "Temperature",
+          "Salt P",
+          "Salt Q"
+        ],
+        "rows": [
+          [
+            "20 degrees",
+            "32",
+            "88"
+          ],
+          [
+            "40 degrees",
+            "44",
+            "92"
+          ],
+          [
+            "60 degrees",
+            "58",
+            "96"
+          ],
+          [
+            "80 degrees",
+            "74",
+            "100"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "A solution holding less salt than the figure for its temperature is unsaturated; one holding exactly that figure is saturated. A solution can be brought to hold more than the figure by dissolving the salt hot and then cooling it slowly and without disturbance. Such a solution is supersaturated, and it is unstable: a single crystal dropped into it, or a knock, will bring the excess out of solution at once."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "When a saturated solution is cooled it can no longer hold what it held at the higher temperature. The excess crystallises out, and its mass is the difference between the solubility at the two temperatures, scaled to the mass of water actually present."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p4",
+        "text": "The figures in the table are for pure water. Where some other substance is already dissolved, the water is no longer pure, the tabulated figure cannot be relied on, and a separate measurement has to be made for the mixture itself."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "experiment-small-packs-2026-09-08",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the smaller-pack authoring experiment of 8 September 2026. The source states four distinct rules and each question targets a different one, and at most one question offers options that are a function of the source’s own constants — the two design rules the retired operation-counts pack produced. The scheme and every figure in it are invented for this pack."
+    },
+    "contentHash": "1b348e9a4a0ef7c86c8a6e21dc135336"
+  },
+  "questions": [
+    {
+      "stem": "A saturated solution of Salt P in 200 grams of water at 60 degrees is cooled to 20 degrees. What mass of salt crystallises out?",
+      "options": [
+        {
+          "id": "a",
+          "text": "16 g"
+        },
+        {
+          "id": "b",
+          "text": "26 g"
+        },
+        {
+          "id": "c",
+          "text": "28 g"
+        },
+        {
+          "id": "d",
+          "text": "52 g"
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "t1",
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p3",
+          "quote": "its mass is the difference between the solubility at the two temperatures, scaled to the mass of water actually present"
+        },
+        {
+          "blockId": "t1",
+          "quote": "Salt P"
+        }
+      ],
+      "explanation": "Two things have to be got right. The first is which pair of figures to subtract: Salt P’s column, at the two temperatures named, and not Salt Q’s and not some other pair of rows. The second is that the table is quoted per 100 grams of water while the flask holds twice that, so the difference has to be doubled before it is reported.",
+      "refutations": {
+        "a": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This works down Salt Q’s column instead of Salt P’s. Salt Q barely changes across this range, which is why it gives so small an answer, and it is not the salt in the flask."
+        },
+        "b": {
+          "blockId": "p3",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the difference the table gives directly, which is the figure for 100 grams of water. The flask holds 200, and the text says the difference is scaled to the water actually present."
+        },
+        "c": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "This cools only as far as the middle of the range instead of to the temperature named in the question. The row that matters is the one the solution actually reaches."
+        }
+      },
+      "computation": {
+        "expression": "(58 - 32) * 200 / 100",
+        "expected": 52,
+        "unit": "g"
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Find the two figures the question actually asks you to compare before doing any arithmetic."
+        },
+        {
+          "level": 2,
+          "text": "The table is quoted for a fixed mass of water; check whether the flask holds that mass."
+        },
+        {
+          "level": 3,
+          "text": "Take the difference down the correct column, then scale it to the water the flask really contains."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": true
+      },
+      "id": "gam-ns-sol-001-q1",
+      "packId": "gam-natural-sciences-solubility-001"
+    },
+    {
+      "stem": "A flask is prepared by dissolving Salt P in hot water and cooling it slowly without disturbance. It is now holding more salt than the figure for its temperature allows. According to the text, what is this solution, and what should be expected of it?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Unsaturated, and it will take up more salt if any is added."
+        },
+        {
+          "id": "b",
+          "text": "Saturated, and it is holding exactly what it can at this temperature."
+        },
+        {
+          "id": "c",
+          "text": "Supersaturated, and a knock or a stray crystal will bring the surplus down."
+        },
+        {
+          "id": "d",
+          "text": "Impossible, because a solution cannot hold more than the figure at any temperature."
+        }
+      ],
+      "correctOptionId": "c",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "Such a solution is supersaturated, and it is unstable"
+        },
+        {
+          "blockId": "p2",
+          "quote": "dissolving the salt hot and then cooling it slowly and without disturbance"
+        }
+      ],
+      "explanation": "The flask has been made in exactly the way the text describes — dissolved hot, cooled slowly, left undisturbed — and it is holding more than its temperature allows. That is the supersaturated state. The text is equally clear about what follows: the condition is unstable, and a crystal or a knock brings the excess out at once.",
+      "refutations": {
+        "a": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "Unsaturated means holding less than the figure, not more. A solution already past its figure will not take up more salt; it is waiting to give some back."
+        },
+        "b": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "Saturated is holding exactly the figure. The question says the flask is past it, which the text treats as a different state with a different name."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The text says the opposite in as many words: a solution can be brought to hold more than the figure, and it describes the method for doing it."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The text names three states, and each is fixed by how the solution stands against the figure for its temperature."
+        },
+        {
+          "level": 2,
+          "text": "The method described in the question is described in the text as well — find where."
+        },
+        {
+          "level": 3,
+          "text": "Having named the state, read on: the text says what such a solution does when it is disturbed."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-sol-001-q2",
+      "packId": "gam-natural-sciences-solubility-001"
+    },
+    {
+      "stem": "A technician wants to know how much Salt P a tank of seawater will hold at 40 degrees, and reads the figure from the table. According to the text, is that sound?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Yes, since solubility is a property of the pair of substances and of the temperature."
+        },
+        {
+          "id": "b",
+          "text": "Yes, provided the tank is stirred long enough to reach the tabulated figure."
+        },
+        {
+          "id": "c",
+          "text": "No, and the figure should be halved to allow for what is already dissolved."
+        },
+        {
+          "id": "d",
+          "text": "No, because the table is for pure water and the mixture has to be measured separately."
+        }
+      ],
+      "correctOptionId": "d",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p4",
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "the water is no longer pure, the tabulated figure cannot be relied on, and a separate measurement has to be made for the mixture itself"
+        },
+        {
+          "blockId": "p1",
+          "quote": "Solubility is a property of the pair of substances and of the temperature."
+        }
+      ],
+      "explanation": "Seawater already has something dissolved in it, so the water is not the pure water the table is quoted for. The text does not say the figure will be higher or lower — it says it cannot be relied on, and that the mixture has to be measured in its own right. That is a statement about not knowing, and none of the alternatives is that.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "The quoted phrase is in the text, but it fixes what solubility depends on for a given pair of substances. Here the solvent is not the one the table was drawn up for, so the pair is not the same pair."
+        },
+        "b": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Stirring is dealt with in the text and it changes only how fast the salt dissolves. No amount of it makes a figure for pure water apply to a mixture."
+        },
+        "c": {
+          "blockId": "p4",
+          "family": "plausible-but-unstated",
+          "reason": "The direction and size of the change are exactly what the text declines to state. Halving is a number invented for the occasion, and the text asks for a measurement instead."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Ask what the table was drawn up for, and whether the tank matches that description."
+        },
+        {
+          "level": 2,
+          "text": "The text says what to do when the solvent is not pure — it is a short instruction near the end."
+        },
+        {
+          "level": 3,
+          "text": "Two options say the reading is unsound; separate them by asking whether the text predicts how far it would be out."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-sol-001-q3",
+      "packId": "gam-natural-sciences-solubility-001"
+    },
+    {
+      "stem": "A student finds that no more Salt P will dissolve in a beaker of water, and stirs it for a further hour at the same temperature. According to the text, what happens?",
+      "options": [
+        {
+          "id": "a",
+          "text": "More dissolves, because stirring brings fresh water to the crystals."
+        },
+        {
+          "id": "b",
+          "text": "Nothing further dissolves, because stirring does not change how much the water will hold."
+        },
+        {
+          "id": "c",
+          "text": "Some dissolves and then comes back out, leaving the beaker as it was."
+        },
+        {
+          "id": "d",
+          "text": "It cannot be said without knowing how much salt was put in at the start."
+        }
+      ],
+      "correctOptionId": "b",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "It does not depend on how vigorously the mixture is stirred or on how long it is left standing"
+        },
+        {
+          "blockId": "p1",
+          "quote": "stirring changes how quickly the salt goes into solution, and nothing about how much of it will"
+        }
+      ],
+      "explanation": "The beaker has already reached the figure for its temperature, and the text separates two things that are easy to run together: how fast a salt dissolves, which stirring does affect, and how much will dissolve at all, which it does not. Stirring for another hour acts on the first and leaves the second exactly where it was.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "This is the intuition the text is written against. Bringing fresh water to the crystals is a statement about rate, and the text says rate is the only thing stirring touches."
+        },
+        "c": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the text describes salt going into solution and coming back out at a fixed temperature. The figure is a limit on how much dissolves, not a cycle."
+        },
+        "d": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "The starting quantity decides how much undissolved salt is left sitting at the bottom, not how much the water will take. The limit is fixed by the pair of substances and the temperature, both of which the question gives."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The beaker has already reached its limit, so ask what stirring is capable of changing."
+        },
+        {
+          "level": 2,
+          "text": "The text draws a distinction between two things stirring might be thought to affect."
+        },
+        {
+          "level": 3,
+          "text": "One of the two is about speed and the other about quantity; decide which the question is asking about."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-ns-sol-001-q4",
+      "packId": "gam-natural-sciences-solubility-001"
+    }
+  ]
+}

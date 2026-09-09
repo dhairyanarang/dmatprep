@@ -13,8 +13,23 @@
     "provenance": {
       "originality": "original",
       "draftedBy": "pilot-b1",
-      "reviewStatus": "automated-pass",
-      "notes": "Constants and the three routine names are invented for this pack so that every question turns on the supplied figures rather than on remembered complexity results."
+      "reviewStatus": "rejected",
+      "notes": "Constants and the three routine names are invented for this pack so that every question turns on the supplied figures rather than on remembered complexity results.",
+      "repairs": [
+        {
+          "on": "2026-09-07",
+          "reason": "Three questions carried narrowing leaks, two of them caused by q3 alone. q3 was a special case of q6 — both turned on the rankings reshuffling across the tabulated sizes — and its options enumerated Table 1’s three column headings, which confirmed for q1 that n = 16 is a literal table row. Separately, q7’s answer was a clean multiple of the catalogue size, so dividing its options by 4,096 left two candidate SPLIT values that q2’s option cluster then separated on magnitude.",
+          "changed": {
+            "gam-cs-oc-001-q2": "Unchanged in the end. A distractor swap (315 for 340, Table 1’s SPLIT count at n = 4096) was drafted and withdrawn: naming 340 in an option hands q7 a value it must take from the table, and the mechanical gate rejected it as sibling-option leakage. Recorded here because the withdrawal is part of the repair, not an absence of one.",
+            "gam-cs-oc-001-q3": "Replaced. Was \"at which listed size does SPLIT perform more steps than SCAN\"; is now a sensitivity question on SPLIT’s own count across two doublings. It ranks no routines against one another, names no catalogue size, and — after the mechanical gate caught a first draft that named the formula’s two constants in its options, which would have handed them to q2 — carries no numbers at all.",
+            "gam-cs-oc-001-q7": "Revised. The artificial \"ignoring SCAN’s own steps\" clause is dropped and the question asks for the program’s total, which exercises both of the text’s composition rules rather than one. No option is now a clean multiple of the catalogue size."
+          },
+          "unchanged": "q1, q4, q5 and q6 keep their content; q1 and q6 were leak targets, not leak sources."
+        }
+      ],
+      "retiredOn": "2026-09-08",
+      "retiredBecause": "Fails spec §5.9 at pack level. The independent round of 8 September 2026 — Claude Opus 5 on both halves, neither shown the answer key — rated six of the pack’s seven questions DECISIVELY coupled, and demonstrated the mechanism: the option lists reconstruct Table 1 in full without the table being seen. q7’s options factor exactly into SPLIT(4096) = 340 and SCAN(4096) = 16,414; q2’s options are spaced by exactly 25 and q3 asserts a constant rise per doubling, giving SPLIT(n) = 40 + 25 log2 n; q5’s first option is SCAN(256), giving SCAN(n) = 4n + 30; q1’s 128 and 32,768 stand in the ratio of one table step squared, giving PAIR(n) = n^2 / 2. Every row of the table follows, and with it six of the seven answers. No key is wrong — both rounds agreed with all seven — and there is no ambiguity, outside-knowledge or §5.10 finding against it. The fault is the arithmetic relationship between the option lists, which is a pack-level design fault: each item is individually sound. Retiring the six coupled questions would leave one, so this is retirement under its proper name. A replacement should carry at most two numeric items on one table, or use a source whose questions do not all reduce to arithmetic on the same few constants. Kept in full as the evidence; counts for nothing.",
+      "retirementCaveat": "ADJUDICATOR STRENGTH DECIDED THIS. The same seven questions were adjudicated one day earlier by Claude Sonnet 5, which rated three of them narrowing and NONE decisive. Nothing about the content changed between the two rounds. The pack was re-run under the stronger reader only because the step-rebate pack had been, and comparing packs judged by different readers would have been meaningless. Had that re-run not happened, this pack would have been reported as the mildest of the four. That is the strongest evidence this pilot has produced that a clean adjudication round describes the reader as much as the content."
     },
     "blocks": [
       {
@@ -94,7 +109,7 @@
         "text": "A routine is only worth replacing if the replacement performs fewer steps at the catalogue sizes that actually occur. Below a certain size a routine whose count grows faster may still perform fewer steps than one whose count grows more slowly, because the slower-growing routine begins with a larger fixed cost."
       }
     ],
-    "contentHash": "1c4ea305e321ace70e4b837935ea7209"
+    "contentHash": "a964dda42b70b9f06d5b9d9e73e85619"
   },
   "questions": [
     {
@@ -171,8 +186,6 @@
       "packId": "gam-computational-sciences-operation-counts-001"
     },
     {
-      "id": "gam-cs-oc-001-q2",
-      "packId": "gam-computational-sciences-operation-counts-001",
       "stem": "A catalogue holds 1,024 records. How many elementary steps does SPLIT perform on it?",
       "options": [
         {
@@ -203,124 +216,127 @@
           "quote": "T_SPLIT(n) = 25 log2(n) + 40"
         }
       ],
+      "explanation": "1,024 is 2 multiplied by itself ten times, so its logarithm to base 2 is 10. SPLIT’s count is 25 × 10 + 40 = 290 elementary steps. The catalogue size is not one of the three in Table 1, so the count has to come from the formula.",
+      "refutations": {
+        "a": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "265 uses 9 for the logarithm, which is the value for 512 records rather than 1,024. Doubling the catalogue adds one to the logarithm."
+        },
+        "c": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "315 uses 11 for the logarithm, which is the value for 2,048 records. 1,024 is 2 multiplied by itself ten times, not eleven."
+        },
+        "d": {
+          "blockId": "f1",
+          "family": "misapplied-formula",
+          "reason": "1,064 adds the fixed cost of 40 to the number of records themselves. It is the logarithm of the number of records that is multiplied by 25, not the number of records."
+        }
+      },
       "computation": {
         "expression": "25*10+40",
         "expected": 290,
         "unit": "elementary steps"
       },
-      "explanation": "SPLIT's count is 25 log2(n) + 40. Since 1,024 is 2 to the power 10, log2(1,024) = 10, so the count is 25 x 10 + 40 = 290 elementary steps.",
-      "refutations": {
-        "a": {
-          "blockId": "f1",
-          "family": "arithmetic-slip",
-          "reason": "265 uses log2(1,024) = 9, which would be the exponent for 512 rather than 1,024."
-        },
-        "c": {
-          "blockId": "f1",
-          "family": "arithmetic-slip",
-          "reason": "315 uses log2(1,024) = 11, one power of two too many."
-        },
-        "d": {
-          "blockId": "f1",
-          "family": "misapplied-formula",
-          "reason": "1,064 applies SCAN's rule 4n + 30 in the shape 1,024 + 40 rather than SPLIT's logarithmic rule."
-        }
-      },
       "hints": [
         {
           "level": 1,
-          "text": "The catalogue size in this question is not one of the sizes listed in the table, so the rule has to be applied directly."
+          "text": "The catalogue size is not one of the three in Table 1, so the table cannot answer this."
         },
         {
           "level": 2,
-          "text": "Use the expression given for SPLIT. Its first term depends on the logarithm to base 2 of the catalogue size."
+          "text": "Ask how many times 1,024 can be halved before one record is left."
         },
         {
           "level": 3,
-          "text": "Work out which power of two gives 1,024, substitute that for log2(n), then apply the multiplier and the constant."
-        }
-      ],
-      "difficulty": "medium",
-      "meta": {
-        "stepCount": 2,
-        "blockSpan": 1,
-        "transferDistance": 1,
-        "requiresExhibit": false
-      }
-    },
-    {
-      "stem": "At which of the catalogue sizes listed in Table 1 does SPLIT perform more elementary steps than SCAN?",
-      "options": [
-        {
-          "id": "a",
-          "text": "At n = 16 only"
-        },
-        {
-          "id": "b",
-          "text": "At n = 256 only"
-        },
-        {
-          "id": "c",
-          "text": "At n = 4096 only"
-        },
-        {
-          "id": "d",
-          "text": "At none of the three listed sizes"
-        }
-      ],
-      "correctOptionId": "a",
-      "reasoning": "comparative",
-      "dependsOn": [
-        "t1"
-      ],
-      "supportSpans": [
-        {
-          "blockId": "t1",
-          "quote": "SCAN 94 1054 16414"
-        },
-        {
-          "blockId": "t1",
-          "quote": "SPLIT 140 240 340"
-        }
-      ],
-      "explanation": "Comparing the two rows column by column: at the smallest size SPLIT takes more steps than SCAN, and at both larger sizes it takes far fewer. The routine that looks worse on a small catalogue is the one that wins on a large one.",
-      "refutations": {
-        "b": {
-          "blockId": "t1",
-          "family": "swapped-quantities",
-          "reason": "At this size SPLIT takes 240 steps against SCAN's 1054, so SPLIT performs fewer, not more."
-        },
-        "c": {
-          "blockId": "t1",
-          "family": "swapped-quantities",
-          "reason": "At the largest size the gap is wider still in SPLIT's favour, at 340 steps against 16414."
-        },
-        "d": {
-          "blockId": "t1",
-          "family": "contradicts-source",
-          "reason": "At the smallest listed size SPLIT does take more steps than SCAN, so there is one such size."
-        }
-      },
-      "hints": [
-        {
-          "level": 1,
-          "text": "Only two of the three rows matter here."
-        },
-        {
-          "level": 2,
-          "text": "Compare those two rows one column at a time rather than looking for a pattern first."
-        },
-        {
-          "level": 3,
-          "text": "The comparison goes one way at the smallest size and the other way at both larger ones."
+          "text": "Put that count into SPLIT’s formula in place of the logarithm, then add the fixed cost."
         }
       ],
       "difficulty": "medium",
       "meta": {
         "stepCount": 3,
         "blockSpan": 1,
-        "transferDistance": 0,
-        "requiresExhibit": true
+        "transferDistance": 2,
+        "requiresExhibit": false
+      },
+      "id": "gam-cs-oc-001-q2",
+      "packId": "gam-computational-sciences-operation-counts-001"
+    },
+    {
+      "stem": "A catalogue is doubled in size, and then doubled again. According to the counts given, how does the number of elementary steps SPLIT performs change across the two doublings?",
+      "options": [
+        {
+          "id": "a",
+          "text": "It rises by the same number of steps at each doubling."
+        },
+        {
+          "id": "b",
+          "text": "It rises by more steps at the second doubling than at the first."
+        },
+        {
+          "id": "c",
+          "text": "It rises by fewer steps at the second doubling than at the first."
+        },
+        {
+          "id": "d",
+          "text": "It quadruples, as the catalogue does."
+        }
+      ],
+      "correctOptionId": "a",
+      "reasoning": "sensitivity",
+      "dependsOn": [
+        "f1",
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "T_SPLIT(n) = 25 log2(n) + 40"
+        },
+        {
+          "blockId": "f1",
+          "quote": "logarithm to base 2"
+        }
+      ],
+      "explanation": "Doubling a number adds one to its logarithm to base 2, because one further halving is now needed to reach a single record. SPLIT’s count is that logarithm multiplied by a fixed coefficient, plus a fixed cost that never moves. Each doubling therefore adds one lot of the coefficient and nothing else, so the two doublings cost the same as one another however large the catalogue was to begin with.",
+      "refutations": {
+        "b": {
+          "blockId": "f1",
+          "family": "wrong-direction-of-effect",
+          "reason": "A rise that grows with each doubling belongs to a count proportional to the number of records, or to its square. SPLIT’s count follows the logarithm, and a doubling adds one to a logarithm wherever it starts from."
+        },
+        "c": {
+          "blockId": "f1",
+          "family": "wrong-direction-of-effect",
+          "reason": "The rise does not shrink either. The logarithm gains exactly one at every doubling, so the count gains exactly one lot of its coefficient at every doubling."
+        },
+        "d": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "A count that quadruples when the catalogue quadruples is proportional to the number of records. SPLIT does not examine the records one by one — it halves the range still under consideration, and its count follows the logarithm rather than the number itself."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Only one of the two terms in SPLIT’s count can move when the catalogue size moves."
+        },
+        {
+          "level": 2,
+          "text": "Ask what doubling a number does to its logarithm to base 2, and then what doubling it again does."
+        },
+        {
+          "level": 3,
+          "text": "Compare the two rises with each other rather than working either of them out."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 3,
+        "requiresExhibit": false
       },
       "id": "gam-cs-oc-001-q3",
       "packId": "gam-computational-sciences-operation-counts-001"
@@ -564,7 +580,7 @@
       "packId": "gam-computational-sciences-operation-counts-001"
     },
     {
-      "stem": "A program processes a catalogue of 4,096 records with SCAN, and for every record that SCAN examines it runs SPLIT once over the whole catalogue. Ignoring SCAN's own steps, how many elementary steps do the SPLIT runs contribute in total?",
+      "stem": "A program processes a catalogue of 4,096 records with SCAN, and for every record that SCAN examines it runs SPLIT once over the whole catalogue. How many elementary steps does the program perform in total?",
       "options": [
         {
           "id": "a",
@@ -576,14 +592,14 @@
         },
         {
           "id": "c",
-          "text": "5,580,760"
+          "text": "1,409,054"
         },
         {
           "id": "d",
-          "text": "67,231,744"
+          "text": "5,597,174"
         }
       ],
-      "correctOptionId": "b",
+      "correctOptionId": "c",
       "reasoning": "apply-formula",
       "dependsOn": [
         "p3",
@@ -599,27 +615,27 @@
           "quote": "SPLIT 140 240 340"
         }
       ],
-      "explanation": "SCAN examines each of the 4,096 records once, and each examination triggers one full run of SPLIT. Table 1 gives SPLIT 340 elementary steps at n = 4096, so the SPLIT runs contribute 4,096 × 340 = 1,392,640 elementary steps.",
+      "explanation": "Table 1 gives SCAN 16,414 steps and SPLIT 340 steps at n = 4096. SCAN examines each of the 4,096 records once, and each examination triggers one full run of SPLIT, so the SPLIT runs contribute 4,096 × 340 = 1,392,640 steps. SCAN’s own 16,414 steps are performed as well, giving 1,409,054 in total.",
       "refutations": {
         "a": {
           "blockId": "p3",
           "family": "misapplied-formula",
-          "reason": "16,754 adds SCAN's 16,414 steps to SPLIT's 340. The text reserves addition for routines run one after the other; here one runs inside the other, so the counts multiply."
+          "reason": "Adding SCAN’s 16,414 to SPLIT’s 340 is the count for running the two routines one after the other. Here one runs inside the other, so SPLIT’s count multiplies before anything is added."
         },
-        "c": {
+        "b": {
           "blockId": "p3",
-          "family": "swapped-quantities",
-          "reason": "5,580,760 multiplies the two routines’ counts together, which is the reading the text rules out. What multiplies SPLIT’s count is the number of records processed, not the number of steps SCAN takes to process them."
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the contribution of the SPLIT runs alone. SCAN performs its own steps while it examines the records, and the question asks what the program performs in total."
         },
         "d": {
-          "blockId": "t1",
+          "blockId": "p3",
           "family": "swapped-quantities",
-          "reason": "67,231,744 multiplies the 4,096 records by SCAN's own count. It is SPLIT that runs inside the loop, so it is SPLIT's count that is multiplied."
+          "reason": "This multiplies SPLIT’s count by SCAN’s own count, which is the reading the text rules out. What multiplies SPLIT’s count is the number of records processed, not the number of steps SCAN takes to process them."
         }
       },
       "computation": {
-        "expression": "4096*340",
-        "expected": 1392640,
+        "expression": "16414 + 4096*340",
+        "expected": 1409054,
         "unit": "elementary steps"
       },
       "hints": [
@@ -633,12 +649,12 @@
         },
         {
           "level": 3,
-          "text": "Read SPLIT's count at the catalogue size given, then multiply it by the number of records."
+          "text": "The question asks what the program performs altogether, so SCAN’s own work belongs in the answer too."
         }
       ],
       "difficulty": "high",
       "meta": {
-        "stepCount": 3,
+        "stepCount": 4,
         "blockSpan": 2,
         "transferDistance": 2,
         "requiresExhibit": true

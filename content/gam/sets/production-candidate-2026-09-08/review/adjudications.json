@@ -1,0 +1,1013 @@
+{
+  "note": "Adjudication log for the GAM production candidate of 8 September 2026. Kept separate from the deployed pilot's log until the set is approved.",
+  "schema": "as content/gam/review/adjudications.json",
+  "packAuthors": [
+    "production-candidate-2026-09-08"
+  ],
+  "rounds": [
+    {
+      "id": "independent-2026-09-08-draft",
+      "kind": "independent",
+      "status": "superseded",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-08",
+      "scope": "All 20 questions of the five candidate packs — mathematics, natural sciences, economics, social sciences and computational sciences — at four questions each.",
+      "caveat": "Both halves ran on Claude Opus 5, the same reader that judged the deployed pilot and the small-pack experiment on 8 September, so all three sets are measured against one standard. Opus is also the pack author's own model in a fresh context that saw neither the answer key nor any author reasoning, which is a weaker kind of independence than a different model disagreeing. Agreement between the two halves is evidence and is not proof of correctness.",
+      "instructions": "Two separate adjudicators, neither shown the answer key. Judged under the corrected §5.10.",
+      "supersededOn": "2026-09-08",
+      "supersededBecause": "Never ingested. Its findings were acted on instead: it named two decisive doctrinal couplings in the coding-agreement pack and convention disclosure in the inspection and cache packs, and four questions were rebuilt in response, which moved every pack hash.",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-08",
+      "adjudicatedContent": {},
+      "questions": {}
+    },
+    {
+      "id": "independent-2026-09-09",
+      "kind": "independent",
+      "status": "complete",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-08",
+      "scope": "All 20 questions of the five candidate packs, re-adjudicated after four questions were rebuilt to close the couplings the first reading found: the inspection pack’s convention question, the cache pack’s eviction-queue question, the coding pack’s stem that restated a sibling’s answer and its hand-off distractor, plus two distractors that a sibling answer eliminated.",
+      "caveat": "Both halves ran on Claude Opus 5, the same reader used for the deployed pilot and the small-pack experiment, so all three sets are measured against one standard. Opus is also the author’s own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof.",
+      "adjudicatedContent": {
+        "gam-computational-sciences-cache-policy-001": "71d891911cdbfc55d539b1223cd3ce6f",
+        "gam-economics-port-tariff-001": "975eb7cdcc2bb06f45e4e4120cc67345",
+        "gam-mathematics-two-stage-inspection-001": "6d86d06bf228502867bef5dec6b9549b",
+        "gam-natural-sciences-lake-oxygen-001": "c48602e977de48a4e7124c6c12d3f062",
+        "gam-social-sciences-coding-agreement-001": "a9f552c6cc6cbb03013b6f9b4cca174b"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-09",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "questions": {
+        "gam-cs-cp-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2 states the system drops whichever record has gone longest without being asked for, and that a hit counts as an asking. Initial recency order (oldest first): P, Q, R. The request for Q is a hit, so Q is refreshed and the order becomes P (oldest), R, Q. The request for S is a miss; p1 says on a miss the record is fetched and placed in the cache, and if the cache is full one record must be dropped. The cache holds three and is full, so option d is excluded. The least-recently-asked record is P. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence medium) — The stem supplies the full recency order (R most recent, then Q, P longest ago), the hit on Q refreshes Q, and the cache is full at three. Under the two conventional policies a pack titled 'a cache and its replacement policy' would state — LRU or FIFO — P is evicted either way; only MRU or a tie-broken LFU would differ, and neither is a default a reader would assume. Option d is excluded because the cache already holds three of three.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-cp-001-q2"
+            ],
+            "ablationLeakDetail": "q2's correct option (fetch on a miss and make room if the cache is full) rules out q1's option d, which claims S can be admitted without an eviction. It does not touch the P/Q/R choice, so it removes one of four rather than deciding the item.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-cs-cp-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: 'otherwise it is a miss, the record is fetched and placed in the cache, and if the cache is full one record must be dropped to make room.' Option b restates exactly that. a, c and d contradict it (nothing in the pack supports refusal, or a second-request threshold). Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Demand-fill with eviction is the ordinary meaning of a cache; a leaves the cache permanently cold, c is not a behaviour any cache has, and d is a second-chance admission policy the stem gives no reason to expect.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-cp-001-q1"
+            ],
+            "ablationLeakDetail": "STEM RESTATES ANOTHER'S ANSWER. q1's stem asserts, as given fact, that on a request for S (a record not in the cache) a record 'is dropped to make room for S'. That is q2's option b almost word for word, and it is incompatible with a (cache left as it was), c (request refused) and d (cached only on second request). A candidate who reads q1 first can answer q2 without the source at all. The item is independently determinable from domain knowledge, but the coupling itself is total.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-cs-cp-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1 defines the hit rate as the share of requests that are hits, i.e. requests met without going to the slow store. Table t1: index 97, document 61, thumbnail 88, session 79 per cent. The smallest is the document cache at 61 per cent. Records held (512) is a distractor column and is not what is asked. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — Pure table lookup: 'smallest share met without going to the slow store' is the lowest hit rate among four named caches, and no stem or option carries a figure. The choice of document cache is a guess from the general expectation that a long-tail document working set caches worse than indexes, thumbnails or sessions; it is not evidence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q4 confirms the table has four rows and reports hit-rate-like figures, but no sibling states or constrains any value, and no arithmetic across sibling options recovers one.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "framework",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: 'A hit rate is a property of the pairing of a cache with the pattern of requests it happens to meet... they are not a ranking of the caches in themselves.' Option b restates this. a is refuted (equalising request counts does not equalise request patterns); c invents a comparability rule the pack does not give; d makes a claim about measurement period the pack never makes. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Standard measurement-critique posture: a hit rate is a property of the request stream as much as of the cache, so figures from different workloads do not rank designs. a endorses the error, c names an irrelevant difference, d is an unsupported absolute about the window length.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q3 establishes only that the table reports per-cache hit shares, which the stem of q4 already says. Knowing q4's answer does not order q3's four caches.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "rule",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: a part tonne is rounded up before the rate is applied, so 120.4 tonnes becomes 121 tonnes. t1: general cargo is 4 euros per tonne, so 121 x 4 = 484 euros. p2: the class minimum (200 euros) applies only where the tonnage fee falls below it; 484 > 200, so the tonnage fee stands. The distractors are 120.4 x 4 = 481.60 (no rounding) and 120 x 4 = 480 (rounding down). Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"d\", confidence low) — The option set recovers the general rate as 4 euros per tonne (480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4), and 200 is almost certainly the class minimum, which does not bind here. What it cannot recover is the rounding convention the tariff states — exact tonnage, nearest tonne, or per commenced tonne — and that convention is the whole content of the item. 484 is a lean on the ground that 120.4 was chosen to make a rounding rule bite, not a determination.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "NUMERIC RECONSTRUCTION partially succeeds inside this item (rate = 4/tonne, minimum plausibly 200), but the attack fails at the pack level: no sibling needs either value. q2 tests the minimum rule qualitatively and q3 asks for a ranking of rates the general rate alone cannot settle.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2: 'Where the tonnage produces a fee below the class minimum, the minimum is charged in its place. The minimum is never added to the tonnage fee, and a consignment is never charged both.' That excludes c outright, and a (the minimum replaces the lower tonnage fee). d invents a refund the pack never mentions. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — A minimum charge means the charge is the greater of the two. c double-charges, d invents a refund, and a contradicts the meaning of a minimum the stem itself supplies.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q1's option a (200 euros) is consistent with a class minimum existing, which the stem of q2 already asserts. No sibling narrows the four options.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q3": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): t1 rate per tonne: general 4, bulk grain 2, refrigerated 9, hazardous 15 euros. Hazardous is highest. (It also carries the highest class minimum, 600 euros, so the two columns do not conflict.) Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"d\", confidence medium) — Ordinary domain knowledge about port tariffs: dangerous-goods handling carries the highest per-tonne rate, refrigerated next, bulk grain lowest as it is machine-handled in volume. The ranking is a table fact, so this is a knowledge-consistent guess rather than a reading, but it is the kind of question a domain-literate candidate answers unaided.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q1 discloses the general rate as 4 euros per tonne, but a single rate with no comparator cannot place general in the ranking, so the scale-disclosure attack fails.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q4": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: the fee is charged on cargo the port lands, i.e. handles. p4: transhipped cargo, which passes between vessels without leaving the port area, 'is not handled by the port and pays nothing at all. Its class makes no difference to that, and neither does its tonnage.' So the deciding condition is whether the port handles it (whether it leaves the port area) — option a. p4 explicitly rules out b and d; c (storage room) appears nowhere. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence medium) — The fee is a handling fee, so chargeability turns on whether the port handles the cargo; c and d are not tariff criteria in any recognisable sense, and b confuses the rate with the trigger.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q3",
+              "gam-econ-pt-001-q1",
+              "gam-econ-pt-001-q2"
+            ],
+            "ablationLeakDetail": "ANSWER-AS-DISTRACTOR. q3's stem establishes that the cargo class fixes the rate per tonne, and q1/q2 show the fee is tonnage x class rate subject to a class minimum. A candidate carrying that in from the siblings knows class sets how much is charged, which is a reason to discount q4's option b as what decides whether anything is charged — a reason obtained without reading the source. It removes the only competitive distractor but does not by itself select a over c or d.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-math-tsi-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "rule",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1/p2: the flag rate is applied to all items and the rejection rate applies only to items reaching the second inspection. Line B (t1): flag 8 per cent, rejection 15 per cent. 5,000 x 0.08 = 400 items reach the second inspection; 400 x 0.15 = 60 rejected. Distractors: 400 is the number flagged, 750 is 5,000 x 0.15 (the misreading p2 warns of), 6 is a decimal slip. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — Requires Line B's first-inspection pass rate and second-inspection rejection rate from Table 1. The options correspond to overall rates of 0.12%, 1.2%, 8% and 15% of 5,000, none of which is recoverable. 60 is a guess on the shape of a two-stage funnel (most items pass stage one, a small fraction fail stage two).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q4 concerns first-inspection pass shares, which q1 also depends on, but q4 offers no values and q1's options cannot be decomposed into a unique pair of rates, so neither constrains the other.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-math-tsi-001-q2": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p4: 'A change of tooling alters what the first inspection catches, and the figures must then be measured again rather than adjusted or carried across.' That names and rejects b (carried across) and d (adjusted). c is excluded because the tooling change is said to alter what the first inspection catches, i.e. the flag rate, so it is not only the rejection rate that is in doubt. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence high) — Rates measured on the old tooling describe a process that no longer exists, so they must be measured again. b denies that a process change matters, c arbitrarily exempts the pass rate, d treats a rate as if it scaled with output.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-tsi-001-q3"
+            ],
+            "ablationLeakDetail": "DOCTRINAL COUPLING. q3's correct answer is that a rate is unchanged when only volume changes — the pack's posture that rates are properties of the process, independent of scale. Carrying that posture across kills q2's option d ('adjusted in proportion to the change in output'), which is the same scaling error q3's option b commits. One distractor falls without the source; the remaining choice among a, b and c still needs the text.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-math-tsi-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: 'Neither [rate] moves with the number of items put through it, so a line that runs for longer rejects more items but does not reject a larger share of them.' Trebling the volume with no other change leaves both rates, and hence the share rejected (0.12 x 0.25 = 3 per cent for Line A), unchanged. b confuses count with share; c invents a mechanism; d is false because the share is fixed by the rates whatever the prior count. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence high) — A rejection share is a ratio; trebling the denominator and the numerator together leaves it unchanged. b confuses count with share, c invents a mechanism, d denies that a share is already known as a share.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-tsi-001-q2"
+            ],
+            "ablationLeakDetail": "The converse of the coupling on q2: q2 asks what must happen when the process itself changes, and its option set treats re-measurement as the live issue, which signals that the pack holds rates constant under volume and revisable only under process change. That reinforces a and undercuts b and c here. The item is independently determinable, so this is reinforcement rather than a decision.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-math-tsi-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "definition",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: only flagged items go on to the second inspection, so the share sent on is the flag rate. t1 flag rates: A 12, B 8, C 20, D 5 per cent. Line C is highest. The rejection column (C is lowest at 5 per cent) is the trap p2 describes and is irrelevant to what is asked. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"c\", confidence low) — Requires the first-inspection pass shares for four lines from Table 1; nothing in any stem or option carries one. Line C is a bare guess (it is the only line no sibling stem discusses, which is a test-design artefact, not evidence).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling supplies or constrains a pass share. q1 fixes 5,000 items for Line B, which is a volume, and q4 asks about shares, so the volume is inert here.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ns-lox-001-q1": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "rule",
+            "exhibit"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: a trout needs at least 5 mg per litre. Figure 1 summer series: 4 m = 9.0, 6 m = 8.5, 8 m = 4.0. Only eight metres falls below 5 mg/l (4.0 < 5), so c, and d is excluded. The winter series (about 10.6 at 8 m) is not what is asked. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence medium) — Ordinary limnology: in a summer-stratified lake, oxygen is depleted below the thermocline, so the deepest listed depth is the one that fails a trout threshold. The threshold value and the figure's actual curve are the source's to supply, and if the thermocline sits shallow both six and eight metres could qualify, so this is a knowledge-led read rather than a certainty.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ns-lox-001-q2",
+              "gam-ns-lox-001-q3"
+            ],
+            "ablationLeakDetail": "DOCTRINAL COUPLING. q3's stem asserts that oxygen is close to the same at every depth in winter, which presupposes that in summer it is not — and q2 establishes the thermocline as a sharp stratifying band. Together they make a summer depth gradient certain from the siblings alone, which argues strongly against q1's option d ('none of the depths shown') and points the answer to the deepest depth. Not decisive: a gradient need not cross the trout threshold anywhere.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-lox-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "definition"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1 defines it: 'the thermocline, a band of depth across which the temperature falls sharply'. a (light), c (oxygen threshold) and d (breakdown layer) each borrow other ideas from p1 but none is the definition given. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Standard definition — the thermocline is a band of steep temperature change with depth. a describes the aphotic zone, c redefines it by oxygen, d describes benthic decomposition.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q3's distractor and q4's option c both use the thermocline as a mixing or depth boundary, which is consistent with b but equally consistent with a and c; no sibling states or entails the definition.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ns-lox-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "framework"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2: 'In winter the surface water cools until it is no denser than the water beneath, the lake turns over from top to bottom, and oxygen is carried down with it, so a winter profile is close to uniform at every depth.' That is option c. Option a states a real-world fact about cold water and oxygen solubility that this pack never asserts, and it would not by itself explain uniformity with depth; b and d are not in the text (d also contradicts p1/p2). Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence high) — Autumn cooling drives turnover, and it is the mixing that carries oxygen to depth. a states a true fact (cold water holds more oxygen) that does not explain uniformity with depth, b denies a process rather than supplying one, d misuses the thermocline.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling supplies the winter mechanism; q1 and q4 concern summer readings and sampling hour.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ns-lox-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "assumption"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p4: both profiles were recorded at dawn, 'when a lake's oxygen is at its lowest for the day... A reading taken at midday runs higher for that reason alone, and cannot be set against these figures without allowing for the hour.' That is b. a contradicts p4; c invents an exemption below the thermocline that p4 does not give; d invents a second-season requirement. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence medium) — Only b is a comparability argument, and the diel oxygen cycle (photosynthetic maximum by afternoon, minimum near dawn) is ordinary knowledge. Note that the item largely discloses its own answer: option b states the sampling hour, which is the fact the source has to supply. c is scientifically not silly — below the thermocline diel variation is small — but it changes the measurement instead of reconciling it.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "The self-disclosure here is within the item, not from a sibling. No other question in the pack mentions time of day.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-ca-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1: the agreement rate is the proportion of double-coded answers the two coders place in the same category. t1 shows all four pairs double-coded the same 300 answers, so the lowest rate is also the lowest count: Pair 2 at 74 per cent (0.74 x 300 = 222 answers), against Pair 4 at 249, Pair 3 at 264 and Pair 1 at 273. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"c\", confidence low) — Requires the per-pair agreement figures from the table; nothing in any stem or option carries a number, and 'fewest of their answers' is ambiguous between a count and a share without the table. The choice is arbitrary.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "Considered and rejected: q4's distractor b ('the same number of answers was double-coded for every pair') hints that per-pair double-coded counts may differ, which bears on how the stem should be read but eliminates none of the four pairs. Not enough to call a leak.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-ca-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p2: 'the frame directs the coder to the category named earliest in the list, and to record the answer as contested.' Option c states both halves. d is ruled out because p2 says contested answers are counted in the category they were given (one category); a and b invent procedures the frame does not contain — and p2 says the answer is coded now and the frame revised at the end of the round, not the answer deferred. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"c\", confidence medium) — b and d break mutual exclusivity and would make agreement rates uncomputable; a defers a decision indefinitely rather than resolving it; c is the only option shaped like a coding-frame tie-break rule. That said, the specific convention (take the category standing earlier in the list) is exactly what the source supplies and the option itself discloses it, so the determination rests on elimination plus the option's own content.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q4's option d mentions 'contested answers', which matches the marking c prescribes, but a distractor's existence does not select c — the vocabulary overlap runs the other way, from q2 into q4.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-ca-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "definition",
+            "framework"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3: 'An agreement rate measures whether two coders read the frame the same way. It says nothing about whether the frame captures what the respondents meant' — which names b and explicitly denies a. c (difficulty/contest count) and d (fit to the population) are not what the rate measures. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — The reliability/validity distinction is ordinary methods knowledge: agreement between two coders measures consistency of frame application, not whether the frame captures meaning (a), how contested the items were (c), or fit to the population (d).",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ss-ca-001-q4"
+            ],
+            "ablationLeakDetail": "DOCTRINAL COUPLING. Every option q4 offers as the condition for a figure to count as an agreement rate is procedural — independence, equal double-coding, an unrevised frame, exclusions — which tells a candidate the statistic is a coder-level, procedural one. That argues against q3's a and d, which are validity claims, without any recourse to the source. The item is independently answerable, so the coupling reinforces rather than decides.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ss-ca-001-q4": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "assumption"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p4: 'A coder who has seen the other coder's decisions is no longer coding independently, and the pair's figure is not an agreement rate at all. The one condition the procedure rests on is that the two work unaware of each other.' The stem asks for the single condition, and p4 names it. b is a feature of this particular table, not a condition; c and d are not stated as conditions (p2 in fact revises the frame at the end of the round and counts contested answers). Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence medium) — Independent coding is the precondition that makes agreement informative; b is a comparability nicety, c a frame-stability nicety, and d would inflate the rate by removing exactly the cases it should measure. Equal counts and frame stability are real methodological concerns, which is why this sits at medium rather than high.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ss-ca-001-q3",
+              "gam-ss-ca-001-q2"
+            ],
+            "ablationLeakDetail": "Two coupled routes. From q3: if the rate measures whether two coders read the frame the same way, independence is the condition that makes that reading possible, so q3's answer supports a. From q2: q2's answer has contested answers marked and still coded, which undercuts d ('contested answers were excluded before the rate was worked out'). Both are reasons available from siblings rather than from the source, and together they leave a against two weak procedural rivals.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        }
+      },
+      "packContributions": {
+        "gam-computational-sciences-cache-policy-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 and p2 supply the hit/miss definitions and the least-recently-used eviction rule, including the stipulation that a hit refreshes recency but a write-back does not, which is what decides q1. The table supplies the four hit rates for q3 and p3 supplies the interpretive caveat that a hit rate ranks a cache-plus-traffic pairing, not a cache, for q4."
+        },
+        "gam-economics-port-tariff-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "The table gives per-tonne rates and class minima; p2 sets the minimum as a replacement rather than an addition, p3 forces rounding a part tonne up (which is the whole difference between 481.60 and 484), and p4 exempts transhipped cargo entirely. Nothing in the four questions can be answered without them."
+        },
+        "gam-mathematics-two-stage-inspection-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 and p2 define the two-stage chain and state that the rejection rate applies to the flagged subset only, which is the arithmetic in q1 and the trap in q4; the table gives the per-line rates; p3 makes the rates volume-invariant (q3) and p4 forbids carrying them across a tooling change (q2)."
+        },
+        "gam-natural-sciences-lake-oxygen-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "Figure 1 supplies the summer and winter oxygen-by-depth readings, p3 supplies the 5 mg/l trout threshold that turns those readings into an answer, p1 defines the thermocline, p2 explains winter turnover, and p4 supplies the dawn-versus-midday caveat. Every question depends on one of these."
+        },
+        "gam-social-sciences-coding-agreement-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 defines double-coding and the agreement rate, the table gives four pairs on an equal base of 300 answers, p2 gives the earliest-category-plus-contested tie-break rule, p3 states what the rate does and does not measure, and p4 names independence as the one condition the procedure rests on."
+        }
+      }
+    },
+    {
+      "id": "independent-2026-09-09-r2",
+      "kind": "independent",
+      "status": "superseded",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-09",
+      "scope": "The three surviving questions of the cache-policy pack, re-adjudicated after gam-cs-cp-001-q2 was withdrawn for decisive coupling. The other four candidate packs are unchanged and stay covered by round independent-2026-09-09.",
+      "caveat": "Both halves ran on Claude Opus 5, the reader used for every set in this comparison. It is also the author's own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof.",
+      "adjudicatedContent": {
+        "gam-computational-sciences-cache-policy-001": "4da958484a433c4fe0a0744eb9615a97"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-09",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "questions": {
+        "gam-cs-cp-001-q1": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): Block p2 states the policy: drop whichever record has gone longest without being asked for, and a hit counts as an asking that refreshes the record. Traced step by step: initial last-asked order is P (longest ago), then Q, then R (most recent). The request for Q is a hit (p1: the record is already in the cache), so Q moves to the most recent position, leaving order P oldest, then R, then Q. The request for S is a miss; the cache holds three records and is full, so per p1 one record must be dropped, and per p2 that is the one longest without being asked for, namely P. Option d fails because the hit on Q frees no space — S is still a miss into a full cache. Options b and c are the two records refreshed most recently. Worth flagging for the item author: the hit rule in p2 is not load-bearing here, because P is the least recently used both with and without the refresh of Q, so a candidate who ignores the 'a hit counts as an asking' sentence still lands on the keyed answer. That is a discrimination weakness, not an ambiguity. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"a\", confidence medium) — The stem supplies the only state a replacement decision needs — a full three-record cache and a recency ordering (P oldest, then Q, then R), refreshed by the hit on Q. Option d is self-defeating: a hit on Q frees nothing, and the cache is already full, so something must go. Of the standard policies, least-recently-used and any insertion-order/FIFO reading both evict P; only most-recently-used would evict Q, and the stem's decision to state last-asked order (rather than insertion order) signals a recency policy. The residual risk is that the source names an unusual policy — the phrase 'according to the policy' points at a rule the pack states — but no plausible documented policy makes R the victim, so ordinary domain knowledge reaches P without the pack. Note this is genuine standard-CS knowledge, not leakage: the pack is doing little work here beyond naming the policy.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "No sibling touches the replacement policy, the cache's capacity, or the P/Q/R/S trace. q3 and q4 concern a comparison table of four named caches (index, document, thumbnail, session) and say nothing about eviction, so no shared parameter, scale, doctrine or answer-as-distractor channel exists in either direction. Numeric reconstruction fails outright — no sibling option carries a number. Checked specifically for a residue of the withdrawn item: neither sibling stem states or presupposes a policy name, an eviction rule, or the cache size, which is what would be needed to decide this one.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "definition"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": false,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): Block p1 defines a hit as a request for a record already in the cache — that is, one met without fetching from the slow store — and the hit rate as the share of requests that are hits. So 'smallest share of its requests met without going to the slow store' is the lowest hit rate in table t1: index 97, document 61, thumbnail 88, session 79. The document cache at 61 per cent is the minimum, and no second reading of the stem is available: the phrase can only map to hit rate, and the four figures are distinct with a clear lowest. The task is a paraphrase-decode plus a minimum over four rows, so it is closer to lookup than to transfer. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — This is a pure table lookup: 'smallest share of requests met without going to the slow store' is the lowest hit rate, and the four figures live only in the withheld table. Nothing in the stem or options carries a magnitude, a ranking cue, or an asymmetry between the four cache names. My pick is a bare domain prior — document caches over a large heterogeneous corpus tend to have the longest tail and the weakest locality, while session, index and thumbnail working sets are small and hot — and I would not defend it. Any of the four is live. This item is correctly source-dependent, which is the desired result for an ablation, not a defect.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "q4 shares the same table (shared parameter, confirmed) and confirms it holds exactly four designs, which matches the four options — so all four options are real table rows rather than one being a fabricated name. That removes a spurious elimination heuristic rather than supplying one, and eliminates no option. q4's correct answer, that the figures reflect each cache's own request mix, is a statement about hit rates in general and gives no cache-specific ordering; if anything it argues the figures are not intercomparable, which cuts against inferring a winner rather than towards one. No numeric reconstruction is possible (no sibling option states a rate, a count or a constant), no scale disclosure (no magnitudes appear anywhere), and q1 is a disjoint scenario. Net: nothing narrows this item.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "framework",
+            "exhibit"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): Block p3 says a hit rate is a property of the pairing of a cache with the pattern of requests it meets, that a different pattern would give different figures on the same caches, and that the figures 'are not a ranking of the caches in themselves'. Option b restates exactly that. Option a is wrong because equalising the number of requests does not equalise the pattern of requests, which is the dependence p3 identifies. Option c invents an objection the text does not make — p3 never says differing capacities block comparison. Option d overstates: p3 notes the figures were measured on one working day but never says a single day is too short to be used at all. The stem's 'According to the text' makes this a restatement of one paragraph. Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence medium) — Determinable, but largely from test-craft plus general CS knowledge rather than from the pack. Option a contradicts the stem's premise that something is wrong; c names a confound (differing record counts) that a rate already normalises against and that would not be the text's objection; d is an absolute overreach about measurement periods. b states the standard and correct point — a hit rate is a property of a workload met by a cache, not of the cache design, so cross-cache figures gathered on different request streams do not rank the designs. The stem's 'according to the text' means the pack decides the exact wording, and the pack could in principle have raised the record-count point instead, which is why this is medium and not high; but b is the only option that is both true and responsive.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "medium",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "Examined the strongest candidate channel: q3's stem glosses the table's metric as 'the share of its requests met without going to the slow store', i.e. it discloses that the table reports hit rates — a definition the source supplies. This is real cross-question disclosure of a convention, but it narrows nothing here, because every option in q4 (a's equal-request-count proviso, b's request-mix argument, c's record-count claim, d's measurement-period claim) is already framed as being about per-cache rate figures; knowing they are hit rates eliminates no option and rules out no distractor. q3 also supplies no value that q4 needs, and q4's own stem already says the table covers four designs. Doctrinal coupling in the other direction fails too: no sibling's distractor depends on the rule b states, and no sibling stem asserts b as a given. Answer-as-distractor: the concept in b (workload dependence) appears nowhere as a sibling's option. Checked for a residue of the withdrawn item — no stem here states another live item's answer.",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "packContributions": {
+        "gam-computational-sciences-cache-policy-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "The pack supplies the hit/miss/eviction definitions and the least-recently-asked replacement rule including the clause that a hit refreshes a record but a write-back does not, which is what lets Q1 be traced without any memorised knowledge of LRU; it also supplies the four measured hit rates that Q3 reads off and the caveat paragraph that Q4 restates. Nothing in the three items can be answered with the source removed."
+        }
+      },
+      "supersededOn": "2026-09-09",
+      "supersededBecause": "gam-cs-cp-001-q1 was rewritten the same day. Its answer did not depend on the pack's distinctive clause — the record that had waited longest was the answer whether or not a hit counted as an asking — so the hit was moved onto that record, which makes the clause decide the answer. The pack hash moved with it."
+    },
+    {
+      "id": "independent-2026-09-09-r3",
+      "kind": "independent",
+      "status": "complete",
+      "countsAsIndependentReview": true,
+      "opened": "2026-09-09",
+      "scope": "The three questions of the cache-policy pack, re-adjudicated after q1 was rewritten so that the pack's hit-counts-as-an-asking rule is load-bearing rather than incidental. q3 and q4 are unchanged.",
+      "caveat": "Both halves ran on Claude Opus 5, the reader used for every set in this project. It is also the author's own model in a fresh context that saw neither key nor author reasoning — weaker independence than a different model disagreeing. Agreement between halves is evidence, not proof.",
+      "adjudicatedContent": {
+        "gam-computational-sciences-cache-policy-001": "c3e1b95dfd642d1db2241298326bd462"
+      },
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-09-09",
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "questions": {
+        "gam-cs-cp-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "rule",
+            "definition"
+          ],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): Traced step by step against p2 only. Initial state, ordered by how long ago each was last asked for: P (longest ago), Q, R (most recent). Step 1 - request for P: P is in the cache, so by p1 this is a hit; p2 states 'a hit counts as an asking, so a record that is found in the cache is thereby moved to the back of the queue for eviction'. New order, oldest asking first: Q, R, P. Step 2 - request for S: S is not held, so it is a miss; the cache holds three records and already holds three, so by p1 'if the cache is full one record must be dropped'. p2's rule drops 'whichever record has gone longest without being asked for', which is now Q. Resulting order after admission: R, P, S. Answer: Q. On the specific point being checked - the pack's stated treatment of a hit DOES change the answer. Delete the second sentence of p2 and the natural reading is that only misses re-order the queue, leaving P as the record that has gone longest without being asked for and making option (a) correct. Option (a) is exactly the answer you get if you ignore that sentence, so the item is load-bearing on it rather than decorative. Option (d) contradicts p1: the cache is full at three records, so something must be dropped regardless of the earlier hit. Option (c) names the most recently asked-for record, the opposite of the rule. The pack's own rule leads cleanly to an option that is present, and the traced answer looks right. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — I cannot answer this from general computing knowledge alone; the answer turns on a convention the stem never states. The stem says 'According to the policy' but names no policy, and more than one standard replacement policy is consistent with the facts given. Recency after the hit is Q (oldest), R, P (newest). LRU evicts Q (option b). MRU evicts P (option a). FIFO evicts by insertion order, which the stem never gives — if insertion happened to match the stated order it evicts P (option a), since a hit does not reorder a FIFO queue. LFU gives P two accesses and Q and R one each, leaving a Q/R tie that needs a tiebreak rule the stem also does not supply, so under LFU even option c is reachable. Option d is eliminable on general grounds: the S request is a miss into a full three-record cache, so something must be evicted regardless of policy, and the earlier P hit is irrelevant to that. So general knowledge gets me from four options to three, and the remaining choice is exactly the thing the source pack supplies. I choose b on two weak, non-domain grounds only: LRU is by far the most common policy a short passage would state, and the item's own construction supplies recency data and stages a deliberate re-access, which is informative only under a recency-updating policy. That is test-taking inference about how the item was built, not knowledge of what the source says, so I record the verdict as not-determinable with low confidence.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "All six attack patterns were run against q3 and q4 and none succeeded. CONVENTION AS CONSTANT is the pattern that matters here and it fails cleanly: the policy name is precisely what the source must supply for q1, and neither sibling stem nor any of their eight options names or hints at LRU, MRU, FIFO, LFU or any eviction discipline — q3 and q4 concern observed hit rates across four cache deployments and never touch replacement behaviour. NUMERIC RECONSTRUCTION fails: no sibling option contains a number, so no capacity, count or constant can be recovered. SHARED PARAMETER fails: q1 works from a single hypothetical three-record cache holding P, Q, R, while q3 and q4 work from a table of four named caches (index, document, thumbnail, session); the cases are disjoint. SCALE DISCLOSURE is inapplicable — sibling options are entirely textual with no magnitudes. DOCTRINAL COUPLING fails: no sibling correct answer states an eviction rule, and no sibling stem presupposes q1's answer. ANSWER-AS-DISTRACTOR fails: no letter-record concept appears elsewhere. The one adjacency I inspected and rejected is q4 option c, 'the caches hold different numbers of records', which touches capacity as a concept; it is a distractor about the table's four designs, gives no capacity value, and cannot bear on which of P, Q or R is evicted from a three-record cache.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "data",
+            "definition"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": true,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p1 defines a hit as a request for a record 'already in the cache' - i.e. one met without fetching from the slow store - and defines the hit rate as 'the share of requests that are hits'. So 'met the smallest share of its requests without going to the slow store' is the lowest hit rate in table t1: index 97, document 61, thumbnail 88, session 79. The minimum is 61 per cent, the document cache. The mapping from the question's paraphrase to 'hit rate' is a one-step definitional read of p1; after that it is a lookup of the smallest figure, and 61 is uniquely smallest so no second option survives. Full ablation (Claude Opus 5): not-determinable without the pack (would have chosen \"b\", confidence low) — This is a pure table lookup with the table removed. The stem asks which of four named caches had the lowest hit rate — the share of requests served without reaching the slow store — and every option is a bare row label with no figure attached. Nothing in ordinary domain knowledge fixes which of an index, document, thumbnail or session cache had the lowest measured hit rate in one unseen deployment; all four orderings are equally plausible and the answer is a single cell of the source table. My selection of b is an unprincipled 25 percent guess, weakly rationalised by the general tendency for document caches over large diverse corpora to show lower hit rates than session or thumbnail caches, which is not evidence about this table. This item is the cleanest example in the pack of a question that is fully source-dependent by design.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "SHARED PARAMETER genuinely holds — q4's stem refers to 'the table' and 'the four designs', confirming that this item's four options are the four rows of the same table q4 discusses — but it transfers no information toward the answer. Confirming that a table exists with four comparable rows is already evident from this stem alone, and q4 discloses not one figure, ordering, unit or magnitude. NUMERIC RECONSTRUCTION fails outright: there is no arithmetic to do, since no sibling option carries a number. SCALE DISCLOSURE fails: q4's options are qualitative methodological statements, so nothing calibrates the hit-rate magnitudes here. DOCTRINAL COUPLING is worth stating in the opposite direction from the usual: q4's likely correct answer, that the figures depend on each cache's own request mix and so do not rank the caches, is compatible with this item rather than in tension with it, because this item asks which cache observed the smallest share, not which design is worst — and in any case knowing that caveat does not identify the low row. CONVENTION AS CONSTANT and ANSWER-AS-DISTRACTOR are inapplicable — q1's letters and eviction policy have no bearing on which named cache scored lowest. Recording leaks as false is the honest call; the shared case is real but carries zero decision value.",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [
+            "framework",
+            "rule"
+          ],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": false,
+          "requiresPackReasoning": true,
+          "rationale": "Blind re-answer (Claude Opus 5, confidence high): p3 states the point directly: 'A hit rate is a property of the pairing of a cache with the pattern of requests it happens to meet... a different pattern of requests would give different figures on the same caches, and they are not a ranking of the caches in themselves.' Option (b) restates exactly that. (a) is refused by p3 - equalising the request count does not equalise the request pattern, which is the stated confound. (c) invents a reason the text never gives; p3 attributes the problem to the traffic, not to the differing capacities in t1. (d) overstates - the text says the figures do not rank the caches, not that a single day's measurement is unusable for anything. The stem's 'according to the text' further fixes (b). Full ablation (Claude Opus 5): determinable without the pack (would have chosen \"b\", confidence high) — Answerable from ordinary domain knowledge despite the 'according to the text' framing, because the correct methodological point is standard and the three distractors are independently defeatable. Hit rate is a property of a workload met by a cache, not an intrinsic property of the cache design: a cache fronting a skewed, repetitive request stream posts a high hit rate that says nothing about how it would perform on someone else's traffic, so cross-deployment hit rates do not rank designs. That is option b, and it is the well-known objection. Option a is wrong because equalising request counts does not equalise request mixes, which is the actual confound. Option c is wrong on its face: differing capacities are one reason the comparison is not apples to apples but they do not make ratios incomparable as figures, and it also misdiagnoses the problem as arithmetic rather than as workload dependence. Option d overreaches with 'too short a period to be used at all' — a one-day measurement is a weak basis for extrapolation but is not useless, and blanket dismissals of that form are rarely what a source text argues. Option b is also the only option that is a diagnosis rather than a procedural quibble, which matches the stem's 'what is wrong with that'. I would answer this correctly with no source pack.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (full ablation) + Claude Opus 5 (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-09-09",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-cp-001-q3"
+            ],
+            "ablationLeakDetail": "DOCTRINAL COUPLING succeeds in the stem-presupposition direction, and it is the one real coupling in this pack. q3's stem asks the reader to identify which cache 'met the smallest share of its requests without going to the slow store' — an ordinary comparative read across the table's rows, which the pack evidently treats as a legitimate and answerable question. That presupposition directly undercuts two of this item's four options. Option c claims the figures 'cannot be compared because the caches hold different numbers of records'; if that were the text's position, q3 would be asking the reader to perform a comparison the same source declares impossible. Option d claims a single day's hit rate is 'too short a period to be used at all'; that likewise would void the read q3 requires. Both are therefore improbable as the intended answer, narrowing this item from four options to a and b before any domain reasoning is applied. From there a falls to ordinary knowledge, leaving b. The narrowing is real but not decisive on its own, and it is redundant here because I reach b with high confidence from domain knowledge alone — so it inflates a solver's odds on this item without being the reason a competent solver gets it right. The remaining patterns fail: NUMERIC RECONSTRUCTION has no numbers to work with; SCALE DISCLOSURE is inapplicable, since q3's options are row labels with no magnitudes and cannot calibrate anything here; SHARED PARAMETER holds between this item and q3 (both read the same four-design table) but is inherent to a pack built on one source rather than a leak; CONVENTION AS CONSTANT fails, since no eviction policy figures in this item; ANSWER-AS-DISTRACTOR fails, since no sibling's correct answer appears among these options. q1 contributes nothing in either direction — I checked whether its 'a cache holds three records' could inform option c's claim about differing record counts and it cannot, as q1's cache is a separate hypothetical.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        }
+      },
+      "packContributions": {
+        "gam-computational-sciences-cache-policy-001": {
+          "sourceIsSufficient": true,
+          "whatItContributes": "p1 and p2 supply the hit/miss definitions, the full-cache eviction requirement and the eviction rule including the decisive clause that a hit re-counts as an asking - without that clause Q1's answer flips from Q to P, so the source is genuinely load-bearing there. t1 supplies the four measured hit rates Q3 reads off, and p3 supplies the caveat Q4 restates that hit rates describe a cache-plus-traffic pairing rather than ranking the caches."
+        }
+      }
+    }
+  ]
+}
