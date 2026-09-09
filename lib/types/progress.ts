@@ -168,6 +168,13 @@ export type ActiveSession = {
  * return: a mock asks before resuming, since restarting one is a real decision,
  * while practice simply picks up where it was — there is nothing to decide.
  */
+/** What one question in a practice run has had done to it so far. */
+export type PracticeAnswer = {
+  selection: Selection
+  hintsUsed: number
+  submitted: boolean
+}
+
 export type PracticeDraft = {
   /** Route key, e.g. `practice:latin-squares` or `quick`. */
   key: string
@@ -177,6 +184,17 @@ export type PracticeDraft = {
   hintsUsed: number
   submitted: boolean
   filter: Difficulty | 'all'
+  /**
+   * Every question the run has touched, keyed by question id.
+   *
+   * Added when practice gained a Back button: stepping back has to show the
+   * answer the learner actually gave, and the three fields above describe the
+   * current question only. They are still written, so a draft saved by this
+   * build restores correctly in one that predates the field, and a draft saved
+   * before it restores here with an empty history — the run simply starts
+   * remembering from the question it resumes on.
+   */
+  answered?: Record<string, PracticeAnswer>
   updatedAt: string
 }
 

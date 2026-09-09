@@ -83,7 +83,8 @@ function sameDraft(a: PracticeDraft, b: PracticeDraft): boolean {
     a.hintsUsed === b.hintsUsed &&
     a.filter === b.filter &&
     JSON.stringify(a.selection) === JSON.stringify(b.selection) &&
-    a.questionIds.length === b.questionIds.length
+    a.questionIds.length === b.questionIds.length &&
+    Object.keys(a.answered ?? {}).length === Object.keys(b.answered ?? {}).length
   )
 }
 

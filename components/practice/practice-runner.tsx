@@ -25,6 +25,7 @@ import type { SectionId } from '@/lib/sections'
 import {
   answeredCorrectly,
   exposureContextOf,
+  type PracticeAnswer,
   type PracticeDraft,
   type PracticeMode,
 } from '@/lib/types/progress'
@@ -38,6 +39,9 @@ import {
 } from '@/lib/types/question'
 
 type Filter = Difficulty | 'all'
+
+/** A question nobody has touched yet. Module scope so it is referentially stable. */
+const UNANSWERED: PracticeAnswer = { selection: {}, hintsUsed: 0, submitted: false }
 
 type RunnerProps = {
   /** Absent for a mixed session; each attempt is filed under its own question's section. */
@@ -98,9 +102,33 @@ function PracticeSession({
 
   const [filter, setFilter] = useState<Filter>(initialDraft?.filter ?? 'all')
   const [index, setIndex] = useState(initialDraft?.index ?? 0)
-  const [selection, setSelection] = useState<Selection>(initialDraft?.selection ?? {})
-  const [submitted, setSubmitted] = useState(initialDraft?.submitted ?? false)
-  const [hintsUsed, setHintsUsed] = useState(initialDraft?.hintsUsed ?? 0)
+  /**
+   * What has been done to each question, keyed by question id.
+   *
+   * This is the single source of truth for selection, hints and whether an
+   * answer has been committed. It used to be three pieces of state describing
+   * the current question only, which cannot survive a Back button: stepping back
+   * has to restore the answer that was actually given, and stepping forward
+   * again has to find it still there. Keying by question id also means a change
+   * of difficulty filter cannot strand an answer, and — the part that matters —
+   * a question already committed stays committed, so no attempt is ever recorded
+   * against it twice.
+   */
+  const [answers, setAnswers] = useState<Record<string, PracticeAnswer>>(() => {
+    if (!initialDraft) return {}
+    const seeded = { ...(initialDraft.answered ?? {}) }
+    // A draft written before this field existed still knows about the question
+    // it was left on; keep it rather than dropping the learner's place.
+    const current = initialDraft.questionIds[initialDraft.index]
+    if (current && !seeded[current]) {
+      seeded[current] = {
+        selection: initialDraft.selection ?? {},
+        hintsUsed: initialDraft.hintsUsed ?? 0,
+        submitted: initialDraft.submitted ?? false,
+      }
+    }
+    return seeded
+  })
   const [finished, setFinished] = useState(false)
   // Set in an effect, not during render: Date.now() is impure and the React
   // Compiler rejects it in the render path.
@@ -136,6 +164,21 @@ function PracticeSession({
   }, [questions, filter, sectionId, restoredOrder])
 
   const question = pool[index]
+  const current = (question && answers[question.id]) || UNANSWERED
+  const selection = current.selection
+  const submitted = current.submitted
+  const hintsUsed = current.hintsUsed
+
+  const patchCurrent = useCallback(
+    (patch: Partial<PracticeAnswer>) => {
+      if (!question) return
+      setAnswers((prev) => ({
+        ...prev,
+        [question.id]: { ...UNANSWERED, ...prev[question.id], ...patch },
+      }))
+    },
+    [question],
+  )
 
   /**
    * The restore point, written on every change.
@@ -152,58 +195,83 @@ function PracticeSession({
       hintsUsed,
       submitted,
       filter,
+      answered: answers,
       updatedAt: new Date().toISOString(),
     })
-  }, [draftKey, pool, index, selection, hintsUsed, submitted, filter, setPracticeDraft])
+  }, [draftKey, pool, index, selection, hintsUsed, submitted, filter, answers, setPracticeDraft])
 
-  const advance = useCallback((nextIndex: number) => {
-    setFinished(false)
-    setIndex(nextIndex)
-    setSelection({})
-    setSubmitted(false)
-    setHintsUsed(0)
-    // Past this point the restored order no longer applies: the filter may have
-    // changed the pool underneath it.
-    setRestoredOrder(null)
-  }, [])
+  /**
+   * Move to another question in the run, forwards or back.
+   *
+   * The order is pinned on the first move. `pool` sorts unseen questions first,
+   * so letting it recompute mid-run would reshuffle the deck under the learner
+   * and "question 7 of 45" would stop meaning the question it meant a moment
+   * ago — which a Back button would make immediately visible.
+   */
+  const goTo = useCallback(
+    (nextIndex: number) => {
+      if (nextIndex < 0 || nextIndex >= pool.length || nextIndex === index) return
+      setRestoredOrder((prev) => prev ?? pool.map((q) => q.id))
+      setFinished(false)
+      setIndex(nextIndex)
+    },
+    [pool, index],
+  )
+
+  /**
+   * Commit the answer. Called the moment the last required option is chosen,
+   * not from a separate confirm button.
+   *
+   * Takes the selection as an argument rather than reading it from state: the
+   * click that completes the answer is the click that commits it, and the state
+   * update from that same click has not landed yet.
+   */
+  const commit = useCallback(
+    (sel: Selection) => {
+      if (!question || submitted) return
+      patchCurrent({ selection: sel, submitted: true })
+      recordAttempt({
+        questionId: question.id,
+        sectionId: question.section,
+        difficulty: question.difficulty,
+        mode,
+        correct: isCorrect(question, sel),
+        selection: sel,
+        at: new Date().toISOString(),
+        durationMs: Date.now() - startedAt.current,
+        hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
+      })
+      // Answered, so it is spent — from the practice pool, and only that one.
+      recordExposure(
+        [{ questionId: question.id, sectionId: question.section }],
+        exposureContextOf(mode),
+      )
+    },
+    [question, submitted, patchCurrent, recordAttempt, recordExposure, hintsUsed, mode],
+  )
 
   const handleSelect = useCallback(
     (key: string, optionId: string) => {
-      if (submitted) return
-      setSelection((prev) => ({ ...prev, [key]: optionId }))
+      if (!question || submitted) return
+      const next = { ...selection, [key]: optionId }
+      patchCurrent({ selection: next })
+      // Choosing is answering. A single-answer question commits on the click; a
+      // Figure Sequences item waits until both panels have been chosen, because
+      // until then the answer is not yet an answer.
+      if (Object.keys(next).length >= requiredSelectionCount(question)) commit(next)
     },
-    [submitted],
+    [question, submitted, selection, patchCurrent, commit],
   )
 
-  const handleSubmit = useCallback(() => {
-    if (!question || submitted) return
-    const correct = isCorrect(question, selection)
-    setSubmitted(true)
-    recordAttempt({
-      questionId: question.id,
-      sectionId: question.section,
-      difficulty: question.difficulty,
-      mode,
-      correct,
-      selection,
-      at: new Date().toISOString(),
-      durationMs: Date.now() - startedAt.current,
-      hintsUsed: Math.min(hintsUsed, 3) as 0 | 1 | 2 | 3,
-    })
-    // Answered, so it is spent — from the practice pool, and only that one.
-    recordExposure(
-      [{ questionId: question.id, sectionId: question.section }],
-      exposureContextOf(mode),
-    )
-  }, [question, selection, submitted, recordAttempt, recordExposure, hintsUsed, mode])
-
-  const handleFilter = useCallback(
-    (value: Filter) => {
-      setFilter(value)
-      advance(0)
-    },
-    [advance],
-  )
+  const handleFilter = useCallback((value: Filter) => {
+    setFilter(value)
+    setFinished(false)
+    setIndex(0)
+    // The filter changes which questions are in play, so the pinned order goes
+    // with it. Answers are kept: they are keyed by question id, so a question
+    // met under one filter is still answered under another.
+    setRestoredOrder(null)
+  }, [])
 
   if (questions.length === 0) {
     return (
@@ -236,7 +304,10 @@ function PracticeSession({
         answered={pool.length}
         onRestart={() => {
           clearPracticeDraft(draftKey)
-          advance(0)
+          setAnswers({})
+          setRestoredOrder(null)
+          setFinished(false)
+          setIndex(0)
         }}
       />
     )
@@ -280,7 +351,11 @@ function PracticeSession({
       </Card>
 
       {!submitted && question.hints?.length ? (
-        <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={setHintsUsed} />
+        <HintPanel
+          hints={question.hints}
+          revealed={hintsUsed}
+          onReveal={(n) => patchCurrent({ hintsUsed: n })}
+        />
       ) : null}
 
       {submitted && (
@@ -294,30 +369,31 @@ function PracticeSession({
 
       <PracticeActionBar
         secondary={
-          submitted ? null : (
-            <>
-              {question.hints?.length && hintsUsed === 0 ? (
-                <HintTrigger onReveal={() => setHintsUsed(1)} />
-              ) : null}
-              {!answered ? (
-                <p className="text-muted-foreground text-sm">
-                  {requiredSelectionCount(question) === 2
-                    ? 'Choose an option for both images.'
-                    : 'Choose an option.'}
-                </p>
-              ) : null}
-            </>
-          )
+          <>
+            {index > 0 ? (
+              <Button variant="ghost" onClick={() => goTo(index - 1)}>
+                Back
+              </Button>
+            ) : null}
+            {!submitted && question.hints?.length && hintsUsed === 0 ? (
+              <HintTrigger onReveal={() => patchCurrent({ hintsUsed: 1 })} />
+            ) : null}
+            {!submitted && !answered ? (
+              <p className="text-muted-foreground text-sm">
+                {requiredSelectionCount(question) === 2
+                  ? 'Choose an option for both images.'
+                  : 'Choose an option.'}
+              </p>
+            ) : null}
+          </>
         }
+        /* No confirm step: the answer is committed by the choice itself, so the
+           only forward action left is the one that moves on. */
         primary={
-          !submitted ? (
-            <Button onClick={handleSubmit} disabled={!answered}>
-              Check answer
-            </Button>
-          ) : atEnd ? (
+          !submitted ? null : atEnd ? (
             <Button onClick={() => setFinished(true)}>Finish this set</Button>
           ) : (
-            <Button onClick={() => advance(index + 1)}>Next question</Button>
+            <Button onClick={() => goTo(index + 1)}>Next question</Button>
           )
         }
       />
