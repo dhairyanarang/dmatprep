@@ -62,7 +62,17 @@ export function ExplanationSheet({
           'max-sm:data-[side=right]:data-ending-style:translate-x-0',
           'max-sm:data-[side=right]:data-starting-style:translate-y-[2.5rem]',
           'max-sm:data-[side=right]:data-ending-style:translate-y-[2.5rem]',
-          'sm:max-w-lg',
+          // Desktop width. This carries the data attribute for the same reason
+          // the phone rules do: the primitive sets `data-[side=right]:sm:max-w-sm`,
+          // so a bare `sm:max-w-lg` loses on specificity and the panel silently
+          // stays at 384px — which is exactly what it had been doing.
+          //
+          // 60vw rather than a flat 768px so a narrow laptop keeps some of the
+          // page in view; the cap stops it growing past comfortable measure on a
+          // wide monitor. A fixed right-anchored panel cannot overflow the
+          // viewport horizontally, but it can swallow the whole page, and this
+          // is a reader beside the work rather than a replacement for it.
+          'sm:data-[side=right]:max-w-[min(768px,60vw)]',
         ].join(' ')}
       >
         {question ? (

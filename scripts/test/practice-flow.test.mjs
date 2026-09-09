@@ -98,6 +98,17 @@ describe('practice — the detail opens beside the page', () => {
     assert.match(sheet, /onOpenChange=\{\(open\) => !open && onClose\(\)\}/)
   })
 
+  test('the desktop panel is wide enough to read a walkthrough in', () => {
+    // It sat at 384px for a while because the primitive's own
+    // `data-[side=right]:sm:max-w-sm` outranked a bare `sm:` utility. The
+    // override has to carry the data attribute or the width silently reverts.
+    assert.match(
+      sheet,
+      /sm:data-\[side=right\]:max-w-\[min\(768px,60vw\)\]/,
+      'the desktop panel width would lose to the primitive and fall back to 384px',
+    )
+  })
+
   test('it becomes a bottom sheet on a narrow screen', () => {
     assert.match(sheet, /max-sm:data-\[side=right\]:bottom-0/, 'a phone would get a side drawer')
     assert.match(sheet, /max-sm:data-\[side=right\]:h-\[85dvh\]/)
