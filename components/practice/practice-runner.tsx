@@ -10,7 +10,7 @@ import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
-import { Card, CardContent } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import {
   Select,
   SelectContent,
@@ -300,17 +300,21 @@ function PracticeSession({
         </p>
       ) : null}
 
-      {pool.map((question, i) => (
-        <QuestionCard
-          key={question.id}
-          question={question}
-          position={i + 1}
-          answer={answers[question.id] ?? UNANSWERED}
-          onSelect={handleSelect}
-          onReveal={(n) => patch(question.id, { hintsUsed: n })}
-          onSeeMore={() => setDetailId(question.id)}
-        />
-      ))}
+      {/* Slightly more air between questions than between the page's own
+          furniture above, so the column reads as a list of separate things. */}
+      <div className="space-y-6">
+        {pool.map((question, i) => (
+          <QuestionCard
+            key={question.id}
+            question={question}
+            position={i + 1}
+            answer={answers[question.id] ?? UNANSWERED}
+            onSelect={handleSelect}
+            onReveal={(n) => patch(question.id, { hintsUsed: n })}
+            onSeeMore={() => setDetailId(question.id)}
+          />
+        ))}
+      </div>
 
       {pool.length > 0 && answeredCount === pool.length && sectionId ? (
         <SetComplete
@@ -366,14 +370,24 @@ function QuestionCard({
   return (
     <Card
       id={`question-${question.id}`}
-      className="scroll-mt-20 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
+      // The one place this view departs from DESIGN.md, which separates surfaces
+      // with hairline borders and never with shadows. On a page that is nothing
+      // but a column of cards, a border alone leaves them reading as one ruled
+      // sheet; the faintest lift is what makes each question a thing of its own.
+      // `shadow-xs` and no more — the rule still does most of the work.
+      className="scroll-mt-20 shadow-xs [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
     >
-      <CardContent className="space-y-5 pt-6">
-        <div className="flex items-center justify-between gap-3">
-          <span className="text-muted-foreground text-sm tabular-nums">Question {position}</span>
-          <DifficultyBadge difficulty={question.difficulty} />
-        </div>
+      {/* A header with a rule under it, so the eye can find the top of a
+          question without reading anything. CardHeader already pads itself to
+          the card's spacing when it carries a border. */}
+      <CardHeader className="flex flex-row items-center justify-between gap-3 border-b">
+        <span className="text-foreground text-sm font-medium tabular-nums">
+          Question {position}
+        </span>
+        <DifficultyBadge difficulty={question.difficulty} />
+      </CardHeader>
 
+      <CardContent className="space-y-5">
         <ReadingMeasure>
           <QuestionView
             question={question}
