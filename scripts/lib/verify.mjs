@@ -125,7 +125,15 @@ function verifyLearningAids(q) {
   }
 
   if (q.meta) {
-    const allowed = ['officially_documented', 'reasonable_extrapolation', 'uncertain']
+    // `dmat_prep_calibration` ships: it says plainly that we chose the mechanic
+    // and that the official material does not settle it. `uncertain` still
+    // blocks, because it claims nothing either way.
+    const allowed = [
+      'officially_documented',
+      'reasonable_extrapolation',
+      'dmat_prep_calibration',
+      'uncertain',
+    ]
     if (!allowed.includes(q.meta.dmatAlignment)) errors.push(`unknown dmatAlignment: ${q.meta.dmatAlignment}`)
     if (q.meta.dmatAlignment === 'uncertain') {
       errors.push('an item classified `uncertain` must not ship without human review')

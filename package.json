@@ -14,7 +14,8 @@
     "test": "node --test \"scripts/test/**/*.test.mjs\"",
     "verify:gam": "node scripts/gam/verify-packs.mjs",
     "review:gam": "node scripts/gam/review-handoff.mjs",
-    "calibrate": "node scripts/calibrate-report.mjs"
+    "calibrate": "node scripts/calibrate-report.mjs",
+    "preview:drafts": "node scripts/preview-drafts.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

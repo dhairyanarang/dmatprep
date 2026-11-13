@@ -47,8 +47,19 @@ export type GeneratorStamp = {
  * How well a question's mechanics trace to the official material. See
  * `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md` §0 — an inference
  * never gets promoted to a fact by being useful.
+ *
+ * `dmat_prep_calibration` is for material we authored deliberately whose exact
+ * mechanic or difficulty calibration the official material does not establish.
+ * It is not a weaker `reasonable_extrapolation`: that one claims the official
+ * material supports the reading, this one claims only that we chose it and say
+ * so. Unlike `uncertain` it does not block release, because nothing is being
+ * passed off as documented.
  */
-export type DmatAlignment = 'officially_documented' | 'reasonable_extrapolation' | 'uncertain'
+export type DmatAlignment =
+  | 'officially_documented'
+  | 'reasonable_extrapolation'
+  | 'dmat_prep_calibration'
+  | 'uncertain'
 
 /**
  * A progressive nudge. Level 1 points at where to look, 2 narrows the search, 3
