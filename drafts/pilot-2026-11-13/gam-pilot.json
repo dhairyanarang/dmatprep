@@ -1,0 +1,176 @@
+{
+  "pack": {
+    "id": "gam-business-administration-banded-charge-p1",
+    "domain": "business-administration",
+    "title": "A fund's banded annual charge",
+    "defines": [
+      "annual charge",
+      "net return",
+      "gross return",
+      "opening balance"
+    ],
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "A fund's banded annual charge"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A savings fund takes one charge a year. It is worked out in bands on the balance the member held at the start of the year, and each band's rate applies only to the part of the balance that falls inside that band — not to the whole balance. The bands are read from the bottom upwards."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "The bands, and the rate that applies to the part of the opening balance falling in each.",
+        "columns": [
+          "Part of the opening balance",
+          "Rate on that part"
+        ],
+        "rows": [
+          [
+            "The first 20,000 euros",
+            "1.20%"
+          ],
+          [
+            "The next 30,000 euros",
+            "0.80%"
+          ],
+          [
+            "Anything above 50,000 euros",
+            "0.40%"
+          ]
+        ]
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "Whatever the bands produce, the annual charge is never more than 320 euros. Where the banded total comes to more than that, 320 euros is taken instead and the excess is waived."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p3",
+        "text": "The net return is the gross return for the year less the annual charge, both in euros, then stated as a percentage of the opening balance. The gross return is given before any charge is taken, and no other deduction applies."
+      }
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "pilot-2026-11-13",
+      "reviewStatus": "draft",
+      "author": "dMAT Prep — authored by Claude Opus 5 under human direction",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "notes": "DRAFT — UNAPPROVED, NOT FOR PUBLICATION. The scheme, the band thresholds, the rates, the cap and the figures in the question are invented for this pack. Banded charging and the idea of a cap are general commercial arrangements, not anyone's product, and no real fund, provider, prospectus or published fee table was consulted or reproduced. Business administration is one of the domains the official material names; this pack makes no claim that banded fund charges are a confirmed dMAT topic."
+    },
+    "contentHash": "269d12916228fb0464715c065ace2bb6"
+  },
+  "questions": [
+    {
+      "id": "gam-ba-bc-p1-q1",
+      "packId": "gam-business-administration-banded-charge-p1",
+      "difficulty": "high",
+      "reasoning": "apply-formula",
+      "stem": "A member's balance at the start of the year is 80,000 euros, and the fund's gross return for the year is 4,800 euros. What is the member's net return?",
+      "options": [
+        {
+          "id": "a",
+          "text": "4.80%"
+        },
+        {
+          "id": "b",
+          "text": "5.25%"
+        },
+        {
+          "id": "c",
+          "text": "5.60%"
+        },
+        {
+          "id": "d",
+          "text": "6.00%"
+        }
+      ],
+      "correctOptionId": "c",
+      "dependsOn": [
+        "p1",
+        "t1",
+        "p2",
+        "p3"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "each band's rate applies only to the part of the balance that falls inside that band"
+        },
+        {
+          "blockId": "t1",
+          "quote": "The first 20,000 euros"
+        },
+        {
+          "blockId": "p2",
+          "quote": "the annual charge is never more than 320 euros"
+        },
+        {
+          "blockId": "p3",
+          "quote": "the gross return for the year less the annual charge"
+        }
+      ],
+      "computation": {
+        "expression": "(4800 - 320) / 80000 * 100",
+        "expected": 5.6,
+        "unit": "percent of the opening balance"
+      },
+      "explanation": "The bands are applied to parts of the balance, not to the whole of it: 20,000 at 1.20% is 240 euros, the next 30,000 at 0.80% is another 240, and the 30,000 that sits above 50,000 at 0.40% is 120 — 600 euros in total. But p2 caps the charge at 320 euros, so 320 is what is actually taken. The net return is therefore 4,800 − 320 = 4,480 euros, and p3 says to state that as a percentage of the opening balance: 4,480 ÷ 80,000 = 5.60%.",
+      "refutations": {
+        "a": {
+          "blockId": "p1",
+          "family": "misapplied-formula",
+          "reason": "Two routes reach 4.80%, and both are errors the source rules out. Applying the first band's 1.20% to the whole 80,000 gives a charge of 960 euros and a net return of 4.80%; p1 is explicit that a band's rate applies only to the part of the balance inside that band. The figure can also be reached by reading the gross return of 4,800 euros straight off as a percentage, which skips both the charge and the division p3 requires."
+        },
+        "b": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the banded total of 600 euros taken in full, giving 5.25%. The band arithmetic is right as far as it goes, but p2 caps the charge at 320 euros and the excess is waived."
+        },
+        "d": {
+          "blockId": "p3",
+          "family": "contradicts-source",
+          "reason": "This is the gross return, 4,800 ÷ 80,000, with no charge deducted at all. p3 defines the net return as the gross return less the annual charge."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The balance crosses all three bands. Work out what each band contributes before adding anything up."
+        },
+        {
+          "level": 2,
+          "text": "Check the banded total against the limit in p2 before you subtract it from the gross return."
+        },
+        {
+          "level": 3,
+          "text": "Once the charge is settled, p3 says what to divide by."
+        }
+      ],
+      "meta": {
+        "stepCount": 4,
+        "blockSpan": 4,
+        "transferDistance": 2,
+        "requiresExhibit": true
+      },
+      "provenance": {
+        "validationStatus": "pass — validatePack: 0 errors, 0 warnings; originality n-gram screen against the official corpus: no overlap",
+        "blindAdjudicationStatus": "pass — independent adjudicator chose (c) at high confidence, judged not answerable without the source, no outside knowledge required, one defensible option",
+        "humanReviewStatus": "pending",
+        "releaseStatus": "draft",
+        "revisions": [
+          "2026-11-13: refutation for option (a) broadened. The blind adjudicator identified a second route to 4.80% (reading the gross return as a percentage directly) that the original note did not name."
+        ]
+      }
+    }
+  ]
+}
