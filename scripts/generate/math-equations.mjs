@@ -940,6 +940,10 @@ export function buildMathEquations(rng, difficulty, ctx = {}) {
           : plan.determining === 'pair'
             ? 'collapsing a two-unknown constant equation'
             : `forward substitution along a ${plan.topology}`,
+      // Placeholder only. `scripts/lib/batch.mjs` overwrites this and fills
+      // `meta.provenance` by deriving both from the finished question. Asserting
+      // it here is what made all 473 committed questions claim the exam
+      // documents them, including 175 whose answer format it never states.
       dmatAlignment: 'officially_documented',
       reasoningDepth: depth,
       /**

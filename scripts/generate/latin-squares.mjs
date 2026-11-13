@@ -309,6 +309,10 @@ export function buildLatinSquare(rng, wanted, opts = {}) {
     meta: {
       patternType,
       skill: usesPair ? 'line-based positional deduction' : 'cell-based exclusion',
+      // Placeholder only. `scripts/lib/batch.mjs` overwrites this and fills
+      // `meta.provenance` by deriving both from the finished question. Asserting
+      // it here is what made all 473 committed questions claim the exam
+      // documents them, including 175 whose answer format it never states.
       dmatAlignment: 'officially_documented',
       reasoningDepth: depth,
       distractorTypes: distractors.types,

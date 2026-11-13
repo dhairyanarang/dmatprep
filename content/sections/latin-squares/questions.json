@@ -174,7 +174,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -357,7 +363,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -540,7 +552,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -723,7 +741,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -906,7 +930,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1089,7 +1119,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1250,7 +1286,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1411,7 +1453,13 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1572,7 +1620,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1755,7 +1809,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1938,7 +1998,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2121,7 +2187,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2304,7 +2376,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2465,7 +2543,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2626,7 +2710,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2831,7 +2921,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3036,7 +3132,13 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3263,7 +3365,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3468,7 +3576,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3695,7 +3809,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3900,7 +4020,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4105,7 +4231,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4310,7 +4442,13 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4537,7 +4675,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4742,7 +4886,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4947,7 +5097,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5152,7 +5308,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5357,7 +5519,13 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5562,7 +5730,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5767,7 +5941,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6052,7 +6232,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -6060,7 +6240,16 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.25, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.25, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6323,7 +6512,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -6331,7 +6520,16 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6594,7 +6792,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -6602,7 +6800,16 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6865,7 +7072,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -6873,7 +7080,16 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7158,7 +7374,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7166,7 +7382,16 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7429,7 +7654,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7437,7 +7662,16 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7686,7 +7920,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7949,7 +8189,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7957,7 +8197,16 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8206,7 +8455,13 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8491,7 +8746,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -8499,7 +8754,16 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8784,7 +9048,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -8792,7 +9056,16 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9055,7 +9328,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -9063,7 +9336,16 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.25, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.25, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9348,7 +9630,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -9356,7 +9638,16 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.42, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.42, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9641,7 +9932,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -9649,7 +9940,16 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9934,7 +10234,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -9942,7 +10242,16 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -10124,7 +10433,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-001",
     "generator": {
@@ -10328,7 +10643,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-002",
     "generator": {
@@ -10532,7 +10853,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-003",
     "generator": {
@@ -10758,7 +11085,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-004",
     "generator": {
@@ -10984,7 +11317,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-005",
     "generator": {
@@ -11232,7 +11571,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-001",
     "generator": {
@@ -11480,7 +11825,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-002",
     "generator": {
@@ -11728,7 +12079,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-003",
     "generator": {
@@ -11976,7 +12333,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-004",
     "generator": {
@@ -12224,7 +12587,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-005",
     "generator": {
@@ -12552,7 +12921,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "derived-clash",
@@ -12560,7 +12929,16 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-001",
     "generator": {
@@ -12852,7 +13230,13 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b2-002",
     "generator": {
@@ -13180,7 +13564,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -13188,7 +13572,16 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-003",
     "generator": {
@@ -13494,7 +13887,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -13502,7 +13895,16 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-004",
     "generator": {
@@ -13794,7 +14196,13 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b2-005",
     "generator": {
@@ -14020,7 +14428,13 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-001",
     "generator": {
@@ -14246,7 +14660,13 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-002",
     "generator": {
@@ -14472,7 +14892,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-003",
     "generator": {
@@ -14698,7 +15124,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-004",
     "generator": {
@@ -14924,7 +15356,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-005",
     "generator": {
@@ -15194,7 +15632,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-001",
     "generator": {
@@ -15442,7 +15886,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-002",
     "generator": {
@@ -15690,7 +16140,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-003",
     "generator": {
@@ -15938,7 +16394,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-004",
     "generator": {
@@ -16208,7 +16670,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-005",
     "generator": {
@@ -16514,7 +16982,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -16522,7 +16990,16 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b4-001",
     "generator": {
@@ -16828,7 +17305,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -16836,7 +17313,16 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b4-002",
     "generator": {
@@ -17128,7 +17614,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-003",
     "generator": {
@@ -17420,7 +17912,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-004",
     "generator": {
@@ -17712,7 +18210,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-005",
     "generator": {
@@ -17938,7 +18442,13 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-001",
     "generator": {
@@ -18164,7 +18674,13 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-002",
     "generator": {
@@ -18390,7 +18906,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-003",
     "generator": {
@@ -18616,7 +19138,13 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-004",
     "generator": {
@@ -18842,7 +19370,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-005",
     "generator": {
@@ -19046,7 +19580,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-006",
     "generator": {
@@ -19272,7 +19812,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-007",
     "generator": {
@@ -19476,7 +20022,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-008",
     "generator": {
@@ -19702,7 +20254,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-009",
     "generator": {
@@ -19928,7 +20486,13 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-010",
     "generator": {
@@ -20154,7 +20718,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-011",
     "generator": {
@@ -20380,7 +20950,13 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-012",
     "generator": {
@@ -20606,7 +21182,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-013",
     "generator": {
@@ -20876,7 +21458,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-001",
     "generator": {
@@ -21146,7 +21734,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-002",
     "generator": {
@@ -21394,7 +21988,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-003",
     "generator": {
@@ -21642,7 +22242,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-004",
     "generator": {
@@ -21890,7 +22496,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-005",
     "generator": {
@@ -22160,7 +22772,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-006",
     "generator": {
@@ -22408,7 +23026,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-007",
     "generator": {
@@ -22656,7 +23280,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-008",
     "generator": {
@@ -22926,7 +23556,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-009",
     "generator": {
@@ -23174,7 +23810,13 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-010",
     "generator": {
@@ -23422,7 +24064,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-011",
     "generator": {
@@ -23692,7 +24340,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-012",
     "generator": {
@@ -23962,7 +24616,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-013",
     "generator": {
@@ -24232,7 +24892,13 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-014",
     "generator": {
@@ -24502,7 +25168,13 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-015",
     "generator": {
@@ -24750,7 +25422,13 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-016",
     "generator": {
@@ -24998,7 +25676,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-017",
     "generator": {
@@ -25246,7 +25930,13 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-018",
     "generator": {
@@ -25494,7 +26184,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-019",
     "generator": {
@@ -25822,7 +26518,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -25830,7 +26526,16 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-001",
     "generator": {
@@ -26158,7 +26863,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -26166,7 +26871,16 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-002",
     "generator": {
@@ -26494,7 +27208,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -26502,7 +27216,16 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-003",
     "generator": {
@@ -26830,7 +27553,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "direct-clash",
@@ -26838,7 +27561,16 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 5 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 5 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-004",
     "generator": {
@@ -27144,7 +27876,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -27152,7 +27884,16 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-005",
     "generator": {
@@ -27444,7 +28185,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-006",
     "generator": {
@@ -27736,7 +28483,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-007",
     "generator": {
@@ -28028,7 +28781,13 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-008",
     "generator": {
@@ -28356,7 +29115,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "direct-clash",
@@ -28364,7 +29123,16 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.29, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.29, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-009",
     "generator": {
@@ -28692,7 +29460,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -28700,7 +29468,16 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-010",
     "generator": {
@@ -28992,7 +29769,13 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-011",
     "generator": {
@@ -29298,7 +30081,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -29306,7 +30089,16 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-012",
     "generator": {
@@ -29612,7 +30404,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -29620,7 +30412,16 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-013",
     "generator": {
@@ -29926,7 +30727,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -29934,7 +30735,16 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-014",
     "generator": {
@@ -30240,7 +31050,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -30248,7 +31058,16 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-015",
     "generator": {
@@ -30554,7 +31373,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -30562,7 +31381,16 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-016",
     "generator": {
@@ -30854,7 +31682,13 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-017",
     "generator": {
@@ -31146,7 +31980,13 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-018",
     "generator": {

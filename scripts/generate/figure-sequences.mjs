@@ -779,6 +779,10 @@ export function buildFigureSequence(rng, difficulty, ctx = {}) {
       // Every mechanic the generator can now emit is officially documented:
       // accelerating colour cycles were the only extrapolative one and they are
       // no longer produced (see makeSymbol).
+      // Placeholder only. `scripts/lib/batch.mjs` overwrites this and fills
+      // `meta.provenance` by deriving both from the finished question. Asserting
+      // it here is what made all 473 committed questions claim the exam
+      // documents them, including 175 whose answer format it never states.
       dmatAlignment: 'officially_documented',
       reasoningDepth: totalLoad,
       distractorTypes: families,

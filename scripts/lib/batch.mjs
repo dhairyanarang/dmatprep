@@ -21,6 +21,7 @@ import { itemId, itemSeed, seedCoordinates } from './seed.mjs'
 import { makeRng } from './rng.mjs'
 import { fingerprintFor, MAX_PER_FINGERPRINT, MAX_PER_FAMILY } from './fingerprint.mjs'
 import { verifyQuestion } from './verify.mjs'
+import { stampProvenance } from './provenance.mjs'
 
 export const DEFAULT_MAX_ATTEMPTS = 4000
 
@@ -105,6 +106,14 @@ export function generateBatch({
           config,
           verifiedAt: verifiedAt ?? new Date().toISOString().slice(0, 10),
         }
+
+        // Provenance is derived here, before verification, for two reasons: the
+        // verifier should judge the grade the question actually earns rather
+        // than one the generator asserted, and an item whose mechanics come out
+        // `unsupported` then trips the existing `uncertain` gate and is
+        // rejected — which is what should happen to a generator emitting
+        // something the official material does not support.
+        stampProvenance(candidate)
 
         // Same verifier `verify-bank` runs. A candidate that would fail the bank
         // check must never reach the bank.

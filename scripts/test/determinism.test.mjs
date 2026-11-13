@@ -6,6 +6,7 @@
  */
 import { test, describe } from 'node:test'
 import assert from 'node:assert/strict'
+import { stampProvenance } from '../lib/provenance.mjs'
 
 import { buildFigureSequence, generateFigureSequences, GENERATOR_NAME as FS_GEN } from '../generate/figure-sequences.mjs'
 import { buildLatinSquare, generateLatinSquares, GENERATOR_NAME as LS_GEN } from '../generate/latin-squares.mjs'
@@ -82,6 +83,11 @@ describe('determinism', () => {
           preferMultiplicative: c.index % 2 === 0,
         })
         assert.ok(rebuilt, `${q.id} did not rebuild from its seed`)
+
+        // The same stamp the batch pipeline applies. Provenance is a pure
+        // function of the question's content, so applying it here compares
+        // like with like and still proves the seed reproduced that content.
+        stampProvenance(rebuilt)
 
         const stripped = structuredClone(q)
         delete stripped.id

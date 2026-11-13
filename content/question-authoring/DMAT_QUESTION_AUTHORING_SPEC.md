@@ -30,6 +30,42 @@ Every mechanic and every generated question carries one of three labels.
 
 An inference never gets promoted to a fact by being useful.
 
+### The label is derived, never written by hand
+
+It used to be written by hand, and that is exactly what went wrong: all three
+generators hardcoded `dmatAlignment: 'officially_documented'`, so 473 of 473
+committed questions asserted that the exam documents them. The label is now
+computed by `scripts/lib/provenance.mjs` from the question's own content, and
+`verifyQuestion` rejects any question whose stored label is not the one it
+derives. There is no path by which a grade can be raised by editing a field.
+
+It is also no longer one label doing four jobs. Each question carries a
+`meta.provenance` record separating claims that were being conflated:
+
+| Axis | What it answers | Vocabulary |
+|---|---|---|
+| `format` | What is the candidate shown? | `stated` · `demonstrated` · `inferred` · `unknown` |
+| `answerFormat` | How are they asked to respond? | the same four |
+| `mechanics` | What does the item test? | `documented` · `extrapolated` · `unsupported` |
+| `originality` | Where did the content come from? | `original-generated` |
+
+The first two use the four-grade vocabulary CLAUDE.md defines for every dMAT
+fact, because they are claims about the official material. `unknown` is never
+filled with a guess.
+
+`dmatAlignment` survives as the conservative roll-up of those axes — a question
+can never claim more than its weakest ground — and is what the publishing gate
+still reads.
+
+**The consequence worth knowing before authoring Mathematical Equations:** its
+`answerFormat` is `unknown`, and that is not a gap to be closed by deciding
+something. The official material states an answer format for the other three
+task types and none for this one; its exercises are open-response with worked
+solutions. Our four-option multiple choice is an inference from `d-mat.de`, and
+`ME_CONTRACT.review.fourOptionFormat` has recorded it as a `review` mechanic all
+along. Every ME question therefore rolls up to `reasonable_extrapolation`, and
+no ME question may ever be labelled `officially_documented`.
+
 ---
 
 ## 1. What is officially documented, across all three subtests

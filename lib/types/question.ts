@@ -62,6 +62,33 @@ export type DmatAlignment =
   | 'uncertain'
 
 /**
+ * How a claim about the official material is grounded. The same four grades
+ * CLAUDE.md uses for every dMAT fact — `unknown` is never filled with a guess.
+ */
+export type ClaimGrade = 'stated' | 'demonstrated' | 'inferred' | 'unknown'
+
+/**
+ * The four separate claims `dmatAlignment` was conflating into one string.
+ *
+ * It was hardcoded to `officially_documented` in all three generators, so every
+ * question asserted that the exam documents it — including all 175
+ * Mathematical Equations items, whose answer format the official material does
+ * not state at all. Derived now, by `scripts/lib/provenance.mjs`, never
+ * asserted. `dmatAlignment` remains as the conservative roll-up.
+ */
+export type Provenance = {
+  /** What the candidate is shown. */
+  format: ClaimGrade
+  /** How they are asked to respond. `unknown` for Mathematical Equations. */
+  answerFormat: ClaimGrade
+  /** What the item tests, against its section's contract. */
+  mechanics: 'documented' | 'extrapolated' | 'unsupported'
+  originality: 'original-generated'
+  /** Why `mechanics` is not `documented`, when it is not. */
+  mechanicNotes?: string[]
+}
+
+/**
  * A progressive nudge. Level 1 points at where to look, 2 narrows the search, 3
  * gives a procedural instruction. None of them may contain the answer —
  * `verify-bank` fails the build if one does.
@@ -115,7 +142,10 @@ export type Solution = {
 export type QuestionMeta = {
   patternType: string[]
   skill: string
+  /** The conservative roll-up of `provenance`. Derived, never asserted. */
   dmatAlignment: DmatAlignment
+  /** Optional only for questions predating the provenance split. */
+  provenance?: Provenance
   /** Reasoning steps required to reach the answer, by the subtest's own model. */
   reasoningDepth: number
   /** option key -> the error family that option encodes. */
