@@ -1,0 +1,64 @@
+# Content and build gates.
+#
+# Ordering is deliberate. The content-exposure gates read the production build
+# output, so `build` runs before `test`, and `REQUIRE_BUILD=1` makes those gates
+# fail rather than skip if the build artefact is ever missing. A content check
+# that quietly skips is worse than no check, because it reports green.
+#
+# Secrets: none. This workflow takes no secrets and reads no environment
+# variables beyond `REQUIRE_BUILD`. That is possible because guest mode is a
+# first-class mode — with no Supabase variables set the app builds and every
+# route renders static, so CI exercises the real production path without
+# credentials. Any future step that needs a secret must be added as its own job
+# with its own `permissions` block, never folded into this one.
+name: CI
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+# Read-only. The workflow publishes nothing, comments nowhere, and touches no
+# deployment. `contents: read` is the whole of what it needs.
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    name: Verify content and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Re-verify every committed question independently
+        run: npm run verify:bank
+
+      - name: Verify the GAM packs
+        run: npm run verify:gam
+
+      # Also the type check — `next build` runs tsc.
+      - name: Build
+        run: npm run build
+
+      # Last, so the exposure gates have a build to read.
+      - name: Content gates, generator, solver and regression tests
+        run: npm test
+        env:
+          REQUIRE_BUILD: '1'
