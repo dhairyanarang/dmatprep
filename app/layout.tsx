@@ -8,6 +8,7 @@ import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
+import { SiteFooter } from '@/components/layout/site-footer'
 import { TopBar } from '@/components/layout/top-bar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
@@ -94,6 +95,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <TopBar />
               <AuthNotice />
               <main className="flex-1">{children}</main>
+              <SiteFooter />
             </div>
           </div>
           <Toaster />
