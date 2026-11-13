@@ -46,10 +46,31 @@ const reviewUrl = new URL('review/adjudications.json', root)
 const flagsUrl = new URL('review/review-flags.json', root)
 if (set) console.log(`cohort: ${set} — an authoring experiment, not the deployed pilot\n`)
 
-const corpus = existsSync(corpusUrl)
-  ? new Set(JSON.parse(readFileSync(corpusUrl, 'utf8')).hashes)
-  : null
-if (!corpus) console.log('⚠ no originality corpus found — the originality gate is not running')
+/**
+ * Fail closed. This used to print a warning and carry on, which meant a missing
+ * or empty corpus produced a green run with the originality gate silently not
+ * running — the one failure mode that matters, because the output still reads
+ * as a pass. A check that cannot run is a failure, not a skip.
+ */
+if (!existsSync(corpusUrl)) {
+  console.error('✗ no originality corpus at content/gam/official-ngram-hashes.json.')
+  console.error('  The originality gate cannot run, so this run cannot pass.')
+  console.error('  Rebuild it: node scripts/gam/build-ngram-corpus.mjs <extracted-text-file>')
+  process.exit(1)
+}
+const corpusFile = JSON.parse(readFileSync(corpusUrl, 'utf8'))
+if (!Array.isArray(corpusFile.hashes) || corpusFile.hashes.length === 0) {
+  console.error('✗ the originality corpus is present but empty. Rebuild it before trusting any result.')
+  process.exit(1)
+}
+const corpus = new Set(corpusFile.hashes)
+const corpusSources = corpusFile.sources ?? (corpusFile.source ? [corpusFile.source] : [])
+if (corpusSources.length === 0) {
+  console.error('✗ the originality corpus does not record what it was built from, so it cannot be audited.')
+  process.exit(1)
+}
+console.log(`originality corpus: ${corpus.size} ${corpusFile.n}-gram hashes from ${corpusSources.length} official build(s)`)
+for (const src of corpusSources) console.log(`  · ${src}`)
 
 const adjudications = existsSync(reviewUrl) ? JSON.parse(readFileSync(reviewUrl, 'utf8')) : { rounds: [] }
 const reviewFlags = existsSync(flagsUrl) ? JSON.parse(readFileSync(flagsUrl, 'utf8')) : { questionFlags: {}, packFlags: {} }

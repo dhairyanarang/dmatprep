@@ -44,9 +44,13 @@ const flagsUrl = new URL('review/review-flags.json', base)
 const outUrl = new URL('review/handoff.json', base)
 const corpusUrl = new URL('../../content/gam/official-ngram-hashes.json', import.meta.url)
 
-const corpus = existsSync(corpusUrl)
-  ? new Set(JSON.parse(readFileSync(corpusUrl, 'utf8')).hashes)
-  : null
+// Fail closed, for the same reason verify-packs does: a handoff built without
+// the originality gate having run looks exactly like one where it passed.
+if (!existsSync(corpusUrl)) {
+  console.error('✗ no originality corpus — a review handoff without the originality gate is misleading.')
+  process.exit(1)
+}
+const corpus = new Set(JSON.parse(readFileSync(corpusUrl, 'utf8')).hashes)
 const adjudications = JSON.parse(readFileSync(reviewUrl, 'utf8'))
 const flags = JSON.parse(readFileSync(flagsUrl, 'utf8'))
 const authors = adjudications.packAuthors ?? []

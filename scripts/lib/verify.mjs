@@ -23,6 +23,7 @@ import { panelsEqual, simulate } from './figures.mjs'
 import { disambiguationErrors } from './fs-inversion.mjs'
 import { equationContractErrors, figureRuleContractErrors, latinContractErrors, FS_CONTRACT } from './contract.mjs'
 import { equationSkeleton } from './fingerprint.mjs'
+import { classify } from './provenance.mjs'
 
 const DIFFICULTIES = ['low', 'medium', 'high']
 
@@ -127,6 +128,25 @@ function verifyLearningAids(q) {
   if (q.meta) {
     const allowed = ['officially_documented', 'reasonable_extrapolation', 'uncertain']
     if (!allowed.includes(q.meta.dmatAlignment)) errors.push(`unknown dmatAlignment: ${q.meta.dmatAlignment}`)
+
+    // The grade must be the one the question earns. Without this, `dmatAlignment`
+    // is a free-text field that anything can set to `officially_documented` —
+    // which is exactly how all 473 came to claim it.
+    if (q.meta.provenance) {
+      const derived = classify(q)
+      if (derived.dmatAlignment !== q.meta.dmatAlignment) {
+        errors.push(
+          `dmatAlignment is "${q.meta.dmatAlignment}" but this question derives "${derived.dmatAlignment}"`,
+        )
+      }
+      for (const axis of ['format', 'answerFormat', 'mechanics', 'originality']) {
+        if (q.meta.provenance[axis] !== derived.provenance[axis]) {
+          errors.push(
+            `provenance.${axis} is "${q.meta.provenance[axis]}" but derives "${derived.provenance[axis]}"`,
+          )
+        }
+      }
+    }
     if (q.meta.dmatAlignment === 'uncertain') {
       errors.push('an item classified `uncertain` must not ship without human review')
     }
