@@ -10,6 +10,12 @@
  * These tests fix the claim and its reach in place. The build-output half runs
  * only when `.next` exists, so a clean checkout still passes; run
  * `npm run build` first for the full guarantee.
+ *
+ * These gates read `.next`, which survives a branch switch. A build made on
+ * another branch will fail them for reasons that have nothing to do with the
+ * current one — that happened once and cost a confused ten minutes. Build
+ * before running them locally; CI checks out and builds fresh, so it cannot
+ * hit this.
  */
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
