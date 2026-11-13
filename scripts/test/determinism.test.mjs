@@ -20,7 +20,20 @@ const CASES = [
   ['latin-squares', generateLatinSquares, buildLatinSquare, LS_GEN],
 ]
 
-const quotas = { low: 2, medium: 2, high: 2 }
+/**
+ * `low: 1`, not 2. Removing `direction-cycle` from FS_CONTRACT.allowed on
+ * 2026-11-14 shrank the low-difficulty structure space to the point where
+ * Figure Sequences can place at most one new low item per batch. That is a
+ * genuine capacity limit, not a flaky gate: generating against the 87 live
+ * questions and against all 173 including the quarantined ones both fail
+ * identically at the second slot, so it is not the fingerprint budget either.
+ * The ceiling is asserted directly in the test below, so that shrinking this
+ * quota cannot quietly hide it.
+ *
+ * These tests are about determinism. They should ask for an amount the
+ * generator can actually produce, and leave capacity to the capacity test.
+ */
+const quotas = { low: 1, medium: 2, high: 2 }
 
 describe('determinism', () => {
   for (const [section, generate, build, generatorName] of CASES) {
@@ -92,6 +105,44 @@ describe('determinism', () => {
     assert.throws(
       () => itemSeed({ generator: 'x', section: 's', tier: 'low', batchId: 'b2', index: -1 }),
       /non-negative/,
+    )
+  })
+})
+
+describe('generation capacity', () => {
+  /**
+   * A standing record of how much room each tier has left, so that a future
+   * batch plan is written against measured capacity rather than optimism.
+   *
+   * Figure Sequences low is the tight one, and it is tight by design: the
+   * official rule list is short, a low item stacks one transformation, and
+   * MAX_PER_FINGERPRINT caps structural repeats at two. Removing the
+   * undocumented `direction-cycle` mechanic took out roughly a third of the
+   * movement space, and the low tier had the least slack to give.
+   *
+   * If this starts passing at a higher number, something widened the allowed
+   * structures. That is a decision, and it should be made deliberately.
+   */
+  test('figure-sequences low generates one item per batch and no more', () => {
+    const existing = readBank('figure-sequences')
+    const ok = generateFigureSequences({
+      batchId: 'cap1',
+      quotas: { low: 1, medium: 0, high: 0 },
+      existing,
+      verifiedAt: '2026-11-14',
+    })
+    assert.equal(ok.questions.length, 1, 'low can no longer place even one item')
+
+    assert.throws(
+      () =>
+        generateFigureSequences({
+          batchId: 'cap1',
+          quotas: { low: 2, medium: 0, high: 0 },
+          existing,
+          verifiedAt: '2026-11-14',
+        }),
+      /could not fill low slot 2\/2/,
+      'low capacity grew — confirm what widened, do not just raise this number',
     )
   })
 })

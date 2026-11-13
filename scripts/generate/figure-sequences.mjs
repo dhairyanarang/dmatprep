@@ -134,8 +134,8 @@ function makeMovement(rng, difficulty, wantAccel, wantBounce = false) {
   const kinds = wantBounce
     ? ['linear', 'diagonal']
     : difficulty === 'low'
-      ? ['linear', 'linear', 'diagonal', 'border', 'direction-cycle']
-      : ['linear', 'diagonal', 'border', 'direction-cycle']
+      ? ['linear', 'linear', 'diagonal', 'border']
+      : ['linear', 'diagonal', 'border']
   const kind = pick(rng, kinds)
 
   // Every official linear/diagonal example moves "one field at a time"; only
