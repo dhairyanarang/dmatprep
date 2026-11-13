@@ -5,9 +5,7 @@ reads a question and reports what it measured and what tier those measurements
 suggest. `npm run calibrate` runs it over everything committed.
 
 **Nothing in this tooling changes a question.** Where the stored label and the
-measurement disagree, that is a finding for a person. The rubric is young and the
-bank was built against an older reading of difficulty, so a disagreement is as
-likely to mean the rubric needs refining as it is to mean the label is wrong.
+measurement disagree, that is a finding for a person.
 
 ## Why four rubrics and not one
 
@@ -16,74 +14,108 @@ square hard. A shared scale would flatten exactly the distinctions this exists t
 draw, so each section is calibrated on its own terms and the tiers are not
 comparable across sections.
 
+## Agreement with the committed bank
+
+| Section | Agreement | Residual |
+| --- | --- | --- |
+| Latin Squares | 125/125 (100%) | — |
+| Mathematical Equations | 167/175 (95%) | 8 high measuring medium |
+| Figure Sequences | 157/173 (91%) | 16 high measuring medium — see below |
+| GAM | 12/19 (63%) | 7, on a sample too small to tune against |
+
+Agreement is not the goal and should not be chased to 100%. See the Figure
+Sequences note.
+
 ## Figure Sequences
 
 | Measure | What it is |
 | --- | --- |
 | `symbols` | How many figures must be tracked |
-| `activeRules` | Transformations in play across the whole item |
-| `peakLoad` | The most rules riding a **single** symbol |
-| `rotating`, `colourCycling` | How many symbols turn, how many change colour |
-| `accelerating` | Rules whose step grows (`x+1`) |
-| `boundaryInteracting` | Symbols that bounce off an edge or travel along one |
+| `activeRules` | Transformations in play: movement, rotation, colour **cycling** |
+| `totalLoad` | `activeRules` plus acceleration and wall interactions |
+| `peakLoad` | The most load riding a **single** symbol |
+| `rotating`, `colourCycling`, `accelerating`, `boundaryInteracting` | Which mechanics, and how often |
 | `movementKinds` | Distinct kinds of movement in one item |
 
-`peakLoad` is peaked, not summed, on purpose: three rules riding one symbol is a
-different kind of hard from three symbols carrying one rule each, and only the
-first asks a candidate to hold several properties of the same object in mind.
+**Load is not a count of rule slots.** A symbol has three — movement, rotation,
+colour — so counting only those caps load at 3 and makes the high band
+unreachable. The generator's own model is explicit that high is *"reachable
+either by accelerating or by stacking movement + rotation + colour on a symbol
+that also interacts with a wall"*, so acceleration and a wall interaction each
+add load. Peak load therefore runs 1–5.
 
-- **low** — ≤ 2 symbols, peak load ≤ 2, ≤ 3 active rules
-- **high** — ≥ 4 symbols, **or** peak load ≥ 4, **or** ≥ 3 symbols with ≥ 7 rules at peak 3
+`colour: constant` is the **absence** of a colour rule, not a rule. Counting it
+as one inflated `activeRules` on 202 of the bank's 429 symbols.
+
+- **low** — peak load ≤ 2
+- **high** — peak load ≥ 5, or peak load ≥ 4 with ≥ 4 symbols
 - **medium** — everything else
 
-Only the documented mechanics are measured: movement, rotation, colour, `x+1`
-acceleration, boundary bounce and border travel. **Reflection and changes in symbol
-count are not measured, because neither is attested in the official material** — and
-the material states explicitly that figures cannot disappear.
+**Why this will not reach full agreement, and must not be tuned until it does.**
+The generator overlaps the symbol ranges on purpose (`medium [2,3]`, `high
+[3,4]`) and deliberately keeps acceleration out of some high items, so that the
+tier cannot be read off the picture — spec §2.3. Sixteen medium and sixteen high
+items sit at load 4 with three symbols and are **not separable by anything in the
+record**. Splitting them would be fitting noise, and would undo a property the
+bank was designed to have.
+
+Only documented mechanics are measured. **Reflection and changes in symbol count
+are not**, because neither is attested — and the material states that figures
+cannot disappear.
 
 ## Mathematical Equations
 
 | Measure | What it is |
 | --- | --- |
-| `substitutionSteps` | Waves of deduction before the asked letter falls out |
-| `requiresElimination` | Substitution alone never reaches it; the system must be solved whole |
-| `effectiveSteps` | `substitutionSteps`, or `letters − 1` when elimination is required |
+| `resolutionRounds` | Rounds of deduction **on the path to the asked letter** |
+| `requiresElimination` | Some round had to solve equations together rather than one at a time |
+| `largestEliminationCluster` | The most letters resolved simultaneously |
 | `nonlinear` | A variable multiplied or divided by a variable |
 | `variableProduct`, `quadratic`, `variableDivisor` | Which nonlinear shape |
 | `interactingConstraints` | Equations naming three or more letters |
 | `operations`, `largestValue` | Calculation burden |
 
-Steps are counted, not letters. A four-letter system solved by one substitution is
-easier than a three-letter system that will not come apart at all.
+**Letters are not counted; work is.** A four-letter system whose answer falls out
+of one equation is one step of work, whatever else is on the page. An earlier
+version gated the low band at two letters and triggered high at four, which
+misplaced 56 items for carrying letters the question never needed.
 
-- **low** — ≤ 2 letters, ≤ 1 effective step, no interacting constraint
-- **high** — any nonlinear relation, **or** ≥ 3 effective steps, **or** ≥ 4 letters with ≥ 2
+**Elimination is found, not guessed.** Where no equation has a single unknown,
+the rubric looks for the smallest set of *k* equations with exactly *k*
+unresolved letters and resolves it as one round. An earlier version approximated
+this as `letters − 1`, which scored simple two-letter simultaneous systems as
+trivially low and deep ones as merely medium.
+
+- **low** — ≤ 1 round and no elimination
+- **high** — any nonlinear relation, or ≥ 3 rounds, or an elimination cluster of
+  ≥ 3 letters, or elimination followed by further rounds
 - **medium** — everything else
 
 **On nonlinearity and honesty.** The official material states the operator set
-(`+ − × ÷`) and that letters are integers 1–20. It does **not** state which operands
-are permitted, so whether the examination uses variable-by-variable products is
-`unknown`. The detector exists so such items can be measured when we author them.
-Any item we write of that kind is **our** calibration and must not carry
-`dmatAlignment: 'officially_documented'`.
+(`+ − × ÷`) and that letters are integers 1–20. It does **not** state which
+operands are permitted, so whether the examination uses variable-by-variable
+products is `unknown`. The detector exists so such items can be measured when we
+author them. Any item we write of that kind is **our** calibration and must not
+carry `dmatAlignment: 'officially_documented'`.
 
 ## Latin Squares
 
 | Measure | What it is |
 | --- | --- |
-| `givens`, `density` | Cells supplied, and as a share of the grid |
 | `forcedPlacementDepth` | Placements forced before the target is determined |
+| `givens`, `density` | Cells supplied, and as a share of the grid |
 | `offLinePrerequisites` | Placements the chain needed outside the target's own row and column |
 | `techniques` | Which official techniques the solution path used |
 
-- **low** — depth ≤ 2 with ≥ 10 givens
-- **high** — depth ≥ 5 with ≤ 9 givens
-- **medium** — everything else
+- **low** — depth ≤ 2
+- **high** — depth ≥ 5
+- **medium** — depth 3–4
 
-Sparsity is a consequence, never a lever. A puzzle is not made harder by removing
-cells; it is made harder by needing a longer chain, and the solver must still prove
-the target is uniquely determined. An item whose target is not forced is not an
-item.
+**Depth bands the item; sparsity does not.** An earlier version required few
+givens for the high band, which demoted five genuinely deep puzzles for being
+generously filled. Few givens is a thing to *aim for* when authoring, not
+evidence that a puzzle was hard to solve — and the solver must still prove the
+target is uniquely determined. An item whose target is not forced is not an item.
 
 ## GAM
 
@@ -100,7 +132,8 @@ item.
 - **medium** — everything else
 
 A long passage is not a hard question; it is a long passage. `ablationDeterminable`
-always raises a warning, whatever tier is measured.
+always raises a warning, whatever tier is measured. Nineteen active questions is
+too small a sample to tune thresholds against, and these have not been.
 
 ## Using it
 

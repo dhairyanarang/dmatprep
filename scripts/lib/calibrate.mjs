@@ -23,8 +23,11 @@ import { parseEquation } from './equations.mjs'
 /* ------------------------------------------------------------ figure sequences */
 
 const ACTIVE_MOVEMENT = (m) => Boolean(m) && m.type !== 'none' && m.type !== 'static'
-const ACTIVE_ROTATION = (r) => Boolean(r) && r.type !== 'none'
-const ACTIVE_COLOUR = (c) => Boolean(c) && c.type !== 'none'
+const ACTIVE_ROTATION = (r) => r?.type === 'rotate'
+// `constant` is the absence of a colour rule, not a rule. Counting it as one
+// inflated activeRules on 202 of the bank's 429 symbols and pushed twenty
+// medium items into the high band for carrying colours that never change.
+const ACTIVE_COLOUR = (c) => c?.type === 'cycle'
 
 /**
  * Load is counted per symbol and then peaked, not summed: three rules riding one
@@ -32,25 +35,51 @@ const ACTIVE_COLOUR = (c) => Boolean(c) && c.type !== 'none'
  * and only the first asks the candidate to hold several properties of the same
  * object in mind at once.
  */
+/** A rule whose step grows, which the generator counts as load in its own right. */
+const ACCELERATES = (r) =>
+  r.movement?.step === 'x+1' || r.rotation?.accelerating === true || r.colour?.accelerating === true
+
+/** Meeting a wall: the symbol's path has to be reasoned about, not just extended. */
+const MEETS_WALL = (r) => r.movement?.boundary === 'bounce' || r.movement?.type === 'border'
+
 export function calibrateFigureSequence(question) {
   const rules = Object.values(question.rules ?? {})
+
+  /**
+   * Load as the generator models it, not as a count of rule slots.
+   *
+   * A symbol has three slots — movement, rotation, colour — so counting only
+   * those caps load at 3 and makes the high tier unreachable. The generator's
+   * own comment is explicit that high is "reachable either by accelerating or
+   * by stacking movement + rotation + colour on a symbol that also interacts
+   * with a wall", so acceleration and a wall interaction each add load.
+   */
   const perSymbol = rules.map(
     (r) =>
       (ACTIVE_MOVEMENT(r.movement) ? 1 : 0) +
       (ACTIVE_ROTATION(r.rotation) ? 1 : 0) +
-      (ACTIVE_COLOUR(r.colour) ? 1 : 0),
+      (ACTIVE_COLOUR(r.colour) ? 1 : 0) +
+      (ACCELERATES(r) ? 1 : 0) +
+      (MEETS_WALL(r) ? 1 : 0),
   )
 
-  const accelerating = rules.filter(
-    (r) =>
-      r.movement?.step === 'x+1' ||
-      r.rotation?.accelerating === true ||
-      r.colour?.accelerating === true,
-  ).length
+  const accelerating = rules.filter(ACCELERATES).length
 
   const measures = {
     symbols: rules.length,
-    activeRules: perSymbol.reduce((a, b) => a + b, 0),
+    // Transformations in play: movement, rotation and colour cycling only.
+    activeRules: rules.reduce(
+      (n, r) =>
+        n +
+        (ACTIVE_MOVEMENT(r.movement) ? 1 : 0) +
+        (ACTIVE_ROTATION(r.rotation) ? 1 : 0) +
+        (ACTIVE_COLOUR(r.colour) ? 1 : 0),
+      0,
+    ),
+    // Load, which also counts acceleration and wall interaction. Kept apart
+    // from activeRules because they answer different questions: how much is
+    // changing, against how much a candidate must hold about one symbol.
+    totalLoad: perSymbol.reduce((a, b) => a + b, 0),
     peakLoad: perSymbol.length ? Math.max(...perSymbol) : 0,
     rotating: rules.filter((r) => ACTIVE_ROTATION(r.rotation)).length,
     colourCycling: rules.filter((r) => ACTIVE_COLOUR(r.colour)).length,
@@ -65,16 +94,20 @@ export function calibrateFigureSequence(question) {
   const reasons = []
   let suggested
 
-  if (symbols >= 4 || peakLoad >= 4 || (symbols >= 3 && peakLoad >= 3 && activeRules >= 7)) {
+  // Banded on peak load, which is the generator's own difficulty lever, with
+  // symbol count breaking the tie only where it cannot cost a medium item: the
+  // medium tier never exceeds three symbols.
+  //
+  // This will not reach full agreement on Figure Sequences, and should not be
+  // tuned until it does. The generator overlaps the symbol ranges on purpose
+  // and keeps acceleration out of some high items, so that the tier cannot be
+  // read off the picture — spec §2.3. Sixteen medium and sixteen high items sit
+  // at load 4 with three symbols and are not separable by anything in the
+  // record. Fitting a threshold to split them would be fitting noise.
+  if (peakLoad >= 5 || (peakLoad >= 4 && symbols >= 4)) {
     suggested = 'high'
-    reasons.push(
-      symbols >= 4
-        ? `${symbols} symbols to track`
-        : peakLoad >= 4
-          ? `${peakLoad} rules stacked on one symbol`
-          : `${symbols} symbols carrying ${activeRules} rules, peak ${peakLoad}`,
-    )
-  } else if (symbols <= 2 && peakLoad <= 2 && activeRules <= 3) {
+    reasons.push(`peak load ${peakLoad} on one symbol, ${symbols} symbols, ${activeRules} rules`)
+  } else if (peakLoad <= 2) {
     suggested = 'low'
     reasons.push(`${symbols} symbol(s), ${activeRules} rule(s), peak load ${peakLoad}`)
   } else {
@@ -127,23 +160,52 @@ function nonlinearity(node, found = { product: false, square: false, varDivisor:
  * is the number of substitution steps a candidate actually has to make — not the
  * number of letters, which says nothing about the work.
  */
-function substitutionDepth(parsed, variables, asked) {
+function resolutionPath(parsed, variables, asked) {
+  const equations = parsed.map((eq) => new Set([...varsIn(eq.lhs), ...varsIn(eq.rhs)]))
   const known = new Set()
-  for (let round = 1; round <= variables.length + 1; round++) {
-    const resolvable = []
-    for (const eq of parsed) {
-      const unknown = [...varsIn(eq.lhs), ...varsIn(eq.rhs)].filter((v) => !known.has(v))
-      if (new Set(unknown).size === 1) resolvable.push(unknown[0])
+  const open = () => equations.map((vars, i) => ({ i, vars })).filter((e) => [...e.vars].some((v) => !known.has(v)))
+
+  /**
+   * The smallest set of equations that can be solved together: k equations
+   * whose unresolved letters number exactly k. Taking the smallest keeps a
+   * two-letter elimination from being reported as a four-letter one just
+   * because two unrelated equations were still open.
+   */
+  const smallestCluster = (candidates) => {
+    for (let size = 2; size <= candidates.length; size++) {
+      for (let mask = 1; mask < 1 << candidates.length; mask++) {
+        const chosen = candidates.filter((_, b) => mask & (1 << b))
+        if (chosen.length !== size) continue
+        const unknowns = new Set(chosen.flatMap((e) => [...e.vars].filter((v) => !known.has(v))))
+        if (unknowns.size === size) return unknowns
+      }
     }
-    if (!resolvable.length) break
-    for (const v of resolvable) known.add(v)
-    if (known.has(asked)) return round
+    return null
   }
-  // Substitution alone never reaches the asked letter: the system has to be
-  // solved as a whole, by elimination. That is harder than a chain, not easier,
-  // and an earlier version of this function returned Infinity here and let the
-  // band logic read it as zero — which made the hardest systems look easy.
-  return null
+
+  let rounds = 0
+  let eliminationUsed = false
+  let largestCluster = 0
+
+  for (let guard = 0; guard <= variables.length + 2; guard++) {
+    const candidates = open()
+    if (!candidates.length) break
+
+    const singles = candidates.filter((e) => [...e.vars].filter((v) => !known.has(v)).length === 1)
+    if (singles.length) {
+      rounds++
+      for (const e of singles) for (const v of e.vars) known.add(v)
+    } else {
+      const cluster = smallestCluster(candidates)
+      if (!cluster) break
+      rounds++
+      eliminationUsed = true
+      largestCluster = Math.max(largestCluster, cluster.size)
+      for (const v of cluster) known.add(v)
+    }
+    if (known.has(asked)) return { rounds, eliminationUsed, largestCluster }
+  }
+  return { rounds: known.has(asked) ? rounds : null, eliminationUsed, largestCluster }
 }
 
 export function calibrateMathEquations(question) {
@@ -161,19 +223,18 @@ export function calibrateMathEquations(question) {
     { product: false, square: false, varDivisor: false },
   )
 
-  const steps = substitutionDepth(parsed, question.variables, question.asked)
-  const requiresElimination = steps === null
-  // A system that will not fall to substitution must be held together and solved
-  // at once, so the work scales with how many letters are in play.
-  const effectiveSteps = steps ?? Math.max(1, question.variables.length - 1)
+  const path = resolutionPath(parsed, question.variables, question.asked)
   const operations = question.equations.join(' ').match(/[+−×÷]/g)?.length ?? 0
 
   const measures = {
     variables: question.variables.length,
     equations: question.equations.length,
-    substitutionSteps: steps,
-    requiresElimination,
-    effectiveSteps,
+    // Rounds of deduction on the path to the asked letter. Letters the question
+    // never needs do not count: a four-letter system whose answer falls out of
+    // one equation is one step of work, whatever else is on the page.
+    resolutionRounds: path.rounds,
+    requiresElimination: path.eliminationUsed,
+    largestEliminationCluster: path.largestCluster,
     nonlinear: flags.product || flags.square || flags.varDivisor,
     variableProduct: flags.product,
     quadratic: flags.square,
@@ -187,20 +248,25 @@ export function calibrateMathEquations(question) {
     largestValue: Math.max(...Object.values(question.solution ?? { x: 0 })),
   }
 
-  const { variables, nonlinear, interactingConstraints } = measures
-  const describe = requiresElimination
-    ? `${variables} letters solved together by elimination`
-    : `${variables} letters, ${steps} substitution step(s)`
+  const { nonlinear } = measures
+  const rounds = path.rounds ?? 0
+  const describe = path.eliminationUsed
+    ? `${rounds} round(s), including a ${path.largestCluster}-letter elimination`
+    : `${rounds} substitution step(s) to reach ${question.asked}`
   const reasons = []
   let suggested
 
   if (nonlinear) {
     suggested = 'high'
     reasons.push('a nonlinear relation — a variable multiplied or divided by a variable')
-  } else if (effectiveSteps >= 3 || (variables >= 4 && effectiveSteps >= 2)) {
+  } else if (
+    rounds >= 3 ||
+    path.largestCluster >= 3 ||
+    (path.eliminationUsed && rounds >= 2)
+  ) {
     suggested = 'high'
     reasons.push(describe)
-  } else if (variables <= 2 && effectiveSteps <= 1 && !interactingConstraints) {
+  } else if (rounds <= 1 && !path.eliminationUsed) {
     suggested = 'low'
     reasons.push(describe)
   } else {
@@ -236,10 +302,15 @@ export function calibrateLatinSquare(question) {
   const reasons = []
   let suggested
 
-  if (depth >= 5 && givens <= 9) {
+  // Depth alone bands the item. Sparsity is reported beside it but is not a
+  // gate: an earlier version required few givens for the high band, which
+  // demoted five genuinely deep puzzles for being generously filled, and
+  // demoted shallow ones for being sparse. Few givens is a thing to aim for
+  // when authoring, not evidence that a puzzle was hard to solve.
+  if (depth >= 5) {
     suggested = 'high'
-    reasons.push(`depth ${depth} from only ${givens} given cells`)
-  } else if (depth <= 2 && givens >= 10) {
+    reasons.push(`depth ${depth} from ${givens} given cells`)
+  } else if (depth <= 2) {
     suggested = 'low'
     reasons.push(`depth ${depth} with ${givens} given cells`)
   } else {

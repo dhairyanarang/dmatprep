@@ -57,26 +57,44 @@ test('a single symbol carrying one or two rules measures low', () => {
   assert.equal(r.suggested, 'low')
 })
 
-test('three symbols carrying eight rules measures high', () => {
+test('a symbol carrying movement, rotation, colour and acceleration measures high', () => {
   const r = calibrate(pick('figure-sequences', 'fs-high-b5-003'))
   assert.equal(r.measures.symbols, 3)
-  assert.equal(r.measures.activeRules, 8)
-  assert.equal(r.measures.peakLoad, 3)
+  // Load counts acceleration and wall interaction, as the generator's own
+  // model does; activeRules counts only the transformations themselves.
+  assert.equal(r.measures.activeRules, 7)
+  assert.equal(r.measures.totalLoad, 10)
+  assert.ok(r.measures.peakLoad >= 5, `peak load was ${r.measures.peakLoad}`)
   assert.equal(r.suggested, 'high')
+})
+
+test('peak load above three is reachable, so the high band is not dead code', () => {
+  const reached = readBank('figure-sequences')
+    .map((q) => calibrate(q).measures.peakLoad)
+    .filter((l) => l >= 4).length
+  assert.ok(reached > 0, 'no item reaches load 4 — the band would be unreachable')
+})
+
+test('a colour that never changes is not counted as a transformation', () => {
+  const constant = {
+    kind: 'figure-sequence',
+    rules: { s1: { movement: { type: 'linear' }, rotation: { type: 'none' }, colour: { type: 'constant' } } },
+  }
+  assert.equal(calibrate(constant).measures.activeRules, 1)
 })
 
 test('a two-letter chain resolved in one step measures low', () => {
   const r = calibrate(pick('mathematical-equations', 'me-low-005'))
   assert.equal(r.measures.variables, 2)
-  assert.equal(r.measures.substitutionSteps, 1)
+  assert.equal(r.measures.resolutionRounds, 1)
+  assert.equal(r.measures.requiresElimination, false)
   assert.equal(r.suggested, 'low')
 })
 
 test('a four-letter system that substitution cannot crack measures high', () => {
   const r = calibrate(pick('mathematical-equations', 'me-high-001'))
   assert.equal(r.measures.requiresElimination, true)
-  assert.equal(r.measures.substitutionSteps, null)
-  assert.equal(r.measures.effectiveSteps, 3)
+  assert.ok(r.measures.largestEliminationCluster >= 2)
   assert.equal(r.suggested, 'high')
 })
 
