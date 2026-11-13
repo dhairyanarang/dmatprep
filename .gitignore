@@ -55,3 +55,7 @@ next-env.d.ts
 # Supabase CLI link state. Holds the project ref and pooler URL for this
 # machine — local scaffolding, not part of the project.
 supabase/.temp/
+
+# Cached Clarity sweeps and the daily request budget. Local analysis
+# scratch, regenerable, and it can contain visitor data — never committed.
+/.clarity/
