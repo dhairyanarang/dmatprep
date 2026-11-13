@@ -9,6 +9,8 @@
 import { test, describe } from 'node:test'
 import assert from 'node:assert/strict'
 
+import { FS_CONTRACT } from '../lib/contract.mjs'
+
 import { generateMathEquations } from '../generate/math-equations.mjs'
 import { generateFigureSequences } from '../generate/figure-sequences.mjs'
 import { readBank, readRetired } from '../lib/bank.mjs'
@@ -197,10 +199,30 @@ describe('FS observed-direction descriptions', () => {
     }
   })
 
-  test('all four movement families remain reachable after the per-image rule', () => {
+  test('all three movement families remain reachable after the per-image rule', () => {
+    // Three, not four. `direction-cycle` was removed from FS_CONTRACT.allowed on
+    // 2026-11-14 — it was never stated or demonstrated in the official material.
+    // The 86 committed questions that used it are quarantined, not retired.
     const seen = new Set(fsSample.flatMap((q) => Object.values(q.rules).map((r) => r.movement.type)))
-    for (const family of ['linear', 'diagonal', 'border', 'direction-cycle']) {
+    for (const family of ['linear', 'diagonal', 'border']) {
       assert.ok(seen.has(family), `${family} became unreachable`)
+    }
+  })
+
+  test('the generator can no longer emit direction-cycle', () => {
+    assert.ok(
+      !FS_CONTRACT.allowed.movementTypes.includes('direction-cycle'),
+      'direction-cycle is back in the allowed mechanics',
+    )
+    const fresh = fsSample.filter((q) => !q.meta?.quarantined)
+    for (const q of fresh) {
+      for (const [sym, rule] of Object.entries(q.rules)) {
+        assert.notEqual(
+          rule.movement.type,
+          'direction-cycle',
+          `${q.id}/${sym}: direction-cycle on a question that is not quarantined`,
+        )
+      }
     }
   })
 })

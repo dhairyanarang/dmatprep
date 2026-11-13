@@ -280,7 +280,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix2": "position",
@@ -288,7 +288,11 @@
         "image2:matrix1": "position",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -577,7 +581,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "position",
@@ -585,7 +589,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -1458,7 +1466,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix2": "movement-direction",
@@ -1466,7 +1474,11 @@
         "image2:matrix1": "position",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -6540,7 +6552,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "boundary",
@@ -6548,7 +6560,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "movement-step"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -7023,7 +7039,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -7031,7 +7047,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -8075,7 +8095,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -8083,7 +8103,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -10279,7 +10303,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix2": "movement-direction",
@@ -10287,7 +10311,11 @@
         "image2:matrix2": "movement-step",
         "image2:matrix3": "acceleration"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -10926,7 +10954,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -10934,7 +10962,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "acceleration"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -12917,7 +12949,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "movement-step",
@@ -12925,7 +12957,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "acceleration"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -13582,7 +13618,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "movement-direction",
@@ -13590,7 +13626,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "boundary"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -14245,7 +14285,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "movement-step",
@@ -14253,7 +14293,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "acceleration"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -15573,7 +15617,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "acceleration",
@@ -15581,7 +15625,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "generator": {
       "name": "figure-sequences",
@@ -17058,7 +17106,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix1": "movement-step",
@@ -17066,7 +17114,11 @@
         "image2:matrix2": "movement-step",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b2-001",
     "generator": {
@@ -17598,7 +17650,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -17606,7 +17658,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "movement-step"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b2-002",
     "generator": {
@@ -18155,7 +18211,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -18163,7 +18219,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b2-003",
     "generator": {
@@ -18856,7 +18916,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -18864,7 +18924,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "movement-step"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 7"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 7",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b2-004",
     "generator": {
@@ -21638,7 +21702,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -21646,7 +21710,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "movement-step"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b2-003",
     "generator": {
@@ -22347,7 +22415,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "acceleration",
@@ -22355,7 +22423,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "boundary"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b2-004",
     "generator": {
@@ -26199,7 +26271,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "movement-direction",
@@ -26207,7 +26279,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b4-002",
     "generator": {
@@ -26737,7 +26813,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "movement-step",
@@ -26745,7 +26821,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "movement-step"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b4-003",
     "generator": {
@@ -27278,7 +27358,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "movement-step",
@@ -27286,7 +27366,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b4-004",
     "generator": {
@@ -28798,7 +28882,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -28806,7 +28890,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 9"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 9",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b4-001",
     "generator": {
@@ -30318,7 +30406,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -30326,7 +30414,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b4-003",
     "generator": {
@@ -31714,7 +31806,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "acceleration",
@@ -31722,7 +31814,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b4-005",
     "generator": {
@@ -32377,7 +32473,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -32385,7 +32481,11 @@
         "image2:matrix1": "position",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b5-002",
     "generator": {
@@ -33388,7 +33488,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -33396,7 +33496,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b5-005",
     "generator": {
@@ -34414,7 +34518,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "position",
@@ -34422,7 +34526,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b5-008",
     "generator": {
@@ -34748,7 +34856,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -34756,7 +34864,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b5-009",
     "generator": {
@@ -35082,7 +35194,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "position",
@@ -35090,7 +35202,11 @@
         "image2:matrix1": "position",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b5-010",
     "generator": {
@@ -35620,7 +35736,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -35628,7 +35744,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-001",
     "generator": {
@@ -37224,7 +37344,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -37232,7 +37352,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-004",
     "generator": {
@@ -38261,7 +38385,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -38269,7 +38393,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-006",
     "generator": {
@@ -38780,7 +38908,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -38788,7 +38916,11 @@
         "image2:matrix1": "movement-step",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-007",
     "generator": {
@@ -40032,7 +40164,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -40040,7 +40172,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-009",
     "generator": {
@@ -40577,7 +40713,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "colour",
@@ -40585,7 +40721,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-010",
     "generator": {
@@ -41259,7 +41399,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -41267,7 +41407,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-011",
     "generator": {
@@ -43044,7 +43188,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -43052,7 +43196,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-014",
     "generator": {
@@ -44950,7 +45098,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -44958,7 +45106,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "movement-step"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-017",
     "generator": {
@@ -46558,7 +46710,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "movement-step",
@@ -46566,7 +46718,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-020",
     "generator": {
@@ -47097,7 +47253,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -47105,7 +47261,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-021",
     "generator": {
@@ -50279,7 +50439,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -50287,7 +50447,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-026",
     "generator": {
@@ -51346,7 +51510,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "boundary",
@@ -51354,7 +51518,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-028",
     "generator": {
@@ -52599,7 +52767,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 5,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -52607,7 +52775,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 5"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 5",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-030",
     "generator": {
@@ -53156,7 +53328,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -53164,7 +53336,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-031",
     "generator": {
@@ -54404,7 +54580,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -54412,7 +54588,11 @@
         "image2:matrix1": "boundary",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-033",
     "generator": {
@@ -55103,7 +55283,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -55111,7 +55291,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "movement-step"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 7"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 7",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-034",
     "generator": {
@@ -55623,7 +55807,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -55631,7 +55815,11 @@
         "image2:matrix1": "movement-step",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-035",
     "generator": {
@@ -56310,7 +56498,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -56318,7 +56506,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 6"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 6",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-036",
     "generator": {
@@ -57912,7 +58104,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -57920,7 +58112,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-039",
     "generator": {
@@ -59677,7 +59873,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix2": "colour",
@@ -59685,7 +59881,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-042",
     "generator": {
@@ -60889,7 +61089,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 4,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -60897,7 +61097,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "2 symbol(s), peak transformation load 3, total 4"
+      "generationNotes": "2 symbol(s), peak transformation load 3, total 4",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b5-044",
     "generator": {
@@ -62324,7 +62528,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 10,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -62332,7 +62536,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 10"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 10",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-001",
     "generator": {
@@ -63917,7 +64125,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -63925,7 +64133,11 @@
         "image2:matrix2": "movement-direction",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-003",
     "generator": {
@@ -65524,7 +65736,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -65532,7 +65744,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-005",
     "generator": {
@@ -66207,7 +66423,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -66215,7 +66431,11 @@
         "image2:matrix1": "boundary",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-006",
     "generator": {
@@ -67068,7 +67288,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 10,
       "distractorTypes": {
         "image1:matrix1": "acceleration",
@@ -67076,7 +67296,11 @@
         "image2:matrix2": "boundary",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 10, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 10, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-007",
     "generator": {
@@ -68600,7 +68824,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "movement-direction",
@@ -68608,7 +68832,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-009",
     "generator": {
@@ -70159,7 +70387,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -70167,7 +70395,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-011",
     "generator": {
@@ -70845,7 +71077,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -70853,7 +71085,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "acceleration"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-012",
     "generator": {
@@ -71740,7 +71976,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 11,
       "distractorTypes": {
         "image1:matrix1": "boundary",
@@ -71748,7 +71984,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "boundary"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 11"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 11",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-013",
     "generator": {
@@ -76596,7 +76836,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -76604,7 +76844,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 9"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 9",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-019",
     "generator": {
@@ -77973,7 +78217,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -77981,7 +78225,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-021",
     "generator": {
@@ -79520,7 +79768,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "acceleration",
@@ -79528,7 +79776,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 6, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 6, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-023",
     "generator": {
@@ -80330,7 +80582,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix2": "acceleration",
@@ -80338,7 +80590,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "movement-step"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-024",
     "generator": {
@@ -81883,7 +82139,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix2": "acceleration",
@@ -81891,7 +82147,11 @@
         "image2:matrix1": "boundary",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-026",
     "generator": {
@@ -82567,7 +82827,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -82575,7 +82835,11 @@
         "image2:matrix1": "acceleration",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-027",
     "generator": {
@@ -83437,7 +83701,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 10,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -83445,7 +83709,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 10, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 10, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-028",
     "generator": {
@@ -84103,7 +84371,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 6,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -84111,7 +84379,11 @@
         "image2:matrix2": "rotation",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 6, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 6, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-029",
     "generator": {
@@ -84982,7 +85254,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 10,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -84990,7 +85262,11 @@
         "image2:matrix2": "boundary",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 10"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 10",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-030",
     "generator": {
@@ -85846,7 +86122,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 11,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -85854,7 +86130,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-031",
     "generator": {
@@ -86544,7 +86824,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -86552,7 +86832,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-032",
     "generator": {
@@ -87250,7 +87534,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "acceleration",
@@ -87258,7 +87542,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-033",
     "generator": {
@@ -88055,7 +88343,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -88063,7 +88351,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix3": "movement-direction"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 7, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 7, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-034",
     "generator": {
@@ -88759,7 +89051,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -88767,7 +89059,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-035",
     "generator": {
@@ -90441,7 +90737,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 9,
       "distractorTypes": {
         "image1:matrix1": "rotation",
@@ -90449,7 +90745,11 @@
         "image2:matrix1": "colour",
         "image2:matrix3": "acceleration"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 9, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 9, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-037",
     "generator": {
@@ -92726,7 +93026,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 11,
       "distractorTypes": {
         "image1:matrix2": "acceleration",
@@ -92734,7 +93034,11 @@
         "image2:matrix1": "colour",
         "image2:matrix2": "movement-step"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-040",
     "generator": {
@@ -93427,7 +93731,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -93435,7 +93739,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "rotation"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-041",
     "generator": {
@@ -94309,7 +94617,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 12,
       "distractorTypes": {
         "image1:matrix1": "boundary",
@@ -94317,7 +94625,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 12, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 12, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b5-042",
     "generator": {
@@ -96922,7 +97234,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -96930,7 +97242,11 @@
         "image2:matrix1": "position",
         "image2:matrix2": "movement-direction"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b6-001",
     "generator": {
@@ -98887,7 +99203,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -98895,7 +99211,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "movement-step"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b6-003",
     "generator": {
@@ -99604,7 +99924,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix2": "rotation",
@@ -99612,7 +99932,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 3, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 3, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-medium-b6-004",
     "generator": {
@@ -100486,7 +100810,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 11,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -100494,7 +100818,11 @@
         "image2:matrix2": "acceleration",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating"
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 11, accelerating",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b6-001",
     "generator": {
@@ -101192,7 +101520,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 7,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -101200,7 +101528,11 @@
         "image2:matrix2": "colour",
         "image2:matrix3": "rotation"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 7"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 7",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b6-002",
     "generator": {
@@ -102636,7 +102968,7 @@
         "compound-rule"
       ],
       "skill": "reading stacked transformations on one symbol",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 8,
       "distractorTypes": {
         "image1:matrix1": "colour",
@@ -102644,7 +102976,11 @@
         "image2:matrix1": "rotation",
         "image2:matrix3": "colour"
       },
-      "generationNotes": "3 symbol(s), peak transformation load 4, total 8"
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 8",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-high-b6-004",
     "generator": {
@@ -103663,7 +103999,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "position",
@@ -103671,7 +104007,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b7-001",
     "generator": {
@@ -103997,7 +104337,7 @@
         "direction-cycle-movement"
       ],
       "skill": "reading a single transformation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "image1:matrix1": "movement-direction",
@@ -104005,7 +104345,11 @@
         "image2:matrix1": "movement-direction",
         "image2:matrix2": "position"
       },
-      "generationNotes": "1 symbol(s), peak transformation load 1, total 1"
+      "generationNotes": "1 symbol(s), peak transformation load 1, total 1",
+      "quarantined": {
+        "reason": "Tests direction-cycle movement: a symbol that changes its direction of travel every step. The official rule list names colour change, rotation about the symbol own axis, vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off or travelling along a boundary — and nothing else. The mechanic was admitted to FS_CONTRACT.allowed without official support. Quarantined rather than retired: if a future re-date of the preparatory PDF documents it, this lifts in one line.",
+        "since": "2026-11-14"
+      }
     },
     "id": "fs-low-b7-002",
     "generator": {

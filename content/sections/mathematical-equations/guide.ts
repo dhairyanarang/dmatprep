@@ -122,7 +122,10 @@ export const guide: SectionGuide = {
     },
 
     { type: 'heading', text: 'Worked examples' },
-    { type: 'example', questionId: 'me-low-001', caption: 'One equation has a single unknown — start there.' },
+    // me-low-001 was retired and this rendered nothing. me-low-005 is live and
+    // matches the caption exactly: A ÷ 2 = 4 has one unknown and is the asked
+    // letter, so the example demonstrates the move it is teaching.
+    { type: 'example', questionId: 'me-low-005', caption: 'One equation has a single unknown — start there.' },
     { type: 'example', questionId: 'me-high-001', caption: 'Four letters: substitute the definitions into the combining equation.' },
   ],
 }

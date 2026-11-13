@@ -336,12 +336,6 @@ const RULES: Rule[] = [
     text: 'Runs around the perimeter, clockwise or counter-clockwise, turning at each corner instead of bouncing.',
   },
   {
-    name: 'Repeating direction cycle',
-    level: 'Medium',
-    panels: [[{ r: 2, c: 2 }], [{ r: 2, c: 1 }], [{ r: 1, c: 1 }], [{ r: 1, c: 2 }]],
-    text: 'Follows a fixed order of directions — left, up, right, down — tracing a small closed loop.',
-  },
-  {
     name: 'Rotation',
     level: 'Medium',
     panels: [
@@ -478,7 +472,7 @@ export function FigureDifficulty() {
           headline: 'Two symbols, more rule types',
           points: [
             'Two symbols, each with its own independent rule',
-            'Adds border travel and repeating direction cycles',
+            'Adds travel along the outer border',
             'Rotation and colour cycles start appearing',
             'Step size still constant',
           ],

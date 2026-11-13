@@ -110,6 +110,20 @@ export type QuestionMeta = {
   /** option key -> the error family that option encodes. */
   distractorTypes: Record<string, string>
   generationNotes?: string
+  /**
+   * Set when an item tests a mechanic we can no longer support from the
+   * official material. A quarantined question stays in the bank and stays
+   * resolvable by id — attempts against it are immutable and must keep
+   * resolving — but `getQuestions` excludes it, so it never reaches a pool
+   * again. This is deliberately not retirement: retirement reserves the id
+   * forever, and if a future re-date of the preparatory PDF documents the
+   * mechanic, lifting a quarantine is a one-line change.
+   */
+  quarantined?: {
+    reason: string
+    /** ISO date the quarantine was applied. */
+    since: string
+  }
 }
 
 type QuestionBase = {

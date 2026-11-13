@@ -20,7 +20,17 @@
 
 export const FS_CONTRACT = {
   allowed: {
-    movementTypes: ['linear', 'diagonal', 'border', 'direction-cycle'],
+    /**
+     * `direction-cycle` was here and should not have been. `allowed` means
+     * stated in the rules or demonstrated in a worked exercise, and a symbol
+     * that changes its direction of travel every step is neither: the official
+     * rule list names colour change, rotation about the symbol's own axis,
+     * vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off
+     * or travelling along a boundary. Nothing else. It also sat badly beside
+     * this contract's own `forbidden` entry for a mid-sequence switch from one
+     * movement type to another. See docs/DIRECTION_CYCLE.md.
+     */
+    movementTypes: ['linear', 'diagonal', 'border'],
     /** Every official linear/diagonal example moves "one field at a time". */
     linearSteps: [1, 'x+1'],
     diagonalSteps: [1, 'x+1'],
@@ -55,6 +65,7 @@ export const FS_CONTRACT = {
     'a mid-sequence switch from one movement type to another',
     'shown matrices admitting more than one legal continuation',
     'a colour cycle whose colours are not all visible in the shown matrices',
+    'a symbol that cycles through directions of travel (`direction-cycle`)',
   ],
 }
 
@@ -86,9 +97,6 @@ export function figureRuleContractErrors(rule) {
   }
   if (move.type === 'border' && !allowed.borderSteps.includes(move.step)) {
     errors.push(`border travel at step ${move.step}; only 1, 2 and x+1 are attested`)
-  }
-  if (move.type === 'direction-cycle' && move.step !== 1) {
-    errors.push(`direction cycle at step ${move.step}; every official instance moves one field`)
   }
 
   if (rule.rotation.type === 'rotate') {

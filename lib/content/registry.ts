@@ -17,10 +17,28 @@ import type { Question } from '@/lib/types/question'
  * `scripts/verify-bank.mjs`, which is where the real guarantees come from — the
  * cast here just gives the app the narrow types JSON import can't infer.
  */
-const BANKS: Record<SectionId, Question[]> = {
+const ALL: Record<SectionId, Question[]> = {
   'figure-sequences': figureSequences as unknown as Question[],
   'mathematical-equations': mathematicalEquations as unknown as Question[],
   'latin-squares': latinSquares as unknown as Question[],
+}
+
+/**
+ * A quarantined question tests a mechanic we can no longer support from the
+ * official material. It stays in the file and stays resolvable by id, because
+ * attempts are immutable and an attempt that can no longer name its question is
+ * a broken record. What it must not do is reach a pool again, so every servable
+ * path reads `BANKS` and only `getQuestion` reads `ALL`.
+ *
+ * Not retirement: retirement reserves an id forever. If a future re-date of the
+ * preparatory PDF documents the mechanic, these come back by deleting a field.
+ */
+const isQuarantined = (q: Question) => q.meta?.quarantined != null
+
+const BANKS: Record<SectionId, Question[]> = {
+  'figure-sequences': ALL['figure-sequences'].filter((q) => !isQuarantined(q)),
+  'mathematical-equations': ALL['mathematical-equations'].filter((q) => !isQuarantined(q)),
+  'latin-squares': ALL['latin-squares'].filter((q) => !isQuarantined(q)),
 }
 
 const GUIDES: Record<SectionId, SectionGuide> = {
@@ -37,8 +55,13 @@ export function getQuestions(sectionId: SectionId): Question[] {
   return BANKS[sectionId]
 }
 
+/**
+ * Resolves quarantined questions too — a stored attempt must always be able to
+ * name what it was an attempt at. Callers that render a question to be answered
+ * want `getQuestions`.
+ */
 export function getQuestion(sectionId: SectionId, id: string): Question | undefined {
-  return BANKS[sectionId].find((q) => q.id === id)
+  return ALL[sectionId].find((q) => q.id === id)
 }
 
 export function getBankSize(sectionId: SectionId): number {

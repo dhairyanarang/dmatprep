@@ -117,7 +117,12 @@ export const guide: SectionGuide = {
     },
 
     { type: 'heading', text: 'Worked examples' },
-    { type: 'example', questionId: 'fs-low-001', caption: 'One symbol — establish the movement, then apply it twice.' },
-    { type: 'example', questionId: 'fs-medium-001', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
+    // fs-low-001 and fs-medium-001 were retired, so both of these rendered
+    // nothing at all. Their replacements are live, non-quarantined and were
+    // picked to match the captions: fs-low-007 is a single linear mover, and
+    // fs-medium-005 carries two symbols whose rules differ from each other —
+    // one rotates, the other cycles colour — which is the point being taught.
+    { type: 'example', questionId: 'fs-low-007', caption: 'One symbol — establish the movement, then apply it twice.' },
+    { type: 'example', questionId: 'fs-medium-005', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
   ],
 }
