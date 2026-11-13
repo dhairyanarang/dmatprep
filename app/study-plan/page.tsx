@@ -8,7 +8,7 @@ export const metadata = { title: 'Study plan' }
 export default function StudyPlanPage() {
   return (
     <PageShell
-      description="Seven weeks to Saturday 26 September 2026. Optional — the home page recommends a next step whether you follow this or not."
+      description="Seven weeks to Saturday 16 January 2027. Optional — the home page recommends a next step whether you follow this or not."
     >
       <div className="space-y-10">
         <PlanView />

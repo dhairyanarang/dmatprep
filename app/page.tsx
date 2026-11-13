@@ -1,12 +1,11 @@
 import { LayoutDashboard } from 'lucide-react'
 
-import { CountdownCard } from '@/components/dashboard/countdown-card'
 import { NextStep } from '@/components/dashboard/next-step'
 import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
 import { ExamLinks } from '@/components/exam/exam-links'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
-import { FIXED_DATES } from '@/content/exam/key-dates'
+import { CycleCountdowns } from '@/components/dashboard/cycle-countdowns'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
@@ -20,9 +19,6 @@ export default function HomePage() {
     SECTIONS.map((s) => [s.id, getBankSize(s.id)]),
   ) as Record<SectionId, number>
 
-  const registration = FIXED_DATES.find((d) => d.id === 'registration-deadline')!
-  const exam = FIXED_DATES.find((d) => d.id === 'exam-date')!
-
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
       <PageContainer className="stagger-enter flex flex-col gap-6 py-6">
@@ -32,14 +28,7 @@ export default function HomePage() {
           description="View your performance at a glance"
         />
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <CountdownCard
-            label="Registration closes"
-            date={registration.date}
-            unit="Days to Register"
-          />
-          <CountdownCard label="Exam day" date={exam.date} unit="Days to the Exam" />
-        </div>
+        <CycleCountdowns />
 
         <NextStep bankSizes={bankSizes} />
 

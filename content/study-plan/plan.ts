@@ -20,7 +20,14 @@ export type StudyWeek = {
 }
 
 /**
- * Seven weeks from Monday 10 August 2026 to exam day, Saturday 26 September.
+ * Seven weeks from Monday 30 November 2026 to exam day, Saturday 16 January 2027.
+ *
+ * Anchored to the January 2027 cycle — the first in `EXAM_CYCLES`. This is the
+ * one piece of content that has to be re-dated by hand when a cycle passes, and
+ * it silently did not get re-dated when the September 2026 sitting went by:
+ * the plan went on offering seven weeks to a date seven weeks in the past.
+ * `scripts/test/exam-dates.test.mjs` now fails if the last week does not end on
+ * a real cycle's test date, so that cannot happen quietly again.
  *
  * The shape is deliberate: learn all three formats first so nothing is a
  * surprise, then one section per week to build accuracy, then mixed practice
@@ -31,8 +38,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-1',
     weekNumber: 1,
-    startDate: '2026-08-10',
-    endDate: '2026-08-16',
+    startDate: '2026-11-30',
+    endDate: '2026-12-06',
     focus: 'Register, and learn all three formats',
     summary:
       'Get the admin done first, then read every section overview end to end. The goal this week is that no task type is unfamiliar — not that you are fast at any of them.',
@@ -48,8 +55,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-2',
     weekNumber: 2,
-    startDate: '2026-08-17',
-    endDate: '2026-08-23',
+    startDate: '2026-12-07',
+    endDate: '2026-12-13',
     focus: 'Latin Squares',
     summary:
       'A highly rule-based subtest, making it well suited to systematic practice. Get the elimination routine automatic and learn to recognise early whether an item is direct or needs a chain.',
@@ -63,8 +70,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-3',
     weekNumber: 3,
-    startDate: '2026-08-24',
-    endDate: '2026-08-30',
+    startDate: '2026-12-14',
+    endDate: '2026-12-20',
     focus: 'Mathematical Equations',
     summary:
       'Solve equation systems efficiently under time pressure. Build the habit of scanning for a simple starting relationship, and practise both direct solving and checking answer options so you can choose the faster reliable method.',
@@ -79,8 +86,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-4',
     weekNumber: 4,
-    startDate: '2026-08-31',
-    endDate: '2026-09-06',
+    startDate: '2026-12-21',
+    endDate: '2026-12-27',
     focus: 'Figure Sequences',
     summary:
       'The subtest with several interacting visual rules, so it gets a full week. Pay particular attention to movement, rotation, colour and boundary behaviour, and practise identifying which rule is changing between matrices.',
@@ -95,8 +102,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-5',
     weekNumber: 5,
-    startDate: '2026-09-07',
-    endDate: '2026-09-13',
+    startDate: '2026-12-28',
+    endDate: '2027-01-03',
     focus: 'High difficulty, all three',
     summary:
       'Use this week to practise the more challenging items in each section. Focus on accurate reasoning first, then gradually reduce the time you need.',
@@ -111,8 +118,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-6',
     weekNumber: 6,
-    startDate: '2026-09-14',
-    endDate: '2026-09-20',
+    startDate: '2027-01-04',
+    endDate: '2027-01-10',
     focus: 'Speed and switching',
     summary:
       'Accuracy should be in place; now build pace. 20 items in 25 minutes gives an average of 75 seconds per item, so practise walking away from an item that is not yielding rather than rescuing it.',
@@ -126,8 +133,8 @@ export const STUDY_PLAN: StudyWeek[] = [
   {
     id: 'week-7',
     weekNumber: 7,
-    startDate: '2026-09-21',
-    endDate: '2026-09-26',
+    startDate: '2027-01-11',
+    endDate: '2027-01-16',
     focus: 'Taper and exam day',
     summary:
       'No new material. Light revision, sort out the logistics, and arrive rested. The exam is Saturday 26 September.',
