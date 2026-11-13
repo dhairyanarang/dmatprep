@@ -56,6 +56,60 @@ export function getQuestions(sectionId: SectionId): Question[] {
 }
 
 /**
+ * Everything that answers a question or teaches the answer.
+ *
+ * Kept in step with `SOLUTION_KEYS` in scripts/build-solutions.mjs, which writes
+ * the other half. `scripts/test/answer-delivery.test.mjs` fails if the two lists
+ * disagree — a field stripped here but not written there would be lost, and one
+ * written there but not stripped here would still ship with the page.
+ */
+const SOLUTION_KEYS = [
+  'correctOptionId',
+  'explanation',
+  'distractorNotes',
+  'walkthrough',
+  'solutionSteps',
+  'solution',
+  'rules',
+] as const
+
+/**
+ * A question as a candidate should first meet it: stem, options, panels, grid
+ * and hints, with nothing that answers it.
+ *
+ * Every practice route serves these rather than the full records. The solutions
+ * are fetched separately — see `lib/solutions/use-solutions.ts` — so a candidate
+ * who has not answered has not been handed the answer in the page they are
+ * reading. Hints stay: they are pre-answer content by design, and `verify-bank`
+ * already fails any hint that contains the answer.
+ *
+ * This is hygiene rather than protection. The solution files are static assets
+ * and anyone can fetch them. That is the right level for the Core bank, which is
+ * free; it is not the right level for anything sold.
+ */
+export type PublicQuestion = Omit<Question, (typeof SOLUTION_KEYS)[number]>
+
+export function getPublicQuestions(sectionId: SectionId): PublicQuestion[] {
+  return BANKS[sectionId].map(stripSolution)
+}
+
+function stripSolution(question: Question): PublicQuestion {
+  const copy = { ...question } as Record<string, unknown>
+  for (const key of SOLUTION_KEYS) delete copy[key]
+
+  // Figure Sequences carries its key inside each image rather than on the
+  // question, so the generic strip above does not reach it.
+  if (question.kind === 'figure-sequence') {
+    copy.images = question.images.map((image) => {
+      const rest: Record<string, unknown> = { ...image }
+      delete rest.correctOptionId
+      return rest
+    })
+  }
+  return copy as unknown as PublicQuestion
+}
+
+/**
  * Resolves quarantined questions too — a stored attempt must always be able to
  * name what it was an attempt at. Callers that render a question to be answered
  * want `getQuestions`.

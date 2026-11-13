@@ -19,7 +19,9 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
+import type { PublicQuestion } from '@/lib/content/registry'
 import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
+import { useSolutions } from '@/lib/solutions/use-solutions'
 import type { SectionId } from '@/lib/sections'
 import {
   answeredCorrectly,
@@ -45,7 +47,8 @@ const UNANSWERED: PracticeAnswer = { selection: {}, hintsUsed: 0, submitted: fal
 type RunnerProps = {
   /** Absent for a mixed session; each attempt is filed under its own question's section. */
   sectionId?: SectionId
-  questions: Question[]
+  /** Answer-free records as the page serves them; solutions are fetched and merged below. */
+  questions: PublicQuestion[]
   mode?: PracticeMode
   showProgress?: boolean
   showFilter?: boolean
@@ -74,9 +77,29 @@ export function PracticeRunner(props: RunnerProps) {
   const ready = useProgressReady()
   const progress = useProgress()
 
+  // The page served these without their answers. Fetch the other half and merge
+  // it back, so everything below this line sees complete questions exactly as it
+  // always has. See lib/solutions/use-solutions.ts.
+  const sections = useMemo(
+    () => [...new Set(props.questions.map((q) => q.section))],
+    [props.questions],
+  )
+  const solutions = useSolutions(sections)
+
   const key = props.mode === 'quick' ? 'quick' : `practice:${props.sectionId ?? 'mixed'}`
 
-  if (!ready) {
+  if (solutions.error) {
+    return (
+      <div className="border-border bg-card rounded-2xl border p-5">
+        <p className="text-sm">
+          The answers and explanations for this section could not be loaded, so practice would not
+          be able to mark your work. Check your connection and reload the page.
+        </p>
+      </div>
+    )
+  }
+
+  if (!ready || !solutions.ready) {
     return (
       <div className="space-y-5">
         <Skeleton className="h-4 w-40" />
@@ -85,13 +108,14 @@ export function PracticeRunner(props: RunnerProps) {
     )
   }
 
+  const questions = solutions.hydrate(props.questions)
   const saved = progress.practiceDrafts[key]
-  const known = new Set(props.questions.map((q) => q.id))
+  const known = new Set(questions.map((q) => q.id))
   // A draft written before the bank was regenerated points at questions that no
   // longer exist. Better to start clean than to restore a broken position.
   const draft = saved && saved.questionIds.every((id) => known.has(id)) ? saved : null
 
-  return <PracticeSession {...props} draftKey={key} initialDraft={draft} />
+  return <PracticeSession {...props} questions={questions} draftKey={key} initialDraft={draft} />
 }
 
 function PracticeSession({
@@ -102,7 +126,12 @@ function PracticeSession({
   showFilter = true,
   draftKey,
   initialDraft,
-}: RunnerProps & { draftKey: string; initialDraft: PracticeDraft | null }) {
+}: Omit<RunnerProps, 'questions'> & {
+  /** Hydrated by `PracticeRunner` above: solutions merged back in. */
+  questions: Question[]
+  draftKey: string
+  initialDraft: PracticeDraft | null
+}) {
   const progress = useProgress()
   const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft } =
     useProgressActions()

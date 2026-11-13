@@ -1,6 +1,6 @@
 import { PageShell } from '@/components/layout/page-shell'
 import { TimedLauncher } from '@/components/practice/timed-launcher'
-import { getQuestions } from '@/lib/content/registry'
+import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTIONS } from '@/lib/sections'
 
 export const metadata = { title: 'Diagnostic' }
@@ -26,7 +26,7 @@ export default function DiagnosticPage() {
           sectionId: section.id,
           label: section.title,
           unitNoun: UNIT[section.id],
-          pool: getQuestions(section.id),
+          pool: getPublicQuestions(section.id),
           count: 5,
         }))}
       />

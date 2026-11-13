@@ -67,12 +67,22 @@ test('a production build is present when CI requires one', { skip: !REQUIRE_BUIL
 const ANSWER_KEYS = ['correctOptionId', 'explanation', 'distractorNotes', 'walkthrough']
 
 /**
- * Exposure recorded on 2026-11-14 at commit 8ea601d, and the ceiling this gate
- * enforces. It is not a target. The target is zero, asserted by the `todo` test
- * below and blocked on the server-delivery work; this number exists so the
- * situation cannot get *worse* while that work is outstanding.
+ * The ceiling this gate enforces, not a target.
+ *
+ * It was 646 — every Core practice route shipped all 387 live questions'
+ * answers and explanations in the document. Splitting the banks into a public
+ * half and a fetched solution half took every Core route to zero, measured:
+ *
+ *     before   73 of 215 payloads carried answer content, peak 2,197 keys
+ *     after    37 of 188 payloads,                        peak    57 keys
+ *
+ * What is left is Module B, which was not split and still ships 19 GAM answers
+ * and explanations, plus the worked examples in the section guides — where the
+ * answer is the point of the block and belongs there.
+ *
+ * Ratcheted to the measured peak so the Core gain cannot quietly regress.
  */
-const EXPOSURE_BASELINE = 646
+const EXPOSURE_BASELINE = 57
 
 function buildFiles() {
   const out = []
@@ -204,7 +214,7 @@ test('NEGATIVE CONTROL: the retired-content detector rejects a planted leak', ()
 
 /* ----------------------------------------------------- answer-key exposure */
 
-test('answer keys and teaching content stay out of the public payload', { todo: 'blocked on server-side solution delivery — see the content-exposure branch; the enforcing ratchet below keeps it from worsening meanwhile', skip: needsBuild }, () => {
+test('answer keys and teaching content stay out of the public payload', { todo: 'Core is done — every practice route measures zero. What remains is Module B, which has not been split, and the guides\' worked examples, where the answer belongs. Drop this flag when Module B is split.', skip: needsBuild }, () => {
   const { peak, where } = peakAnswerKeyExposure()
   assert.equal(peak, 0, `answer-bearing content in a public payload: ${where}`)
 })

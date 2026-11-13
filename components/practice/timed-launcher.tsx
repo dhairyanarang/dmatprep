@@ -17,12 +17,15 @@ import {
   type ProgressState,
 } from '@/lib/types/progress'
 import type { Question } from '@/lib/types/question'
+import { useSolutions } from '@/lib/solutions/use-solutions'
+import type { PublicQuestion } from '@/lib/content/registry'
 
 export type StageSpec = {
   sectionId: SectionId
   label: string
   unitNoun: string
-  pool: Question[]
+  /** Answer-free records; solutions are fetched and merged in the launcher. */
+  pool: PublicQuestion[]
   count: number
 }
 
@@ -60,6 +63,19 @@ export function TimedLauncher({
   const { setActiveSession } = useProgressActions()
   const route = usePathname()
 
+  // The page served these pools without their answers. Merge the other half
+  // back here, at the one point above everything that consumes a pool, so
+  // planning, restoring and the runner all see complete questions as before.
+  const sections = useMemo(() => [...new Set(stages.map((s) => s.sectionId))], [stages])
+  const solutions = useSolutions(sections)
+  const specs = useMemo(
+    () =>
+      solutions.ready
+        ? stages.map((spec) => ({ ...spec, pool: solutions.hydrate(spec.pool) }))
+        : null,
+    [stages, solutions],
+  )
+
   /**
    * Once this mount has taken charge of a session, the store stops being
    * consulted. It has to: the runner writes its restore point on every answer,
@@ -78,7 +94,8 @@ export function TimedLauncher({
    * and this is where it is cut.
    */
   const planned = useMemo(() => {
-    const built = buildStages(progress, stages, mode)
+    if (!specs) return null
+    const built = buildStages(progress, specs, mode)
     return {
       built,
       // Held inside the memo as well: a `.map()` in the render body would hand
@@ -90,10 +107,23 @@ export function TimedLauncher({
     // `progress` is read when the plan is made and deliberately not tracked
     // afterwards; `ready` is what says the read is worth making.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [ready, stages, mode],
+    [ready, specs, mode],
   )
 
-  if (!ready) {
+  if (solutions.error) {
+    return (
+      <Card>
+        <CardContent>
+          <p className="text-sm">
+            The answers for this test could not be loaded, so it would not be able to mark your
+            work. Check your connection and reload the page.
+          </p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  if (!ready || !specs || !planned) {
     return (
       <Card>
         <CardContent>
@@ -107,7 +137,7 @@ export function TimedLauncher({
   // mock must not surface on the full simulation page.
   const saved =
     !taken && progress.activeSession?.route === route ? progress.activeSession : null
-  const restored = saved ? restore(saved, stages) : null
+  const restored = saved ? restore(saved, specs) : null
 
   if (saved && restored) {
     return (
@@ -182,7 +212,10 @@ export function TimedLauncher({
 }
 
 /** Rebuild the exact stages a saved session was planned with. */
-function restore(session: ActiveSession, specs: StageSpec[]): TimedStage[] | null {
+function restore(
+  session: ActiveSession,
+  specs: (Omit<StageSpec, 'pool'> & { pool: Question[] })[],
+): TimedStage[] | null {
   const byId = new Map(specs.flatMap((s) => s.pool).map((q) => [q.id, q]))
 
   const stages: TimedStage[] = []
@@ -230,7 +263,7 @@ function seenForTest(
 
 function buildStages(
   progress: ProgressState,
-  specs: StageSpec[],
+  specs: (Omit<StageSpec, 'pool'> & { pool: Question[] })[],
   mode: PracticeMode = 'simulation',
 ): { stage: TimedStage; shortfall: number }[] {
   const { seen, softSeen } = seenForTest(progress, mode)

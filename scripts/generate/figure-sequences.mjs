@@ -108,6 +108,21 @@ function makePlans(rng, difficulty, target = null) {
       ? target.symbols
       : randInt(rng, min, max)
 
+  // PILOT: the static rotating symbol (FS_CONTRACT.review.staticRotatingSymbol).
+  // Exercises 3 and 6 each carry a rotation clause with no movement clause, so a
+  // symbol that holds its cell and turns is attested. It is the only documented
+  // mechanic the generator has never produced, and it is the one route to new
+  // low-tier items that does not reach for something unattested — the low tier
+  // has been closed to growth since `direction-cycle` was quarantined.
+  //
+  // Opt-in only, through a generation plan's slot target, so the default
+  // behaviour of every existing batch is untouched. One symbol, rotation only,
+  // peak load 1 — the same load an ordinary low item carries.
+  if (target?.mechanic === 'static-rotator') {
+    if (difficulty !== 'low') return null
+    return [{ extras: 1, accel: false, wantBounce: false, staticRotator: true }]
+  }
+
   if (difficulty === 'low') return [{ extras: 0, accel: false, wantBounce: false }]
 
   if (difficulty === 'medium') {
@@ -195,6 +210,35 @@ function makeMovement(rng, difficulty, wantAccel, wantBounce = false) {
 }
 
 function makeSymbol(rng, id, difficulty, plan, usedShapes) {
+  // The static rotator is built on its own path: its only readable cue is the
+  // facing, so the shape must carry one and the rotation is not optional. No
+  // colour cycle — a second aspect would take it out of the low tier, and the
+  // point of the pilot is the low tier.
+  if (plan.staticRotator) {
+    const pool = ROTATABLE.filter((sh) => !usedShapes.has(sh))
+    if (pool.length === 0) return null
+    const shape = pick(rng, pool)
+    usedShapes.add(shape)
+    return {
+      symbol: {
+        id,
+        shape,
+        cell: { row: randInt(rng, 0, 3), col: randInt(rng, 0, 3) },
+        rotation: pick(rng, [0, 90, 180, 270]),
+        colour: pick(rng, CYCLE_COLOURS),
+        direction: null,
+      },
+      rule: {
+        movement: { type: 'static' },
+        // 90° only: it is the single rotation size the official material
+        // demonstrates, and across six panels it is the one size that returns a
+        // full cycle a candidate can verify rather than guess at.
+        rotation: { type: 'rotate', direction: pick(rng, ['cw', 'ccw']), degrees: 90, accelerating: false },
+        colour: { type: 'constant' },
+      },
+    }
+  }
+
   // A symbol that must rotate needs a shape whose orientation is legible.
   const wantsRotation = plan.extras > 0 && (plan.extras === 2 || rng() < 0.5)
   const pool = wantsRotation
@@ -646,6 +690,9 @@ function buildHints(symbols, rules, bouncedBy) {
 
 export function buildFigureSequence(rng, difficulty, ctx = {}) {
   const plans = makePlans(rng, difficulty, ctx.target)
+  // makePlans returns null when a slot target asks for something the tier
+  // cannot carry — the static rotator outside the low tier, for instance.
+  if (!plans) return null
 
   const symbols = []
   const rules = {}
@@ -678,6 +725,12 @@ export function buildFigureSequence(rng, difficulty, ctx = {}) {
         return `${s.cell.row},${s.cell.col}`
       }),
     )
+    // A static symbol visits exactly one cell, by definition. The guard is about
+    // movement being legible from four panels; a symbol with no movement has
+    // none to read, and its rotation carries the rule instead. Exempting it is
+    // not a relaxation — applying a movement-legibility test to a symbol that
+    // does not move would reject the mechanic outright, which is what it did.
+    if (rules[symbol.id].movement.type === 'static') continue
     if (visited.size < 3) return null
   }
 

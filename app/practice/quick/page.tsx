@@ -1,6 +1,6 @@
 import { PageShell } from '@/components/layout/page-shell'
 import { QuickLauncher } from '@/components/practice/quick-launcher'
-import { getQuestions } from '@/lib/content/registry'
+import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_IDS, type SectionId } from '@/lib/sections'
 import type { Question } from '@/lib/types/question'
 
@@ -8,7 +8,7 @@ export const metadata = { title: 'Quick practice' }
 
 export default function QuickPracticePage() {
   const pools = Object.fromEntries(
-    SECTION_IDS.map((id) => [id, getQuestions(id)]),
+    SECTION_IDS.map((id) => [id, getPublicQuestions(id)]),
   ) as Record<SectionId, Question[]>
 
   return (

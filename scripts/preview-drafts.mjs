@@ -16,8 +16,22 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-const DIR = new URL('../drafts/pilot-2026-11-13/', import.meta.url)
+// Defaults to the November pilot; `--dir <path>` points it at another drafts
+// folder so a later pilot reuses this renderer instead of copying it. A second
+// copy of the SVG code would be a second thing to keep honest.
+const dirArg = process.argv.indexOf('--dir')
+const DIR =
+  dirArg === -1
+    ? new URL('../drafts/pilot-2026-11-13/', import.meta.url)
+    : new URL(`${process.argv[dirArg + 1].replace(/\/?$/, '/')}`, `file://${process.cwd()}/`)
 const read = (name) => JSON.parse(readFileSync(new URL(name, DIR), 'utf8'))
+const readOptional = (name) => {
+  try {
+    return read(name)
+  } catch {
+    return null
+  }
+}
 
 const INK = {
   orange: '#e8833a', yellow: '#e8c33a', pink: '#e06c9f',
@@ -114,7 +128,8 @@ for (const q of read('_selected.json')) {
   parts.push(`<p class="exp">${esc(q.explanation)}</p></article>`)
 }
 
-const gam = read('gam-pilot.json')
+const gam = readOptional('gam-pilot.json')
+if (gam) {
 const gq = gam.questions[0]
 parts.push(`<article><h2>${gq.id} <span class="tag">${gq.difficulty}</span> <span class="draft">DRAFT — UNAPPROVED</span></h2>`)
 for (const b of gam.pack.blocks) {
@@ -131,6 +146,7 @@ for (const b of gam.pack.blocks) {
 parts.push(`<p class="lead"><strong>${esc(gq.stem)}</strong></p><ul class="opts">` +
   gq.options.map((o) => `<li class="${o.id === gq.correctOptionId ? 'ok' : ''}">(${o.id}) ${esc(o.text)}${o.id === gq.correctOptionId ? ' ✓' : ''}</li>`).join('') +
   `</ul><p class="exp">${esc(gq.explanation)}</p></article>`)
+}
 
 const html = `<!doctype html><meta charset="utf-8"><title>Pilot P1 — draft review</title><style>
 body{font:15px/1.55 ui-sans-serif,system-ui;margin:0;padding:28px;background:#faf9f7;color:#2a2d31;max-width:980px}
@@ -156,4 +172,4 @@ The three Mathematical Equations drafts are omitted: they are blocked by <code>M
 ${parts.join('\n')}`
 
 writeFileSync(new URL('preview.html', DIR), html)
-console.log('wrote drafts/pilot-2026-11-13/preview.html')
+console.log(`wrote ${new URL('preview.html', DIR).pathname}`)

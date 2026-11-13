@@ -73,7 +73,7 @@
       "reviewStatus": "automated-pass",
       "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
     },
-    "contentHash": "975eb7cdcc2bb06f45e4e4120cc67345"
+    "contentHash": "20c6a6aa1c120f131a9fef9b1c648264"
   },
   "questions": [
     {
@@ -323,11 +323,11 @@
       "options": [
         {
           "id": "a",
-          "text": "Whether the port handles it, that is whether it leaves the port area."
+          "text": "Whether the port handles it, that is whether the cargo is landed rather than passed straight between vessels."
         },
         {
           "id": "b",
-          "text": "The class the cargo falls in."
+          "text": "Whether the port’s own staff carried out the unloading."
         },
         {
           "id": "c",
@@ -335,7 +335,7 @@
         },
         {
           "id": "d",
-          "text": "Whether its tonnage comes to a whole number."
+          "text": "Whether its tonnage reaches the lowest figure the tariff lists."
         }
       ],
       "correctOptionId": "a",
@@ -358,12 +358,12 @@
           "quote": "The port charges a handling fee on cargo it lands."
         }
       ],
-      "explanation": "The tariff is a charge for handling, so the question of whether anything is owed comes before any question of how much. Cargo that moves between vessels is never handled and so is outside the tariff altogether. The text closes off the alternatives itself: neither class nor tonnage has any bearing on whether the exemption applies.",
+      "explanation": "The tariff is a charge for handling, so whether anything is owed comes before any question of how much. Cargo that passes between vessels without going ashore is never handled, and so sits outside the tariff altogether. The text names that condition exactly, and says in terms that tonnage makes no difference to it; each of the other options attaches a condition the text never attaches.",
       "refutations": {
         "b": {
           "blockId": "p4",
-          "family": "right-concept-wrong-scope",
-          "reason": "Class decides the rate and the minimum, which is how much is charged. The text says in terms that it makes no difference to whether anything is charged."
+          "family": "plausible-but-unstated",
+          "reason": "The exemption turns on where the cargo goes — whether it leaves the port area — and the text says nothing about whose hands move it. “Handled by the port” is defined by that movement, not by who performs it."
         },
         "c": {
           "blockId": "p1",
@@ -371,9 +371,9 @@
           "reason": "Storage is nowhere in the tariff. The fee is described throughout as a charge for handling the cargo, and nothing is said to turn on what happens to it afterwards."
         },
         "d": {
-          "blockId": "p3",
+          "blockId": "p4",
           "family": "plausible-but-unstated",
-          "reason": "A part tonne is rounded up and charged like any other. Nothing in the text makes a whole tonnage a condition of being charged."
+          "reason": "The tariff lists no tonnage floor — every class carries a rate and a minimum charge, not a minimum weight — and p4 says in terms that tonnage makes no difference to whether anything is charged."
         }
       },
       "hints": [
@@ -387,7 +387,7 @@
         },
         {
           "level": 3,
-          "text": "That paragraph also says which two things make no difference — use it to clear three of the options."
+          "text": "That paragraph names the condition exactly, and also names something that makes no difference to it."
         }
       ],
       "difficulty": "medium",

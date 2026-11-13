@@ -1,0 +1,2132 @@
+[
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "rotation": 90,
+            "colour": "yellow"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "rotation": 180,
+            "colour": "yellow"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "rotation": 270,
+            "colour": "yellow"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "yellow"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 1
+                  },
+                  "rotation": 90,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 90,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 1
+                  },
+                  "rotation": 180,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The yellow arrow stays in place, and rotates 90 degrees to the right from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the arrow at R2C3, and the sixth with the arrow at R2C3.",
+    "distractorNotes": {
+      "image1:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image1:matrix2": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image2:matrix2": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the arrow from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The arrow changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the arrow across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The yellow arrow stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns 90° to the right every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the arrow at R2C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the arrow at R2C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: yellow arrow at R2C3. Sixth: yellow arrow at R2C3.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix1": "position",
+        "image1:matrix2": "rotation",
+        "image2:matrix1": "position",
+        "image2:matrix2": "rotation"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-001",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 1135349928,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 0,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 90,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 180,
+            "colour": "blue"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 90,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 270,
+                  "colour": "blue"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "blue"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix1"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The blue arrow stays in place, and rotates 90 degrees to the right from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the arrow at R2C4, and the sixth with the arrow at R2C4.",
+    "distractorNotes": {
+      "image1:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image1:matrix2": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix2": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image2:matrix3": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the arrow from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The arrow changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the arrow across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The blue arrow stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns 90° to the right every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the arrow at R2C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the arrow at R2C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: blue arrow at R2C4. Sixth: blue arrow at R2C4.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix1": "position",
+        "image1:matrix2": "rotation",
+        "image2:matrix2": "position",
+        "image2:matrix3": "rotation"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-002",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 2031802705,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 1,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 180,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 90,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "green"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 270,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "green"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "ccw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The green arrow stays in place, and rotates 90 degrees to the left from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the arrow at R2C4, and the sixth with the arrow at R2C4.",
+    "distractorNotes": {
+      "image1:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image1:matrix3": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix1": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix3": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the arrow from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The arrow changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the arrow across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The green arrow stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns 90° to the left every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the arrow at R2C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the arrow at R2C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: green arrow at R2C4. Sixth: green arrow at R2C4.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix1": "position",
+        "image1:matrix3": "rotation",
+        "image2:matrix1": "rotation",
+        "image2:matrix3": "position"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-003",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 1416009511,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 2,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "triangle",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "black"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "triangle",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 180,
+            "colour": "black"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "triangle",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 90,
+            "colour": "black"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "triangle",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "black"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 270,
+                  "colour": "black"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 90,
+                  "colour": "black"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "black"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix1"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "black"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "black"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "black"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "ccw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The black triangle stays in place, and rotates 90 degrees to the left from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the triangle at R1C4, and the sixth with the triangle at R1C4.",
+    "distractorNotes": {
+      "image1:matrix2": "The triangle has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image1:matrix3": "The triangle is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image2:matrix1": "The triangle has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix2": "The triangle is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the triangle from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The triangle changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the triangle across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the triangle",
+          "detail": "Follow only the triangle across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the triangle moves",
+          "detail": "The black triangle stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The triangle also turns",
+          "detail": "It turns 90° to the left every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the triangle at R1C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the triangle at R1C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: black triangle at R1C4. Sixth: black triangle at R1C4.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix2": "rotation",
+        "image1:matrix3": "position",
+        "image2:matrix1": "rotation",
+        "image2:matrix2": "position"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-004",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 2526594479,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 3,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 270,
+            "colour": "pink"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "pink"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 90,
+            "colour": "pink"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 180,
+            "colour": "pink"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 90,
+                  "colour": "pink"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 3,
+                    "col": 3
+                  },
+                  "rotation": 270,
+                  "colour": "pink"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "pink"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 3,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "pink"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The pink arrow stays in place, and rotates 90 degrees to the right from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the arrow at R3C3, and the sixth with the arrow at R3C3.",
+    "distractorNotes": {
+      "image1:matrix1": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image1:matrix2": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image2:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image2:matrix3": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the arrow from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The arrow changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the arrow across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The pink arrow stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns 90° to the right every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the arrow at R3C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the arrow at R3C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: pink arrow at R3C3. Sixth: pink arrow at R3C3.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix1": "rotation",
+        "image1:matrix2": "position",
+        "image2:matrix1": "position",
+        "image2:matrix3": "rotation"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-005",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 4150231896,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 4,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "low",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 90,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 180,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "arrow",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "green"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 270,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 2
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "static"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The green arrow stays in place, and rotates 90 degrees to the right from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the arrow at R1C4, and the sixth with the arrow at R1C4.",
+    "distractorNotes": {
+      "image1:matrix1": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields.",
+      "image1:matrix2": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix1": "The arrow has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image2:matrix3": "The arrow is one field away from where the rule puts it. Re-apply the movement from the previous matrix and count the fields."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Follow the arrow from matrix to matrix and describe what changes between each pair."
+      },
+      {
+        "level": 2,
+        "text": "The arrow changes more than one thing: movement and rotation. Settle them one at a time rather than together."
+      },
+      {
+        "level": 3,
+        "text": "Measure the gap between consecutive positions of the arrow across three transitions before you commit to a step size."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "One symbol, one rule. Work out how it changes between consecutive matrices, then apply that twice.",
+      "steps": [
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The green arrow stays in place.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns 90° to the right every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the arrow at R1C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the arrow at R1C4.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: green arrow at R1C4. Sixth: green arrow at R1C4.",
+      "takeaway": "Settle the fifth matrix completely, then treat it as the new starting point. Compare the three options for what differs between them before deriving everything."
+    },
+    "meta": {
+      "patternType": [
+        "static-movement",
+        "rotation"
+      ],
+      "skill": "reading a single transformation",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "image1:matrix1": "position",
+        "image1:matrix2": "rotation",
+        "image2:matrix1": "rotation",
+        "image2:matrix3": "position"
+      },
+      "generationNotes": "1 symbol(s), peak transformation load 2, total 2",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "s1: static rotating symbol"
+        ]
+      }
+    },
+    "id": "fs-low-sr1-006",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "sr1",
+      "seed": 421328857,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "low",
+        "batchId": "sr1",
+        "index": 5,
+        "attempt": 4
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-14"
+    }
+  }
+]

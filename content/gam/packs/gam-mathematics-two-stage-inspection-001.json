@@ -73,7 +73,7 @@
       "reviewStatus": "automated-pass",
       "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
     },
-    "contentHash": "6d86d06bf228502867bef5dec6b9549b"
+    "contentHash": "9c5e7cc3a9528a2758551563e39d267f"
   },
   "questions": [
     {
@@ -176,7 +176,7 @@
         },
         {
           "id": "d",
-          "text": "They may be adjusted in proportion to the change in output."
+          "text": "They may be adjusted once the new tooling’s effect on the first inspection is known."
         }
       ],
       "correctOptionId": "a",
@@ -208,8 +208,8 @@
         },
         "d": {
           "blockId": "p4",
-          "family": "plausible-but-unstated",
-          "reason": "Adjustment is the other course the text rules out, and output is not what changed in any case. The text offers no factor by which any adjustment could be made."
+          "family": "contradicts-source",
+          "reason": "Adjustment is the other course the text rules out by name. Knowing the effect on the first inspection would not supply the second inspection’s figure in any case, since that is measured on whatever the first now passes on."
         }
       },
       "hints": [

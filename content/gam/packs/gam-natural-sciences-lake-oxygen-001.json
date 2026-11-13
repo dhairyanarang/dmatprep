@@ -120,89 +120,96 @@
       "originality": "original",
       "draftedBy": "production-candidate-2026-09-08",
       "reviewStatus": "automated-pass",
-      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here.",
+      "retiredQuestions": [
+        {
+          "id": "gam-ns-lox-001-q1",
+          "retiredOn": "2026-11-14",
+          "reason": "Decisively coupled to its siblings. q2 fixes the thermocline as a sharp temperature band and q3’s stem asserts winter uniformity, so the summer profile’s downward shape is available without the figure or the text. Every option is a depth, so the item reduces to choosing the deepest. The 14 November edit replaced \"none of the depths shown\" with \"at the surface\" and made this worse, not better: it removed the only option outside the depth ordering. No key is wrong — the independent re-answer agreed with it at high confidence — and there is no ambiguity finding against it. The repair needed is a profile that is not monotone in depth, so that \"deepest\" stops being a winning guess, and that is a new figure and a new item rather than an edit to this one. Retired rather than rewritten against a deadline. Id reserved, never reused.",
+          "question": {
+            "stem": "Which of these depths, if any, holds too little oxygen for trout in summer?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Four metres"
+              },
+              {
+                "id": "b",
+                "text": "Six metres"
+              },
+              {
+                "id": "c",
+                "text": "Eight metres"
+              },
+              {
+                "id": "d",
+                "text": "At the surface."
+              }
+            ],
+            "correctOptionId": "c",
+            "reasoning": "read-exhibit",
+            "dependsOn": [
+              "fig1",
+              "p3"
+            ],
+            "supportSpans": [
+              {
+                "blockId": "p3",
+                "quote": "A trout needs at least five milligrams of oxygen per litre and cannot remain where there is less than that"
+              },
+              {
+                "blockId": "fig1",
+                "quote": "4.0 at eight metres"
+              }
+            ],
+            "explanation": "Two things have to be brought together: the threshold the text states for trout, and the summer readings at the depths offered. At four and six metres the summer water is well above the threshold. Between six and eight metres the profile falls away steeply, and by eight metres it has dropped below what the text says a trout can live in.",
+            "refutations": {
+              "a": {
+                "blockId": "fig1",
+                "family": "arithmetic-slip",
+                "reason": "The summer reading at this depth is nearly twice the threshold. It is close to the surface value, because the steep fall has not yet begun."
+              },
+              "b": {
+                "blockId": "fig1",
+                "family": "arithmetic-slip",
+                "reason": "This is the last depth before the fall, and the water there still holds well over the stated threshold. It is the depth at which the thermocline begins, not where the oxygen has gone."
+              },
+              "d": {
+                "blockId": "fig1",
+                "family": "arithmetic-slip",
+                "reason": "The summer surface reading is the highest on the profile, at well over the stated threshold. Oxygen enters the lake at the surface, so this is the last place it runs short."
+              }
+            },
+            "hints": [
+              {
+                "level": 1,
+                "text": "The text gives a single number that decides this, and the figure gives the readings to compare it with."
+              },
+              {
+                "level": 2,
+                "text": "Only the summer profile is in question; the winter one is a different date."
+              },
+              {
+                "level": 3,
+                "text": "Take the four depths offered in turn and ask whether the summer reading at each is above or below the threshold."
+              }
+            ],
+            "difficulty": "medium",
+            "meta": {
+              "stepCount": 2,
+              "blockSpan": 2,
+              "transferDistance": 1,
+              "requiresExhibit": true
+            },
+            "id": "gam-ns-lox-001-q1",
+            "packId": "gam-natural-sciences-lake-oxygen-001"
+          }
+        }
+      ]
     },
-    "contentHash": "c48602e977de48a4e7124c6c12d3f062"
+    "contentHash": "6e18857d0e1ac64391d72e1c741631c1"
   },
   "questions": [
-    {
-      "stem": "Which of these depths, if any, holds too little oxygen for trout in summer?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Four metres"
-        },
-        {
-          "id": "b",
-          "text": "Six metres"
-        },
-        {
-          "id": "c",
-          "text": "Eight metres"
-        },
-        {
-          "id": "d",
-          "text": "None of the depths shown"
-        }
-      ],
-      "correctOptionId": "c",
-      "reasoning": "read-exhibit",
-      "dependsOn": [
-        "fig1",
-        "p3"
-      ],
-      "supportSpans": [
-        {
-          "blockId": "p3",
-          "quote": "A trout needs at least five milligrams of oxygen per litre and cannot remain where there is less than that"
-        },
-        {
-          "blockId": "fig1",
-          "quote": "4.0 at eight metres"
-        }
-      ],
-      "explanation": "Two things have to be brought together: the threshold the text states for trout, and the summer readings at the depths offered. At four and six metres the summer water is well above the threshold. Between six and eight metres the profile falls away steeply, and by eight metres it has dropped below what the text says a trout can live in.",
-      "refutations": {
-        "a": {
-          "blockId": "fig1",
-          "family": "arithmetic-slip",
-          "reason": "The summer reading at this depth is nearly twice the threshold. It is close to the surface value, because the steep fall has not yet begun."
-        },
-        "b": {
-          "blockId": "fig1",
-          "family": "arithmetic-slip",
-          "reason": "This is the last depth before the fall, and the water there still holds well over the stated threshold. It is the depth at which the thermocline begins, not where the oxygen has gone."
-        },
-        "d": {
-          "blockId": "p3",
-          "family": "contradicts-source",
-          "reason": "The summer profile does drop below the threshold within the range shown, which is the whole point of the contrast the figure draws between the two seasons."
-        }
-      },
-      "hints": [
-        {
-          "level": 1,
-          "text": "The text gives a single number that decides this, and the figure gives the readings to compare it with."
-        },
-        {
-          "level": 2,
-          "text": "Only the summer profile is in question; the winter one is a different date."
-        },
-        {
-          "level": 3,
-          "text": "Take the three depths offered in turn and ask whether the summer reading at each is above or below the threshold."
-        }
-      ],
-      "difficulty": "medium",
-      "meta": {
-        "stepCount": 2,
-        "blockSpan": 2,
-        "transferDistance": 1,
-        "requiresExhibit": true
-      },
-      "id": "gam-ns-lox-001-q1",
-      "packId": "gam-natural-sciences-lake-oxygen-001"
-    },
     {
       "stem": "According to the text, what is the thermocline?",
       "options": [

@@ -1,8 +1,20 @@
 {
   "note": "Targeted review flags for the GAM pilot. These are open questions for the human reviewer, not defects. Derived from the current independent adjudication round by scripts/gam/build-review-flags.mjs, never hand-edited, so they cannot outlive the content they describe. Held outside the pack files so the pilot questions stay untouched by review bookkeeping.",
-  "raisedBy": "independent-2026-09-09, independent-2026-09-09-r3",
-  "raisedAt": "2026-09-09",
+  "raisedBy": "independent-2026-11-13",
+  "raisedAt": "2026-11-13",
   "questionFlags": {
+    "gam-cs-cp-001-q1": [
+      {
+        "flag": "source-supported",
+        "severity": "review",
+        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "specific-concern",
+        "severity": "review",
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      }
+    ],
     "gam-cs-cp-001-q3": [
       {
         "flag": "recall-only",
@@ -39,7 +51,14 @@
       {
         "flag": "cross-question-leakage",
         "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-cp-001-q3. DOCTRINAL COUPLING succeeds in the stem-presupposition direction, and it is the one real coupling in this pack. q3's stem asks the reader to identify which cache 'met the smallest share of its requests without going to the slow store' — an ordinary comparative read across the table's rows, which the pack evidently treats as a legitimate and answerable question. That presupposition directly undercuts two of this item's four options. Option c claims the figures 'cannot be compared because the caches hold different numbers of records'; if that were the text's position, q3 would be asking the reader to perform a comparison the same source declares impossible. Option d claims a single day's hit rate is 'too short a period to be used at all'; that likewise would void the read q3 requires. Both are therefore improbable as the intended answer, narrowing this item from four options to a and b before any domain reasoning is applied. From there a falls to ordinary knowledge, leaving b. The narrowing is real but not decisive on its own, and it is redundant here because I reach b with high confidence from domain knowledge alone — so it inflates a solver's odds on this item without being the reason a competent solver gets it right. The remaining patterns fail: NUMERIC RECONSTRUCTION has no numbers to work with; SCALE DISCLOSURE is inapplicable, since q3's options are row labels with no magnitudes and cannot calibrate anything here; SHARED PARAMETER holds between this item and q3 (both read the same four-design table) but is inherent to a pack built on one source rather than a leak; CONVENTION AS CONSTANT fails, since no eviction policy figures in this item; ANSWER-AS-DISTRACTOR fails, since no sibling's correct answer appears among these options. q1 contributes nothing in either direction — I checked whether its 'a cache holds three records' could inform option c's claim about differing record counts and it cannot, as q1's cache is a separate hypothetical."
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-cs-cp-001-q3. q3's stem asserts the table reports a per-cache share, which defeats option a: equalising request counts cannot repair a comparison between quantities that are already rates. One option removed by sibling stem alone."
+      }
+    ],
+    "gam-econ-pt-001-q1": [
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q2. q2's stem asserts flat class minimums exist, letting the candidate read 200 as a minimum rather than a computed fee; since any computed fee exceeds it, option a dies. Redundant with an intra-question tell: three of four options share the factor 4, so the general-cargo rate of 4 euros/tonne is recoverable from the distractors alone. Only the rounding convention remains genuinely source-dependent."
       }
     ],
     "gam-econ-pt-001-q2": [
@@ -61,7 +80,7 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
       }
     ],
     "gam-econ-pt-001-q3": [
@@ -76,11 +95,6 @@
         "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
       },
       {
-        "flag": "data-dependence-only",
-        "severity": "review",
-        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
-      },
-      {
         "flag": "recognition-not-transfer",
         "severity": "review",
         "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
@@ -88,7 +102,7 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
       }
     ],
     "gam-econ-pt-001-q4": [
@@ -110,12 +124,12 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
       },
       {
         "flag": "cross-question-leakage",
         "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q3, gam-econ-pt-001-q1, gam-econ-pt-001-q2. ANSWER-AS-DISTRACTOR. q3's stem establishes that the cargo class fixes the rate per tonne, and q1/q2 show the fee is tonnage x class rate subject to a class minimum. A candidate carrying that in from the siblings knows class sets how much is charged, which is a reason to discount q4's option b as what decides whether anything is charged — a reason obtained without reading the source. It removes the only competitive distractor but does not by itself select a over c or d."
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-econ-pt-001-q2, gam-econ-pt-001-q1. Two mechanisms compose. q2's stem stipulates a consignment below the class minimum is still charged, so option d — whether tonnage reaches the lowest figure the tariff lists — is false by sibling fiat with no reference to the source. And q1's stem spends a clause establishing the cargo 'is landed' while assuming a fee is owed; option a is the only option naming landing and its gloss repeats q1's exact verb. Options b and c have no textual footing anywhere in the pack and fall to ordinary plausibility. A candidate holding only these four questions answers q4 without the source."
       }
     ],
     "gam-math-tsi-001-q2": [
@@ -137,12 +151,7 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-      },
-      {
-        "flag": "cross-question-leakage",
-        "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-tsi-001-q3. DOCTRINAL COUPLING. q3's correct answer is that a rate is unchanged when only volume changes — the pack's posture that rates are properties of the process, independent of scale. Carrying that posture across kills q2's option d ('adjusted in proportion to the change in output'), which is the same scaling error q3's option b commits. One distractor falls without the source; the remaining choice among a, b and c still needs the text."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
       }
     ],
     "gam-math-tsi-001-q3": [
@@ -150,6 +159,11 @@
         "flag": "source-supported",
         "severity": "review",
         "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
+      },
+      {
+        "flag": "recall-only",
+        "severity": "review",
+        "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
       },
       {
         "flag": "recognition-not-transfer",
@@ -160,11 +174,6 @@
         "flag": "specific-concern",
         "severity": "review",
         "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-      },
-      {
-        "flag": "cross-question-leakage",
-        "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-tsi-001-q2. The converse of the coupling on q2: q2 asks what must happen when the process itself changes, and its option set treats re-measurement as the live issue, which signals that the pack holds rates constant under volume and revisable only under process change. That reinforces a and undercuts b and c here. The item is independently determinable, so this is reinforcement rather than a decision."
       }
     ],
     "gam-math-tsi-001-q4": [
@@ -177,23 +186,11 @@
         "flag": "recognition-not-transfer",
         "severity": "review",
         "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
-      }
-    ],
-    "gam-ns-lox-001-q1": [
-      {
-        "flag": "source-supported",
-        "severity": "review",
-        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-      },
-      {
-        "flag": "specific-concern",
-        "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
       },
       {
         "flag": "cross-question-leakage",
         "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-lox-001-q2, gam-ns-lox-001-q3. DOCTRINAL COUPLING. q3's stem asserts that oxygen is close to the same at every depth in winter, which presupposes that in summer it is not — and q2 establishes the thermocline as a sharp stratifying band. Together they make a summer depth gradient certain from the siblings alone, which argues strongly against q1's option d ('none of the depths shown') and points the answer to the deepest depth. Not decisive: a gradient need not cross the trout threshold anywhere."
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-math-tsi-001-q1, gam-math-tsi-001-q2. q1's option set exposes Line B's two rates as {15%, 8%} in some order, pinning one cell and calibrating the magnitude band without ranking. q2's re-measurement answer separately discounts Line D. Four options to roughly three."
       }
     ],
     "gam-ns-lox-001-q2": [
@@ -216,6 +213,11 @@
         "flag": "specific-concern",
         "severity": "review",
         "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-lox-001-q3. q3's option set frames the thermocline as a temperature-driven mixing barrier, which is incompatible with this question's optical and chemical distractors. Moot in practice — any candidate who has met the word answers it — but structurally present."
       }
     ],
     "gam-ns-lox-001-q3": [
@@ -238,14 +240,14 @@
         "flag": "specific-concern",
         "severity": "review",
         "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
+      },
+      {
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-lox-001-q2. q2's key fixes the thermocline as a temperature-gradient band, which eliminates option d: such a band cannot relocate to the bottom of a winter-isothermal column. Convention-as-constant also fires — q2 supplies a term this question needs and does not define."
       }
     ],
     "gam-ns-lox-001-q4": [
-      {
-        "flag": "source-supported",
-        "severity": "review",
-        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-      },
       {
         "flag": "recall-only",
         "severity": "review",
@@ -257,9 +259,9 @@
         "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
       },
       {
-        "flag": "specific-concern",
-        "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+        "flag": "cross-question-leakage",
+        "severity": "blocking",
+        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ns-lox-001-q3. q3 treats a single season's profile as interpretable in isolation, eliminating option d. The residual b-versus-c contest is genuinely source-dependent but poorly discriminated: c is scientifically correct on its own terms and the stem does not settle whether the comparison spans the whole profile."
       }
     ],
     "gam-ss-ca-001-q1": [
@@ -267,11 +269,6 @@
         "flag": "recall-only",
         "severity": "review",
         "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
-      },
-      {
-        "flag": "data-dependence-only",
-        "severity": "review",
-        "reason": "The independent adjudicator judged this answerable once the pack’s values are in hand, without applying any rule the pack contributes. Legitimate under spec §5.10 — reading a source and applying knowledge to it is what a subject module tests — but a pack made only of these has contributed numerals and nothing else, so the reviewer should weigh the balance across the pack."
       },
       {
         "flag": "recognition-not-transfer",
@@ -286,23 +283,6 @@
         "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
       },
       {
-        "flag": "recognition-not-transfer",
-        "severity": "review",
-        "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
-      },
-      {
-        "flag": "specific-concern",
-        "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
-      }
-    ],
-    "gam-ss-ca-001-q3": [
-      {
-        "flag": "source-supported",
-        "severity": "review",
-        "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-      },
-      {
         "flag": "recall-only",
         "severity": "review",
         "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
@@ -315,12 +295,7 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
-      },
-      {
-        "flag": "cross-question-leakage",
-        "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-ca-001-q4. DOCTRINAL COUPLING. Every option q4 offers as the condition for a figure to count as an agreement rate is procedural — independence, equal double-coding, an unrevised frame, exclusions — which tells a candidate the statistic is a coder-level, procedural one. That argues against q3's a and d, which are validity claims, without any recourse to the source. The item is independently answerable, so the coupling reinforces rather than decides."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): c. That does not make the item wrong, but it does mean the pack is not what settles it."
       }
     ],
     "gam-ss-ca-001-q4": [
@@ -342,22 +317,12 @@
       {
         "flag": "specific-concern",
         "severity": "review",
-        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (medium confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-      },
-      {
-        "flag": "cross-question-leakage",
-        "severity": "blocking",
-        "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-ss-ca-001-q3, gam-ss-ca-001-q2. Two coupled routes. From q3: if the rate measures whether two coders read the frame the same way, independence is the condition that makes that reading possible, so q3's answer supports a. From q2: q2's answer has contested answers marked and still coded, which undercuts d ('contested answers were excluded before the rate was worked out'). Both are reasons available from siblings rather than from the source, and together they leave a against two weak procedural rivals."
+        "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
       }
     ]
   },
   "packFlags": {
     "gam-computational-sciences-cache-policy-001": [
-      {
-        "flag": "source-contribution",
-        "severity": "review",
-        "reason": "Across its 3 questions the pack contributes: data, definition, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
-      },
       {
         "flag": "recognition-heavy",
         "severity": "review",
@@ -366,22 +331,12 @@
     ],
     "gam-economics-port-tariff-001": [
       {
-        "flag": "source-contribution",
-        "severity": "review",
-        "reason": "Across its 4 questions the pack contributes: data, definition, exhibit, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
-      },
-      {
         "flag": "recognition-heavy",
         "severity": "review",
         "reason": "3 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
       }
     ],
     "gam-mathematics-two-stage-inspection-001": [
-      {
-        "flag": "source-contribution",
-        "severity": "review",
-        "reason": "Across its 4 questions the pack contributes: data, definition, exhibit, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
-      },
       {
         "flag": "recognition-heavy",
         "severity": "review",
@@ -390,31 +345,16 @@
     ],
     "gam-natural-sciences-lake-oxygen-001": [
       {
-        "flag": "source-contribution",
-        "severity": "review",
-        "reason": "Across its 4 questions the pack contributes: assumption, data, definition, exhibit, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
-      },
-      {
-        "flag": "all-source-supported",
-        "severity": "review",
-        "reason": "All 4 questions are classified source-supported, none source-determined. Spec §5.6 does not forbid this — the module is a knowledge-and-application test — but it does require the pack to be shown to be doing real work rather than decorating questions that would stand without it. That judgement is the reviewer's, and calibration across packs follows the repaired pilot."
-      },
-      {
         "flag": "recognition-heavy",
         "severity": "review",
-        "reason": "3 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
+        "reason": "3 of 3 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
       }
     ],
     "gam-social-sciences-coding-agreement-001": [
       {
-        "flag": "source-contribution",
-        "severity": "review",
-        "reason": "Across its 4 questions the pack contributes: assumption, data, definition, exhibit, framework, rule. The official exercises draw on data, rules, frameworks, assumptions, definitions and exhibits in varying mixtures, so no particular mixture is required — the reviewer should judge whether this one gives the candidate enough to work with."
-      },
-      {
         "flag": "recognition-heavy",
         "severity": "review",
-        "reason": "4 of 4 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
+        "reason": "3 of 3 questions were judged recognition rather than transfer. Confirm the pack still asks the candidate to do something with the source."
       }
     ]
   }

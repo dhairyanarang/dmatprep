@@ -1,11 +1,15 @@
 'use client'
 
+import { useMemo } from 'react'
+
 import { PracticeRunner } from '@/components/practice/practice-runner'
 import { Card, CardContent } from '@/components/ui/card'
 import { planSession, recentSessionIds } from '@/lib/practice/selection'
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
 import type { SectionId } from '@/lib/sections'
+import type { PublicQuestion } from '@/lib/content/registry'
 import type { Question } from '@/lib/types/question'
+import { useSolutions } from '@/lib/solutions/use-solutions'
 
 /**
  * A ten-question mixed set, using the same selection engine as the mocks but
@@ -19,13 +23,30 @@ export function QuickLauncher({
   pools,
   count = 10,
 }: {
-  pools: Record<SectionId, Question[]>
+  pools: Record<SectionId, PublicQuestion[]>
   count?: number
 }) {
   const progress = useProgress()
   const ready = useProgressReady()
 
-  if (!ready) {
+  // Pools arrive without answers; merge the other half back before planning.
+  const sections = useMemo(() => Object.keys(pools) as SectionId[], [pools])
+  const solutions = useSolutions(sections)
+
+  if (solutions.error) {
+    return (
+      <Card>
+        <CardContent>
+          <p className="text-sm">
+            The answers for this set could not be loaded, so practice would not be able to mark
+            your work. Check your connection and reload the page.
+          </p>
+        </CardContent>
+      </Card>
+    )
+  }
+
+  if (!ready || !solutions.ready) {
     return (
       <Card>
         <CardContent>
@@ -40,7 +61,10 @@ export function QuickLauncher({
   const seed = progress.attempts.length * 17 + progress.sessions.length * 3 + 5
 
   // Roughly even across the three subtests, remainder spread from the front.
-  const entries = Object.entries(pools) as [SectionId, Question[]][]
+  // Pools are hydrated first: planning and the runner both need full questions.
+  const entries = (Object.entries(pools) as [SectionId, PublicQuestion[]][]).map(
+    ([sectionId, pool]) => [sectionId, solutions.hydrate(pool)] as [SectionId, Question[]],
+  )
   const base = Math.floor(count / entries.length)
   const extra = count - base * entries.length
 

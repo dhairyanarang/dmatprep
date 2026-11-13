@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation'
 
 import { PageShell } from '@/components/layout/page-shell'
 import { TimedLauncher } from '@/components/practice/timed-launcher'
-import { getQuestions } from '@/lib/content/registry'
+import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 
 /** The noun each subtest's own official instructions use for its 20 items. */
@@ -39,7 +39,7 @@ export default async function TimedSectionPage({ params }: PageProps<'/practice/
             sectionId: section,
             label: meta.title,
             unitNoun: UNIT[section],
-            pool: getQuestions(section),
+            pool: getPublicQuestions(section),
             count: 20,
           },
         ]}

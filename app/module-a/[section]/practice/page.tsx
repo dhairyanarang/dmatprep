@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { PracticeRunner } from '@/components/practice/practice-runner'
-import { getQuestions } from '@/lib/content/registry'
+import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
 
 export function generateStaticParams() {
@@ -22,5 +22,5 @@ export default async function PracticePage({
   const { section } = await params
   if (!isSectionId(section)) notFound()
 
-  return <PracticeRunner sectionId={section} questions={getQuestions(section)} />
+  return <PracticeRunner sectionId={section} questions={getPublicQuestions(section)} />
 }

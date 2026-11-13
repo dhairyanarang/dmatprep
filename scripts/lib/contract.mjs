@@ -83,11 +83,25 @@ export const FS_CONTRACT = {
  */
 export function figureRuleContractErrors(rule) {
   const errors = []
-  const { allowed } = FS_CONTRACT
+  const { allowed, review } = FS_CONTRACT
   const move = rule.movement
 
   if (!allowed.movementTypes.includes(move.type)) {
-    errors.push(`movement type "${move.type}" is not an allowed mechanic`)
+    // `static` is the one REVIEW movement the generator may emit, and only in
+    // the shape the official material attests: Exercises 3 and 6 each carry a
+    // rotation clause with no movement clause, so a symbol that holds its cell
+    // and turns is demonstrated. A static symbol that does NOT turn is not a
+    // rule at all — it is a symbol with nothing to read — so the rotation is
+    // required, not optional. Being REVIEW rather than ALLOWED, every item
+    // carrying one rolls up to `reasonable_extrapolation`; see
+    // scripts/lib/provenance.mjs, which enforces that from the question itself.
+    if (move.type === 'static' && review.staticRotatingSymbol) {
+      if (rule.rotation?.type !== 'rotate') {
+        errors.push('a static symbol must rotate; one that does nothing carries no readable rule')
+      }
+    } else {
+      errors.push(`movement type "${move.type}" is not an allowed mechanic`)
+    }
   }
   if (move.type === 'linear' && !allowed.linearSteps.includes(move.step)) {
     errors.push(`linear movement at step ${move.step}; only 1 and x+1 are attested`)

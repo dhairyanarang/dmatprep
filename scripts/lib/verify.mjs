@@ -453,6 +453,21 @@ function verifyFigureSequence(q) {
   }
   if (symbolCount < FS_CONTRACT.allowed.minSymbols) errors.push('an item must have at least one symbol')
 
+  // A static symbol's ONLY readable cue is its orientation, so the shape has to
+  // carry a legible facing. On a square, circle, diamond or hexagon a 90° turn
+  // is invisible or indistinguishable from no turn at all, and the item becomes
+  // unanswerable rather than merely hard. The generator restricts rotation to
+  // these two shapes already; this is the gate that makes it a rule.
+  const ROTATION_LEGIBLE = new Set(['arrow', 'triangle'])
+  const shapeOf = new Map(q.given[0].symbols.map((sym) => [sym.id, sym.shape]))
+  for (const [id, rule] of Object.entries(q.rules)) {
+    if (rule.movement?.type === 'static' && !ROTATION_LEGIBLE.has(shapeOf.get(id))) {
+      errors.push(
+        `${id}: a static symbol on a ${shapeOf.get(id)} has no readable cue — its rotation is not legible on that shape`,
+      )
+    }
+  }
+
   for (const [id, rule] of Object.entries(q.rules)) {
     for (const problem of figureRuleContractErrors(rule)) {
       // The legacy bank contains accelerating colour cycles, which are

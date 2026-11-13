@@ -15,7 +15,9 @@
     "verify:gam": "node scripts/gam/verify-packs.mjs",
     "review:gam": "node scripts/gam/review-handoff.mjs",
     "calibrate": "node scripts/calibrate-report.mjs",
-    "preview:drafts": "node scripts/preview-drafts.mjs"
+    "preview:drafts": "node scripts/preview-drafts.mjs",
+    "prebuild": "node scripts/build-solutions.mjs",
+    "build:solutions": "node scripts/build-solutions.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
