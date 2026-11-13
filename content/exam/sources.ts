@@ -15,6 +15,7 @@ export type SourceId =
   | 'dmat-preparation'
   | 'aps-dmat'
   | 'aps-fields'
+  | 'dmat-faq-india'
 
 export type Source = {
   id: SourceId
@@ -34,6 +35,13 @@ export const SOURCES: Record<SourceId, Source> = {
     url: 'https://www.d-mat.de/wp-content/uploads/2026/09/260902_dMAT_General-Academic-Module_Preparatoy-Materials_EN.pdf',
     asAt: '2 September 2026',
     note: 'The single most detailed official source on the Core Module task types. g.a.s.t. re-dates this file when it is updated, so the URL changes — this is the version everything here was checked against. The previous 4 August 2026 build was downloaded and compared page by page against this one on 5 September 2026: no substantive rule changed, only typography and layout (58 pages became 57).',
+  },
+  'dmat-faq-india': {
+    id: 'dmat-faq-india',
+    title: 'FAQ for graduate students in India',
+    publisher: 'g.a.s.t.',
+    url: 'https://www.d-mat.de/en/faq-graduate-students-india/',
+    note: 'Read 14 November 2026. Carries the only official statement of the General Academic Module\u2019s length \u2014 \u201capproximately 60 individual questions\u201d \u2014 and the verbatim transitional rule. It also still shows the 2026 test cycle, which the dMAT in India page has superseded. Both are cited where they disagree; neither is quietly dropped.',
   },
   'dmat-home': {
     id: 'dmat-home',

@@ -24,6 +24,7 @@ const HOME = 'dmat-home' as const
 const INDIA = 'dmat-india' as const
 const APS = 'aps-dmat' as const
 const FIELDS = 'aps-fields' as const
+const FAQ = 'dmat-faq-india' as const
 
 export const EXAM_CLAIMS: PageClaims[] = [
   {
@@ -74,7 +75,7 @@ export const EXAM_CLAIMS: PageClaims[] = [
         note: 'No official source states this either way. It follows from the score being a conversion of the number of correct answers, and from g.a.s.t. instructing candidates to guess — but “no negative marking” is nowhere written down.',
         sources: [{ id: HOME }, { id: GAM, page: 8 }],
       },
-      { text: 'Certificates for the 26 September 2026 sitting are available from 12 October 2026.', sources: [{ id: INDIA }, { id: APS }] },
+      { text: 'Results for the 16 January 2027 sitting are released on 8 February 2027; for the 13 March 2027 sitting, on 5 April 2027.', sources: [{ id: INDIA }] },
       { text: 'Results are accessible only through the participant portal; none are sent by phone or email.', sources: [{ id: TERMS }] },
       { text: 'The dMAT certificate is valid indefinitely.', sources: [{ id: TERMS }, { id: HOME }] },
       { text: 'A technical fault caused by g.a.s.t. entitles you to retake at one of the next exam dates.', sources: [{ id: TERMS }] },
@@ -85,8 +86,14 @@ export const EXAM_CLAIMS: PageClaims[] = [
     where: 'Dates & Logistics',
     href: '/exam/logistics',
     claims: [
-      { text: 'Registration opened 29 June 2026 and closes 15 September 2026.', sources: [{ id: INDIA }, { id: APS }] },
-      { text: 'The exam is on 26 September 2026 — the first ever sitting.', sources: [{ id: INDIA }, { id: APS }] },
+      { text: 'Registration for the 2027 cycles opened on 28 October 2026. Applications close 4 January 2027 for the January sitting and 1 March 2027 for the March sitting.', sources: [{ id: INDIA }] },
+      {
+        text: 'The FAQ for Indian graduates still shows the 2026 cycle — registration opening 29 June 2026, closing 15 September 2026, test 26 September 2026.',
+        confidence: 'inferred',
+        note: 'Both pages were read on 14 November 2026 and they disagree. The India page carries the 2027 cycles; the FAQ has not been updated. We present the India page as current and record the FAQ rather than quietly discarding it — but neither page acknowledges the other, so a candidate who lands on the FAQ first will see dates that have passed.',
+        sources: [{ id: INDIA }, { id: FAQ }],
+      },
+      { text: 'Two sittings are announced for 2027: 16 January and 13 March. The first ever sitting was 26 September 2026.', sources: [{ id: INDIA }] },
       { text: 'The fee is €150.00, paid to g.a.s.t. on registration rather than to APS India.', sources: [{ id: APS }] },
       { text: 'Payment is electronic; paying at the test centre is allowed only in exceptional cases.', sources: [{ id: TERMS }] },
       { text: 'The contract may be revoked within 14 days; deregistering before the deadline is refunded minus up to 15%.', sources: [{ id: TERMS }] },
@@ -95,7 +102,11 @@ export const EXAM_CLAIMS: PageClaims[] = [
       { text: 'Registration is handled through the g.a.s.t. participant portal at gast.de.', sources: [{ id: INDIA }] },
       { text: 'The requirement applies to Master’s applicants in Engineering; Commerce, Accounting, Finance or Economics; and Business or Management, targeting summer semester 2027 or later.', sources: [{ id: APS }, { id: FIELDS }] },
       { text: 'The affected-fields list is guidance and not exhaustive; the official degree title decides.', sources: [{ id: FIELDS }] },
-      { text: 'Exemptions cover pre-29 June 2026 APS registrations and shipments, existing APS certificate holders, Bachelor’s and PhD applicants, and confirmed exchange or partnership programmes.', sources: [{ id: APS }] },
+      {
+        text: 'The requirement applies to applicants who completed APS online registration on or after 29 June 2026 AND shipped their APS application documents on or after 29 June 2026. Both conditions must hold; meeting only one does not trigger it.',
+        sources: [{ id: APS }, { id: FAQ }],
+      },
+      { text: 'Exemptions cover existing APS certificate holders, Bachelor’s and PhD applicants, and confirmed exchange or partnership programmes.', sources: [{ id: APS }] },
       { text: 'The dMAT result is reflected on the APS certificate as an additional element of the documentation.', sources: [{ id: APS }, { id: INDIA }] },
     ],
   },

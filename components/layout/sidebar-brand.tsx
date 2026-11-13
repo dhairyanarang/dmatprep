@@ -2,12 +2,12 @@
 
 import Link from 'next/link'
 
-import { FIXED_DATES } from '@/content/exam/key-dates'
+import { nextCycle } from '@/content/exam/key-dates'
 import { daysUntil } from '@/lib/dates/countdown'
 import { useToday } from '@/lib/dates/use-today'
 import { cn } from '@/lib/utils'
 
-const EXAM = FIXED_DATES.find((d) => d.id === 'exam-date')!
+
 
 /**
  * Brand plus a live countdown. The date alone was static decoration; days
@@ -15,7 +15,10 @@ const EXAM = FIXED_DATES.find((d) => d.id === 'exam-date')!
  */
 export function SidebarBrand({ className }: { className?: string }) {
   const today = useToday()
-  const days = today ? daysUntil(EXAM.date, today) : null
+  // Null once every announced sitting has passed — the countdown disappears
+  // rather than running negative or pointing at a date nobody can sit.
+  const sitting = today ? nextCycle(today) : null
+  const days = sitting && today ? daysUntil(sitting.testDate, today) : null
 
   return (
     <Link
