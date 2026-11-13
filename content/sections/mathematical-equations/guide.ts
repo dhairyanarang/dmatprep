@@ -122,7 +122,7 @@ export const guide: SectionGuide = {
     },
 
     { type: 'heading', text: 'Worked examples' },
-    { type: 'example', questionId: 'me-low-001', caption: 'One equation has a single unknown — start there.' },
+    { type: 'example', questionId: 'me-low-b2-001', caption: 'One equation has a single unknown — start there.' },
     { type: 'example', questionId: 'me-high-001', caption: 'Four letters: substitute the definitions into the combining equation.' },
   ],
 }

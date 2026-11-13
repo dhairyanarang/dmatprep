@@ -117,7 +117,7 @@ export const guide: SectionGuide = {
     },
 
     { type: 'heading', text: 'Worked examples' },
-    { type: 'example', questionId: 'fs-low-001', caption: 'One symbol — establish the movement, then apply it twice.' },
-    { type: 'example', questionId: 'fs-medium-001', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
+    { type: 'example', questionId: 'fs-low-002', caption: 'One symbol — establish the movement, then apply it twice.' },
+    { type: 'example', questionId: 'fs-medium-b4-005', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
   ],
 }
