@@ -28,6 +28,7 @@ import {
 } from '../lib/latin.mjs'
 import { generateBatch } from '../lib/batch.mjs'
 import { randInt, shuffle } from '../lib/rng.mjs'
+import { buildLatinExplanation } from '../lib/ls-explanation.mjs'
 
 export const GENERATOR_NAME = 'latin-squares'
 /**
@@ -272,13 +273,7 @@ export function buildLatinSquare(rng, wanted, opts = {}) {
     .slice(0, -1)
     .filter((s) => s.cell.row !== target.row && s.cell.col !== target.col).length
 
-  const explanation =
-    steps.length === 1
-      ? `${steps[0].reason} Four of the five letters are already visible from the target's own row and column, so no other cell needs filling first.`
-      : `Fill the forced cells first: ${steps
-          .slice(0, -1)
-          .map((s) => `${cellName(s.cell)} must be ${s.letter}`)
-          .join('; ')}. ${steps[steps.length - 1].reason}`
+  const explanation = buildLatinExplanation(steps, cellName)
 
   const patternType = [
     depth === 1 ? 'direct-deduction' : depth <= 3 ? 'short-chain' : 'deep-chain',
