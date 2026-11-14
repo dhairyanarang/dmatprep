@@ -17,7 +17,8 @@
     "calibrate": "node scripts/calibrate-report.mjs",
     "preview:drafts": "node scripts/preview-drafts.mjs",
     "prebuild": "node scripts/build-solutions.mjs",
-    "build:solutions": "node scripts/build-solutions.mjs"
+    "build:solutions": "node scripts/build-solutions.mjs",
+    "verify:content": "node scripts/verify-content.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

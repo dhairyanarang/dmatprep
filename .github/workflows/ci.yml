@@ -44,21 +44,11 @@ jobs:
 
       - run: npm ci
 
-      - name: Lint
-        run: npm run lint
-
-      - name: Re-verify every committed question independently
-        run: npm run verify:bank
-
-      - name: Verify the GAM packs
-        run: npm run verify:gam
-
-      # Also the type check — `next build` runs tsc.
-      - name: Build
-        run: npm run build
-
-      # Last, so the exposure gates have a build to read.
-      - name: Content gates, generator, solver and regression tests
-        run: npm test
-        env:
-          REQUIRE_BUILD: '1'
+      # One command, so CI and a developer's machine run the same gates in the
+      # same order. `verify:content` builds the solution assets, re-verifies
+      # every committed question, reports the GAM gates, lints, builds, and runs
+      # the test suite with REQUIRE_BUILD=1 so the exposure gates fail rather
+      # than skip when the build is missing. It stops at the first failure and
+      # prints the single command to re-run that step.
+      - name: Content and build gates
+        run: npm run verify:content
