@@ -18,7 +18,8 @@
     "preview:drafts": "node scripts/preview-drafts.mjs",
     "prebuild": "node scripts/build-solutions.mjs",
     "build:solutions": "node scripts/build-solutions.mjs",
-    "verify:content": "node scripts/verify-content.mjs"
+    "verify:content": "node scripts/verify-content.mjs",
+    "register": "node scripts/build-register.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

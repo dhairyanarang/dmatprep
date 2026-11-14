@@ -1,7 +1,9 @@
 # dMAT Prep Hub
 
 Personal preparation hub for the **dMAT (Digital Master Assessment Test)**.
-Exam **26 September 2026** · registration closes **15 September 2026** · single user (Dhairya).
+Next sittings **16 January 2027** (applications close 4 Jan) and **13 March 2027**
+(close 1 Mar) · registration opened 28 Oct 2026 · single user (Dhairya).
+The first ever sitting was 26 September 2026 and is now history, not a deadline.
 
 ## Rule zero: never state a dMAT fact from memory
 
@@ -40,11 +42,16 @@ to anything the generators encode.
 
 Two live consequences of that grading, both found by the 5 September audit:
 
-- **Mathematical Equations answer format is `unknown`.** Figure Sequences and Latin Squares
-  both name "response options" and the Subject Module names "4 answer options"; Mathematical
-  Equations names none — its exercises are open-response with worked solutions. Our
-  four-option multiple choice is **inferred**, not stated, and must not be presented
-  otherwise.
+- **Mathematical Equations: single-choice is `stated`, the option count is `unknown`.**
+  Updated 14 Nov 2026 on new official evidence, and only this far. The d-mat.de FAQ for
+  Indian graduates now says "All questions are single-choice questions", in a passage whose
+  two preceding sentences describe the Core Module and the GAM — so the **kind** of answer
+  is settled for this subtest. The **number** of options is not: the preparatory material
+  presents these exercises open-response with no options at all. Our four-option form stays
+  **inferred** and must not be presented otherwise. The two claims are recorded separately
+  as `provenance.answerFormat` and `provenance.answerOptionCount`; either being unsettled
+  keeps an item at `reasonable_extrapolation`. Caution: that FAQ sentence is a summary
+  written for candidates, on a page that still prints the superseded 2026 cycle.
 - **Both question forms are `demonstrated`.** Official Example 1 asks for one letter;
   Example 2 asks "What numbers do A and B correspond to?", and every exercise solution
   reports a value for every letter. The earlier note that this was unconfirmed is resolved.
@@ -69,8 +76,10 @@ Two live consequences of that grading, both found by the 5 September audit:
 | No calculators, phones, tablets, watches; only ID on the desk | T&Cs |
 | Fee **€150**, paid to g.a.s.t. | aps-india.de/dmat |
 | Score **0–200**, mean 100, plus percentile rank; certificate valid indefinitely | d-mat.de/en; T&Cs |
-| Registration opened 29 Jun 2026 · closes **15 Sep 2026** · exam **26 Sep 2026** · certificates 12 Oct 2026 | d-mat.de/en/dmat-in-india; aps-india.de |
-| Affected fields: Engineering; Commerce/Accounting/Finance/Economics; Business/Management — guidance only, **not exhaustive**, and does not confirm formal recognition | APS India field list v1.0, 29 Jun 2026 |
+| 2027 cycles: registration opened 28 Oct 2026 · applications close **4 Jan 2027**, test **16 Jan 2027**, results 8 Feb 2027 · second cycle closes 1 Mar, test **13 Mar 2027**, results 5 Apr 2027 | d-mat.de/en/dmat-in-india (read 14 Nov 2026) |
+| Affected fields (APS India, revised **5 Nov 2026**): Engineering/Technology; Commerce/Accounting/Finance/Economics; Business/Management; **Tourism, Travel & Hospitality**; **integrated & dual-degree programmes**. Guidance only, **not exhaustive**, and does not confirm formal recognition | aps-india.de/dmat (read 14 Nov 2026). The old "field list v1.0" PDF is **404** — do not cite it |
+| GAM holds **approximately 60 questions** — "an average; the actual number may be higher or lower" | d-mat.de FAQ for Indian graduates |
+| **All questions are single-choice.** Settles the KIND of answer, not the NUMBER of options | d-mat.de FAQ for Indian graduates |
 
 ## Known discrepancies — do not silently resolve
 
@@ -88,9 +97,15 @@ Two live consequences of that grading, both found by the 5 September audit:
   is 175/175 single-letter, so an officially demonstrated form is absent. The schema
   supports the multi-letter form (see `docs/ME_MULTI_LETTER.md`); adding items is deferred
   to a later pass by decision, not by uncertainty.
-- **Mathematical Equations answer format — `unknown`.** The material states an answer format
-  for the other three task types and none for this one. Four-option multiple choice is our
-  inference and is recorded as such above.
+- **Mathematical Equations option count — `unknown`.** No official source states how many
+  options the subtest offers. Four is our inference. See the grading note above.
+- **Affected fields — the two official sources disagree, and the gap widened.** d-mat.de
+  names three groups; APS India named five on 5 Nov 2026, adding Tourism/Travel/Hospitality
+  and an integrated/dual-degree rule. Both read 14 Nov 2026; neither page acknowledges the
+  other. The FAQ says APS India determines eligibility, so the product shows APS India's
+  list **and says plainly that the two differ**. Do not reconcile them.
+- **The FAQ is stale against its own site.** It still prints the 2026 cycle in full while
+  the India page carries 2027. Cite both; present the India page as current.
 
 ## Stack
 
@@ -182,6 +197,31 @@ removes it from the production graph. Verify with
   `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md` first — it is the
   source of truth for what the exam actually documents, and for each subtest's
   difficulty model. The contract is below.
+- **`direction-cycle` is forbidden, and 86 Figure Sequences questions are quarantined
+  because of it.** A symbol that changes its direction of travel every panel is not in the
+  official rule list and never was; it sat in `FS_CONTRACT.allowed` without support, and the
+  movement catalogue taught it under a heading reading "Every movement you can be shown".
+  Both are gone. The 86 are **quarantined, not retired** — they stay in the file, resolvable
+  by id so stored attempts still name their question, and excluded from every pool by
+  `lib/content/registry.ts`. If a future PDF re-date documents the mechanic this lifts by
+  deleting one field. See `docs/DIRECTION_CYCLE.md`. **Consequence:** the Figure Sequences
+  low tier can place at most one new item per batch, measured and asserted by a test.
+- **`staticRotatingSymbol` is the one `review` mechanic the generator may emit**, and only
+  on an arrow or triangle, where the facing is legible. A static symbol that does not rotate
+  carries no readable rule and the contract refuses it. Six pilot items exist in
+  `drafts/static-rotator-2026-11-14/` with a clean blind round; **none is in the bank** and
+  none should be until a person signs them off.
+- **Provenance is derived, never asserted.** All three generators used to hardcode
+  `dmatAlignment: 'officially_documented'`, so 473 of 473 questions claimed the exam
+  documents them. `scripts/lib/provenance.mjs` now computes it from the question, and
+  `verifyQuestion` rejects any stored grade that is not the one the question earns. One
+  string was doing four jobs; `meta.provenance` separates them — `format`, `answerFormat`,
+  `answerOptionCount`, `mechanics`, `originality` — and `dmatAlignment` is the conservative
+  roll-up, so a question can never claim more than its weakest ground.
+- **Answers are not shipped with the page.** Pages serve `getPublicQuestions`; solutions are
+  fetched from `public/solutions/<section>.json` and merged client-side. This is hygiene,
+  not protection — those assets are public URLs, which is right for a free bank and wrong
+  for anything sold. See `docs/CONTENT_EXPOSURE.md`.
 - **Latin Squares difficulty is measured, never assigned** — `forcedPlacementDepth`,
   computed by constraint propagation. 1 → low, 2–3 → medium, 4+ → high.
 - **Pair elimination is a faster search, not a stronger technique.** On a
@@ -305,6 +345,10 @@ npm run build    # production build (also the type check)
 npm run lint
 npm test         # generator, solver, contract and append-only regression tests
 npm run verify:bank   # re-verify every committed question independently
+npm run verify:content # THE content workflow: solutions, bank, GAM, lint, build, tests
+npm run verify:gam    # the three GAM gates — validation, adjudication, human sign-off
+npm run register      # regenerate audit/content-register.{json,md}
+npm run build:solutions # split the banks into public and solution halves
 
 # Adding questions — append-only, never regenerates:
 node scripts/generate-batch.mjs --batch b2 --section figure-sequences \
