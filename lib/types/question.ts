@@ -79,8 +79,14 @@ export type ClaimGrade = 'stated' | 'demonstrated' | 'inferred' | 'unknown'
 export type Provenance = {
   /** What the candidate is shown. */
   format: ClaimGrade
-  /** How they are asked to respond. `unknown` for Mathematical Equations. */
+  /** The KIND of response. Officially stated as single-choice for every subtest. */
   answerFormat: ClaimGrade
+  /**
+   * HOW MANY options are offered — a separate claim from the kind, and the one
+   * that is still `unknown` for Mathematical Equations. Knowing an item is
+   * single-choice does not make our four-option form documented.
+   */
+  answerOptionCount: ClaimGrade
   /** What the item tests, against its section's contract. */
   mechanics: 'documented' | 'extrapolated' | 'unsupported'
   originality: 'original-generated'

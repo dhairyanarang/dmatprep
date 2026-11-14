@@ -23,7 +23,6 @@ const TERMS = 'dmat-terms' as const
 const HOME = 'dmat-home' as const
 const INDIA = 'dmat-india' as const
 const APS = 'aps-dmat' as const
-const FIELDS = 'aps-fields' as const
 const FAQ = 'dmat-faq-india' as const
 
 export const EXAM_CLAIMS: PageClaims[] = [
@@ -68,6 +67,15 @@ export const EXAM_CLAIMS: PageClaims[] = [
     claims: [
       { text: 'The dMAT score converts the total number of correct answers to a value between 0 and 200, with a mean of 100.', sources: [{ id: HOME }] },
       { text: 'You also receive a percentile rank, and the total combines both modules.', sources: [{ id: HOME }] },
+      { text: 'Every question is single-choice. “All questions are single-choice questions,” in a passage describing the Core Module and the General Academic Module.', sources: [{ id: FAQ }] },
+      {
+        text: 'How many options a Mathematical Equations item offers is not stated by any official source. The preparatory material presents its exercises open-response, with worked solutions and no options at all.',
+        confidence: 'inferred',
+        note: 'Our four-option form is inferred from d-mat.de and recorded as such in scripts/lib/provenance.mjs. The FAQ settles that the subtest is single-choice; it says nothing about the number of choices, and the two are separate claims.',
+        sources: [{ id: FAQ }, { id: GAM, page: 17 }],
+      },
+      { text: 'The General Academic Module contains approximately 60 individual questions — an average, and the actual number may be higher or lower.', sources: [{ id: FAQ }] },
+      { text: 'The General Academic Module may draw on mathematics, computer science, the natural sciences, engineering, business administration, economics, the social sciences and the humanities. The list is explicitly open-ended.', sources: [{ id: FAQ }] },
       { text: 'The instructions tell candidates to guess when they do not know an answer. It appears in Figure Sequences, Latin Squares and the Subject Module; the Mathematical Equations instructions omit it.', sources: [{ id: GAM, page: 8 }, { id: GAM, page: 25 }, { id: GAM, page: 34 }] },
       {
         text: 'There is no penalty for a wrong answer, so a blank costs exactly what a wrong guess costs.',
@@ -100,8 +108,14 @@ export const EXAM_CLAIMS: PageClaims[] = [
       { text: 'There is no refund after the deadline, for non-attendance, or for discontinuing the exam.', sources: [{ id: TERMS }] },
       { text: 'There are ten test centres in India plus Kathmandu in Nepal.', sources: [{ id: INDIA }, { id: APS }] },
       { text: 'Registration is handled through the g.a.s.t. participant portal at gast.de.', sources: [{ id: INDIA }] },
-      { text: 'The requirement applies to Master’s applicants in Engineering; Commerce, Accounting, Finance or Economics; and Business or Management, targeting summer semester 2027 or later.', sources: [{ id: APS }, { id: FIELDS }] },
-      { text: 'The affected-fields list is guidance and not exhaustive; the official degree title decides.', sources: [{ id: FIELDS }] },
+      { text: 'The requirement applies to Master’s applicants targeting summer semester 2027 or later whose previous degree is in Engineering or Technology; Commerce, Accounting, Finance or Economics; Business or Management; Tourism, Travel and Hospitality; or an integrated or dual-degree programme with a component in one of those. APS India revised this list on 5 November 2026.', sources: [{ id: APS }] },
+      {
+        text: 'g.a.s.t. and APS India publish different affected-fields lists. The dMAT in India page names three groups and omits Tourism, Travel and Hospitality and the integrated/dual-degree rule; APS India names five. We show APS India’s because the g.a.s.t. FAQ says eligibility is determined by APS India.',
+        confidence: 'inferred',
+        note: 'Both read 14 November 2026 and they disagree. Neither page acknowledges the other. The gap widened rather than closed: APS India added the two categories on 5 November 2026. Presenting the longer list is a judgement about which source governs, not a reconciliation of the two.',
+        sources: [{ id: INDIA }, { id: APS }],
+      },
+      { text: 'The affected-fields list is guidance and not exhaustive; the official degree title decides. APS India advises taking the dMAT where a degree falls in a boundary area.', sources: [{ id: APS }] },
       {
         text: 'The requirement applies to applicants who completed APS online registration on or after 29 June 2026 AND shipped their APS application documents on or after 29 June 2026. Both conditions must hold; meeting only one does not trigger it.',
         sources: [{ id: APS }, { id: FAQ }],

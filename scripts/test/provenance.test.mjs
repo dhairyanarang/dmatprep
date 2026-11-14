@@ -24,7 +24,7 @@ test('every stored grade is the one the question derives', () => {
       const derived = classify(q)
       assert.equal(q.meta.dmatAlignment, derived.dmatAlignment, `${q.id}: stored grade is not the derived one`)
       assert.ok(q.meta.provenance, `${q.id}: no provenance record`)
-      for (const axis of ['format', 'answerFormat', 'mechanics', 'originality']) {
+      for (const axis of ['format', 'answerFormat', 'answerOptionCount', 'mechanics', 'originality']) {
         assert.equal(q.meta.provenance[axis], derived.provenance[axis], `${q.id}: provenance.${axis} drifted`)
       }
     }
@@ -45,37 +45,43 @@ test('NEGATIVE CONTROL: a hand-raised grade is rejected', () => {
   assert.match(text, /dmatAlignment/, 'the verifier accepted a grade the question does not earn')
 })
 
-test('Mathematical Equations never claims a documented answer format', () => {
-  // CLAUDE.md: the official material states an answer format for the other
-  // three task types and none for this one. Four-option multiple choice is our
-  // inference and must never be presented otherwise.
-  assert.equal(SECTION_PROVENANCE['mathematical-equations'].answerFormat.grade, 'unknown')
+test('Mathematical Equations never claims a documented option count', () => {
+  // The FAQ now states every question is single-choice, so the KIND of answer
+  // format is settled for this subtest. How many options it offers is not, and
+  // our four-option form remains an inference from d-mat.de.
+  assert.equal(SECTION_PROVENANCE['mathematical-equations'].answerFormat.grade, 'stated')
+  assert.equal(SECTION_PROVENANCE['mathematical-equations'].answerOptionCount.grade, 'unknown')
 
   const bank = readBank('mathematical-equations')
   assert.equal(bank.length, 175, 'the ME bank size moved — re-check this expectation')
   for (const q of bank) {
-    assert.equal(q.meta.provenance.answerFormat, 'unknown', `${q.id}: claims an answer format`)
+    assert.equal(q.meta.provenance.answerOptionCount, 'unknown', `${q.id}: claims an option count`)
     assert.notEqual(
       q.meta.dmatAlignment,
       'officially_documented',
-      `${q.id}: claims the exam documents it while its answer format is unknown`,
+      `${q.id}: claims the exam documents it while its option count is unknown`,
     )
   }
 })
 
-test('an unknown answer format can never roll up to officially_documented', () => {
-  assert.equal(rollUp({ answerFormat: 'unknown', mechanics: 'documented' }), 'reasonable_extrapolation')
-  assert.equal(rollUp({ answerFormat: 'inferred', mechanics: 'documented' }), 'reasonable_extrapolation')
-  assert.equal(rollUp({ answerFormat: 'stated', mechanics: 'extrapolated' }), 'reasonable_extrapolation')
-  assert.equal(rollUp({ answerFormat: 'stated', mechanics: 'unsupported' }), 'uncertain')
-  assert.equal(rollUp({ answerFormat: 'stated', mechanics: 'documented' }), 'officially_documented')
+test('an unsettled answer claim can never roll up to officially_documented', () => {
+  const ok = { answerFormat: 'stated', answerOptionCount: 'demonstrated', mechanics: 'documented' }
+  assert.equal(rollUp(ok), 'officially_documented')
+  // Either half of the answer claim being unsettled is enough on its own. This
+  // is the case that matters: Mathematical Equations is stated single-choice
+  // and still does not have a documented number of options.
+  assert.equal(rollUp({ ...ok, answerOptionCount: 'unknown' }), 'reasonable_extrapolation')
+  assert.equal(rollUp({ ...ok, answerOptionCount: 'inferred' }), 'reasonable_extrapolation')
+  assert.equal(rollUp({ ...ok, answerFormat: 'unknown' }), 'reasonable_extrapolation')
+  assert.equal(rollUp({ ...ok, mechanics: 'extrapolated' }), 'reasonable_extrapolation')
+  assert.equal(rollUp({ ...ok, mechanics: 'unsupported' }), 'uncertain')
 })
 
 test('every provenance grade cites why', () => {
   for (const section of SECTIONS) {
     const p = SECTION_PROVENANCE[section]
     assert.ok(p, `${section} has no provenance definition`)
-    for (const axis of ['format', 'answerFormat']) {
+    for (const axis of ['format', 'answerFormat', 'answerOptionCount']) {
       assert.ok(p[axis].why.length > 60, `${section}.${axis} has no substantive justification`)
     }
   }

@@ -296,6 +296,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -606,6 +607,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -907,6 +909,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -1205,6 +1208,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -1512,6 +1516,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -1832,6 +1837,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -2147,6 +2153,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -2464,6 +2471,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -2762,6 +2770,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -3077,6 +3086,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -3617,6 +3627,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -4118,6 +4129,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -4637,6 +4649,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -5159,6 +5172,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -5661,6 +5675,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -6164,6 +6179,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -6673,6 +6689,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -7169,6 +7186,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -7710,6 +7728,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -8240,6 +8259,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -8761,6 +8781,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -9282,6 +9303,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -9819,6 +9841,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -10475,6 +10498,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -11135,6 +11159,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -11788,6 +11813,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -12478,6 +12504,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -13151,6 +13178,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -13829,6 +13857,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -14505,6 +14534,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -15171,6 +15201,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -15852,6 +15883,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -16169,6 +16201,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -16504,6 +16537,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -16839,6 +16873,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -17368,6 +17403,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -17921,6 +17957,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -18491,6 +18528,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -19205,6 +19243,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -19907,6 +19946,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -20609,6 +20649,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -21328,6 +21369,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -22018,6 +22060,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -22740,6 +22783,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -23459,6 +23503,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -23813,6 +23858,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -24167,6 +24213,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -24502,6 +24549,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -24856,6 +24904,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -25191,6 +25240,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -25543,6 +25593,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -26101,6 +26152,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -26653,6 +26705,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -27204,6 +27257,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -27758,6 +27812,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -28423,6 +28478,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -29297,6 +29353,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -30161,6 +30218,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -30836,6 +30894,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -31556,6 +31615,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -32251,6 +32311,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -32589,6 +32650,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -32933,6 +32995,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -33271,6 +33334,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -33625,6 +33689,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -33969,6 +34034,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -34324,6 +34390,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -34676,6 +34743,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -35020,6 +35088,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -35367,6 +35436,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -35714,6 +35784,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -36265,6 +36336,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -36826,6 +36898,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -37345,6 +37418,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -37894,6 +37968,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -38416,6 +38491,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -38950,6 +39026,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -39482,6 +39559,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -40206,6 +40284,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -40753,6 +40832,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -41311,6 +41391,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -42006,6 +42087,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -42546,6 +42628,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -43265,6 +43348,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -43816,6 +43900,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -44338,6 +44423,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -45057,6 +45143,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -45747,6 +45834,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -46290,6 +46378,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -46830,6 +46919,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -47380,6 +47470,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -47932,6 +48023,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -48475,6 +48567,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -49155,6 +49248,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -49856,6 +49950,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -50415,6 +50510,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -51151,6 +51247,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -51673,6 +51770,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -52237,6 +52335,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -52960,6 +53059,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -53509,6 +53609,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -54079,6 +54180,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -54781,6 +54883,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -55346,6 +55449,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -56058,6 +56162,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -56591,6 +56696,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -57291,6 +57397,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -57834,6 +57941,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -58389,6 +58497,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -58918,6 +59027,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -59459,6 +59569,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -60178,6 +60289,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -60708,6 +60820,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -61410,6 +61523,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -61939,6 +62053,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -62499,6 +62614,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -63393,6 +63509,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -64291,6 +64408,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -65005,6 +65123,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -65906,6 +66025,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -66631,6 +66751,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -67327,6 +67448,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -68201,6 +68323,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -69057,6 +69180,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -69752,6 +69876,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -70617,6 +70742,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -71330,6 +71456,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -72029,6 +72156,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -72937,6 +73065,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -73602,6 +73731,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -74486,6 +74616,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -75404,6 +75535,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -76263,6 +76395,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -76965,6 +77098,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -77836,6 +77970,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -78503,6 +78638,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -79232,6 +79368,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -80121,6 +80258,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -80798,6 +80936,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -81621,6 +81760,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -82503,6 +82643,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -83193,6 +83334,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -83890,6 +84032,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -84773,6 +84916,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -85452,6 +85596,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -86344,6 +86489,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -87221,6 +87367,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -87932,6 +88079,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -88651,6 +88799,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -89469,6 +89618,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -90186,6 +90336,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -91030,6 +91181,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -91887,6 +92039,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -92597,6 +92750,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -93299,6 +93453,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -94197,6 +94352,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -94911,6 +95067,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -95806,6 +95963,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -96669,6 +96827,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -97389,6 +97548,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -98106,6 +98266,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -98450,6 +98611,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -98994,6 +99156,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -99710,6 +99873,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -100440,6 +100604,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -101170,6 +101335,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -102065,6 +102231,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -102784,6 +102951,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -103520,6 +103688,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -104247,6 +104416,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -104949,6 +105119,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "documented",
         "originality": "original-generated"
       }
@@ -105293,6 +105464,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
@@ -105640,6 +105812,7 @@
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
         "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [

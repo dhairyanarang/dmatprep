@@ -37,6 +37,10 @@ export const MECHANIC_GRADES = ['documented', 'extrapolated', 'unsupported']
  */
 export const SECTION_PROVENANCE = {
   'figure-sequences': {
+    answerOptionCount: {
+      grade: 'demonstrated',
+      why: 'Three response options per image, shown in every worked solution on GAM PDF pp. 13-16. Never stated as a number in words.',
+    },
     format: {
       grade: 'demonstrated',
       why: 'Four matrices shown, the 5th and 6th predicted, three options each — shown throughout GAM PDF pp. 13-16 and in every worked solution. The 4×4 grid is never stated in words; it was read from the diagrams.',
@@ -47,17 +51,37 @@ export const SECTION_PROVENANCE = {
     },
   },
   'mathematical-equations': {
+    // THE one `unknown` in the bank, and it stays unknown.
+    answerOptionCount: {
+      grade: 'unknown',
+      why: 'No official source states how many options a Mathematical Equations item offers. The preparatory material presents these exercises with no options at all — they are open-response with worked solutions. Our four-option form is inferred from d-mat.de and is recorded as `review` in ME_CONTRACT.review.fourOptionFormat. It must never be presented as documented.',
+    },
     format: {
       grade: 'demonstrated',
       why: 'Equation systems with one integer solution per letter, GAM PDF p. 17 and Examples 1-2. Both question forms are demonstrated: Example 1 asks for one letter, Example 2 asks for two.',
     },
     answerFormat: {
-      // The one `unknown` in the bank, and it must stay unknown.
-      grade: 'unknown',
-      why: 'The official material states an answer format for the other three task types and none for this one — its exercises are open-response with worked solutions. Our four-option multiple choice is an inference from d-mat.de, recorded as `review` in ME_CONTRACT.review.fourOptionFormat. It must never be presented as documented.',
+      // Upgraded 14 November 2026 on new official evidence, and only this far.
+      // The FAQ for Indian graduates now says, in a passage whose two preceding
+      // sentences are about the Core Module and the General Academic Module,
+      // "All questions are single-choice questions." Read in that scope it
+      // covers Mathematical Equations, so the KIND of answer format is stated.
+      //
+      // It settles nothing about how many options there are, which is why
+      // `answerOptionCount` above is still `unknown` and why every ME item still
+      // rolls up to `reasonable_extrapolation`. The claim got more precise, not
+      // stronger. Caution worth keeping: that sentence is a summary written for
+      // candidates, and it sits on a page that still prints the superseded 2026
+      // test cycle — weaker evidence than the preparatory PDF would be.
+      grade: 'stated',
+      why: 'd-mat.de/en/faq-graduate-students-india, read 14 November 2026: "All questions are single-choice questions." The sentence follows two describing the Core Module and the General Academic Module, so it covers this subtest. It fixes the kind of answer format and says nothing about the number of options.',
     },
   },
   'latin-squares': {
+    answerOptionCount: {
+      grade: 'demonstrated',
+      why: 'GAM PDF p. 24 constrains the options — only letters appearing in the response row may be offered — and the worked exercises show the resulting set. The count follows from the response row rather than from a stated number.',
+    },
     format: {
       grade: 'stated',
       why: '5×5, letters A-E, each exactly once per row and column, and only response-row letters may appear — GAM PDF p. 24.',
@@ -145,10 +169,15 @@ export function classifyMechanics(q) {
  * asserted. It is the most conservative of the four axes, so a question can
  * never claim more than its weakest ground.
  */
-export function rollUp({ answerFormat, mechanics }) {
+export function rollUp({ answerFormat, answerOptionCount, mechanics }) {
   if (mechanics === 'unsupported') return 'uncertain'
   if (mechanics === 'extrapolated') return 'reasonable_extrapolation'
-  if (answerFormat === 'unknown' || answerFormat === 'inferred') return 'reasonable_extrapolation'
+  // Either half of the answer claim being unsettled is enough. Knowing an item
+  // is single-choice while not knowing how many choices it offers does not make
+  // our four-option form documented.
+  for (const grade of [answerFormat, answerOptionCount]) {
+    if (grade === 'unknown' || grade === 'inferred') return 'reasonable_extrapolation'
+  }
   return 'officially_documented'
 }
 
@@ -160,13 +189,18 @@ export function classify(q) {
   const provenance = {
     format: section.format.grade,
     answerFormat: section.answerFormat.grade,
+    answerOptionCount: section.answerOptionCount.grade,
     mechanics: mechanics.grade,
     originality: ORIGINALITY,
   }
   if (mechanics.notes.length) provenance.mechanicNotes = mechanics.notes
   return {
     provenance,
-    dmatAlignment: rollUp({ answerFormat: provenance.answerFormat, mechanics: provenance.mechanics }),
+    dmatAlignment: rollUp({
+      answerFormat: provenance.answerFormat,
+      answerOptionCount: provenance.answerOptionCount,
+      mechanics: provenance.mechanics,
+    }),
   }
 }
 

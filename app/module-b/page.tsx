@@ -45,8 +45,8 @@ export default function ModuleBPage() {
           <TileCard
             href="/module-b/timed"
             icon={Timer}
-            title="Full timed session"
-            description="Every pack, end to end, under the module's official 90-minute clock. Answers are held until you submit, as they are in the exam."
+            title="Timed session — every pack"
+            description="All five packs end to end under the module's official 90-minute clock, with answers held until you submit. It is 17 questions; g.a.s.t. says the real module holds roughly 60, so this is a timed run at the real pace, not a full-length paper."
             meta={`${GAM_TOTAL_MINUTES} mins`}
           />
         </SectionHeading>

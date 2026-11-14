@@ -62,7 +62,7 @@ export default function TestPage() {
             href="/module-b/timed"
             icon={Timer}
             title="General Academic Module"
-            description="Every source pack end to end under the module's official 90-minute clock, with answers held until you submit. Pilot material, not yet reviewed by a person."
+            description="Every source pack end to end under the module's official 90-minute clock, with answers held until you submit. 17 questions against the roughly 60 g.a.s.t. says the real module holds — a timed run, not a full-length paper. Pilot material, not yet reviewed by a person."
             meta={`${GAM_TOTAL_MINUTES} mins`}
           />
         </SectionHeading>

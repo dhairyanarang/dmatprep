@@ -85,5 +85,6 @@ export const SOURCES: Record<SourceId, Source> = {
     publisher: 'APS India',
     url: 'https://aps-india.de/wp-content/uploads/2026/06/dMAT_India_Affected_Fields_List.pdf',
     asAt: 'Version 1.0, 29 June 2026',
+    note: 'DEAD LINK as of 14 November 2026: this PDF returns HTTP 404 and APS India no longer links any field-list PDF from its dMAT page. Superseded by the five-category list published inline on 5 November 2026. The g.a.s.t. FAQ still links the dead URL.',
   },
 }
