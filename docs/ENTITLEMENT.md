@@ -458,7 +458,84 @@ the fifth is a lawyer's.
 
 ---
 
-## 11. Current state
+## 11. Implementation plan — what gets built, in what order
+
+**Nothing in this plan starts until §10 is approved.** It is here so the
+approval is informed by what it authorises.
+
+### Phase 0 — nothing to approve, nothing to install
+
+Can start today and depends on no decision:
+
+- **Razorpay test-mode sign-up.** Test keys need no KYC, no activation and no
+  website (`docs/RAZORPAY.md` §12). Keys go in `.env.local`, which is
+  git-ignored, and nowhere else. **No key, test or live, is ever pasted into a
+  file in this repository, a document, or a chat.**
+- **`.env.example` gains the variable *names*** and no values.
+
+### Phase 1 — the adapter, against a mock, with no provider at all
+
+The highest-value work, and it needs neither approval nor a provider:
+
+- The adapter interface (§8) and a **mock provider** implementing all four
+  operations in memory.
+- The idempotent grant/revoke function, pure, against an in-memory store.
+- **Tests for the cases that cannot be reproduced on demand against a real
+  provider**: duplicate event, out-of-order refund-before-capture, a
+  signature mismatch, a timeout mid-grant, a double grant from webhook and
+  sweep racing. These are the whole correctness argument, and a sandbox makes
+  them *harder* to test, not easier.
+- A signature-verification test using known-good fixtures, which is where the
+  `JSON.stringify` trap (§6.1) gets caught by CI rather than by production.
+
+This phase is where provider-independence is actually established. If it is
+written after a real integration, the Razorpay shape leaks into everything and
+§8 becomes aspirational.
+
+### Phase 2 — the schema, on a local or staging project only
+
+Needs §10 approval. Does **not** touch production.
+
+- One additive migration creating the three tables and the two read policies.
+- Blocked today by a known, unrelated problem: `docs/INFRASTRUCTURE.md` records
+  that **no container runtime is installed**, so `supabase start` cannot run.
+  The same blocker holds up auth QA. Either install one, or use a separate
+  free Supabase project as staging.
+
+### Phase 3 — the handlers, against test keys
+
+- The three route handlers and the sweep, wired to the Razorpay adapter.
+- Exercised with Razorpay's published failure cards —
+  `payment_timed_out`, `insufficient_fund`, `card_declined`,
+  `authentication_failed`, `gateway_technical_error`.
+- Webhook delivery to a local endpoint needs a public URL; a tunnel is the
+  normal answer and is a development tool, not a deployment.
+
+### Phase 4 — what cannot be tested before live
+
+Recorded so it is not mistaken for tested:
+
+| Cannot be verified in sandbox | Why |
+|---|---|
+| Real settlement timing | T+1 vs T+2 is unresolved and only a real settlement answers it |
+| Whether the fee returns on a refund | Needs a real refund, or Razorpay in writing |
+| Chargeback handling | Cannot be simulated |
+| The 24-hour webhook auto-disable | Would require 24 hours of real failures |
+| Activation itself | A real application that can be rejected |
+
+The last line matters for the plan's honesty: **the sandbox proves the code, not
+the business.** Everything in §13 of `docs/RAZORPAY.md` stays open after a
+perfect sandbox run.
+
+### What this plan deliberately excludes
+
+No second provider. No subscription, credit pack or second SKU. No coupon
+system. No production anything — no migration, no RLS change, no deployment, no
+live key, no real transaction.
+
+---
+
+## 12. Current state
 
 No table, migration, policy, route handler, scheduled job, SDK, key or
 entitlement row exists. `app/` still has no `/api` directory,
