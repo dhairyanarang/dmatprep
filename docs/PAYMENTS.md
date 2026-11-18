@@ -9,6 +9,15 @@ Researched 14 November 2026 against provider and government documentation only.
 Provider blog posts were deliberately not treated as authority, which is why
 several numbers that circulate freely appear below as **unverified**.
 
+**Updated 18 November 2026. The provider decision has been made and it is not
+the one §6 recommends.** Razorpay is the primary provider and Cashfree is the
+only fallback, decided by the operator. §6 is left standing as written, because
+a recommendation that was overruled is evidence about the decision and deleting
+it would hide the trade-off that was accepted. **The provider detail now lives
+in `docs/RAZORPAY.md`**, verified against Razorpay's own documentation on
+18 November 2026; this document remains the comparison and the reasoning that
+led here.
+
 ## 0. Scope — narrowed 18 November 2026
 
 **Domestic INR only. Cross-border is deferred, not solved.**
@@ -39,18 +48,44 @@ questions rather than regulatory ones.
 
 ## 0.1 What is actually being sold
 
-The commercial direction has changed and the architecture follows from it.
+**Corrected 18 November 2026. This section previously carried a superseded
+commercial model and is reported rather than quietly overwritten.**
 
-- **The 473 Core questions are free.** They have been in a public Git repository
-  since August; there is no scarcity to sell and no paywall should be built
-  around them. See `docs/CONTENT_EXPOSURE.md`.
-- **Premium is mocks, analytics, structured preparation, and genuinely new
-  protected content.** Those are product rather than bank bytes, and none of
-  them is leaked by a public `questions.json`.
+It read: *"The 473 Core questions are free … there is no scarcity to sell and no
+paywall should be built around them."* That was written on 14 November, before
+the freemium model was set, and it is **no longer the model**. It was never
+acted on — nothing was built against it — so the correction costs nothing but
+the record of having made it.
 
-That matters for the build: most of what would be sold is *features*, which are
-gated by an entitlement check in the app. Only the new content needs
-server-side delivery, and that is the expensive part.
+**The current model is in `docs/MONETISATION.md`**, which is authoritative:
+
+- **384 active Core questions: 150 free, 234 premium.** Fifty free per section —
+  Figure Sequences 50 of 87, Mathematical Equations 50 of 172, Latin Squares
+  50 of 125. The free set is a committed, hash-locked file covering every
+  pattern type in each section with an even difficulty spread.
+- **Premium is the 234 remaining Core questions *plus* the features** — enhanced
+  mocks, performance analytics, weak-area identification, pacing and readiness
+  insight, adaptive practice. None of those features exists yet, and none may be
+  advertised before it does.
+- **Module B (GAM) is neither free nor sold.** Sixteen active questions, zero
+  signed off by a person, so no free sample is possible and nothing is sellable.
+  That is the human-review gate working.
+
+Two facts from that document bear directly on the architecture:
+
+- **The 234 premium Core questions are already public** and have been since
+  August, in a public Git repository. Gating them is selling convenience, not
+  scarcity. See `docs/CONTENT_EXPOSURE.md`. The honest consequence is that the
+  durable premium value is the features, not the question text.
+- **Every Core question is free today**, so introducing the model takes 234 away
+  from existing users. Grandfather, announce, or gate silently — that decision
+  is a column in the entitlement table either way, which is why it has to be
+  made before the schema is.
+
+For the build: both questions *and* features are gated by an entitlement check,
+but only content needs server-side **delivery**, and that is the expensive part.
+`public/solutions/*.json` is a predictable public URL — right for a free bank,
+unacceptable for anything sold.
 
 ## 1. Provider comparison
 
@@ -182,7 +217,27 @@ Specification, not a plan of record:
   is **not** acceptable for anything sold, which must be delivered only after an
   entitlement check in a route handler.
 
-## 6. Recommendation
+## 6. Recommendation — SUPERSEDED BY DECISION, 18 November 2026
+
+> **Decided: Razorpay primary, Cashfree fallback.** The operator's call, made
+> after this section was written and against what it recommends. The reasoning
+> below is preserved unedited.
+>
+> **What the decision accepts.** The strongest argument for Cashfree was its
+> webhook contract, and that argument has not been refuted — it was outweighed.
+> Razorpay's webhook is **disabled after 24 hours of failures**, which is a
+> silent outage in which a paying customer has no access and nothing in the
+> product knows. The mitigation is the reconciliation sweep described in §5 and
+> specified in `docs/RAZORPAY.md` §11, and the decision converts that sweep from
+> *recommended* to **mandatory**. It is the price of choosing Razorpay, and it
+> is payable at build time, not later.
+>
+> **What the decision does not settle:** whether Razorpay will approve this
+> operator, the price, or any database change. See `docs/RAZORPAY.md` §1.
+>
+> Only one provider is implemented. Cashfree's minimum onboarding and technical
+> requirements are recorded in `docs/RAZORPAY.md` §14 so that a switch is a
+> decision rather than a research project.
 
 **This is a recommendation, not a finding.**
 
@@ -209,26 +264,46 @@ verified facts.
 ## 7. Decisions needed before any implementation begins
 
 Nepal is no longer on this list — it was decided on 18 November by deferring it.
-What remains is commercial, tax and architectural.
+The provider is no longer on it either. What remains is commercial, tax and
+architectural.
 
-1. **Individual now, or register a proprietorship first?** Individual is faster
-   and every provider but Stripe allows it for domestic INR. A proprietorship
-   becomes necessary before turnover approaches the ₹20 lakh GST threshold, and
-   before any international card acceptance — which is itself deferred.
-2. **Confirm in writing with the chosen provider**: whether MDR is returned on a
-   refund, the chargeback fee in rupees, the contracted settlement cycle, and
-   instant-settlement pricing. All four are undocumented or contradictory in the
-   providers' own materials, and none should be budgeted against until written
-   down.
-3. **A CA on the GST question**, specifically whether ₹599 is treated as
+1. **Individual now, or register a proprietorship first?** Razorpay's own
+   documentation now answers the paperwork half of this, and it points one way:
+   an **Individual/Unregistered** merchant uploads **no business-identity
+   document at all**, while a **Proprietorship must upload two** of MSME/UDYAM,
+   GST certificate, Shop & Establishment, IEC or a postpaid mobile bill.
+   Registering first therefore *adds* two documents the operator does not hold;
+   it does not smooth the application. A proprietorship becomes necessary before
+   turnover approaches the ₹20 lakh GST threshold and before any international
+   card acceptance — both of which are future problems. See `docs/RAZORPAY.md`
+   §2.3.
+2. **Get ten things in writing from Razorpay before relying on them.** The list
+   is `docs/RAZORPAY.md` §13 and it is longer than this document assumed on
+   14 November. The three that would change a decision rather than a forecast:
+   whether the 2% fee and its GST are returned on a refund; whether the
+   contracted settlement cycle is T+1 or T+2 (**Razorpay's own two pages still
+   contradict each other, re-checked 18 November**); and whether the operator's
+   existing bank account qualifies — name match, savings versus current, joint
+   accounts — which Razorpay does not document at all.
+3. **Build the six policy pages, or live keys are not issued.** Verified on
+   Razorpay's India documentation: without live website details you "will not be
+   able to access live mode API keys". The required links are About us, Contact
+   us, Pricing details, Terms and conditions, Privacy policy and Refunds policy.
+   Today `/privacy` and `/about` exist; Terms and Refunds are **unrouted
+   drafts**; Contact and Pricing **do not exist**, and Pricing cannot until the
+   price is set. This is a launch blocker that is cheaper to clear before
+   applying than after a rejection. See `docs/RAZORPAY.md` §5.
+4. **A CA on the GST question**, specifically whether ₹599 is treated as
    inclusive, and whether OIDAR has any bearing on an Indian-resident supplier
    selling into India. I found no official statement either way and did not
    invent one.
-4. **Settle the price.** ₹599 is still a hypothesis. It appears nowhere in the
-   product and nothing depends on it yet.
-5. **Approval to add the schema in §5** — a new `entitlements` table, a new RLS
+5. **Settle the price.** ₹599 is the recommendation in `docs/MONETISATION.md`
+   §4, with the arithmetic shown, but it is still not a decision. It appears
+   nowhere in the product — and it now blocks the Pricing details page that
+   Razorpay requires before issuing live keys, so it is no longer free to defer.
+6. **Approval to add the schema in §5** — a new `entitlements` table, a new RLS
    policy, and a server-scoped service-role key. None of that was touched this
-   sprint or the last, and none should be until items 1 to 4 are answered.
+   sprint or the last, and none should be until items 1 to 5 are answered.
 
 ## 8. What is deliberately not here
 
