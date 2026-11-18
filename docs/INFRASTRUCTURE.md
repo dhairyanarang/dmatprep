@@ -152,3 +152,58 @@ present and untested.
 11. Conversion analytics — needed when there is something to convert.
 12. `vercel.json` — defaults are fine until route handlers exist.
 13. `loading.tsx` — everything is static.
+
+---
+
+## 5. The QA blocker — a decision, with a recommendation
+
+**The blocker.** No container runtime is installed, so `supabase start` cannot
+run and the local stack in `docs/AUTH_QA_PROCEDURE.md` §A cannot be brought up.
+This blocks two things at once: auth and cloud-sync QA (item 1 of the launch
+checklist), and Phase 2 of the payments build (`docs/ENTITLEMENT.md` §15).
+
+**Production is not an option for either.** Not as a fallback, not briefly, not
+with a test account. The brief forbids it and so does the existing procedure.
+
+### The two options
+
+| | **A. Local container runtime** | **B. Separate staging Supabase project** |
+|---|---|---|
+| What it is | Install Docker or Podman; `supabase start` | A second free-tier cloud project, used only for QA |
+| Cost | Free. ~1–2 GB of disk, plus memory while running | Free tier, second project on the same account |
+| Data isolation | **Total** — nothing leaves the machine | Good — separate project, separate keys, separate URL |
+| Can test Google OAuth | ⛔ **No.** Already documented: the one thing a local stack cannot do | ✅ **Yes** — a real redirect URI against a real provider |
+| Migrations | `supabase db reset` from `supabase/migrations/` | Applied by push, or by hand |
+| Destructive reset | Trivial and instant | Slower, and a mistake is remote |
+| Risk of hitting production | Near zero — a local URL cannot be confused for a cloud one | **Non-trivial.** Two cloud projects, two similar URLs, two sets of keys |
+| Needs approval | No. A local tool install | **Yes** — creating and connecting a project |
+
+### Recommendation: A, then B only if OAuth must be tested end-to-end
+
+**Install a local container runtime.** Three reasons, in order of weight:
+
+1. **It needs no approval and creates nothing.** It is a developer tool
+   install, fully reversible, and it touches no account and no cloud resource.
+2. **It is the safer place for the payments work.** Phase 2 and 3 involve a
+   service-role key with write access to entitlement tables. A local key that
+   cannot reach any hosted project is a materially better place to make the
+   first mistakes than a second cloud project whose URL differs from
+   production's by a few characters.
+3. **`supabase db reset` makes the schema disposable**, which is exactly what an
+   unapproved, iterating migration needs. `docs/ENTITLEMENT.md` §13.1 is a clean
+   drop precisely because nothing depends on it yet — and that is only cheap
+   locally.
+
+**What A cannot do, and when B becomes necessary.** Google OAuth. The procedure
+already records this as the one thing the local stack cannot test, because the
+redirect URI must be reachable by Google. Everything else — RLS isolation,
+cross-user access, the guest → account merge, the outbox, and all of the
+payments work — runs locally.
+
+So the honest sequence is: **A now, unblocking both workstreams; B later, scoped
+to the OAuth flow alone, and only with approval.** B is not a substitute for A
+and A is not a substitute for B; they test different things, and only one of
+them is needed to start.
+
+**What I am not doing without approval:** creating a Supabase project,
+connecting one, or installing anything. A is a recommendation awaiting a yes.

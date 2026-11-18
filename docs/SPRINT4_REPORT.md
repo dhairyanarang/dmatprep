@@ -1,6 +1,13 @@
 # Sprint 4 — legal, infrastructure and payments report
 
-Branch `sprint4/legal-and-payments`, eight commits on top of Sprint 3. **Nothing
+**Revised 18 November 2026 after review.** The review found a correctness defect
+in the entitlement design that could have taken money and granted nothing. It is
+described in §3.4a, it is fixed, and the fix changed the schema rather than
+adding a column. Four documents were added or rewritten as a result; the
+originally reported items are unchanged except where §3.4, §3.5 and §4 say
+otherwise.
+
+Branch `sprint4/legal-and-payments`, nine commits on top of Sprint 3. **Nothing
 pushed, nothing merged to `main`.** No Supabase project created or connected, no
 production schema, Auth setting, RLS policy or user record touched, no payment
 account created, no provider SDK installed, no payments activated, no live or
@@ -45,9 +52,10 @@ Used exactly, never loosely.
 | `269076f` | Razorpay verified against its own docs; superseded commercial model corrected |
 | `a43277a` | Entitlement architecture proposal; business and tax brief; legal question 6.7 |
 | `12bb812` | Implementation plan; public website readiness audit |
+| *(this commit)* | **Entitlement revision 2**; access policy; pricing note; Razorpay test-mode and second-signature findings; QA decision |
 
-24 files changed, 3,227 insertions. **Zero changes under `content/`, `drafts/`
-or `supabase/`** — confirmed by diff, and the evidence for §17.
+**Zero changes under `content/`, `drafts/` or `supabase/`** across the whole
+sprint — confirmed by diff, and the evidence for §5.
 
 ---
 
@@ -267,32 +275,133 @@ way was found and none was invented.
 of what matters — name match, joint accounts, savings versus current — while
 Cashfree documents all three.
 
-## 3.4 Entitlement architecture — ⏸️ Awaiting approval
+## 3.4 Entitlement architecture — ⏸️ Awaiting approval (revision 2)
 
-`docs/ENTITLEMENT.md`, presented as a proposal because the brief requires schema,
-RLS, privileged operations and rollback to be approved **before** they exist.
+`docs/ENTITLEMENT.md`, a proposal because the brief requires schema, RLS,
+privileged operations and rollback to be approved **before** they exist.
 
-Three tables: `payments` and `webhook_events` append-only, `entitlements`
-mutable with an audit trail. The RLS model's central feature is what it
-**omits** — no INSERT, UPDATE or DELETE policy on any of the three. With RLS
-enabled and no policy, every client write is refused; writes happen only through
-the service role. **The absence of a policy is the security control**,
-generalising the rule `attempts` already follows.
+**Five tables now, not three**, and the division is the fix rather than growth:
 
-Correspondingly: the service role bypasses RLS, so **every privileged write must
-re-check the owner in application code**. On the write path RLS is not a second
-line of defence; there is no first line.
+```
+payment_orders   append-only   our intent, and the ONLY source of ownership
+payments         facts         one row per payment attempt; status monotonic
+webhook_events   state machine delivery, claim, outcome — "seen" ≠ "done"
+manual_grants    append-only   grandfathering, comps, operator revocation
+entitlements     projection    derived from the above; never mutated directly
+```
 
-**Three things this breaks, stated before the design rather than found after:**
+The RLS model is unchanged and is still the part I would defend hardest: **no
+INSERT, UPDATE or DELETE policy on any table, and no policy at all on
+`webhook_events` or `manual_grants`.** With RLS enabled and no policy, every
+client write is refused; writes happen only through the service role. **The
+absence of a policy is the security control.**
+
+Its corollary is now stated where it belongs: the service role bypasses RLS, so
+on the write path RLS is not a second line of defence — there is no first line.
+**Every privileged write verifies ownership in application code**, and §6.1 of
+that document fixes exactly where ownership comes from, which revision 1 never
+said.
+
+**Three things this breaks**, unchanged, with the full analysis moved into
+`docs/ACCESS_POLICY.md`:
 
 - ⏸️ **"Nothing is ever gated behind sign-in" stops being true.** An entitlement
-  is attached to an account. Every alternative is copyable, and the brief is
-  explicit that client-held flags are not access control. The free 150 stay
-  exactly as they are — static, guest-first, no affordance. **This is a
-  narrowing of a documented rule and needs sign-off, not a quiet edit.**
+  is attached to an account; every alternative is copyable. The free 150 stay
+  exactly as they are. **A narrowing of a documented rule, needing sign-off.**
 - The product gains request-time surface; the invariant weakens to "every *page*
   is static".
 - Entitlement is the one thing that is not local-first.
+
+## 3.4a The webhook defect, and how it was fixed
+
+**What revision 1 did.** Insert the event id, treat a primary-key collision as a
+duplicate and return 200, then grant.
+
+**Why it was wrong.** The insert committed independently of the grant. If the
+grant then failed — transient database error, a deploy mid-request, any
+exception — the event row survived with `processed_at` null. Razorpay retried,
+the insert collided, and the handler returned **200 without retrying the
+grant**. Razorpay then correctly stopped retrying. The payment was captured, no
+entitlement existed, and nothing in the product knew.
+
+**The error underneath it generalises:** *"we have seen this event"* and *"we
+have acted on this event"* are two different facts, and revision 1 stored them
+as one. A primary key answers the first question; it was being used to answer
+the second.
+
+**The fix, in three parts.**
+
+1. **A durable state machine.** `webhook_events` gains
+   `status ∈ (pending, processing, processed, failed, parked)`, `attempts`,
+   `locked_until` and `last_error`. A single `insert … on conflict … do update
+   … where` statement performs insert-or-claim atomically. Returning zero rows
+   is **ambiguous** — processed, parked, or a live lock — so the handler reads
+   the row to distinguish them. Returning 200 on all three would be revision 1's
+   error again.
+2. **The grant and its record commit together.** The payment fact, the
+   entitlement projection and the transition to `processed` are **one
+   transaction**. There is no window in which one exists without the other. A
+   crash anywhere rolls back all three and the lock expires, so nothing wedges.
+3. **Entitlement is derived, not mutated.** `recompute_entitlement` is a pure
+   function of the stored facts, and `payments.status` is monotonic — enforced
+   by a database trigger, so no handler or manual fix can bypass it. **Ordering
+   and duplication stop being cases to handle and become impossible to get
+   wrong.** A late `captured` after a `refunded` is dropped by the trigger; a
+   duplicate event recomputes to the same row.
+
+**The concurrency argument, not asserted but made**, in `docs/ENTITLEMENT.md`
+§6.4: two simultaneous deliveries, a worker that died mid-process, a worker that
+died between transactions, and a worker that died inside the transaction. The
+claim statement takes a row lock for its duration, so the second claimant
+re-evaluates its `where` against the committed row and matches nothing —
+**exactly one claimant, always**. And a second, independent guarantee: even if
+every lock failed, idempotence of the projection makes a double grant
+impossible. The locking prevents wasted work; **correctness does not depend on
+it**.
+
+**`parked` is the state revision 1 lacked**, and it does two jobs. It stops one
+poison event returning 500 for 24 hours and tripping Razorpay's auto-disable —
+which would break *every* future payment, not just the bad one. And it makes the
+acknowledgement honest: a 200 on a parked event says "received, and recorded
+that we did not act", which is alerted, queryable and in the sweep's queue, not
+silent. The attempt cap (5) promotes a stuck `failed` to `parked` for the same
+reason.
+
+**The sweep now has two jobs.** Provider-side drift as before, and — new —
+re-driving every `failed`, `parked` or lock-expired event. **A failed grant is
+now a row in a queryable queue rather than a lost log line**, which is the
+direct answer to the defect.
+
+**Alternatives considered and rejected, with reasons** (§6.6): a pure single
+transaction cannot satisfy "a failed grant remains visible" because a rollback
+leaves no trace, and gives no way to park a poison event; a transactional outbox
+gives up the provider's retry safety net and needs always-on compute this product
+does not have. Both are recorded with the conditions under which they would win.
+
+**Four further corrections from the same review:**
+
+- **Two SQL errors of my own**, found while writing revision 2: `user_id uuid
+  not null … on delete set null` is a contradiction that makes the delete fail,
+  and §11's description had the foreign-key direction garbled. Both fixed.
+- **Raw webhook payloads are no longer stored.** Revision 1 kept `payload jsonb
+  not null` forever; Razorpay payloads carry contact email, phone, card last
+  four, issuer and UPI VPA. Revision 2 stores a **`body_sha256`** and an
+  **allowlisted** redacted subset, purged after 180 days — just past Razorpay's
+  six-month refund limit. An allowlist cannot go stale when the provider adds a
+  field.
+- **Account deletion is pseudonymisation, not `restrict`.** Revision 1 blocked
+  deletion to preserve evidence, which is a developer deciding a legal question.
+  Revision 2 nulls the user reference and keeps the order, amount, dates and
+  provider ids, so we can still answer *"was this order paid"* and not *"by
+  whom"*. Still question 6.7 for counsel, now with three concrete options
+  instead of one assumption.
+- **There are two signatures, not one** (`docs/RAZORPAY.md` §10.2) — the webhook
+  signs the raw body with the **webhook secret**; the Checkout return signs
+  `order_id + "|" + payment_id` with the **API key secret**. Different keys,
+  different messages, and confusing them produces verification that is wrong in
+  a way that looks right. Razorpay's own documentation also says **"Do not use
+  the `razorpay_order_id` returned by Checkout"** — independent confirmation of
+  the ownership rule in §6.1, arriving from the provider.
 
 ## 3.5 Implementation plan and sandbox — ⏸️ / ⛔
 
@@ -300,14 +409,27 @@ Planned in `docs/ENTITLEMENT.md` §11. **No code written**, per the instruction
 that the sandbox comes only after the architecture and approval gates.
 
 **Phase 1 needs no approval, no provider and no sandbox**, and is where
-provider-independence is actually established: the adapter, the idempotent grant
-function, and tests against a mock. Written after a real integration instead,
-the Razorpay shape leaks into everything. The cases that decide
-correctness — duplicate event, refund before capture, signature mismatch,
-webhook and sweep racing — are also harder to produce against a live sandbox
-than against a mock.
+provider-independence is actually established: the adapter, `recompute_entitlement`
+as a pure function, and tests against a mock. Written after a real integration
+instead, the Razorpay shape leaks into everything.
 
-⛔ Phase 2 is blocked by the same missing container runtime as §2.2.
+The Phase 1 test list grew with the redesign, and it is now the real deliverable
+of that phase: duplicate delivery, **concurrent** delivery, worker death between
+transactions, worker death **inside** the transaction, refund-before-capture,
+two payments on one order, two orders for one user, duplicate refund,
+chargeback-then-comp, and a poison event reaching the attempt cap. Every one of
+these is **easier against a mock than against a live sandbox**, which is the
+argument for the ordering.
+
+**Two claims are explicitly flagged as untested.** `docs/ENTITLEMENT.md` §6.4
+argues the concurrency properties; it does not prove them. Two need a real
+Postgres rather than a mock and are written down as the first integration tests
+Phase 2 should carry: that the claim statement admits exactly one of two
+simultaneous claimants, and that the monotonic trigger drops a late `captured`.
+Until those run, §6.4 is reasoning, not evidence.
+
+⛔ Phase 2 is blocked by the same missing container runtime as §2.2. The options
+and a recommendation are now in `docs/INFRASTRUCTURE.md` §5 — see §8 item 6.
 
 Phase 4 records what a perfect sandbox run still does not prove: settlement
 timing, refund fee behaviour, chargebacks, the 24-hour auto-disable, and
@@ -321,6 +443,30 @@ activation itself. **The sandbox proves the code, not the business.**
 
 `docs/WEBSITE_READINESS.md`. Four of the six pages Razorpay requires are not
 shippable, and **two are blocked on decisions rather than work**.
+
+Two approval-facing documents were added this revision and belong here as much
+as under §3:
+
+- **`docs/ACCESS_POLICY.md`** — the six access rules, what each means for the
+  product as it stands, and **seven conflicting statements** found by grep in
+  `CLAUDE.md`, `docs/SUPABASE.md` and `docs/CONTENT_EXPOSURE.md`. Two are flat
+  contradictions, two need a qualifying clause, and three turn out to be fine.
+  **None has been edited**, because `CLAUDE.md` is the policy and the brief says
+  not to change the policy before approval.
+- **`docs/PRICING_DECISION.md`** — ₹599 with the fee arithmetic, what a buyer
+  actually receives at launch (234 questions and the existing runners, and
+  nothing else), the five named premium features that **do not exist and
+  therefore cannot be advertised**, and grandfathering with each option's schema
+  cost.
+
+**The consequence worth reading in `ACCESS_POLICY.md` §3**: the
+no-silent-change rule is enforceable for accounts and **not** for guests. A
+signed-in user can be protected by allowing access where a prior attempt
+exists; a guest's history lives in their browser and cannot be trusted by a
+server — the same reasoning that rules out client-held flags, applied
+consistently. That turns grandfathering from a nicety into the only mechanism
+that honours the rule, and it is why the recommendation is to announce before
+the cutoff rather than after.
 
 The governing rule: **nothing is advertised before it is built.** The premium
 features that justify the price — analytics, weak-area identification, pacing
@@ -365,7 +511,7 @@ public page; it did not change a question.
 | Gate | Result |
 |---|---|
 | `npm run verify:content` | ✅ exit 0 — every content gate passed |
-| Test suite | ✅ **340 passed, 0 failed**, 1 `todo` |
+| Test suite | ✅ **0 failed.** 340 passing under `verify:content`; 339 + 1 skipped under a bare `npm test` — see below |
 | `npm run release:check` | ✅ **all 6 passed** |
 | `npm run verify:rls` | ☑️ anonymous checks passed; **cross-user isolation not tested** |
 | `npm run build` | ✅ included in `verify:content` |
@@ -377,8 +523,41 @@ answer/solution split that Core received. It is not a commercial exposure, since
 nothing in Module B is sellable, but it is a known hole and the flag should drop
 only when the split happens.
 
+**The count differs between the two runs, and the difference is not a
+regression.** A bare `npm test` reports 339 passing and **1 skipped**; under
+`verify:content` the same suite reports 340 passing and 0 skipped. The skipped
+test is *"a production build is present when CI requires one"*, which is
+CI-gated: `verify:content` builds first, so it runs; standalone, it skips.
+Reported because a changed number with no explanation is how a real regression
+gets waved through.
+
 **All of this is automated validation.** It proves no question is correct and
 nobody has signed anything off.
+
+---
+
+## 6.1 Remaining technical risks
+
+Ranked by what they would cost if they went wrong.
+
+| # | Risk | Status |
+|---|---|---|
+| 1 | **The §6.4 concurrency argument is reasoning, not evidence.** Two claims need a real Postgres to verify | ⛔ untestable until the §8.6 decision |
+| 2 | **Razorpay's 24-hour webhook auto-disable.** Mitigated by design (sweep + `parked` + attempt cap); the mitigation is **unbuilt and untested** | ⏸️ by design, not yet by code |
+| 3 | **The two signature schemes** (webhook secret over raw body; API secret over `order_id\|payment_id`). Confusing them verifies wrongly while looking right | ☑️ documented; fixture tests specified, not written |
+| 4 | **The `JSON.stringify` trap in Razorpay's own sample.** Fails intermittently, in production, from vendor-blessed code | ☑️ documented; CI test specified, not written |
+| 5 | **Module B ships 19 answer keys** in `module-b/timed.html`. Not a commercial exposure — nothing in Module B is sellable — but a real hole | 🔄 carried as a `todo` |
+| 6 | **No independent security review** of the entitlement design. It has been reviewed once, by the reviewer who found the §3.4a defect, which is exactly why a second pass is worth buying | ⚖️ awaiting security |
+| 7 | **Cross-user RLS isolation untested.** Anonymous access is verified; two-token isolation is not | ⛔ blocked on §8.6 |
+| 8 | **Supabase point-in-time recovery unverified** on the current plan. "We can roll back" is an unchecked claim until it is checked | 🔄 check before the first live payment |
+| 9 | **The OG image device mockup** ships with no recorded licence | ⚖️ awaiting a decision |
+
+**Risk 1 deserves its place at the top.** The redesign in §3.4a is argued
+carefully and I believe it is correct, but the last design was also believed
+correct and contained a defect that would have taken money and granted nothing.
+**The lesson is not "argue harder" — it is that the concurrency claims need
+tests against a real database before anyone relies on them.** That is why the
+container-runtime decision (§8.6) is no longer a QA convenience.
 
 ---
 
@@ -397,75 +576,122 @@ compliance, provider approval or production readiness.
 
 ## 8. Next decisions required from me
 
-The operator's, in the order that unblocks the most. Items 1–5 are decisions,
-not work, and between them they unblock most of the remaining sprint.
+Six decisions unblock everything else, and the brief asked for a small set. This
+is it. **Items 7–16 are the longer tail and need nothing from you until the
+first six are settled.**
 
-### Blocking the most
+Each is labelled with what it blocks, so the dependency is visible rather than
+implied.
 
-1. **Approve or amend the entitlement schema** — `docs/ENTITLEMENT.md` §3, §4,
-   applied to a **local or staging** project only. Blocks the entire payments
-   build.
-2. **Accept that sign-in becomes required for purchase and premium**, narrowing
-   `CLAUDE.md`'s "nothing is ever gated behind it" to the free product. There is
-   no architecture that avoids this and keeps access control real.
-3. **Settle the price.** ₹599 is recommended with the arithmetic shown. It
-   blocks the Pricing page, which blocks **live API keys**, which blocks
-   everything downstream. It is no longer free to defer.
-4. **Decide grandfathering** — grandfather, announce, or gate silently. A column
-   either way; impossible to retrofit once the data is gone.
-5. **Decide the public address.** The E-Commerce Rules require a principal
-   geographic address displayed prominently; for an individual working from
-   home, that is a home address on a public site. A real privacy cost, and the
-   strongest practical argument for registering an entity — which is not a tax
-   argument.
+### The six
 
-### Needed before applying to Razorpay
+| # | Decision | Blocks | Recommendation |
+|---|---|---|---|
+| **1** | **Approve or amend the five-table schema and the no-write-policy RLS model** — `docs/ENTITLEMENT.md` §14 | The entire payments build. Phase 2 onward | Approve, applied to an **isolated** project only |
+| **2** | **Approve the access rules**, including that sign-in becomes required for purchase and premium — `docs/ACCESS_POLICY.md` §5 | The four `CLAUDE.md` edits; all gating work | Approve the six rules; no architecture avoids this and keeps access control real |
+| **3** | **Choose a grandfathering option** — A, B or C, `docs/ACCESS_POLICY.md` §3 | The entitlement schema's launch data, and the pre-cutoff notice | **A** — grandfather accounts, announce before the cutoff, anchor the window to the 16 Jan 2027 sitting |
+| **4** | **Confirm ₹599** — `docs/PRICING_DECISION.md` §6 | The Pricing page → **live API keys** → everything | Hold ₹599 and ship the features |
+| **5** | **Confirm the launch offer is described as 234 questions and the existing runners**, with unbuilt features on a roadmap only | All customer-facing copy | Confirm. Five named features do not exist |
+| **6** | **Install a local container runtime** (not a staging project) — `docs/INFRASTRUCTURE.md` §5 | Auth QA, RLS isolation testing, payments Phase 2, **and the §6.1 risk 1 tests** | **Yes.** Needs no approval of anything cloud, creates nothing, and is the safer place for a service-role key |
 
-6. **Confirm the bank account qualifies** — name match against PAN, joint or
+**Why 6 is on this list and was not before.** It was a QA convenience. After the
+§3.4a redesign it is the only way to test the concurrency claims the design now
+rests on, and risk 1 in §6.1 says plainly that those claims are reasoning rather
+than evidence until it happens.
+
+**Note on 3.** The schema already carries `source = 'grandfathered'` because this
+is a column either way. Choosing A costs one insert per existing account.
+Choosing C and reversing it later costs an archaeology exercise, because the
+record of where the line fell will not exist.
+
+### Then, before applying to Razorpay
+
+7. **Confirm the bank account qualifies** — name match against PAN, joint or
    sole, savings or current, and whether the bank's own terms permit business
    receipts. Cheapest to check first, worst to discover during review.
-7. **Decide the support mailbox and grievance officer.** The 48-hour
-   acknowledgement is an operational commitment, not a page, and a personal
-   address is the wrong answer once public.
-8. **Decide the refund window** — inside six months, since Razorpay cannot
-   refund past it.
+8. **Decide the public address.** Required by the E-Commerce Rules and displayed
+   prominently; for an individual working from home, that is a home address on a
+   public site. A real privacy cost, and the strongest practical argument for
+   registering an entity — which is not a tax argument.
+9. **Decide the support mailbox and grievance officer.** The 48-hour
+   acknowledgement is an operational commitment, not a page.
+10. **Decide the refund window** — inside six months, since Razorpay cannot
+    refund past it.
 
 ### To be delegated
 
-9. **Instruct a lawyer** — seven questions in `LEGAL_BRIEF.md` §6, five in the
-   takedown process, plus the §8 facts only the operator can supply.
-10. **Instruct a CA** — seven questions in `BUSINESS_SETUP.md` §7, of which
+11. **Instruct a lawyer** — seven questions in `LEGAL_BRIEF.md` §6 (6.7 now
+    carries three concrete options rather than one assumption), five in the
+    takedown process, plus the §8 facts only the operator can supply.
+12. **Instruct a CA** — seven questions in `BUSINESS_SETUP.md` §7, of which
     OIDAR is the one that could change the checkout.
-11. **Get the ten items in `RAZORPAY.md` §13 in writing.**
-12. **Decide on an independent security review** before anything is sold.
+13. **Get the ten items in `RAZORPAY.md` §13 in writing.**
+14. **Commission an independent security review** of the entitlement design
+    before anything is sold. §6.1 risk 6 — one review already found a defect
+    that would have taken money and granted nothing, which is the argument.
 
-### Smaller, but mine to raise
+### Smaller
 
-13. **Install a container runtime**, or provision a separate Supabase project as
-    staging. Unblocks auth QA and payments Phase 2 together.
-14. **Resolve the two open IP items** — the Figma brand confirmation and the OG
+15. **Resolve the two open IP items** — the Figma brand confirmation and the OG
     device mockup's licence. The mockup ships today with unknown provenance.
-15. **Decide whether Figure Sequences premium is worth launching** at 37
-    questions, or held back.
-16. **Decide whether Module B ships at all**, given that 0 of 16 are signed off
-    and nothing in it may be free or sold until someone signs.
+16. **Decide whether Figure Sequences premium launches** at 37 questions, and
+    **whether Module B ships at all** given 0 of 16 signed off.
+
+---
+
+## 8.1 The exact next actions, and what each waits on
+
+Separated as the brief asks: **completed**, **tested**, and **proposed** are not
+the same thing.
+
+| Action | State | Waits on |
+|---|---|---|
+| Razorpay **test-mode** sign-up; keys to `.env.local` only | proposed, can start now | nothing |
+| `.env.example` gains variable **names**, no values | proposed, can start now | nothing |
+| Adapter interface + in-memory mock provider | proposed, can start now | nothing |
+| `recompute_entitlement` as a pure function + unit tests | proposed, can start now | nothing |
+| Both signature schemes + fixture tests | proposed, can start now | nothing |
+| The ten Phase 1 failure-case tests | proposed, can start now | nothing |
+| **Concurrency integration tests** (risk 1) | proposed | **decision 6** |
+| The migration, on an isolated project | proposed | **decisions 1 and 6** |
+| The four `CLAUDE.md` / `SUPABASE.md` edits | proposed, written out | **decision 2** |
+| Grandfathering notice copy | proposed | **decision 3** |
+| Pricing page | proposed | **decision 4** |
+| Terms, Refunds, Contact routes | proposed | decisions 8, 9, 10 + lawyer |
+| Razorpay activation application | proposed | decisions 4, 7, 8, 9, 10 |
+| Content split: premium solutions out of `public/` | proposed | **decision 1** |
+| Extend `release:check` with the premium-reachability gate | proposed | the entitlement existing |
+
+**Everything in the first six rows needs nothing from you.** That is the work I
+would do next if told to continue, and none of it touches a database, a
+credential, or production.
 
 ---
 
 ## 9. The honest summary
 
 The legal and provenance position is materially stronger than at the start of
-the sprint: the independence claim is now made in full and is supported by
-measurement, the IP position is audited, and a lawyer can be instructed from a
-real brief rather than a description.
+the sprint: the independence claim is made in full and supported by measurement,
+the IP position is audited, and a lawyer can be instructed from a real brief.
 
-The payments position is **researched and designed, and nothing is built**. That
-is the correct state given the gates in the brief, but it should not be mistaken
-for being close to taking money. Between here and a first rupee sit an approval,
-five decisions, four pages that do not exist, a provider application that can be
-refused, and a build that has not started.
+**The payments position improved by getting worse.** The review found a defect
+that would have taken money and granted nothing, and finding it is worth more
+than the design being clean on paper. The corrected version is stronger in a way
+that matters beyond the bug: entitlement is now **derived** from payment facts
+rather than mutated by each event, which makes duplication and ordering
+impossible to get wrong rather than handled case by case. Four other defects
+fell out of the same pass — two SQL contradictions of my own, indefinite
+retention of personal data in raw payloads, and `on delete restrict` quietly
+deciding a legal question.
+
+**It is still researched and designed, and nothing is built.** Between here and
+a first rupee sit six decisions, four pages that do not exist, a provider
+application that can be refused, a build that has not started, and a set of
+concurrency claims that are argued but untested. The last of those is the one I
+would least like to be wrong about, which is why §6.1 ranks it first and why the
+container-runtime decision is now on the critical path rather than beside it.
 
 The thing most likely to go wrong is still the thing this sprint could not do:
 **nobody has signed off any question.** Sixteen GAM questions, automated and
-blind-reviewed, remain unsellable and unofferable for exactly that reason, and
-that gate held under commercial pressure this sprint. It should keep holding.
+blind-reviewed, remain unsellable and unofferable for exactly that reason. That
+gate held under commercial pressure twice this sprint. It should keep holding.

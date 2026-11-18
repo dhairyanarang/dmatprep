@@ -391,6 +391,37 @@ This is recorded here because it is exactly the class of error that ships: it
 comes from the vendor, it looks authoritative, and it fails intermittently
 rather than immediately.
 
+### 10.2 There are TWO signatures, with different keys and different messages
+
+Not noticed in the first pass, and confusing them would produce verification
+that is wrong in a way that looks right. Both verified 18 November 2026 on
+[integration-steps](https://razorpay.com/docs/payments/payment-gateway/web-integration/standard/integration-steps/).
+
+| | **Webhook** | **Checkout return** |
+|---|---|---|
+| Header / field | `X-Razorpay-Signature` | `razorpay_signature` in the Checkout response |
+| Key | the **webhook secret** | the **API `key_secret`** |
+| Message | the **raw request body** | `order_id + "\|" + razorpay_payment_id` |
+| Encoding | not stated in prose; a block is labelled "HMAC Hex Digest" | **hex**, stated |
+
+**One rule from that page is load-bearing and easy to get backwards:**
+
+> "Do not use the `razorpay_order_id` returned by Checkout."
+
+The `order_id` in the signed string must be the one **our server stored** when
+it created the order. Using the value the browser handed back would let a
+tampered response verify against itself. This is the same reasoning as
+`docs/ENTITLEMENT.md` §6.1 — ownership comes from the record we wrote, never
+from the payload — arriving from the provider's own documentation.
+
+Two further facts from the same page, both **VERIFIED**:
+
+- **An order must be created server-side first.** "An order should be created
+  for every payment", via the Orders API, "a server-side API call".
+- **"Payments made without an `order_id` cannot be captured and will be
+  automatically refunded."** So the Orders API is not optional, and the
+  `payment_orders` table is not a design preference.
+
 ---
 
 ## 11. Reconciliation is mandatory, not optional
@@ -441,6 +472,30 @@ Test cards, including cards that force specific failures —
 `authentication_failed`, `gateway_technical_error` — are published at
 [test-card-upi-details](https://razorpay.com/docs/payments/payments/test-card-upi-details/).
 No test UPI IDs appear on that page. **VERIFIED.**
+
+### 12.1 Test-mode integration requirements
+
+Verified 18 November 2026 on
+[setup-edit-payments](https://razorpay.com/docs/webhooks/setup-edit-payments/)
+and the integration-steps page above.
+
+| Requirement | Detail |
+|---|---|
+| Test keys | Generated separately from live keys, immediately after sign-up |
+| Webhooks in test mode | **Supported.** Dashboard → Accounts & Settings → Webhooks |
+| Test-mode webhook OTP | "Enter the default OTP `754081` when prompted, while setting up, editing or deleting a webhook in test mode" |
+| Webhook secret | **Merchant-chosen.** "Entering the secret is optional but recommended" |
+| Secret ≠ API secret | "The webhook secret does not need to be the Razorpay API key secret" — and should not be |
+| Webhook URL count | Up to 30 |
+| Local delivery | Needs a publicly reachable URL. A tunnel is the normal answer, and is a development tool, not a deployment |
+| Test cards | Published, including cards that force `payment_timed_out`, `insufficient_fund`, `card_declined`, `authentication_failed`, `gateway_technical_error` |
+| Test UPI | **None published** on the test-details page |
+
+**"Optional but recommended" is wrong for this product.** Without a webhook
+secret there is no signature to verify, and an unauthenticated endpoint that
+grants entitlements is the whole problem. **The secret is mandatory here**, it
+must differ from the API key secret, and a missing-secret configuration should
+fail the build rather than degrade quietly.
 
 So the dependency order is:
 
