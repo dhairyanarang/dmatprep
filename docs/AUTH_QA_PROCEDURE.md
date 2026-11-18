@@ -6,40 +6,97 @@ The end-to-end auth and sync journeys remain the largest unverified area of this
 product. This document is what makes them runnable the moment an isolated
 project exists; it is not a substitute for running them.
 
-## Why it was not run
+## Why it has not been run — re-checked 18 November 2026
 
-A disposable Supabase project was not available, and the three routes to one
-were all closed:
+Nothing has changed since Sprint 3, and the position was re-tested rather than
+assumed:
 
-| Route | Status |
+| Route | Status on 18 Nov 2026 |
 |---|---|
-| Local stack (`supabase start`) | **Docker is not running** on this machine, and `supabase/` holds only migrations — no `config.toml`, so the stack is not initialised either. |
-| A new cloud project via the CLI | The Supabase CLI is installed (2.114.0) but holds no access token. Creating a cloud project spends quota and creates outward-facing resources, which needs explicit approval. |
-| The existing project | **This is production.** `.env.local` points at it, it is what the running app uses, and signing in would create a real user record. Out of scope by instruction and by judgement. |
+| Local stack (`supabase start`) | **No container runtime exists on this machine at all.** The `docker` binary is absent, not merely stopped; `colima` and `podman` are absent too. `supabase/` holds only migrations — no `config.toml`, so the stack is not initialised either. |
+| A new cloud project via the CLI | CLI present (2.114.0) but holds no access token. Creating a cloud project spends quota and creates outward-facing resources, which needs explicit approval. |
+| The existing project | **This is production.** `.env.local` points at it, it is what the running app uses, and signing in would create a real user record. |
 
-So the instruction was followed to the letter: prepare the procedure, and stop
-before connecting to production.
+**The local stack is the recommended path** and §A below is the exact setup. It
+costs nothing, creates no cloud resources, cannot reach production, and can be
+destroyed with one command. The only reason it has not been used is that the
+machine has no way to run a container.
 
-## What protects against running it against production anyway
+---
 
-`npm run qa:assert-isolated` stands in front of every test below and exits
-non-zero unless isolation is proved. It hardcodes nothing: production is
-whatever `.env.local` points at, the QA target is whatever `.env.qa.local`
-points at, and it refuses if they are the same project.
+## A. Setting up the local stack — the recommended route
 
-Verified against three cases, with the output in each:
+Fastest when the operator is at the machine. Everything stays on the laptop.
 
-| Case | Result |
-|---|---|
-| No `.env.qa.local` | Refuses, and says how to make one. |
-| `.env.qa.local` pointed at production | **Refuses** — "The QA project (phkj…) is the SAME project as the one in .env.local." |
-| A separate project, but carrying a service-role key | **Refuses** — a service-role key bypasses RLS entirely, so the RLS tests would prove nothing. |
-| A separate project with only a publishable key | Passes, and prints both project refs truncated so a human can tell them apart. |
+**A1. Install a container runtime.** Either is fine:
 
-`.env.qa.local` is covered by `.env*` in `.gitignore`, so it cannot be
-committed. No project ref or key is printed in full.
+```bash
+# Docker Desktop — the usual choice
+brew install --cask docker && open -a Docker
 
-## Setting the isolated environment up
+# or Colima — lighter, no GUI, no licence question for commercial use
+brew install colima docker && colima start
+```
+
+Confirm with `docker info`. That command currently fails because no runtime is
+installed.
+
+**A2. Initialise the stack.** `supabase/` has migrations but no `config.toml`:
+
+```bash
+supabase init     # writes supabase/config.toml — commit it
+supabase start    # pulls the images and brings up Postgres, Auth, Storage
+```
+
+`supabase start` prints an API URL (usually `http://127.0.0.1:54321`), an anon
+key and a service-role key. **Only the first two go in `.env.qa.local`.**
+
+**A3. Apply the schema.**
+
+```bash
+supabase db reset   # runs every migration in supabase/migrations against the local db
+```
+
+That applies `20260813120000_init_progress.sql` — five tables and their RLS
+policies — and `20260813150000_revoke_trigger_fn_execute.sql`.
+
+**A4. Write `.env.qa.local`:**
+
+```
+NEXT_PUBLIC_SUPABASE_URL=http://127.0.0.1:54321
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=<the anon key supabase start printed>
+```
+
+**A5. Prove isolation, then run the app against it:**
+
+```bash
+npm run qa:assert-isolated
+env $(grep -v '^#' .env.qa.local | xargs) npm run dev
+```
+
+**A6. Tear down when finished:** `supabase stop --no-backup`.
+
+### The one thing the local stack cannot test
+
+**Google OAuth.** The app's only sign-in path is Google, and the local stack has
+no Google OAuth client. Two options:
+
+- **Configure a test OAuth client** in Google Cloud Console pointed at
+  `http://127.0.0.1:54321/auth/v1/callback`. This tests the real path.
+- **Or** enable email/password on the local stack and drive the data layer
+  directly — which exercises RLS, the outbox, the merge and the retry behaviour
+  (rows 8–18 of the matrix) but **not** rows 1–5, the sign-in journey itself.
+
+The second is much faster and covers the rows where a bug costs a candidate
+their work. The first is the only way to close rows 1–5. Both should happen
+eventually; the second is worth doing first.
+
+## B. The cloud alternative, if the operator prefers it
+
+Slower and it creates billable resources, but it is the only route that
+exercises a real hosted Postgres and a real Google OAuth client end to end.
+
+Steps:
 
 1. **Create a new Supabase project.** Any region; the free tier is sufficient.
    Name it so it is obviously disposable — `dmatprep-qa-throwaway`.
@@ -69,6 +126,25 @@ committed. No project ref or key is printed in full.
    ```bash
    env $(grep -v '^#' .env.qa.local | xargs) npm run dev
    ```
+
+## What protects against running it against production anyway
+
+`npm run qa:assert-isolated` stands in front of every test below and exits
+non-zero unless isolation is proved. It hardcodes nothing: production is
+whatever `.env.local` points at, the QA target is whatever `.env.qa.local`
+points at, and it refuses if they are the same project.
+
+Verified against three cases, with the output in each:
+
+| Case | Result |
+|---|---|
+| No `.env.qa.local` | Refuses, and says how to make one. |
+| `.env.qa.local` pointed at production | **Refuses** — "The QA project (phkj…) is the SAME project as the one in .env.local." |
+| A separate project, but carrying a service-role key | **Refuses** — a service-role key bypasses RLS entirely, so the RLS tests would prove nothing. |
+| A separate project with only a publishable key | Passes, and prints both project refs truncated so a human can tell them apart. |
+
+`.env.qa.local` is covered by `.env*` in `.gitignore`, so it cannot be
+committed. No project ref or key is printed in full.
 
 ## The test matrix
 
