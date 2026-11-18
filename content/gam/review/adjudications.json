@@ -7344,6 +7344,122 @@
       "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
       "packContributions": {},
       "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 performed the ablation and Claude Sonnet 5 the blind re-answer. That is stronger independence than one model doing both — Opus is the pack author’s own model, so Sonnet agreeing with a key is a genuine cross-model check rather than a model agreeing with itself. The blind half agreed with the key on 17 of 17 questions, with exactlyOneDefensibleOption true on all 17. Where the halves differ they differ about mechanism, not answer: the blind half judged economics q4’s option d refuted by the source, while the ablation half judged it also refuted by q2’s stem without any source. Both can hold at once, and it is the ablation finding that gates. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
+    },
+    {
+      "id": "independent-2026-11-18",
+      "kind": "independent",
+      "countsAsIndependentReview": true,
+      "status": "complete",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-11-18",
+      "questions": {
+        "gam-econ-pt-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p3 rounds a part tonne up, so 120.4 becomes 121; t1 gives general cargo 4 euros per tonne; 121 x 4 = 484, which is above the 200 class minimum so the tonnage fee stands. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"d\", confidence low) — Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q1 (intra-question self-disclosure)",
+              "gam-econ-pt-001-q2"
+            ],
+            "ablationLeakDetail": "Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the minimum is charged in place of the tonnage fee, never added, and a consignment is never charged both. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence high) — The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q1"
+            ],
+            "ablationLeakDetail": "The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q3": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): t1 rate per tonne: general 4, bulk grain 2, refrigerated 9, hazardous 15. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"d\", confidence high) — No sibling transfers a value, ranking, constraint or principle. q1 discloses one cell of the rate table but a single cell cannot settle an argmax over four classes. Clean of leakage, and nonetheless the weakest item in the pack: universal port practice puts dangerous goods at the top of every tariff, so it is answerable from world knowledge with no source at all.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-economics-port-tariff-001": "ca8e33486cd45a509ef551abb95051be"
+      },
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "packContributions": {},
+      "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 ablated and Claude Sonnet 5 re-answered blind. That is stronger independence than one model doing both, since Opus is the pack author’s own model. The blind half agreed with the key on 3 of 3, with exactly one defensible option on all three. The ablation half found that withdrawing gam-econ-pt-001-q4 removed that question’s leaks and nothing else: both findings previously recorded against q1 are intact, and a new weak coupling now runs q1 to q2. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
     }
   ]
 }

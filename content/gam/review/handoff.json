@@ -6,7 +6,7 @@
     "independentAdjudication": "Evidence from adjudicators who are not the author and never saw the key. Strong evidence, not proof.",
     "humanReview": "A person taking responsibility. Nothing substitutes for it and no pack ships without it."
   },
-  "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 performed the ablation and Claude Sonnet 5 the blind re-answer. That is stronger independence than one model doing both — Opus is the pack author’s own model, so Sonnet agreeing with a key is a genuine cross-model check rather than a model agreeing with itself. The blind half agreed with the key on 17 of 17 questions, with exactlyOneDefensibleOption true on all 17. Where the halves differ they differ about mechanism, not answer: the blind half judged economics q4’s option d refuted by the source, while the ablation half judged it also refuted by q2’s stem without any source. Both can hold at once, and it is the ablation finding that gates. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them.",
+  "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 performed the ablation and Claude Sonnet 5 the blind re-answer. That is stronger independence than one model doing both — Opus is the pack author’s own model, so Sonnet agreeing with a key is a genuine cross-model check rather than a model agreeing with itself. The blind half agreed with the key on 17 of 17 questions, with exactlyOneDefensibleOption true on all 17. Where the halves differ they differ about mechanism, not answer: the blind half judged economics q4’s option d refuted by the source, while the ablation half judged it also refuted by q2’s stem without any source. Both can hold at once, and it is the ablation finding that gates. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them.\n\nThe two halves ran on DIFFERENT models, deliberately: Claude Opus 5 ablated and Claude Sonnet 5 re-answered blind. That is stronger independence than one model doing both, since Opus is the pack author’s own model. The blind half agreed with the key on 3 of 3, with exactly one defensible option on all three. The ablation half found that withdrawing gam-econ-pt-001-q4 removed that question’s leaks and nothing else: both findings previously recorded against q1 are intact, and a new weak coupling now runs q1 to q2. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them.",
   "caveatAppliesTo": "Every figure drawn from the round that carries it, including the blind re-answer agreement rate. Do not quote that rate without this qualification.",
   "rounds": [
     {
@@ -26,10 +26,24 @@
         "gam-social-sciences-coding-agreement-001": "03bd8c299440d42ea61e2af8e46c8afc"
       },
       "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 performed the ablation and Claude Sonnet 5 the blind re-answer. That is stronger independence than one model doing both — Opus is the pack author’s own model, so Sonnet agreeing with a key is a genuine cross-model check rather than a model agreeing with itself. The blind half agreed with the key on 17 of 17 questions, with exactlyOneDefensibleOption true on all 17. Where the halves differ they differ about mechanism, not answer: the blind half judged economics q4’s option d refuted by the source, while the ablation half judged it also refuted by q2’s stem without any source. Both can hold at once, and it is the ablation finding that gates. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
+    },
+    {
+      "id": "independent-2026-11-18",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "boundTo": {
+        "gam-economics-port-tariff-001": "ca8e33486cd45a509ef551abb95051be"
+      },
+      "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 ablated and Claude Sonnet 5 re-answered blind. That is stronger independence than one model doing both, since Opus is the pack author’s own model. The blind half agreed with the key on 3 of 3, with exactly one defensible option on all three. The ablation half found that withdrawing gam-econ-pt-001-q4 removed that question’s leaks and nothing else: both findings previously recorded against q1 are intact, and a new weak coupling now runs q1 to q2. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
     }
   ],
   "activePacks": 5,
-  "activeQuestions": 17,
+  "activeQuestions": 16,
   "retiredPacks": [
     {
       "id": "gam-business-administration-break-even-001",
@@ -230,52 +244,33 @@
       "id": "gam-economics-port-tariff-001",
       "domain": "economics",
       "title": "A port’s tariff for handling cargo",
-      "questions": 4,
-      "contentHash": "20c6a6aa1c120f131a9fef9b1c648264",
+      "questions": 3,
+      "contentHash": "ca8e33486cd45a509ef551abb95051be",
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
-        "warnings": 2,
+        "warnings": 1,
         "leakageErrors": 0,
         "leakageWarnings": 0
       },
       "independent": {
-        "round": "independent-2026-11-13",
-        "raisedIssues": [
-          "gam-econ-pt-001-q4: an independent adjudicator found it settled by gam-econ-pt-001-q2, gam-econ-pt-001-q1 (spec §5.9)"
-        ],
+        "round": "independent-2026-11-18",
+        "raisedIssues": [],
         "dependency": {
           "determined": 1,
-          "supported": 3,
+          "supported": 2,
           "independent": 0
         },
         "contributesUnderSection510": {}
       },
       "blockers": [
-        "independent adjudication raised 1 issue(s)",
-        "1 question(s) an adjudicator could narrow using a sibling: gam-econ-pt-001-q1",
+        "2 question(s) an adjudicator could narrow using a sibling: gam-econ-pt-001-q1, gam-econ-pt-001-q2",
         "not signed off by a person"
       ],
       "decisions": [
         {
-          "id": "gam-economics-port-tariff-001::decisive-coupling",
-          "question": "An adjudicator shown these questions with no source at all judged 1 of them settled by a sibling: gam-econ-pt-001-q4. Is that judgement right, and if it is, does the pack need rebuilding?",
-          "evidence": [
-            {
-              "questionId": "gam-econ-pt-001-q4",
-              "leakedBy": [
-                "gam-econ-pt-001-q2",
-                "gam-econ-pt-001-q1"
-              ],
-              "detail": "Two mechanisms compose. q2's stem stipulates a consignment below the class minimum is still charged, so option d — whether tonnage reaches the lowest figure the tariff lists — is false by sibling fiat with no reference to the source. And q1's stem spends a clause establishing the cargo 'is landed' while assuming a fee is owed; option a is the only option naming landing and its gloss repeats q1's exact verb. Options b and c have no textual footing anywhere in the pack and fall to ordinary plausibility. A candidate holding only these four questions answers q4 without the source."
-            }
-          ],
-          "ifAccepted": "The pack clears its last automated blocker and needs only sign-off.",
-          "ifNotAccepted": "The coupled questions must be rebuilt, which retires this round and requires a fresh one."
-        },
-        {
           "id": "gam-economics-port-tariff-001::section-5-10",
-          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 3 that ask only for recall. Are those judgements right?",
+          "question": "Spec §5.10 requires the source to contribute something the question uses, and the question to apply it rather than repeat it. The adjudicator found 0 question(s) the source contributes nothing to and 2 that ask only for recall. Are those judgements right?",
           "evidence": [
             {
               "noContribution": []
@@ -283,8 +278,7 @@
             {
               "recallOnly": [
                 "gam-econ-pt-001-q2",
-                "gam-econ-pt-001-q3",
-                "gam-econ-pt-001-q4"
+                "gam-econ-pt-001-q3"
               ]
             },
             {
@@ -296,14 +290,22 @@
         },
         {
           "id": "gam-economics-port-tariff-001::narrowing-couplings",
-          "question": "1 question(s) can be narrowed — not settled — using a sibling: gam-econ-pt-001-q1. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
+          "question": "2 question(s) can be narrowed — not settled — using a sibling: gam-econ-pt-001-q1, gam-econ-pt-001-q2. Is the cost to each item acceptable, or must they be rebuilt? Spec §5.9 leaves this to a person because severity is a judgement.",
           "evidence": [
             {
               "questionId": "gam-econ-pt-001-q1",
               "leakedBy": [
+                "gam-econ-pt-001-q1 (intra-question self-disclosure)",
                 "gam-econ-pt-001-q2"
               ],
-              "detail": "q2's stem asserts flat class minimums exist, letting the candidate read 200 as a minimum rather than a computed fee; since any computed fee exceeds it, option a dies. Redundant with an intra-question tell: three of four options share the factor 4, so the general-cargo rate of 4 euros/tonne is recoverable from the distractors alone. Only the rounding convention remains genuinely source-dependent."
+              "detail": "Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator."
+            },
+            {
+              "questionId": "gam-econ-pt-001-q2",
+              "leakedBy": [
+                "gam-econ-pt-001-q1"
+              ],
+              "detail": "The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word."
             }
           ],
           "ifAccepted": "The findings are recorded as accepted and stop blocking.",
@@ -314,8 +316,8 @@
           "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
           "evidence": [
             {
-              "contentHash": "20c6a6aa1c120f131a9fef9b1c648264",
-              "questions": 4
+              "contentHash": "ca8e33486cd45a509ef551abb95051be",
+              "questions": 3
             },
             {
               "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
@@ -330,7 +332,7 @@
           {
             "flag": "cross-question-leakage",
             "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q2. q2's stem asserts flat class minimums exist, letting the candidate read 200 as a minimum rather than a computed fee; since any computed fee exceeds it, option a dies. Redundant with an intra-question tell: three of four options share the factor 4, so the general-cargo rate of 4 euros/tonne is recoverable from the distractors alone. Only the rounding convention remains genuinely source-dependent."
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q1 (intra-question self-disclosure), gam-econ-pt-001-q2. Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator."
           }
         ],
         "gam-econ-pt-001-q2": [
@@ -352,7 +354,12 @@
           {
             "flag": "specific-concern",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): b. That does not make the item wrong, but it does mean the pack is not what settles it."
+          },
+          {
+            "flag": "cross-question-leakage",
+            "severity": "blocking",
+            "reason": "An independent adjudicator, shown the pack's questions without its source, could narrow this question using gam-econ-pt-001-q1. The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word."
           }
         ],
         "gam-econ-pt-001-q3": [
@@ -374,34 +381,7 @@
           {
             "flag": "specific-concern",
             "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (moderate confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
-          }
-        ],
-        "gam-econ-pt-001-q4": [
-          {
-            "flag": "source-supported",
-            "severity": "review",
-            "reason": "Classified source-supported: a domain-literate candidate could reason to the answer without reading the pack. Legitimate under spec §5.6 provided the pack supplies the framework and no memorised outside fact is required — the human reviewer should confirm both."
-          },
-          {
-            "flag": "recall-only",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this to ask the candidate to find something in the source rather than do something with it. Not a defect on its own — official Ex 3 Q1 identifies a stated assumption, Ex 3 Q7 reads a chart, Ex 4 Q1 discriminates between definitions. What the reviewer should weigh is the balance across the pack: a pack made entirely of these would be a reading test."
-          },
-          {
-            "flag": "recognition-not-transfer",
-            "severity": "review",
-            "reason": "The independent adjudicator judged this a lookup or a restatement of something the source states, rather than an application to a case the source does not work through. A pack needs some of these and should not be built of them; the reviewer should judge the balance across the pack."
-          },
-          {
-            "flag": "specific-concern",
-            "severity": "review",
-            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): a. That does not make the item wrong, but it does mean the pack is not what settles it."
-          },
-          {
-            "flag": "cross-question-leakage",
-            "severity": "blocking",
-            "reason": "An independent adjudicator, shown the pack's questions without its source, could settle this question using gam-econ-pt-001-q2, gam-econ-pt-001-q1. Two mechanisms compose. q2's stem stipulates a consignment below the class minimum is still charged, so option d — whether tonnage reaches the lowest figure the tariff lists — is false by sibling fiat with no reference to the source. And q1's stem spends a clause establishing the cargo 'is landed' while assuming a fee is owed; option a is the only option naming landing and its gloss repeats q1's exact verb. Options b and c have no textual footing anywhere in the pack and fall to ordinary plausibility. A candidate holding only these four questions answers q4 without the source."
+            "reason": "An independent adjudicator, shown only the stem and options with no source at all, answered this confidently (high confidence): d. That does not make the item wrong, but it does mean the pack is not what settles it."
           }
         ]
       }

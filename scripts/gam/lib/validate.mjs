@@ -313,6 +313,78 @@ export function validatePack(file, { corpus } = {}) {
     }
   }
 
+  /* ---- option sets must not reconstruct a quantity the source withholds ----
+   *
+   * Found twice by ablation and invisible to every other gate, because it is
+   * not cross-question leakage — the question gives itself away on its own.
+   *
+   * gam-econ-pt-001-q1 offers 200, 480, 481.60 and 484 against a stem tonnage
+   * of 120.4. Three of those are one rate under three roundings — 120 x 4,
+   * 120.4 x 4, 121 x 4 — and 481.60 / 120.4 is exactly 4.00. The per-tonne rate
+   * the item exists to test is recoverable from the options alone, leaving only
+   * the rounding rule to be read.
+   *
+   * Two shapes are checked. RATE CLUSTER: two or more options divide a number
+   * in the stem to the same round quotient. COMPOSITION: one option is the
+   * product of two others over a stem number, which is how a two-stage rate
+   * pair leaks (5,000 items with options 6, 60, 400, 750 gives 60 = 400 x 750
+   * / 5,000, exposing 8% and 15%).
+   *
+   * A warning, not an error: it is a design smell a reviewer should weigh, and
+   * both known instances are on committed items that are otherwise sound.
+   */
+  for (const q of questions) {
+    const values = (q.options ?? [])
+      .map((o) => Number(String(o.text).replace(/[^0-9.]/g, '')))
+      .filter((n) => Number.isFinite(n) && n > 0)
+    if (values.length < 3) continue
+
+    const stemNumbers = [...String(q.stem ?? '').matchAll(/\d[\d,]*\.?\d*/g)]
+      .map((m) => Number(m[0].replace(/,/g, '')))
+      .filter((n) => Number.isFinite(n) && n > 1)
+    if (!stemNumbers.length) continue
+
+    // An EXACT round quotient is the tell: 481.60 / 120.4 is 4.0000 on the
+    // nose, which does not happen by accident in a distractor set. One exact
+    // hit plus any other option within 2% of the same quotient means two or
+    // more options are the same rate under different roundings.
+    const exactlyRound = (x) => x > 0 && Math.abs(x - Number(x.toFixed(2))) < 1e-9
+
+    for (const s of stemNumbers) {
+      const quotients = values.map((v) => ({ value: v, q: v / s }))
+      for (const anchor of quotients.filter((x) => exactlyRound(x.q))) {
+        const near = quotients.filter((x) => Math.abs(x.q - anchor.q) <= 0.02 * anchor.q)
+        if (near.length >= 2) {
+          W(
+            `${q.id}: ${near.length} of its options (${near.map((x) => x.value).join(', ')}) are the ` +
+              `same rate of ${anchor.q} per unit of the stem value ${s}, under different roundings — ` +
+              `the option set discloses a quantity the source is meant to supply`,
+          )
+          break
+        }
+      }
+
+      // One option being the product of two others over a stem number exposes a
+      // two-stage rate pair. Ordered pairs only, so a x b is not also b x a.
+      const seen = new Set()
+      for (const target of values) {
+        for (let i = 0; i < values.length; i++) {
+          for (let j = i + 1; j < values.length; j++) {
+            const [a, b] = [values[i], values[j]]
+            if (a === target || b === target) continue
+            if (Math.abs((a * b) / s - target) < 0.005 * target && !seen.has(target)) {
+              seen.add(target)
+              W(
+                `${q.id}: option ${target} is ${a} x ${b} / ${s} — the option set composes a ` +
+                  `two-stage rate pair the source is meant to supply`,
+              )
+            }
+          }
+        }
+      }
+    }
+  }
+
   /* -- declared vocabulary really is defined in the pack -- */
   for (const term of pack?.defines ?? []) {
     if (!packProse.toLowerCase().includes(term.toLowerCase())) {

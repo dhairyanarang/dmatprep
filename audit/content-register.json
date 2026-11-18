@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-14",
+  "generatedAt": "2026-11-18",
   "tally": {
-    "Core/quarantined": 86,
-    "Core/active": 387,
+    "Core/quarantined": 89,
+    "Core/active": 384,
     "Core/retired": 37,
-    "GAM/retired": 34,
-    "GAM/active": 17
+    "GAM/retired": 35,
+    "GAM/active": 16
   },
   "rows": [
     {
@@ -4089,46 +4089,49 @@
       "id": "me-low-008",
       "module": "Core",
       "section": "mathematical-equations",
-      "status": "active",
+      "status": "quarantined",
       "difficulty": "low",
-      "alignment": "reasonable_extrapolation",
+      "alignment": "uncertain",
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "documented",
-        "originality": "original-generated"
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
       },
       "validation": {
-        "errors": 0,
+        "errors": 1,
         "warnings": 1,
-        "uniqueSolutionProved": true
+        "uniqueSolutionProved": false
       },
-      "outstanding": null
+      "outstanding": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field."
     },
     {
       "id": "me-low-012",
       "module": "Core",
       "section": "mathematical-equations",
-      "status": "active",
+      "status": "quarantined",
       "difficulty": "low",
-      "alignment": "reasonable_extrapolation",
+      "alignment": "uncertain",
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "extrapolated",
+        "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
-          "constant above 18"
+          "quarantined"
         ]
       },
       "validation": {
-        "errors": 0,
+        "errors": 1,
         "warnings": 1,
-        "uniqueSolutionProved": true
+        "uniqueSolutionProved": false
       },
-      "outstanding": null
+      "outstanding": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field."
     },
     {
       "id": "me-low-015",
@@ -4404,22 +4407,25 @@
       "id": "me-high-002",
       "module": "Core",
       "section": "mathematical-equations",
-      "status": "active",
+      "status": "quarantined",
       "difficulty": "high",
-      "alignment": "reasonable_extrapolation",
+      "alignment": "uncertain",
       "provenance": {
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "documented",
-        "originality": "original-generated"
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
       },
       "validation": {
-        "errors": 0,
+        "errors": 1,
         "warnings": 1,
-        "uniqueSolutionProved": true
+        "uniqueSolutionProved": false
       },
-      "outstanding": null
+      "outstanding": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field."
     },
     {
       "id": "me-high-003",
@@ -10940,14 +10946,8 @@
       "status": "active",
       "difficulty": "high",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -10957,14 +10957,8 @@
       "status": "active",
       "difficulty": "low",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-determined",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -10974,15 +10968,9 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "narrowing coupling, leaked by gam-cs-cp-001-q3; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "not signed off by a person"
     },
     {
       "id": "gam-cs-cp-001-q2",
@@ -11087,7 +11075,7 @@
         "exactlyOneDefensibleOption": true,
         "requiresOutsideKnowledge": false
       },
-      "outstanding": "narrowing coupling, leaked by gam-econ-pt-001-q2; not signed off by a person"
+      "outstanding": "narrowing coupling, leaked by gam-econ-pt-001-q1 (intra-question self-disclosure), gam-econ-pt-001-q2; not signed off by a person"
     },
     {
       "id": "gam-econ-pt-001-q2",
@@ -11104,7 +11092,7 @@
         "exactlyOneDefensibleOption": true,
         "requiresOutsideKnowledge": false
       },
-      "outstanding": "not signed off by a person"
+      "outstanding": "narrowing coupling, leaked by gam-econ-pt-001-q1; not signed off by a person"
     },
     {
       "id": "gam-econ-pt-001-q3",
@@ -11127,18 +11115,12 @@
       "id": "gam-econ-pt-001-q4",
       "module": "GAM",
       "section": "economics",
-      "status": "active",
-      "difficulty": "medium",
+      "status": "retired",
+      "difficulty": null,
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "decisive coupling, leaked by gam-econ-pt-001-q2, gam-econ-pt-001-q1; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "Decisively leaked, and not repairable by editing this item. Two mechanisms compose: q2’s stem stipulates that a consignment below the class minimum is still charged, which falsifies option d by sibling fiat with no reference to the source; and q1’s stem establishes that the cargo “is landed” while assuming a fee is owed, which lexically underwrites option a — the key. The 14 November rewording of option a’s gloss imported q1’s own verb into the key and made that leg worse. No key is wrong: two independent blind rounds agreed with it, the second at high confidence with exactly one defensible option, and there is no ambiguity or outside-knowledge finding against it. The fault is the pack-level relationship between q1, q2 and q4, which an edit to q4 alone cannot reach. A rebuild requires redesigning q1 and q4 together and giving q4’s options b and c real textual footing. Id reserved, never reused."
     },
     {
       "id": "gam-eng-tr-001-q1",
@@ -11279,14 +11261,8 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-determined",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -11296,14 +11272,8 @@
       "status": "active",
       "difficulty": "low",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -11313,14 +11283,8 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -11330,15 +11294,9 @@
       "status": "active",
       "difficulty": "low",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-determined",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "narrowing coupling, leaked by gam-math-tsi-001-q1, gam-math-tsi-001-q2; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "not signed off by a person"
     },
     {
       "id": "gam-ns-lox-001-q2",
@@ -11347,15 +11305,9 @@
       "status": "active",
       "difficulty": "low",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "narrowing coupling, leaked by gam-ns-lox-001-q3; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "not signed off by a person"
     },
     {
       "id": "gam-ns-lox-001-q3",
@@ -11364,15 +11316,9 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "narrowing coupling, leaked by gam-ns-lox-001-q2; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "not signed off by a person"
     },
     {
       "id": "gam-ns-lox-001-q4",
@@ -11381,15 +11327,9 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-determined",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
-      "outstanding": "narrowing coupling, leaked by gam-ns-lox-001-q3; not signed off by a person"
+      "provenance": null,
+      "validation": null,
+      "outstanding": "not signed off by a person"
     },
     {
       "id": "gam-ns-lox-001-q1",
@@ -11409,14 +11349,8 @@
       "status": "active",
       "difficulty": "low",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-determined",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -11426,14 +11360,8 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {
@@ -11443,14 +11371,8 @@
       "status": "active",
       "difficulty": "medium",
       "alignment": null,
-      "provenance": {
-        "dependency": "source-supported",
-        "blindAgreed": true
-      },
-      "validation": {
-        "exactlyOneDefensibleOption": true,
-        "requiresOutsideKnowledge": false
-      },
+      "provenance": null,
+      "validation": null,
       "outstanding": "not signed off by a person"
     },
     {

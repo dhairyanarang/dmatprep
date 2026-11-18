@@ -77,25 +77,20 @@ const OUTSTANDING = {
   // Emptied by the §5.10 pass: no question is now answerable with the source
   // removed entirely.
   sourceIndependent: [],
-  // Re-opened on 14 November 2026 by the round of that date.
+  // Emptied on 18 November 2026 by retiring gam-econ-pt-001-q4.
   //
-  // gam-econ-pt-001-q4 survived two repair passes and came back DECISIVE. Two
-  // mechanisms compose: q2's stem stipulates that a consignment below the class
-  // minimum is still charged, which falsifies option d — "whether its tonnage
-  // reaches the lowest figure the tariff lists" — by sibling fiat with no
-  // reference to the source; and q1's stem spends a clause establishing the
-  // cargo "is landed" while assuming a fee is owed, which lexically underwrites
-  // option a, the key. Options b and c have no footing anywhere in the pack, so
-  // they fall to ordinary plausibility.
+  // It was the only decisive leak, it survived two repair passes, and the
+  // second of those — rewording option a's gloss — imported q1's own verb into
+  // the key and made one of its two legs worse. It is withdrawn rather than
+  // edited a third time. No key was wrong: two independent blind rounds agreed
+  // with it, the second at high confidence with exactly one defensible option.
   //
-  // The second repair pass made the first leg worse rather than better: it
-  // reworded option a's gloss to "landed rather than passed straight between
-  // vessels", importing q1's own verb into the key. Recorded as a finding
-  // rather than edited again — a third pass against a deadline is how a
-  // question gets worse while the record says it got better. The fix is either
-  // retirement or a rebuild that changes q1's stem as well, and that is a
-  // decision for a person.
-  decisiveLeaks: ['gam-econ-pt-001-q4'],
+  // The re-ablation of the three survivors confirms what the withdrawal did and
+  // did not do: it removed q4's leaks and nothing else. q1 still carries both
+  // of its previously recorded narrowing findings, and a new weak coupling now
+  // runs q1 to q2. Those are narrowing, so they belong in the flags rather than
+  // here — but the pack is not fixed, and the re-authoring proposal says so.
+  decisiveLeaks: [],
   // §5.10 is satisfied at pack level everywhere but here, where the adjudicator
   // credited the pack with one stipulated convention that one question applies,
   // and did not credit the invented operation-count formulas the whole pack rests
