@@ -60,6 +60,24 @@ export function SiteFooter() {
           <Link className="hover:text-foreground underline underline-offset-2" href="/exam/sources">
             Sources
           </Link>
+          {/*
+            Linked whether or not the operator details are filled in. An
+            incomplete Terms page says so, unmissably, at the top; a Terms page
+            that cannot be found says nothing at all, and the second is worse.
+            Razorpay's activation check also requires these to be reachable.
+          */}
+          <Link className="hover:text-foreground underline underline-offset-2" href="/pricing">
+            Pricing
+          </Link>
+          <Link className="hover:text-foreground underline underline-offset-2" href="/terms">
+            Terms
+          </Link>
+          <Link className="hover:text-foreground underline underline-offset-2" href="/refunds">
+            Refunds
+          </Link>
+          <Link className="hover:text-foreground underline underline-offset-2" href="/contact">
+            Contact
+          </Link>
           <a
             className="hover:text-foreground underline underline-offset-2"
             href="https://www.d-mat.de/en/"

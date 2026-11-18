@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 
+import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import type { SectionId } from '@/lib/sections'
 import type { Question } from '@/lib/types/question'
 import type { PublicQuestion } from '@/lib/content/registry'
@@ -25,6 +26,7 @@ import type { PublicQuestion } from '@/lib/content/registry'
  * refetch, and so two components mounting together share one request.
  */
 const cache = new Map<SectionId, Promise<SolutionMap>>()
+const premiumCache = new Map<SectionId, Promise<SolutionMap>>()
 
 type SolutionEntry = Partial<Question> & {
   /** Figure Sequences keeps its key per image. */
@@ -52,6 +54,33 @@ function load(section: SectionId): Promise<SolutionMap> {
   return request
 }
 
+/**
+ * The premium half, fetched from a route handler that checks an entitlement.
+ *
+ * Separate from `load` on purpose. The free half is a static asset with no
+ * session and no failure mode worth worrying about; this one is authenticated,
+ * can legitimately return 403, and must never prevent the free half from
+ * rendering. A rejection here resolves to an empty map rather than throwing,
+ * so a candidate without premium sees the free bank working normally instead of
+ * an error.
+ */
+function loadPremium(section: SectionId): Promise<SolutionMap> {
+  const existing = premiumCache.get(section)
+  if (existing) return existing
+
+  const request = fetch(`/api/content/solutions?section=${section}`, {
+    credentials: 'same-origin',
+  })
+    .then((r) => (r.ok ? (r.json() as Promise<SolutionMap>) : {}))
+    .catch(() => {
+      premiumCache.delete(section)
+      return {} as SolutionMap
+    })
+
+  premiumCache.set(section, request)
+  return request
+}
+
 export type SolutionsState =
   | { ready: false; error: null }
   | { ready: false; error: Error }
@@ -73,7 +102,18 @@ export function useSolutions(sections: SectionId[]): SolutionsState {
   useEffect(() => {
     let live = true
     const wanted = key ? (key.split(',') as SectionId[]) : []
-    Promise.all(wanted.map((s) => load(s).then((m) => [s, m] as const)))
+    Promise.all(
+      wanted.map((s) =>
+        // The free half decides whether the gate opens; the premium half is
+        // merged over it when it arrives. With commerce disabled the public
+        // asset already carries every active solution, so nothing is fetched.
+        load(s).then(async (free) =>
+          COMMERCE_ENABLED
+            ? ([s, { ...free, ...(await loadPremium(s)) }] as const)
+            : ([s, free] as const),
+        ),
+      ),
+    )
       .then((pairs) => {
         if (live) setState({ maps: Object.fromEntries(pairs), error: null })
       })
