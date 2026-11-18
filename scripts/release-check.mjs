@@ -194,15 +194,31 @@ const check = (name, ok, detail) => {
     .filter((p) => !EXEMPT.has(p.route) && !/not affiliated with, endorsed by, or sponsored by/i.test(p.text))
     .map((p) => p.route)
 
-  const footer = read('components/layout/site-footer.tsx')
-  const claimsOriginality = /questions are original|all .{0,20}original/i.test(footer)
+  // Every point the disclaimer has to make, and the page it has to make it on.
+  // Checked against the BUILT html, so a refactor that drops one is caught.
+  const home = readFileSync(join(BUILD, 'index.html'), 'utf8')
+  const about = existsSync(join(BUILD, 'about.html')) ? readFileSync(join(BUILD, 'about.html'), 'utf8') : ''
+
+  const required = [
+    ['independence', /not affiliated with, endorsed by, or sponsored by/i, home],
+    ['the name is used only to identify the exam', /used (only|solely) to identify/i, home],
+    ['questions are independently developed', /independently developed/i, home],
+    ['questions are not official', /not official examination questions/i, home],
+    ['the real exam may differ', /may differ in content/i, home],
+    ['no outcome is guaranteed', /guarantees no examination result|does not guarantee/i, home],
+    ['a fuller statement exists at /about', /not affiliated with, endorsed by, or sponsored by/i, about],
+    ['/about says nothing is approved', /has not been signed off by a person/i, about],
+  ]
+  const absent = required.filter(([, re, text]) => !re.test(text)).map(([name]) => name)
 
   check(
-    'The independence disclaimer is on every page and claims nothing it cannot show',
-    missing.length === 0 && !claimsOriginality,
-    `${html.length - EXEMPT.size} prerendered pages carry it; ${EXEMPT.size} exempt (Next's global error ` +
-      `boundary replaces the root layout). The footer makes no originality claim.` +
-      (missing.length ? ` MISSING FROM: ${missing.slice(0, 5).join(', ')}` : ''),
+    'The independence disclaimer is on every page and makes every point it must',
+    missing.length === 0 && absent.length === 0 && about.length > 0,
+    `${html.length - EXEMPT.size} prerendered pages carry the affiliation statement; ${EXEMPT.size} exempt ` +
+      `(Next's global error boundary replaces the root layout). ` +
+      `${required.length - absent.length} of ${required.length} required points present.` +
+      (missing.length ? ` MISSING FROM: ${missing.slice(0, 5).join(', ')}` : '') +
+      (absent.length ? ` POINTS ABSENT: ${absent.join('; ')}` : ''),
   )
 }
 
