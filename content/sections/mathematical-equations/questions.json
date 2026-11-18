@@ -223,7 +223,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "reasonable_extrapolation",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-3": "inverted-operation",
@@ -239,8 +239,15 @@
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "documented",
-        "originality": "original-generated"
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {
@@ -350,7 +357,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "reasonable_extrapolation",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "inverted-operation",
@@ -366,11 +373,15 @@
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "extrapolated",
+        "mechanics": "unsupported",
         "originality": "original-generated",
         "mechanicNotes": [
-          "constant above 18"
+          "quarantined"
         ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {
@@ -2209,7 +2220,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "reasonable_extrapolation",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-1": "stopped-early",
@@ -2225,8 +2236,15 @@
         "format": "demonstrated",
         "answerFormat": "stated",
         "answerOptionCount": "unknown",
-        "mechanics": "documented",
-        "originality": "original-generated"
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {

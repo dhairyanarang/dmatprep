@@ -71,9 +71,98 @@
       "originality": "original",
       "draftedBy": "production-candidate-2026-09-08",
       "reviewStatus": "automated-pass",
-      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here.",
+      "retiredQuestions": [
+        {
+          "id": "gam-econ-pt-001-q4",
+          "retiredOn": "2026-11-18",
+          "reason": "Decisively leaked, and not repairable by editing this item. Two mechanisms compose: q2’s stem stipulates that a consignment below the class minimum is still charged, which falsifies option d by sibling fiat with no reference to the source; and q1’s stem establishes that the cargo “is landed” while assuming a fee is owed, which lexically underwrites option a — the key. The 14 November rewording of option a’s gloss imported q1’s own verb into the key and made that leg worse. No key is wrong: two independent blind rounds agreed with it, the second at high confidence with exactly one defensible option, and there is no ambiguity or outside-knowledge finding against it. The fault is the pack-level relationship between q1, q2 and q4, which an edit to q4 alone cannot reach. A rebuild requires redesigning q1 and q4 together and giving q4’s options b and c real textual footing. Id reserved, never reused.",
+          "question": {
+            "stem": "According to the text, what decides whether a consignment is charged a handling fee at all?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Whether the port handles it, that is whether the cargo is landed rather than passed straight between vessels."
+              },
+              {
+                "id": "b",
+                "text": "Whether the port’s own staff carried out the unloading."
+              },
+              {
+                "id": "c",
+                "text": "Whether the port has room to store it once it is landed."
+              },
+              {
+                "id": "d",
+                "text": "Whether its tonnage reaches the lowest figure the tariff lists."
+              }
+            ],
+            "correctOptionId": "a",
+            "reasoning": "qualitative-inference",
+            "dependsOn": [
+              "p4",
+              "p1"
+            ],
+            "supportSpans": [
+              {
+                "blockId": "p4",
+                "quote": "passes between vessels without leaving the port area, is not handled by the port and pays nothing at all"
+              },
+              {
+                "blockId": "p4",
+                "quote": "Its class makes no difference to that, and neither does its tonnage."
+              },
+              {
+                "blockId": "p1",
+                "quote": "The port charges a handling fee on cargo it lands."
+              }
+            ],
+            "explanation": "The tariff is a charge for handling, so whether anything is owed comes before any question of how much. Cargo that passes between vessels without going ashore is never handled, and so sits outside the tariff altogether. The text names that condition exactly, and says in terms that tonnage makes no difference to it; each of the other options attaches a condition the text never attaches.",
+            "refutations": {
+              "b": {
+                "blockId": "p4",
+                "family": "plausible-but-unstated",
+                "reason": "The exemption turns on where the cargo goes — whether it leaves the port area — and the text says nothing about whose hands move it. “Handled by the port” is defined by that movement, not by who performs it."
+              },
+              "c": {
+                "blockId": "p1",
+                "family": "plausible-but-unstated",
+                "reason": "Storage is nowhere in the tariff. The fee is described throughout as a charge for handling the cargo, and nothing is said to turn on what happens to it afterwards."
+              },
+              "d": {
+                "blockId": "p4",
+                "family": "plausible-but-unstated",
+                "reason": "The tariff lists no tonnage floor — every class carries a rate and a minimum charge, not a minimum weight — and p4 says in terms that tonnage makes no difference to whether anything is charged."
+              }
+            },
+            "hints": [
+              {
+                "level": 1,
+                "text": "Distinguish what decides whether anything is owed from what decides how much."
+              },
+              {
+                "level": 2,
+                "text": "One paragraph describes cargo that pays nothing at all; find the condition it turns on."
+              },
+              {
+                "level": 3,
+                "text": "That paragraph names the condition exactly, and also names something that makes no difference to it."
+              }
+            ],
+            "difficulty": "medium",
+            "meta": {
+              "stepCount": 2,
+              "blockSpan": 2,
+              "transferDistance": 2,
+              "requiresExhibit": false
+            },
+            "id": "gam-econ-pt-001-q4",
+            "packId": "gam-economics-port-tariff-001"
+          }
+        }
+      ]
     },
-    "contentHash": "20c6a6aa1c120f131a9fef9b1c648264"
+    "contentHash": "ca8e33486cd45a509ef551abb95051be"
   },
   "questions": [
     {
@@ -316,88 +405,6 @@
         "requiresExhibit": true
       },
       "id": "gam-econ-pt-001-q3",
-      "packId": "gam-economics-port-tariff-001"
-    },
-    {
-      "stem": "According to the text, what decides whether a consignment is charged a handling fee at all?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Whether the port handles it, that is whether the cargo is landed rather than passed straight between vessels."
-        },
-        {
-          "id": "b",
-          "text": "Whether the port’s own staff carried out the unloading."
-        },
-        {
-          "id": "c",
-          "text": "Whether the port has room to store it once it is landed."
-        },
-        {
-          "id": "d",
-          "text": "Whether its tonnage reaches the lowest figure the tariff lists."
-        }
-      ],
-      "correctOptionId": "a",
-      "reasoning": "qualitative-inference",
-      "dependsOn": [
-        "p4",
-        "p1"
-      ],
-      "supportSpans": [
-        {
-          "blockId": "p4",
-          "quote": "passes between vessels without leaving the port area, is not handled by the port and pays nothing at all"
-        },
-        {
-          "blockId": "p4",
-          "quote": "Its class makes no difference to that, and neither does its tonnage."
-        },
-        {
-          "blockId": "p1",
-          "quote": "The port charges a handling fee on cargo it lands."
-        }
-      ],
-      "explanation": "The tariff is a charge for handling, so whether anything is owed comes before any question of how much. Cargo that passes between vessels without going ashore is never handled, and so sits outside the tariff altogether. The text names that condition exactly, and says in terms that tonnage makes no difference to it; each of the other options attaches a condition the text never attaches.",
-      "refutations": {
-        "b": {
-          "blockId": "p4",
-          "family": "plausible-but-unstated",
-          "reason": "The exemption turns on where the cargo goes — whether it leaves the port area — and the text says nothing about whose hands move it. “Handled by the port” is defined by that movement, not by who performs it."
-        },
-        "c": {
-          "blockId": "p1",
-          "family": "plausible-but-unstated",
-          "reason": "Storage is nowhere in the tariff. The fee is described throughout as a charge for handling the cargo, and nothing is said to turn on what happens to it afterwards."
-        },
-        "d": {
-          "blockId": "p4",
-          "family": "plausible-but-unstated",
-          "reason": "The tariff lists no tonnage floor — every class carries a rate and a minimum charge, not a minimum weight — and p4 says in terms that tonnage makes no difference to whether anything is charged."
-        }
-      },
-      "hints": [
-        {
-          "level": 1,
-          "text": "Distinguish what decides whether anything is owed from what decides how much."
-        },
-        {
-          "level": 2,
-          "text": "One paragraph describes cargo that pays nothing at all; find the condition it turns on."
-        },
-        {
-          "level": 3,
-          "text": "That paragraph names the condition exactly, and also names something that makes no difference to it."
-        }
-      ],
-      "difficulty": "medium",
-      "meta": {
-        "stepCount": 2,
-        "blockSpan": 2,
-        "transferDistance": 2,
-        "requiresExhibit": false
-      },
-      "id": "gam-econ-pt-001-q4",
       "packId": "gam-economics-port-tariff-001"
     }
   ]

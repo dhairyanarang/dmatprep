@@ -36,6 +36,11 @@ export const EXAM_CLAIMS: PageClaims[] = [
       { text: 'Subject Module topics span mathematics, computational sciences, natural sciences, engineering, business administration, economics, social sciences and humanities.', sources: [{ id: GAM, page: 34 }] },
       { text: 'There is a 30-minute break between the two modules; the published parts total 195 minutes.', sources: [{ id: GAM, page: 6 }] },
       {
+        // The only two official fragments this repository still reproduces, and
+        // deliberately: the claim IS that these two wordings conflict, so a
+        // paraphrase would destroy the evidence for it. Nine words from each
+        // source, side by side, to report a discrepancy. Recorded in
+        // docs/COPYRIGHT_REVIEW.md rather than quietly retained.
         text: 'The two official sources disagree on total duration: the preparatory materials say “about three hours with a break of 30 minutes”, d-mat.de says “three and a half hours”.',
         sources: [{ id: GAM, page: 6 }, { id: HOME }],
       },

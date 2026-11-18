@@ -21,8 +21,9 @@ export const guide: SectionGuide = {
         'Two official constraints narrow this subtest far more than it first appears. The operations shown in the official examples are + − × ÷, written with × and ÷ rather than · and /.',
     },
     {
-      type: 'quote',
-      text: 'There is always only one solution for each letter. Each letter can be an integer between 1 and 20.',
+      // Paraphrased, not quoted — see docs/COPYRIGHT_REVIEW.md.
+      type: 'prose',
+      text: 'Each letter stands for exactly one value — never two of them, and never none — and every value is a whole number somewhere in the range 1 to 20.',
       sources: [{ id: 'gam-pdf', page: 17 }],
     },
 
