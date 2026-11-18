@@ -239,7 +239,32 @@ sufficient or German counsel must be instructed.
 
 Specifically §6.2 and §6.4, where commercial use is treated differently.
 
-## 7. Recommended before public launch
+### 6.7 How long may payment records outlive a deleted account?
+
+*Added 18 November 2026, arising from the entitlement design rather than from
+the copyright question. It is here because it is the only question for counsel
+this sprint produced that is not about copyright.*
+
+Two legitimate requirements point opposite ways, and the schema cannot satisfy
+both.
+
+- **Keep.** A payment record is the evidence in a refund dispute or a
+  chargeback. Razorpay allows normal refunds for six months
+  (`docs/RAZORPAY.md` §9) and a card chargeback window can be longer. Deleting
+  the record when the user deletes their account destroys the only local
+  evidence while the liability is still live.
+- **Erase.** The Digital Personal Data Protection Act, 2023 gives a data
+  principal rights over erasure, and every other table in this product cascades
+  on account deletion by design.
+
+`docs/ENTITLEMENT.md` §3.1 proposes `on delete restrict` on
+`payments.user_id` — retention wins — which is a choice made by a developer
+about a legal obligation, and that is the wrong person to be making it.
+
+**The decisions:** what the lawful retention period is for a payment record
+after account deletion; whether the record may be pseudonymised rather than kept
+whole; and what the privacy policy must say about it, since the current live
+page describes a product that takes no payments at all.
 
 Ordered by how much they reduce exposure per unit of effort. **None is a
 substitute for the advice sought in §6.**
