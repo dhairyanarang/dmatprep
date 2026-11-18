@@ -223,7 +223,11 @@ removes it from the production graph. Verify with
   not protection — those assets are public URLs, which is right for a free bank and wrong
   for anything sold. See `docs/CONTENT_EXPOSURE.md`.
 - **Latin Squares difficulty is measured, never assigned** — `forcedPlacementDepth`,
-  computed by constraint propagation. 1 → low, 2–3 → medium, 4+ → high.
+  computed by constraint propagation. **depth ≤ 2 → low, 3–4 → medium, ≥ 5 → high.**
+  Corrected 18 Nov 2026: this line read "1 → low, 2–3 → medium, 4+ → high", which
+  no committed item has ever followed. `docs/DIFFICULTY_CALIBRATION.md` carries the
+  real bands and the bank matches them exactly, with no tier overlap — low holds
+  depth 1–2, medium 3–4, high 5–7. **Depth bands the item; sparsity does not.**
 - **Pair elimination is a faster search, not a stronger technique.** On a
   two-missing line it is the logical dual of a naked single at the partner cell,
   so no item can require it — every committed item falls to naked singles alone.
