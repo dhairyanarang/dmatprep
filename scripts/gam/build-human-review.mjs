@@ -152,7 +152,6 @@ for (const file of files) {
   for (const q of file.questions) {
     const rec = round?.questions?.[q.id]
     const qFlags = flags.questionFlags?.[q.id] ?? []
-    const keyed = q.options.find((o) => o.id === q.correctOptionId)
     W('---')
     W()
     W(`### \`${q.id}\``)

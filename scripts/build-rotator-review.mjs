@@ -15,7 +15,7 @@
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 
-import { disambiguationErrors, candidateMovements, candidateRotations, candidateColours } from './lib/fs-inversion.mjs'
+import { disambiguationErrors } from './lib/fs-inversion.mjs'
 import { verifyQuestion } from './lib/verify.mjs'
 
 const DIR = new URL('../drafts/static-rotator-2026-11-14/', import.meta.url)
