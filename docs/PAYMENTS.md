@@ -9,7 +9,35 @@ Researched 14 November 2026 against provider and government documentation only.
 Provider blog posts were deliberately not treated as authority, which is why
 several numbers that circulate freely appear below as **unverified**.
 
-## 0. What is actually being sold
+## 0. Scope — narrowed 18 November 2026
+
+**Domestic INR only. Cross-border is deferred, not solved.**
+
+This decision removes most of the open questions in this document rather than
+answering them, which is the point: §4 below could not be answered from
+machine-readable sources, and a scope that does not depend on it is worth more
+than a guess that does.
+
+| | |
+|---|---|
+| In scope | Payments from customers in India, in INR, by UPI, card or netbanking |
+| **Deferred** | Nepal, and every other cross-border payer |
+| **Deferred** | International card acceptance, which also requires a registered business on every provider examined |
+| Unchanged | One-time purchase, no subscription, no mock credits, no second SKU |
+
+**What deferring Nepal costs.** The dMAT has a Kathmandu test centre, so Nepali
+candidates are a real audience, not a hypothetical one. They can still use
+everything that is free — which, after the Core bank was made free, is the whole
+Core product. What they cannot do is pay. That is a known, accepted gap rather
+than an oversight, and it should be revisited only with a compliance answer in
+hand, never with an assumption.
+
+**What it buys.** The RBI purpose-code question in §4 stops blocking. The
+registered-business requirement stops blocking. Razorpay becomes viable for an
+individual where it was not. The remaining decisions are commercial and tax
+questions rather than regulatory ones.
+
+## 0.1 What is actually being sold
 
 The commercial direction has changed and the architecture follows from it.
 
@@ -87,7 +115,11 @@ transfer instead. Domestic INR on Razorpay as an individual is fine.
   against them. Stripe is the only one publishing a figure (₹1,000, refunded if
   you win) and Stripe is already ruled out.
 
-## 4. Nepal and cross-border
+## 4. Nepal and cross-border — DEFERRED, and kept for when it returns
+
+**Out of scope as of 18 November 2026.** Nothing below needs deciding now. It is
+kept because the questions do not go away, they only stop blocking, and whoever
+picks this up should not have to rediscover that the evidence here is thin.
 
 This is the weakest-evidence section and is written to say so.
 
@@ -176,18 +208,34 @@ verified facts.
 
 ## 7. Decisions needed before any implementation begins
 
-1. **Is Nepal in scope?** If not, §4 disappears and the decision is simple. If
-   it is, no provider here is documented as supporting it and that needs a
-   compliance conversation rather than a comparison table.
-2. **Individual now, or register a proprietorship first?** Individual is faster
-   and every provider but Stripe allows it. A proprietorship is needed before
-   turnover approaches ₹20 lakh and before any international card acceptance.
-3. **Confirm in writing with the chosen provider**: whether MDR is returned on a
+Nepal is no longer on this list — it was decided on 18 November by deferring it.
+What remains is commercial, tax and architectural.
+
+1. **Individual now, or register a proprietorship first?** Individual is faster
+   and every provider but Stripe allows it for domestic INR. A proprietorship
+   becomes necessary before turnover approaches the ₹20 lakh GST threshold, and
+   before any international card acceptance — which is itself deferred.
+2. **Confirm in writing with the chosen provider**: whether MDR is returned on a
    refund, the chargeback fee in rupees, the contracted settlement cycle, and
-   instant-settlement pricing. All four are undocumented or contradictory.
-4. **A CA on the GST question**, specifically whether ₹599 is treated as
-   inclusive and whether OIDAR has any bearing.
-5. **Approval to add the schema in §5** — a new table, a new RLS policy, and a
-   server-scoped service-role key. None of that was touched this sprint.
+   instant-settlement pricing. All four are undocumented or contradictory in the
+   providers' own materials, and none should be budgeted against until written
+   down.
+3. **A CA on the GST question**, specifically whether ₹599 is treated as
+   inclusive, and whether OIDAR has any bearing on an Indian-resident supplier
+   selling into India. I found no official statement either way and did not
+   invent one.
+4. **Settle the price.** ₹599 is still a hypothesis. It appears nowhere in the
+   product and nothing depends on it yet.
+5. **Approval to add the schema in §5** — a new `entitlements` table, a new RLS
+   policy, and a server-scoped service-role key. None of that was touched this
+   sprint or the last, and none should be until items 1 to 4 are answered.
+
+## 8. What is deliberately not here
+
+No payment SDK is installed. No payment route exists. No schema, migration,
+entitlement row, coupon or credential has been created. `npm ls` will show no
+provider package, and `app/` has no route under `/api`. That is the state this
+document describes and the state it should stay in until the decisions above
+are made.
 
 Nothing here is legal, tax or compliance advice.

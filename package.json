@@ -20,7 +20,8 @@
     "build:solutions": "node scripts/build-solutions.mjs",
     "verify:content": "node scripts/verify-content.mjs",
     "register": "node scripts/build-register.mjs",
-    "review:package": "node scripts/gam/build-human-review.mjs"
+    "review:package": "node scripts/gam/build-human-review.mjs",
+    "qa:assert-isolated": "node scripts/qa/assert-isolated.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
