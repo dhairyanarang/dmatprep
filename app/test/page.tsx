@@ -7,7 +7,7 @@ import { SectionHeading } from '@/components/layout/section-heading'
 import { TileCard } from '@/components/layout/tile-card'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTION_ICON } from '@/lib/nav'
-import { GAM_TOTAL_MINUTES } from '@/lib/gam/registry'
+import { GAM_TOTAL_MINUTES, totalGamQuestions } from '@/lib/gam/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
 export const metadata = { title: 'Test' }
@@ -62,7 +62,7 @@ export default function TestPage() {
             href="/module-b/timed"
             icon={Timer}
             title="General Academic Module"
-            description="Every source pack end to end under the module's official 90-minute clock, with answers held until you submit. 17 questions against the roughly 60 g.a.s.t. says the real module holds — a timed run, not a full-length paper. Pilot material, not yet reviewed by a person."
+            description={`Every source pack end to end under the module's official 90-minute clock, with answers held until you submit. ${totalGamQuestions()} questions against the roughly 60 g.a.s.t. says the real module holds — a timed run, not a full-length paper. Pilot material, not yet reviewed by a person.`}
             meta={`${GAM_TOTAL_MINUTES} mins`}
           />
         </SectionHeading>

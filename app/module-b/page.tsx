@@ -46,7 +46,7 @@ export default function ModuleBPage() {
             href="/module-b/timed"
             icon={Timer}
             title="Timed session — every pack"
-            description="All five packs end to end under the module's official 90-minute clock, with answers held until you submit. It is 17 questions; g.a.s.t. says the real module holds roughly 60, so this is a timed run at the real pace, not a full-length paper."
+            description={`All ${getPacks().length} packs end to end under the module's official 90-minute clock, with answers held until you submit. It is ${totalGamQuestions()} questions; g.a.s.t. says the real module holds roughly 60, so this is a timed run at the real pace, not a full-length paper.`}
             meta={`${GAM_TOTAL_MINUTES} mins`}
           />
         </SectionHeading>
