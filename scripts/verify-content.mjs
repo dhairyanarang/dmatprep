@@ -50,6 +50,12 @@ const STEPS = [
     onFail: 'A type error or a prerender failure. The exposure gates cannot run without this.',
   },
   {
+    name: 'release:check',
+    cmd: ['npm', 'run', 'release:check'],
+    why: 'Containment over the production build: quarantined and retired content, unapproved drafts, answer delivery, the hygiene-not-protection caveat, official sourcing, and the disclaimer.',
+    onFail: 'Each check prints what it measured. A failure is a containment breach, not a style issue.',
+  },
+  {
     name: 'test',
     cmd: ['npm', 'test'],
     env: { REQUIRE_BUILD: '1' },

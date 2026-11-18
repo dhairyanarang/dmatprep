@@ -21,7 +21,8 @@
     "verify:content": "node scripts/verify-content.mjs",
     "register": "node scripts/build-register.mjs",
     "review:package": "node scripts/gam/build-human-review.mjs",
-    "qa:assert-isolated": "node scripts/qa/assert-isolated.mjs"
+    "qa:assert-isolated": "node scripts/qa/assert-isolated.mjs",
+    "release:check": "node scripts/release-check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

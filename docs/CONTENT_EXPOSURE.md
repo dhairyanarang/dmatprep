@@ -84,6 +84,43 @@ premium. That plan should change, and the change is not a loss:
 Reframed this way, the delivery work in §4 protects content that does not exist
 yet — which is the right time to build it, and the only time it can work.
 
+## 3.5 What was built, and what it is not
+
+**Status, 18 November 2026: problem A is fixed for Core. B and C are not.**
+
+Pages now serve `getPublicQuestions` — stems, options, panels, grids and hints,
+with nothing that answers them — and the solutions are written to
+`public/solutions/<section>.json` and fetched by the browser, merged back by
+`lib/solutions/use-solutions.ts` so every component downstream still sees a
+complete question.
+
+Measured against the production build:
+
+| | Before | After |
+|---|---|---|
+| Payloads carrying answer content | 73 of 215 | 37 of 215 |
+| Peak answer-bearing keys in one payload | 2,197 | 38 |
+| Worst Core practice route | 387 explanations, 474 keys | **0** |
+
+**This is hygiene, not protection, and the distinction is the whole point.**
+`public/solutions/figure-sequences.json` is a static asset at a predictable URL.
+Anyone can fetch it. Nothing about separating a file, or giving it an
+unguessable name, makes its contents private.
+
+That is the right level for the Core bank, which is free and has been in a
+public Git repository since August. It is **not** the right level for anything
+sold. Premium content must never be a static asset and must never rely on an
+obscure URL: it has to be delivered by a route handler, after a server-side
+entitlement check, as §4 sets out. If a future change treats
+`public/solutions/` as a paywall, it has misread this document.
+
+What remains exposed and why:
+
+- **Module B** was not split and still ships its answers and explanations. It is
+  a labelled pilot, not signed off by anyone, and is not sold.
+- **The section guides' worked examples** ship their answers, because showing
+  the answer is what a worked example is.
+
 ## 4. The smallest delivery that is actually secure
 
 Two route handlers and one private store. Nothing more.
