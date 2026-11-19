@@ -1,6 +1,7 @@
 import { ShieldCheck } from 'lucide-react'
 
 import { PageHeader } from '@/components/layout/page-header'
+import { SupportEmail } from '@/components/support/support-link'
 import { PageContainer } from '@/components/layout/page-shell'
 
 export const metadata = { title: 'Your data' }
@@ -71,12 +72,7 @@ export default function PrivacyPage() {
             Signing out clears this browser&rsquo;s copy of your progress; the cloud copy is
             untouched and returns when you sign back in. To have the account and everything in it
             deleted, email{' '}
-            <a
-              href="mailto:dhairyanarang077@gmail.com"
-              className="text-foreground underline underline-offset-2"
-            >
-              dhairyanarang077@gmail.com
-            </a>{' '}
+            <SupportEmail topic="Account deletion request" />{' '}
             and it will be removed.
           </p>
         </section>

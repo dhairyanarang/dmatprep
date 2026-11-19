@@ -1,3 +1,5 @@
+import { EVENTS } from '@/lib/analytics/events'
+import { trackServerEvent } from '@/lib/analytics/server'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { applyCheckoutReturn } from '@/lib/payments/server'
 import { createSupabaseServerClient } from '@/lib/supabase/server'
@@ -50,6 +52,16 @@ export async function POST(request: Request) {
     // `not-captured` is the pending case and is not an error the buyer caused:
     // the webhook or the sweep will finish it.
     const pending = result.reason === 'not-captured' || result.reason === 'in-progress'
+    if (!pending) {
+      // A refusal here is the journey ending, so it belongs in the funnel. The
+      // reason is a fixed code, never free text and never anything the buyer
+      // typed.
+      await trackServerEvent(EVENTS.paymentFailed, {
+        order_ref: claimedOrderId,
+        reason: result.reason ?? 'verification-refused',
+        surface: 'checkout-return',
+      })
+    }
     return Response.json({ error: result.reason, pending }, { status: pending ? 202 : 400 })
   }
 

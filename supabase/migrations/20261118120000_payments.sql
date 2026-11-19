@@ -42,6 +42,11 @@ create table if not exists public.payment_orders (
 
   created_at timestamptz not null default now(),
 
+  -- When reconciliation last asked the provider about this order. An order
+  -- with no captured payment is only callable "unconfirmed" once we have
+  -- actually looked; before that it is just an order we have not checked.
+  last_reconciled_at timestamptz,
+
   unique (provider, provider_order_id)
 );
 
@@ -50,6 +55,10 @@ comment on column public.payment_orders.user_id is
 
 create index if not exists payment_orders_user_idx
   on public.payment_orders (user_id, product);
+
+-- The reconciliation sweep's working set: oldest unchecked orders first.
+create index if not exists payment_orders_reconcile_idx
+  on public.payment_orders (last_reconciled_at nulls first, created_at);
 
 -- ---------------------------------------------------------------------------
 -- payments
@@ -449,11 +458,78 @@ begin
   end if;
 
   update public.webhook_events
-     set status = v_final, last_error = p_error, locked_until = null,
+     set status = v_final,
+         last_error = p_error,
+         locked_until = null,
+         -- 'processed' is used for events we understand and have fully handled
+         -- without a payment fact to apply — a dispute being opened, or won.
+         -- They are finished, not failed, and must not sit in the sweep's queue.
+         processed_at = case when v_final = 'processed' then now() else processed_at end,
          updated_at = now()
    where provider = p_provider and provider_event_id = p_event_id;
 
   return v_final;
+end;
+$$;
+
+-- ---------------------------------------------------------------------------
+-- orders_awaiting_confirmation
+--
+-- Orders we created, old enough that a successful payment should have been
+-- confirmed by now, for which we hold no captured payment. This is the
+-- reconciliation sweep's working set, and it is the answer to the failure that
+-- matters most: the customer paid, the webhook never arrived, and they never
+-- came back to the site. Nothing local knows — but we still hold the order id,
+-- and the provider can be asked about it directly.
+--
+-- Ordered oldest-unchecked-first so a bounded run cannot starve any order.
+-- ---------------------------------------------------------------------------
+
+create or replace function public.orders_awaiting_confirmation(
+  p_min_age_minutes integer default 2,
+  p_limit integer default 25
+)
+returns table (
+  provider text,
+  provider_order_id text,
+  amount_minor integer,
+  created_at timestamptz,
+  last_reconciled_at timestamptz
+)
+language sql
+security definer
+set search_path = ''
+as $$
+  select o.provider, o.provider_order_id, o.amount_minor, o.created_at, o.last_reconciled_at
+    from public.payment_orders o
+   where o.user_id is not null
+     and o.created_at < now() - make_interval(mins => p_min_age_minutes)
+     and not exists (
+       select 1 from public.payments p
+        where p.order_id = o.id
+          and p.status in ('captured', 'refunded', 'charged_back')
+     )
+   order by o.last_reconciled_at asc nulls first, o.created_at asc
+   limit p_limit;
+$$;
+
+-- ---------------------------------------------------------------------------
+-- mark_order_reconciled — records that we asked the provider about this order.
+-- ---------------------------------------------------------------------------
+
+create or replace function public.mark_order_reconciled(
+  p_provider text,
+  p_provider_order_id text
+)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $$
+begin
+  update public.payment_orders
+     set last_reconciled_at = now()
+   where provider = p_provider and provider_order_id = p_provider_order_id;
 end;
 $$;
 
@@ -526,4 +602,6 @@ revoke all on function public.claim_webhook_event(text, text, text, text, jsonb,
 revoke all on function public.apply_payment_event(text, text, text, text, text, integer) from public, anon, authenticated;
 revoke all on function public.settle_webhook_event(text, text, text, text, integer) from public, anon, authenticated;
 revoke all on function public.purge_webhook_payloads(integer) from public, anon, authenticated;
+revoke all on function public.mark_order_reconciled(text, text) from public, anon, authenticated;
+revoke all on function public.orders_awaiting_confirmation(integer, integer) from public, anon, authenticated;
 revoke all on function public.payment_status_rank(text) from public, anon, authenticated;

@@ -4,7 +4,10 @@ import { useCallback, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
+import { SupportLink } from '@/components/support/support-link'
 import { Button } from '@/components/ui/button'
+import { trackEvent } from '@/lib/analytics/client'
+import { EVENTS } from '@/lib/analytics/events'
 import { useAuth } from '@/lib/auth/use-auth'
 import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
 import { invalidateEntitlement, useEntitlement } from '@/lib/payments/use-entitlement'
@@ -66,10 +69,14 @@ export function PurchaseButton({ className }: { className?: string }) {
   const entitlement = useEntitlement()
   const [phase, setPhase] = useState<Phase>('idle')
   const [message, setMessage] = useState<string | null>(null)
+  // Kept so every support route from here carries a reference that makes the
+  // email answerable without a back-and-forth.
+  const [orderRef, setOrderRef] = useState<string | null>(null)
 
   const start = useCallback(async () => {
     setPhase('working')
     setMessage(null)
+    trackEvent(EVENTS.premiumBuyClicked, { surface: 'pricing' })
     try {
       const orderResponse = await fetch('/api/checkout/order', { method: 'POST' })
       if (!orderResponse.ok) {
@@ -87,6 +94,7 @@ export function PurchaseButton({ className }: { className?: string }) {
         currency: string
         keyId: string
       }
+      setOrderRef(order.orderId)
 
       const Razorpay = await loadCheckout()
       if (!Razorpay) throw new Error('The payment window could not be loaded.')
@@ -123,6 +131,7 @@ export function PurchaseButton({ className }: { className?: string }) {
                 pending?: boolean
               }
               if (verify.status === 202 || body.pending) {
+                trackEvent(EVENTS.paymentPending, { order_ref: order.orderId })
                 setPhase('pending')
                 return
               }
@@ -134,11 +143,15 @@ export function PurchaseButton({ className }: { className?: string }) {
             .catch(() => {
               // The payment may well have succeeded; what failed is our
               // confirmation of it. Say that, rather than implying a loss.
+              trackEvent(EVENTS.paymentPending, { order_ref: order.orderId, reason: 'verify-unreachable' })
               setPhase('pending')
             })
         },
       })
       checkout.open()
+      // Emitted after `open()` rather than before it: the funnel step is
+      // "Checkout actually appeared", not "we tried".
+      trackEvent(EVENTS.checkoutOpened, { order_ref: order.orderId, amount_minor: order.amount })
     } catch (error) {
       setMessage(error instanceof Error ? error.message : 'Something went wrong.')
       setPhase('error')
@@ -187,21 +200,30 @@ export function PurchaseButton({ className }: { className?: string }) {
       </Button>
 
       {phase === 'success' ? (
-        <p className="text-foreground mt-3 text-sm font-medium">
-          Payment confirmed. Every Core question is now unlocked on this account.
-        </p>
+        <>
+          <p className="text-foreground mt-3 text-sm font-medium">
+            Payment confirmed. Every Core question is now unlocked on this account.
+          </p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Question about my purchase" />
+        </>
       ) : null}
 
       {phase === 'pending' ? (
-        <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
-          Your payment went through and we are waiting for the final confirmation. This usually
-          takes a moment. You do not need to pay again — refresh in a minute, and if it still has
-          not appeared, contact us.
-        </p>
+        <>
+          <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+            Your payment went through and we are waiting for the final confirmation. This usually
+            takes a moment. You do not need to pay again — refresh in a minute, and if it still has
+            not appeared, contact us.
+          </p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Payment taken but access not showing" />
+        </>
       ) : null}
 
       {phase === 'error' && message ? (
-        <p className="text-destructive mt-3 text-sm leading-relaxed">{message}</p>
+        <>
+          <p className="text-destructive mt-3 text-sm leading-relaxed">{message}</p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Payment failed" />
+        </>
       ) : null}
 
       <p className="text-muted-foreground mt-3 text-xs leading-relaxed">

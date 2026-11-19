@@ -34,7 +34,22 @@ export type OperatorDetails = {
 export const OPERATOR: OperatorDetails = {
   legalName: null,
   address: null,
-  contactEmail: null,
+  /**
+   * Carried over, not invented.
+   *
+   * This exact address was already hardcoded and live in three pages —
+   * `app/privacy` (account deletion), `app/about` (infringement reports) and
+   * `app/global-error` — before it was centralised here. Leaving this `null`
+   * while migrating those references would have silently removed a working
+   * contact route from two pages that carry real obligations, so the value
+   * moved with them.
+   *
+   * It is a personal mailbox, which `docs/legal/README.md` says is the wrong
+   * answer once the product is public and taking money. **Replace it with a
+   * monitored support address before launch** — one edit, here, and every
+   * support link and policy page follows.
+   */
+  contactEmail: 'dhairyanarang077@gmail.com',
   grievanceOfficer: null,
   jurisdiction: null,
   lastUpdated: null,
@@ -56,4 +71,69 @@ export function missingOperatorFields(details: OperatorDetails = OPERATOR): (key
 
 export function operatorComplete(details: OperatorDetails = OPERATOR): boolean {
   return missingOperatorFields(details).length === 0
+}
+
+/* -------------------------------------------------------------- support ---- */
+
+/**
+ * The one place a support address is read from.
+ *
+ * It was previously hardcoded in three pages — privacy, about and the global
+ * error boundary — which meant changing it was three edits and forgetting one
+ * was silent. It is also why the address currently published is a personal
+ * mailbox: there was no single field to point at something better.
+ */
+export type SupportContext = {
+  /** What the customer was doing. Becomes the email subject. */
+  topic: string
+  /**
+   * A non-sensitive reference, if we have one.
+   *
+   * Our own provider order id and nothing else. Never a payment id tied to a
+   * card, never an email address, and never anything the customer would have
+   * to be told to keep secret.
+   */
+  orderRef?: string | null
+}
+
+/** The response time we aim for. An aim, stated as one — never a guarantee. */
+export const SUPPORT_RESPONSE_AIM = 'We aim to reply within 1–2 hours, though we cannot guarantee it.'
+
+/**
+ * A `mailto:` for a support request, or null when no address is configured.
+ *
+ * Returning null rather than a broken link is deliberate: a `mailto:` with an
+ * empty address opens an empty draft and looks like the product is broken.
+ * Every caller renders a plain fallback instead.
+ */
+export function supportMailto(
+  context: SupportContext,
+  details: OperatorDetails = OPERATOR,
+): string | null {
+  const address = details.contactEmail
+  if (!address) return null
+
+  const subject = `dMAT Prep — ${context.topic}`
+  const lines = [
+    `Hello,`,
+    ``,
+    `I need help with: ${context.topic}`,
+    ...(context.orderRef ? [``, `Order reference: ${context.orderRef}`] : []),
+    ``,
+    `What happened:`,
+    ``,
+    ``,
+    `— Please do not include card numbers, UPI PINs, passwords or OTPs in this`,
+    `  email. We will never ask for them, and we do not need them to help.`,
+  ]
+
+  const params = new URLSearchParams({ subject, body: lines.join('\n') })
+  // URLSearchParams encodes spaces as "+", which some mail clients render
+  // literally in a subject line.
+  return `mailto:${address}?${params.toString().replace(/\+/g, '%20')}`
+}
+
+/** Whether a support route can be offered at all. */
+export function supportConfigured(details: OperatorDetails = OPERATOR): boolean {
+  return Boolean(details.contactEmail)
 }

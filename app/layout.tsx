@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { JetBrains_Mono, Manrope } from 'next/font/google'
 
+import { Analytics } from '@vercel/analytics/react'
+
 import { Clarity } from '@/components/analytics/clarity'
 import { AuthNotice } from '@/components/auth/auth-notice'
 import { SyncProvider } from '@/components/auth/sync-provider'
@@ -110,6 +112,17 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         {/* Behavioural analytics. Renders nothing outside a production
             deployment, and never identifies anyone. */}
         <Clarity />
+
+        {/* Page views and the purchase funnel.
+            Two different tools doing two different jobs, not duplicate
+            tracking: Clarity records sessions to show how a page is used,
+            Vercel Analytics counts page views and the nine funnel events in
+            `lib/analytics/events.ts`. Neither is sent an email address, a name,
+            a user id or any payment detail.
+            Outside a Vercel deployment this logs to the console instead of
+            sending, so local testing produces no production data — the same is
+            true of Clarity, which does not render at all off production. */}
+        <Analytics />
       </body>
     </html>
   )

@@ -65,11 +65,27 @@ export function grantsAccess(e: Pick<Entitlement, 'status' | 'expiresAt'> | null
 /** The outcome of claiming a webhook event. See `claim_webhook_event`. */
 export type ClaimOutcome = 'claimed' | 'already_processed' | 'parked' | 'locked'
 
+/**
+ * What an event means for our records.
+ *
+ *   fact            — asserts a payment status we should apply
+ *   acknowledge     — a real event we understand that changes nothing. A
+ *                     dispute being OPENED is the important case: the money is
+ *                     still ours until the dispute is decided, so recording it
+ *                     and revoking nothing is the correct response.
+ *   park            — we do not know what this means. Visible, queued, never
+ *                     guessed at.
+ */
+export type EventDisposition = 'fact' | 'acknowledge' | 'park'
+
 /** A provider event, normalised by the adapter. */
 export type NormalisedEvent = {
   provider: ProviderId
   eventId: string
   eventType: string
+  disposition: EventDisposition
+  /** Why, in a few words. Stored on the event row so a human can read it. */
+  note: string
   providerOrderId: string | null
   providerPaymentId: string | null
   status: PaymentStatus | null

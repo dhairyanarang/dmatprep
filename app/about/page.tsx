@@ -1,6 +1,7 @@
 import { Info } from 'lucide-react'
 
 import { PageHeader } from '@/components/layout/page-header'
+import { SupportEmail } from '@/components/support/support-link'
 import { PageContainer } from '@/components/layout/page-shell'
 
 export const metadata = { title: 'About this resource' }
@@ -125,12 +126,7 @@ export default function AboutPage() {
           <p className="text-muted-foreground text-sm leading-relaxed">
             If you believe something here infringes your rights, or you have spotted a mistake in
             a question or in a fact about the examination, please write to{' '}
-            <a
-              className="text-foreground underline underline-offset-2"
-              href="mailto:dhairyanarang077@gmail.com"
-            >
-              dhairyanarang077@gmail.com
-            </a>
+            <SupportEmail topic="Report of claimed infringement or a content error" />
             . Reports of claimed infringement are acknowledged within three working days and the
             material in question is withdrawn from the site while it is looked into.
           </p>

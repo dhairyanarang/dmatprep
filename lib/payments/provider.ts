@@ -65,8 +65,14 @@ export interface PaymentProvider {
   /** Ask the provider what actually happened. The reconciliation primitive. */
   fetchPaymentStatus(providerPaymentId: string): Promise<PaymentSnapshot | null>
 
-  /** Payments captured since a given time, for the reconciliation sweep. */
-  listRecentPayments(sinceEpochSeconds: number): Promise<PaymentSnapshot[]>
+  /**
+   * Every payment attempt against one of OUR orders.
+   *
+   * The reconciliation primitive. Order-scoped on purpose: the sweep already
+   * knows which of its orders are unresolved, so it asks about those rather
+   * than walking the provider's whole account.
+   */
+  fetchOrderPayments(providerOrderId: string): Promise<PaymentSnapshot[]>
 
   refund(providerPaymentId: string, amountMinor?: number): Promise<{ ok: boolean; id?: string }>
 }

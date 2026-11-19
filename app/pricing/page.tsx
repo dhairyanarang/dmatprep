@@ -2,7 +2,9 @@ import { Check, Sparkles } from 'lucide-react'
 
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
+import { PremiumViewed } from '@/components/payments/premium-viewed'
 import { PurchaseButton } from '@/components/payments/purchase-button'
+import { SupportLink } from '@/components/support/support-link'
 import freeSet from '@/content/access/free-set.json'
 import { getBankSize } from '@/lib/content/registry'
 import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
@@ -43,6 +45,7 @@ export default function PricingPage() {
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
       <PageContainer className="flex max-w-3xl flex-col gap-7 py-6">
+        <PremiumViewed />
         <PageHeader
           icon={Sparkles}
           title="Pricing"
@@ -158,6 +161,11 @@ export default function PricingPage() {
         <section className="space-y-3">
           <h2 className="text-base font-semibold">Buying</h2>
           <PurchaseButton />
+        </section>
+
+        <section className="space-y-3">
+          <h2 className="text-base font-semibold">Questions before you buy?</h2>
+          <SupportLink topic="Question about Premium" />
         </section>
       </PageContainer>
     </div>

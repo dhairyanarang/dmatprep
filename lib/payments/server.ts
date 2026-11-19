@@ -1,8 +1,11 @@
 import { createClient, type SupabaseClient } from '@supabase/supabase-js'
 
+import { EVENTS } from '../analytics/events.ts'
+import { trackServerEvent } from '../analytics/server.ts'
 import { CURRENCY, PRICE_MINOR, PRODUCT } from './config.ts'
 import { createMockProvider } from './mock.ts'
 import type { CheckoutReturn, PaymentProvider } from './provider.ts'
+import { decideOrderOutcome } from './reconcile-policy.ts'
 import { createRazorpayProvider, razorpayConfigured } from './razorpay.ts'
 import type { ClaimOutcome, EntitlementStatus, NormalisedEvent } from './types.ts'
 import { grantsAccess } from './types.ts'
@@ -93,6 +96,13 @@ export async function createOrderForUser(userId: string): Promise<OrderResult> {
     currency: order.currency,
   })
   if (error) return { ok: false, reason: `order-not-recorded: ${error.message}` }
+
+  // Server-side: an order row exists. The browser cannot fake this stage.
+  await trackServerEvent(EVENTS.checkoutCreated, {
+    order_ref: order.providerOrderId,
+    amount_minor: order.amountMinor,
+    currency: order.currency,
+  })
 
   return {
     ok: true,
@@ -220,8 +230,16 @@ export async function processWebhook(raw: string, headers: Headers): Promise<Web
   // finishes, the retry sees `processed`; if it dies, the lock expires.
   if (claim === 'locked') return { http: 409, note: 'in-progress' }
 
-  if (!event.status || !event.providerPaymentId) {
-    const final = await settleEvent(db, event.provider, event.eventId, 'parked', 'unhandled-event-type')
+  // A real event we understand that changes nothing. A dispute being OPENED is
+  // the case this exists for: the money is still ours until the dispute is
+  // decided, so the correct response is to record it and revoke nothing.
+  if (event.disposition === 'acknowledge') {
+    await settleEvent(db, event.provider, event.eventId, 'processed', event.note)
+    return { http: 200, note: `acknowledged: ${event.note}` }
+  }
+
+  if (event.disposition === 'park' || !event.status || !event.providerPaymentId) {
+    const final = await settleEvent(db, event.provider, event.eventId, 'parked', event.note || 'unhandled-event-type')
     return { http: 200, note: final }
   }
 
@@ -310,14 +328,46 @@ async function applyEvent(
     p_amount_minor: input.amountMinor,
   })
   if (error) throw new Error(`apply failed: ${error.message}`)
-  return data as string
+
+  const result = data as string
+
+  /**
+   * The funnel's money events, emitted in exactly one place.
+   *
+   * This runs only after a successful `claim_webhook_event`, which admits one
+   * caller per event id, and only when the apply actually committed. So a
+   * webhook delivered five times produces one `payment_succeeded`, and the
+   * same is true whether the event arrived by webhook, by the browser
+   * returning from Checkout, or by the reconciliation sweep finding it hours
+   * later. Nothing else in the codebase emits these.
+   */
+  if (result === 'processed') {
+    if (input.status === 'captured') {
+      await trackServerEvent(EVENTS.paymentSucceeded, {
+        order_ref: input.providerOrderId,
+        amount_minor: input.amountMinor,
+        status: 'captured',
+      })
+      await trackServerEvent(EVENTS.premiumUnlocked, {
+        order_ref: input.providerOrderId,
+      })
+    } else if (input.status === 'failed') {
+      await trackServerEvent(EVENTS.paymentFailed, {
+        order_ref: input.providerOrderId,
+        status: 'failed',
+        reason: 'provider-reported-failure',
+      })
+    }
+  }
+
+  return result
 }
 
 async function settleEvent(
   db: SupabaseClient,
   provider: string,
   eventId: string,
-  status: 'failed' | 'parked',
+  status: 'failed' | 'parked' | 'processed',
   note: string,
 ): Promise<string> {
   const { data } = await db.rpc('settle_webhook_event', {
@@ -385,44 +435,89 @@ export async function recordManualGrant(input: {
 /* --------------------------------------------------------- reconciliation */
 
 export type ReconcileReport = {
+  /** Stuck webhook events re-driven. */
   reDriven: number
+  /** Orders we asked the provider about directly. */
+  ordersChecked: number
+  /** Entitlements granted that no webhook had delivered. */
   recovered: number
+  /** Still unresolved after we asked. An inference, never a confirmed cancel. */
+  unconfirmed: number
+  /** Events that failed again, or orders the provider could not answer for. */
   stillFailing: number
   note: string
 }
 
+/** How many orders one sweep will ask the provider about. */
+const RECONCILE_BATCH = 25
 /**
- * The sweep, with two jobs. Mandatory rather than advisable.
+ * Wait between provider calls.
+ *
+ * Razorpay does not publish a rate limit for the REST API, so this is a
+ * deliberate conservatism rather than a figure traced to documentation: 25
+ * orders at 200ms is five seconds of calls per run, which no sane limit would
+ * refuse. Flagged as unverified in docs/RAZORPAY.md §13.
+ */
+const RECONCILE_DELAY_MS = 200
+/** An order younger than this has not had time to confirm normally. */
+const MIN_AGE_MINUTES = 2
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
+
+/**
+ * The reconciliation sweep. Mandatory, not advisable.
  *
  * Razorpay disables a webhook after 24 hours of failures and tells only the
  * Alert Email Address. Between that moment and someone reading that mailbox,
  * every purchase succeeds at Razorpay and grants nothing — the customer has
  * paid and has no access, and no part of the product knows.
  *
- * Job 1: re-drive every event the handler could not finish. A failed grant is a
- * row in a queryable queue, which is the whole point of the state machine.
- * Job 2: ask the provider for payments we have no captured record of.
+ * Two jobs, and the second is the one that matters:
+ *
+ *   A. Re-drive events we received but could not finish. A failed grant is a
+ *      row in a queryable queue rather than a lost log line.
+ *
+ *   B. Ask the provider about orders we created that have no captured payment.
+ *      This is the ONLY thing that recovers a payment whose webhook never
+ *      arrived AND whose customer never returned to the site — in that case
+ *      there is no local event to re-drive, and job A finds nothing at all.
+ *
+ * Everything goes through the same claim → apply path as the webhook, keyed on
+ * a deterministic event id, so running the sweep twice cannot grant twice.
  */
 export async function reconcile(): Promise<ReconcileReport> {
   const db = serviceClient()
   const provider = getProvider()
-  if (!db || !provider) return { reDriven: 0, recovered: 0, stillFailing: 0, note: 'not-configured' }
-
-  const { data: stuck } = await db
-    .from('webhook_events')
-    .select('provider, provider_event_id, event_type, payload_redacted, status, locked_until')
-    .or(`status.eq.failed,status.eq.parked,and(status.eq.processing,locked_until.lt.${new Date().toISOString()})`)
-    .limit(100)
+  const empty: ReconcileReport = {
+    reDriven: 0,
+    ordersChecked: 0,
+    recovered: 0,
+    unconfirmed: 0,
+    stillFailing: 0,
+    note: 'not-configured',
+  }
+  if (!db || !provider) return empty
 
   let recovered = 0
   let stillFailing = 0
-  const rows = (stuck ?? []) as {
+
+  /* ---- Job A: re-drive events we received but could not finish ---------- */
+
+  const { data: stuck } = await db
+    .from('webhook_events')
+    .select('provider, provider_event_id, payload_redacted')
+    .or(
+      `status.eq.failed,status.eq.parked,and(status.eq.processing,locked_until.lt.${new Date().toISOString()})`,
+    )
+    .limit(100)
+
+  const stuckRows = (stuck ?? []) as {
     provider: string
     provider_event_id: string
     payload_redacted: Record<string, unknown>
   }[]
 
-  for (const row of rows) {
+  for (const row of stuckRows) {
     const payload = row.payload_redacted ?? {}
     const orderId = typeof payload.order_id === 'string' ? payload.order_id : null
     const paymentId = typeof payload.payment_id === 'string' ? payload.payment_id : null
@@ -467,10 +562,98 @@ export async function reconcile(): Promise<ReconcileReport> {
     }
   }
 
+  /* ---- Job B: ask the provider about orders with no captured payment ---- */
+
+  const { data: awaiting } = await db.rpc('orders_awaiting_confirmation', {
+    p_min_age_minutes: MIN_AGE_MINUTES,
+    p_limit: RECONCILE_BATCH,
+  })
+
+  const orders = (awaiting ?? []) as {
+    provider: string
+    provider_order_id: string
+    amount_minor: number
+    created_at: string
+  }[]
+
+  let unconfirmed = 0
+
+  for (const [index, order] of orders.entries()) {
+    if (index > 0) await sleep(RECONCILE_DELAY_MS)
+
+    let payments: Awaited<ReturnType<typeof provider.fetchOrderPayments>> = []
+    try {
+      payments = await provider.fetchOrderPayments(order.provider_order_id)
+    } catch {
+      // A provider error is not evidence about the order. Leave
+      // `last_reconciled_at` alone so the next run tries again.
+      stillFailing += 1
+      continue
+    }
+
+    await db.rpc('mark_order_reconciled', {
+      p_provider: order.provider,
+      p_provider_order_id: order.provider_order_id,
+    })
+
+    const ageMinutes = (Date.now() - new Date(order.created_at).getTime()) / 60_000
+    const outcome = decideOrderOutcome(payments, ageMinutes)
+
+    if (outcome.action !== 'recover') {
+      // An inference, and labelled as one. Nothing is marked failed and no
+      // record is changed — a payment that confirms later simply leaves the
+      // list on its own.
+      if (outcome.action === 'unconfirmed') unconfirmed += 1
+      continue
+    }
+    const captured = outcome.payment
+
+    // Amount is re-checked by `apply_payment_event`, which parks on mismatch
+    // rather than granting. Nothing here decides that.
+    try {
+      const eventId = `reconcile:${captured.providerPaymentId}`
+      const claim = await claimEvent(db, {
+        provider: order.provider,
+        eventId,
+        eventType: 'reconcile.order',
+        bodySha256: eventId,
+        redacted: {
+          source: 'reconcile',
+          order_id: order.provider_order_id,
+          payment_id: captured.providerPaymentId,
+          amount: captured.amountMinor,
+          status: captured.status,
+        },
+      })
+      // Already processed means another path got there first — the webhook
+      // arriving late, or a previous sweep. Not a failure, and not a second
+      // grant.
+      if (claim !== 'claimed') continue
+
+      const applied = await applyEvent(db, {
+        provider: order.provider,
+        eventId,
+        providerOrderId: order.provider_order_id,
+        providerPaymentId: captured.providerPaymentId,
+        status: 'captured',
+        amountMinor: captured.amountMinor,
+      })
+      if (applied === 'processed') recovered += 1
+      else {
+        await settleEvent(db, order.provider, eventId, 'parked', applied)
+        stillFailing += 1
+      }
+    } catch {
+      stillFailing += 1
+    }
+  }
+
   return {
-    reDriven: rows.length,
+    reDriven: stuckRows.length,
+    ordersChecked: orders.length,
     recovered,
+    unconfirmed,
     stillFailing,
-    note: `${rows.length} stuck events re-driven`,
+    note: `${stuckRows.length} stuck events re-driven, ${orders.length} orders checked, ${recovered} recovered`,
   }
 }

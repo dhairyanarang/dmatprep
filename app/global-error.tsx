@@ -2,6 +2,8 @@
 
 import './globals.css'
 
+import { SupportEmail } from '@/components/support/support-link'
+
 /**
  * The last line of defence.
  *
@@ -80,12 +82,7 @@ export default function GlobalError({
           <div className="text-muted-foreground space-y-2 text-xs leading-relaxed">
             <p>
               If it keeps happening, write to{' '}
-              <a
-                className="text-foreground underline underline-offset-2"
-                href="mailto:dhairyanarang077@gmail.com"
-              >
-                dhairyanarang077@gmail.com
-              </a>
+              <SupportEmail topic="A page kept failing to load" />
               {error.digest ? (
                 <>
                   {' '}
