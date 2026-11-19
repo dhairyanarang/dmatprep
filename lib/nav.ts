@@ -1,5 +1,12 @@
 import {
   BookOpenCheck,
+  FileText,
+  Info,
+  Mail,
+  Quote,
+  RotateCcw,
+  ShieldCheck,
+  Sparkles,
   Grid3x3,
   LayoutDashboard,
   LayoutGrid,
@@ -59,6 +66,33 @@ export const NAV: NavGroup[] = [
     ],
   },
 ]
+
+/**
+ * The informational pages, in one list.
+ *
+ * These are not destinations — they are the pages a candidate needs once, to
+ * check who runs this, what it costs, or how to get help. They used to live in
+ * a large global footer under every screen, which put legal boilerplate below
+ * practice questions and made the app feel like a brochure.
+ *
+ * The sidebar holds them in a collapsed `Information` group instead: one click
+ * from anywhere, never in the way, and always present in the DOM so nothing
+ * depends on the group being open.
+ */
+export const INFO_LINKS: { href: string; label: string; icon: LucideIcon }[] = [
+  { href: '/about', label: 'About this resource', icon: Info },
+  { href: '/exam/sources', label: 'Sources', icon: Quote },
+  { href: '/pricing', label: 'Pricing', icon: Sparkles },
+  { href: '/terms', label: 'Terms', icon: FileText },
+  { href: '/refunds', label: 'Refunds', icon: RotateCcw },
+  { href: '/privacy', label: 'Your data', icon: ShieldCheck },
+  { href: '/contact', label: 'Contact', icon: Mail },
+]
+
+/** The informational page a path is, if it is one. */
+export function infoLinkFor(pathname: string) {
+  return INFO_LINKS.find((l) => l.href === pathname)
+}
 
 /** Which top-level destination a path belongs to. */
 const OWNS: Record<string, (path: string) => boolean> = {

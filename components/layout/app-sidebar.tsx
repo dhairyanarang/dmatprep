@@ -1,4 +1,5 @@
 import { NavList } from '@/components/layout/nav-list'
+import { SidebarFooter } from '@/components/layout/sidebar-footer'
 import { SidebarBrand } from '@/components/layout/sidebar-brand'
 import { ScrollArea } from '@/components/ui/scroll-area'
 
@@ -19,6 +20,8 @@ export function AppSidebar() {
       <ScrollArea className="min-h-0 flex-1">
         <NavList />
       </ScrollArea>
+
+      <SidebarFooter />
     </aside>
   )
 }

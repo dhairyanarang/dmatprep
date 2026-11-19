@@ -1,5 +1,6 @@
 import { ShieldCheck } from 'lucide-react'
 
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageHeader } from '@/components/layout/page-header'
 import { SupportEmail } from '@/components/support/support-link'
 import { PageContainer } from '@/components/layout/page-shell'
@@ -17,7 +18,7 @@ export const metadata = { title: 'Your data' }
 export default function PrivacyPage() {
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="flex max-w-3xl flex-col gap-7 py-6">
+      <PageContainer className="stagger-enter flex max-w-3xl flex-col gap-7 py-6">
         <PageHeader
           icon={ShieldCheck}
           title="Your data"
@@ -89,6 +90,7 @@ export default function PrivacyPage() {
             page.
           </p>
         </section>
+        <PageDisclaimer />
       </PageContainer>
     </div>
   )

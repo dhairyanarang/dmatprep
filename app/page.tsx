@@ -4,6 +4,7 @@ import { NextStep } from '@/components/dashboard/next-step'
 import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
 import { ExamLinks } from '@/components/exam/exam-links'
 import { PageHeader } from '@/components/layout/page-header'
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageContainer } from '@/components/layout/page-shell'
 import { CycleCountdowns } from '@/components/dashboard/cycle-countdowns'
 import { getBankSize } from '@/lib/content/registry'
@@ -41,6 +42,9 @@ export default function HomePage() {
           <h2 className="text-sm font-medium">Know about the Exam</h2>
           <ExamLinks />
         </section>
+        {/* The full statement, on the page every first-time visitor lands on.
+            Every other route carries the one-line version in the sidebar. */}
+        <PageDisclaimer />
       </PageContainer>
     </div>
   )

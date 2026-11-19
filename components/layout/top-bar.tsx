@@ -9,7 +9,7 @@ import { AccountMenu } from '@/components/auth/account-menu'
 import { PageContainer } from '@/components/layout/page-shell'
 import { SearchDialog } from '@/components/search/search-dialog'
 import { breadcrumbsFor } from '@/lib/breadcrumbs'
-import { NAV, isActive } from '@/lib/nav'
+import { NAV, infoLinkFor, isActive } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
 /**
@@ -56,13 +56,24 @@ export function TopBar() {
   const current = crumbs[crumbs.length - 1]
 
   const owner = NAV.flatMap((g) => g.links).find((l) => isActive(pathname, l.href))
-  const Icon = owner?.icon ?? Search
+  /**
+   * The breadcrumb's icon says which destination you are inside.
+   *
+   * It used to fall back to the SEARCH glyph for any route outside the four
+   * destinations, which put a magnifying glass beside "Terms" and "Contact" —
+   * reading as a second, broken search control rather than as a page marker.
+   * Informational pages carry their own icon; anything genuinely unmapped now
+   * shows none at all, which is quieter than showing the wrong one.
+   */
+  const Icon = owner?.icon ?? infoLinkFor(pathname)?.icon ?? null
 
   return (
     <header className="border-sidebar-border bg-background shrink-0 border-b">
       <PageContainer className="flex h-16 items-center gap-3">
         <nav aria-label="Breadcrumb" className="flex min-w-0 flex-1 items-center gap-1.5">
-          <Icon className="text-muted-foreground hidden size-5 shrink-0 sm:block" aria-hidden />
+          {Icon ? (
+            <Icon className="text-muted-foreground hidden size-5 shrink-0 sm:block" aria-hidden />
+          ) : null}
           <ol className="flex min-w-0 items-center gap-1.5">
             {trail.map((crumb) => (
               <li key={crumb.label} className="hidden shrink-0 items-center gap-1.5 sm:flex">

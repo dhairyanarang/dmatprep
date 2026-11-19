@@ -1,5 +1,7 @@
-import { Check, Sparkles } from 'lucide-react'
+import { ArrowRight, Check, Sparkles } from 'lucide-react'
+import Link from 'next/link'
 
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
 import { PremiumViewed } from '@/components/payments/premium-viewed'
@@ -9,6 +11,7 @@ import freeSet from '@/content/access/free-set.json'
 import { getBankSize } from '@/lib/content/registry'
 import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
 import { SECTION_BY_ID, SECTION_IDS } from '@/lib/sections'
+import { cn } from '@/lib/utils'
 
 export const metadata = {
   title: 'Pricing',
@@ -16,157 +19,160 @@ export const metadata = {
 }
 
 /**
- * The pricing page Razorpay requires before it will issue live API keys, and
- * the page a buyer deserves before spending anything.
+ * The pricing page, in the product's own visual language.
  *
- * Every count on it is derived from the bank rather than written down, because
- * this repository has already shipped a wrong hardcoded count once. The honest
- * part is the second table: the features that justify the price do not exist
- * yet, so they are named as not-yet-built rather than listed as benefits.
- * `docs/WEBSITE_READINESS.md` §1 makes that the governing rule for all copy —
- * nothing is advertised before it is built.
+ * Every number is derived from the bank rather than written down — this
+ * repository has shipped a wrong hardcoded count once already.
+ *
+ * Two things are load-bearing and quiet. The page says plainly that the paid
+ * questions have been public since August, because a buyer who discovers that
+ * afterwards has been misled. And it names no feature that does not exist:
+ * analytics, weak-area reports and adaptive practice are on a roadmap line,
+ * never in the Pro feature list, per `docs/WEBSITE_READINESS.md` §1.
  */
+function Row({ children, muted = false }: { children: React.ReactNode; muted?: boolean }) {
+  return (
+    <li className="flex gap-2.5">
+      <Check
+        aria-hidden
+        className={cn('mt-0.5 size-4 shrink-0', muted ? 'text-muted-foreground/50' : 'text-brand')}
+      />
+      <span className={cn('text-sm leading-5', muted ? 'text-muted-foreground' : 'text-foreground')}>
+        {children}
+      </span>
+    </li>
+  )
+}
+
 export default function PricingPage() {
   const rows = SECTION_IDS.map((id) => {
     const total = getBankSize(id)
     const free = (freeSet.sections as Record<string, string[]>)[id]?.length ?? 0
     return { id, label: SECTION_BY_ID[id].title, total, free, premium: total - free }
   })
-
   const totals = rows.reduce(
-    (acc, r) => ({
-      total: acc.total + r.total,
-      free: acc.free + r.free,
-      premium: acc.premium + r.premium,
-    }),
+    (a, r) => ({ total: a.total + r.total, free: a.free + r.free, premium: a.premium + r.premium }),
     { total: 0, free: 0, premium: 0 },
   )
+  const perSection = rows[0]?.free ?? 0
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="flex max-w-3xl flex-col gap-7 py-6">
+      <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
         <PremiumViewed />
+
         <PageHeader
           icon={Sparkles}
           title="Pricing"
-          description="What is free, what is paid, and exactly what you get"
+          description={
+            COMMERCE_ENABLED
+              ? 'One payment, once. Everything you can already use stays free.'
+              : `Nothing is for sale yet — all ${totals.total} Core questions are free right now.`
+          }
         />
 
-        {!COMMERCE_ENABLED ? (
-          <div className="border-border bg-card rounded-xl border p-4">
-            <p className="text-foreground text-sm font-semibold">Nothing is for sale yet.</p>
-            <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
-              All {totals.total} Core questions are free right now, with complete explanations and
-              progress tracking, and no account needed. This page describes what paid access will
-              be when it opens. If you are using dMAT Prep today, nothing is being taken away from
-              you.
+        <div className="grid items-start gap-4 lg:grid-cols-2">
+          {/* ---------------------------------------------------------- Free */}
+          <section className="border-border bg-card flex flex-col rounded-xl border p-5 sm:p-6">
+            <div className="flex items-baseline justify-between gap-3">
+              <h2 className="text-foreground text-base font-semibold">Free</h2>
+              <span className="text-muted-foreground text-sm">No account needed</span>
+            </div>
+
+            <p className="text-foreground mt-4 text-2xl leading-8 font-semibold tracking-tight">
+              {totals.free} questions
             </p>
-          </div>
-        ) : null}
+            <p className="text-muted-foreground mt-1 text-sm">
+              {perSection} in each of the three Core subtests
+            </p>
 
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold">Free, always</h2>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            {totals.free} questions — {rows[0].free} in each of the three Core subtests — chosen to
-            cover every question type we have, at every difficulty. Not a sample of the easy ones.
-          </p>
-          <ul className="text-muted-foreground space-y-1.5 text-sm leading-relaxed">
+            <ul className="mt-5 flex flex-col gap-2.5">
+              <Row>Complete explanations for every free question</Row>
+              <Row>The same answer feedback as Pro — one practice runner, not a worse free one</Row>
+              <Row>Progress, accuracy and your full attempt history</Row>
+              <Row>Diagnostic and timed practice</Row>
+              <Row>Every question type, at every difficulty</Row>
+            </ul>
+
+            <p className="text-muted-foreground mt-auto pt-6 text-xs leading-4">
+              Free stays free. Nothing you can use today is being taken away.
+            </p>
+          </section>
+
+          {/* ----------------------------------------------------------- Pro */}
+          <section className="border-brand/30 bg-card relative flex flex-col rounded-xl border p-5 shadow-[0_4px_12px_rgba(0,0,0,0.05)] sm:p-6">
+            <div className="flex items-baseline justify-between gap-3">
+              <h2 className="text-foreground flex items-center gap-2 text-base font-semibold">
+                Pro
+                <span className="bg-brand/12 text-brand rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
+                  One-time
+                </span>
+              </h2>
+              <span className="text-muted-foreground text-sm">Account required</span>
+            </div>
+
+            <p className="text-foreground mt-4 text-2xl leading-8 font-semibold tracking-tight">
+              {formatPrice()}
+            </p>
+            <p className="text-muted-foreground mt-1 text-sm">
+              Paid once. No subscription, nothing charged again.
+            </p>
+
+            <ul className="mt-5 flex flex-col gap-2.5">
+              <Row>
+                <span className="text-foreground font-medium">
+                  All {totals.total} Core questions
+                </span>{' '}
+                — {totals.premium} more than Free
+              </Row>
+              {rows.map((r) => (
+                <Row key={r.id} muted>
+                  {r.label} — {r.free} free, {r.premium} more with Pro
+                </Row>
+              ))}
+              <Row>Full explanations and distractor notes on every one</Row>
+              <Row>Access does not expire</Row>
+            </ul>
+
+            <div className="mt-6">
+              <PurchaseButton />
+            </div>
+          </section>
+        </div>
+
+        {/* Said once, plainly, because finding it out afterwards is worse. */}
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          The paid questions are not secret — they have been in a public code repository since
+          August 2026. Pro buys them organised, explained and measured inside the tool that tracks
+          your progress. Analytics, weak-area reports and adaptive practice are what we intend to
+          build next; they are not part of Pro today.{' '}
+          <Link className="hover:text-foreground underline underline-offset-2" href="/about">
+            More about this resource
+          </Link>
+          .
+        </p>
+
+        <div className="border-border/70 flex flex-col gap-3 border-t pt-5 sm:flex-row sm:items-center sm:justify-between">
+          <nav aria-label="Purchase information" className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
             {[
-              'Complete explanations for every free question, never withheld',
-              'The same answer feedback as paid — there is one practice runner, not a worse free one',
-              'Progress tracking, accuracy and your full attempt history',
-              'Diagnostic and timed practice',
-              'No account required',
-            ].map((item) => (
-              <li key={item} className="flex gap-2">
-                <Check aria-hidden className="text-foreground mt-0.5 size-4 shrink-0" />
-                <span>{item}</span>
-              </li>
+              { href: '/refunds', label: 'Refunds' },
+              { href: '/terms', label: 'Terms' },
+              { href: '/privacy', label: 'Your data' },
+            ].map((l) => (
+              <Link
+                key={l.href}
+                className="text-muted-foreground hover:text-foreground inline-flex items-center gap-1 underline underline-offset-2"
+                href={l.href}
+              >
+                {l.label}
+                <ArrowRight aria-hidden className="size-3" />
+              </Link>
             ))}
-          </ul>
-        </section>
+          </nav>
+          <SupportLink className="sm:text-right" showAim={false} topic="Question about Pro" />
+        </div>
 
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold">
-            Paid access — {formatPrice()}, one time
-          </h2>
-
-          <div className="border-border overflow-hidden rounded-xl border">
-            <table className="w-full text-sm">
-              <thead className="bg-card text-muted-foreground">
-                <tr>
-                  <th className="p-3 text-left font-medium">Subtest</th>
-                  <th className="p-3 text-right font-medium">Free</th>
-                  <th className="p-3 text-right font-medium">Paid adds</th>
-                  <th className="p-3 text-right font-medium">Total</th>
-                </tr>
-              </thead>
-              <tbody>
-                {rows.map((r) => (
-                  <tr key={r.id} className="border-border border-t">
-                    <td className="p-3">{r.label}</td>
-                    <td className="p-3 text-right font-mono">{r.free}</td>
-                    <td className="p-3 text-right font-mono">{r.premium}</td>
-                    <td className="text-muted-foreground p-3 text-right font-mono">{r.total}</td>
-                  </tr>
-                ))}
-                <tr className="border-border bg-card border-t font-medium">
-                  <td className="p-3">Total</td>
-                  <td className="p-3 text-right font-mono">{totals.free}</td>
-                  <td className="p-3 text-right font-mono">{totals.premium}</td>
-                  <td className="p-3 text-right font-mono">{totals.total}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            Every paid question carries the same complete explanation and notes on each wrong
-            option. Paid access is attached to your account and does not expire.
-          </p>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold">What paid access is not</h2>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            We would rather say this than have you find out afterwards.
-          </p>
-          <ul className="text-muted-foreground space-y-2 text-sm leading-relaxed">
-            <li>
-              <strong className="text-foreground">The paid questions are not secret.</strong> They
-              have been in a public code repository since August 2026 and anyone can find them.
-              What you are paying for is having them organised, explained and measured inside a
-              tool that tracks your progress — convenience, not exclusivity.
-            </li>
-            <li>
-              <strong className="text-foreground">
-                Analytics, weak-area reports, pacing insight and adaptive practice do not exist
-                yet.
-              </strong>{' '}
-              They are what we intend to build next. They are not part of what you are buying
-              today, and we will not list them as features until they are real.
-            </li>
-            <li>
-              <strong className="text-foreground">Module B is not included.</strong> Its questions
-              have passed automated checks but nobody has signed them off, so they are neither sold
-              nor offered as a sample.
-            </li>
-            <li>
-              <strong className="text-foreground">No result is guaranteed.</strong> The real
-              examination may differ in content, difficulty and structure.
-            </li>
-          </ul>
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold">Buying</h2>
-          <PurchaseButton />
-        </section>
-
-        <section className="space-y-3">
-          <h2 className="text-base font-semibold">Questions before you buy?</h2>
-          <SupportLink topic="Question about Premium" />
-        </section>
+        <PageDisclaimer />
       </PageContainer>
     </div>
   )

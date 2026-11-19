@@ -131,7 +131,12 @@ describe('GAM product — navigation', () => {
     const nav = read('../../lib/nav.ts')
     const links = nav.slice(nav.indexOf('export const NAV'), nav.indexOf('const OWNS'))
     assert.ok(!links.includes('module-b'), 'Module B was added to the sidebar as a fifth destination')
-    assert.equal((links.match(/href: '/g) ?? []).length, 4, 'the sidebar no longer has four links')
+    // Scoped to the NAV array: `lib/nav.ts` also exports INFO_LINKS, the
+    // collapsed Information group in the sidebar footer. Those are pages, not
+    // destinations, and counting them here would make adding a Terms link look
+    // like adding a fifth place to visit.
+    const navBlock = links.slice(links.indexOf('export const NAV'), links.indexOf('export const INFO_LINKS'))
+    assert.equal((navBlock.match(/href: '/g) ?? []).length, 4, 'the sidebar no longer has four destinations')
     assert.match(nav, /path\.startsWith\('\/module-b\/timed'\)/, 'the timed session is not owned by Test')
   })
 })

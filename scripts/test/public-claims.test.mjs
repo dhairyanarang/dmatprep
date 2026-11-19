@@ -50,28 +50,58 @@ function builtPages() {
     .map((f) => ({ name: f, html: readFileSync(join(dir, f), 'utf8') }))
 }
 
-test('the footer carries the independence statement and the trademark line', () => {
-  const footer = read('components/layout/site-footer.tsx')
-  assert.ok(footer.includes(NOT_AFFILIATED), 'footer lost the non-affiliation sentence')
-  assert.ok(footer.includes('g.a.s.t.'), 'footer does not name g.a.s.t.')
-  assert.ok(footer.includes('APS India'), 'footer does not name APS India')
-  assert.ok(footer.includes(TRADEMARK), 'footer lost the trademark attribution')
+/*
+ * The global footer is gone. It carried three paragraphs of legal text under
+ * every screen, including a half-answered practice question.
+ *
+ * What replaced it is deliberately split, and these tests pin both halves:
+ *
+ *   · the FULL statement in `PageDisclaimer`, rendered on the informational
+ *     pages where someone would actually read it;
+ *   · a ONE-LINE version in `SidebarFooter`, which the sidebar renders on every
+ *     route — this is what keeps the non-affiliation claim present everywhere,
+ *     and what `release:check` gate 6 measures against the built HTML.
+ *
+ * Losing either half silently is the failure these guard against.
+ */
+
+test('the page disclaimer carries the independence statement and the trademark line', () => {
+  const disclaimer = read('components/layout/page-disclaimer.tsx')
+  assert.ok(disclaimer.includes(NOT_AFFILIATED), 'the disclaimer lost the non-affiliation sentence')
+  assert.ok(disclaimer.includes('g.a.s.t.'), 'the disclaimer does not name g.a.s.t.')
+  assert.ok(disclaimer.includes('APS India'), 'the disclaimer does not name APS India')
+  assert.ok(disclaimer.includes(TRADEMARK), 'the disclaimer lost the trademark attribution')
 })
 
-test('the footer is mounted in the root layout, so it reaches every route', () => {
-  const layout = read('app/layout.tsx')
-  assert.ok(/import \{ SiteFooter \}/.test(layout), 'SiteFooter is not imported in the layout')
-  assert.ok(/<SiteFooter\s*\/>/.test(layout), 'SiteFooter is not rendered in the layout')
-})
-
-test('the footer does not claim every practice question is independently authored', () => {
-  // True of the GAM packs, which carry an originality gate and recorded
-  // adjudication. Unevidenced for the 473 Core questions, which have neither.
-  // The claim goes in when the provenance audit supports it, not before.
-  const footer = read('components/layout/site-footer.tsx')
+test('the one-line statement is in the sidebar, which every route renders', () => {
+  const sidebarFooter = read('components/layout/sidebar-footer.tsx')
   assert.ok(
-    !/questions are independently authored|all .*questions are original/i.test(footer),
-    'the footer makes an originality claim the repository does not evidence',
+    sidebarFooter.includes(NOT_AFFILIATED),
+    'the sidebar lost the non-affiliation sentence — no route would carry it',
+  )
+
+  // Mounted in both the desktop aside and the mobile sheet, or half the users
+  // never see it.
+  const aside = read('components/layout/app-sidebar.tsx')
+  const mobile = read('components/layout/mobile-nav.tsx')
+  assert.ok(/<SidebarFooter\s*\/>/.test(aside), 'SidebarFooter is not in the desktop sidebar')
+  assert.ok(/<SidebarFooter\b/.test(mobile), 'SidebarFooter is not in the mobile navigation')
+})
+
+test('no global footer has crept back into the root layout', () => {
+  const layout = read('app/layout.tsx')
+  assert.ok(!/SiteFooter/.test(layout), 'the global footer is back in the layout')
+  assert.ok(!existsSync(join(root, 'components/layout/site-footer.tsx')), 'site-footer.tsx is back')
+})
+
+test('the disclaimer does not claim every practice question is independently authored', () => {
+  // True of the GAM packs, which carry an originality gate and recorded
+  // adjudication. The Core claim is evidenced now, but the phrasing below would
+  // over-claim for Module B, which nobody has signed off.
+  const disclaimer = read('components/layout/page-disclaimer.tsx')
+  assert.ok(
+    !/questions are independently authored|all .*questions are original/i.test(disclaimer),
+    'the disclaimer makes an originality claim the repository does not evidence',
   )
 })
 

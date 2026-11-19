@@ -38,6 +38,16 @@ const STATIC: Record<string, Crumb[]> = {
   '/exam/sources': [EXAM, { label: 'Sources' }],
   '/module-b': [PREPARE, { label: 'Module B' }],
   '/module-b/timed': [TEST, { label: 'Module B', href: '/module-b' }, { label: 'Timed session' }],
+
+  // The informational pages. Top level rather than nested under a destination:
+  // they belong to no section, and the breadcrumb's last segment is rendered
+  // as the page's `<h1>`, so without an entry here they had no heading at all.
+  '/about': [{ label: 'About this resource' }],
+  '/pricing': [{ label: 'Pricing' }],
+  '/terms': [{ label: 'Terms' }],
+  '/refunds': [{ label: 'Refunds' }],
+  '/privacy': [{ label: 'Your data' }],
+  '/contact': [{ label: 'Contact' }],
 }
 
 const SECTION_TABS: Record<string, string> = {

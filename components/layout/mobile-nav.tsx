@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Menu } from 'lucide-react'
 
 import { NavList } from '@/components/layout/nav-list'
+import { SidebarFooter } from '@/components/layout/sidebar-footer'
 import { SidebarBrand } from '@/components/layout/sidebar-brand'
 import { Button } from '@/components/ui/button'
 import {
@@ -39,6 +40,8 @@ export function MobileNav() {
           <div className="min-h-0 flex-1 overflow-y-auto">
             <NavList onNavigate={() => setOpen(false)} />
           </div>
+
+          <SidebarFooter onNavigate={() => setOpen(false)} />
 
         </SheetContent>
       </Sheet>

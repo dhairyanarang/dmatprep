@@ -1,5 +1,6 @@
 import type { LucideIcon } from 'lucide-react'
 
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
 import {
@@ -82,13 +83,13 @@ export function LegalDocumentPage({
 
   return (
     <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="flex max-w-3xl flex-col gap-5 py-6">
+      <PageContainer className="stagger-enter flex flex-col gap-5 py-6">
         <PageHeader icon={icon} title={document.title} description={document.description} />
 
         {missing.length > 0 ? (
           <div
             role="status"
-            className="border-destructive/30 bg-destructive/5 space-y-2 rounded-xl border p-4"
+            className="border-destructive/30 bg-destructive/5 max-w-3xl space-y-2 rounded-xl border p-4"
           >
             <p className="text-foreground text-sm font-semibold">
               This document is not yet in force.
@@ -106,11 +107,17 @@ export function LegalDocumentPage({
           <p className="text-muted-foreground text-sm">Last updated: {details.lastUpdated}</p>
         )}
 
-        <div className="space-y-3">
+        {/* The container keeps the page's left edge and gutters identical to
+            every other route; only the prose is narrowed, which is the
+            documented pattern. Narrowing the container is what made these
+            pages look like a different site. */}
+        <div className="max-w-3xl space-y-3">
           {document.blocks.map((block, index) => (
             <Block key={`${block.type}-${index}`} block={block} details={details} />
           ))}
         </div>
+
+        <PageDisclaimer className="max-w-3xl" />
       </PageContainer>
     </div>
   )

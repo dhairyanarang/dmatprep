@@ -10,7 +10,6 @@ import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { MobileNav } from '@/components/layout/mobile-nav'
-import { SiteFooter } from '@/components/layout/site-footer'
 import { TopBar } from '@/components/layout/top-bar'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
@@ -96,8 +95,12 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <MobileNav />
               <TopBar />
               <AuthNotice />
+              {/* No global footer. The independence statement is carried on
+                  every page by the sidebar's one-line version, and in full by
+                  `PageDisclaimer` on the informational pages — rather than
+                  three paragraphs of legal text under a half-answered
+                  question. */}
               <main className="flex-1">{children}</main>
-              <SiteFooter />
             </div>
           </div>
           <Toaster />
