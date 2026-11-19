@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
+import { PremiumLocked } from '@/components/practice/premium-locked'
 import { ReadingMeasure } from '@/components/layout/page-shell'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
 import { ExplanationSheet } from '@/components/practice/explanation-sheet'
@@ -32,6 +33,7 @@ import {
 } from '@/lib/types/progress'
 import {
   DIFFICULTIES,
+  hasSolution,
   isCorrect,
   requiredSelectionCount,
   type Difficulty,
@@ -247,6 +249,10 @@ function PracticeSession({
    */
   const commit = useCallback(
     (question: Question, sel: Selection, hintsUsed: number) => {
+      // Unreachable through the interface — a locked question renders no
+      // options — but an attempt recorded here would be permanent and wrong,
+      // and `attempts` has no update policy to correct it with.
+      if (!hasSolution(question)) return
       patch(question.id, { selection: sel, submitted: true })
       const now = Date.now()
       recordAttempt({
@@ -396,6 +402,15 @@ function QuestionCard({
   const { selection, submitted, hintsUsed } = answer
   const answered = Object.keys(selection).length >= requiredSelectionCount(question)
 
+  /**
+   * The answer half never arrived, so this question is not ours to grade.
+   *
+   * Locked BEFORE the options rather than after an attempt: a question that
+   * cannot be graded must not be answerable, or the only honest outcomes are a
+   * silent nothing and a wrong "incorrect".
+   */
+  const locked = !hasSolution(question)
+
   return (
     <Card
       id={`question-${question.id}`}
@@ -417,17 +432,21 @@ function QuestionCard({
       </CardHeader>
 
       <CardContent className="space-y-5">
-        <ReadingMeasure>
-          <QuestionView
-            question={question}
-            selection={selection}
-            submitted={submitted}
-            onSelect={(key, optionId) => onSelect(question, key, optionId)}
-            compactOptions
-          />
-        </ReadingMeasure>
+        {locked ? (
+          <PremiumLocked questionId={question.id} />
+        ) : (
+          <ReadingMeasure>
+            <QuestionView
+              question={question}
+              selection={selection}
+              submitted={submitted}
+              onSelect={(key, optionId) => onSelect(question, key, optionId)}
+              compactOptions
+            />
+          </ReadingMeasure>
+        )}
 
-        {!submitted && question.hints?.length ? (
+        {!locked && !submitted && question.hints?.length ? (
           <>
             <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
             <div className="flex flex-wrap items-center gap-2">
@@ -443,7 +462,7 @@ function QuestionCard({
           </>
         ) : null}
 
-        {submitted ? (
+        {!locked && submitted ? (
           <FeedbackSummary
             question={question}
             selection={selection}

@@ -13,6 +13,36 @@ const nextConfig: NextConfig = {
       { source: '/review', destination: '/', permanent: false },
     ]
   },
+  /**
+   * Pilot-only: withhold premium solutions from the public path.
+   *
+   * `beforeFiles` rewrites are matched BEFORE the `public/` directory is
+   * consulted (Next's documented routing order, step 4 against step 5), which
+   * is the only way to stop a committed static file being served without
+   * deleting or rewriting it.
+   *
+   * With COMMERCE_ENABLED unset — which is every production build — this list
+   * is empty, no rewrite exists, and `/solutions/*.json` is served from
+   * `public/` exactly as it always has been.
+   */
+  async rewrites() {
+    if (process.env.COMMERCE_ENABLED !== '1') return []
+    return {
+      beforeFiles: [
+        {
+          // `:section.json` does NOT work: the parameter swallows the
+          // extension, so the handler was asked for "figure-sequences.json"
+          // and refused it as an unknown section. The whole segment is
+          // captured instead and the extension stripped server-side — found by
+          // actually calling the URL, which the structural tests could not do.
+          source: '/solutions/:section',
+          destination: '/api/content/free-solutions/:section',
+        },
+      ],
+      afterFiles: [],
+      fallback: [],
+    }
+  },
   turbopack: {
     // The project lives under ~/Desktop, and a stray package-lock.json in the home
     // directory makes Turbopack infer ~/ as the workspace root. Pin it here.

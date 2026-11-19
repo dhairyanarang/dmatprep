@@ -23,7 +23,8 @@
     "review:package": "node scripts/gam/build-human-review.mjs",
     "qa:assert-isolated": "node scripts/qa/assert-isolated.mjs",
     "release:check": "node scripts/release-check.mjs",
-    "dev:pilot": "node scripts/dev-pilot.mjs"
+    "dev:pilot": "node scripts/dev-pilot.mjs",
+    "build:pilot-solutions": "node scripts/build-pilot-solutions.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",

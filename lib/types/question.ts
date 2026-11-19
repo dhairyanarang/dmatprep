@@ -385,8 +385,39 @@ export type QuestionOf<S extends SectionId> = Extract<Question, { section: S }>
  */
 export type Selection = Record<string, string>
 
-/** An item counts correct only when every required selection is correct. */
+/**
+ * Whether this record carries its answer half.
+ *
+ * Pages serve questions without answers and the solutions are merged back on
+ * the client, so between those two moments — or permanently, for a premium
+ * question an unentitled user asked for — a `Question` can be missing the very
+ * fields that decide correctness.
+ *
+ * Nothing may grade, render a result, or record an attempt for a question that
+ * fails this check. The answer is not wrong; it is not knowable here, and the
+ * two must never be confused.
+ */
+export function hasSolution(question: Question): boolean {
+  if (question.kind === 'figure-sequence') {
+    return (
+      Array.isArray(question.images) &&
+      question.images.length > 0 &&
+      question.images.every((img) => typeof img.correctOptionId === 'string')
+    )
+  }
+  return typeof question.correctOptionId === 'string'
+}
+
+/**
+ * An item counts correct only when every required selection is correct.
+ *
+ * Returns false for a question whose solution is absent, but a caller reaching
+ * that state has already made a mistake: `false` reads as "wrong", and a
+ * withheld solution means "unknown". Check `hasSolution` first and show the
+ * locked state instead — `components/practice/premium-locked.tsx`.
+ */
 export function isCorrect(question: Question, selection: Selection): boolean {
+  if (!hasSolution(question)) return false
   if (question.kind === 'figure-sequence') {
     return question.images.every((img) => selection[img.label] === img.correctOptionId)
   }
