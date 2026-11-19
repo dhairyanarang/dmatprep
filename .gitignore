@@ -35,6 +35,9 @@ yarn-error.log*
 # ...except the template, which holds placeholders only and is how another
 # developer learns which variables exist.
 !.env.example
+# The pilot TEMPLATE is committed; the filled-in `.env.pilot` never is. The
+# negation has to name the file exactly — `.env*` above already matched it.
+!.env.pilot.example
 
 # vercel
 .vercel

@@ -28,10 +28,56 @@ if (typeof window !== 'undefined') {
   throw new Error('lib/payments/server.ts was imported in the browser')
 }
 
+/** The project reference inside a Supabase URL: https://<ref>.supabase.co */
+function projectRef(url: string): string | null {
+  const match = /^https:\/\/([a-z0-9-]+)\.supabase\.(co|in|net)/i.exec(url)
+  return match ? match[1] : null
+}
+
+/**
+ * The privileged client, or nothing.
+ *
+ * Returning `null` is a working state, not an error path: every caller already
+ * handles it and answers 503. That is what makes the guards below safe to fail
+ * closed — a misconfiguration disables payments rather than pointing them
+ * somewhere dangerous.
+ *
+ * Two guards, and the second is the one that matters:
+ *
+ *  1. No secret key → no client. This is why production, where the key is
+ *     deliberately never set, structurally cannot write a payment row.
+ *  2. A secret key MUST be accompanied by `SUPABASE_PROJECT_REF_EXPECTED`, and
+ *     it must match the project the URL points at. A key without a declared
+ *     target is refused outright — the failure this prevents is a pilot whose
+ *     Supabase URL silently fell through to production while its secret key
+ *     did not, leaving the two pointed at different projects.
+ */
 function serviceClient(): SupabaseClient | null {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? ''
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+  // Supabase is replacing `service_role` with `secret` keys (sb_secret_…) and
+  // deprecating the legacy name; both are accepted, the new one preferred.
+  const key = process.env.SUPABASE_SECRET_KEY ?? process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
   if (!url || !key) return null
+
+  const expected = process.env.SUPABASE_PROJECT_REF_EXPECTED ?? ''
+  if (!expected) {
+    console.error(
+      '[payments] a Supabase secret key is set but SUPABASE_PROJECT_REF_EXPECTED is not. ' +
+        'Refusing to use it: a privileged key with no declared target project is how ' +
+        'test writes reach production. Payments are disabled.',
+    )
+    return null
+  }
+
+  const actual = projectRef(url)
+  if (actual !== expected) {
+    console.error(
+      `[payments] Supabase project mismatch: the URL points at "${actual ?? 'an unrecognised host'}" ` +
+        `but SUPABASE_PROJECT_REF_EXPECTED is "${expected}". Payments are disabled.`,
+    )
+    return null
+  }
+
   return createClient(url, key, { auth: { persistSession: false, autoRefreshToken: false } })
 }
 

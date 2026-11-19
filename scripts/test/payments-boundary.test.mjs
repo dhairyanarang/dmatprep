@@ -50,9 +50,11 @@ test('no client component imports the privileged payments module', () => {
   assert.deepEqual(offenders, [], `a 'use client' file imports lib/payments/server: ${offenders}`)
 })
 
-test('the service-role key is read in exactly one module', () => {
+test('the privileged Supabase key is read in exactly one module', () => {
+  // Both names: Supabase is replacing `service_role` with `secret` keys and
+  // deprecating the old one, so either could appear.
   const readers = files
-    .filter((f) => f.text.includes('SUPABASE_SERVICE_ROLE_KEY'))
+    .filter((f) => /SUPABASE_(SERVICE_ROLE|SECRET)_KEY/.test(f.text))
     .map((f) => f.path)
     .filter((p) => !p.startsWith('scripts/test/'))
     // `.env.example` is names only, and the docs name it to explain it.
@@ -65,7 +67,13 @@ test('the service-role key is read in exactly one module', () => {
 })
 
 test('no secret is prefixed NEXT_PUBLIC_', () => {
-  const secrets = ['SERVICE_ROLE', 'KEY_SECRET', 'WEBHOOK_SECRET', 'RECONCILE_SECRET']
+  const secrets = [
+    'SERVICE_ROLE',
+    'SECRET_KEY',
+    'KEY_SECRET',
+    'WEBHOOK_SECRET',
+    'RECONCILE_SECRET',
+  ]
   const offenders = []
   for (const f of files) {
     for (const secret of secrets) {
@@ -92,6 +100,58 @@ test('.env.example carries names and no values', () => {
     .filter((line) => /^[A-Z_]+=/.test(line))
     .filter((line) => line.split('=')[1].trim() !== '')
   assert.deepEqual(assignments, [], `.env.example has values, not just names: ${assignments}`)
+})
+
+/* ------------------------------------------------------------ the pilot */
+
+test('.env.pilot.example holds no credential values', () => {
+  // Only the two commerce flags carry a value, and `1` is not a secret.
+  const text = readFileSync(join(root, '.env.pilot.example'), 'utf8')
+  const withValues = text
+    .split('\n')
+    .filter((line) => /^[A-Z_]+=/.test(line))
+    .filter((line) => line.split('=')[1].trim() !== '')
+  assert.deepEqual(
+    withValues.sort(),
+    ['COMMERCE_ENABLED=1', 'NEXT_PUBLIC_COMMERCE_ENABLED=1'],
+    `.env.pilot.example carries a value it should not: ${withValues}`,
+  )
+})
+
+test('the pilot template defines every variable the launcher requires', () => {
+  // A variable the launcher demands but the template omits would send someone
+  // to the dashboard twice; worse, a variable the launcher FORGETS to demand
+  // is one Next.js would silently load from .env.local instead.
+  const template = readFileSync(join(root, '.env.pilot.example'), 'utf8')
+  const launcher = readFileSync(join(root, 'scripts/dev-pilot.mjs'), 'utf8')
+
+  const required = [...launcher.matchAll(/^\s+'([A-Z_]+)',$/gm)].map((m) => m[1])
+  assert.ok(required.length >= 10, 'could not read the launcher\u2019s required list')
+
+  for (const key of required) {
+    assert.match(template, new RegExp(`^${key}=`, 'm'), `${key} is required but not in the template`)
+  }
+})
+
+test('the real .env.pilot can never be committed', () => {
+  const ignore = readFileSync(join(root, '.gitignore'), 'utf8')
+  assert.match(ignore, /^\.env\*$/m, '.env* must be ignored')
+  assert.match(ignore, /^!\.env\.pilot\.example$/m, 'the template must be re-included')
+  // The negation must name the template exactly. A looser pattern such as
+  // `!.env.pilot*` would re-include `.env.pilot` itself — the filled-in file.
+  assert.ok(
+    !/^!\.env\.pilot\*/m.test(ignore),
+    'the negation must not be a wildcard that would un-ignore .env.pilot',
+  )
+})
+
+test('the launcher never forwards .env.local values to the child process', () => {
+  const launcher = readFileSync(join(root, 'scripts/dev-pilot.mjs'), 'utf8')
+  // It reads .env.local for exactly one comparison: the project ref.
+  const localReads = [...launcher.matchAll(/parseEnv\(readFileSync\(localPath[^)]*\)[^)]*\)/g)]
+  assert.equal(localReads.length, 1, 'the launcher should read .env.local once, for the ref check')
+  assert.ok(!/env\[.*\] = local/.test(launcher), 'no .env.local value may reach the child env')
+  assert.ok(!/writeFileSync\([^)]*env\.local/.test(launcher), '.env.local must never be written')
 })
 
 test('the mock provider cannot be selected in a production build', () => {

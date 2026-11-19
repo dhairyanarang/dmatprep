@@ -22,7 +22,8 @@
     "register": "node scripts/build-register.mjs",
     "review:package": "node scripts/gam/build-human-review.mjs",
     "qa:assert-isolated": "node scripts/qa/assert-isolated.mjs",
-    "release:check": "node scripts/release-check.mjs"
+    "release:check": "node scripts/release-check.mjs",
+    "dev:pilot": "node scripts/dev-pilot.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.7.0",
