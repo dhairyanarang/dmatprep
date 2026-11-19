@@ -393,7 +393,13 @@ begin
     return 'park:amount-mismatch';
   end if;
 
-  insert into public.payments
+  -- `as p` matters. Inside ON CONFLICT DO UPDATE the existing row is referenced
+  -- by the target's name or alias, never schema-qualified: `public.payments.x`
+  -- there is a reference to a range-table entry that does not exist under that
+  -- name. plpgsql does not resolve column references at CREATE FUNCTION time,
+  -- so the migration would have applied cleanly and the FIRST REAL PAYMENT
+  -- would have failed. `claim_webhook_event` already uses the alias form.
+  insert into public.payments as p
     (order_id, provider, provider_payment_id, amount_minor, currency, status,
      captured_at, refunded_at, charged_back_at)
   values
@@ -404,9 +410,9 @@ begin
      case when p_status = 'charged_back' then v_now end)
   on conflict (provider, provider_payment_id) do update
      set status          = excluded.status,  -- the monotonic trigger arbitrates
-         captured_at     = coalesce(public.payments.captured_at, excluded.captured_at),
-         refunded_at     = coalesce(public.payments.refunded_at, excluded.refunded_at),
-         charged_back_at = coalesce(public.payments.charged_back_at, excluded.charged_back_at);
+         captured_at     = coalesce(p.captured_at, excluded.captured_at),
+         refunded_at     = coalesce(p.refunded_at, excluded.refunded_at),
+         charged_back_at = coalesce(p.charged_back_at, excluded.charged_back_at);
 
   perform public.recompute_entitlement(v_order.user_id, v_order.product);
 
@@ -605,3 +611,26 @@ revoke all on function public.purge_webhook_payloads(integer) from public, anon,
 revoke all on function public.mark_order_reconciled(text, text) from public, anon, authenticated;
 revoke all on function public.orders_awaiting_confirmation(integer, integer) from public, anon, authenticated;
 revoke all on function public.payment_status_rank(text) from public, anon, authenticated;
+
+-- ---------------------------------------------------------------------------
+-- …and grant them back to the one role that must call them.
+--
+-- Revoking EXECUTE from PUBLIC removes it from every role that held it only
+-- through PUBLIC. Supabase's default privileges normally grant functions to
+-- `service_role` explicitly at creation, which would survive the revoke — but
+-- "normally" is not a thing to bet a payment system on, and an explicit grant
+-- is idempotent if the privilege is already there.
+--
+-- Without this, every RPC answers `permission denied for function`, and so
+-- does the monotonic trigger: `payments_status_monotonic` is not SECURITY
+-- DEFINER, so it calls `payment_status_rank` as the invoking role.
+-- ---------------------------------------------------------------------------
+
+grant execute on function public.recompute_entitlement(uuid, text) to service_role;
+grant execute on function public.claim_webhook_event(text, text, text, text, jsonb, integer) to service_role;
+grant execute on function public.apply_payment_event(text, text, text, text, text, integer) to service_role;
+grant execute on function public.settle_webhook_event(text, text, text, text, integer) to service_role;
+grant execute on function public.purge_webhook_payloads(integer) to service_role;
+grant execute on function public.mark_order_reconciled(text, text) to service_role;
+grant execute on function public.orders_awaiting_confirmation(integer, integer) to service_role;
+grant execute on function public.payment_status_rank(text) to service_role;
