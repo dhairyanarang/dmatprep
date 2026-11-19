@@ -3,7 +3,6 @@ import {
   FileText,
   Info,
   Mail,
-  Quote,
   RotateCcw,
   ShieldCheck,
   Sparkles,
@@ -81,7 +80,6 @@ export const NAV: NavGroup[] = [
  */
 export const INFO_LINKS: { href: string; label: string; icon: LucideIcon }[] = [
   { href: '/about', label: 'About this resource', icon: Info },
-  { href: '/exam/sources', label: 'Sources', icon: Quote },
   { href: '/pricing', label: 'Pricing', icon: Sparkles },
   { href: '/terms', label: 'Terms', icon: FileText },
   { href: '/refunds', label: 'Refunds', icon: RotateCcw },

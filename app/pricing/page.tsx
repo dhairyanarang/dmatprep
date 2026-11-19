@@ -1,9 +1,7 @@
 import { ArrowRight, Check, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
-import { PageDisclaimer } from '@/components/layout/page-disclaimer'
-import { PageHeader } from '@/components/layout/page-header'
-import { PageContainer } from '@/components/layout/page-shell'
+import { InfoPage } from '@/components/layout/info-page'
 import { PremiumViewed } from '@/components/payments/premium-viewed'
 import { PurchaseButton } from '@/components/payments/purchase-button'
 import { SupportLink } from '@/components/support/support-link'
@@ -57,19 +55,17 @@ export default function PricingPage() {
   const perSection = rows[0]?.free ?? 0
 
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
-        <PremiumViewed />
-
-        <PageHeader
-          icon={Sparkles}
-          title="Pricing"
-          description={
-            COMMERCE_ENABLED
-              ? 'One payment, once. Everything you can already use stays free.'
-              : `Nothing is for sale yet — all ${totals.total} Core questions are free right now.`
-          }
-        />
+    <InfoPage
+      icon={Sparkles}
+      title="Pricing"
+      description={
+        COMMERCE_ENABLED
+          ? 'One payment, once. Everything you can already use stays free.'
+          : `Nothing is for sale yet — all ${totals.total} Core questions are free right now.`
+      }
+      wide
+    >
+      <PremiumViewed />
 
         <div className="grid items-start gap-4 lg:grid-cols-2">
           {/* ---------------------------------------------------------- Free */}
@@ -172,8 +168,6 @@ export default function PricingPage() {
           <SupportLink className="sm:text-right" showAim={false} topic="Question about Pro" />
         </div>
 
-        <PageDisclaimer />
-      </PageContainer>
-    </div>
+    </InfoPage>
   )
 }

@@ -123,3 +123,41 @@ procurement questions, not legal ones. Someone has to find the receipt.
 3. **Instruct a lawyer**, with `LEGAL_BRIEF.md` as the brief.
 4. **Instruct a CA**, with `BUSINESS_SETUP.md` §7.
 5. **Find the OG mockup's licence**, or replace the image.
+
+---
+
+## 6. Disclosures removed from the UI on 19 November 2026 — awaiting your decision
+
+A UI cleanup pass simplified the informational pages. Four disclosures left the
+interface as a result. **None of them stopped being required; they stopped being
+displayed**, and that is a different thing. They are listed here so the decision
+is explicit rather than a side effect of a design change.
+
+The first three are required of an Indian online seller by the **Consumer
+Protection (E-Commerce) Rules, 2020**, which oblige an e-commerce entity to
+display them prominently (read on consumeraffairs.nic.in, 18 Nov 2026).
+
+| # | Disclosure | Where it was | Status now |
+|---|---|---|---|
+| 1 | **Legal name of the seller** | Contact page | **Not displayed anywhere.** `operator.legalName` is still null |
+| 2 | **Principal geographic address** | Contact page | **Not displayed.** `operator.address` is still null |
+| 3 | **Grievance officer — name and designation** | Contact page, Terms | **No officer is named.** The 48-hour acknowledgement and one-month resolution commitments remain in the Terms, and the support address is published |
+| 4 | **Governing law and jurisdiction** | Terms §12 | **Removed rather than invented.** Naming a country's law and a city's courts is a legal choice, not a fact, and `operator.jurisdiction` is null |
+
+**Why they were removed rather than filled in.** Every one requires a fact about
+the operator that cannot be inferred — and the instruction for that pass was
+explicit that a legal identity, address, jurisdiction or legal status must not
+be invented. Leaving them as `[legal name required]` markers in a published
+Terms page was the thing being fixed.
+
+**What this costs.** Items 1–3 are the ones with a real exposure: a paying
+customer currently cannot find out who they bought from, where that person is,
+or who handles a complaint. That is acceptable for a local pilot with no live
+payments. It is not acceptable at launch, and item 4 means a dispute would fall
+to ordinary conflict-of-laws rules rather than a clause we chose.
+
+**The fix is one file.** Filling `content/legal/operator.ts` restores all four:
+the Terms render them wherever `{legalName}`, `{address}`, `{jurisdiction}` or
+`{grievanceOfficer}` are written back into
+`content/legal/documents.ts`. Nothing was deleted from the mechanism — only
+from the copy.

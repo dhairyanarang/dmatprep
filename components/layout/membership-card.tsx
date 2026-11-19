@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
 
+import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { useAuth } from '@/lib/auth/use-auth'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
@@ -38,36 +39,40 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
       onClick={onNavigate}
       aria-label={isPro ? 'Pro membership — view plan' : 'Explore Pro'}
       className={cn(
-        'group border-sidebar-border bg-card relative block rounded-xl border p-3',
-        'transition-[background-color,box-shadow] duration-150 ease-out',
-        'hover:shadow-[0_4px_8px_rgba(0,0,0,0.06)]',
-        'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+        // The same brand plane the dashboard's next-step card uses, so the one
+        // promoted thing in the sidebar reads as part of the product rather
+        // than as an advert bolted onto it.
+        'group bg-brand relative block overflow-hidden rounded-xl p-3',
+        'transition-shadow duration-150 ease-out hover:shadow-[0_4px_10px_rgba(2,89,100,0.25)]',
+        'focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none',
       )}
     >
-      <div className="flex items-center gap-2">
+      <BrandPattern />
+
+      <div className="relative flex items-center gap-2">
         <span
           aria-hidden
-          className={cn(
-            'flex size-6 shrink-0 items-center justify-center rounded-md',
-            isPro ? 'bg-brand/12 text-brand' : 'bg-foreground/5 text-foreground/70',
-          )}
+          className="flex size-6 shrink-0 items-center justify-center rounded-md bg-white/15 text-white"
         >
           <Sparkles className="size-3.5" />
         </span>
-        <span className="text-foreground text-sm leading-5 font-semibold">
+        <span className="text-sm leading-5 font-semibold text-white">
           {/* A signed-out visitor has no plan at all. Labelling them "Free"
               states something untrue about an account that does not exist, and
               makes the invitation below read as a downgrade. */}
           {resolving ? 'Membership' : isPro ? 'Pro' : signedIn ? 'Free' : 'Not signed in'}
         </span>
         {isPro ? (
-          <span className="bg-brand/12 text-brand ml-auto rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
+          <span className="bg-brand-cta text-brand-cta-foreground ml-auto rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
             Active
           </span>
         ) : null}
       </div>
 
-      <p className="text-muted-foreground mt-1.5 text-xs leading-4">
+      {/* White at 70% rather than a muted token: on the brand plane the muted
+          foreground is near-invisible. Measured against #025964 this clears
+          4.5:1. */}
+      <p className="relative mt-1.5 text-xs leading-4 text-white/70">
         {resolving
           ? ' '
           : isPro
@@ -78,7 +83,7 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
       </p>
 
       {!isPro && !resolving ? (
-        <span className="text-foreground mt-2 flex items-center gap-1 text-xs font-medium">
+        <span className="bg-brand-cta text-brand-cta-foreground relative mt-2.5 inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-colors duration-150 group-hover:bg-brand-cta/90">
           {signedIn ? 'Explore Pro' : 'See what Pro adds'}
           <ArrowRight
             aria-hidden

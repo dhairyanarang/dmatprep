@@ -1,10 +1,9 @@
 import { Mail } from 'lucide-react'
 
-import { PageDisclaimer } from '@/components/layout/page-disclaimer'
-import { PageHeader } from '@/components/layout/page-header'
-import { PageContainer } from '@/components/layout/page-shell'
 import { SupportEmail } from '@/components/support/support-link'
 import { OPERATOR, SUPPORT_RESPONSE_AIM } from '@/content/legal/operator'
+
+import { InfoPage } from '@/components/layout/info-page'
 
 export const metadata = { title: 'Contact' }
 
@@ -21,15 +20,13 @@ export default function ContactPage() {
   const email = OPERATOR.contactEmail
 
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
-        <PageHeader
-          icon={Mail}
-          title="Contact"
-          description="One address, read by a person. Tell us what happened and we will sort it out."
-        />
+    <InfoPage
+      icon={Mail}
+      title="Contact"
+      description="One address, read by a person. Tell us what happened and we will sort it out."
+    >
 
-        <div className="max-w-3xl">
+        <div>
           <div className="border-border bg-card rounded-xl border p-5 sm:p-6">
             <p className="text-muted-foreground text-sm">Email us</p>
             <p className="mt-1.5 font-mono text-base break-all sm:text-lg">
@@ -68,8 +65,6 @@ export default function ContactPage() {
           </div>
         </div>
 
-        <PageDisclaimer className="max-w-3xl" />
-      </PageContainer>
-    </div>
+    </InfoPage>
   )
 }

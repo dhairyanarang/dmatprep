@@ -1,8 +1,8 @@
 import { Info } from 'lucide-react'
 
-import { PageHeader } from '@/components/layout/page-header'
 import { SupportEmail } from '@/components/support/support-link'
-import { PageContainer } from '@/components/layout/page-shell'
+
+import { InfoPage } from '@/components/layout/info-page'
 
 export const metadata = { title: 'About this resource' }
 
@@ -21,13 +21,12 @@ export const metadata = { title: 'About this resource' }
  */
 export default function AboutPage() {
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="stagger-enter flex max-w-3xl flex-col gap-7 py-6">
-        <PageHeader
-          icon={Info}
-          title="About this resource"
-          description="What dMAT Prep is, who makes it, and what it does not claim"
-        />
+    <InfoPage
+      icon={Info}
+      title="About this resource"
+      description="What dMAT Prep is, who makes it, and what it does not claim"
+      disclaimer={false}
+    >
 
         <section className="space-y-3">
           <h2 className="text-base font-semibold">dMAT Prep is independent</h2>
@@ -131,7 +130,6 @@ export default function AboutPage() {
             material in question is withdrawn from the site while it is looked into.
           </p>
         </section>
-      </PageContainer>
-    </div>
+    </InfoPage>
   )
 }
