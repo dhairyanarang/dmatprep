@@ -115,11 +115,17 @@ const OWNS: Record<string, (path: string) => boolean> = {
     // not, for the same reason Module A's timed runs belong to Test.
     (path.startsWith('/module-b') && !path.startsWith('/module-b/timed')) ||
     path.startsWith('/study-plan') ||
-    path.startsWith('/practice/quick'),
+    path.startsWith('/practice/quick') ||
+    // Retrying mistakes is untimed practice with hints, so it belongs to
+    // Prepare — which is also what its breadcrumb says. Leaving it to the
+    // catch-all below put it under Test, and the two disagreed on screen.
+    path.startsWith('/practice/mistakes'),
   '/test': (path) =>
     path.startsWith('/test') ||
     path.startsWith('/module-b/timed') ||
-    (path.startsWith('/practice') && !path.startsWith('/practice/quick')),
+    (path.startsWith('/practice') &&
+      !path.startsWith('/practice/quick') &&
+      !path.startsWith('/practice/mistakes')),
   '/exam': (path) => path.startsWith('/exam'),
 }
 

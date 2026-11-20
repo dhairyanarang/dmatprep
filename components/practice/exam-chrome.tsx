@@ -48,8 +48,11 @@ export function ExamChrome({
 
   return (
     <div className="bg-background fixed inset-0 z-50 flex flex-col overflow-auto">
-      <header className="bg-foreground text-background flex min-h-14 flex-wrap items-center gap-4 py-2 pr-4 pl-5">
-        <div className="flex min-w-0 flex-[1_1_260px] items-center gap-2.5">
+      {/* Two rows on a phone, one on a laptop. The first attempt let the title,
+          the clock and the two buttons share a wrapping row, which at 390px
+          put the clock on top of the task heading. */}
+      <header className="bg-foreground text-background flex min-h-14 shrink-0 flex-wrap items-center gap-x-4 gap-y-2 px-4 py-2 sm:pl-5">
+        <div className="flex min-w-0 basis-full items-center gap-2.5 sm:flex-[1_1_240px] sm:basis-auto">
           <span
             aria-hidden
             className="bg-background text-foreground grid size-6 shrink-0 place-items-center rounded-[5px] text-[13px] font-semibold"
@@ -57,15 +60,17 @@ export function ExamChrome({
             D
           </span>
           <b className="truncate text-sm font-semibold">{title}</b>
-          <span className="text-[#8c8c8c]" aria-hidden>
+          {/* The part is the same words as the title on a single-subtest set,
+              so it only earns its space where there is space. */}
+          <span className="hidden text-[#8c8c8c] lg:inline" aria-hidden>
             ·
           </span>
-          <span className="truncate text-sm text-[#bdbdbd]">{part}</span>
+          <span className="hidden truncate text-sm text-[#bdbdbd] lg:inline">{part}</span>
         </div>
 
         {clock}
 
-        <div className="flex flex-[1_1_260px] justify-end gap-2">
+        <div className="flex flex-1 justify-end gap-2 sm:flex-[1_1_240px]">
           <button
             type="button"
             onClick={onToggleFlag}

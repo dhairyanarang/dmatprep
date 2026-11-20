@@ -3,41 +3,36 @@ import type { LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 /**
- * The page header the design introduces: a raised icon tile beside a title and
- * one line of orientation.
+ * A page's heading block: the title as the `<h1>`, with one line of
+ * orientation under it.
  *
- * Distinct from the breadcrumb in the top bar, which says *where you are*; this
- * says *what this page is for*. Shared rather than written into the exam page,
- * because it is the shape any section landing should take.
+ * It used to lead with a raised icon tile. The design does not: a page has one
+ * heading, set in the page's own type, and the icon beside it was decoration
+ * that pushed the title down to 18px to make room. The `icon` prop is still
+ * accepted so every caller did not have to change at once, and is ignored.
+ *
+ * Distinct from the breadcrumb in the top bar, which says *where you are*;
+ * this says *what this page is for*.
  */
 export function PageHeader({
-  icon: Icon,
   title,
   description,
   className,
 }: {
-  icon: LucideIcon
+  /** Accepted and unused — see above. */
+  icon?: LucideIcon
   title: string
   description?: string
   className?: string
 }) {
   return (
-    <div className={cn('flex items-center gap-4', className)}>
-      <span
-        aria-hidden
-        className="border-border bg-card flex shrink-0 items-center rounded-lg border p-3 shadow-[0_4px_6px_rgba(0,0,0,0.06)]"
-      >
-        <Icon className="text-foreground size-6" />
-      </span>
-
-      <span className="flex min-w-0 flex-col gap-1.5">
-        <span className="text-foreground text-lg leading-tight font-semibold tracking-tight">
-          {title}
-        </span>
-        {description ? (
-          <span className="text-muted-foreground text-sm leading-tight">{description}</span>
-        ) : null}
-      </span>
+    <div className={cn('min-w-0', className)}>
+      <h1 className="text-2xl leading-8 font-semibold tracking-[-0.015em]">{title}</h1>
+      {description ? (
+        <p className="text-muted-foreground mt-1 max-w-prose text-sm leading-5 text-pretty">
+          {description}
+        </p>
+      ) : null}
     </div>
   )
 }

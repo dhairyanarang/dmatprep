@@ -10,9 +10,11 @@ export function generateStaticParams() {
 
 /**
  * Uses the same container as every other page, so moving from Prepare into a
- * section and on into practice never shifts the content edges. The title and
- * trail come from the shared top bar — the eyebrow that used to say
- * "Module A · Core Module" is now the breadcrumb, which says it once.
+ * section and on into practice never shifts the content edges.
+ *
+ * The subtest's name is the page's `<h1>`, in the page. It used to be left to
+ * the breadcrumb, which meant both of this section's screens opened with a
+ * paragraph of description and no heading above it.
  */
 export default async function SectionLayout({
   children,
@@ -24,8 +26,10 @@ export default async function SectionLayout({
   const meta = SECTION_BY_ID[section]
 
   return (
-    <PageContainer className="py-6">
-      <p className="text-muted-foreground mb-4 max-w-prose text-sm leading-relaxed text-pretty">
+    <PageContainer className="pt-6 pb-12">
+      <p className="over mb-1.5">Core Module · Module A</p>
+      <h1 className="text-2xl leading-8 font-semibold tracking-[-0.015em]">{meta.title}</h1>
+      <p className="text-muted-foreground mt-1 mb-4 max-w-prose text-sm leading-5 text-pretty">
         {meta.oneLiner}{' '}
         <span className="whitespace-nowrap">
           In the exam: {meta.officialTiming.minutes} minutes for {meta.officialTiming.items} items.
