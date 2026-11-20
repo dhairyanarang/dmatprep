@@ -6,6 +6,7 @@ import { PremiumViewed } from '@/components/payments/premium-viewed'
 import { PurchaseButton } from '@/components/payments/purchase-button'
 import { SupportLink } from '@/components/support/support-link'
 import freeSet from '@/content/access/free-set.json'
+import { getCoreMocks, mockSize } from '@/lib/content/mocks'
 import { getBankSize } from '@/lib/content/registry'
 import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
 import { SECTION_BY_ID, SECTION_IDS } from '@/lib/sections'
@@ -53,6 +54,8 @@ export default function PricingPage() {
     { total: 0, free: 0, premium: 0 },
   )
   const perSection = rows[0]?.free ?? 0
+  const mocks = getCoreMocks()
+  const mockQuestions = mocks[0] ? mockSize(mocks[0]) : 0
 
   return (
     <InfoPage
@@ -86,7 +89,10 @@ export default function PricingPage() {
               <Row>Complete explanations for every free question</Row>
               <Row>The same answer feedback as Pro — one practice runner, not a worse free one</Row>
               <Row>Progress, accuracy and your full attempt history</Row>
-              <Row>Diagnostic and timed practice</Row>
+              <Row>
+                Diagnostic, practice and timed subtests, drawn from the free questions and marked
+                in full
+              </Row>
               <Row>Every question type, at every difficulty</Row>
             </ul>
 
@@ -131,15 +137,21 @@ export default function PricingPage() {
               ))}
               <Row>Full explanations and distractor notes on every one</Row>
               <Row>
-                Full exam-day simulation — all three subtests, timed, drawing fresh questions
-                each run
+                <span className="text-foreground font-medium">
+                  {mocks.length} fixed Core mock exams
+                </span>{' '}
+                — {mockQuestions} questions each, no question shared between them, and the same
+                test every time you open it, so two attempts can be compared
               </Row>
-              <Row>Timed sets for any single subtest</Row>
+              <Row>
+                The open simulation and every timed subtest drawn from the whole bank rather than
+                the free {perSection}
+              </Row>
               <Row>Lifetime access on this account — it never expires and never renews</Row>
             </ul>
 
             <div className="mt-6">
-              <PurchaseButton />
+              <PurchaseButton bankSize={totals.total} />
             </div>
           </section>
         </div>

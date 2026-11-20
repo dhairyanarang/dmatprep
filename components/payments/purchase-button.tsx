@@ -43,12 +43,29 @@ type RazorpayOptions = {
   description: string
   handler: (response: Record<string, string>) => void
   modal?: { ondismiss?: () => void }
-  theme?: { color?: string }
+  theme?: { color?: string | undefined }
 }
 
 type RazorpayCtor = new (options: RazorpayOptions) => { open: () => void }
 
 const CHECKOUT_SRC = 'https://checkout.razorpay.com/v1/checkout.js'
+
+/**
+ * The brand colour, read from the stylesheet rather than written here.
+ *
+ * Razorpay's modal is the one piece of our checkout we do not render, and it
+ * takes a hex string. This used to be a literal `#e4f222` — the acid lime from
+ * the design system that preceded the v2 retune — so the payment window would
+ * have opened in a colour the product no longer uses anywhere. Reading the
+ * token means the modal cannot drift from the app again.
+ */
+function brandColour(): string | undefined {
+  if (typeof window === 'undefined') return undefined
+  const value = getComputedStyle(document.documentElement).getPropertyValue('--brand').trim()
+  // Razorpay accepts hex only; anything else is better left to their default
+  // than sent as a string they will not parse.
+  return /^#[0-9a-fA-F]{3,8}$/.test(value) ? value : undefined
+}
 
 function loadCheckout(): Promise<RazorpayCtor | null> {
   const existing = (window as unknown as { Razorpay?: RazorpayCtor }).Razorpay
@@ -64,7 +81,21 @@ function loadCheckout(): Promise<RazorpayCtor | null> {
   })
 }
 
-export function PurchaseButton({ className }: { className?: string }) {
+export function PurchaseButton({
+  className,
+  bankSize,
+}: {
+  className?: string
+  /**
+   * The number of active Core questions, counted by the page.
+   *
+   * Passed in rather than imported: counting it here would pull the whole
+   * question bank into the client bundle, and writing the number down would
+   * put a second copy of it in the product — which this repository has already
+   * shipped wrong once.
+   */
+  bankSize: number
+}) {
   const auth = useAuth()
   const entitlement = useEntitlement()
   const [phase, setPhase] = useState<Phase>('idle')
@@ -105,8 +136,8 @@ export function PurchaseButton({ className }: { className?: string }) {
         currency: order.currency,
         order_id: order.orderId,
         name: 'dMAT Prep',
-        description: 'Full Core question bank — one-time',
-        theme: { color: '#e4f222' },
+        description: 'Full Core bank and four mock exams — one-time',
+        theme: { color: brandColour() },
         modal: {
           // Abandoning checkout is not a failure. No order is captured, no
           // entitlement changes, and the candidate is returned to where they
@@ -162,8 +193,9 @@ export function PurchaseButton({ className }: { className?: string }) {
     return (
       <div className={className}>
         <p className="text-muted-foreground text-sm leading-relaxed">
-          Everything is free at the moment — all 384 Core questions, with full explanations. There
-          is nothing to buy yet, and nothing has been taken away.
+          Everything is free at the moment — all {bankSize} Core questions, with full
+          explanations, and all four fixed mock exams. There is nothing to buy yet, and nothing
+          has been taken away.
         </p>
       </div>
     )
@@ -174,7 +206,7 @@ export function PurchaseButton({ className }: { className?: string }) {
       <div className={className}>
         <p className="text-foreground text-sm font-medium">You have full access.</p>
         <p className="text-muted-foreground mt-1 text-sm">
-          Every Core question is unlocked on this account.
+          Every Core question and all four mock exams are unlocked on this account.
         </p>
       </div>
     )
@@ -202,7 +234,8 @@ export function PurchaseButton({ className }: { className?: string }) {
       {phase === 'success' ? (
         <>
           <p className="text-foreground mt-3 text-sm font-medium">
-            Payment confirmed. Every Core question is now unlocked on this account.
+            Payment confirmed. Every Core question and all four mock exams are now unlocked on
+            this account.
           </p>
           <SupportLink className="mt-3" orderRef={orderRef} topic="Question about my purchase" />
         </>

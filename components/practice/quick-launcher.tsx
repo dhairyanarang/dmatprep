@@ -18,6 +18,17 @@ import { useSolutions } from '@/lib/solutions/use-solutions'
  *
  * Switching subtest every few questions is its own skill: the Core Module is
  * three back to back, so the mix is deliberate rather than incidental.
+ *
+ * **The set is planned once and then held**, which is not an optimisation.
+ * The seed is derived from how many attempts have been recorded, and answering
+ * a question records one — so planning in the render body meant that answering
+ * question 1 re-planned questions 2 to 10 underneath the candidate, swapping
+ * out items they were part-way through reading. The memo below is what stops
+ * the set changing while it is being worked.
+ *
+ * `progress` is read when the plan is made and deliberately not tracked
+ * afterwards; `ready` is what says the read is worth making. This is the same
+ * arrangement `TimedLauncher` uses, and for the same reason.
  */
 export function QuickLauncher({
   pools,
@@ -32,6 +43,46 @@ export function QuickLauncher({
   // Pools arrive without answers; merge the other half back before planning.
   const sections = useMemo(() => Object.keys(pools) as SectionId[], [pools])
   const solutions = useSolutions(sections)
+  const hydrate = solutions.ready ? solutions.hydrate : null
+
+  const mixed = useMemo<Question[]>(() => {
+    if (!ready || !hydrate) return []
+
+    const seen = new Set(progress.attempts.map((a) => a.questionId))
+    const avoid = recentSessionIds(progress)
+    const seed = progress.attempts.length * 17 + progress.sessions.length * 3 + 5
+
+    // Roughly even across the three subtests, remainder spread from the front.
+    // Pools are hydrated first: planning and the runner both need full questions.
+    const entries = (Object.entries(pools) as [SectionId, PublicQuestion[]][]).map(
+      ([sectionId, pool]) => [sectionId, hydrate(pool)] as [SectionId, Question[]],
+    )
+    const base = Math.floor(count / entries.length)
+    const extra = count - base * entries.length
+
+    const questions = entries.flatMap(([sectionId, pool], i) =>
+      planSession({
+        pool,
+        count: base + (i < extra ? 1 : 0),
+        seen,
+        avoid,
+        seed: seed + i * 37,
+      }).questions.map((q) => ({ ...q, sectionId })),
+    )
+
+    // Interleave so the set alternates subtest rather than running in blocks.
+    const out: Question[] = []
+    const buckets = entries.map(([sectionId]) => questions.filter((q) => q.section === sectionId))
+    for (let i = 0; out.length < questions.length; i++) {
+      for (const bucket of buckets) {
+        if (bucket[i]) out.push(bucket[i])
+      }
+    }
+    return out
+  },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [ready, hydrate, pools, count],
+  )
 
   if (solutions.error) {
     return (
@@ -54,39 +105,6 @@ export function QuickLauncher({
         </CardContent>
       </Card>
     )
-  }
-
-  const seen = new Set(progress.attempts.map((a) => a.questionId))
-  const avoid = recentSessionIds(progress)
-  const seed = progress.attempts.length * 17 + progress.sessions.length * 3 + 5
-
-  // Roughly even across the three subtests, remainder spread from the front.
-  // Pools are hydrated first: planning and the runner both need full questions.
-  const entries = (Object.entries(pools) as [SectionId, PublicQuestion[]][]).map(
-    ([sectionId, pool]) => [sectionId, solutions.hydrate(pool)] as [SectionId, Question[]],
-  )
-  const base = Math.floor(count / entries.length)
-  const extra = count - base * entries.length
-
-  const questions = entries.flatMap(([sectionId, pool], i) =>
-    planSession({
-      pool,
-      count: base + (i < extra ? 1 : 0),
-      seen,
-      avoid,
-      seed: seed + i * 37,
-    }).questions.map((q) => ({ ...q, sectionId })),
-  )
-
-  // Interleave so the set alternates subtest rather than running in blocks.
-  const mixed: Question[] = []
-  const buckets = entries.map(([sectionId]) =>
-    questions.filter((q) => q.section === sectionId),
-  )
-  for (let i = 0; mixed.length < questions.length; i++) {
-    for (const bucket of buckets) {
-      if (bucket[i]) mixed.push(bucket[i])
-    }
   }
 
   if (mixed.length === 0) {

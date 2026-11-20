@@ -13,13 +13,11 @@ const UNIT: Record<string, string> = {
 
 export default function SimulationPage() {
   return (
-    <PageShell
-      description="The three Core subtests back to back, 25 minutes each, in the order the preparatory materials present them."
-      wide
-    >
+    <PageShell wide>
       <TimedLauncher
         mode="simulation"
-        title="Module A practice simulation"
+        title="Open simulation"
+        note="The three Core subtests back to back, in the order the preparatory materials present them. Planned fresh every time from what you have not seen — so it is never twice the same test, and two runs cannot be compared the way two sittings of a fixed mock can."
         minutesPerStage={25}
         stages={SECTIONS.map((section) => ({
           sectionId: section.id,

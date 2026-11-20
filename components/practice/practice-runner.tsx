@@ -87,6 +87,24 @@ export function PracticeRunner(props: RunnerProps) {
     [props.questions],
   )
   const solutions = useSolutions(sections)
+  const hydrate = solutions.ready ? solutions.hydrate : null
+
+  /**
+   * Hydrated once, and held.
+   *
+   * This was `solutions.hydrate(props.questions)` in the render body, which
+   * returned a new array every render. `pool` below memoises on it, so that
+   * memo never actually held — and its body re-reads `progress` to sort
+   * answered questions to the back. The note there says `progress` is excluded
+   * from the dependencies because "re-sorting mid-session would shuffle the
+   * deck under the candidate's feet after every answer". Leaving a dependency
+   * out does nothing when a different one changes identity on every render, so
+   * that is precisely what it did.
+   */
+  const questions = useMemo(
+    () => (hydrate ? hydrate(props.questions) : []),
+    [hydrate, props.questions],
+  )
 
   const key = props.mode === 'quick' ? 'quick' : `practice:${props.sectionId ?? 'mixed'}`
 
@@ -110,7 +128,6 @@ export function PracticeRunner(props: RunnerProps) {
     )
   }
 
-  const questions = solutions.hydrate(props.questions)
   const saved = progress.practiceDrafts[key]
   const known = new Set(questions.map((q) => q.id))
   // A draft written before the bank was regenerated points at questions that no

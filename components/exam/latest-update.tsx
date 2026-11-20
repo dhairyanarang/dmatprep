@@ -59,8 +59,8 @@ export function LatestUpdate() {
             <h2 className="text-base leading-tight font-semibold text-balance text-white">
               {update.title}
             </h2>
-            <p className="text-sm leading-tight font-medium text-white/60">{update.summary}</p>
-            <p className="text-xs font-medium text-white/60">
+            <p className="text-sm leading-tight font-medium text-brand-foreground-muted">{update.summary}</p>
+            <p className="text-xs font-medium text-brand-foreground-muted">
               {formatDate(update.publishedAt)} · {update.sourceName} ·{' '}
               {CATEGORY_LABEL[update.category]}
             </p>

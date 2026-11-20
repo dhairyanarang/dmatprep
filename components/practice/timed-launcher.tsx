@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
+import { TestUnmarkable } from '@/components/practice/premium-locked'
 import { ResumePrompt, type ResumeState } from '@/components/practice/resume-prompt'
 import { TimedRunner, type TimedStage } from '@/components/practice/timed-runner'
 import { Card, CardContent } from '@/components/ui/card'
@@ -16,7 +17,7 @@ import {
   type PracticeMode,
   type ProgressState,
 } from '@/lib/types/progress'
-import type { Question } from '@/lib/types/question'
+import { hasSolution, type Question } from '@/lib/types/question'
 import { useSolutions } from '@/lib/solutions/use-solutions'
 import type { PublicQuestion } from '@/lib/content/registry'
 
@@ -27,6 +28,16 @@ export type StageSpec = {
   /** Answer-free records; solutions are fetched and merged in the launcher. */
   pool: PublicQuestion[]
   count: number
+  /**
+   * A FIXED question list, in order — used by the four Core mocks.
+   *
+   * When present it replaces planning entirely: no shuffle, no ranking by what
+   * has been seen, no seed. A mock has to be the same test every time it is
+   * opened, or two attempts at "mock 2" are two different tests and comparing
+   * their scores means nothing. The ids come from
+   * `content/access/core-mocks.json`, which is generated once and committed.
+   */
+  questionIds?: string[]
 }
 
 /**
@@ -46,6 +57,7 @@ export type StageSpec = {
 export function TimedLauncher({
   mode,
   title,
+  note,
   stages,
   minutesPerStage,
   breakAfterStage,
@@ -53,6 +65,8 @@ export function TimedLauncher({
 }: {
   mode: PracticeMode
   title: string
+  /** Passed to the briefing card; see `TimedRunner`. */
+  note?: string
   stages: StageSpec[]
   minutesPerStage: number
   breakAfterStage?: number
@@ -139,6 +153,18 @@ export function TimedLauncher({
     !taken && progress.activeSession?.route === route ? progress.activeSession : null
   const restored = saved ? restore(saved, specs) : null
 
+  // Decided before anything else is offered — resume prompt included. A test
+  // whose answers we were not given cannot be marked, and the timed runner
+  // marks in one pass at the end with no notion of "unknown": every withheld
+  // question would be counted wrong. See `TestUnmarkable`.
+  const toRun = restored ?? planned.stages
+  const total = toRun.reduce((n, s) => n + s.questions.length, 0)
+  const withheld = toRun.reduce(
+    (n, s) => n + s.questions.filter((q) => !hasSolution(q)).length,
+    0,
+  )
+  if (withheld > 0) return <TestUnmarkable withheld={withheld} total={total} />
+
   if (saved && restored) {
     return (
       <ResumePrompt
@@ -160,6 +186,7 @@ export function TimedLauncher({
       <TimedRunner
         mode={mode}
         title={title}
+        note={note}
         route={route}
         stages={taken.stages}
         minutesPerStage={minutesPerStage}
@@ -200,6 +227,7 @@ export function TimedLauncher({
       <TimedRunner
         mode={mode}
         title={title}
+        note={note}
         route={route}
         stages={plannedStages}
         minutesPerStage={minutesPerStage}
@@ -271,8 +299,45 @@ function buildStages(
   const seed = progress.attempts.length * 31 + progress.sessions.length * 7 + 1
 
   return specs.map((spec, i) => {
+    // A fixed set short-circuits everything below. The order in the file IS
+    // the order of the test, so nothing here may reorder or substitute: a
+    // missing id surfaces as a shortfall rather than being quietly replaced,
+    // because silently swapping a question would make the mock not the mock.
+    if (spec.questionIds) {
+      const byId = new Map(spec.pool.map((q) => [q.id, q]))
+      const questions = spec.questionIds
+        .map((id) => byId.get(id))
+        .filter((q): q is Question => Boolean(q))
+      for (const q of questions) seen.add(q.id)
+      return {
+        stage: {
+          sectionId: spec.sectionId,
+          label: spec.label,
+          unitNoun: spec.unitNoun,
+          questions,
+        },
+        // Nonzero only if an id in the committed list is no longer resolvable —
+        // a quarantined or retired question, say. That is a defect in the
+        // mock file rather than a candidate's history, but it still has to be
+        // said out loud: a 19-question mock that calls itself a 20-question
+        // mock is the exact silence this short-circuit exists to prevent.
+        shortfall: spec.questionIds.length - questions.length,
+      }
+    }
+
     const plan = planSession({
-      pool: spec.pool,
+      // Only questions this candidate's answers actually arrived for.
+      //
+      // A timed test marks everything at the end in one pass and has no notion
+      // of "unknown", so planning in a question whose solution the server
+      // withheld would quietly count it wrong. Filtering here rather than
+      // refusing to run is what keeps timed practice free: someone without Pro
+      // gets a real twenty-question subtest drawn from the free bank and a
+      // score that is honestly theirs, instead of a locked door.
+      //
+      // The test is "did we get the answer", not "may this person have it" —
+      // the client never decides, it only observes what the server sent.
+      pool: spec.pool.filter(hasSolution),
       count: spec.count,
       seen,
       softSeen,

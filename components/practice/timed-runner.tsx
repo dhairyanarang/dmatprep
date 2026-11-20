@@ -31,6 +31,7 @@ export type TimedStage = { sectionId: SectionId; label: string; unitNoun: string
 export function TimedRunner({
   mode,
   title,
+  note,
   route,
   stages,
   minutesPerStage,
@@ -41,6 +42,15 @@ export function TimedRunner({
 }: {
   mode: PracticeMode
   title: string
+  /**
+   * One line about what makes this particular test what it is, shown on the
+   * briefing card and nowhere else.
+   *
+   * It lives here rather than in the page's description because it is
+   * pre-test context: once the clock is running it is noise competing with
+   * the question, and a page-level description cannot take itself away.
+   */
+  note?: string
   /** The route this session belongs to, stored so a resume lands back here. */
   route: string
   stages: TimedStage[]
@@ -273,6 +283,7 @@ export function TimedRunner({
     return (
       <Brief
         title={title}
+        note={note}
         stages={stages}
         minutesPerStage={minutesPerStage}
         untimed={untimed}
@@ -450,12 +461,15 @@ function QuestionStrip({
 
 function Brief({
   title,
+  note,
   stages,
   minutesPerStage,
   untimed,
   onStart,
 }: {
   title: string
+  /** What is distinctive about THIS test, shown only before it starts. */
+  note?: string
   stages: TimedStage[]
   minutesPerStage: number
   untimed?: boolean
@@ -482,6 +496,9 @@ function Brief({
               </>
             )}
           </p>
+          {note ? (
+            <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{note}</p>
+          ) : null}
         </div>
 
         <ul className="text-muted-foreground space-y-2 text-sm">

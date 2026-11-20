@@ -29,10 +29,11 @@ export default async function TimedSectionPage({ params }: PageProps<'/practice/
   const meta = SECTION_BY_ID[section]
 
   return (
-    <PageShell description="25 minutes, 20 questions, no hints." wide>
+    <PageShell wide>
       <TimedLauncher
         mode="timed"
         title={`${meta.title} practice mock`}
+        note="One subtest under its own clock: 25 minutes, 20 questions, no hints. The questions are chosen fresh each time, favouring ones you have not seen."
         minutesPerStage={25}
         stages={[
           {

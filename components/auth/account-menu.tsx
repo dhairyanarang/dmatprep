@@ -1,11 +1,23 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Check, CloudOff, LogOut, RefreshCw, UserRound } from 'lucide-react'
+import Link from 'next/link'
+import {
+  Check,
+  CloudOff,
+  LogOut,
+  RefreshCw,
+  SlidersHorizontal,
+  Sparkles,
+  UserRound,
+} from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
+import { SupportLink } from '@/components/support/support-link'
 import { useAuth, useAuthActions } from '@/lib/auth/use-auth'
 import { useSyncState } from '@/lib/progress/use-progress'
+import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
+import { useEntitlement } from '@/lib/payments/use-entitlement'
 import { cn } from '@/lib/utils'
 
 /**
@@ -116,13 +128,16 @@ function SignedIn({
 
       <SyncLine status={status} pending={pending} />
 
-      <a
-        href="/privacy"
+      <MembershipLine />
+
+      <Link
+        href="/account"
         role="menuitem"
-        className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2"
+        className="border-border hover:bg-muted focus-visible:ring-ring flex items-center gap-2 rounded-md border px-3 py-2 text-sm font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:outline-none"
       >
-        What we store
-      </a>
+        <SlidersHorizontal className="size-4" aria-hidden />
+        Account and data
+      </Link>
 
       <button
         type="button"
@@ -133,6 +148,63 @@ function SignedIn({
         <LogOut className="size-4" aria-hidden />
         Sign out
       </button>
+    </div>
+  )
+}
+
+/**
+ * What this account may open, and a way to ask about it.
+ *
+ * Someone who has paid needs a place in the product that says so — the
+ * sidebar card says "Pro", but a card that promotes Pro is not where a buyer
+ * looks to confirm a purchase. This is.
+ *
+ * It states only what the entitlement API returns: whether access is held, and
+ * whether it was refunded or revoked. It deliberately does not invent a
+ * purchase date or an amount paid, because neither is in that response — a
+ * receipt line that guessed would be worse than no receipt line. The support
+ * link is how a real receipt is asked for, and it carries no order reference
+ * for the same reason.
+ *
+ * Renders nothing at all while commerce is off, which is today: with nothing
+ * for sale there is no membership to report.
+ */
+function MembershipLine() {
+  const entitlement = useEntitlement()
+  if (!COMMERCE_ENABLED || !entitlement.ready) return null
+
+  if (entitlement.access) {
+    return (
+      <div className="border-border flex flex-col gap-1.5 border-b pb-2.5">
+        <p className="text-foreground flex items-center gap-1.5 text-xs font-medium">
+          <Sparkles className="text-gold-text size-3.5" aria-hidden />
+          Pro — lifetime access on this account
+        </p>
+        <SupportLink className="text-xs" showAim={false} topic="Receipt for my Pro purchase" />
+      </div>
+    )
+  }
+
+  // Refunded and revoked are said plainly rather than shown as "Free": someone
+  // whose access ended knows it ended, and finding out by discovering a locked
+  // question is the worse way to learn.
+  const ended =
+    entitlement.status === 'refunded'
+      ? 'Your purchase was refunded, so Pro content is locked again.'
+      : entitlement.status === 'revoked'
+        ? 'Pro access on this account has been withdrawn.'
+        : null
+
+  return (
+    <div className="border-border flex flex-col gap-1.5 border-b pb-2.5">
+      {ended ? <p className="text-muted-foreground text-xs leading-relaxed">{ended}</p> : null}
+      <Link
+        href="/pricing"
+        role="menuitem"
+        className="text-foreground text-xs font-medium underline underline-offset-2"
+      >
+        {ended ? 'See Pro again' : `See what Pro adds — ${formatPrice()}`}
+      </Link>
     </div>
   )
 }
@@ -171,13 +243,13 @@ function SignedOut() {
           have done so far comes with you.
         </p>
       </div>
-      <GoogleButton size="sm" />
-      <a
-        href="/privacy"
+      <GoogleButton size="sm" variant="outline" />
+      <Link
+        href="/account"
         className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-2"
       >
-        What we store
-      </a>
+        Account and data
+      </Link>
     </div>
   )
 }

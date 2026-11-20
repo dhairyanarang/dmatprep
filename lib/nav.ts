@@ -46,8 +46,16 @@ export type NavGroup = {
 }
 
 /**
- * Four destinations, in the design's order and wording. Each hub page lists
- * what is inside it, so the sidebar never has to grow.
+ * Four destinations, in two groups.
+ *
+ * Still four — the group headings divide them, they do not add a fifth. The
+ * division is what you are doing versus what you are looking up: Home, Prepare
+ * and Test are the daily loop, while About the Exam and the informational
+ * pages below it are reference you consult deliberately and then leave.
+ *
+ * About the Exam used to sit in the middle of the working list while
+ * Information sat alone at the foot of the sidebar, which put two halves of
+ * the same thing at opposite ends of the panel. They are now adjacent.
  *
  * Review was removed for the public beta. Its data model, its calculations and
  * its components all stay — mistakes now surface where they are actually
@@ -56,12 +64,17 @@ export type NavGroup = {
  */
 export const NAV: NavGroup[] = [
   {
-    label: 'dMAT Prep',
+    label: 'Main menu',
     links: [
       { href: '/', label: 'Home', hint: 'What to do next', icon: LayoutDashboard },
-      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
+    ],
+  },
+  {
+    label: 'The exam',
+    links: [
+      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
     ],
   },
 ]

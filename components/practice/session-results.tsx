@@ -49,13 +49,39 @@ export function SessionResults({
 
   const byPattern = patternBreakdown(graded)
 
+  // Per-subtest, and only when there is more than one. A single-subtest test
+  // would just restate the total in a second place.
+  const bySection =
+    stages.length > 1
+      ? stages.map((stage) => {
+          const rows = graded.filter((g) => g.question.section === stage.sectionId)
+          return {
+            id: stage.sectionId,
+            label: stage.label,
+            total: rows.length,
+            correct: rows.filter((r) => r.correct).length,
+            blank: rows.filter((r) => !r.answered).length,
+          }
+        })
+      : []
+
+  const missed = graded.filter((g) => g.answered && !g.correct)
+
   return (
     <div className="space-y-5">
       <Card>
         <CardContent className="space-y-5">
           <div>
             <p className="text-muted-foreground text-xs tracking-wide uppercase">
-              dMAT Prep {mode === 'simulation' ? 'simulation' : 'practice mock'}
+              {/* Name the thing that was actually sat. This said "practice mock"
+                  for a diagnostic, directly above a card headed "dMAT Prep
+                  diagnostic" — two labels for one sitting, on one screen. */}
+              dMAT Prep{' '}
+              {mode === 'diagnostic'
+                ? 'diagnostic'
+                : mode === 'simulation'
+                  ? 'simulation'
+                  : 'practice mock'}
             </p>
             <h2 className="mt-1 text-lg font-semibold">{title}</h2>
           </div>
@@ -79,6 +105,46 @@ export function SessionResults({
           </p>
         </CardContent>
       </Card>
+
+      {/* Where the score came from. A combined 47/60 says nothing about which
+          subtest cost you the marks, and that is the first thing anyone wants
+          after a full sitting. The diagnostic has its own, richer version of
+          this below, so it is not drawn twice. */}
+      {bySection.length > 0 && mode !== 'diagnostic' ? (
+        <Card>
+          <CardContent className="space-y-3.5">
+            <h3 className="text-base font-semibold tracking-tight">By subtest</h3>
+            <ul className="grid gap-3 sm:grid-cols-3">
+              {bySection.map((row) => (
+                <li key={row.id} className="border-border bg-muted/40 rounded-2xl border p-4">
+                  <p className="text-muted-foreground text-xs tracking-wide uppercase">
+                    {row.label}
+                  </p>
+                  <p className="mt-2 text-2xl leading-none font-semibold tabular-nums">
+                    {row.correct}
+                    <span className="text-muted-foreground text-base font-medium">
+                      {' '}
+                      / {row.total}
+                    </span>
+                  </p>
+                  <div
+                    aria-hidden
+                    className="bg-border mt-3 h-1 w-full overflow-hidden rounded-full"
+                  >
+                    <div
+                      className="bg-brand h-full rounded-full"
+                      style={{ width: `${row.total ? (row.correct / row.total) * 100 : 0}%` }}
+                    />
+                  </div>
+                  <p className="text-muted-foreground mt-2.5 text-xs">
+                    {row.blank > 0 ? `${row.blank} left blank` : 'All answered'}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      ) : null}
 
       {mode === 'diagnostic' ? <StartingPoint graded={graded} stages={stages} /> : null}
 
@@ -114,6 +180,37 @@ export function SessionResults({
         </Disclosure>
       )}
 
+      {/* Open by default, and first.
+          `/review` was removed from the navigation on the grounds that mistakes
+          are worth looking at at the end of a set rather than as a fifth
+          destination. That only holds if they are actually IN FRONT of you
+          here — buried inside "Review every question", three taps and twenty
+          correct answers away, they were not. */}
+      {missed.length > 0 ? (
+        <Disclosure
+          defaultOpen
+          summary={`What you got wrong`}
+          hint={`${missed.length} of ${answered}`}
+        >
+          <ol className="space-y-5">
+            {missed.map((g) => (
+              <li key={g.question.id} className="space-y-3">
+                <p className="text-sm font-medium">
+                  Question {questions.indexOf(g.question) + 1}
+                </p>
+                <ResultBanner
+                  question={g.question}
+                  selection={g.selection}
+                  correct={false}
+                  hintsUsed={0}
+                />
+                <SolutionViewer question={g.question} />
+              </li>
+            ))}
+          </ol>
+        </Disclosure>
+      ) : null}
+
       <Disclosure summary="Review every question" hint={`${questions.length}`}>
         <ol className="space-y-5">
           {graded.map((g, i) => (
@@ -136,10 +233,26 @@ export function SessionResults({
       </Disclosure>
 
       <div className="flex flex-wrap gap-2">
-        <ButtonLink href="/">Back to preparation</ButtonLink>
-        <ButtonLink variant="outline" href="/practice">
-          Another test
-        </ButtonLink>
+        {/* Where you actually are, not a generic home button. A diagnostic
+            exists to point somewhere specific, so it hands over to Prepare;
+            a timed test belongs to Test. Both links now name their destination
+            and go straight there — "Another test" pointed at /practice, which
+            only redirects to /test, so the label and the landing disagreed. */}
+        {mode === 'diagnostic' ? (
+          <>
+            <ButtonLink href="/prepare">Start preparing</ButtonLink>
+            <ButtonLink variant="outline" href="/test">
+              Try a timed test
+            </ButtonLink>
+          </>
+        ) : (
+          <>
+            <ButtonLink href="/test">Back to Test</ButtonLink>
+            <ButtonLink variant="outline" href="/prepare">
+              Practise untimed, with hints
+            </ButtonLink>
+          </>
+        )}
       </div>
     </div>
   )

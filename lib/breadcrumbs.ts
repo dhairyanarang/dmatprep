@@ -1,3 +1,4 @@
+import { coreMockLabel } from '@/lib/content/mock-label'
 import { getPack } from '@/lib/gam/registry'
 import { SECTION_BY_ID, isSectionId } from '@/lib/sections'
 
@@ -29,7 +30,7 @@ const STATIC: Record<string, Crumb[]> = {
   '/study-plan': [PREPARE, { label: 'Study plan' }],
   '/practice/quick': [PREPARE, { label: 'Quick practice' }],
   '/practice/diagnostic': [TEST, { label: 'Diagnostic' }],
-  '/practice/simulation': [TEST, { label: 'Module A mock' }],
+  '/practice/simulation': [TEST, { label: 'Open simulation' }],
   '/exam/format': [EXAM, { label: 'Format & structure' }],
   '/exam/rules': [EXAM, { label: 'Exam-day rules' }],
   '/exam/scoring': [EXAM, { label: 'Scoring & results' }],
@@ -42,6 +43,7 @@ const STATIC: Record<string, Crumb[]> = {
   // The informational pages. Top level rather than nested under a destination:
   // they belong to no section, and the breadcrumb's last segment is rendered
   // as the page's `<h1>`, so without an entry here they had no heading at all.
+  '/account': [{ label: 'Account' }],
   '/about': [{ label: 'About this resource' }],
   '/pricing': [{ label: 'Pricing' }],
   '/terms': [{ label: 'Terms' }],
@@ -84,6 +86,15 @@ export function breadcrumbsFor(pathname: string): Crumb[] {
     if (file) {
       return [PREPARE, { label: 'Module B', href: '/module-b' }, { label: file.pack.title }]
     }
+  }
+
+  // /test/mock/<id> — the four fixed Core mocks.
+  //
+  // The label is derived from the id rather than read from the mock file —
+  // see lib/content/mock-label.ts for why, and for what keeps it honest.
+  if (parts[0] === 'test' && parts[1] === 'mock' && parts[2]) {
+    const label = coreMockLabel(parts[2])
+    if (label) return [TEST, { label: 'Core mocks', href: '/test' }, { label }]
   }
 
   // /practice/timed/<section>

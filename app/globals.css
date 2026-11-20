@@ -69,6 +69,7 @@
   --color-gold-dark: var(--gold-dark);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-brand-foreground-muted: var(--brand-foreground-muted);
   --color-brand-cta: var(--brand-cta);
   --color-brand-cta-foreground: var(--brand-cta-foreground);
   --color-surface-muted: var(--surface-muted);
@@ -130,12 +131,23 @@
   --popover-foreground: #0a0a0a;
   --surface-muted: #f8f7f5;
 
-  /* Brand. The teal is the primary action on light surfaces; the green pill is
-     the CTA that sits *on* the teal surface, never on white. */
+  /* Brand. The blue is the primary action on light surfaces; the gold pill is
+     the CTA that sits *on* the blue surface, never on white. */
   --brand: #2f4bff;
   --brand-foreground: #ffffff;
+  /* The secondary line on a brand-coloured card — a description under a title,
+     never a label on its own.
+
+     A token rather than a `text-white/70` at three call sites, and that is the
+     whole reason it exists. It WAS a literal alpha at each site, measured once
+     against the old teal, where 70% cleared AA at 4.81:1. The v2 retune changed
+     --brand to this blue and the three literals stayed as they were, now at
+     3.66:1 — the kind of failure CLAUDE.md records having fixed twice already,
+     because a chromatic surface changes under text that nobody re-measures.
+     85% is 4.68:1 on this blue; recheck it here, once, if --brand moves. */
+  --brand-foreground-muted: color-mix(in srgb, #ffffff 85%, var(--brand));
   --brand-cta: #f2b33d;
-  /* Figma pairs the pill with #007a7b, which is 3.0:1 on this green and fails
+  /* Figma pairs the pill with #007a7b, which is 3.0:1 on this gold and fails
      AA at 12px. Darkened to hold the same hue at 5.8:1. */
   --brand-cta-foreground: #3a2600;
 

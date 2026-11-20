@@ -1,14 +1,16 @@
-import { Info, TestTubeDiagonal, Timer } from 'lucide-react'
+import { Shuffle, TestTubeDiagonal, Timer } from 'lucide-react'
 
 import { Recommendation } from '@/components/dashboard/recommendation'
 import { PageHeader } from '@/components/layout/page-header'
 import { PageContainer } from '@/components/layout/page-shell'
 import { SectionHeading } from '@/components/layout/section-heading'
 import { TileCard } from '@/components/layout/tile-card'
+import { MockTiles } from '@/components/test/mock-tiles'
 import { getBankSize } from '@/lib/content/registry'
+import { getCoreMocks, mockSize } from '@/lib/content/mocks'
 import { SECTION_ICON } from '@/lib/nav'
 import { GAM_TOTAL_MINUTES, totalGamQuestions } from '@/lib/gam/registry'
-import { SECTIONS, type SectionId } from '@/lib/sections'
+import { SECTIONS, SECTION_IDS, type SectionId } from '@/lib/sections'
 
 export const metadata = { title: 'Test' }
 
@@ -28,6 +30,18 @@ export default function TestPage() {
   // claiming "N each" off the first section.
   const totalQuestions = Object.values(bankSizes).reduce((a, b) => a + b, 0)
 
+  // Ids travel to the client so a past sitting can be recognised. They are the
+  // public half only — the question records themselves are not sent, and the
+  // answers are not in the bundle at all.
+  const mockQuestions = getCoreMocks()[0] ? mockSize(getCoreMocks()[0]) : 0
+  const mocks = getCoreMocks().map((m) => ({
+    id: m.id,
+    label: m.label,
+    number: m.number,
+    size: mockSize(m),
+    questionIds: SECTION_IDS.flatMap((s) => m.sections[s] ?? []),
+  }))
+
   return (
     <div className="page-wash">
       <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
@@ -35,7 +49,15 @@ export default function TestPage() {
 
         <Recommendation bankSizes={bankSizes} intent="test" />
 
-        <SectionHeading title="Module A" meta={`${totalQuestions} questions`}>
+        <SectionHeading
+          title="Core mock exams"
+          meta={`${mocks.length * mockQuestions} questions`}
+          note="Each one a fixed set in a fixed order, sharing no question with the others. Sit one twice and the two scores can be compared, because it is the same test."
+        >
+          <MockTiles mocks={mocks} />
+        </SectionHeading>
+
+        <SectionHeading title="One subtest at a time" meta={`${totalQuestions} questions`}>
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {SECTIONS.map((section) => (
               <TileCard
@@ -51,9 +73,10 @@ export default function TestPage() {
           <TileCard
             className="mt-4"
             href="/practice/simulation"
-            icon={Info}
-            title="Full simulation mock"
-            description="All three Core subtests back to back, in the order the official materials present them. 60 questions, 75 minutes."
+            icon={Shuffle}
+            title="Open simulation"
+            description="The same three-subtest shape as a mock, but planned fresh each time from whatever you have not seen. Repeatable, and never twice the same test — so it builds stamina rather than a comparable score."
+            meta="60 questions · 75 mins"
           />
         </SectionHeading>
 

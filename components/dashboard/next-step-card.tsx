@@ -46,7 +46,7 @@ export function NextStepCard({
           <div className="min-w-0 space-y-2">
             <h2 className="text-base leading-tight font-semibold text-white">{title}</h2>
             {description ? (
-              <p className="text-sm leading-tight font-medium text-white/60">{description}</p>
+              <p className="text-sm leading-tight font-medium text-brand-foreground-muted">{description}</p>
             ) : null}
           </div>
 

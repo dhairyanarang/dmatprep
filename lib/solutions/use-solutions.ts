@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import type { SectionId } from '@/lib/sections'
@@ -125,16 +125,30 @@ export function useSolutions(sections: SectionId[]): SolutionsState {
     }
   }, [key])
 
-  if (state.error) return { ready: false, error: state.error }
-  if (!state.maps) return { ready: false, error: null }
   const maps = state.maps
 
-  return {
-    ready: true,
-    error: null,
-    hydrate: (questions) =>
+  /**
+   * Stable across renders, and that is load-bearing rather than tidy.
+   *
+   * This used to be a fresh arrow function inside a fresh object literal on
+   * every render. `TimedLauncher` lists the returned value as a dependency of
+   * the memo that plans a test, so "the plan is made once and then held" —
+   * which its comment claims, and which the whole runner depends on — was not
+   * true: the plan was rebuilt on every single render.
+   *
+   * It survived unnoticed because `planSession` is deterministic in its seed,
+   * so rebuilding it produced the same twenty questions. Until the moment it
+   * did not: the seed is derived from how many attempts and sessions have been
+   * recorded, and submitting a test records twenty of the first and one of the
+   * second. So on the render immediately after submission the plan changed,
+   * the results screen was handed twenty questions the candidate had never
+   * seen, and every one of them was reported as "Not answered" over a score of
+   * zero — while the session stored underneath had the real figures.
+   */
+  const hydrate = useCallback(
+    (questions: PublicQuestion[]): Question[] =>
       questions.map((q) => {
-        const entry = maps[q.section]?.[q.id]
+        const entry = maps?.[q.section]?.[q.id]
         if (!entry) return q as unknown as Question
 
         const merged = { ...q, ...entry } as Record<string, unknown>
@@ -148,5 +162,12 @@ export function useSolutions(sections: SectionId[]): SolutionsState {
         }
         return merged as unknown as Question
       }),
-  }
+    [maps],
+  )
+
+  return useMemo<SolutionsState>(() => {
+    if (state.error) return { ready: false, error: state.error }
+    if (!maps) return { ready: false, error: null }
+    return { ready: true, error: null, hydrate }
+  }, [state.error, maps, hydrate])
 }

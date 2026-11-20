@@ -13,13 +13,11 @@ const UNIT: Record<string, string> = {
 
 export default function DiagnosticPage() {
   return (
-    <PageShell
-      description="Fifteen questions — five from each Core subtest — to find where to start. No clock, no hints."
-      wide
-    >
+    <PageShell wide>
       <TimedLauncher
         mode="diagnostic"
         title="dMAT Prep diagnostic"
+        note="Fifteen questions — five from each Core subtest — to find where to start. No clock, no hints, and nothing here is locked in by how it goes."
         minutesPerStage={0}
         untimed
         stages={SECTIONS.map((section) => ({

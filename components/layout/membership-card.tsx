@@ -17,10 +17,15 @@ import { cn } from '@/lib/utils'
  * server already decided, so a tampered client gets a misleading card and no
  * extra content.
  *
- * Four states, and the distinction between the first two is the one most often
- * got wrong: a signed-out visitor is **not** a free member. They have no
- * account at all, so telling them they are on the Free plan would be a small
- * lie that makes the upgrade message read as a downgrade.
+ * It reports MEMBERSHIP only. Who you are is the account row's job, directly
+ * below it — this card used to lead with "Not signed in", which left the
+ * sidebar saying that twice, in two cards, one above the other.
+ *
+ * The distinction it still has to keep is that a signed-out visitor is **not**
+ * a free member. They have no account at all, so telling them they are on the
+ * Free plan would be a small lie that makes the invitation read as a
+ * downgrade — which is why the signed-out state names the product rather than
+ * a plan the visitor is not on.
  */
 export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
   const auth = useAuth()
@@ -55,10 +60,9 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
           <Sparkles className="size-3.5" />
         </span>
         <span className="text-sm leading-5 font-semibold text-white">
-          {/* A signed-out visitor has no plan at all. Labelling them "Free"
-              states something untrue about an account that does not exist, and
-              makes the invitation below read as a downgrade. */}
-          {resolving ? 'Membership' : isPro ? 'Pro' : signedIn ? 'Free' : 'Not signed in'}
+          {/* A signed-out visitor has no plan at all, so they are shown the
+              product's name rather than a plan they are not on. */}
+          {resolving ? 'Membership' : isPro ? 'Pro' : signedIn ? 'Free' : 'dMAT Prep Pro'}
         </span>
         {isPro ? (
           <span className="bg-brand-cta text-brand-cta-foreground ml-auto rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
@@ -67,17 +71,17 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
         ) : null}
       </div>
 
-      {/* White at 70% rather than a muted token: on the brand plane the muted
-          foreground is near-invisible. Measured against #025964 this clears
-          4.5:1. */}
-      <p className="relative mt-1.5 text-xs leading-4 text-white/70">
+      {/* The muted foreground token is near-invisible on the brand plane, so
+          this uses the brand's own secondary foreground, measured in
+          app/globals.css rather than written as an alpha here. */}
+      <p className="relative mt-1.5 text-xs leading-4 text-brand-foreground-muted">
         {resolving
           ? ' '
           : isPro
             ? 'Every Core question is unlocked on this account.'
             : signedIn
               ? 'Ready for more? Unlock your full preparation.'
-              : 'Sign in to save your progress — and see what Pro adds.'}
+              : 'The full Core bank and four fixed mock exams. One payment, kept for good.'}
       </p>
 
       {!isPro && !resolving ? (

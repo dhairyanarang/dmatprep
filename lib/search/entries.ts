@@ -2,6 +2,12 @@ import { guide as figureSequencesGuide } from '@/content/sections/figure-sequenc
 import { guide as latinSquaresGuide } from '@/content/sections/latin-squares/guide'
 import { guide as mathematicalEquationsGuide } from '@/content/sections/mathematical-equations/guide'
 import { STUDY_PLAN } from '@/content/study-plan/plan'
+import {
+  CORE_MOCK_IDS,
+  CORE_MOCK_SIZE,
+  coreMockLabel,
+} from '@/lib/content/mock-label'
+import { INFO_LINKS } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 import type { SectionGuide } from '@/lib/types/content'
 
@@ -91,11 +97,19 @@ const PAGES: SearchEntry[] = [
   },
   {
     id: 'mock',
-    title: 'Module A mock',
-    description: 'All three subtests back to back, 75 minutes',
+    title: 'Open simulation',
+    description: 'All three subtests back to back, 75 minutes, planned fresh each run',
     href: '/practice/simulation',
     group: 'Test',
-    keywords: ['simulation', 'full test'],
+    keywords: ['simulation', 'full test', 'module a mock'],
+  },
+  {
+    id: 'account',
+    title: 'Account',
+    description: 'Who you are, what is stored, and what this account can open',
+    href: '/account',
+    group: 'Go to',
+    keywords: ['sign in', 'sign out', 'plan', 'membership', 'data', 'delete'],
   },
 
   {
@@ -156,6 +170,43 @@ const PAGES: SearchEntry[] = [
   },
 ]
 
+/**
+ * The four fixed mocks.
+ *
+ * Named from the constants in `lib/content/mock-label.ts` rather than read
+ * from `content/access/core-mocks.json`: this module ships to the client on
+ * every page, and the file carries all 240 question ids. A test asserts the
+ * constants match the file.
+ */
+function mockEntries(): SearchEntry[] {
+  return CORE_MOCK_IDS.map((id) => ({
+    id,
+    title: coreMockLabel(id) ?? id,
+    description: `${CORE_MOCK_SIZE} questions, fixed — the same test every time`,
+    href: `/test/mock/${id}`,
+    group: 'Test' as const,
+    keywords: ['mock', 'core mock', 'exam', 'full test'],
+  }))
+}
+
+/**
+ * The informational pages, from the same list the sidebar renders. One list,
+ * so a page cannot be in the navigation and missing from search.
+ */
+function infoEntries(): SearchEntry[] {
+  // Any page PAGES already describes properly keeps its richer entry — /privacy
+  // has a description there that "Your data" alone does not carry, and two rows
+  // for one page is worse than either.
+  const described = new Set(PAGES.map((p) => p.href))
+  return INFO_LINKS.filter((link) => !described.has(link.href)).map((link) => ({
+    id: `info-${link.href.replace(/\//g, '')}`,
+    title: link.label,
+    href: link.href,
+    group: 'Go to' as const,
+    keywords: ['information', 'policy', 'legal', 'help'],
+  }))
+}
+
 function sectionEntries(): SearchEntry[] {
   return SECTIONS.flatMap((section) => [
     {
@@ -211,6 +262,8 @@ function planEntries(): SearchEntry[] {
 
 export const SEARCH_ENTRIES: SearchEntry[] = [
   ...PAGES,
+  ...mockEntries(),
+  ...infoEntries(),
   ...sectionEntries(),
   ...guideEntries(),
   ...planEntries(),
