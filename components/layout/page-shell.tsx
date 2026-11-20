@@ -52,12 +52,21 @@ export function PageShell({
   children?: ReactNode
 }) {
   return (
-    <PageContainer className="flex flex-1 flex-col gap-5 pt-6 pb-12">
+    /**
+     * `stagger-enter` is on the container so the page's own sections arrive in
+     * order — the same entry Home has had, now shared by every page built on
+     * this shell rather than copied onto one of them. It is honoured by the
+     * global reduced-motion rule in `app/globals.css`.
+     */
+    <PageContainer className="stagger-enter flex flex-1 flex-col gap-5 pt-6 pb-12">
       {title || description || actions ? (
         <PageHead title={title} eyebrow={eyebrow} description={description} actions={actions} wide={wide} />
       ) : null}
 
-      <div className={cn('flex flex-col gap-5', !wide && 'max-w-3xl')}>{children}</div>
+      {/* A wide page's sections are direct children, so each one takes its own
+          step of the stagger. A reading page is one block at one measure, and
+          one block is the right thing for it to arrive as. */}
+      {wide ? children : <div className="flex max-w-3xl flex-col gap-5">{children}</div>}
     </PageContainer>
   )
 }

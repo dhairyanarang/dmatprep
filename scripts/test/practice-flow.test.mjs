@@ -23,7 +23,14 @@ const store = read('../../lib/progress/local-storage-store.ts')
 
 describe('practice — the whole filtered bank on one page', () => {
   test('every question in the pool is rendered, not one at a time', () => {
-    assert.match(runner, /pool\.map\(\(question, i\) => \(\s*<QuestionCard/, 'the pool is not mapped over')
+    // `visible` is the pool after the status filter; the card still gets its
+    // number from the pool, so filtering never renumbers a question.
+    assert.match(runner, /visible\.map\(\(question\) => \(\s*<QuestionCard/, 'the pool is not mapped over')
+    assert.match(
+      runner,
+      /position=\{pool\.indexOf\(question\) \+ 1\}/,
+      'a filtered view renumbers the questions',
+    )
     assert.ok(!/const question = pool\[index\]/.test(runner), 'a single-question cursor is back')
     assert.ok(!/\bsetIndex\b/.test(runner), 'the runner still tracks a current index')
   })
@@ -36,11 +43,13 @@ describe('practice — the whole filtered bank on one page', () => {
   })
 
   test('progress is a count, not a position', () => {
-    assert.match(runner, /\{answeredCount\} \/ \{pool\.length\} answered/)
+    assert.match(runner, /answered=\{answeredCount\}/)
+    assert.match(runner, /total=\{pool\.length\}/)
   })
 
   test('the difficulty filter is kept', () => {
-    assert.match(runner, /<FilterBar filter=\{filter\} onChange=\{handleFilter\}/)
+    assert.match(runner, /difficulty=\{filter as DifficultyFilter\}/)
+    assert.match(runner, /onDifficulty=\{\(value\) => handleFilter\(value as Filter\)\}/)
     assert.match(runner, /questions\.filter\(\(q\) => q\.difficulty === filter\)/)
   })
 })

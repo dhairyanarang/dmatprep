@@ -11,6 +11,7 @@ import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
 import { TopBar } from '@/components/layout/top-bar'
+import { ProDialogProvider } from '@/components/payments/pro-dialog'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -77,6 +78,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
     >
       <body className="flex min-h-full flex-col">
         <TooltipProvider>
+          <ProDialogProvider>
           <div className="flex min-h-svh">
             <AppSidebar />
 
@@ -91,6 +93,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
               <main className="flex-1">{children}</main>
             </div>
           </div>
+          </ProDialogProvider>
           <Toaster />
           {/* Moves progress between this browser and the cloud. Renders nothing,
               and does nothing at all for a guest. */}

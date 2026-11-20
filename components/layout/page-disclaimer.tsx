@@ -52,6 +52,15 @@ export function PageDisclaimer({
             <Link className="hover:text-foreground underline underline-offset-2" href="/about">
               More about this resource
             </Link>
+            , or{' '}
+            {/* A direct link, not a route through the Information landing page.
+                Guest mode has no account menu, and the sidebar's Information
+                row now leads to a hub rather than listing the policies — so
+                without this, reaching the privacy statement from the page a
+                first-time visitor lands on takes two hops and a guess. */}
+            <Link className="hover:text-foreground underline underline-offset-2" href="/privacy">
+              what we store about you
+            </Link>
             .
           </>
         ) : null}

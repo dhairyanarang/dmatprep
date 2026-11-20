@@ -18,6 +18,13 @@ import type { SectionId } from '@/lib/sections'
  * Every one is derived — from the committed exam dates, or from this
  * candidate's own attempts. None of them is stored, so none of them can drift
  * from the pages that show the same thing in more detail.
+ *
+ * **A figure nobody has earned is not shown as zero.** "0%" in an accuracy
+ * card is a claim: it says questions were answered and all of them were
+ * wrong. Someone who has answered nothing has no accuracy, and the honest
+ * rendering of that is an em dash and a line saying what would fill it. Only
+ * counts — questions practised, days to the exam — legitimately start at zero,
+ * because zero is their true value.
  */
 export function DashboardKpis({ bankSizes }: { bankSizes: Record<SectionId, number> }) {
   const progress = useProgress()
@@ -61,6 +68,7 @@ export function DashboardKpis({ bankSizes }: { bankSizes: Record<SectionId, numb
 
       <Kpi
         label={locked ? 'Free questions used' : 'Questions practised'}
+        // Zero is this one's true value, so zero is what it says.
         value={ready ? answered : '—'}
         suffix={`of ${available}`}
         progress={available ? answered / available : 0}
@@ -79,11 +87,14 @@ export function DashboardKpis({ bankSizes }: { bankSizes: Record<SectionId, numb
 
       <Kpi
         label="Correct so far"
+        // An em dash, not 0%. Nobody has got nothing right; they have not
+        // answered anything.
         value={accuracy === null ? '—' : `${Math.round(accuracy * 100)}%`}
+        muted={accuracy === null}
         foot={
           <span>
             {attempts.length === 0
-              ? 'Answer a question to start this'
+              ? 'Answer one question to start this'
               : `Across ${attempts.length} ${attempts.length === 1 ? 'answer' : 'answers'}`}
           </span>
         }
@@ -91,8 +102,9 @@ export function DashboardKpis({ bankSizes }: { bankSizes: Record<SectionId, numb
 
       <Kpi
         label="Streak"
-        value={streak}
-        suffix={streak === 1 ? 'day' : 'days'}
+        value={ready && streak === 0 ? '—' : streak}
+        suffix={streak === 0 ? 'not started' : streak === 1 ? 'day' : 'days'}
+        muted={ready && streak === 0}
         foot={
           <span className="flex gap-1" aria-label="This week">
             {week.map((on, i) => (

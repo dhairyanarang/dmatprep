@@ -1,5 +1,5 @@
 import { AllowedList, ChipGrid, MilestoneTrack, Section, Stat, StatGrid } from '@/components/exam/visuals'
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 
 export const metadata = { title: 'Dates & Logistics' }
 
@@ -37,9 +37,9 @@ const FIELDS = [
 
 export default function ExamLogisticsPage() {
   return (
-    <PageShell
+    <SubPage
+      title="Dates & logistics"
       description="Deadlines, fee, centres, and how the dMAT connects to the APS process."
-      wide
     >
       <div className="space-y-10">
         <StatGrid>
@@ -156,6 +156,6 @@ export default function ExamLogisticsPage() {
           </div>
         </Section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }

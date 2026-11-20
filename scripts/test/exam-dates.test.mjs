@@ -2,9 +2,10 @@
  * The dates are facts about an exam, and they go out of date on a schedule.
  *
  * They did. The app counted down to 15 and 26 September 2026 for seven weeks
- * after both had passed, and the study plan went on offering "seven weeks to
+ * after both had passed, and a study plan went on offering "seven weeks to
  * Saturday 26 September 2026" from November. Nothing failed, because nothing
- * was checking.
+ * was checking. (That plan has since been removed as a feature; the gates it
+ * prompted are what remain, and they apply to every date the product shows.)
  *
  * These gates are deliberately the kind that start failing with time. A build
  * that breaks in March 2027 saying every announced sitting has passed is the
@@ -19,11 +20,7 @@ import { fileURLToPath } from 'node:url'
 const root = fileURLToPath(new URL('../../', import.meta.url))
 const read = (p) => readFileSync(root + p, 'utf8')
 
-/** Reads the literal ISO dates out of the content files, without a TS loader. */
-const isoDates = (src) => [...src.matchAll(/'(\d{4}-\d{2}-\d{2})'/g)].map((m) => m[1])
-
 const keyDates = read('content/exam/key-dates.ts')
-const plan = read('content/study-plan/plan.ts')
 
 /** [registrationDeadline, testDate, resultsDate] per cycle, in file order. */
 function cycles() {
@@ -62,33 +59,11 @@ test('at least one announced sitting is still ahead', () => {
   )
 })
 
-test('the study plan ends on a real sitting', () => {
-  const planDates = isoDates(plan).sort()
-  const last = planDates[planDates.length - 1]
-  const testDates = cycles().map((c) => c.testDate)
-  assert.ok(
-    testDates.includes(last),
-    `the study plan ends on ${last}, which is not a test date (${testDates.join(', ')}). ` +
-      'Re-anchor it to a cycle rather than leaving it pointing at a date nobody sits.',
-  )
-})
-
-test('the study plan runs forwards and does not overlap', () => {
-  const weeks = [...plan.matchAll(/startDate:\s*'(\d{4}-\d{2}-\d{2})',\s*endDate:\s*'(\d{4}-\d{2}-\d{2})'/g)]
-    .map((m) => ({ start: m[1], end: m[2] }))
-  assert.ok(weeks.length >= 7, `only ${weeks.length} study weeks parsed`)
-  for (const w of weeks) assert.ok(w.start < w.end, `week starting ${w.start} ends before it begins`)
-  for (let i = 1; i < weeks.length; i++) {
-    assert.ok(weeks[i - 1].end < weeks[i].start, `week ${i + 1} starts before week ${i} ends`)
-  }
-})
-
 test('no user-facing copy still names a passed 2026 sitting as upcoming', () => {
   // The historical statements are fine and stay — "first sat on 26 September
   // 2026" is true. What must not survive is copy that presents a passed date as
   // something to prepare for.
   const surfaces = [
-    'app/study-plan/page.tsx',
     'components/exam/checklist-items.tsx',
     'content/exam/key-dates.ts',
   ]

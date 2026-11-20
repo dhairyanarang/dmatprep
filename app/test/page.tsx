@@ -2,6 +2,7 @@ import { Shuffle, Timer } from 'lucide-react'
 
 import { Panel, PageShell } from '@/components/layout/page-shell'
 import { TileCard } from '@/components/layout/tile-card'
+import { TestAccessPanel } from '@/components/test/access-panel'
 import { MockTiles } from '@/components/test/mock-tiles'
 import { PastAttempts } from '@/components/test/past-attempts'
 import { getBankSize } from '@/lib/content/registry'
@@ -52,6 +53,12 @@ export default function TestPage() {
       description="Exam rules apply: one clock per part, no hints, and no answers until you submit."
       wide
     >
+      <TestAccessPanel
+        bankSize={totalQuestions}
+        mockCount={mocks.length}
+        mockSize={mocks[0]?.size ?? 0}
+      />
+
       <section className="flex flex-col gap-3">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
           <h2 className="text-sm font-semibold">Core mock exams</h2>

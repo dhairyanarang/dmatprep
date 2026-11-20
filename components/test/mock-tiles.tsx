@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Lock, Play } from 'lucide-react'
 
 import { ProBadge } from '@/components/layout/sidebar-brand'
+import { useProDialog } from '@/components/payments/pro-dialog'
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
@@ -71,20 +72,21 @@ function MockCard({
   locked: boolean
   primary: boolean
 }) {
-  const href = locked ? '/pricing' : `/test/mock/${mock.id}`
+  const openProDialog = useProDialog()
 
-  return (
-    <Link
-      href={href}
-      aria-label={locked ? `${mock.label} — part of Pro, see pricing` : mock.label}
-      className={cn(
-        'flex flex-col gap-3.5 rounded-xl border p-[18px] transition-[border-color,transform] duration-150 hover:-translate-y-0.5',
-        'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
-        primary
-          ? 'border-foreground bg-foreground text-background'
-          : 'border-border bg-card hover:border-foreground/30',
-      )}
-    >
+  // A locked mock explains itself before sending anyone anywhere. The dialog
+  // can be dismissed back onto the page they were looking at; a jump to
+  // pricing cannot.
+  const shared = cn(
+    'flex flex-col gap-3.5 rounded-xl border p-[18px] text-left transition-[border-color,transform] duration-150 hover:-translate-y-0.5',
+    'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+    primary
+      ? 'border-foreground bg-foreground text-background'
+      : 'border-border bg-card hover:border-foreground/30',
+  )
+
+  const body = (
+    <>
       <span className="flex items-center justify-between gap-2">
         {locked ? (
           <ProBadge />
@@ -149,6 +151,25 @@ function MockCard({
           </>
         )}
       </span>
+    </>
+  )
+
+  if (locked) {
+    return (
+      <button
+        type="button"
+        onClick={() => openProDialog?.('mock-card')}
+        aria-label={`${mock.label} — part of Pro`}
+        className={shared}
+      >
+        {body}
+      </button>
+    )
+  }
+
+  return (
+    <Link href={`/test/mock/${mock.id}`} aria-label={mock.label} className={shared}>
+      {body}
     </Link>
   )
 }

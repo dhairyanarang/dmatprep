@@ -37,7 +37,7 @@ export default function PrivacyPage() {
           <p className="text-muted-foreground text-sm leading-relaxed">
             We receive your name, email address and profile picture from Google, and store your
             practice history so it follows you to other devices: each attempt, the sessions you
-            have sat, which questions you have been shown, and your study-plan milestones. That is
+            have sat, which questions you have been shown, and your pre-exam checklist ticks. That is
             the whole list. We do not receive your Google password, and we ask for nothing beyond
             basic profile information.
           </p>

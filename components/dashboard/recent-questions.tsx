@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import { ListChecks } from 'lucide-react'
 
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
 import { SECTION_BY_ID } from '@/lib/sections'
@@ -41,9 +42,35 @@ export function RecentQuestions({ limit = 6 }: { limit?: number }) {
         {!ready ? (
           <div className="h-32" />
         ) : rows.length === 0 ? (
-          <p className="text-muted-foreground p-6 text-center text-sm">
-            Nothing answered yet. Every question you try shows up here.
-          </p>
+          <div className="flex flex-col items-center gap-3 px-6 py-10 text-center">
+            <span
+              aria-hidden
+              className="bg-frame text-muted-foreground grid size-10 place-items-center rounded-xl"
+            >
+              <ListChecks className="size-5" />
+            </span>
+            <div>
+              <p className="text-sm font-semibold">No questions yet</p>
+              <p className="text-muted-foreground mx-auto mt-1 max-w-[380px] text-sm leading-relaxed text-balance">
+                Every question you answer is logged here with its subtest, difficulty and result,
+                so you can see what you actually did rather than only a score.
+              </p>
+            </div>
+            <div className="mt-1 flex flex-wrap justify-center gap-2">
+              <Link
+                href="/practice/diagnostic"
+                className="bg-brand text-brand-foreground hover:bg-brand-strong inline-flex h-9 items-center rounded-lg px-3.5 text-sm font-medium transition-colors"
+              >
+                Take the diagnostic
+              </Link>
+              <Link
+                href="/prepare"
+                className="border-border bg-card hover:bg-frame inline-flex h-9 items-center rounded-lg border px-3.5 text-sm font-medium transition-colors"
+              >
+                Browse the subtests
+              </Link>
+            </div>
+          </div>
         ) : (
           <table className="w-full min-w-[560px] border-collapse text-[13px]">
             <thead>

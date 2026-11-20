@@ -1,7 +1,6 @@
 import { guide as figureSequencesGuide } from '@/content/sections/figure-sequences/guide'
 import { guide as latinSquaresGuide } from '@/content/sections/latin-squares/guide'
 import { guide as mathematicalEquationsGuide } from '@/content/sections/mathematical-equations/guide'
-import { STUDY_PLAN } from '@/content/study-plan/plan'
 import {
   CORE_MOCK_IDS,
   CORE_MOCK_SIZE,
@@ -81,11 +80,12 @@ const PAGES: SearchEntry[] = [
     group: 'Prepare',
   },
   {
-    id: 'study-plan',
-    title: 'Study plan',
-    description: 'Week by week to exam day',
-    href: '/study-plan',
+    id: 'mistakes',
+    title: 'Your mistakes',
+    description: 'Everything you answered wrong and have not since got right',
+    href: '/practice/mistakes',
     group: 'Prepare',
+    keywords: ['review', 'wrong', 'retry', 'missed'],
   },
 
   {
@@ -102,6 +102,22 @@ const PAGES: SearchEntry[] = [
     href: '/practice/simulation',
     group: 'Test',
     keywords: ['simulation', 'full test', 'module a mock'],
+  },
+  {
+    id: 'information',
+    title: 'Information',
+    description: 'Who runs this, what it stores, and the terms',
+    href: '/information',
+    group: 'Go to',
+    keywords: ['help', 'policy', 'legal', 'about', 'privacy', 'terms', 'refunds'],
+  },
+  {
+    id: 'pricing',
+    title: 'Plans and pricing',
+    description: 'What is free, what Pro adds, and what it costs',
+    href: '/pricing',
+    group: 'Go to',
+    keywords: ['pro', 'buy', 'upgrade', 'price', 'cost', 'plans'],
   },
   {
     id: 'account',
@@ -249,16 +265,6 @@ function guideEntries(): SearchEntry[] {
   )
 }
 
-function planEntries(): SearchEntry[] {
-  return STUDY_PLAN.map((week) => ({
-    id: week.id,
-    title: `Week ${week.weekNumber}: ${week.focus}`,
-    description: week.summary,
-    href: '/study-plan',
-    group: 'Prepare' as const,
-    keywords: ['study plan', 'schedule'],
-  }))
-}
 
 export const SEARCH_ENTRIES: SearchEntry[] = [
   ...PAGES,
@@ -266,7 +272,6 @@ export const SEARCH_ENTRIES: SearchEntry[] = [
   ...infoEntries(),
   ...sectionEntries(),
   ...guideEntries(),
-  ...planEntries(),
 ]
 
 /**

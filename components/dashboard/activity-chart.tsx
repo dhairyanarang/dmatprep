@@ -78,9 +78,45 @@ export function ActivityChart() {
         {!ready ? (
           <div className="h-[186px]" />
         ) : total === 0 ? (
-          <p className="text-muted-foreground flex h-[186px] items-center justify-center text-center text-sm text-balance">
-            Nothing answered yet. Practise anything and this fills in from your own attempts.
-          </p>
+          // The real chart, with the real number of columns, and nothing in
+          // them — rather than a paragraph where a chart should be. It shows
+          // the shape of what is coming and reads as a chart awaiting data
+          // instead of a panel that failed to load.
+          <div className="relative grid gap-2.5" style={{ gridTemplateColumns: '28px 1fr' }}>
+            <div className="text-muted-foreground/60 flex h-[166px] flex-col justify-between text-right font-mono text-[10px]">
+              <span>&nbsp;</span>
+              <span>&nbsp;</span>
+              <span>0</span>
+            </div>
+            <div
+              aria-hidden
+              className="grid items-end gap-1.5"
+              style={{ gridTemplateColumns: `repeat(${columns.length}, minmax(0,1fr))` }}
+            >
+              {columns.map((column, i) => (
+                <div key={column.label + i} className="flex flex-col items-center gap-2">
+                  <div className="flex h-[166px] flex-col-reverse gap-1">
+                    {Array.from({ length: 8 }, (_, k) => (
+                      <span
+                        key={k}
+                        className="bg-soft block rounded-[3px]"
+                        style={{ width: range === 'daily' ? 16 : 40, height: 17 }}
+                      />
+                    ))}
+                  </div>
+                  <span className="text-muted-foreground/60 font-mono text-[10px]">
+                    {column.label}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            <div className="absolute inset-0 grid place-items-center">
+              <p className="bg-card/85 text-muted-foreground max-w-[260px] rounded-lg px-4 py-2.5 text-center text-sm backdrop-blur-[2px] text-balance">
+                Answer your first question and this fills in from your own attempts.
+              </p>
+            </div>
+          </div>
         ) : (
           <div
             role="img"

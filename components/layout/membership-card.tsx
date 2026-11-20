@@ -23,18 +23,21 @@ import { useFreeUsage } from '@/lib/payments/use-free-usage'
  * below it — this card used to lead with "Not signed in", which left the
  * sidebar saying that twice, in two cards, one above the other.
  *
- * With commerce off there is nothing to sell, so it renders nothing at all
- * rather than advertising a product that has no price.
+ * It renders whether or not the purchase flow is switched on. The price and
+ * the contents of Pro are decided; only the ability to take the money is not,
+ * and the pricing page says so in its own words. Hiding the card until the
+ * switch flips is what made the offering undiscoverable in the product that
+ * is actually running.
  */
 export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
   const auth = useAuth()
   const entitlement = useEntitlement()
   const usage = useFreeUsage()
 
-  if (!COMMERCE_ENABLED) return null
-  if (auth.status === 'loading' || !entitlement.ready) return null
+  if (auth.status === 'loading') return null
+  if (COMMERCE_ENABLED && !entitlement.ready) return null
 
-  if (entitlement.access) {
+  if (COMMERCE_ENABLED && entitlement.access) {
     return (
       <Link
         href="/account"
@@ -68,7 +71,7 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
         The full Core question bank and all four fixed mock exams, for one payment.
       </span>
 
-      {usage.ready && usage.total > 0 ? (
+      {COMMERCE_ENABLED && usage.ready && usage.total > 0 ? (
         <div className="flex flex-col gap-1.5">
           <div className="rail bg-[#edecea]">
             <i style={{ width: `${Math.min(100, Math.round((usage.used / usage.total) * 100))}%` }} />

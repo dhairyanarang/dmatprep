@@ -1,4 +1,4 @@
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 import {
   ChipGrid,
   DaySchedule,
@@ -36,9 +36,9 @@ const UNIT: Record<SectionId, string> = {
 
 export default function ExamFormatPage() {
   return (
-    <PageShell
+    <SubPage
+      title="Format & structure"
       description="Two modules, four sittings, 195 minutes of scheduled time."
-      wide
     >
       <div className="space-y-10">
         <StatGrid>
@@ -127,7 +127,7 @@ export default function ExamFormatPage() {
           </div>
         </Section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }
 

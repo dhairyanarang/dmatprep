@@ -1,4 +1,4 @@
-import { CalendarRange, FlaskConical, Zap } from 'lucide-react'
+import { FlaskConical, Zap } from 'lucide-react'
 
 import { Panel, PageShell } from '@/components/layout/page-shell'
 import { SubtestCard } from '@/components/prepare/subtest-card'
@@ -52,14 +52,6 @@ export default function PreparePage() {
             title="Quick practice"
             description="10 questions mixed across the three subtests, with hints and solutions as usual."
             meta="10 mins"
-            className="border-0 shadow-none"
-          />
-          <TileCard
-            href="/study-plan"
-            icon={CalendarRange}
-            title="Study plan"
-            description="A week-by-week route from now to exam day, with milestones you can tick off."
-            meta="7 weeks"
             className="border-0 shadow-none"
           />
         </div>

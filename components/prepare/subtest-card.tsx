@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, Check, Lock } from 'lucide-react'
 
 import { ProBadge } from '@/components/layout/sidebar-brand'
+import { useProDialog } from '@/components/payments/pro-dialog'
 import { SECTION_ICON } from '@/lib/nav'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { FREE_PER_SECTION } from '@/lib/payments/free-quota'
@@ -19,6 +20,11 @@ import type { SectionId } from '@/lib/sections'
  * *this* account — the free sample without an entitlement, the whole bank with
  * one. Counting against the whole bank either way would tell a free candidate
  * they had barely started when they had worked through most of what they have.
+ *
+ * The split between free and paid is stated on every card, in figures counted
+ * from the bank at build time. It used to appear only once the purchase flow
+ * was switched on, which meant the product running today never said how many
+ * questions there were or what the paid half contained.
  */
 export function SubtestCard({
   sectionId,
@@ -41,8 +47,13 @@ export function SubtestCard({
   const ready = useProgressReady()
   const entitlement = useEntitlement()
 
+  const openProDialog = useProDialog()
+
+  const entitled = COMMERCE_ENABLED && entitlement.ready && entitlement.access
   const locked = COMMERCE_ENABLED && entitlement.ready && !entitlement.access
   const available = locked ? FREE_PER_SECTION : bankSize
+  // Counted from the active bank, never written down. Retiring one question
+  // moves this number and nothing else has to be edited.
   const premium = Math.max(0, bankSize - FREE_PER_SECTION)
 
   const done = ready
@@ -111,33 +122,69 @@ export function SubtestCard({
           </span>
         </div>
 
-        {COMMERCE_ENABLED && premium > 0 ? (
-          locked ? (
-            <Link
-              href="/pricing"
-              className="bg-gold-soft hover:bg-gold-tint relative z-[2] flex items-center gap-3 rounded-[10px] border border-dashed border-[#e3c98e] px-3.5 py-3 transition-colors"
+        {/* What is in this subtest, and which part of it this account can
+            open. Always shown: the figures are facts about the bank, not
+            about the purchase flow being switched on. */}
+        <dl className="border-soft grid grid-cols-3 gap-2 rounded-[10px] border px-3.5 py-3 text-center">
+          <Figure label="Free" value={FREE_PER_SECTION} />
+          <Figure label="With Pro" value={`+${premium}`} accent />
+          <Figure label="Total" value={bankSize} muted />
+        </dl>
+
+        {premium > 0 ? (
+          entitled ? (
+            <div className="border-gold-line bg-gold-soft flex items-center gap-3 rounded-[10px] border px-3.5 py-3">
+              <Check aria-hidden className="text-gold-text size-4 shrink-0" />
+              <span className="flex flex-1 flex-col gap-px">
+                <b className="text-sm font-semibold">All {bankSize} questions unlocked</b>
+                <span className="text-xs text-[#6b4a00]">Including the hardest items</span>
+              </span>
+              <ProBadge />
+            </div>
+          ) : (
+            <button
+              type="button"
+              onClick={() => (openProDialog ? openProDialog('prepare-card') : undefined)}
+              className="bg-gold-soft hover:bg-gold-tint focus-visible:ring-ring relative z-[2] flex w-full items-center gap-3 rounded-[10px] border border-dashed border-[#e3c98e] px-3.5 py-3 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
             >
               <Lock aria-hidden className="text-gold-text size-[18px] shrink-0" />
               <span className="flex flex-1 flex-col gap-px">
-                <b className="text-sm font-semibold">{premium} more questions</b>
+                <b className="text-sm font-semibold">{premium} more with Pro</b>
                 <span className="text-xs text-[#6b4a00]">
                   Every rule, at every difficulty, with full explanations
                 </span>
               </span>
               <ProBadge />
-            </Link>
-          ) : (
-            <div className="border-gold-line bg-gold-soft flex items-center gap-3 rounded-[10px] border px-3.5 py-3">
-              <Check aria-hidden className="text-gold-text size-4 shrink-0" />
-              <span className="flex flex-1 flex-col gap-px">
-                <b className="text-sm font-semibold">All {bankSize} questions</b>
-                <span className="text-xs text-[#6b4a00]">Including the hardest items</span>
-              </span>
-              <ProBadge />
-            </div>
+            </button>
           )
         ) : null}
       </div>
     </article>
+  )
+}
+
+/** One figure in the access strip: a number over its label. */
+function Figure({
+  label,
+  value,
+  accent = false,
+  muted = false,
+}: {
+  label: string
+  value: number | string
+  accent?: boolean
+  muted?: boolean
+}) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <dd
+        className={`font-mono text-base leading-5 font-medium tabular-nums ${
+          accent ? 'text-gold-text' : muted ? 'text-muted-foreground' : 'text-foreground'
+        }`}
+      >
+        {value}
+      </dd>
+      <dt className="text-muted-foreground text-[11px] leading-4">{label}</dt>
+    </div>
   )
 }

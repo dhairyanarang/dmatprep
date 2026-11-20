@@ -20,6 +20,7 @@ export type Crumb = {
 const PREPARE: Crumb = { label: 'Prepare', href: '/prepare' }
 const TEST: Crumb = { label: 'Test', href: '/test' }
 const EXAM: Crumb = { label: 'About the Exam', href: '/exam' }
+const INFORMATION: Crumb = { label: 'Information', href: '/information' }
 
 /** Leaf pages whose trail is fixed. */
 const STATIC: Record<string, Crumb[]> = {
@@ -27,7 +28,6 @@ const STATIC: Record<string, Crumb[]> = {
   '/prepare': [{ label: 'Prepare' }],
   '/test': [{ label: 'Test' }],
   '/exam': [{ label: 'About the Exam' }],
-  '/study-plan': [PREPARE, { label: 'Study plan' }],
   '/practice/quick': [PREPARE, { label: 'Quick practice' }],
   '/practice/mistakes': [PREPARE, { label: 'Your mistakes' }],
   '/practice/diagnostic': [TEST, { label: 'Diagnostic' }],
@@ -45,13 +45,14 @@ const STATIC: Record<string, Crumb[]> = {
   // they belong to no section, and the breadcrumb's last segment is rendered
   // as the page's `<h1>`, so without an entry here they had no heading at all.
   '/account': [{ label: 'Account' }],
-  '/about': [{ label: 'About this resource' }],
+  '/information': [{ label: 'Information' }],
+  '/about': [INFORMATION, { label: 'About this resource' }],
   '/pricing': [{ label: 'Plans and pricing' }],
   '/checkout': [{ label: 'Checkout' }],
-  '/terms': [{ label: 'Terms' }],
-  '/refunds': [{ label: 'Refunds' }],
-  '/privacy': [{ label: 'Your data' }],
-  '/contact': [{ label: 'Contact' }],
+  '/terms': [INFORMATION, { label: 'Terms' }],
+  '/refunds': [INFORMATION, { label: 'Refunds' }],
+  '/privacy': [INFORMATION, { label: 'Your data' }],
+  '/contact': [INFORMATION, { label: 'Help and contact' }],
 }
 
 const SECTION_TABS: Record<string, string> = {

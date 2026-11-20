@@ -3,24 +3,22 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 
 import { PremiumLocked } from '@/components/practice/premium-locked'
-import { ReadingMeasure } from '@/components/layout/page-shell'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
+import {
+  PracticeBar,
+  type DifficultyFilter,
+  type DotState,
+  type StatusFilter,
+} from '@/components/practice/practice-bar'
 import { ExplanationSheet } from '@/components/practice/explanation-sheet'
 import { FeedbackSummary } from '@/components/practice/feedback-panel'
 import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { PublicQuestion } from '@/lib/content/registry'
+import { cn } from '@/lib/utils'
 import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
 import { useSolutions } from '@/lib/solutions/use-solutions'
 import type { SectionId } from '@/lib/sections'
@@ -32,7 +30,6 @@ import {
   type PracticeMode,
 } from '@/lib/types/progress'
 import {
-  DIFFICULTIES,
   hasSolution,
   isCorrect,
   requiredSelectionCount,
@@ -183,6 +180,7 @@ function PracticeSession({
 
   /** The question whose working is open in the side panel, if any. */
   const [detailId, setDetailId] = useState<string | null>(null)
+  const [status, setStatus] = useState<StatusFilter>('all')
 
   /**
    * Time is measured between commits rather than from when a question was first
@@ -331,35 +329,79 @@ function PracticeSession({
   const detail = detailId ? pool.find((q) => q.id === detailId) : undefined
   const detailAnswer = (detail && answers[detail.id]) || UNANSWERED
 
+  /**
+   * The status filter is a view, not progress.
+   *
+   * Difficulty is kept in the draft because it changes which questions are in
+   * the set; "show me only the ones I missed" changes nothing about the set
+   * and should not survive a reload as if it had.
+   */
+  const stateOf = (question: Question): DotState => {
+    if (!hasSolution(question)) return 'locked'
+    const answer = answers[question.id]
+    if (!answer?.submitted) return 'todo'
+    return isCorrect(question, answer.selection) ? 'right' : 'wrong'
+  }
+
+  const visible = pool.filter((question) => {
+    if (status === 'all') return true
+    const state = stateOf(question)
+    return status === 'todo' ? state === 'todo' || state === 'locked' : state === 'wrong'
+  })
+
+  const correctCount = pool.reduce(
+    (n, question) => n + (stateOf(question) === 'right' ? 1 : 0),
+    0,
+  )
+
   return (
     <div className="space-y-5">
       {showProgress && sectionId ? (
         <SectionProgress sectionId={sectionId} bankSize={questions.length} />
       ) : null}
 
-      {/* Sticky so the count and the filter stay reachable however far down the
-          bank the learner has scrolled. */}
-      <div className="bg-background/95 supports-[backdrop-filter]:bg-background/85 sticky top-0 z-10 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
-        <span className="text-muted-foreground text-sm tabular-nums">
-          {answeredCount} / {pool.length} answered
-        </span>
-        {showFilter ? <FilterBar filter={filter} onChange={handleFilter} /> : null}
-      </div>
+      <PracticeBar
+        dots={pool.map((question) => ({ id: question.id, state: stateOf(question) }))}
+        answered={answeredCount}
+        correct={correctCount}
+        total={pool.length}
+        status={status}
+        onStatus={setStatus}
+        difficulty={filter as DifficultyFilter}
+        onDifficulty={(value) => handleFilter(value as Filter)}
+        showDifficulty={showFilter}
+        onJump={(id) =>
+          document
+            .getElementById(`question-${id}`)
+            ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        }
+      />
 
-      {pool.length === 0 ? (
-        <p className="text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
-          No {filter} questions in this section.
-        </p>
+      {visible.length === 0 ? (
+        <div className="border-line2 text-muted-foreground rounded-xl border border-dashed p-12 text-center text-sm">
+          {status === 'missed'
+            ? 'Nothing missed here — every question you have answered in this view was right.'
+            : status === 'todo'
+              ? 'Nothing left to do in this view.'
+              : `No ${filter} questions in this section.`}{' '}
+          <button
+            type="button"
+            onClick={() => setStatus('all')}
+            className="text-brand cursor-pointer border-0 bg-none font-medium"
+          >
+            Show all questions
+          </button>
+        </div>
       ) : null}
 
       {/* Slightly more air between questions than between the page's own
           furniture above, so the column reads as a list of separate things. */}
-      <div className="space-y-6">
-        {pool.map((question, i) => (
+      <div className="flex flex-col gap-4">
+        {visible.map((question) => (
           <QuestionCard
             key={question.id}
             question={question}
-            position={i + 1}
+            position={pool.indexOf(question) + 1}
             answer={answers[question.id] ?? UNANSWERED}
             onSelect={handleSelect}
             onReveal={(n) => patch(question.id, { hintsUsed: n })}
@@ -394,7 +436,9 @@ function PracticeSession({
 }
 
 /**
- * One question, self-contained.
+ * One question, as the design's panel: a header strip carrying its number,
+ * difficulty and result, an inset white surface holding the question itself,
+ * and — once answered — a footer that says what happened.
  *
  * `content-visibility` is the whole reason a hundred and seventy of these can
  * share a page: every card is in the DOM and reachable, but the browser skips
@@ -427,92 +471,86 @@ function QuestionCard({
    * silent nothing and a wrong "incorrect".
    */
   const locked = !hasSolution(question)
+  const right = submitted && isCorrect(question, selection)
 
   return (
-    <Card
+    <article
       id={`question-${question.id}`}
-      // The one place this view departs from DESIGN.md, which separates surfaces
-      // with hairline borders and never with shadows. On a page that is nothing
-      // but a column of cards, a border alone leaves them reading as one ruled
-      // sheet; the faintest lift is what makes each question a thing of its own.
-      // `shadow-xs` and no more — the rule still does most of the work.
-      className="scroll-mt-20 shadow-xs [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
+      aria-label={`Question ${position}`}
+      className="panel scroll-mt-32 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
     >
-      {/* A header with a rule under it, so the eye can find the top of a
-          question without reading anything. CardHeader already pads itself to
-          the card's spacing when it carries a border. */}
-      <CardHeader className="flex flex-row items-center justify-between gap-3 border-b">
-        <span className="text-foreground text-sm font-medium tabular-nums">
-          Question {position}
+      <div className="panel-h min-h-[42px]">
+        <span className="flex min-w-0 items-center gap-2">
+          <span className="font-mono text-xs font-semibold tabular-nums">
+            Q{String(position).padStart(2, '0')}
+          </span>
+          <DifficultyBadge difficulty={question.difficulty} />
+          <span className="text-muted-foreground truncate font-mono text-xs">{question.id}</span>
         </span>
-        <DifficultyBadge difficulty={question.difficulty} />
-      </CardHeader>
 
-      <CardContent className="space-y-5">
+        <span className="flex shrink-0 items-center gap-1.5">
+          {submitted ? (
+            <span
+              className={cn(
+                'inline-flex h-[22px] items-center gap-1.5 rounded-full border px-2 text-xs font-medium',
+                right
+                  ? 'bg-success-tint border-success/30 text-success-fg'
+                  : 'bg-danger-tint border-danger/30 text-danger-fg',
+              )}
+            >
+              <i
+                aria-hidden
+                className="block size-1.5 rounded-full"
+                style={{ background: right ? 'var(--success)' : 'var(--danger)' }}
+              />
+              {right ? 'Correct' : 'Missed'}
+            </span>
+          ) : null}
+
+          {!locked && !submitted && question.hints?.length && hintsUsed === 0 ? (
+            <HintTrigger onReveal={() => onReveal(1)} />
+          ) : null}
+        </span>
+      </div>
+
+      <div className="surface flex flex-col gap-3.5 p-4">
         {locked ? (
           <PremiumLocked questionId={question.id} />
         ) : (
-          <ReadingMeasure>
-            <QuestionView
-              question={question}
-              selection={selection}
-              submitted={submitted}
-              onSelect={(key, optionId) => onSelect(question, key, optionId)}
-              compactOptions
-            />
-          </ReadingMeasure>
+          <QuestionView
+            question={question}
+            selection={selection}
+            submitted={submitted}
+            onSelect={(key, optionId) => onSelect(question, key, optionId)}
+            compactOptions
+          />
         )}
 
-        {!locked && !submitted && question.hints?.length ? (
-          <>
-            <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
-            <div className="flex flex-wrap items-center gap-2">
-              {hintsUsed === 0 ? <HintTrigger onReveal={() => onReveal(1)} /> : null}
-              {!answered ? (
-                <p className="text-muted-foreground text-sm">
-                  {requiredSelectionCount(question) === 2
-                    ? 'Choose an option for both images.'
-                    : 'Choose an option.'}
-                </p>
-              ) : null}
-            </div>
-          </>
+        {!locked && !submitted && question.hints?.length && hintsUsed > 0 ? (
+          <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
         ) : null}
 
-        {!locked && submitted ? (
+        {!locked && !submitted && !answered ? (
+          <p className="text-muted-foreground text-sm">
+            {requiredSelectionCount(question) === 2
+              ? 'Choose an option for both images.'
+              : 'Choose an option.'}
+          </p>
+        ) : null}
+      </div>
+
+      {!locked && submitted ? (
+        <div className="flex min-h-[46px] flex-wrap items-center gap-2.5 px-2 pt-1.5 pb-0.5">
           <FeedbackSummary
             question={question}
             selection={selection}
-            correct={isCorrect(question, selection)}
+            correct={right}
             hintsUsed={hintsUsed}
             onSeeMore={onSeeMore}
           />
-        ) : null}
-      </CardContent>
-    </Card>
+        </div>
+      ) : null}
+    </article>
   )
 }
 
-function FilterBar({ filter, onChange }: { filter: Filter; onChange: (value: Filter) => void }) {
-  return (
-    <div className="flex items-center gap-2">
-      <label htmlFor="difficulty-filter" className="text-muted-foreground text-sm">
-        Difficulty
-      </label>
-      {/* Base UI hands back `value | null`; ignore the null clear. */}
-      <Select value={filter} onValueChange={(value) => value && onChange(value)}>
-        <SelectTrigger id="difficulty-filter" size="sm" className="w-32">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          {DIFFICULTIES.map((d) => (
-            <SelectItem key={d} value={d}>
-              {d[0].toUpperCase() + d.slice(1)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
-  )
-}

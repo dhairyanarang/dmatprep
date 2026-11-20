@@ -280,11 +280,15 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         {/* The source stays put while the questions of its pack are worked
             through — moving it would break the one thing GAM is testing. */}
-        <Card className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
-          <CardContent className="pt-5">
+        <section className="panel lg:sticky lg:top-[68px] lg:max-h-[calc(100vh-88px)]">
+          <div className="panel-h">
+            <h2 className="ptitle">Source</h2>
+            <span className="text-muted-foreground text-xs">Stays while you answer</span>
+          </div>
+          <div className="surface flex-1 overflow-y-auto p-4">
             <SourcePackView pack={current.pack} />
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -297,13 +301,11 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
                   onClick={() => go(at)}
                   aria-current={at === index}
                   aria-label={`Question ${f.indexInPack + 1}${answers[f.question.id] ? ', answered' : ''}`}
-                  className={`size-7 rounded-md border text-xs transition-colors duration-150 ${
-                    at === index
-                      ? 'border-foreground bg-accent'
-                      : answers[f.question.id]
-                        ? 'border-foreground/40'
-                        : 'border-border text-muted-foreground'
-                  }`}
+                  className={`size-7 rounded-[7px] border font-mono text-xs transition-colors duration-150 ${
+                    answers[f.question.id]
+                      ? 'border-brand bg-brand text-brand-foreground'
+                      : 'border-line2 bg-card text-muted-foreground hover:border-foreground'
+                  } ${at === index ? 'border-foreground border-[1.5px]' : ''}`}
                 >
                   {f.indexInPack + 1}
                 </button>
@@ -314,9 +316,23 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
             </span>
           </div>
 
-          <Card>
-            <CardContent className="space-y-4 pt-5">
-              <p className="text-[15px] leading-relaxed">{current.question.stem}</p>
+          <article className="panel">
+            <div className="panel-h min-h-[42px]">
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="font-mono text-xs font-semibold tabular-nums">
+                  Q{String(current.indexInPack + 1).padStart(2, '0')}
+                </span>
+                <span className="text-muted-foreground truncate font-mono text-xs">
+                  {current.question.id}
+                </span>
+              </span>
+              <span className="text-muted-foreground text-xs">Single choice</span>
+            </div>
+
+            <div className="surface flex flex-col gap-3.5 p-4">
+              <p className="max-w-[560px] text-base leading-[22px] font-semibold">
+                {current.question.stem}
+              </p>
               <div className="grid gap-2">
                 {current.question.options.map((option) => (
                   <OptionButton
@@ -332,8 +348,8 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
                   </OptionButton>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </article>
 
           <div className="flex items-center justify-between">
             <Button variant="ghost" size="sm" onClick={() => go(index - 1)} disabled={index === 0}>

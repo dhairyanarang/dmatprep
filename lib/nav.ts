@@ -5,7 +5,6 @@ import {
   Mail,
   RotateCcw,
   ShieldCheck,
-  Sparkles,
   Grid3x3,
   LayoutDashboard,
   LayoutGrid,
@@ -75,6 +74,7 @@ export const NAV: NavGroup[] = [
     label: 'The exam',
     links: [
       { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      { href: '/information', label: 'Information', hint: 'Who runs this, and the policies', icon: Info },
     ],
   },
 ]
@@ -83,21 +83,27 @@ export const NAV: NavGroup[] = [
  * The informational pages, in one list.
  *
  * These are not destinations — they are the pages a candidate needs once, to
- * check who runs this, what it costs, or how to get help. They used to live in
- * a large global footer under every screen, which put legal boilerplate below
- * practice questions and made the app feel like a brochure.
+ * check who runs this or how to get help. They used to live in a large global
+ * footer under every screen, which put legal boilerplate below practice
+ * questions and made the app feel like a brochure. Then they lived in a
+ * collapsed sidebar dropdown, which hid the policies behind a click nobody
+ * makes twice.
  *
- * The sidebar holds them in a collapsed `Information` group instead: one click
- * from anywhere, never in the way, and always present in the DOM so nothing
- * depends on the group being open.
+ * They are now a section with a landing page and an internal sidebar, like
+ * About the Exam. This list is what that sidebar renders, and the only list
+ * of them anywhere.
+ *
+ * Pricing is deliberately NOT here. It is part of the product rather than its
+ * paperwork, and it is reached from the places that are actually about buying:
+ * the sidebar's Pro card, the Pro dialog, and the account page.
  */
 export const INFO_LINKS: { href: string; label: string; icon: LucideIcon }[] = [
+  { href: '/information', label: 'Overview', icon: Info },
   { href: '/about', label: 'About this resource', icon: Info },
-  { href: '/pricing', label: 'Pricing', icon: Sparkles },
+  { href: '/contact', label: 'Help and contact', icon: Mail },
+  { href: '/privacy', label: 'Your data', icon: ShieldCheck },
   { href: '/terms', label: 'Terms', icon: FileText },
   { href: '/refunds', label: 'Refunds', icon: RotateCcw },
-  { href: '/privacy', label: 'Your data', icon: ShieldCheck },
-  { href: '/contact', label: 'Contact', icon: Mail },
 ]
 
 /** The informational page a path is, if it is one. */
@@ -114,7 +120,6 @@ const OWNS: Record<string, (path: string) => boolean> = {
     // Module B's untimed practice sits under Prepare; its timed session does
     // not, for the same reason Module A's timed runs belong to Test.
     (path.startsWith('/module-b') && !path.startsWith('/module-b/timed')) ||
-    path.startsWith('/study-plan') ||
     path.startsWith('/practice/quick') ||
     // Retrying mistakes is untimed practice with hints, so it belongs to
     // Prepare — which is also what its breadcrumb says. Leaving it to the
@@ -127,6 +132,9 @@ const OWNS: Record<string, (path: string) => boolean> = {
       !path.startsWith('/practice/quick') &&
       !path.startsWith('/practice/mistakes')),
   '/exam': (path) => path.startsWith('/exam'),
+  '/information': (path) =>
+    path.startsWith('/information') ||
+    INFO_LINKS.some((link) => link.href !== '/information' && path === link.href),
 }
 
 export function isActive(pathname: string, href: string): boolean {

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { InfoNav } from '@/components/layout/info-nav'
 import { NAV, isActive, type NavLink } from '@/lib/nav'
 import { cn } from '@/lib/utils'
 
@@ -14,11 +13,11 @@ import { cn } from '@/lib/utils'
  * label in brand blue — the design's only use of colour here. Everything else
  * stays plain, so the highlight reads as position rather than emphasis.
  *
- * Two groups, because the four destinations are not four of the same thing:
- * Home, Prepare and Test are the daily loop, and About the Exam is reference.
- * The informational pages hang off the end of that second group rather than
- * sitting in the sidebar's footer, so the two halves of "what is this and how
- * does the exam work" are adjacent instead of at opposite ends of the panel.
+ * Two groups, because the destinations are not all the same kind of thing:
+ * Home, Prepare and Test are the daily loop, while About the Exam and
+ * Information are reference you consult and leave. Information used to be a
+ * disclosure here that unfolded into six links; it is a section with its own
+ * landing page now, so it is simply a row like the others.
  */
 export function NavList({
   onNavigate,
@@ -51,10 +50,6 @@ export function NavList({
               onNavigate={onNavigate}
             />
           ))}
-
-          {/* Only under the last group: these are reference pages, and that is
-              the reference group. */}
-          {groupIndex === NAV.length - 1 ? <InfoNav onNavigate={onNavigate} /> : null}
         </div>
       ))}
     </nav>

@@ -329,11 +329,22 @@ could not reach it with a naked single.
 **Module A only** — Figure Sequences, Mathematical Equations, Latin Squares.
 Module B (General Academic Module) is a "coming soon" placeholder; do not build it out.
 
-**Four primary destinations, and no more**: Home, About the Exam, Prepare, Test.
+**Five sidebar rows, in two groups** — Home, Prepare, Test under "Main menu";
+About the Exam and Information under "The exam". This was four until 21 Nov
+2026, when Information stopped being a dropdown in the sidebar's footer and
+became a section with its own landing page and internal sidebar, matching the
+v2 prototype. The rule's point was never the number: the sidebar must not grow
+quietly, so a sixth row takes a decision and an edit to
+`scripts/test/gam-product.test.mjs`, which pins the count.
+
 Review was removed from the public-beta IA — its data model, calculations and
-components all remain, and mistakes now surface at the end of a practice set,
-which is when they are worth looking at. `/review` redirects to Home. Do not
-re-add a fifth destination without evidence that someone asked for it.
+components all remain. Mistakes surface at the end of a practice set and at
+`/practice/mistakes`, which is reachable from the dashboard and from a result,
+and is not a sidebar row. `/review` redirects to Home.
+
+**The Study Plan was removed on 21 Nov 2026**, by decision. `/study-plan`
+redirects to `/prepare`. Milestones survive because the pre-exam checklist uses
+the same store; only the plan content, its page and its component went.
 
 **`content/exam/updates.ts` is the only update surface**, and it is a content
 file on purpose: nothing can publish to it except a commit, so there is no path

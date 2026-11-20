@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
       // remain; the destination does not, so any saved link lands on Home
       // rather than a 404.
       { source: '/review', destination: '/', permanent: false },
+      // The study plan was removed as a product feature. A bookmark to it
+      // lands on Prepare, which is where its one real job — deciding what to
+      // do next — now lives.
+      { source: '/study-plan', destination: '/prepare', permanent: false },
     ]
   },
   /**

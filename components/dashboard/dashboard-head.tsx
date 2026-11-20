@@ -21,6 +21,11 @@ import type { SectionId } from '@/lib/sections'
  * doing rather than by a name the product has invented for them. The date line
  * is today's date and nothing more — the design shows "Week 3 of your 6-week
  * plan" there, and the product has no plan to be on week 3 of.
+ *
+ * Not signed in and not started are different situations and get different
+ * words. A new account with no history needs a first step; a guest with no
+ * history needs that *and* to know where their work is being kept, because
+ * nothing has told them yet and clearing the browser would take it.
  */
 export function DashboardHead({ bankSizes }: { bankSizes: Record<SectionId, number> }) {
   const auth = useAuth()
@@ -56,6 +61,18 @@ export function DashboardHead({ bankSizes }: { bankSizes: Record<SectionId, numb
                 month: 'long',
               })
             : ' '}
+          {untried && auth.status === 'guest' ? (
+            <>
+              {' · '}
+              <span>
+                Your work saves in this browser.{' '}
+                <Link href="/account" className="text-foreground font-medium underline underline-offset-2">
+                  Sign in
+                </Link>{' '}
+                to keep it across devices.
+              </span>
+            </>
+          ) : null}
         </p>
       </div>
 

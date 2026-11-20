@@ -2,32 +2,30 @@ import type { LucideIcon } from 'lucide-react'
 import type { ReactNode } from 'react'
 
 import { PageDisclaimer } from '@/components/layout/page-disclaimer'
-import { PageHeader } from '@/components/layout/page-header'
-import { PageContainer } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 import { cn } from '@/lib/utils'
 
 /**
  * The frame every informational page uses.
  *
- * It exists because those pages had drifted into four different widths. Two
- * narrowed the `PageContainer` itself, which moves the page's left edge and
- * gutters and is what made them read as a separate website sitting inside the
- * app. The main pages never do that: the container is always full width, and
- * anything that reads better short is narrowed *inside* it.
+ * It exists because those pages had drifted into four different widths, and
+ * two of them narrowed the page container itself — which moves the left edge
+ * and the gutters, and is what made them read as a separate website sitting
+ * inside the app.
  *
- * So the rule is one line of code rather than a convention to remember —
- * container full width, prose capped at the reading measure, and pages that
- * genuinely need the width (the pricing comparison) opt out with `wide`.
+ * The container, the gutters and the page entrance now belong to the
+ * Information layout, which also supplies the internal sidebar. This supplies
+ * the heading, the reading measure and the disclaimer, and nothing else.
  */
 export function InfoPage({
-  icon,
   title,
   description,
   wide = false,
   disclaimer = true,
   children,
 }: {
-  icon: LucideIcon
+  /** Accepted and unused: the section's sidebar carries the identity now. */
+  icon?: LucideIcon
   title: string
   description?: string
   /** Full container width, for layouts that compare things side by side. */
@@ -37,15 +35,10 @@ export function InfoPage({
   children: ReactNode
 }) {
   return (
-    <div className="page-wash">
-      <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
-        <PageHeader icon={icon} title={title} description={description} />
-
-        <div className={cn('flex flex-col gap-7', !wide && 'max-w-3xl')}>{children}</div>
-
-        {disclaimer ? <PageDisclaimer className={cn(!wide && 'max-w-3xl')} /> : null}
-      </PageContainer>
-    </div>
+    <SubPage title={title} description={description}>
+      <div className={cn('flex flex-col gap-7', !wide && 'max-w-3xl')}>{children}</div>
+      {disclaimer ? <PageDisclaimer className={cn(!wide && 'max-w-3xl')} /> : null}
+    </SubPage>
   )
 }
 

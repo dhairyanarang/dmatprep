@@ -78,7 +78,10 @@ export function TodayPlan({ bankSizes }: { bankSizes: Record<SectionId, number> 
   return (
     <section className="panel min-w-0 flex-[1_1_300px]">
       <div className="panel-h">
-        <h2 className="ptitle">What to do next</h2>
+        {/* The heading says which of the two lists this is: a route in for
+            someone who has not started, or the next step for someone who has. */}
+        <h2 className="ptitle">{untried ? 'Start here' : 'What to do next'}</h2>
+        {untried ? <span className="text-muted-foreground text-xs">3 steps</span> : null}
       </div>
 
       <div className="surface flex flex-1 flex-col">
