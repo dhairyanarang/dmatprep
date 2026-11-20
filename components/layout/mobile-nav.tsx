@@ -6,47 +6,44 @@ import { Menu } from 'lucide-react'
 import { NavList } from '@/components/layout/nav-list'
 import { SidebarFooter } from '@/components/layout/sidebar-footer'
 import { SidebarBrand } from '@/components/layout/sidebar-brand'
-import { Button } from '@/components/ui/button'
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 
+/**
+ * The sidebar as a drawer, below `lg`.
+ *
+ * It is a control inside the top bar rather than a second header of its own.
+ * Two stacked bars — one carrying the brand, one the breadcrumb — cost 128px
+ * of a phone screen before any content, and the design has one.
+ */
 export function MobileNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-background/90 supports-[backdrop-filter]:bg-background/75 sticky top-0 z-40 flex h-16 items-center gap-2 border-b px-4 backdrop-blur lg:hidden">
-      <Sheet open={open} onOpenChange={setOpen}>
-        {/* Base UI composes via `render`, not Radix's `asChild`. */}
-        <SheetTrigger
-          render={
-            <Button variant="ghost" size="icon" aria-label="Open navigation">
-              <Menu className="size-5" />
-            </Button>
-          }
-        />
+    <Sheet open={open} onOpenChange={setOpen}>
+      {/* Base UI composes via `render`, not Radix's `asChild`. */}
+      <SheetTrigger
+        render={
+          <button
+            type="button"
+            aria-label="Open navigation"
+            className="border-border bg-card hover:bg-frame focus-visible:ring-ring grid size-[30px] shrink-0 place-items-center rounded-lg border transition-colors focus-visible:ring-2 focus-visible:outline-none lg:hidden"
+          >
+            <Menu className="size-4" />
+          </button>
+        }
+      />
 
-        <SheetContent side="left" className="bg-sidebar flex w-72 flex-col p-0">
-          <SheetHeader className="h-16 shrink-0 justify-center border-b px-4">
-            <SheetTitle className="text-left">
-              <SidebarBrand />
-            </SheetTitle>
-          </SheetHeader>
+      <SheetContent side="left" className="bg-sidebar flex w-[264px] flex-col p-0">
+        <SheetHeader className="border-line2 h-13 shrink-0 justify-center border-b px-4">
+          <SheetTitle className="text-left">
+            <SidebarBrand />
+          </SheetTitle>
+        </SheetHeader>
 
-          <div className="min-h-0 flex-1 overflow-y-auto">
-            <NavList onNavigate={() => setOpen(false)} />
-          </div>
+        <NavList className="min-h-0 flex-1 overflow-y-auto" onNavigate={() => setOpen(false)} />
 
-          <SidebarFooter onNavigate={() => setOpen(false)} />
-
-        </SheetContent>
-      </Sheet>
-
-      <SidebarBrand />
-    </header>
+        <SidebarFooter onNavigate={() => setOpen(false)} />
+      </SheetContent>
+    </Sheet>
   )
 }

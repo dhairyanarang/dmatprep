@@ -10,7 +10,10 @@ export const metadata = { title: 'Account' }
  */
 export default function AccountPage() {
   return (
-    <PageShell description="Who you are, what is stored, and what this account can open.">
+    <PageShell
+      title="Account"
+      description="Who you are, what is stored, and what this account can open."
+    >
       <AccountView />
     </PageShell>
   )

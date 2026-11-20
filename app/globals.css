@@ -70,9 +70,21 @@
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
   --color-brand-foreground-muted: var(--brand-foreground-muted);
+  --color-brand-strong: var(--brand-strong);
   --color-brand-cta: var(--brand-cta);
   --color-brand-cta-foreground: var(--brand-cta-foreground);
   --color-surface-muted: var(--surface-muted);
+
+  /* Structural neutrals from the v2 prototype. The palette already matched it;
+     these are the four planes and three hairlines its layouts are built from,
+     which were previously spelled out as literal hexes at call sites. */
+  --color-frame: var(--frame);
+  --color-soft: var(--soft);
+  --color-hair: var(--hair);
+  --color-line2: var(--line2);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
 
   --color-figures: var(--figures);
   --color-figures-tint: var(--figures-tint);
@@ -135,6 +147,9 @@
      the CTA that sits *on* the blue surface, never on white. */
   --brand: #2f4bff;
   --brand-foreground: #ffffff;
+  /* The pressed/hover step for the action colour. One token, so a blue button
+     and a blue link darken by the same amount. */
+  --brand-strong: #1f37d9;
   /* The secondary line on a brand-coloured card — a description under a title,
      never a label on its own.
 
@@ -223,6 +238,17 @@
   --gold-line: #f0d9a6;
   --gold-text: #8a5a00;
   --gold-dark: #3a2600;
+
+  /* The prototype's planes, inside out: white surface on a warm frame, inside
+     a card, on the page. Hairlines step from soft to line to line2 as the
+     thing they separate grows. */
+  --frame: #f8f7f5;
+  --soft: #ededed;
+  --hair: #f0f0ee;
+  --line2: #dddddd;
+  --brand-50: #eef0ff;
+  --brand-100: #dde2ff;
+  --brand-200: #bcc7ff;
 }
 
 @layer components {
@@ -389,5 +415,147 @@
       animation-delay: 0.01ms !important;
       transition-delay: 0.01ms !important;
     }
+  }
+}
+
+@layer components {
+  /*
+   * The prototype's signature container: a warm frame holding an inset white
+   * surface, with a small mono-capitalised header between them.
+   *
+   * Three classes rather than twelve utilities at every call site, because
+   * this shape appears on every page and the 4px inset is the whole trick —
+   * get it wrong by a pixel and the nesting stops reading. See
+   * `docs/design-reference/`.
+   */
+  .panel {
+    background: var(--frame);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .panel-h {
+    min-height: 44px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .surface {
+    background: var(--card);
+    border: 1px solid var(--soft);
+    border-radius: 8px;
+  }
+
+  /* The panel's own label, and the eyebrow above a page heading. Mono and
+     letterspaced so a two-word title reads as a label rather than a sentence. */
+  .ptitle,
+  .over {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-weight: 500;
+  }
+  .ptitle {
+    font-size: 12px;
+  }
+
+  /* A row inside a surface. The last one drops its rule so the surface's own
+     radius is not cut by a line. */
+  .listrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-bottom: 1px solid var(--hair);
+    color: var(--foreground);
+    transition: background 0.12s;
+  }
+  .listrow:last-child {
+    border-bottom: 0;
+  }
+  a.listrow:hover,
+  button.listrow:hover {
+    background: #fafaf9;
+  }
+
+  /* A card you can click anywhere on. The link stretches over the whole card
+     via ::after, so the heading stays the accessible name and the rest of the
+     card is not a nest of nested links. */
+  .scard {
+    position: relative;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+  .scard:hover {
+    border-color: #cfcfcf;
+    box-shadow: 0 10px 28px rgba(10, 10, 10, 0.07);
+    transform: translateY(-1px);
+  }
+  .scard .stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    z-index: 1;
+  }
+  .scard:has(.stretch:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .scard .stretch:focus-visible {
+    outline: none;
+  }
+  .scard .go {
+    color: var(--brand);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 0.15s,
+      transform 0.15s;
+  }
+  .scard:hover .go {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* A thin progress rail. Used for subtest coverage and mock scores; never for
+     anything the acid-lime rule would have claimed. */
+  .rail {
+    height: 4px;
+    border-radius: 99px;
+    background: var(--brand-50);
+    overflow: hidden;
+  }
+  .rail > i {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: var(--brand);
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* A quiet aside inside a surface — the one-line coaching note. */
+  .note {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--frame);
+    font-size: 13px;
+    line-height: 19px;
+    color: #3d3d3d;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
   }
 }

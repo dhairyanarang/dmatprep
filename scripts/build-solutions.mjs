@@ -36,7 +36,43 @@ const SECTIONS = ['figure-sequences', 'mathematical-equations', 'latin-squares']
  * The premium file is written either way, so the protected path is real and
  * testable before the flag is ever flipped.
  */
-const SPLIT = process.env.COMMERCE_ENABLED === '1'
+/**
+ * The two flags that have to agree, and the build that stops if they do not.
+ *
+ * `COMMERCE_ENABLED` decides whether this script withholds the premium
+ * solutions from `public/`. `NEXT_PUBLIC_COMMERCE_ENABLED` decides whether the
+ * app behaves as a paid product. They are separate variables because one is
+ * read by Node at build time and the other is inlined into the client bundle,
+ * and nothing has ever forced them to match.
+ *
+ * Setting only the second is the dangerous combination: the interface locks
+ * questions, shows a price and takes money, while `public/solutions/*.json`
+ * still carries every answer it is charging for, at a public URL, with no
+ * authentication in front of it. That is not a degraded paywall — it is no
+ * paywall, presented as one.
+ *
+ * So the build refuses. A release that is half-configured fails loudly here
+ * rather than shipping and being discovered by whoever opens the URL first.
+ */
+const SPLIT_ENV = process.env.COMMERCE_ENABLED === '1'
+const APP_ENV = process.env.NEXT_PUBLIC_COMMERCE_ENABLED === '1'
+
+if (SPLIT_ENV !== APP_ENV) {
+  console.error(
+    '\nCOMMERCE CONFIGURATION MISMATCH — refusing to build.\n\n' +
+      `  COMMERCE_ENABLED             = ${process.env.COMMERCE_ENABLED ?? '(unset)'}\n` +
+      `  NEXT_PUBLIC_COMMERCE_ENABLED = ${process.env.NEXT_PUBLIC_COMMERCE_ENABLED ?? '(unset)'}\n\n` +
+      (APP_ENV
+        ? '  The app would sell premium questions while public/solutions kept every\n' +
+          '  answer at a public URL. Set COMMERCE_ENABLED=1 as well, or unset both.\n'
+        : '  The answers would be withheld from public/ while the app behaved as if\n' +
+          '  everything were free, so free practice could not be marked. Set\n' +
+          '  NEXT_PUBLIC_COMMERCE_ENABLED=1 as well, or unset both.\n'),
+  )
+  process.exit(1)
+}
+
+const SPLIT = SPLIT_ENV
 
 const freeSet = JSON.parse(
   readFileSync(new URL('../content/access/free-set.json', import.meta.url), 'utf8'),

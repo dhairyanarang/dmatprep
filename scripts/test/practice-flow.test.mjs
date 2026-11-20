@@ -198,9 +198,20 @@ describe('the exam modes are not practice', () => {
     assert.ok(!/answered: answers/.test(timed), 'practice draft state leaked into timed')
   })
 
-  test('timed still owns its clock and its action bar', () => {
+  test('timed still owns its clock and its own chrome', () => {
     assert.match(timed, /stageEndsAt|endsAt/, 'the timed runner lost its absolute deadline')
-    assert.match(timed, /PracticeActionBar/, 'the timed runner lost its action bar')
+    // It used to share `PracticeActionBar` with practice. It no longer does:
+    // a sitting is a takeover with its own dark header, clock and task
+    // navigator, which is the point of this whole describe block — the exam
+    // modes are not practice. Borrowing practice chrome again would be the
+    // drift this guards against, so the assertion is that it has its own.
+    assert.match(timed, /ExamChrome/, 'the timed runner lost its own exam chrome')
+    assert.match(timed, /ExamClock/, 'the timed runner lost its clock')
+    assert.match(timed, /TaskPanel/, 'the timed runner lost its task navigator')
+    assert.ok(
+      !/PracticeActionBar/.test(timed),
+      'the practice action bar came back into the exam runner',
+    )
   })
 
   test('only practice modes use the practice runner', () => {

@@ -18,22 +18,22 @@ import { INFO_LINKS } from '@/lib/nav'
 export function InfoNav({ onNavigate }: { onNavigate?: () => void }) {
   return (
     <details className="group">
-      <summary className="hover:bg-sidebar-accent/60 flex cursor-pointer list-none items-center gap-2.5 rounded-md px-2.5 py-2 text-sm">
-        <Info className="text-foreground/70 size-4 shrink-0" aria-hidden />
-        <span className="text-foreground flex-1 leading-5">Information</span>
+      <summary className="text-muted-foreground hover:text-foreground flex h-[38px] cursor-pointer list-none items-center gap-[9px] rounded-lg border border-transparent px-2.5 text-sm transition-colors duration-150 hover:bg-[#ecebe8]">
+        <Info className="size-[18px] shrink-0" aria-hidden />
+        <span className="flex-1 leading-5">Information</span>
         <ChevronRight
           aria-hidden
           className="text-muted-foreground size-3.5 shrink-0 transition-transform duration-150 ease-out group-open:rotate-90"
         />
       </summary>
 
-      <nav aria-label="Information" className="mt-0.5 flex flex-col pb-1 pl-[26px]">
+      <nav aria-label="Information" className="mt-0.5 flex flex-col pb-1 pl-[27px]">
         {INFO_LINKS.map((link) => (
           <Link
             key={link.href}
             href={link.href}
             onClick={onNavigate}
-            className="text-muted-foreground hover:text-foreground hover:bg-sidebar-accent/60 rounded-md px-2.5 py-1.5 text-xs leading-4 transition-colors duration-150"
+            className="text-muted-foreground hover:text-foreground rounded-md px-2.5 py-1.5 text-xs leading-4 transition-colors duration-150 hover:bg-[#ecebe8]"
           >
             {link.label}
           </Link>

@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import { Check, Lock } from 'lucide-react'
+import { Lock, Play } from 'lucide-react'
 
-import { ArrowAffordance } from '@/components/ui/arrow-affordance'
+import { ProBadge } from '@/components/layout/sidebar-brand'
 import { useProgress, useProgressReady } from '@/lib/progress/use-progress'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
@@ -17,6 +17,8 @@ export type MockTile = {
   size: number
   /** Every question id in the mock, used to recognise a past sitting. */
   questionIds: string[]
+  /** How many of its questions came from each subtest, in order. */
+  shape: { label: string; count: number }[]
 }
 
 /**
@@ -44,25 +46,30 @@ export function MockTiles({ mocks }: { mocks: MockTile[] }) {
   const locked = COMMERCE_ENABLED && entitlement.ready && !entitlement.access
 
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
-      {mocks.map((mock) => {
-        const best = ready ? bestSitting(progress.sessions, mock.questionIds) : null
-        return (
-          <MockTile key={mock.id} mock={mock} best={best} locked={locked} />
-        )
-      })}
+    <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr))]">
+      {mocks.map((mock, i) => (
+        <MockCard
+          key={mock.id}
+          mock={mock}
+          best={ready ? bestSitting(progress.sessions, mock.questionIds) : null}
+          locked={locked}
+          primary={i === 0 && !locked}
+        />
+      ))}
     </div>
   )
 }
 
-function MockTile({
+function MockCard({
   mock,
   best,
   locked,
+  primary,
 }: {
   mock: MockTile
   best: { correct: number; total: number; at: string } | null
   locked: boolean
+  primary: boolean
 }) {
   const href = locked ? '/pricing' : `/test/mock/${mock.id}`
 
@@ -71,45 +78,77 @@ function MockTile({
       href={href}
       aria-label={locked ? `${mock.label} — part of Pro, see pricing` : mock.label}
       className={cn(
-        'group border-border bg-card flex items-start gap-3 rounded-2xl border p-4',
-        'hover:border-brand/40 focus-visible:ring-ring transition-[border-color,translate]',
-        'duration-200 ease-out hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:outline-none',
+        'flex flex-col gap-3.5 rounded-xl border p-[18px] transition-[border-color,transform] duration-150 hover:-translate-y-0.5',
+        'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
+        primary
+          ? 'border-foreground bg-foreground text-background'
+          : 'border-border bg-card hover:border-foreground/30',
       )}
     >
+      <span className="flex items-center justify-between gap-2">
+        {locked ? (
+          <ProBadge />
+        ) : (
+          <span className={cn('over', primary && 'text-[#bdbdbd]')}>
+            {best ? 'Sat · retake any time' : 'Fixed · 3 parts'}
+          </span>
+        )}
+        <span
+          className={cn('font-mono text-[13px]', primary ? 'text-background' : 'text-muted-foreground')}
+        >
+          75:00
+        </span>
+      </span>
+
+      <span className="flex flex-col gap-1">
+        <b className="text-lg font-semibold">{mock.label}</b>
+        <span className={cn('text-[13px]', primary ? 'text-[#bdbdbd]' : 'text-muted-foreground')}>
+          {locked
+            ? `${mock.size} questions · about half come from the paid bank, so it cannot be marked without Pro`
+            : best
+              ? `Best ${best.correct}/${best.total} · ${new Date(best.at).toLocaleDateString()}`
+              : `${mock.size} questions across all three subtests, in a fixed order`}
+        </span>
+      </span>
+
+      {/* The shape of the sitting: three parts, in the order they are taken. */}
+      <span aria-hidden className="flex h-2 gap-[3px]">
+        {mock.shape.map((part, i) => (
+          <span
+            key={part.label}
+            className="rounded-[2px]"
+            style={{
+              flex: part.count,
+              background: primary
+                ? ['#fff', '#bdbdbd', '#737373'][i]
+                : ['var(--brand)', 'var(--brand-200)', 'var(--brand-100)'][i],
+            }}
+          />
+        ))}
+      </span>
+
       <span
-        aria-hidden
         className={cn(
-          'flex size-9 shrink-0 items-center justify-center rounded-md font-mono text-sm',
-          best ? 'bg-success-tint text-success-fg' : 'bg-brand/8 text-brand',
-          locked && 'bg-muted text-muted-foreground',
+          'flex h-9 items-center justify-center gap-1.5 rounded-lg text-sm font-medium',
+          locked
+            ? 'border-gold-line bg-gold-soft text-gold-text border'
+            : primary
+              ? 'bg-background text-foreground'
+              : 'bg-brand text-brand-foreground',
         )}
       >
         {locked ? (
-          <Lock className="size-4" />
-        ) : best ? (
-          <Check className="size-4" />
+          <>
+            <Lock aria-hidden className="size-3.5" />
+            Included in Pro
+          </>
         ) : (
-          mock.number
+          <>
+            <Play aria-hidden className="size-3 fill-current" />
+            {best ? 'Sit it again' : 'Start mock'}
+          </>
         )}
       </span>
-
-      <span className="flex min-w-0 flex-1 flex-col gap-1.5">
-        <span className="text-base leading-5 font-medium">{mock.label}</span>
-        <span className="text-muted-foreground text-sm leading-5 font-medium">
-          {/* A lock that does not say what it is, or where the link goes, is a
-              dead end wearing an arrow. */}
-          {locked
-            ? `${mock.size} questions · part of Pro — about half of them come from the paid bank, so this cannot be marked without it`
-            : `${mock.size} questions · 75 minutes · the same test every time`}
-        </span>
-        {best ? (
-          <span className="bg-muted text-muted-foreground mt-1 w-fit rounded-md px-2 py-1 font-mono text-xs">
-            Best {best.correct}/{best.total} · {new Date(best.at).toLocaleDateString()}
-          </span>
-        ) : null}
-      </span>
-
-      <ArrowAffordance className="mt-0.5" />
     </Link>
   )
 }

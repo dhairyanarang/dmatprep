@@ -1,98 +1,91 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { Crown } from 'lucide-react'
 
+import { ProBadge } from '@/components/layout/sidebar-brand'
 import { useAuth } from '@/lib/auth/use-auth'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
-import { cn } from '@/lib/utils'
+import { useFreeUsage } from '@/lib/payments/use-free-usage'
 
 /**
  * Membership, at the foot of the sidebar.
  *
- * The state is read from the same two hooks the rest of the product uses —
- * `useAuth` for who you are and `useEntitlement` for what you may open. Nothing
- * here is hardcoded, and nothing here decides access: it reports what the
- * server already decided, so a tampered client gets a misleading card and no
- * extra content.
+ * Two shapes, following the design. Someone on Pro gets a quiet card that
+ * states what they hold and goes to their account; everyone else gets the
+ * upgrade card, with a rail showing how much of the free sample they have
+ * actually used. The rail is the honest version of a nag: it says where you
+ * are rather than how much you are missing, and it disappears the moment it
+ * stops being true.
  *
  * It reports MEMBERSHIP only. Who you are is the account row's job, directly
  * below it — this card used to lead with "Not signed in", which left the
  * sidebar saying that twice, in two cards, one above the other.
  *
- * The distinction it still has to keep is that a signed-out visitor is **not**
- * a free member. They have no account at all, so telling them they are on the
- * Free plan would be a small lie that makes the invitation read as a
- * downgrade — which is why the signed-out state names the product rather than
- * a plan the visitor is not on.
+ * With commerce off there is nothing to sell, so it renders nothing at all
+ * rather than advertising a product that has no price.
  */
 export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
   const auth = useAuth()
   const entitlement = useEntitlement()
+  const usage = useFreeUsage()
 
-  // While either is resolving, render the frame but not a claim. The card is
-  // small and the flash of a wrong status is worse than a quiet moment.
-  const resolving = auth.status === 'loading' || (COMMERCE_ENABLED && !entitlement.ready)
-  const signedIn = auth.status === 'authenticated'
-  const isPro = COMMERCE_ENABLED && signedIn && entitlement.access
+  if (!COMMERCE_ENABLED) return null
+  if (auth.status === 'loading' || !entitlement.ready) return null
+
+  if (entitlement.access) {
+    return (
+      <Link
+        href="/account"
+        onClick={onNavigate}
+        className="border-gold-line bg-card hover:border-gold flex flex-col gap-1 rounded-xl border px-3.5 py-3 transition-colors"
+      >
+        <span className="flex items-center justify-between gap-2">
+          <b className="text-sm font-semibold">Pro</b>
+          <ProBadge />
+        </span>
+        <span className="text-muted-foreground text-xs leading-4">
+          Full Core bank and all four mocks. Yours for good.
+        </span>
+      </Link>
+    )
+  }
 
   return (
-    <Link
-      href="/pricing"
-      onClick={onNavigate}
-      aria-label={isPro ? 'Pro membership — view plan' : 'Explore Pro'}
-      className={cn(
-        // The same brand plane the dashboard's next-step card uses, so the one
-        // promoted thing in the sidebar reads as part of the product rather
-        // than as an advert bolted onto it.
-        'group bg-brand relative block overflow-hidden rounded-xl p-3',
-        'transition-shadow duration-150 ease-out hover:shadow-[0_4px_10px_color-mix(in_oklab,var(--brand)_28%,transparent)]',
-        'focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none',
-      )}
-    >
-
-      <div className="relative flex items-center gap-2">
+    <div className="border-border bg-card flex flex-col gap-2.5 rounded-xl border p-3.5">
+      <div className="flex items-center gap-2">
         <span
           aria-hidden
-          className="flex size-6 shrink-0 items-center justify-center rounded-md bg-white/15 text-white"
+          className="bg-gold-tint text-gold-text grid size-7 shrink-0 place-items-center rounded-lg"
         >
-          <Sparkles className="size-3.5" />
+          <Crown className="size-4" />
         </span>
-        <span className="text-sm leading-5 font-semibold text-white">
-          {/* A signed-out visitor has no plan at all, so they are shown the
-              product's name rather than a plan they are not on. */}
-          {resolving ? 'Membership' : isPro ? 'Pro' : signedIn ? 'Free' : 'dMAT Prep Pro'}
-        </span>
-        {isPro ? (
-          <span className="bg-brand-cta text-brand-cta-foreground ml-auto rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
-            Active
-          </span>
-        ) : null}
+        <b className="text-sm font-semibold">Go Pro</b>
       </div>
 
-      {/* The muted foreground token is near-invisible on the brand plane, so
-          this uses the brand's own secondary foreground, measured in
-          app/globals.css rather than written as an alpha here. */}
-      <p className="relative mt-1.5 text-xs leading-4 text-brand-foreground-muted">
-        {resolving
-          ? ' '
-          : isPro
-            ? 'Every Core question is unlocked on this account.'
-            : signedIn
-              ? 'Ready for more? Unlock your full preparation.'
-              : 'The full Core bank and four fixed mock exams. One payment, kept for good.'}
-      </p>
+      <span className="text-muted-foreground text-xs leading-[17px]">
+        The full Core question bank and all four fixed mock exams, for one payment.
+      </span>
 
-      {!isPro && !resolving ? (
-        <span className="bg-brand-cta text-brand-cta-foreground relative mt-2.5 inline-flex h-7 items-center gap-1.5 rounded-full px-2.5 text-xs font-medium transition-colors duration-150 group-hover:bg-brand-cta/90">
-          {signedIn ? 'Explore Pro' : 'See what Pro adds'}
-          <ArrowRight
-            aria-hidden
-            className="size-3 transition-transform duration-150 ease-out group-hover:translate-x-0.5"
-          />
-        </span>
+      {usage.ready && usage.total > 0 ? (
+        <div className="flex flex-col gap-1.5">
+          <div className="rail bg-[#edecea]">
+            <i style={{ width: `${Math.min(100, Math.round((usage.used / usage.total) * 100))}%` }} />
+          </div>
+          <span className="text-muted-foreground text-[11px] leading-4">
+            {usage.used} of {usage.total} free questions used
+          </span>
+        </div>
       ) : null}
-    </Link>
+
+      <Link
+        href="/pricing"
+        onClick={onNavigate}
+        className="bg-brand text-brand-foreground hover:bg-brand-strong flex h-[30px] w-full items-center justify-center rounded-[7px] text-[13px] font-medium transition-colors"
+      >
+        See plans
+      </Link>
+    </div>
   )
 }

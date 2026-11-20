@@ -1,10 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { AlertTriangle, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
+import { AlertTriangle, ChevronLeft, ChevronRight } from 'lucide-react'
 
-import { ReadingMeasure } from '@/components/layout/page-shell'
-import { PracticeActionBar } from '@/components/practice/action-bar'
+import { ExamChrome, ExamClock, TaskPanel } from '@/components/practice/exam-chrome'
 import { QuestionView } from '@/components/practice/question-view'
 import { SessionResults } from '@/components/practice/session-results'
 import { Button } from '@/components/ui/button'
@@ -15,7 +14,6 @@ import { useProgressActions } from '@/lib/progress/use-progress'
 import type { SectionId } from '@/lib/sections'
 import { exposureContextOf, type PracticeMode, type SessionResult } from '@/lib/types/progress'
 import { isCorrect, type Question, type Selection } from '@/lib/types/question'
-import { cn } from '@/lib/utils'
 
 export type TimedStage = { sectionId: SectionId; label: string; unitNoun: string; questions: Question[] }
 
@@ -72,6 +70,30 @@ export function TimedRunner({
   const [stageIndex, setStageIndex] = useState(resume?.stageIndex ?? 0)
   const [index, setIndex] = useState(resume?.currentIndex ?? 0)
   const [answers, setAnswers] = useState<Record<string, Selection>>(resume?.answers ?? {})
+  const [flags, setFlags] = useState<Record<string, boolean>>(resume?.flags ?? {})
+  const [confirming, setConfirming] = useState(false)
+
+  /**
+   * Milliseconds on each question, accumulated across visits.
+   *
+   * A ref rather than state: it changes on every navigation and nothing
+   * renders from it during the test, so putting it in state would re-render
+   * the runner for a number only the results screen ever reads.
+   */
+  const spent = useRef<Record<string, number>>({ ...(resume?.spent ?? {}) })
+  /**
+   * The timings as they stood at submission.
+   *
+   * Lifted out of the ref and into state at that moment, because the results
+   * screen renders from them and a ref read during render is both a lint error
+   * and a real bug waiting: the screen would not re-render if the number
+   * changed under it. After submission it cannot change, which is exactly why
+   * this is the right moment to freeze it.
+   */
+  const [finalSpent, setFinalSpent] = useState<Record<string, number> | undefined>(undefined)
+  // Zero until the first question is shown; the effect below sets it. Reading
+  // the clock during render is impure and React's lint rules refuse it.
+  const shownAt = useRef(0)
   const [endsAt, setEndsAt] = useState(
     resume?.stageEndsAt ? new Date(resume.stageEndsAt).getTime() : 0,
   )
@@ -94,10 +116,38 @@ export function TimedRunner({
 
   const remainingMs = Math.max(0, endsAt - now)
 
+  /**
+   * Bank the time spent on the question being left.
+   *
+   * Keyed on the question's id, so jumping away and back adds to its total
+   * rather than restarting it. The cleanup runs before the next effect, which
+   * is what makes "the question being left" the right one.
+   */
+  const shownId = phase === 'running' ? question?.id : undefined
+  useEffect(() => {
+    if (!shownId) return
+    const totals = spent.current
+    const since = Date.now()
+    shownAt.current = since
+    return () => {
+      const elapsed = Date.now() - since
+      // A paint-order blip is not time spent; anything under a tick is noise.
+      if (elapsed > 250) totals[shownId] = (totals[shownId] ?? 0) + elapsed
+    }
+  }, [shownId])
+
   const finish = useCallback(
     (timedOut: boolean) => {
       if (finishedRef.current) return
       finishedRef.current = true
+
+      // The question on screen has not been left, so its effect cleanup has
+      // not run yet. Bank it here or the last task always reports zero.
+      const open = stages[stageIndex]?.questions[index]
+      if (open && shownAt.current > 0) {
+        const elapsed = Date.now() - shownAt.current
+        if (elapsed > 250) spent.current[open.id] = (spent.current[open.id] ?? 0) + elapsed
+      }
 
       let correct = 0
       let answered = 0
@@ -117,6 +167,9 @@ export function TimedRunner({
           mode,
           sessionId: sessionId.current,
           at: new Date().toISOString(),
+          // Includes the question on screen when Submit was pressed: its time
+          // is banked below before this loop runs.
+          durationMs: spent.current[q.id],
           hintsUsed: 0,
         })
       }
@@ -133,13 +186,14 @@ export function TimedRunner({
         correct,
         questionIds: allQuestions.map((q) => q.id),
       }
+      setFinalSpent({ ...spent.current })
       recordSession(result)
       // The session is over: drop the restore point so returning to this route
       // offers a new test rather than a finished one.
       setActiveSession(null)
       setPhase('done')
     },
-    [allQuestions, answers, mode, recordAttempt, recordSession, setActiveSession, stages],
+    [allQuestions, answers, index, mode, recordAttempt, recordSession, setActiveSession, stageIndex, stages],
   )
 
   const expire = useCallback(() => {
@@ -202,6 +256,8 @@ export function TimedRunner({
       stageIndex,
       currentIndex: index,
       answers,
+      flags,
+      spent: spent.current,
       phase: phase === 'break' ? 'break' : 'running',
       startedAt: new Date(startedAt.current).toISOString(),
       stageEndsAt: untimed || endsAt === 0 ? null : new Date(endsAt).toISOString(),
@@ -212,6 +268,7 @@ export function TimedRunner({
   }, [
     answers,
     endsAt,
+    flags,
     index,
     minutesPerStage,
     mode,
@@ -308,7 +365,15 @@ export function TimedRunner({
   }
 
   if (phase === 'done') {
-    return <SessionResults mode={mode} title={title} stages={stages} answers={answers} />
+    return (
+      <SessionResults
+        mode={mode}
+        title={title}
+        stages={stages}
+        answers={answers}
+        spent={finalSpent}
+      />
+    )
   }
 
   if (!question || !stage) return null
@@ -319,145 +384,154 @@ export function TimedRunner({
   const atLastQuestion = index >= stage.questions.length - 1
   const atLastStage = stageIndex >= stages.length - 1
 
+  const flagged = Boolean(flags[question.id])
+
   return (
-    <div className="space-y-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="min-w-0">
-          <p className="text-sm font-medium">{stage.label}</p>
-          <p className="text-muted-foreground text-xs">
-            {stages.length > 1 ? `Part ${stageIndex + 1} of ${stages.length} · ` : ''}
-            {answeredInStage} of {stage.questions.length} {stage.unitNoun} answered
-          </p>
+    <ExamChrome
+      title={title}
+      part={
+        stages.length > 1
+          ? `Part ${stageIndex + 1} of ${stages.length} · ${stage.label}`
+          : stage.label
+      }
+      clock={untimed ? null : <ExamClock remainingMs={remainingMs} label={stage.label} />}
+      flagged={flagged}
+      onToggleFlag={() =>
+        setFlags((prev) => ({ ...prev, [question.id]: !prev[question.id] }))
+      }
+      onSubmit={() => setConfirming(true)}
+      submitLabel={atLastStage ? 'Submit test' : 'Submit part'}
+    >
+      <section className="flex min-w-0 flex-[3_1_520px] flex-col gap-5">
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-muted-foreground font-mono text-xs tracking-[0.06em] uppercase">
+            Task {String(index + 1).padStart(2, '0')} / {stage.questions.length}
+          </span>
+          <span className="text-muted-foreground text-xs">
+            {answeredInStage} answered · saved as you go
+          </span>
         </div>
-        {untimed ? null : <TimerChip remainingMs={remainingMs} />}
-      </div>
 
-      <Card>
-        <CardContent className="pt-6">
-          <ReadingMeasure>
-            <p className="text-muted-foreground mb-4 text-sm">
-              {stage.unitNoun === 'systems'
-                ? 'System'
-                : stage.unitNoun === 'tasks'
-                  ? 'Task'
-                  : 'Series'}{' '}
-              {index + 1} of {stage.questions.length}
-            </p>
-            {/* submitted is always false: no feedback is shown during the test. */}
-            <QuestionView
-              question={question}
-              selection={answers[question.id] ?? {}}
-              submitted={false}
-              onSelect={select}
-            />
-          </ReadingMeasure>
-        </CardContent>
-      </Card>
+        {/* submitted is always false: no feedback is shown during the test. */}
+        <QuestionView
+          question={question}
+          selection={answers[question.id] ?? {}}
+          submitted={false}
+          onSelect={select}
+        />
 
-      <QuestionStrip
-        questions={stage.questions}
-        answers={answers}
-        current={index}
-        onJump={setIndex}
-      />
-
-      <PracticeActionBar
-        secondary={
+        <div className="border-soft mt-auto flex items-center justify-between gap-3 border-t pt-5">
           <Button
             variant="outline"
-            size="sm"
             onClick={() => setIndex((i) => Math.max(0, i - 1))}
             disabled={index === 0}
           >
             <ChevronLeft className="size-4" aria-hidden />
             Previous
           </Button>
-        }
-        primary={
-          atLastQuestion ? (
-            atLastStage ? (
-              <Button onClick={() => finish(false)}>Submit test</Button>
-            ) : (
-              <Button onClick={() => (breakAfterStage === stageIndex ? setPhase('break') : nextStage())}>
-                Finish this part
-              </Button>
-            )
+
+          {atLastQuestion ? (
+            <Button onClick={() => setConfirming(true)}>
+              {atLastStage ? 'Submit test' : 'Finish this part'}
+            </Button>
           ) : (
             <Button onClick={() => setIndex((i) => Math.min(stage.questions.length - 1, i + 1))}>
               Next
               <ChevronRight className="size-4" aria-hidden />
             </Button>
-          )
-        }
+          )}
+        </div>
+      </section>
+
+      <TaskPanel
+        count={stage.questions.length}
+        current={index}
+        answered={(i: number) => {
+          const q = stage.questions[i]
+          return Boolean(q && answers[q.id] && Object.keys(answers[q.id]).length > 0)
+        }}
+        flagged={(i: number) => {
+          const q = stage.questions[i]
+          return Boolean(q && flags[q.id])
+        }}
+        onJump={setIndex}
+        unitNoun={stage.unitNoun}
       />
-    </div>
+
+      {confirming ? (
+        <SubmitConfirm
+          label={atLastStage ? 'Submit the test' : `Submit ${stage.label}`}
+          blank={stage.questions.length - answeredInStage}
+          flagged={stage.questions.filter((q) => flags[q.id]).length}
+          last={atLastStage}
+          onCancel={() => setConfirming(false)}
+          onConfirm={() => {
+            setConfirming(false)
+            if (atLastStage) finish(false)
+            else if (breakAfterStage === stageIndex) setPhase('break')
+            else nextStage()
+          }}
+        />
+      ) : null}
+    </ExamChrome>
   )
 }
 
-function TimerChip({ remainingMs }: { remainingMs: number }) {
-  const totalSeconds = Math.ceil(remainingMs / 1000)
-  const minutes = Math.floor(totalSeconds / 60)
-  const seconds = totalSeconds % 60
-  const low = remainingMs <= 120_000
-
-  return (
-    <div
-      className={cn(
-        'flex items-center gap-2 rounded-md border px-3 py-1.5 tabular-nums',
-        low ? 'border-danger/40 bg-danger-tint/50' : 'border-border bg-card',
-      )}
-      role="timer"
-      aria-live="off"
-      aria-label={`${minutes} minutes ${seconds} seconds remaining`}
-    >
-      <Clock className={cn('size-4', low ? 'text-danger-fg' : 'text-muted-foreground')} aria-hidden />
-      <span className="font-mono text-sm font-medium">
-        {minutes}:{String(seconds).padStart(2, '0')}
-      </span>
-    </div>
-  )
-}
-
-/** Jump-to grid, so a skipped question can be found again without hunting. */
-function QuestionStrip({
-  questions,
-  answers,
-  current,
-  onJump,
+/**
+ * The one confirmation in the runner.
+ *
+ * Submitting a part cannot be undone, and the two things worth knowing before
+ * you do it are how many tasks have no answer and how many you meant to come
+ * back to. Both are counted, not estimated.
+ */
+function SubmitConfirm({
+  label,
+  blank,
+  flagged,
+  last,
+  onCancel,
+  onConfirm,
 }: {
-  questions: Question[]
-  answers: Record<string, Selection>
-  current: number
-  onJump: (index: number) => void
+  label: string
+  blank: number
+  flagged: number
+  last: boolean
+  onCancel: () => void
+  onConfirm: () => void
 }) {
   return (
-    <div className="flex flex-wrap gap-1.5" role="group" aria-label="Jump to question">
-      {questions.map((q, i) => {
-        const done = answers[q.id] && Object.keys(answers[q.id]).length > 0
-        return (
-          <button
-            key={q.id}
-            type="button"
-            onClick={() => onJump(i)}
-            aria-label={`Question ${i + 1}${done ? ', answered' : ', not answered'}${i === current ? ', current' : ''}`}
-            aria-current={i === current ? 'true' : undefined}
-            className={cn(
-              'size-9 rounded-md border text-xs font-medium tabular-nums transition-colors',
-              'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
-              i === current
-                ? 'border-foreground/40 bg-accent text-foreground'
-                : done
-                  ? 'border-border bg-muted text-foreground'
-                  : 'border-border bg-background text-muted-foreground hover:text-foreground',
-            )}
-          >
-            {i + 1}
-          </button>
-        )
-      })}
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center bg-[rgba(10,10,10,0.42)] p-6"
+      onClick={onCancel}
+    >
+      <section
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="submit-confirm"
+        onClick={(e) => e.stopPropagation()}
+        className="bg-card flex w-full max-w-[420px] flex-col gap-3.5 rounded-2xl p-6 shadow-[0_24px_64px_rgba(10,10,10,0.28)]"
+      >
+        <h2 id="submit-confirm" className="text-lg font-semibold">
+          {label}?
+        </h2>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          {blank > 0
+            ? `${blank} ${blank === 1 ? 'task has' : 'tasks have'} no answer`
+            : 'Every task has an answer'}
+          {flagged > 0 ? ` and ${flagged} ${flagged === 1 ? 'is' : 'are'} flagged` : ''}. You
+          cannot come back to {last ? 'the test' : 'this part'} after submitting.
+        </p>
+        <div className="flex justify-end gap-2">
+          <Button variant="outline" onClick={onCancel}>
+            Keep working
+          </Button>
+          <Button onClick={onConfirm}>{last ? 'Submit test' : 'Submit part'}</Button>
+        </div>
+      </section>
     </div>
   )
 }
+
 
 function Brief({
   title,

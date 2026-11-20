@@ -5,6 +5,8 @@ import { SaveProgressInvite } from '@/components/auth/save-progress-invite'
 import { Disclosure } from '@/components/content/disclosure'
 import { ResultBanner } from '@/components/practice/result-banner'
 import { SolutionViewer } from '@/components/practice/solution-viewer'
+import { Kpi } from '@/components/dashboard/kpi'
+import { PaceChart } from '@/components/practice/pace-chart'
 import type { TimedStage } from '@/components/practice/timed-runner'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Card, CardContent } from '@/components/ui/card'
@@ -21,11 +23,14 @@ export function SessionResults({
   title,
   stages,
   answers,
+  spent,
 }: {
   mode: PracticeMode
   title: string
   stages: TimedStage[]
   answers: Record<string, Selection>
+  /** Milliseconds on each question, keyed by id. Absent before timing existed. */
+  spent?: Record<string, number>
 }) {
   const questions = stages.flatMap((s) => s.questions)
   const graded = questions.map((q) => {
@@ -67,83 +72,112 @@ export function SessionResults({
 
   const missed = graded.filter((g) => g.answered && !g.correct)
 
+  // The slowest part is the one worth charting; with one part there is no
+  // choice to make. Nothing is charted at all when no time was recorded.
+  const paceStage = stages.length
+    ? [...stages].sort((a, b) => stageMs(spent, b) - stageMs(spent, a))[0]
+    : null
+  const paceLabel = paceStage?.label ?? ''
+  const paceTasks = (paceStage?.questions ?? []).map((q) => ({
+    seconds: typeof spent?.[q.id] === 'number' ? Math.round(spent[q.id] / 1000) : null,
+    answered: Object.keys(answers[q.id] ?? {}).length > 0,
+  }))
+
+  const missedCount = graded.filter((g) => g.answered && !g.correct).length
+
   return (
-    <div className="space-y-5">
-      <Card>
-        <CardContent className="space-y-5">
-          <div>
-            <p className="text-muted-foreground text-xs tracking-wide uppercase">
-              {/* Name the thing that was actually sat. This said "practice mock"
-                  for a diagnostic, directly above a card headed "dMAT Prep
-                  diagnostic" — two labels for one sitting, on one screen. */}
-              dMAT Prep{' '}
-              {mode === 'diagnostic'
-                ? 'diagnostic'
-                : mode === 'simulation'
-                  ? 'simulation'
-                  : 'practice mock'}
-            </p>
-            <h2 className="mt-1 text-lg font-semibold">{title}</h2>
-          </div>
-
-          <div className="grid gap-3 sm:grid-cols-3">
-            <Metric value={`${correct}/${questions.length}`} label="Correct out of the full set" />
-            <Metric
-              value={`${Math.round(accuracy * 100)}%`}
-              label={`Accuracy on the ${answered} you answered`}
-            />
-            <Metric
-              value={String(questions.length - answered)}
-              label="Left unanswered"
-            />
-          </div>
-
-          <p className="text-muted-foreground text-xs leading-relaxed">
-            This is a dMAT Prep indicator, not an official dMAT score or a prediction of one. The
-            dMAT is reported on a 0–200 scale with a percentile rank, which nothing here can
-            estimate.
+    <div className="flex flex-col gap-5">
+      {/* The score, at the size the result deserves. */}
+      <section className="flex flex-wrap items-end justify-between gap-4">
+        <div className="min-w-0">
+          <p className="over mb-1.5">
+            {/* Name the thing that was actually sat. This said "practice mock"
+                for a diagnostic, directly above a card headed "dMAT Prep
+                diagnostic" — two labels for one sitting, on one screen. */}
+            {title} ·{' '}
+            {mode === 'diagnostic'
+              ? 'diagnostic'
+              : mode === 'simulation'
+                ? 'simulation'
+                : 'timed set'}
           </p>
-        </CardContent>
-      </Card>
+          <h2 className="flex items-baseline gap-2.5">
+            <span className="font-mono text-5xl leading-[52px] font-medium tracking-[-0.03em] tabular-nums">
+              {correct}
+            </span>
+            <span className="text-muted-foreground text-xl font-medium">
+              / {questions.length} correct
+            </span>
+          </h2>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {missedCount > 0 ? (
+            <ButtonLink href="/practice/mistakes" size="lg">
+              Retry the {missedCount} {missedCount === 1 ? 'miss' : 'misses'}
+            </ButtonLink>
+          ) : null}
+        </div>
+      </section>
+
+      <section className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))]">
+        <Kpi
+          label="Answered"
+          value={answered}
+          suffix={`of ${questions.length}`}
+          progress={questions.length ? answered / questions.length : 0}
+          foot={<span>{questions.length - answered} left blank</span>}
+        />
+        <Kpi
+          label="Accuracy"
+          value={`${Math.round(accuracy * 100)}%`}
+          foot={<span>On the {answered} you answered</span>}
+        />
+        <Kpi
+          label="Time used"
+          value={totalTime(spent, questions) ?? '—'}
+          foot={<span>{averageTime(spent, questions) ?? 'Not measured'}</span>}
+        />
+      </section>
+
+      <p className="text-muted-foreground text-xs leading-relaxed">
+        This is a dMAT Prep indicator, not an official dMAT score or a prediction of one. The
+        dMAT is reported on a 0–200 scale with a percentile rank, which nothing here can
+        estimate.
+      </p>
 
       {/* Where the score came from. A combined 47/60 says nothing about which
           subtest cost you the marks, and that is the first thing anyone wants
           after a full sitting. The diagnostic has its own, richer version of
           this below, so it is not drawn twice. */}
       {bySection.length > 0 && mode !== 'diagnostic' ? (
-        <Card>
-          <CardContent className="space-y-3.5">
-            <h3 className="text-base font-semibold tracking-tight">By subtest</h3>
-            <ul className="grid gap-3 sm:grid-cols-3">
-              {bySection.map((row) => (
-                <li key={row.id} className="border-border bg-muted/40 rounded-2xl border p-4">
-                  <p className="text-muted-foreground text-xs tracking-wide uppercase">
-                    {row.label}
-                  </p>
-                  <p className="mt-2 text-2xl leading-none font-semibold tabular-nums">
-                    {row.correct}
-                    <span className="text-muted-foreground text-base font-medium">
-                      {' '}
-                      / {row.total}
-                    </span>
-                  </p>
-                  <div
-                    aria-hidden
-                    className="bg-border mt-3 h-1 w-full overflow-hidden rounded-full"
-                  >
-                    <div
-                      className="bg-brand h-full rounded-full"
-                      style={{ width: `${row.total ? (row.correct / row.total) * 100 : 0}%` }}
-                    />
-                  </div>
-                  <p className="text-muted-foreground mt-2.5 text-xs">
-                    {row.blank > 0 ? `${row.blank} left blank` : 'All answered'}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
+        <section className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))]">
+          {bySection.map((row) => (
+            <Kpi
+              key={row.id}
+              label={row.label}
+              value={row.correct}
+              suffix={`/ ${row.total}`}
+              progress={row.total ? row.correct / row.total : 0}
+              foot={
+                <>
+                  <span>Time used</span>
+                  <span className="font-mono tabular-nums">
+                    {sectionTime(spent, stages, row.id) ?? '—'}
+                    {row.blank > 0 ? ` · ${row.blank} blank` : ''}
+                  </span>
+                </>
+              }
+            />
+          ))}
+        </section>
+      ) : null}
+
+      {/* Pace, for the part that has the most to say about it. */}
+      {paceTasks.length > 0 ? (
+        <div className="flex flex-wrap gap-3">
+          <PaceChart tasks={paceTasks} label={paceLabel} />
+        </div>
       ) : null}
 
       {mode === 'diagnostic' ? <StartingPoint graded={graded} stages={stages} /> : null}
@@ -342,14 +376,47 @@ function StartingPoint({ graded, stages }: { graded: Graded[]; stages: TimedStag
   )
 }
 
-function Metric({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="border-border bg-muted/40 rounded-2xl border p-4">
-      <p className="text-2xl leading-none font-semibold tabular-nums">{value}</p>
-      <p className="text-muted-foreground mt-2 text-xs leading-relaxed">{label}</p>
-    </div>
-  )
+function stageMs(spent: Record<string, number> | undefined, stage: TimedStage): number {
+  if (!spent) return 0
+  return stage.questions.reduce((n, q) => n + (spent[q.id] ?? 0), 0)
 }
+
+function clock(ms: number): string {
+  const total = Math.round(ms / 1000)
+  return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, '0')}`
+}
+
+function totalTime(
+  spent: Record<string, number> | undefined,
+  questions: Question[],
+): string | null {
+  if (!spent) return null
+  const ms = questions.reduce((n, q) => n + (spent[q.id] ?? 0), 0)
+  return ms > 0 ? clock(ms) : null
+}
+
+function averageTime(
+  spent: Record<string, number> | undefined,
+  questions: Question[],
+): string | null {
+  if (!spent) return null
+  const seen = questions.filter((q) => typeof spent[q.id] === 'number')
+  if (seen.length === 0) return null
+  const ms = seen.reduce((n, q) => n + (spent[q.id] ?? 0), 0)
+  return `${Math.round(ms / seen.length / 1000)}s a question on average`
+}
+
+function sectionTime(
+  spent: Record<string, number> | undefined,
+  stages: TimedStage[],
+  sectionId: string,
+): string | null {
+  const stage = stages.find((s) => s.sectionId === sectionId)
+  if (!stage || !spent) return null
+  const ms = stageMs(spent, stage)
+  return ms > 0 ? clock(ms) : null
+}
+
 
 type Graded = { question: Question; correct: boolean; answered: boolean; selection: Selection }
 

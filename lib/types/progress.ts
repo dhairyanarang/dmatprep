@@ -152,6 +152,20 @@ export type ActiveSession = {
   stageIndex: number
   currentIndex: number
   answers: Record<string, Selection>
+  /**
+   * Questions marked to come back to. Optional because sessions saved before
+   * flagging existed have none, and an absent flag is simply not flagged.
+   */
+  flags?: Record<string, boolean>
+  /**
+   * Milliseconds spent on each question so far, keyed by question id.
+   *
+   * Accumulated across visits rather than measured once: a candidate who looks
+   * at a task, moves on and comes back has spent the sum of both visits on it,
+   * and that is the number the results screen reports. Optional for the same
+   * reason as `flags`.
+   */
+  spent?: Record<string, number>
   phase: 'running' | 'break'
   /** ISO timestamps. `stageEndsAt` is null for the untimed diagnostic. */
   startedAt: string

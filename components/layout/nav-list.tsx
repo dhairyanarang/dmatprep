@@ -20,14 +20,23 @@ import { cn } from '@/lib/utils'
  * sitting in the sidebar's footer, so the two halves of "what is this and how
  * does the exam work" are adjacent instead of at opposite ends of the panel.
  */
-export function NavList({ onNavigate }: { onNavigate?: () => void }) {
+export function NavList({
+  onNavigate,
+  className,
+}: {
+  onNavigate?: () => void
+  className?: string
+}) {
   const pathname = usePathname()
 
   return (
-    <nav className="flex flex-col gap-5 px-3 py-4" aria-label="Main">
+    <nav className={cn('flex flex-col gap-4 px-3 py-4', className)} aria-label="Main">
       {NAV.map((group, groupIndex) => (
-        <div key={group.label} className="flex flex-col gap-1">
-          <h2 className="text-muted-foreground px-2.5 pb-1 text-[11px] leading-4 font-medium tracking-wide uppercase">
+        <div key={group.label} className="flex flex-col gap-2">
+          {groupIndex > 0 ? <div aria-hidden className="bg-line2 mb-2 h-px" /> : null}
+          {/* A group heading, not an eyebrow: 12px semibold in the text colour,
+              because it labels a region rather than decorating one. */}
+          <h2 className="text-foreground px-0.5 text-xs leading-[14px] font-semibold">
             {group.label}
           </h2>
 
@@ -83,36 +92,16 @@ function NavRow({
       onClick={onNavigate}
       aria-current={current ? 'page' : undefined}
       className={cn(
-        'flex items-center gap-2.5 px-2.5 py-2',
-        // The active row gains a background, a radius and a shadow at once;
-        // transitioning only colour left the shadow popping in ahead of it.
-        'transition-[background-color,box-shadow,color] duration-150 ease-out',
+        'flex h-[38px] items-center gap-[9px] rounded-lg border px-2.5',
+        'transition-[background-color,border-color,color] duration-150 ease-out',
         'focus-visible:ring-ring focus-visible:ring-2 focus-visible:outline-none',
         active
-          ? 'bg-sidebar-accent text-sidebar-accent-foreground rounded-lg shadow-[0_4px_3px_rgba(0,0,0,0.06)]'
-          : 'hover:bg-sidebar-accent/60 rounded-md',
+          ? 'bg-card border-border text-foreground font-semibold'
+          : 'text-muted-foreground hover:text-foreground border-transparent hover:bg-[#ecebe8]',
       )}
     >
-      <Icon
-        className={cn(
-          'size-5 shrink-0 transition-colors duration-150',
-          active ? 'text-brand' : 'text-foreground/70',
-        )}
-        aria-hidden
-      />
-      <span className="flex min-w-0 flex-col gap-0.5">
-        <span
-          className={cn(
-            'truncate text-sm leading-5',
-            active ? 'text-brand font-semibold' : 'text-foreground',
-          )}
-        >
-          {link.label}
-        </span>
-        {link.hint ? (
-          <span className="text-muted-foreground truncate text-xs leading-4">{link.hint}</span>
-        ) : null}
-      </span>
+      <Icon className="size-[18px] shrink-0" aria-hidden />
+      <span className="truncate text-sm leading-5">{link.label}</span>
     </Link>
   )
 }

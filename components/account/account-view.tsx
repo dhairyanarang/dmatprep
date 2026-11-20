@@ -2,10 +2,11 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Check, CloudOff, RefreshCw, ShieldCheck, Sparkles, Trash2, UserRound } from 'lucide-react'
+import { Check, CloudOff, RefreshCw, Sparkles, Trash2, UserRound } from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
 import { SupportLink } from '@/components/support/support-link'
+import { Panel } from '@/components/layout/page-shell'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Card, CardContent } from '@/components/ui/card'
@@ -215,10 +216,7 @@ function ProgressSection() {
   const sessions = progress.sessions.length
 
   return (
-    <Card>
-      <CardContent className="space-y-4">
-        <h2 className="text-base font-semibold">Your progress</h2>
-
+    <Panel title="Your progress" bodyClassName="gap-4 p-5">
         {!ready ? (
           <p className="text-muted-foreground text-sm">Loading…</p>
         ) : attempts === 0 ? (
@@ -271,8 +269,7 @@ function ProgressSection() {
             </Button>
           )}
         </div>
-      </CardContent>
-    </Card>
+    </Panel>
   )
 }
 
@@ -289,12 +286,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 function DataSection({ signedIn }: { signedIn: boolean }) {
   return (
-    <Card>
-      <CardContent className="space-y-3">
-        <div className="flex items-center gap-2">
-          <ShieldCheck className="text-muted-foreground size-4 shrink-0" aria-hidden />
-          <h2 className="text-base font-semibold">Your data</h2>
-        </div>
+    <Panel title="Your data" bodyClassName="gap-3 p-5">
         <p className="text-muted-foreground text-sm leading-relaxed">
           {signedIn
             ? 'Your answers are kept in this browser and copied to your account. Nothing else about you is stored.'
@@ -316,7 +308,6 @@ function DataSection({ signedIn }: { signedIn: boolean }) {
             </Link>
           ))}
         </nav>
-      </CardContent>
-    </Card>
+    </Panel>
   )
 }

@@ -46,7 +46,7 @@ function FigureSequenceView({
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-muted-foreground mb-3 text-sm">
+        <p className="mb-3 max-w-[560px] text-base leading-[22px] font-semibold">
           Continue the sequence. Work out what the fifth and sixth matrices look like.
         </p>
         {/* Three-up on phones so all six panels are visible at once; the whole
@@ -126,7 +126,7 @@ function MathEquationsView({
 }: Props & { question: Extract<Question, { kind: 'math-equations' }> }) {
   return (
     <div className="space-y-5">
-      <p className="text-muted-foreground text-sm">
+      <p className="max-w-[560px] text-base leading-[22px] font-semibold">
         Find the value of each letter so that all equations are true. Every letter is a whole
         number from 1 to 20.
       </p>
@@ -176,7 +176,7 @@ function LatinSquareView({
 
   return (
     <div className="space-y-5">
-      <p className="text-muted-foreground text-sm">
+      <p className="max-w-[560px] text-base leading-[22px] font-semibold">
         Each letter appears exactly once in every row and every column. Which letter belongs in the
         highlighted cell?
       </p>
@@ -188,7 +188,10 @@ function LatinSquareView({
 
       <fieldset className="space-y-2">
         <legend className="mb-2 text-sm font-medium">Choose the letter</legend>
-        <div className="grid grid-cols-5 gap-2">
+        {/* Square, hand-sized buttons rather than full-width rows: five
+            one-character options read as a keypad, and a row stretched to the
+            measure makes a single letter look like a sentence. */}
+        <div className="flex flex-wrap gap-2">
           {question.options.map((option) => (
             <OptionButton
               key={option.id}
@@ -201,7 +204,7 @@ function LatinSquareView({
               onSelect={() => onSelect('answer', option.id)}
               disabled={submitted}
               label={`Letter ${option.letter}`}
-              className="justify-center"
+              className="h-[52px] min-w-[52px] justify-center px-4"
             >
               <span className="font-mono text-lg font-medium">{option.letter}</span>
             </OptionButton>
