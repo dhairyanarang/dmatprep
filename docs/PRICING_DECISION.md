@@ -1,7 +1,21 @@
 # Pricing — decision note
 
-**₹599 is a proposal, not an approved price.** It appears nowhere in the
-product. One-time purchase only: no subscription, no credit pack, no second SKU.
+> **DECIDED 20 November 2026: ₹999, one-time, lifetime access.**
+>
+> This document recommended **₹599**. The operator set ₹999. The recommendation
+> below is left standing rather than rewritten, because a price that was chosen
+> against advice is worth being able to see — and because the arithmetic that
+> argued for ₹599 is still the arithmetic, it just did not win.
+>
+> `PRICE_MINOR = 99_900` in `lib/payments/config.ts` is the single source; the
+> pricing page, sidebar card, Terms and refund policy all read it from there.
+>
+> At ₹999 the gateway takes **₹23.58** (2% fee ₹19.98 + 18% GST on the fee
+> ₹3.60), netting **₹975.42**. The percentage is unchanged — 2.36% — because
+> both components are proportional.
+
+**The original recommendation follows, unedited.** One-time purchase only: no
+subscription, no credit pack, no second SKU.
 
 Short by intention. The full model is `docs/MONETISATION.md`; the access rules
 are `docs/ACCESS_POLICY.md`.

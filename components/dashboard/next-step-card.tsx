@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { ArrowUpRight, Star } from 'lucide-react'
 import type { ReactNode } from 'react'
 
-import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { cn } from '@/lib/utils'
 
 /**
@@ -36,7 +35,6 @@ export function NextStepCard({
       className={cn('bg-brand relative overflow-hidden rounded-2xl p-5', className)}
       aria-label={eyebrow}
     >
-      <BrandPattern />
 
       <div className="relative flex flex-col gap-5">
         <p className="text-eyebrow flex items-center gap-2 text-white">

@@ -50,17 +50,10 @@ export default function PrivacyPage() {
         <section className="space-y-3">
           <h2 className="text-base font-semibold">How we see the site being used</h2>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            We use Microsoft Clarity to understand how people actually move through dMAT Prep —
-            which pages get used, where something is confusing, and what quietly gets in the way.
-            It records how you interact with the pages: clicks, scrolling, and which screens you
-            visit.
-          </p>
-          <p className="text-muted-foreground text-sm leading-relaxed">
-            We never send it your name, email address or account details, and nothing identifies
-            you to it — the one place your email appears on screen is hidden from its recordings.
-            It does capture the pages as you saw them, so a recording of a practice session can
-            show the question in front of you and the option you chose. Blocking third-party
-            scripts in your browser will stop it loading.
+            We use third-party analytics tools to understand how dMAT Prep is used — which pages
+            help, where people get stuck — so that we can improve it. We never send them your name,
+            email address or account details. They run only on the live site, not on a developer&rsquo;s
+            machine.
           </p>
         </section>
 

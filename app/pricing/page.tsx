@@ -100,8 +100,11 @@ export default function PricingPage() {
             <div className="flex items-baseline justify-between gap-3">
               <h2 className="text-foreground flex items-center gap-2 text-base font-semibold">
                 Pro
-                <span className="bg-brand/12 text-brand rounded px-1.5 py-0.5 text-[10px] leading-4 font-medium">
-                  One-time
+                {/* Gold, not blue. Blue means "do something"; gold means
+                    "this is membership". A Pro badge in the action colour is
+                    the exact confusion the two-colour rule exists to stop. */}
+                <span className="bg-gold text-gold-dark rounded px-1.5 py-0.5 font-mono text-[10px] leading-4 font-semibold tracking-wide uppercase">
+                  Lifetime
                 </span>
               </h2>
               <span className="text-muted-foreground text-sm">Account required</span>
@@ -111,7 +114,7 @@ export default function PricingPage() {
               {formatPrice()}
             </p>
             <p className="text-muted-foreground mt-1 text-sm">
-              Paid once. No subscription, nothing charged again.
+              Paid once, kept for good. No subscription, nothing charged again.
             </p>
 
             <ul className="mt-5 flex flex-col gap-2.5">
@@ -127,7 +130,12 @@ export default function PricingPage() {
                 </Row>
               ))}
               <Row>Full explanations and distractor notes on every one</Row>
-              <Row>Access does not expire</Row>
+              <Row>
+                Full exam-day simulation — all three subtests, timed, drawing fresh questions
+                each run
+              </Row>
+              <Row>Timed sets for any single subtest</Row>
+              <Row>Lifetime access on this account — it never expires and never renews</Row>
             </ul>
 
             <div className="mt-6">

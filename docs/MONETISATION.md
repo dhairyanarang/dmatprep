@@ -1,5 +1,11 @@
 # Freemium model and pricing
 
+> **Price decided 20 November 2026: ₹999 one-time, lifetime access.** The
+> recommendation in this document was ₹599; see `docs/PRICING_DECISION.md` for
+> the decision and the revised arithmetic (gateway takes ₹23.58, net ₹975.42).
+> Figures below that quote ₹599 are the original workings and are left as they
+> were written.
+
 Measured 18 November 2026 against the actual bank. Every count here was
 computed, not estimated.
 

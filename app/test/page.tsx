@@ -29,7 +29,7 @@ export default function TestPage() {
   const totalQuestions = Object.values(bankSizes).reduce((a, b) => a + b, 0)
 
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
+    <div className="page-wash">
       <PageContainer className="stagger-enter flex flex-col gap-7 py-6">
         <PageHeader icon={TestTubeDiagonal} title="Test" description="Practice under the clock." />
 

@@ -4,19 +4,34 @@
  * The price lives here and not in a component, a database row or a client
  * bundle, because the amount sent to the provider and the amount checked on the
  * webhook must be the same figure and must not come from the browser. A client
- * that asks to pay ₹1 for a ₹599 product is refused at order creation.
+ * that asks to pay ₹1 for a ₹999 product is refused at order creation.
  *
- * `PRICE_MINOR` is NOT APPROVED. `docs/PRICING_DECISION.md` recommends ₹599
- * with the arithmetic; it is a proposal until the operator confirms it, and
- * `PRICE_APPROVED` below is what gates the purchase flow being reachable.
+ * `PRICE_MINOR` was set to ₹999 on 20 November 2026, by decision. It replaces
+ * the ₹599 that `docs/PRICING_DECISION.md` had recommended — that document now
+ * records both the recommendation and the decision that overrode it, rather
+ * than being quietly edited to agree.
+ *
+ * One number, one place. The pricing page, the sidebar card, the Terms, the
+ * refund policy and the order the server creates all read it from here, so a
+ * price shown to a buyer and a price charged to a card cannot disagree.
  */
 
 export const PRODUCT = 'core-premium' as const
 export type ProductId = typeof PRODUCT
 
-/** Minor units. 59900 is ₹599.00. Never a float, never a rupee decimal. */
-export const PRICE_MINOR = 59_900
+/** Minor units. 99900 is ₹999.00. Never a float, never a rupee decimal. */
+export const PRICE_MINOR = 99_900
 export const CURRENCY = 'INR' as const
+
+/**
+ * Paid once, kept for good.
+ *
+ * `entitlements.expires_at` is nullable and nothing ever sets it, so access
+ * already does not expire — this constant exists so the COPY cannot drift from
+ * that fact. If a time-limited product is ever introduced, this is the thing
+ * that has to change first.
+ */
+export const ACCESS_IS_LIFETIME = true
 
 /**
  * Whether the purchase flow is live.

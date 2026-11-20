@@ -227,7 +227,7 @@ export function PurchaseButton({ className }: { className?: string }) {
       ) : null}
 
       <p className="text-muted-foreground mt-3 text-xs leading-relaxed">
-        One-time payment. No subscription, and nothing is charged again.
+        One-time payment, lifetime access. No subscription, and nothing is charged again.
       </p>
     </div>
   )

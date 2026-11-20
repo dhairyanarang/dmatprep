@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { ArrowRight, Sparkles } from 'lucide-react'
 
-import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { useAuth } from '@/lib/auth/use-auth'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
@@ -43,11 +42,10 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
         // promoted thing in the sidebar reads as part of the product rather
         // than as an advert bolted onto it.
         'group bg-brand relative block overflow-hidden rounded-xl p-3',
-        'transition-shadow duration-150 ease-out hover:shadow-[0_4px_10px_rgba(2,89,100,0.25)]',
+        'transition-shadow duration-150 ease-out hover:shadow-[0_4px_10px_color-mix(in_oklab,var(--brand)_28%,transparent)]',
         'focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none',
       )}
     >
-      <BrandPattern />
 
       <div className="relative flex items-center gap-2">
         <span

@@ -6,7 +6,7 @@ import { createSupabaseServerClient } from '@/lib/supabase/server'
  * Create an order.
  *
  * The amount is NOT in the request. It comes from server configuration, so a
- * client cannot ask to pay ₹1 for a ₹599 product. The user id comes from a
+ * client cannot ask to pay ₹1 for a ₹999 product. The user id comes from a
  * verified session and is written once into `payment_orders`, which is the only
  * source of ownership for every step that follows.
  */
