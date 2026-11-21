@@ -96,7 +96,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "misapplied-constant",
@@ -107,6 +107,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -216,7 +223,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-3": "inverted-operation",
@@ -227,6 +234,20 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {
@@ -336,7 +357,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "inverted-operation",
@@ -347,6 +368,20 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {
@@ -455,7 +490,7 @@
         "single-step"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-13": "wrong-variable",
@@ -466,6 +501,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -589,7 +631,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -600,6 +642,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -723,7 +772,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-8": "inverted-operation",
@@ -734,6 +783,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -857,7 +913,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-9": "off-by-one",
@@ -868,6 +924,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -991,7 +1054,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-10": "inverted-operation",
@@ -1002,6 +1065,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -1125,7 +1195,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-3": "inverted-operation",
@@ -1136,6 +1206,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -1258,7 +1338,7 @@
         "two-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-11": "wrong-variable",
@@ -1269,6 +1349,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -1392,7 +1482,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -1403,6 +1493,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -1525,7 +1622,7 @@
         "two-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -1536,6 +1633,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -1658,7 +1765,7 @@
         "two-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-13": "wrong-variable",
@@ -1669,6 +1776,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -1791,7 +1908,7 @@
         "two-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -1802,6 +1919,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -1939,7 +2066,7 @@
         "mixed-operations"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-10": "stopped-early",
@@ -1950,6 +2077,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -2083,7 +2220,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "uncertain",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-1": "stopped-early",
@@ -2094,6 +2231,20 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "unsupported",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "quarantined"
+        ]
+      },
+      "quarantined": {
+        "reason": "Two of its equations share a left-hand side, a shape no official system uses — verify.mjs encodes that as \"No official system repeats a left-hand side\". The answer is correct and uniquely determined, and two independent re-derivations agree; what is wrong is the form. A candidate practising on it meets a construction the real subtest does not present, and one of the two equations is decorative for the asked letter. Quarantined rather than rewritten: rewriting the equations under an unchanged id would corrupt the attempt and exposure records already filed against it. Quarantined rather than retired: the id stays resolvable, and if the official material ever shows a repeated left-hand side this lifts by deleting one field.",
+        "since": "2026-11-18"
       }
     },
     "generator": {
@@ -2240,7 +2391,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -2251,6 +2402,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -2397,7 +2555,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -2408,6 +2566,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -2554,7 +2719,7 @@
         "mixed-operations"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-1": "stopped-early",
@@ -2565,6 +2730,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -2698,7 +2870,7 @@
         "mixed-operations"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -2709,6 +2881,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -2851,7 +3030,7 @@
         "mixed-operations"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -2862,6 +3041,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -2995,7 +3181,7 @@
         "mixed-operations"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -3006,6 +3192,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3151,7 +3347,7 @@
         "multi-step-substitution"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-13": "stopped-early",
@@ -3162,6 +3358,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3307,7 +3513,7 @@
         "multi-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-8": "stopped-early",
@@ -3318,6 +3524,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3454,7 +3670,7 @@
         "multi-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -3465,6 +3681,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3610,7 +3836,7 @@
         "multi-step-substitution"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -3621,6 +3847,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3757,7 +3993,7 @@
         "multi-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -3768,6 +4004,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "generator": {
@@ -3913,7 +4159,7 @@
         "multi-step-substitution"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -3924,6 +4170,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "generator": {
@@ -4035,7 +4288,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -4046,6 +4299,16 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b2-001",
@@ -4211,7 +4474,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-11": "wrong-variable",
@@ -4222,6 +4485,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b2-002",
@@ -4398,7 +4668,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-19": "wrong-variable",
@@ -4409,6 +4679,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b2-004",
@@ -4573,7 +4850,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-8": "off-by-one",
@@ -4584,6 +4861,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b2-001",
@@ -4758,7 +5042,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -4769,6 +5053,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b2-003",
@@ -4954,7 +5245,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -4965,6 +5256,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b2-005",
@@ -5168,7 +5466,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -5179,6 +5477,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b2-001",
@@ -5380,7 +5688,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-11": "stopped-early",
@@ -5391,6 +5699,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b2-002",
@@ -5585,7 +5903,7 @@
         "define-multiplicative"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -5596,6 +5914,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b2-003",
@@ -5787,7 +6112,7 @@
         "define-compound"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -5798,6 +6123,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b2-004",
@@ -5982,7 +6314,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -5993,6 +6325,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b2-005",
@@ -6154,7 +6493,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -6165,6 +6504,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b3-001",
@@ -6332,7 +6678,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-19": "wrong-variable",
@@ -6343,6 +6689,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b4-002",
@@ -6510,7 +6863,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-17": "wrong-variable",
@@ -6521,6 +6874,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b4-003",
@@ -6682,7 +7045,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -6693,6 +7056,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b4-004",
@@ -6854,7 +7224,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -6865,6 +7235,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b4-005",
@@ -7047,7 +7424,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-11": "stopped-early",
@@ -7058,6 +7435,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b4-001",
@@ -7237,7 +7624,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-12": "stopped-early",
@@ -7248,6 +7635,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b4-002",
@@ -7408,7 +7802,7 @@
         "define-linear"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -7419,6 +7813,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b4-003",
@@ -7593,7 +7994,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-12": "stopped-early",
@@ -7604,6 +8005,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b4-004",
@@ -7764,7 +8172,7 @@
         "define-compound"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -7775,6 +8183,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b4-005",
@@ -7955,7 +8370,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -7966,6 +8381,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b4-001",
@@ -8165,7 +8587,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -8176,6 +8598,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b4-002",
@@ -8373,7 +8802,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -8384,6 +8813,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b4-003",
@@ -8581,7 +9020,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-1": "stopped-early",
@@ -8592,6 +9031,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b4-004",
@@ -8772,7 +9218,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -8783,6 +9229,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b4-005",
@@ -8944,7 +9397,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -8955,6 +9408,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-001",
@@ -9115,7 +9575,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -9126,6 +9586,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-002",
@@ -9292,7 +9759,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -9303,6 +9770,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-003",
@@ -9463,7 +9937,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -9474,6 +9948,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-004",
@@ -9640,7 +10121,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -9651,6 +10132,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-005",
@@ -9818,7 +10306,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -9829,6 +10317,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-006",
@@ -9990,7 +10485,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -10001,6 +10496,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-007",
@@ -10161,7 +10663,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-7": "wrong-variable",
@@ -10172,6 +10674,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-008",
@@ -10343,7 +10852,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-12": "wrong-variable",
@@ -10354,6 +10863,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-009",
@@ -10515,7 +11031,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-17": "wrong-variable",
@@ -10526,6 +11042,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-010",
@@ -10698,7 +11221,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -10709,6 +11232,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-011",
@@ -10875,7 +11405,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -10886,6 +11416,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-012",
@@ -11058,7 +11595,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -11069,6 +11606,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-013",
@@ -11234,7 +11778,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -11245,6 +11789,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-014",
@@ -11411,7 +11962,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -11422,6 +11973,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b5-015",
@@ -11587,7 +12148,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-13": "wrong-variable",
@@ -11598,6 +12159,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-016",
@@ -11765,7 +12333,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -11776,6 +12344,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b5-017",
@@ -11943,7 +12521,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-10": "wrong-variable",
@@ -11954,6 +12532,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-018",
@@ -12121,7 +12706,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -12132,6 +12717,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-019",
@@ -12303,7 +12895,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -12314,6 +12906,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-020",
@@ -12486,7 +13085,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -12497,6 +13096,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-021",
@@ -12664,7 +13270,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -12675,6 +13281,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-022",
@@ -12842,7 +13455,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -12853,6 +13466,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-023",
@@ -13018,7 +13638,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -13029,6 +13649,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-024",
@@ -13201,7 +13828,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-9": "wrong-variable",
@@ -13212,6 +13839,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-025",
@@ -13382,7 +14016,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-9": "wrong-variable",
@@ -13393,6 +14027,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b5-026",
@@ -13559,7 +14203,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-12": "wrong-variable",
@@ -13570,6 +14214,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-027",
@@ -13742,7 +14393,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -13753,6 +14404,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b5-028",
@@ -13925,7 +14586,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -13936,6 +14597,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-029",
@@ -14108,7 +14776,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -14119,6 +14787,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-030",
@@ -14286,7 +14961,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -14297,6 +14972,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-031",
@@ -14468,7 +15150,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-19": "wrong-variable",
@@ -14479,6 +15161,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-032",
@@ -14650,7 +15339,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -14661,6 +15350,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b5-033",
@@ -14843,7 +15539,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-7": "stopped-early",
@@ -14854,6 +15550,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-001",
@@ -15028,7 +15731,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-14": "stopped-early",
@@ -15039,6 +15742,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-002",
@@ -15209,7 +15919,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -15220,6 +15930,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-003",
@@ -15395,7 +16112,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-6": "stopped-early",
@@ -15406,6 +16123,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-004",
@@ -15582,7 +16306,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -15593,6 +16317,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-005",
@@ -15768,7 +16499,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -15779,6 +16510,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-006",
@@ -15939,7 +16677,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -15950,6 +16688,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-007",
@@ -16130,7 +16875,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -16141,6 +16886,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-008",
@@ -16316,7 +17068,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -16327,6 +17079,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-009",
@@ -16508,7 +17267,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -16519,6 +17278,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-010",
@@ -16693,7 +17462,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-11": "stopped-early",
@@ -16704,6 +17473,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-011",
@@ -16884,7 +17660,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-19": "wrong-variable",
@@ -16895,6 +17671,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-012",
@@ -17076,7 +17859,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -17087,6 +17870,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-013",
@@ -17262,7 +18055,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -17273,6 +18066,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-014",
@@ -17449,7 +18249,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -17460,6 +18260,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-015",
@@ -17629,7 +18439,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-13": "stopped-early",
@@ -17640,6 +18450,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-016",
@@ -17816,7 +18633,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -17827,6 +18644,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-017",
@@ -17987,7 +18811,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-12": "wrong-variable",
@@ -17998,6 +18822,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-018",
@@ -18173,7 +19004,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-11": "stopped-early",
@@ -18184,6 +19015,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-019",
@@ -18365,7 +19203,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-8": "wrong-variable",
@@ -18376,6 +19214,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-020",
@@ -18552,7 +19400,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-20": "wrong-variable",
@@ -18563,6 +19411,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-021",
@@ -18732,7 +19590,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-3": "stopped-early",
@@ -18743,6 +19601,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-022",
@@ -18903,7 +19768,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -18914,6 +19779,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-023",
@@ -19093,7 +19965,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -19104,6 +19976,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-024",
@@ -19285,7 +20164,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-3": "stopped-early",
@@ -19296,6 +20175,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-025",
@@ -19470,7 +20356,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-12": "stopped-early",
@@ -19481,6 +20367,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-026",
@@ -19662,7 +20555,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -19673,6 +20566,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-027",
@@ -19849,7 +20749,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -19860,6 +20760,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-028",
@@ -20042,7 +20952,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-19": "wrong-variable",
@@ -20053,6 +20963,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-029",
@@ -20234,7 +21151,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-10": "wrong-variable",
@@ -20245,6 +21162,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-030",
@@ -20427,7 +21351,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-5": "wrong-variable",
@@ -20438,6 +21362,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b5-031",
@@ -20613,7 +21547,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -20624,6 +21558,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-032",
@@ -20800,7 +21741,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-9": "wrong-variable",
@@ -20811,6 +21752,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b5-033",
@@ -20992,7 +21940,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -21003,6 +21951,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-001",
@@ -21192,7 +22147,7 @@
         "multi-term"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -21203,6 +22158,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-002",
@@ -21394,7 +22356,7 @@
         "multi-term"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-3": "stopped-early",
@@ -21405,6 +22367,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-003",
@@ -21588,7 +22557,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-7": "stopped-early",
@@ -21599,6 +22568,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-004",
@@ -21784,7 +22760,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -21795,6 +22771,16 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b5-005",
@@ -21977,7 +22963,7 @@
         "multi-term"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -21988,6 +22974,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-006",
@@ -22164,7 +23157,7 @@
         "define-multiplicative"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-15": "stopped-early",
@@ -22175,6 +23168,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-007",
@@ -22350,7 +23350,7 @@
         "define-linear"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-20": "stopped-early",
@@ -22361,6 +23361,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-008",
@@ -22551,7 +23558,7 @@
         "define-multiplicative"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -22562,6 +23569,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-009",
@@ -22742,7 +23756,7 @@
         "define-linear"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-9": "wrong-variable",
@@ -22753,6 +23767,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-010",
@@ -22943,7 +23964,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -22954,6 +23975,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b5-011",
@@ -23143,7 +24174,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-6": "stopped-early",
@@ -23154,6 +24185,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-012",
@@ -23339,7 +24377,7 @@
         "multi-term"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-7": "wrong-variable",
@@ -23350,6 +24388,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-013",
@@ -23533,7 +24578,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -23544,6 +24589,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-014",
@@ -23725,7 +24777,7 @@
         "define-compound"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-1": "stopped-early",
@@ -23736,6 +24788,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-015",
@@ -23935,7 +24994,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -23946,6 +25005,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-016",
@@ -24127,7 +25193,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-3": "stopped-early",
@@ -24138,6 +25204,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-017",
@@ -24327,7 +25400,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -24338,6 +25411,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-018",
@@ -24536,7 +25616,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -24547,6 +25627,16 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-high-b5-019",
@@ -24736,7 +25826,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -24747,6 +25837,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-020",
@@ -24947,7 +26044,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 4,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -24958,6 +26055,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-021",
@@ -25146,7 +26250,7 @@
         "define-linear"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-1": "wrong-variable",
@@ -25157,6 +26261,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-022",
@@ -25347,7 +26458,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -25358,6 +26469,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-023",
@@ -25542,7 +26660,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -25553,6 +26671,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-024",
@@ -25734,7 +26859,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-4": "stopped-early",
@@ -25745,6 +26870,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-025",
@@ -25929,7 +27061,7 @@
         "define-compound"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-13": "wrong-variable",
@@ -25940,6 +27072,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-026",
@@ -26130,7 +27269,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -26141,6 +27280,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-027",
@@ -26330,7 +27476,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -26341,6 +27487,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-028",
@@ -26526,7 +27679,7 @@
         "multi-term"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -26537,6 +27690,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-029",
@@ -26728,7 +27888,7 @@
         "define-multiplicative"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-7": "stopped-early",
@@ -26739,6 +27899,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-030",
@@ -26920,7 +28087,7 @@
         "define-multiplicative"
       ],
       "skill": "collapsing a two-unknown constant equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-8": "wrong-variable",
@@ -26931,6 +28098,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-031",
@@ -27116,7 +28290,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-9": "stopped-early",
@@ -27127,6 +28301,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-032",
@@ -27317,7 +28498,7 @@
         "define-compound"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "opt-10": "stopped-early",
@@ -27328,6 +28509,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-033",
@@ -27511,7 +28699,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 3,
       "distractorTypes": {
         "opt-14": "wrong-variable",
@@ -27522,6 +28710,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b5-034",
@@ -27683,7 +28878,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -27694,6 +28889,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-001",
@@ -27860,7 +29062,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -27871,6 +29073,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-002",
@@ -28043,7 +29252,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -28054,6 +29263,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-003",
@@ -28225,7 +29441,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -28236,6 +29452,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-004",
@@ -28397,7 +29620,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-2": "wrong-variable",
@@ -28408,6 +29631,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-005",
@@ -28568,7 +29798,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-4": "wrong-variable",
@@ -28579,6 +29809,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-006",
@@ -28745,7 +29982,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -28756,6 +29993,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-007",
@@ -28916,7 +30160,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-8": "wrong-variable",
@@ -28927,6 +30171,16 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-low-b8-008",
@@ -29094,7 +30348,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-16": "wrong-variable",
@@ -29105,6 +30359,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-009",
@@ -29266,7 +30527,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -29277,6 +30538,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-010",
@@ -29444,7 +30712,7 @@
         "define-multiplicative"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-15": "wrong-variable",
@@ -29455,6 +30723,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-011",
@@ -29615,7 +30890,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "distractorTypes": {
         "opt-6": "wrong-variable",
@@ -29626,6 +30901,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-low-b8-012",
@@ -29807,7 +31089,7 @@
         "multi-term"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -29818,6 +31100,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-001",
@@ -29997,7 +31286,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-18": "wrong-variable",
@@ -30008,6 +31297,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-002",
@@ -30177,7 +31473,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-11": "stopped-early",
@@ -30188,6 +31484,16 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18"
+        ]
       }
     },
     "id": "me-medium-b8-003",
@@ -30362,7 +31668,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a mixed",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-9": "stopped-early",
@@ -30373,6 +31679,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-004",
@@ -30552,7 +31865,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-12": "wrong-variable",
@@ -30563,6 +31876,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-005",
@@ -30737,7 +32057,7 @@
         "define-linear"
       ],
       "skill": "forward substitution along a star",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-3": "wrong-variable",
@@ -30748,6 +32068,13 @@
       "officialStructure": {
         "letters": 3,
         "equations": 3
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-006",
@@ -30918,7 +32245,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 2,
       "distractorTypes": {
         "opt-2": "stopped-early",
@@ -30929,6 +32256,13 @@
       "officialStructure": {
         "letters": 2,
         "equations": 2
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-medium-b8-007",
@@ -31110,7 +32444,7 @@
         "define-multiplicative"
       ],
       "skill": "substitution into a combining equation",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 5,
       "distractorTypes": {
         "opt-15": "stopped-early",
@@ -31121,6 +32455,13 @@
       "officialStructure": {
         "letters": 4,
         "equations": 4
+      },
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
       }
     },
     "id": "me-high-b8-001",
@@ -31288,7 +32629,7 @@
         "define-compound"
       ],
       "skill": "forward substitution along a chain",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 1,
       "officialStructure": {
         "letters": 3,
@@ -31299,7 +32640,14 @@
         "opt-18": "inverted-operation",
         "opt-10": "off-by-one"
       },
-      "generationNotes": "3 letters, chain topology, depth 1, 3 multiplicative operation(s), shapes: pin-operated/define-multiplicative/define-compound"
+      "generationNotes": "3 letters, chain topology, depth 1, 3 multiplicative operation(s), shapes: pin-operated/define-multiplicative/define-compound",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "me-low-b9-001",
     "generator": {

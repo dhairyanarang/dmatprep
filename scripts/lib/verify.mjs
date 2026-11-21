@@ -23,6 +23,7 @@ import { panelsEqual, simulate } from './figures.mjs'
 import { disambiguationErrors } from './fs-inversion.mjs'
 import { equationContractErrors, figureRuleContractErrors, latinContractErrors, FS_CONTRACT } from './contract.mjs'
 import { equationSkeleton } from './fingerprint.mjs'
+import { classify } from './provenance.mjs'
 
 const DIFFICULTIES = ['low', 'medium', 'high']
 
@@ -125,8 +126,35 @@ function verifyLearningAids(q) {
   }
 
   if (q.meta) {
-    const allowed = ['officially_documented', 'reasonable_extrapolation', 'uncertain']
+    // `dmat_prep_calibration` ships: it says plainly that we chose the mechanic
+    // and that the official material does not settle it. `uncertain` still
+    // blocks, because it claims nothing either way.
+    const allowed = [
+      'officially_documented',
+      'reasonable_extrapolation',
+      'dmat_prep_calibration',
+      'uncertain',
+    ]
     if (!allowed.includes(q.meta.dmatAlignment)) errors.push(`unknown dmatAlignment: ${q.meta.dmatAlignment}`)
+
+    // The grade must be the one the question earns. Without this, `dmatAlignment`
+    // is a free-text field that anything can set to `officially_documented` —
+    // which is exactly how all 473 came to claim it.
+    if (q.meta.provenance) {
+      const derived = classify(q)
+      if (derived.dmatAlignment !== q.meta.dmatAlignment) {
+        errors.push(
+          `dmatAlignment is "${q.meta.dmatAlignment}" but this question derives "${derived.dmatAlignment}"`,
+        )
+      }
+      for (const axis of ['format', 'answerFormat', 'mechanics', 'originality']) {
+        if (q.meta.provenance[axis] !== derived.provenance[axis]) {
+          errors.push(
+            `provenance.${axis} is "${q.meta.provenance[axis]}" but derives "${derived.provenance[axis]}"`,
+          )
+        }
+      }
+    }
     if (q.meta.dmatAlignment === 'uncertain') {
       errors.push('an item classified `uncertain` must not ship without human review')
     }
@@ -424,6 +452,21 @@ function verifyFigureSequence(q) {
     errors.push(`${symbolCount} symbols; the official exercises never exceed ${FS_CONTRACT.allowed.maxSymbols}`)
   }
   if (symbolCount < FS_CONTRACT.allowed.minSymbols) errors.push('an item must have at least one symbol')
+
+  // A static symbol's ONLY readable cue is its orientation, so the shape has to
+  // carry a legible facing. On a square, circle, diamond or hexagon a 90° turn
+  // is invisible or indistinguishable from no turn at all, and the item becomes
+  // unanswerable rather than merely hard. The generator restricts rotation to
+  // these two shapes already; this is the gate that makes it a rule.
+  const ROTATION_LEGIBLE = new Set(['arrow', 'triangle'])
+  const shapeOf = new Map(q.given[0].symbols.map((sym) => [sym.id, sym.shape]))
+  for (const [id, rule] of Object.entries(q.rules)) {
+    if (rule.movement?.type === 'static' && !ROTATION_LEGIBLE.has(shapeOf.get(id))) {
+      errors.push(
+        `${id}: a static symbol on a ${shapeOf.get(id)} has no readable cue — its rotation is not legible on that shape`,
+      )
+    }
+  }
 
   for (const [id, rule] of Object.entries(q.rules)) {
     for (const problem of figureRuleContractErrors(rule)) {

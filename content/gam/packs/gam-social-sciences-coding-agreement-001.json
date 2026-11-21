@@ -71,9 +71,93 @@
       "originality": "original",
       "draftedBy": "production-candidate-2026-09-08",
       "reviewStatus": "automated-pass",
-      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here."
+      "notes": "Built on the independent-source architecture of 8 September 2026: one governing rule stated once, then a set of independent cases with the questions partitioned across them, so that no sibling answer supplies a fact another question needs. No two questions in the pack share an answer shape, and at most one has options that are a function of any given source datum. Every scheme and every figure is invented here.",
+      "retiredQuestions": [
+        {
+          "id": "gam-ss-ca-001-q3",
+          "retiredOn": "2026-11-14",
+          "reason": "The irreducible half of a mutually decisive pair. q3 asks what an agreement rate measures; q4 asks what follows once independence is broken. Granting q4’s answer — that the figure is not an agreement rate at all once a coder has seen the other’s decisions — eliminates three of q3’s four options, because only \"whether the two coders read the frame the same way\" is a property independence underwrites. Granting q3’s answer forces q4’s in turn. This is one proposition asked forwards and backwards, and no rewording of either separates them. q4 is kept because it applies the rule to a case the source does not work through; q3 goes because its answer is a restatement of a definition, which is the weaker of the two to keep. No key is wrong and there is no ambiguity finding against it. Id reserved, never reused.",
+          "question": {
+            "stem": "According to the text, what does a pair’s agreement rate measure?",
+            "options": [
+              {
+                "id": "a",
+                "text": "Whether the categories capture what the respondents meant."
+              },
+              {
+                "id": "b",
+                "text": "Whether the two coders read the frame the same way."
+              },
+              {
+                "id": "c",
+                "text": "How many answers were difficult enough to be contested."
+              },
+              {
+                "id": "d",
+                "text": "How closely the coded results match the population being described."
+              }
+            ],
+            "correctOptionId": "b",
+            "reasoning": "retrieve",
+            "dependsOn": [
+              "p3"
+            ],
+            "supportSpans": [
+              {
+                "blockId": "p3",
+                "quote": "An agreement rate measures whether two coders read the frame the same way."
+              },
+              {
+                "blockId": "p3",
+                "quote": "two coders can apply a poorly drawn category with perfect consistency"
+              }
+            ],
+            "explanation": "The figure is about the coders and not about the frame. The text presses the distinction with an example: a badly drawn category applied consistently by both coders produces just as high a rate as a well drawn one, so a high figure cannot be read as evidence that the categories are any good.",
+            "refutations": {
+              "a": {
+                "blockId": "p3",
+                "family": "contradicts-source",
+                "reason": "This is the reading the text sets out to block. Consistency between two readers and fidelity to what respondents meant are separate things, and the rate speaks only to the first."
+              },
+              "c": {
+                "blockId": "p2",
+                "family": "right-concept-wrong-scope",
+                "reason": "Contested answers are recorded, but they are a separate count. An answer can be contested by both coders and still placed in the same category by both, which counts as agreement."
+              },
+              "d": {
+                "blockId": "p1",
+                "family": "plausible-but-unstated",
+                "reason": "Nothing in the text connects the rate to the population. It is computed entirely within the set of double-coded answers."
+              }
+            },
+            "hints": [
+              {
+                "level": 1,
+                "text": "The text states what the rate measures and then, at more length, what it does not."
+              },
+              {
+                "level": 2,
+                "text": "Ask whose behaviour the figure is computed from."
+              },
+              {
+                "level": 3,
+                "text": "The example about a poorly drawn category is there to rule one of these options out."
+              }
+            ],
+            "difficulty": "medium",
+            "meta": {
+              "stepCount": 1,
+              "blockSpan": 1,
+              "transferDistance": 2,
+              "requiresExhibit": false
+            },
+            "id": "gam-ss-ca-001-q3",
+            "packId": "gam-social-sciences-coding-agreement-001"
+          }
+        }
+      ]
     },
-    "contentHash": "a9f552c6cc6cbb03013b6f9b4cca174b"
+    "contentHash": "03bd8c299440d42ea61e2af8e46c8afc"
   },
   "questions": [
     {
@@ -228,154 +312,82 @@
       "packId": "gam-social-sciences-coding-agreement-001"
     },
     {
-      "stem": "According to the text, what does a pair’s agreement rate measure?",
+      "stem": "A supervisor lets the second coder see the first coder’s decisions on the answers the first found difficult. According to the text, what follows for the pair’s figure?",
       "options": [
         {
           "id": "a",
-          "text": "Whether the categories capture what the respondents meant."
+          "text": "It is not an agreement rate at all, because the two were no longer working unaware of each other."
         },
         {
           "id": "b",
-          "text": "Whether the two coders read the frame the same way."
+          "text": "It is still an agreement rate, since the first coder’s decisions were made independently."
         },
         {
           "id": "c",
-          "text": "How many answers were difficult enough to be contested."
+          "text": "It is still an agreement rate, provided the answers that were shown are reported alongside it."
         },
         {
           "id": "d",
-          "text": "How closely the coded results match the population being described."
-        }
-      ],
-      "correctOptionId": "b",
-      "reasoning": "retrieve",
-      "dependsOn": [
-        "p3"
-      ],
-      "supportSpans": [
-        {
-          "blockId": "p3",
-          "quote": "An agreement rate measures whether two coders read the frame the same way."
-        },
-        {
-          "blockId": "p3",
-          "quote": "two coders can apply a poorly drawn category with perfect consistency"
-        }
-      ],
-      "explanation": "The figure is about the coders and not about the frame. The text presses the distinction with an example: a badly drawn category applied consistently by both coders produces just as high a rate as a well drawn one, so a high figure cannot be read as evidence that the categories are any good.",
-      "refutations": {
-        "a": {
-          "blockId": "p3",
-          "family": "contradicts-source",
-          "reason": "This is the reading the text sets out to block. Consistency between two readers and fidelity to what respondents meant are separate things, and the rate speaks only to the first."
-        },
-        "c": {
-          "blockId": "p2",
-          "family": "right-concept-wrong-scope",
-          "reason": "Contested answers are recorded, but they are a separate count. An answer can be contested by both coders and still placed in the same category by both, which counts as agreement."
-        },
-        "d": {
-          "blockId": "p1",
-          "family": "plausible-but-unstated",
-          "reason": "Nothing in the text connects the rate to the population. It is computed entirely within the set of double-coded answers."
-        }
-      },
-      "hints": [
-        {
-          "level": 1,
-          "text": "The text states what the rate measures and then, at more length, what it does not."
-        },
-        {
-          "level": 2,
-          "text": "Ask whose behaviour the figure is computed from."
-        },
-        {
-          "level": 3,
-          "text": "The example about a poorly drawn category is there to rule one of these options out."
-        }
-      ],
-      "difficulty": "medium",
-      "meta": {
-        "stepCount": 1,
-        "blockSpan": 1,
-        "transferDistance": 2,
-        "requiresExhibit": false
-      },
-      "id": "gam-ss-ca-001-q3",
-      "packId": "gam-social-sciences-coding-agreement-001"
-    },
-    {
-      "stem": "According to the text, which single condition must hold for a pair’s figure to be an agreement rate at all?",
-      "options": [
-        {
-          "id": "a",
-          "text": "That the two coders worked unaware of each other’s decisions."
-        },
-        {
-          "id": "b",
-          "text": "That the same number of answers was double-coded for every pair."
-        },
-        {
-          "id": "c",
-          "text": "That the frame was left unrevised until the end of the round."
-        },
-        {
-          "id": "d",
-          "text": "That contested answers were excluded before the rate was worked out."
+          "text": "It understates the pair’s agreement, since help was given only on the hardest answers."
         }
       ],
       "correctOptionId": "a",
-      "reasoning": "qualitative-inference",
+      "reasoning": "classify-scenario",
       "dependsOn": [
-        "p4"
+        "p4",
+        "p1"
       ],
       "supportSpans": [
+        {
+          "blockId": "p4",
+          "quote": "A coder who has seen the other coder’s decisions is no longer coding independently, and the pair’s figure is not an agreement rate at all."
+        },
         {
           "blockId": "p4",
           "quote": "The one condition the procedure rests on is that the two work unaware of each other."
         },
         {
-          "blockId": "p4",
-          "quote": "A coder who has seen the other coder’s decisions is no longer coding independently"
+          "blockId": "p1",
+          "quote": "two coders work on the same answers without seeing each other’s decisions"
         }
       ],
-      "explanation": "The text singles this out and says why: once one coder has seen the other’s decisions, the second set of codes is no longer arrived at separately, so what looks like agreement may be nothing more than one coder following the first. The figure then measures nothing about how the frame was read.",
+      "explanation": "The text puts this categorically rather than as a matter of degree: a coder who has seen the other’s decisions is no longer coding independently, and the pair’s figure is then not an agreement rate at all. It makes no difference that only the difficult answers were shown, or that the first coder worked alone throughout — the statistic belongs to the pair, and one half of the pair was no longer working unaware.",
       "refutations": {
         "b": {
-          "blockId": "t1",
+          "blockId": "p1",
           "family": "right-concept-wrong-scope",
-          "reason": "Equal numbers make the four pairs easy to compare with one another. They are not what makes any one of the figures an agreement rate."
+          "reason": "Double coding is defined as two coders working without seeing each other’s decisions. One of them working independently is half the condition, and the figure is a property of the pair rather than of either coder."
         },
         "c": {
-          "blockId": "p2",
+          "blockId": "p4",
           "family": "plausible-but-unstated",
-          "reason": "Revision at the end of the round is what happens to contested answers. The text attaches no condition about revision to the rate itself."
+          "reason": "The text offers no disclosure that rescues the figure. It says the figure is not an agreement rate at all, and attaches no reporting condition under which it would be."
         },
         "d": {
-          "blockId": "p2",
+          "blockId": "p4",
           "family": "contradicts-source",
-          "reason": "Contested answers are counted in the category they were given, so they are inside the coded set rather than removed from it."
+          "reason": "This treats the figure as an agreement rate carrying a bias. The text’s position is that it is not one, so there is no true value for it to sit below."
         }
       },
       "hints": [
         {
           "level": 1,
-          "text": "The text names one condition explicitly and calls it the one the procedure rests on."
+          "text": "One paragraph names a single condition and calls it the one the procedure rests on."
         },
         {
           "level": 2,
-          "text": "Ask what would go wrong if one coder could see the other’s work."
+          "text": "Ask whether that condition is met for the pair when it is met for only one of the two coders."
         },
         {
           "level": 3,
-          "text": "Separate what makes the four pairs comparable from what makes any single figure meaningful."
+          "text": "The text does not say the figure is distorted; look at how strongly it puts what the figure then is."
         }
       ],
       "difficulty": "medium",
       "meta": {
         "stepCount": 2,
-        "blockSpan": 1,
-        "transferDistance": 2,
+        "blockSpan": 2,
+        "transferDistance": 3,
         "requiresExhibit": false
       },
       "id": "gam-ss-ca-001-q4",

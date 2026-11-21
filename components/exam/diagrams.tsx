@@ -120,7 +120,10 @@ export function ItemAnatomy() {
       <div className="flex flex-wrap items-end gap-6">
         <div className="space-y-2">
           <p className="text-muted-foreground text-xs font-medium">Four matrices shown</p>
-          <div className="flex gap-2">
+          {/* Wraps, because four 82px grids and their gaps come to 364px and a
+              390px phone leaves about 318 once the page and card padding are
+              taken — which pushed the whole page sideways. */}
+          <div className="flex flex-wrap gap-2">
             {given.map((marks, i) => (
               <MiniGrid key={i} marks={marks} />
             ))}
@@ -131,7 +134,7 @@ export function ItemAnatomy() {
 
         <div className="space-y-2">
           <p className="text-foreground text-xs font-medium">You choose both of these</p>
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {[0, 1].map((i) => (
               <div
                 key={i}
@@ -336,12 +339,6 @@ const RULES: Rule[] = [
     text: 'Runs around the perimeter, clockwise or counter-clockwise, turning at each corner instead of bouncing.',
   },
   {
-    name: 'Repeating direction cycle',
-    level: 'Medium',
-    panels: [[{ r: 2, c: 2 }], [{ r: 2, c: 1 }], [{ r: 1, c: 1 }], [{ r: 1, c: 2 }]],
-    text: 'Follows a fixed order of directions — left, up, right, down — tracing a small closed loop.',
-  },
-  {
     name: 'Rotation',
     level: 'Medium',
     panels: [
@@ -478,7 +475,7 @@ export function FigureDifficulty() {
           headline: 'Two symbols, more rule types',
           points: [
             'Two symbols, each with its own independent rule',
-            'Adds border travel and repeating direction cycles',
+            'Adds travel along the outer border',
             'Rotation and colour cycles start appearing',
             'Step size still constant',
           ],

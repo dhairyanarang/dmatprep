@@ -1,0 +1,282 @@
+'use client'
+
+import { useCallback, useState } from 'react'
+import { Loader2 } from 'lucide-react'
+
+import { GoogleButton } from '@/components/auth/google-button'
+import { SupportLink } from '@/components/support/support-link'
+import { Button } from '@/components/ui/button'
+import { trackEvent } from '@/lib/analytics/client'
+import { EVENTS } from '@/lib/analytics/events'
+import { useAuth } from '@/lib/auth/use-auth'
+import { COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
+import { invalidateEntitlement, useEntitlement } from '@/lib/payments/use-entitlement'
+
+/**
+ * The purchase flow, as one button and five honest states.
+ *
+ * Three things it refuses to do:
+ *
+ *  · It never decides entitlement. It asks the server to create an order and
+ *    asks the server to verify the result. Nothing here grants anything.
+ *  · It never sends an amount. The price is server configuration, so a modified
+ *    client cannot ask to pay less.
+ *  · It never reports success on the strength of Razorpay's callback alone. The
+ *    callback is passed to `/api/checkout/verify`, which re-verifies the
+ *    signature against the order id WE stored and asks Razorpay what actually
+ *    happened before anything is granted.
+ *
+ * `pending` is a real outcome and not an error. A captured payment whose
+ * confirmation has not arrived yet is normal; the webhook or the reconciliation
+ * sweep finishes it, and saying "we are waiting" is better than either a false
+ * success or a false failure.
+ */
+
+type Phase = 'idle' | 'working' | 'success' | 'pending' | 'error'
+
+type RazorpayOptions = {
+  key: string
+  amount: number
+  currency: string
+  order_id: string
+  name: string
+  description: string
+  handler: (response: Record<string, string>) => void
+  modal?: { ondismiss?: () => void }
+  theme?: { color?: string | undefined }
+}
+
+type RazorpayCtor = new (options: RazorpayOptions) => { open: () => void }
+
+const CHECKOUT_SRC = 'https://checkout.razorpay.com/v1/checkout.js'
+
+/**
+ * The brand colour, read from the stylesheet rather than written here.
+ *
+ * Razorpay's modal is the one piece of our checkout we do not render, and it
+ * takes a hex string. This used to be a literal `#e4f222` — the acid lime from
+ * the design system that preceded the v2 retune — so the payment window would
+ * have opened in a colour the product no longer uses anywhere. Reading the
+ * token means the modal cannot drift from the app again.
+ */
+function brandColour(): string | undefined {
+  if (typeof window === 'undefined') return undefined
+  const value = getComputedStyle(document.documentElement).getPropertyValue('--brand').trim()
+  // Razorpay accepts hex only; anything else is better left to their default
+  // than sent as a string they will not parse.
+  return /^#[0-9a-fA-F]{3,8}$/.test(value) ? value : undefined
+}
+
+function loadCheckout(): Promise<RazorpayCtor | null> {
+  const existing = (window as unknown as { Razorpay?: RazorpayCtor }).Razorpay
+  if (existing) return Promise.resolve(existing)
+
+  return new Promise((resolve) => {
+    const script = document.createElement('script')
+    script.src = CHECKOUT_SRC
+    script.async = true
+    script.onload = () => resolve((window as unknown as { Razorpay?: RazorpayCtor }).Razorpay ?? null)
+    script.onerror = () => resolve(null)
+    document.head.append(script)
+  })
+}
+
+export function PurchaseButton({
+  className,
+  bankSize,
+  onVerified,
+}: {
+  className?: string
+  /**
+   * Fired once the SERVER has verified the payment and the entitlement has
+   * been re-read.
+   *
+   * It is a notification, not a grant. The caller may use it to change what
+   * it shows — a celebration rather than a calm confirmation — but what is
+   * shown as unlocked still comes from the entitlement the server returned.
+   * It deliberately does not fire for a pending payment, where nothing has
+   * been granted yet.
+   */
+  onVerified?: () => void
+  /**
+   * The number of active Core questions, counted by the page.
+   *
+   * Passed in rather than imported: counting it here would pull the whole
+   * question bank into the client bundle, and writing the number down would
+   * put a second copy of it in the product — which this repository has already
+   * shipped wrong once.
+   */
+  bankSize: number
+}) {
+  const auth = useAuth()
+  const entitlement = useEntitlement()
+  const [phase, setPhase] = useState<Phase>('idle')
+  const [message, setMessage] = useState<string | null>(null)
+  // Kept so every support route from here carries a reference that makes the
+  // email answerable without a back-and-forth.
+  const [orderRef, setOrderRef] = useState<string | null>(null)
+
+  const start = useCallback(async () => {
+    setPhase('working')
+    setMessage(null)
+    trackEvent(EVENTS.premiumBuyClicked, { surface: 'pricing' })
+    try {
+      const orderResponse = await fetch('/api/checkout/order', { method: 'POST' })
+      if (!orderResponse.ok) {
+        const body = (await orderResponse.json().catch(() => ({}))) as { error?: string }
+        if (body.error === 'already-entitled') {
+          // Already held before this click, so nothing was activated now.
+          void invalidateEntitlement()
+          setPhase('success')
+          return
+        }
+        throw new Error(body.error ?? 'Could not start the payment.')
+      }
+      const order = (await orderResponse.json()) as {
+        orderId: string
+        amount: number
+        currency: string
+        keyId: string
+      }
+      setOrderRef(order.orderId)
+
+      const Razorpay = await loadCheckout()
+      if (!Razorpay) throw new Error('The payment window could not be loaded.')
+
+      const checkout = new Razorpay({
+        key: order.keyId,
+        amount: order.amount,
+        currency: order.currency,
+        order_id: order.orderId,
+        name: 'dMAT Prep',
+        description: 'Full Core bank and four mock exams — one-time',
+        theme: { color: brandColour() },
+        modal: {
+          // Abandoning checkout is not a failure. No order is captured, no
+          // entitlement changes, and the candidate is returned to where they
+          // were without an error they have to dismiss.
+          ondismiss: () => setPhase('idle'),
+        },
+        handler: (response) => {
+          setPhase('working')
+          void fetch('/api/checkout/verify', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify(response),
+          })
+            .then(async (verify) => {
+              if (verify.ok) {
+                // Re-read first, then tell the caller: the success screen must
+                // never appear ahead of the entitlement that justifies it.
+                void invalidateEntitlement().then(() => onVerified?.())
+                setPhase('success')
+                return
+              }
+              const body = (await verify.json().catch(() => ({}))) as {
+                error?: string
+                pending?: boolean
+              }
+              if (verify.status === 202 || body.pending) {
+                trackEvent(EVENTS.paymentPending, { order_ref: order.orderId })
+                setPhase('pending')
+                return
+              }
+              setMessage(
+                'We could not confirm that payment. Nothing has been granted. If money has left your account, contact us and we will sort it out.',
+              )
+              setPhase('error')
+            })
+            .catch(() => {
+              // The payment may well have succeeded; what failed is our
+              // confirmation of it. Say that, rather than implying a loss.
+              trackEvent(EVENTS.paymentPending, { order_ref: order.orderId, reason: 'verify-unreachable' })
+              setPhase('pending')
+            })
+        },
+      })
+      checkout.open()
+      // Emitted after `open()` rather than before it: the funnel step is
+      // "Checkout actually appeared", not "we tried".
+      trackEvent(EVENTS.checkoutOpened, { order_ref: order.orderId, amount_minor: order.amount })
+    } catch (error) {
+      setMessage(error instanceof Error ? error.message : 'Something went wrong.')
+      setPhase('error')
+    }
+  }, [onVerified])
+
+  if (!COMMERCE_ENABLED) {
+    return (
+      <div className={className}>
+        <p className="text-muted-foreground text-sm leading-relaxed">
+          Everything is free at the moment — all {bankSize} Core questions, with full
+          explanations, and all four fixed mock exams. There is nothing to buy yet, and nothing
+          has been taken away.
+        </p>
+      </div>
+    )
+  }
+
+  if (entitlement.ready && entitlement.access) {
+    return (
+      <div className={className}>
+        <p className="text-foreground text-sm font-medium">You have full access.</p>
+        <p className="text-muted-foreground mt-1 text-sm">
+          Every Core question and all four mock exams are unlocked on this account.
+        </p>
+      </div>
+    )
+  }
+
+  if (auth.status === 'guest' || auth.status === 'unavailable') {
+    return (
+      <div className={className}>
+        <p className="text-muted-foreground mb-3 text-sm leading-relaxed">
+          Buying needs an account, because access is attached to one. Free practice does not — and
+          anything you have already answered as a guest comes with you when you sign in.
+        </p>
+        <GoogleButton next="/pricing" label="Sign in to continue" />
+      </div>
+    )
+  }
+
+  return (
+    <div className={className}>
+      <Button onClick={start} disabled={phase === 'working'} size="lg" className="w-full sm:w-auto">
+        {phase === 'working' ? <Loader2 className="size-4 animate-spin" /> : null}
+        {phase === 'working' ? 'Working…' : `Unlock everything — ${formatPrice()}`}
+      </Button>
+
+      {phase === 'success' ? (
+        <>
+          <p className="text-foreground mt-3 text-sm font-medium">
+            Payment confirmed. Every Core question and all four mock exams are now unlocked on
+            this account.
+          </p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Question about my purchase" />
+        </>
+      ) : null}
+
+      {phase === 'pending' ? (
+        <>
+          <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
+            Your payment went through and we are waiting for the final confirmation. This usually
+            takes a moment. You do not need to pay again — refresh in a minute, and if it still has
+            not appeared, contact us.
+          </p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Payment taken but access not showing" />
+        </>
+      ) : null}
+
+      {phase === 'error' && message ? (
+        <>
+          <p className="text-destructive mt-3 text-sm leading-relaxed">{message}</p>
+          <SupportLink className="mt-3" orderRef={orderRef} topic="Payment failed" />
+        </>
+      ) : null}
+
+      <p className="text-muted-foreground mt-3 text-xs leading-relaxed">
+        One-time payment, lifetime access. No subscription, and nothing is charged again.
+      </p>
+    </div>
+  )
+}

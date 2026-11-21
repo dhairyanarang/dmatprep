@@ -1,0 +1,444 @@
+[
+  {
+    "id": "me-high-p1-001",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A × A = B",
+      "B − A = 12",
+      "B ÷ 2 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-16",
+        "value": 16
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      }
+    ],
+    "correctOptionId": "opt-8",
+    "solution": {
+      "A": 4,
+      "B": 16,
+      "C": 8
+    },
+    "solutionSteps": [
+      {
+        "letter": "A",
+        "detail": "A × A = B and B − A = 12 share two unknowns, so neither can be solved alone. Together they give A × A − A = 12, and the only whole number from 1 to 20 that satisfies it is A = 4."
+      },
+      {
+        "letter": "B",
+        "detail": "A × A = B with A = 4 gives B = 16. Check: 16 − 4 = 12."
+      },
+      {
+        "letter": "C",
+        "detail": "B ÷ 2 = C with B = 16 gives C = 8."
+      }
+    ],
+    "explanation": "The first two equations have to be taken together: each has two unknowns, so there is no single letter to start from. Substituting B = A × A into B − A = 12 leaves A × A − A = 12, and over the whole numbers 1 to 20 only A = 4 satisfies it — 3 gives 6, 5 gives 20. That fixes B = 16, and B ÷ 2 = C then gives C = 8.",
+    "distractorNotes": {
+      "opt-16": "This is B, not C. The chain does reach B = 16, but the question asks for C, which is one step further on.",
+      "opt-4": "This follows from reading A × A as A + A. That would make B − A = 12 into 2A − A = 12 and A = 12, which puts B outside the range; carried through loosely it lands on 4, which is also just the value of A.",
+      "opt-2": "This divides A by 2 rather than B. The third equation is B ÷ 2 = C, and B is 16, not 4."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Neither of the first two equations has only one unknown. Look at what they say about the same two letters."
+      },
+      {
+        "level": 2,
+        "text": "Substituting B = A × A into B − A = 12 leaves a single letter. Try whole numbers from 1 upwards."
+      },
+      {
+        "level": 3,
+        "text": "Once A is fixed, B follows immediately, and the last equation turns B into C."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "A letter multiplied by itself cannot be unwound one step at a time. The first two equations must be solved together before anything else moves.",
+      "steps": [
+        {
+          "title": "See that nothing starts alone",
+          "detail": "A × A = B and B − A = 12 each contain two unknowns. There is no single-unknown equation to begin from, so the pair has to be combined.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A × A = B",
+            "note": "two unknowns"
+          }
+        },
+        {
+          "title": "Combine them into one letter",
+          "detail": "Replacing B with A × A in B − A = 12 gives A × A − A = 12. Testing whole numbers: A = 3 gives 6, A = 4 gives 12, A = 5 gives 20. Only A = 4 works.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A × A − A = 12",
+            "note": "A = 4"
+          }
+        },
+        {
+          "title": "Read B off, then C",
+          "detail": "A = 4 gives B = 16, and B ÷ 2 = C gives C = 8.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 4,
+              "B": 16,
+              "C": 8
+            }
+          }
+        }
+      ],
+      "answer": "C = 8.",
+      "takeaway": "When two equations share both unknowns, neither is a starting point. Combine them first and the system collapses to one letter."
+    },
+    "meta": {
+      "patternType": [
+        "quadratic-relation",
+        "elimination",
+        "two-step-substitution"
+      ],
+      "skill": "recognising that a letter multiplied by itself cannot be unwound in sequence",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "distractorTypes": {
+        "opt-16": "wrong-variable",
+        "opt-4": "misread-operator",
+        "opt-2": "wrong-operand"
+      },
+      "generationNotes": "DRAFT — UNAPPROVED. 2 resolution rounds, elimination cluster of 2, quadratic relation. Alignment is dMAT Prep calibration, not officially documented: the official material states the operator set and the 1–20 integer range but does not state which operands are permitted, so whether the examination uses a letter multiplied by itself is unknown. Recorded as reasonable_extrapolation: the schema has no distinct calibration value, and this is the honest fit — documented operators and the documented 1-20 integer range, extrapolated on operand type."
+    },
+    "provenance": {
+      "author": "dMAT Prep — authored by Claude Opus 5 under human direction",
+      "method": "hand-authored shape, solution values found by exhaustive search over 1–20, uniqueness proved by the project solver",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pending",
+      "blindAdjudicationStatus": "pending",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  },
+  {
+    "id": "me-high-p1-002",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A × B = C",
+      "A + B = 10",
+      "C − D = 12",
+      "D + B = 12"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-16",
+        "value": 16
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      }
+    ],
+    "correctOptionId": "opt-4",
+    "solution": {
+      "A": 2,
+      "B": 8,
+      "C": 16,
+      "D": 4
+    },
+    "solutionSteps": [
+      {
+        "letter": "A",
+        "detail": "No equation has a single unknown. A + B = 10 and A × B = C fix C in terms of one letter; C − D = 12 and D + B = 12 then tie D to both. Working through, A = 2."
+      },
+      {
+        "letter": "B",
+        "detail": "A + B = 10 with A = 2 gives B = 8."
+      },
+      {
+        "letter": "C",
+        "detail": "A × B = C gives C = 2 × 8 = 16."
+      },
+      {
+        "letter": "D",
+        "detail": "C − D = 12 with C = 16 gives D = 4. Check against D + B = 12: 4 + 8 = 12."
+      }
+    ],
+    "explanation": "Every equation here has at least two unknowns, so the system has to be solved as a whole. Adding C − D = 12 and D + B = 12 removes D and gives C + B = 24. With C = A × B and A = 10 − B, that becomes (10 − B) × B + B = 24, which over the whole numbers holds only at B = 8. Then A = 2, C = 16 and D = 16 − 12 = 4. The second check confirms it: 4 + 8 = 12.",
+    "distractorNotes": {
+      "opt-16": "This is C. The system does give C = 16, and it is the value you reach just before D, but the question asks for D.",
+      "opt-10": "This is the right-hand side of A + B = 10 read as an answer. It is the total of two other letters, not the value of D.",
+      "opt-8": "This subtracts the wrong letter from C: 16 − 8 uses B where the equation C − D = 12 requires D. It is also simply the value of B."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Nothing here can be solved one letter at a time. Look for two equations that share a letter you could remove."
+      },
+      {
+        "level": 2,
+        "text": "C − D = 12 and D + B = 12 both contain D. Adding them removes it."
+      },
+      {
+        "level": 3,
+        "text": "That leaves C + B = 24, and C is A × B while A is 10 − B. Now only one letter is left."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "When no equation has a single unknown, look for a letter that appears with opposite signs in two of them. Adding those two removes it.",
+      "steps": [
+        {
+          "title": "Remove D",
+          "detail": "C − D = 12 and D + B = 12 both contain D, once subtracted and once added. Adding the two equations gives C + B = 24.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "C + B = 24",
+            "note": "D removed"
+          }
+        },
+        {
+          "title": "Reduce to one letter",
+          "detail": "C is A × B and A is 10 − B, so C + B = 24 becomes (10 − B) × B + B = 24. Testing whole numbers, B = 8 gives 2 × 8 + 8 = 24.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "(10 − B) × B + B = 24",
+            "note": "B = 8"
+          }
+        },
+        {
+          "title": "Work back to D",
+          "detail": "B = 8 gives A = 2 and C = 16, and C − D = 12 gives D = 4.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 2,
+              "B": 8,
+              "C": 16,
+              "D": 4
+            }
+          }
+        }
+      ],
+      "answer": "D = 4.",
+      "takeaway": "A letter that appears added in one equation and subtracted in another can be removed by adding the two together."
+    },
+    "meta": {
+      "patternType": [
+        "variable-product",
+        "elimination",
+        "4-variable-system"
+      ],
+      "skill": "removing a letter by combining two equations that carry it with opposite signs",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 3,
+      "distractorTypes": {
+        "opt-16": "wrong-variable",
+        "opt-10": "constant-as-answer",
+        "opt-8": "wrong-operand"
+      },
+      "generationNotes": "DRAFT — UNAPPROVED. Elimination cluster of 4; every letter lies on the path to D. Alignment is dMAT Prep calibration: a letter multiplied by another letter is within the stated operator set but the permitted operands are not officially documented. Recorded as reasonable_extrapolation: the schema has no distinct calibration value, and this is the honest fit — documented operators and the documented 1-20 integer range, extrapolated on operand type."
+    },
+    "provenance": {
+      "author": "dMAT Prep — authored by Claude Opus 5 under human direction",
+      "method": "hand-authored shape, solution values found by exhaustive search over 1–20, uniqueness proved by the project solver",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pending",
+      "blindAdjudicationStatus": "pending",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  },
+  {
+    "id": "me-high-p1-003",
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A ÷ B = C",
+      "A − B = 4",
+      "B + C = 5",
+      "C × 5 = D"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-15",
+    "solution": {
+      "A": 6,
+      "B": 2,
+      "C": 3,
+      "D": 15
+    },
+    "solutionSteps": [
+      {
+        "letter": "B",
+        "detail": "A ÷ B = C and A − B = 4 leave several possibilities on their own: B = 1 gives C = 5, B = 2 gives C = 3, B = 4 gives C = 2. B + C = 5 settles it at B = 2."
+      },
+      {
+        "letter": "A",
+        "detail": "A − B = 4 with B = 2 gives A = 6."
+      },
+      {
+        "letter": "C",
+        "detail": "A ÷ B = C gives C = 6 ÷ 2 = 3. Check: B + C = 2 + 3 = 5."
+      },
+      {
+        "letter": "D",
+        "detail": "C × 5 = D gives D = 15."
+      }
+    ],
+    "explanation": "Dividing one letter by another is what makes this one awkward: A ÷ B = C and A − B = 4 together allow three whole-number readings — B = 1 with C = 5, B = 2 with C = 3, and B = 4 with C = 2. None can be ruled out until B + C = 5 is brought in, and only B = 2, C = 3 satisfies it. From there A = 6 and C × 5 = D gives D = 15.",
+    "distractorNotes": {
+      "opt-3": "This is C. It is the last letter resolved before D, but C × 5 = D means one more step is needed.",
+      "opt-10": "This multiplies B by 5 instead of C. The final equation is C × 5 = D, and C is 3, not 2.",
+      "opt-12": "This is C × 4. The constant in the final equation is 5, not 4."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "A ÷ B = C and A − B = 4 do not pin anything down by themselves. List the whole-number possibilities before going further."
+      },
+      {
+        "level": 2,
+        "text": "Only a few values of B divide A exactly while keeping A − B = 4. Write them out, then see which survives B + C = 5."
+      },
+      {
+        "level": 3,
+        "text": "Once B and C are fixed, the last equation is a single multiplication."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "A division between two letters does not fix either of them. Enumerate what divides exactly, then let a third equation choose between the survivors.",
+      "steps": [
+        {
+          "title": "List what divides exactly",
+          "detail": "A − B = 4 means A = B + 4. For A ÷ B to be a whole number, B must divide B + 4, which happens at B = 1 (C = 5), B = 2 (C = 3) and B = 4 (C = 2).",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ B = C",
+            "note": "three candidates"
+          }
+        },
+        {
+          "title": "Let the third equation choose",
+          "detail": "B + C = 5 is satisfied only by B = 2 with C = 3. The other two give 6 and 6.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "B + C = 5",
+            "note": "B = 2, C = 3"
+          }
+        },
+        {
+          "title": "Finish at D",
+          "detail": "A = 6 follows from A − B = 4, and C × 5 = D gives D = 15.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 6,
+              "B": 2,
+              "C": 3,
+              "D": 15
+            }
+          }
+        }
+      ],
+      "answer": "D = 15.",
+      "takeaway": "A division between two letters leaves several whole-number readings. List them, then let a further equation choose."
+    },
+    "meta": {
+      "patternType": [
+        "variable-divisor",
+        "elimination",
+        "enumerate-and-eliminate"
+      ],
+      "skill": "enumerating exact divisions, then narrowing with a further constraint",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 3,
+      "distractorTypes": {
+        "opt-3": "wrong-variable",
+        "opt-10": "wrong-operand",
+        "opt-12": "misapplied-constant"
+      },
+      "generationNotes": "DRAFT — UNAPPROVED. Elimination cluster of 3 then a final substitution. Alignment is dMAT Prep calibration: division by a letter rather than by a constant is not officially documented. Recorded as reasonable_extrapolation: the schema has no distinct calibration value, and this is the honest fit — documented operators and the documented 1-20 integer range, extrapolated on operand type."
+    },
+    "provenance": {
+      "author": "dMAT Prep — authored by Claude Opus 5 under human direction",
+      "method": "hand-authored shape, solution values found by exhaustive search over 1–20, uniqueness proved by the project solver",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pending",
+      "blindAdjudicationStatus": "pending",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  }
+]

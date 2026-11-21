@@ -6793,6 +6793,673 @@
           "whatItContributes": "p1 and p2 supply the hit/miss definitions, the full-cache eviction requirement and the eviction rule including the decisive clause that a hit re-counts as an asking - without that clause Q1's answer flips from Q to P, so the source is genuinely load-bearing there. t1 supplies the four measured hit rates Q3 reads off, and p3 supplies the caveat Q4 restates that hit rates describe a cache-plus-traffic pairing rather than ranking the caches."
         }
       }
+    },
+    {
+      "id": "independent-2026-11-13",
+      "kind": "independent",
+      "countsAsIndependentReview": true,
+      "status": "complete",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-11-13",
+      "questions": {
+        "gam-cs-cp-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the system drops whichever record has gone longest without being asked for, and a hit counts as an asking. P refreshes, leaving Q oldest. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence high) — No cross-question leak; no sibling names the eviction policy. Self-telegraphing instead: the stem tracks state in the policy’s own currency and interposes a request that matters under no policy except a recency-based one.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q3": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p1 defines a hit as a request met without the slow store; t1 hit rates 97/61/88/79 per cent, so the document cache. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"b\", confidence low) — Clean. q4 discusses the table but names no cache and discloses no figure; its key discourages rather than supplies the inference this needs.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-cs-cp-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p3: a hit rate is a property of the pairing of a cache with the request pattern it met, and the figures do not rank the caches themselves. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence high) — q3's stem asserts the table reports a per-cache share, which defeats option a: equalising request counts cannot repair a comparison between quantities that are already rates. One option removed by sibling stem alone.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-cs-cp-001-q3"
+            ],
+            "ablationLeakDetail": "q3's stem asserts the table reports a per-cache share, which defeats option a: equalising request counts cannot repair a comparison between quantities that are already rates. One option removed by sibling stem alone.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p3 rounds a part tonne up: 120.4 -> 121; t1 general rate 4 euros/tonne; 121 x 4 = 484, above the 200 minimum so the tonnage fee stands. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"c\", confidence low) — q2's stem asserts flat class minimums exist, letting the candidate read 200 as a minimum rather than a computed fee; since any computed fee exceeds it, option a dies. Redundant with an intra-question tell: three of four options share the factor 4, so the general-cargo rate of 4 euros/tonne is recoverable from the distractors alone. Only the rounding convention remains genuinely source-dependent.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q2"
+            ],
+            "ablationLeakDetail": "q2's stem asserts flat class minimums exist, letting the candidate read 200 as a minimum rather than a computed fee; since any computed fee exceeds it, option a dies. Redundant with an intra-question tell: three of four options share the factor 4, so the general-cargo rate of 4 euros/tonne is recoverable from the distractors alone. Only the rounding convention remains genuinely source-dependent.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the minimum is charged in place of the tonnage fee, never added, and a consignment is never charged both. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence moderate) — No sibling constrains the minimum-fee rule. q4 is downstream, not mutual.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "moderate",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q3": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): t1 rates per tonne: general 4, bulk grain 2, refrigerated 9, hazardous 15. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"d\", confidence moderate) — q1 exposes only the general class's rate; one row cannot rank four. The leak is to the world, not the siblings: hazardous tops every real port tariff.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "moderate",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-econ-pt-001-q4": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p4: transhipped cargo is not handled and pays nothing at all; class and tonnage make no difference. Option a now reads clearly; option d is refuted by the source (p2 plus p4), not by a sibling stem. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"a\", confidence high) — Two mechanisms compose. q2's stem stipulates a consignment below the class minimum is still charged, so option d — whether tonnage reaches the lowest figure the tariff lists — is false by sibling fiat with no reference to the source. And q1's stem spends a clause establishing the cargo 'is landed' while assuming a fee is owed; option a is the only option naming landing and its gloss repeats q1's exact verb. Options b and c have no textual footing anywhere in the pack and fall to ordinary plausibility. A candidate holding only these four questions answers q4 without the source.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q2",
+              "gam-econ-pt-001-q1"
+            ],
+            "ablationLeakDetail": "Two mechanisms compose. q2's stem stipulates a consignment below the class minimum is still charged, so option d — whether tonnage reaches the lowest figure the tariff lists — is false by sibling fiat with no reference to the source. And q1's stem spends a clause establishing the cargo 'is landed' while assuming a fee is owed; option a is the only option naming landing and its gloss repeats q1's exact verb. Options b and c have no textual footing anywhere in the pack and fall to ordinary plausibility. A candidate holding only these four questions answers q4 without the source.",
+            "ablationLeakSeverity": "decisive"
+          }
+        },
+        "gam-math-tsi-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): t1 Line B flag 8%, rejection 15%: 5000 x 0.08 = 400 reach the second inspection, 400 x 0.15 = 60 rejected. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"b\", confidence moderate) — No cross-question leak. Defeated instead by its own option set: one pair of rates explains all four options, and only one option is a product of two rates.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "moderate",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-math-tsi-001-q2": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p4: a change of tooling means the figures must be measured again rather than adjusted or carried across. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"a\", confidence moderate) — Nothing bears on it from siblings. Answerable from general methodology: a measured rate describes the process measured.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "moderate",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-math-tsi-001-q3": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p3: neither rate moves with the number of items, so a longer run rejects more items but not a larger share. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"a\", confidence high) — No leak and no source needed: a share is scale-invariant by definition.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-math-tsi-001-q4": {
+          "chosenOption": "c",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p1 defines the flag rate as the share sent on; t1 flag rates 12/8/20/5 per cent, so Line C. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"c\", confidence low) — q1's option set exposes Line B's two rates as {15%, 8%} in some order, pinning one cell and calibrating the magnitude band without ranking. q2's re-measurement answer separately discounts Line D. Four options to roughly three.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-math-tsi-001-q1",
+              "gam-math-tsi-001-q2"
+            ],
+            "ablationLeakDetail": "q1's option set exposes Line B's two rates as {15%, 8%} in some order, pinning one cell and calibrating the magnitude band without ranking. q2's re-measurement answer separately discounts Line D. Four options to roughly three.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-lox-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p1 defines the thermocline as a band of depth across which the temperature falls sharply. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence high) — q3's option set frames the thermocline as a temperature-driven mixing barrier, which is incompatible with this question's optical and chemical distractors. Moot in practice — any candidate who has met the word answers it — but structurally present.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ns-lox-001-q3"
+            ],
+            "ablationLeakDetail": "q3's option set frames the thermocline as a temperature-driven mixing barrier, which is incompatible with this question's optical and chemical distractors. Moot in practice — any candidate who has met the word answers it — but structurally present.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-lox-001-q3": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the surface water cools until the lake turns over and oxygen is carried down, so the winter profile is close to uniform. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"c\", confidence high) — q2's key fixes the thermocline as a temperature-gradient band, which eliminates option d: such a band cannot relocate to the bottom of a winter-isothermal column. Convention-as-constant also fires — q2 supplies a term this question needs and does not define.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ns-lox-001-q2"
+            ],
+            "ablationLeakDetail": "q2's key fixes the thermocline as a temperature-gradient band, which eliminates option d: such a band cannot relocate to the bottom of a winter-isothermal column. Convention-as-constant also fires — q2 supplies a term this question needs and does not define.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ns-lox-001-q4": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p4: both profiles were recorded at dawn, the daily oxygen minimum, so a midday reading cannot be set against them without allowing for the hour. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"b\", confidence low) — q3 treats a single season's profile as interpretable in isolation, eliminating option d. The residual b-versus-c contest is genuinely source-dependent but poorly discriminated: c is scientifically correct on its own terms and the stem does not settle whether the comparison spans the whole profile.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-ns-lox-001-q3"
+            ],
+            "ablationLeakDetail": "q3 treats a single season's profile as interpretable in isolation, eliminating option d. The residual b-versus-c contest is genuinely source-dependent but poorly discriminated: c is scientifically correct on its own terms and the stem does not settle whether the comparison spans the whole profile.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-ss-ca-001-q1": {
+          "chosenOption": "b",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): t1 agreement rates 91/74/88/83 per cent; lowest is Pair 2. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"a\", confidence low) — Clean, and the strongest item in the set. Neither surviving sibling carries a number, a pair identifier or a rank; q4's hypothetical names no pair. This is what the q3 retirement was meant to achieve and it achieved it.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-ca-001-q2": {
+          "chosenOption": "c",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the frame directs the coder to the category named earliest and to record the answer as contested. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"c\", confidence moderate) — No leak. Largely answerable from general methods knowledge: mutual exclusivity forbids double-coding and category-balancing.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "c",
+            "ablationConfidence": "moderate",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        },
+        "gam-ss-ca-001-q4": {
+          "chosenOption": "a",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p4: a coder who has seen the other’s decisions is no longer coding independently and the figure is not an agreement rate at all. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"a\", confidence high) — No leak, but one adverse interaction: if q2 establishes that problem cases are flagged and reported, a candidate is pulled toward this question’s option c, which is wrong. A fairness defect rather than leakage, and not scored as such.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-13",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "a",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-computational-sciences-cache-policy-001": "dfae87a0f2da41230c310afb1a50aeb4",
+        "gam-economics-port-tariff-001": "20c6a6aa1c120f131a9fef9b1c648264",
+        "gam-mathematics-two-stage-inspection-001": "9c5e7cc3a9528a2758551563e39d267f",
+        "gam-natural-sciences-lake-oxygen-001": "6e18857d0e1ac64391d72e1c741631c1",
+        "gam-social-sciences-coding-agreement-001": "03bd8c299440d42ea61e2af8e46c8afc"
+      },
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "packContributions": {},
+      "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 performed the ablation and Claude Sonnet 5 the blind re-answer. That is stronger independence than one model doing both — Opus is the pack author’s own model, so Sonnet agreeing with a key is a genuine cross-model check rather than a model agreeing with itself. The blind half agreed with the key on 17 of 17 questions, with exactlyOneDefensibleOption true on all 17. Where the halves differ they differ about mechanism, not answer: the blind half judged economics q4’s option d refuted by the source, while the ablation half judged it also refuted by q2’s stem without any source. Both can hold at once, and it is the ablation finding that gates. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
+    },
+    {
+      "id": "independent-2026-11-18",
+      "kind": "independent",
+      "countsAsIndependentReview": true,
+      "status": "complete",
+      "adjudicator": {
+        "identity": "independent-adjudication-round-1",
+        "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+        "kind": "model",
+        "independentOfAuthor": true
+      },
+      "adjudicatedAt": "2026-11-18",
+      "questions": {
+        "gam-econ-pt-001-q1": {
+          "chosenOption": "d",
+          "dependency": "source-determined",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": true,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": false,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p3 rounds a part tonne up, so 120.4 becomes 121; t1 gives general cargo 4 euros per tonne; 121 x 4 = 484, which is above the 200 class minimum so the tonnage fee stands. Full ablation (Claude Opus 5 (ablation, source withheld)): not-determinable without the pack (would have chosen \"d\", confidence low) — Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "not-determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "low",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q1 (intra-question self-disclosure)",
+              "gam-econ-pt-001-q2"
+            ],
+            "ablationLeakDetail": "Two compounding mechanisms, both unchanged by the withdrawal of q4. (1) INTRA-QUESTION NUMERIC RECONSTRUCTION: 481.60 divided by the stem tonnage of 120.4 is exactly 4.00, and it is the only option that divides to a round figure, so the undisclosed general-cargo rate is recoverable from the option set alone. Three of the four options are the same rate under three roundings — 480 = 120 x 4, 481.60 = 120.4 x 4, 484 = 121 x 4 — so the tariff row the item is meant to test is handed over, leaving only the rounding rule to be read. (2) q2 stem presupposition plus doctrinal coupling: q2 asserts the per-class minimum regime, and with the rate recovered as 4 the tonnage fee is far above a 200 floor, so option a falls without the source. The two compound, because eliminating 200 is only valid once the rate is known. Narrowing rather than decisive: no sibling fixes the rounding convention, which is the residual discriminator.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q2": {
+          "chosenOption": "b",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): p2: the minimum is charged in place of the tonnage fee, never added, and a consignment is never charged both. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"b\", confidence high) — The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "b",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": true,
+            "ablationLeakedBy": [
+              "gam-econ-pt-001-q1"
+            ],
+            "ablationLeakDetail": "The coupling partly moved rather than disappearing. q1 option a, a flat 200 euros offered as a complete handling fee, is the only one of q1 options that is not a product of 120.4 at a round rate, so it reads as a flat class floor standing alone as the whole charge. That structurally endorses this item option b over option c, under which no bare flat figure could ever be a complete fee. Weak, since it depends on reading an unkeyed sibling distractor as well formed. The larger problem is not leakage: this item own stem supplies the word minimum and the phrase less than the minimum for its class, so it is settled by the meaning of the word.",
+            "ablationLeakSeverity": "narrowing"
+          }
+        },
+        "gam-econ-pt-001-q3": {
+          "chosenOption": "d",
+          "dependency": "source-supported",
+          "requiresOutsideKnowledge": false,
+          "sourceMateriallyContributes": true,
+          "contributionTypes": [],
+          "requiresApplication": false,
+          "exactlyOneDefensibleOption": true,
+          "recognitionNotTransfer": true,
+          "requiresPackData": null,
+          "requiresPackReasoning": null,
+          "rationale": "Blind re-answer (Claude Sonnet 5 (blind re-answer, key withheld), confidence high): t1 rate per tonne: general 4, bulk grain 2, refrigerated 9, hazardous 15. Full ablation (Claude Opus 5 (ablation, source withheld)): determinable without the pack (would have chosen \"d\", confidence high) — No sibling transfers a value, ranking, constraint or principle. q1 discloses one cell of the rate table but a single cell cannot settle an argmax over four classes. Clean of leakage, and nonetheless the weakest item in the pack: universal port practice puts dangerous goods at the top of every tariff, so it is answerable from world knowledge with no source at all.",
+          "adjudicator": {
+            "identity": "independent-adjudication-round-1",
+            "model": "Claude Opus 5 (ablation, source withheld) (full ablation) + Claude Sonnet 5 (blind re-answer, key withheld) (blind re-answer)",
+            "kind": "model",
+            "independentOfAuthor": true
+          },
+          "adjudicatedAt": "2026-11-18",
+          "evidence": {
+            "ablationVerdict": "determinable",
+            "ablationWouldChoose": "d",
+            "ablationConfidence": "high",
+            "blindConfidence": "high",
+            "ablationLeaks": false,
+            "ablationLeakedBy": [],
+            "ablationLeakDetail": "",
+            "ablationLeakSeverity": "none"
+          }
+        }
+      },
+      "adjudicatedContent": {
+        "gam-economics-port-tariff-001": "ca8e33486cd45a509ef551abb95051be"
+      },
+      "method": "Two separate adjudicators, neither shown the answer key, the explanations, the refutations or the prior self-adjudication. The ablation adjudicator saw stems and options only; the blind adjudicator saw the packs and questions only. The pack author combined their outputs mechanically and made no judgement of its own. The content hash of every pack as adjudicated is recorded on the round; if any of them is edited afterwards the round stops counting.",
+      "packContributions": {},
+      "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 ablated and Claude Sonnet 5 re-answered blind. That is stronger independence than one model doing both, since Opus is the pack author’s own model. The blind half agreed with the key on 3 of 3, with exactly one defensible option on all three. The ablation half found that withdrawing gam-econ-pt-001-q4 removed that question’s leaks and nothing else: both findings previously recorded against q1 are intact, and a new weak coupling now runs q1 to q2. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
     }
   ]
 }

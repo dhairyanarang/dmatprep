@@ -20,7 +20,17 @@
 
 export const FS_CONTRACT = {
   allowed: {
-    movementTypes: ['linear', 'diagonal', 'border', 'direction-cycle'],
+    /**
+     * `direction-cycle` was here and should not have been. `allowed` means
+     * stated in the rules or demonstrated in a worked exercise, and a symbol
+     * that changes its direction of travel every step is neither: the official
+     * rule list names colour change, rotation about the symbol's own axis,
+     * vertical/horizontal/diagonal movement, x+1 acceleration, and bouncing off
+     * or travelling along a boundary. Nothing else. It also sat badly beside
+     * this contract's own `forbidden` entry for a mid-sequence switch from one
+     * movement type to another. See docs/DIRECTION_CYCLE.md.
+     */
+    movementTypes: ['linear', 'diagonal', 'border'],
     /** Every official linear/diagonal example moves "one field at a time". */
     linearSteps: [1, 'x+1'],
     diagonalSteps: [1, 'x+1'],
@@ -55,6 +65,7 @@ export const FS_CONTRACT = {
     'a mid-sequence switch from one movement type to another',
     'shown matrices admitting more than one legal continuation',
     'a colour cycle whose colours are not all visible in the shown matrices',
+    'a symbol that cycles through directions of travel (`direction-cycle`)',
   ],
 }
 
@@ -72,11 +83,25 @@ export const FS_CONTRACT = {
  */
 export function figureRuleContractErrors(rule) {
   const errors = []
-  const { allowed } = FS_CONTRACT
+  const { allowed, review } = FS_CONTRACT
   const move = rule.movement
 
   if (!allowed.movementTypes.includes(move.type)) {
-    errors.push(`movement type "${move.type}" is not an allowed mechanic`)
+    // `static` is the one REVIEW movement the generator may emit, and only in
+    // the shape the official material attests: Exercises 3 and 6 each carry a
+    // rotation clause with no movement clause, so a symbol that holds its cell
+    // and turns is demonstrated. A static symbol that does NOT turn is not a
+    // rule at all — it is a symbol with nothing to read — so the rotation is
+    // required, not optional. Being REVIEW rather than ALLOWED, every item
+    // carrying one rolls up to `reasonable_extrapolation`; see
+    // scripts/lib/provenance.mjs, which enforces that from the question itself.
+    if (move.type === 'static' && review.staticRotatingSymbol) {
+      if (rule.rotation?.type !== 'rotate') {
+        errors.push('a static symbol must rotate; one that does nothing carries no readable rule')
+      }
+    } else {
+      errors.push(`movement type "${move.type}" is not an allowed mechanic`)
+    }
   }
   if (move.type === 'linear' && !allowed.linearSteps.includes(move.step)) {
     errors.push(`linear movement at step ${move.step}; only 1 and x+1 are attested`)
@@ -86,9 +111,6 @@ export function figureRuleContractErrors(rule) {
   }
   if (move.type === 'border' && !allowed.borderSteps.includes(move.step)) {
     errors.push(`border travel at step ${move.step}; only 1, 2 and x+1 are attested`)
-  }
-  if (move.type === 'direction-cycle' && move.step !== 1) {
-    errors.push(`direction cycle at step ${move.step}; every official instance moves one field`)
   }
 
   if (rule.rotation.type === 'rotate') {

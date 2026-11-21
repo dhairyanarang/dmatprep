@@ -1,0 +1,771 @@
+{
+ "generatedAt": "2026-11-13T18:46:26.277Z",
+ "totalQuestions": 473,
+ "exactContentDuplicates": [],
+ "identicalExplanations": [
+  [
+   "me-low-005",
+   "me-low-015",
+   "me-low-b3-001",
+   "me-low-b4-004",
+   "me-low-b5-001",
+   "me-low-b5-004",
+   "me-low-b5-010",
+   "me-low-b8-001",
+   "me-low-b8-012",
+   "me-medium-b8-007"
+  ],
+  [
+   "me-low-008",
+   "me-low-012",
+   "me-low-b2-001",
+   "me-medium-b2-003",
+   "me-low-b4-005",
+   "me-low-b5-007",
+   "me-medium-b5-003",
+   "me-medium-b5-022",
+   "me-low-b8-005",
+   "me-low-b8-006",
+   "me-low-b8-008",
+   "me-low-b8-010",
+   "me-medium-b8-003"
+  ],
+  [
+   "me-medium-002",
+   "me-medium-004",
+   "me-medium-006",
+   "me-medium-012",
+   "me-medium-014",
+   "me-low-b2-002",
+   "me-low-b4-002",
+   "me-low-b5-003",
+   "me-low-b5-005",
+   "me-low-b5-006",
+   "me-low-b5-018",
+   "me-low-b5-019",
+   "me-low-b5-023",
+   "me-low-b5-024",
+   "me-medium-b5-002",
+   "me-medium-b5-005",
+   "me-medium-b5-026",
+   "me-high-b5-034",
+   "me-low-b8-002",
+   "me-low-b8-011",
+   "me-low-b9-001"
+  ],
+  [
+   "me-medium-005",
+   "me-medium-009",
+   "me-medium-010",
+   "me-low-b4-003",
+   "me-low-b5-015",
+   "me-low-b5-017",
+   "me-low-b5-022",
+   "me-low-b5-027",
+   "me-low-b5-031",
+   "me-medium-b5-015",
+   "me-medium-b5-021",
+   "me-medium-b5-028",
+   "me-high-b5-005",
+   "me-low-b8-007",
+   "me-low-b8-009"
+  ],
+  [
+   "me-medium-013",
+   "me-medium-015",
+   "me-medium-b4-004",
+   "me-low-b5-012",
+   "me-low-b5-016",
+   "me-medium-b5-004",
+   "me-medium-b5-032",
+   "me-high-b5-004",
+   "me-high-b5-024",
+   "me-medium-b8-006"
+  ],
+  [
+   "me-high-001",
+   "me-high-005",
+   "me-high-006",
+   "me-high-007",
+   "me-high-010",
+   "me-high-013",
+   "me-high-b2-003",
+   "me-high-b4-001",
+   "me-high-b5-001",
+   "me-high-b5-006",
+   "me-high-b5-009",
+   "me-high-b5-010",
+   "me-high-b5-017",
+   "me-high-b5-020",
+   "me-high-b5-023",
+   "me-high-b5-025",
+   "me-high-b5-028",
+   "me-high-b5-030",
+   "me-high-b5-033",
+   "me-high-b8-001"
+  ],
+  [
+   "me-high-002",
+   "me-high-003",
+   "me-high-004",
+   "me-high-011",
+   "me-high-012",
+   "me-high-015",
+   "me-low-b2-004",
+   "me-medium-b2-005",
+   "me-medium-b4-002",
+   "me-low-b5-009",
+   "me-low-b5-013",
+   "me-low-b5-021",
+   "me-low-b5-029",
+   "me-low-b5-030",
+   "me-low-b5-032",
+   "me-medium-b5-024",
+   "me-medium-b5-027",
+   "me-high-b5-027",
+   "me-low-b8-003"
+  ],
+  [
+   "me-high-009",
+   "me-high-b2-001",
+   "me-high-b2-002",
+   "me-medium-b4-001",
+   "me-high-b4-003",
+   "me-low-b5-011",
+   "me-low-b5-025",
+   "me-low-b5-026",
+   "me-low-b5-028",
+   "me-medium-b5-010",
+   "me-medium-b5-013",
+   "me-medium-b5-020",
+   "me-medium-b5-029",
+   "me-medium-b5-031",
+   "me-high-b5-011",
+   "me-high-b5-019",
+   "me-high-b5-021",
+   "me-medium-b8-001"
+  ],
+  [
+   "me-high-014",
+   "me-high-b4-002",
+   "me-high-b4-004",
+   "me-low-b5-033",
+   "me-medium-b5-008",
+   "me-high-b5-012",
+   "me-high-b5-016",
+   "me-high-b5-018",
+   "me-low-b8-004"
+  ],
+  [
+   "me-medium-b2-001",
+   "me-medium-b4-003",
+   "me-medium-b4-005",
+   "me-medium-b5-007",
+   "me-medium-b5-018",
+   "me-medium-b5-023"
+  ],
+  [
+   "me-high-b2-004",
+   "me-high-b2-005",
+   "me-high-b4-005",
+   "me-high-b5-002",
+   "me-high-b5-003",
+   "me-high-b5-015",
+   "me-high-b5-022",
+   "me-high-b5-031"
+  ],
+  [
+   "me-low-b5-008",
+   "me-medium-b5-016"
+  ],
+  [
+   "me-low-b5-014",
+   "me-medium-b5-014",
+   "me-high-b5-014",
+   "me-high-b5-032",
+   "me-medium-b8-004"
+  ],
+  [
+   "me-low-b5-020",
+   "me-medium-b5-012",
+   "me-medium-b5-030",
+   "me-medium-b8-002",
+   "me-medium-b8-005"
+  ],
+  [
+   "me-medium-b5-001",
+   "me-medium-b5-025"
+  ],
+  [
+   "me-medium-b5-006",
+   "me-medium-b5-009",
+   "me-medium-b5-011",
+   "me-medium-b5-017",
+   "me-medium-b5-019",
+   "me-medium-b5-033"
+  ],
+  [
+   "me-high-b5-007",
+   "me-high-b5-008"
+  ],
+  [
+   "me-high-b5-013",
+   "me-high-b5-026",
+   "me-high-b5-029"
+  ],
+  [
+   "ls-low-001",
+   "ls-low-011",
+   "ls-low-012",
+   "ls-low-b2-004",
+   "ls-low-b4-004",
+   "ls-low-b5-002"
+  ],
+  [
+   "ls-low-002",
+   "ls-low-b2-001",
+   "ls-low-b4-003",
+   "ls-low-b5-003",
+   "ls-low-b5-004"
+  ],
+  [
+   "ls-low-003",
+   "ls-low-004",
+   "ls-low-005",
+   "ls-low-006",
+   "ls-low-b4-001",
+   "ls-low-b4-005",
+   "ls-low-b5-001",
+   "ls-low-b5-005",
+   "ls-low-b5-007",
+   "ls-low-b5-010",
+   "ls-low-b5-011",
+   "ls-low-b5-013"
+  ],
+  [
+   "ls-low-007",
+   "ls-low-015"
+  ],
+  [
+   "ls-low-008",
+   "ls-low-014",
+   "ls-low-b2-003",
+   "ls-low-b5-006"
+  ],
+  [
+   "ls-low-010",
+   "ls-low-013",
+   "ls-low-b2-005",
+   "ls-low-b4-002",
+   "ls-low-b5-009",
+   "ls-low-b5-012"
+  ],
+  [
+   "ls-medium-001",
+   "ls-medium-007",
+   "ls-medium-010",
+   "ls-medium-b2-005",
+   "ls-medium-b5-007",
+   "ls-medium-b5-011",
+   "ls-medium-b5-016",
+   "ls-medium-b5-017"
+  ],
+  [
+   "ls-medium-002",
+   "ls-medium-012",
+   "ls-medium-013",
+   "ls-medium-b2-002",
+   "ls-medium-b2-004",
+   "ls-medium-b4-003",
+   "ls-medium-b5-005"
+  ],
+  [
+   "ls-medium-003",
+   "ls-medium-b5-009",
+   "ls-medium-b5-012",
+   "ls-medium-b5-014"
+  ],
+  [
+   "ls-medium-004",
+   "ls-medium-006",
+   "ls-medium-b4-002"
+  ],
+  [
+   "ls-medium-005",
+   "ls-medium-b4-001",
+   "ls-medium-b5-002",
+   "ls-medium-b5-015"
+  ],
+  [
+   "ls-medium-008",
+   "ls-medium-011",
+   "ls-medium-014",
+   "ls-medium-015",
+   "ls-medium-b2-001",
+   "ls-medium-b2-003",
+   "ls-medium-b5-003",
+   "ls-medium-b5-008",
+   "ls-medium-b5-018"
+  ],
+  [
+   "ls-medium-009",
+   "ls-medium-b5-006",
+   "ls-medium-b5-013"
+  ],
+  [
+   "ls-high-001",
+   "ls-high-b5-002",
+   "ls-high-b5-003"
+  ],
+  [
+   "ls-high-002",
+   "ls-high-008"
+  ],
+  [
+   "ls-high-003",
+   "ls-high-b4-002",
+   "ls-high-b5-005",
+   "ls-high-b5-013"
+  ],
+  [
+   "ls-high-004",
+   "ls-high-006",
+   "ls-high-b5-012"
+  ],
+  [
+   "ls-high-005",
+   "ls-high-010",
+   "ls-high-011",
+   "ls-high-013",
+   "ls-high-b2-001",
+   "ls-high-b2-003",
+   "ls-high-b5-001",
+   "ls-high-b5-004",
+   "ls-high-b5-009"
+  ],
+  [
+   "ls-high-007",
+   "ls-high-b5-008",
+   "ls-high-b5-011",
+   "ls-high-b5-017"
+  ],
+  [
+   "ls-high-009",
+   "ls-high-b2-002",
+   "ls-high-b4-003"
+  ],
+  [
+   "ls-high-012",
+   "ls-high-b2-004",
+   "ls-high-b5-014",
+   "ls-high-b5-015",
+   "ls-high-b5-016"
+  ],
+  [
+   "ls-high-014",
+   "ls-high-015"
+  ],
+  [
+   "ls-low-b2-002",
+   "ls-low-b5-008"
+  ],
+  [
+   "ls-high-b2-005",
+   "ls-high-b4-005"
+  ],
+  [
+   "ls-medium-b4-004",
+   "ls-medium-b5-004",
+   "ls-medium-b5-010",
+   "ls-medium-b5-019"
+  ],
+  [
+   "ls-high-b4-004",
+   "ls-high-b5-006",
+   "ls-high-b5-007",
+   "ls-high-b5-018"
+  ]
+ ],
+ "identicalPayloads": [],
+ "structuralFingerprintGroups": [
+  {
+   "fingerprint": "6c7f552e2bca9c08",
+   "ids": [
+    "ls-low-001",
+    "ls-low-004",
+    "ls-low-005"
+   ]
+  },
+  {
+   "fingerprint": "405164db28f5c247",
+   "ids": [
+    "ls-low-009",
+    "ls-low-014",
+    "ls-low-015"
+   ]
+  }
+ ],
+ "nearIdenticalProse": [
+  {
+   "a": "me-low-005",
+   "b": "me-low-015",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b3-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b4-004",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b5-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b5-004",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b5-010",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b8-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-low-b8-012",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-005",
+   "b": "me-medium-b8-007",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-012",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b2-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-medium-b2-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b4-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b5-007",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-medium-b5-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-medium-b5-022",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b8-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b8-006",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b8-008",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-low-b8-010",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-008",
+   "b": "me-medium-b8-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b2-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-medium-b2-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b4-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b5-007",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-medium-b5-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-medium-b5-022",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b8-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b8-006",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b8-008",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-low-b8-010",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-012",
+   "b": "me-medium-b8-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b3-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b4-004",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b5-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b5-004",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b5-010",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b8-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-low-b8-012",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-low-015",
+   "b": "me-medium-b8-007",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-004",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-006",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-012",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-014",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b2-002",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b4-002",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-003",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-006",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-018",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-019",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-023",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b5-024",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-b5-002",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-b5-005",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-medium-b5-026",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-high-b5-034",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b8-002",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b8-011",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  },
+  {
+   "a": "me-medium-002",
+   "b": "me-low-b9-001",
+   "jaccard": 1,
+   "section": "mathematical-equations"
+  }
+ ],
+ "crossSectionIdReuse": []
+}

@@ -46,33 +46,51 @@ function FigureSequenceView({
   return (
     <div className="space-y-6">
       <div>
-        <p className="text-muted-foreground mb-3 text-sm">
+        <p className="mb-3 max-w-[560px] text-base leading-[22px] font-semibold">
           Continue the sequence. Work out what the fifth and sixth matrices look like.
         </p>
-        {/* Three-up on phones so all six panels are visible at once; the whole
-            point of the task is comparing them, so horizontal scrolling here
-            actively gets in the way. */}
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+        {/*
+          The prototype's `.fseq`: a wrapping flex row of fixed 96px cells with
+          a 12px gap and a mono caption under each, NOT a six-column grid.
+
+          The difference is the whole fix. A `grid-cols-6` stretched every
+          matrix to whatever a sixth of the column happened to be, so the
+          sequence grew with the page and dominated the question — and it grew
+          again whenever the layout got wider. A fixed cell that wraps is the
+          same size everywhere and leaves the options room to breathe.
+
+          76px below `sm` keeps all six legible on a phone without a sideways
+          scroll, which is what the old three-up grid was protecting.
+        */}
+        <div
+          className="flex flex-wrap gap-3"
+          role="group"
+          aria-label="Four matrices in a sequence, then two missing"
+        >
           {question.given.map((panel, i) => (
-            <FigureMatrix
-              key={i}
-              panel={panel}
-              rows={question.grid.rows}
-              cols={question.grid.cols}
-              title={`Matrix ${i + 1}`}
-              className="max-w-none"
-            />
+            <figure key={i} className="m-0 flex flex-col items-center gap-1">
+              <FigureMatrix
+                panel={panel}
+                rows={question.grid.rows}
+                cols={question.grid.cols}
+                title={`Matrix ${i + 1}`}
+                className="w-[76px] max-w-none sm:w-24"
+              />
+              <figcaption className="text-muted-foreground font-mono text-[10px]">
+                {i + 1}
+              </figcaption>
+            </figure>
           ))}
-          <FigureUnknown
-            rows={question.grid.rows}
-            cols={question.grid.cols}
-            className="max-w-none"
-          />
-          <FigureUnknown
-            rows={question.grid.rows}
-            cols={question.grid.cols}
-            className="max-w-none"
-          />
+          {[5, 6].map((n) => (
+            <figure key={n} className="m-0 flex flex-col items-center gap-1">
+              <FigureUnknown
+                rows={question.grid.rows}
+                cols={question.grid.cols}
+                className="w-[76px] max-w-none sm:w-24"
+              />
+              <figcaption className="text-muted-foreground font-mono text-[10px]">{n}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 
@@ -126,7 +144,7 @@ function MathEquationsView({
 }: Props & { question: Extract<Question, { kind: 'math-equations' }> }) {
   return (
     <div className="space-y-5">
-      <p className="text-muted-foreground text-sm">
+      <p className="max-w-[560px] text-base leading-[22px] font-semibold">
         Find the value of each letter so that all equations are true. Every letter is a whole
         number from 1 to 20.
       </p>
@@ -176,7 +194,7 @@ function LatinSquareView({
 
   return (
     <div className="space-y-5">
-      <p className="text-muted-foreground text-sm">
+      <p className="max-w-[560px] text-base leading-[22px] font-semibold">
         Each letter appears exactly once in every row and every column. Which letter belongs in the
         highlighted cell?
       </p>
@@ -188,7 +206,10 @@ function LatinSquareView({
 
       <fieldset className="space-y-2">
         <legend className="mb-2 text-sm font-medium">Choose the letter</legend>
-        <div className="grid grid-cols-5 gap-2">
+        {/* Square, hand-sized buttons rather than full-width rows: five
+            one-character options read as a keypad, and a row stretched to the
+            measure makes a single letter look like a sentence. */}
+        <div className="flex flex-wrap gap-2">
           {question.options.map((option) => (
             <OptionButton
               key={option.id}
@@ -201,7 +222,7 @@ function LatinSquareView({
               onSelect={() => onSelect('answer', option.id)}
               disabled={submitted}
               label={`Letter ${option.letter}`}
-              className="justify-center"
+              className="h-[52px] min-w-[52px] justify-center px-4"
             >
               <span className="font-mono text-lg font-medium">{option.letter}</span>
             </OptionButton>

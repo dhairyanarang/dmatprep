@@ -1,7 +1,7 @@
 import { AlertTriangle } from 'lucide-react'
 
 import { AllowedList, Section, Stat, StatGrid } from '@/components/exam/visuals'
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 
 export const metadata = { title: 'Exam-Day Rules' }
 
@@ -16,9 +16,9 @@ const CONDUCT = [
 
 export default function ExamRulesPage() {
   return (
-    <PageShell
+    <SubPage
+      title="Exam-day rules"
       description="Most of these carry exclusion as the penalty, with no refund."
-      wide
     >
       <div className="space-y-10">
         <StatGrid>
@@ -89,6 +89,6 @@ export default function ExamRulesPage() {
           </p>
         </Section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }

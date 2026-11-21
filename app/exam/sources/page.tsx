@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 import { Badge } from '@/components/ui/badge'
 import { SOURCES, type SourceId } from '@/content/exam/sources'
 import { buildLedger } from '@/lib/content/ledger'
@@ -13,7 +13,8 @@ export default function ExamSourcesPage() {
   const { bySource, flagged } = buildLedger()
 
   return (
-    <PageShell
+    <SubPage
+      title="Sources"
       description="Every factual claim in this hub traces to an official g.a.s.t. or APS India document. This page is generated from the content itself, so it cannot drift out of date."
     >
       <div className="space-y-10">
@@ -135,6 +136,6 @@ export default function ExamSourcesPage() {
           </p>
         </section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }

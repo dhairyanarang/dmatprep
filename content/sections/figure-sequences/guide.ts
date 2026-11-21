@@ -16,8 +16,12 @@ export const guide: SectionGuide = {
     { type: 'heading', text: 'What one item looks like' },
     { type: 'diagram', kind: 'fs-anatomy' },
     {
-      type: 'quote',
-      text: 'The figures in the matrices can change their position, colour, and/or orientation from one matrix to the next according to specific rules. It is your task to continue the series logically and to determine what the next two matrices look like.',
+      // Paraphrased, not quoted. See docs/COPYRIGHT_REVIEW.md: the T&Cs forbid
+      // reproducing official material "in any form, including for the purposes
+      // of teaching", so the facts are restated in our own words and the page
+      // is cited for the fact rather than for the wording.
+      type: 'prose',
+      text: 'Between one matrix and the next a symbol may move to a different cell, take a different colour, or face a different way — any of those, or several at once. None of it is arbitrary: each symbol follows a rule that holds for the whole sequence. Work the rules out from the four matrices you are given, then apply them twice to arrive at the fifth and the sixth.',
       sources: [{ id: 'gam-pdf', page: 7 }],
     },
     {
@@ -117,7 +121,12 @@ export const guide: SectionGuide = {
     },
 
     { type: 'heading', text: 'Worked examples' },
-    { type: 'example', questionId: 'fs-low-001', caption: 'One symbol — establish the movement, then apply it twice.' },
-    { type: 'example', questionId: 'fs-medium-001', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
+    // fs-low-001 and fs-medium-001 were retired, so both of these rendered
+    // nothing at all. Their replacements are live, non-quarantined and were
+    // picked to match the captions: fs-low-007 is a single linear mover, and
+    // fs-medium-005 carries two symbols whose rules differ from each other —
+    // one rotates, the other cycles colour — which is the point being taught.
+    { type: 'example', questionId: 'fs-low-007', caption: 'One symbol — establish the movement, then apply it twice.' },
+    { type: 'example', questionId: 'fs-medium-005', caption: 'Several symbols — settle one, then repeat the process for the rest.' },
   ],
 }

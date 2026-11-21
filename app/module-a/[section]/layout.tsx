@@ -1,18 +1,24 @@
 import { notFound } from 'next/navigation'
 
 import { PageContainer } from '@/components/layout/page-shell'
-import { SectionTabs } from '@/components/layout/section-tabs'
-import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
+import { SECTION_IDS, isSectionId } from '@/lib/sections'
 
 export function generateStaticParams() {
   return SECTION_IDS.map((section) => ({ section }))
 }
 
 /**
- * Uses the same container as every other page, so moving from Prepare into a
- * section and on into practice never shifts the content edges. The title and
- * trail come from the shared top bar — the eyebrow that used to say
- * "Module A · Core Module" is now the breadcrumb, which says it once.
+ * The container, and nothing else.
+ *
+ * It used to own the subtest's heading, its description and an
+ * Overview/Practice tab strip, which every screen below inherited whether it
+ * wanted them or not. Practice did not: the two tabs were a second navigation
+ * for a decision the landing page had already taken, and the heading block
+ * pushed the first question most of a screen down. Both are gone, so the
+ * heading now belongs to the screen that wants one — Learn the rules — and
+ * Practice opens on the question control bar.
+ *
+ * The breadcrumb still names the subtest on both, so nothing lost its label.
  */
 export default async function SectionLayout({
   children,
@@ -21,20 +27,5 @@ export default async function SectionLayout({
   const { section } = await params
   if (!isSectionId(section)) notFound()
 
-  const meta = SECTION_BY_ID[section]
-
-  return (
-    <PageContainer className="py-6">
-      <p className="text-muted-foreground mb-4 max-w-prose text-sm leading-relaxed text-pretty">
-        {meta.oneLiner}{' '}
-        <span className="whitespace-nowrap">
-          In the exam: {meta.officialTiming.minutes} minutes for {meta.officialTiming.items} items.
-        </span>
-      </p>
-
-      <SectionTabs sectionId={section} />
-
-      <div className="pt-8">{children}</div>
-    </PageContainer>
-  )
+  return <PageContainer className="pt-6 pb-12">{children}</PageContainer>
 }

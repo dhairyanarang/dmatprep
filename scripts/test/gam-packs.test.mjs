@@ -77,11 +77,19 @@ const OUTSTANDING = {
   // Emptied by the §5.10 pass: no question is now answerable with the source
   // removed entirely.
   sourceIndependent: [],
-  // All three are the same coupling seen from three sides — q3 asks which layer
-  // carries the resistance, and q4 and q6 both turn on the answer. Two earlier
-  // and stronger ablation rounds rated it narrowing; this one rated it decisive.
-  // Emptied by the decoupling of 5 September 2026: the engineering pack stopped
-  // asking one fact three times, and the step-rebate cliff became a computation.
+  // Emptied on 18 November 2026 by retiring gam-econ-pt-001-q4.
+  //
+  // It was the only decisive leak, it survived two repair passes, and the
+  // second of those — rewording option a's gloss — imported q1's own verb into
+  // the key and made one of its two legs worse. It is withdrawn rather than
+  // edited a third time. No key was wrong: two independent blind rounds agreed
+  // with it, the second at high confidence with exactly one defensible option.
+  //
+  // The re-ablation of the three survivors confirms what the withdrawal did and
+  // did not do: it removed q4's leaks and nothing else. q1 still carries both
+  // of its previously recorded narrowing findings, and a new weak coupling now
+  // runs q1 to q2. Those are narrowing, so they belong in the flags rather than
+  // here — but the pack is not fixed, and the re-authoring proposal says so.
   decisiveLeaks: [],
   // §5.10 is satisfied at pack level everywhere but here, where the adjudicator
   // credited the pack with one stipulated convention that one question applies,

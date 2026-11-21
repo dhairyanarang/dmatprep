@@ -71,3 +71,117 @@ export const allPackQuestions = (): { pack: SourcePack; questions: GamQuestion[]
  * Everything else about how a session behaves here is product behaviour.
  */
 export const GAM_TOTAL_MINUTES = 90
+
+/* ------------------------------------------------------- the answer split */
+
+/**
+ * Fields that answer a GAM question, and must not reach a candidate who has
+ * not submitted.
+ *
+ * Module A solved this by serving `getPublicQuestions` and fetching the
+ * solution half as a static asset. GAM is split differently and more strictly,
+ * because it can be: Module A marks each question as it is answered, so it
+ * needs the key in the browser from the first paint. A GAM session is marked
+ * only when it is submitted, so the key is fetched at that moment — from
+ * `POST /api/module-b/mark` — and before it nothing that answers a question has
+ * been sent at all.
+ *
+ * `computation` is here and it is easy to miss: `computation.expected` IS the
+ * answer, in a field whose name does not say so. `supportSpans` quotes the
+ * exact lines the key rests on, which hands over the reasoning even where it
+ * does not hand over the letter. `hints` deliberately stay public — they are
+ * pre-answer content by design, and the pack validator already rejects a hint
+ * that contains its answer.
+ */
+export const GAM_SOLUTION_KEYS = [
+  'correctOptionId',
+  'explanation',
+  'refutations',
+  'supportSpans',
+  'computation',
+] as const
+
+export type GamSolutionKey = (typeof GAM_SOLUTION_KEYS)[number]
+
+/** A GAM question as a candidate first meets it: everything but the answer. */
+export type PublicGamQuestion = Omit<GamQuestion, GamSolutionKey>
+
+export type PublicGamPackFile = { pack: SourcePack; questions: PublicGamQuestion[] }
+
+/** The reveal half of one question, keyed by question id. */
+export type GamSolutionEntry = Pick<GamQuestion, GamSolutionKey>
+
+function stripGamSolution(question: GamQuestion): PublicGamQuestion {
+  const copy = { ...question } as Record<string, unknown>
+  for (const key of GAM_SOLUTION_KEYS) delete copy[key]
+  return copy as unknown as PublicGamQuestion
+}
+
+/**
+ * The source pack, rebuilt field by field.
+ *
+ * An ALLOWLIST, not a strip, and the difference was load-bearing: three packs
+ * carry `provenance.retiredQuestions`, each holding a retired question's full
+ * record — key, explanation, refutations and all. That field is not in
+ * `SourcePack` at all. It rides into the product through the
+ * `as unknown as GamPackFile[]` cast above, so no type error and no
+ * denylist of known answer fields would ever have caught it, and it was being
+ * serialised into every page that showed the pack.
+ *
+ * Listing what the interface may have means the next undeclared field added to
+ * a pack JSON stays out by default instead of leaking by default.
+ */
+function publicPack(pack: SourcePack): SourcePack {
+  return {
+    id: pack.id,
+    domain: pack.domain,
+    title: pack.title,
+    blocks: pack.blocks,
+    defines: pack.defines,
+    provenance: {
+      originality: pack.provenance.originality,
+      draftedBy: pack.provenance.draftedBy,
+      reviewStatus: pack.provenance.reviewStatus,
+      reviewedBy: pack.provenance.reviewedBy,
+      reviewedAt: pack.provenance.reviewedAt,
+      notes: pack.provenance.notes,
+    },
+    contentHash: pack.contentHash,
+  }
+}
+
+/** What the two runner pages serve. Never `getPacks()` — that carries answers. */
+export const getPublicPacks = (): PublicGamPackFile[] =>
+  ACTIVE.map((f) => ({ pack: publicPack(f.pack), questions: f.questions.map(stripGamSolution) }))
+
+export const getPublicPack = (id: string): PublicGamPackFile | undefined => {
+  const file = getPack(id)
+  return file
+    ? { pack: publicPack(file.pack), questions: file.questions.map(stripGamSolution) }
+    : undefined
+}
+
+/**
+ * The answer halves for the named packs, for the marking route only.
+ *
+ * Unknown pack ids are ignored rather than refused: the caller is a browser
+ * reporting which packs it just sat, and an id that no longer exists is a
+ * stale draft, not an attack worth a different status code.
+ */
+export function getGamSolutions(packIds: string[]): Record<string, GamSolutionEntry> {
+  const wanted = new Set(packIds)
+  const out: Record<string, GamSolutionEntry> = {}
+  for (const file of ACTIVE) {
+    if (!wanted.has(file.pack.id)) continue
+    for (const q of file.questions) {
+      out[q.id] = {
+        correctOptionId: q.correctOptionId,
+        explanation: q.explanation,
+        refutations: q.refutations,
+        supportSpans: q.supportSpans,
+        computation: q.computation,
+      }
+    }
+  }
+  return out
+}

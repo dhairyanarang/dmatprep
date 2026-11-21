@@ -243,6 +243,20 @@ function createLocalStorageStore() {
       queue({ userState: true })
     },
 
+    toggleBookmark(questionId: string) {
+      const current = read()
+      const bookmarks = { ...(current.bookmarks ?? {}) }
+      const next = !bookmarks[questionId]
+      // Removed rather than set false, so the map stays the set of what IS
+      // bookmarked and does not grow by one key per question ever un-starred.
+      if (next) bookmarks[questionId] = true
+      else delete bookmarks[questionId]
+      write({ ...current, bookmarks })
+      // Not queued for the cloud: there is no column for it yet. See the note
+      // on `bookmarks` in lib/types/progress.ts.
+      return next
+    },
+
     setKeyDates(dates: KeyDate[]) {
       const current = read()
       write({ ...current, keyDates: dates })

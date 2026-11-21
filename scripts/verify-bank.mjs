@@ -69,6 +69,7 @@ console.log(
 let totalFailures = fixtureFailures
 let totalChecked = 0
 let totalWarnings = 0
+let totalQuarantined = 0
 const warningLines = []
 
 for (const section of SECTIONS) {
@@ -77,6 +78,8 @@ for (const section of SECTIONS) {
   const ids = new Set()
   const counts = { low: 0, medium: 0, high: 0 }
   let failures = 0
+  let quarantined = 0
+  const quarantineLines = []
   let warned = 0
 
   // An id must never be reused, including by a retired item.
@@ -110,10 +113,26 @@ for (const section of SECTIONS) {
     }
 
     if (errors.length) {
-      failures++
-      totalFailures++
-      console.error(`✗ ${q.id}`)
-      for (const e of errors) console.error(`    ${e}`)
+      if (q.meta?.quarantined) {
+        // Quarantined questions are knowingly non-conforming — that is what
+        // quarantine means — and `getQuestions` never serves them. Their errors
+        // are still printed, because silence is how a quarantine turns into a
+        // place to hide things, but they do not fail the run: the contract they
+        // breach is the one we deliberately tightened under them.
+        //
+        // The trade-off is real. A genuinely new defect in a quarantined item
+        // lands in this bucket rather than failing the build. That is tolerable
+        // only because nothing reaches a candidate, which the free-set and
+        // registry tests assert separately.
+        quarantined++
+        totalQuarantined++
+        quarantineLines.push(`  ${q.id}: ${errors.join('; ')}`)
+      } else {
+        failures++
+        totalFailures++
+        console.error(`✗ ${q.id}`)
+        for (const e of errors) console.error(`    ${e}`)
+      }
     }
     if (warnings.length) {
       warned++
@@ -126,8 +145,12 @@ for (const section of SECTIONS) {
   const retired = readRetired(section)
   const summary = `${questions.length} items (low ${counts.low}, medium ${counts.medium}, high ${counts.high})${retired.length ? `, ${retired.length} retired` : ''}`
   console.log(
-    `${failures === 0 ? '✓' : '✗'} ${section}: ${summary}${failures ? ` — ${failures} FAILED` : ''}${warned ? ` — ${warned} with warnings` : ''}`,
+    `${failures === 0 ? '✓' : '✗'} ${section}: ${summary}${failures ? ` — ${failures} FAILED` : ''}${warned ? ` — ${warned} with warnings` : ''}${quarantined ? ` — ${quarantined} quarantined, not served` : ''}`,
   )
+  if (quarantineLines.length) {
+    console.log(`  Quarantined (excluded from pools by lib/content/registry.ts):`)
+    for (const line of quarantineLines) console.log(line)
+  }
 }
 
 if (warningLines.length) {
@@ -192,5 +215,8 @@ if (meBank) {
   console.log('  Reported, not enforced: our tiers measure reasoning depth. Re-tiering is a decision.')
 }
 
-console.log(`\n${totalChecked} questions checked, ${totalFailures} failed, ${totalWarnings} warnings.`)
+console.log(
+  `\n${totalChecked} questions checked, ${totalFailures} failed, ${totalWarnings} warnings` +
+    `${totalQuarantined ? `, ${totalQuarantined} quarantined and not served` : ''}.`,
+)
 if (totalFailures > 0) process.exit(1)

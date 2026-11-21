@@ -42,6 +42,7 @@ export function useProgressActions() {
     setPracticeDraft: progressStore.setPracticeDraft,
     clearPracticeDraft: progressStore.clearPracticeDraft,
     toggleMilestone: progressStore.toggleMilestone,
+    toggleBookmark: progressStore.toggleBookmark,
     setKeyDates: progressStore.setKeyDates,
     reset: progressStore.reset,
   }

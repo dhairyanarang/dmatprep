@@ -75,7 +75,7 @@
         }
       ]
     },
-    "contentHash": "c3e1b95dfd642d1db2241298326bd462"
+    "contentHash": "dfae87a0f2da41230c310afb1a50aeb4"
   },
   "questions": [
     {
@@ -247,11 +247,11 @@
         },
         {
           "id": "c",
-          "text": "The figures cannot be compared because the caches hold different numbers of records."
+          "text": "The table gives hit rates but not what a miss costs, so it cannot show which design performs better."
         },
         {
           "id": "d",
-          "text": "A hit rate measured over a single day is too short a period to be used at all."
+          "text": "All four caches sat on one machine, so each design’s figure was affected by the others."
         }
       ],
       "correctOptionId": "b",
@@ -278,13 +278,13 @@
         },
         "c": {
           "blockId": "p3",
-          "family": "right-concept-wrong-scope",
-          "reason": "Differing sizes are a real difference between the four and are not the objection the text raises. It puts the difficulty in the request patterns."
+          "family": "plausible-but-unstated",
+          "reason": "What a miss costs is nowhere in the text. The objection it does raise is that a hit rate belongs to a pairing of cache and traffic, not that a further column is missing."
         },
         "d": {
-          "blockId": "p3",
+          "blockId": "t1",
           "family": "plausible-but-unstated",
-          "reason": "The text records the measurement period without calling it too short, and says the figures would differ under a different pattern rather than a longer one."
+          "reason": "The table records that the four share a machine and the text draws nothing from it. What it says would change the figures is the pattern of requests each cache met."
         }
       },
       "hints": [

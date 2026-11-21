@@ -47,8 +47,52 @@ export type GeneratorStamp = {
  * How well a question's mechanics trace to the official material. See
  * `content/question-authoring/DMAT_QUESTION_AUTHORING_SPEC.md` §0 — an inference
  * never gets promoted to a fact by being useful.
+ *
+ * `dmat_prep_calibration` is for material we authored deliberately whose exact
+ * mechanic or difficulty calibration the official material does not establish.
+ * It is not a weaker `reasonable_extrapolation`: that one claims the official
+ * material supports the reading, this one claims only that we chose it and say
+ * so. Unlike `uncertain` it does not block release, because nothing is being
+ * passed off as documented.
  */
-export type DmatAlignment = 'officially_documented' | 'reasonable_extrapolation' | 'uncertain'
+export type DmatAlignment =
+  | 'officially_documented'
+  | 'reasonable_extrapolation'
+  | 'dmat_prep_calibration'
+  | 'uncertain'
+
+/**
+ * How a claim about the official material is grounded. The same four grades
+ * CLAUDE.md uses for every dMAT fact — `unknown` is never filled with a guess.
+ */
+export type ClaimGrade = 'stated' | 'demonstrated' | 'inferred' | 'unknown'
+
+/**
+ * The four separate claims `dmatAlignment` was conflating into one string.
+ *
+ * It was hardcoded to `officially_documented` in all three generators, so every
+ * question asserted that the exam documents it — including all 175
+ * Mathematical Equations items, whose answer format the official material does
+ * not state at all. Derived now, by `scripts/lib/provenance.mjs`, never
+ * asserted. `dmatAlignment` remains as the conservative roll-up.
+ */
+export type Provenance = {
+  /** What the candidate is shown. */
+  format: ClaimGrade
+  /** The KIND of response. Officially stated as single-choice for every subtest. */
+  answerFormat: ClaimGrade
+  /**
+   * HOW MANY options are offered — a separate claim from the kind, and the one
+   * that is still `unknown` for Mathematical Equations. Knowing an item is
+   * single-choice does not make our four-option form documented.
+   */
+  answerOptionCount: ClaimGrade
+  /** What the item tests, against its section's contract. */
+  mechanics: 'documented' | 'extrapolated' | 'unsupported'
+  originality: 'original-generated'
+  /** Why `mechanics` is not `documented`, when it is not. */
+  mechanicNotes?: string[]
+}
 
 /**
  * A progressive nudge. Level 1 points at where to look, 2 narrows the search, 3
@@ -104,12 +148,29 @@ export type Solution = {
 export type QuestionMeta = {
   patternType: string[]
   skill: string
+  /** The conservative roll-up of `provenance`. Derived, never asserted. */
   dmatAlignment: DmatAlignment
+  /** Optional only for questions predating the provenance split. */
+  provenance?: Provenance
   /** Reasoning steps required to reach the answer, by the subtest's own model. */
   reasoningDepth: number
   /** option key -> the error family that option encodes. */
   distractorTypes: Record<string, string>
   generationNotes?: string
+  /**
+   * Set when an item tests a mechanic we can no longer support from the
+   * official material. A quarantined question stays in the bank and stays
+   * resolvable by id — attempts against it are immutable and must keep
+   * resolving — but `getQuestions` excludes it, so it never reaches a pool
+   * again. This is deliberately not retirement: retirement reserves the id
+   * forever, and if a future re-date of the preparatory PDF documents the
+   * mechanic, lifting a quarantine is a one-line change.
+   */
+  quarantined?: {
+    reason: string
+    /** ISO date the quarantine was applied. */
+    since: string
+  }
 }
 
 type QuestionBase = {
@@ -324,8 +385,39 @@ export type QuestionOf<S extends SectionId> = Extract<Question, { section: S }>
  */
 export type Selection = Record<string, string>
 
-/** An item counts correct only when every required selection is correct. */
+/**
+ * Whether this record carries its answer half.
+ *
+ * Pages serve questions without answers and the solutions are merged back on
+ * the client, so between those two moments — or permanently, for a premium
+ * question an unentitled user asked for — a `Question` can be missing the very
+ * fields that decide correctness.
+ *
+ * Nothing may grade, render a result, or record an attempt for a question that
+ * fails this check. The answer is not wrong; it is not knowable here, and the
+ * two must never be confused.
+ */
+export function hasSolution(question: Question): boolean {
+  if (question.kind === 'figure-sequence') {
+    return (
+      Array.isArray(question.images) &&
+      question.images.length > 0 &&
+      question.images.every((img) => typeof img.correctOptionId === 'string')
+    )
+  }
+  return typeof question.correctOptionId === 'string'
+}
+
+/**
+ * An item counts correct only when every required selection is correct.
+ *
+ * Returns false for a question whose solution is absent, but a caller reaching
+ * that state has already made a mistake: `false` reads as "wrong", and a
+ * withheld solution means "unknown". Check `hasSolution` first and show the
+ * locked state instead — `components/practice/premium-locked.tsx`.
+ */
 export function isCorrect(question: Question, selection: Selection): boolean {
+  if (!hasSolution(question)) return false
   if (question.kind === 'figure-sequence') {
     return question.images.every((img) => selection[img.label] === img.correctOptionId)
   }

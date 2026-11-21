@@ -14,7 +14,7 @@ import { readFileSync } from 'node:fs'
 
 const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8')
 const runner = read('../../components/practice/practice-runner.tsx')
-const sheet = read('../../components/practice/explanation-sheet.tsx')
+const panel = read('../../components/practice/solution-panel.tsx')
 const feedback = read('../../components/practice/feedback-panel.tsx')
 const view = read('../../components/practice/question-view.tsx')
 const timed = read('../../components/practice/timed-runner.tsx')
@@ -23,7 +23,14 @@ const store = read('../../lib/progress/local-storage-store.ts')
 
 describe('practice — the whole filtered bank on one page', () => {
   test('every question in the pool is rendered, not one at a time', () => {
-    assert.match(runner, /pool\.map\(\(question, i\) => \(\s*<QuestionCard/, 'the pool is not mapped over')
+    // `visible` is the pool after the status filter; the card still gets its
+    // number from the pool, so filtering never renumbers a question.
+    assert.match(runner, /visible\.map\(\(question\) => \(\s*<QuestionCard/, 'the pool is not mapped over')
+    assert.match(
+      runner,
+      /position=\{pool\.indexOf\(question\) \+ 1\}/,
+      'a filtered view renumbers the questions',
+    )
     assert.ok(!/const question = pool\[index\]/.test(runner), 'a single-question cursor is back')
     assert.ok(!/\bsetIndex\b/.test(runner), 'the runner still tracks a current index')
   })
@@ -36,11 +43,13 @@ describe('practice — the whole filtered bank on one page', () => {
   })
 
   test('progress is a count, not a position', () => {
-    assert.match(runner, /\{answeredCount\} \/ \{pool\.length\} answered/)
+    assert.match(runner, /answered=\{answeredCount\}/)
+    assert.match(runner, /total=\{pool\.length\}/)
   })
 
   test('the difficulty filter is kept', () => {
-    assert.match(runner, /<FilterBar filter=\{filter\} onChange=\{handleFilter\}/)
+    assert.match(runner, /difficulty=\{filter as DifficultyFilter\}/)
+    assert.match(runner, /onDifficulty=\{\(value\) => handleFilter\(value as Filter\)\}/)
     assert.match(runner, /questions\.filter\(\(q\) => q\.difficulty === filter\)/)
   })
 })
@@ -86,59 +95,66 @@ describe('practice — choosing is answering', () => {
   })
 })
 
-describe('practice — the detail opens beside the page', () => {
-  test('See more opens a panel rather than expanding the card', () => {
+describe('practice — hints and the working open beside the page', () => {
+  test('See more and the hint button both open the one panel', () => {
     assert.match(feedback, /See more/)
-    assert.match(runner, /<ExplanationSheet/)
-    assert.match(runner, /setDetailId\(question\.id\)/)
+    assert.match(runner, /<SolutionPanel/)
+    assert.match(runner, /setSelectedId\(question\.id\)/)
+    // The hint trigger opens that same panel. It used to unfold a block inside
+    // the card, which pushed every question below it down the page.
+    assert.match(runner, /<HintTrigger[\s\S]{0,200}onOpen=\{onSeeMore\}/)
+    assert.ok(!/<HintPanel/.test(runner), 'the inline hint block is back')
   })
 
   test('the panel names its question and can be closed', () => {
-    assert.match(sheet, /Question \{position\}/)
-    assert.match(sheet, /onOpenChange=\{\(open\) => !open && onClose\(\)\}/)
+    assert.match(panel, /Q\{String\(position\)\.padStart\(2, '0'\)\}/)
+    assert.match(panel, /aria-label="Close hints and solution"/)
+    assert.match(panel, /event\.key === 'Escape'/, 'Escape does not close the drawer')
   })
 
-  test('the desktop panel is wide enough to read a walkthrough in', () => {
-    // It sat at 384px for a while because the primitive's own
-    // `data-[side=right]:sm:max-w-sm` outranked a bare `sm:` utility. The
-    // override has to carry the data attribute or the width silently reverts.
-    assert.match(
-      sheet,
-      /sm:data-\[side=right\]:max-w-\[min\(768px,60vw\)\]/,
-      'the desktop panel width would lose to the primitive and fall back to 384px',
-    )
+  test('every hint slot is visible, and an unasked one says so', () => {
+    // The prototype shows all three slots, so how much help exists is known
+    // before any of it is spent.
+    assert.match(panel, /Hidden until you ask/)
+    assert.match(panel, /Show hint \{hintsUsed \+ 1\}/)
   })
 
-  test('it becomes a bottom sheet on a narrow screen', () => {
-    assert.match(sheet, /max-sm:data-\[side=right\]:bottom-0/, 'a phone would get a side drawer')
-    assert.match(sheet, /max-sm:data-\[side=right\]:h-\[85dvh\]/)
-    assert.match(sheet, /max-sm:data-\[side=right\]:w-full/)
-    // Every phone override has to carry the data attribute as well as the
-    // breakpoint: the primitive sizes by `data-[side=right]`, so a bare
-    // `max-sm:` utility loses on specificity and the sheet stays a narrow
-    // column. That is a real bug this caught once already.
-    const phoneOverrides = sheet.match(/'max-sm:[^']+'/g) ?? []
-    assert.ok(phoneOverrides.length > 0, 'the phone treatment has gone')
-    for (const line of phoneOverrides) {
-      for (const cls of line.replace(/'/g, '').split(/\s+/)) {
-        assert.match(
-          cls,
-          /^max-sm:data-\[side=right\]:/,
-          `${cls} will lose to the primitive's own data-[side] rule`,
-        )
-      }
-    }
+  test('the working stays locked until the question is answered', () => {
+    assert.match(panel, /Try it first\. The working opens once you answer\./)
+    assert.match(panel, /\{answered \?/)
+  })
+
+  test('the panel steps between questions without closing', () => {
+    assert.match(panel, /onStep\(-1\)/)
+    assert.match(panel, /onStep\(1\)/)
+    assert.match(runner, /onStep=\{stepTo\}/)
+  })
+
+  test('the panel is fixed to the viewport, never in the content column', () => {
+    // An in-flow column left a strip of page between the panel and the edge,
+    // and reserved 420px even when closed. Fixed to the viewport it does
+    // neither. The full placement contract lives in
+    // `prepare-entry-points.test.mjs`.
+    const css = read('../../app/globals.css')
+    // Scoped to the .spanel rule itself: `.sp-h` and `.sp-f` are legitimately
+    // sticky INSIDE the panel, and a looser match reads straight past into them.
+    const rule = /\.spanel \{([\s\S]*?)\n  \}/.exec(css)
+    assert.ok(rule, 'the .spanel rule is missing')
+    assert.match(rule[1], /position: fixed/)
+    assert.match(rule[1], /right: 0/)
+    assert.ok(!/position: sticky/.test(rule[1]), 'the panel is an in-flow column again')
   })
 
   test('opening it records nothing and changes no answer', () => {
-    // The only state it touches is which question is open.
-    assert.ok(!/recordAttempt/.test(sheet), 'the panel records attempts')
-    assert.ok(!/setAnswers|patch\(/.test(sheet), 'the panel mutates answers')
-    assert.match(runner, /onSeeMore=\{\(\) => setDetailId\(question\.id\)\}/)
+    // The only answer state it may touch is the hint count, which is what
+    // asking for a hint means.
+    assert.ok(!/recordAttempt/.test(panel), 'the panel records attempts')
+    assert.ok(!/setAnswers/.test(panel), 'the panel mutates answers')
+    assert.match(runner, /setSelectedId\(question\.id\)/)
   })
 
   test('it shows the existing detailed content unchanged', () => {
-    assert.match(sheet, /FeedbackDetail/)
+    assert.match(panel, /FeedbackDetail/)
     assert.match(feedback, /<SolutionViewer question=\{question\} defaultOpen \/>/)
     assert.match(feedback, /Why the other options are wrong/)
   })
@@ -156,9 +172,27 @@ describe('practice — figure sequences', () => {
     assert.ok(!/compactOptions/.test(timed), 'the timed runner picked up the practice sizing')
   })
 
-  test('the grid, the panels and the answer logic are untouched', () => {
-    assert.match(view, /grid-cols-3 gap-2 sm:grid-cols-6/, 'the sequence layout changed')
+  test('the sequence is fixed cells that wrap, not a stretching grid', () => {
+    // It was `grid-cols-3 sm:grid-cols-6`, which sized every matrix to a sixth
+    // of whatever the column happened to be — so the figures grew with the page
+    // and dominated the question. The prototype's `.fseq` is a wrapping flex row
+    // of fixed 96px cells with a 12px gap; 76px below `sm` keeps all six legible
+    // on a phone without a sideways scroll.
+    assert.match(view, /flex flex-wrap gap-3/, 'the sequence is not a wrapping row')
+    assert.match(view, /w-\[76px\] max-w-none sm:w-24/, 'the fixed cell size went away')
+    assert.ok(
+      !/sm:grid-cols-6/.test(view),
+      'the stretching six-column grid is back',
+    )
+  })
+
+  test('the figures themselves are untouched', () => {
+    // Sizing is a CSS width on the <svg>. The viewBox, the cell geometry and
+    // the answer wiring must not move with it.
     assert.match(view, /image\.correctOptionId/, 'the answer key wiring changed')
+    const matrix = read('../../components/render/figure-matrix.tsx')
+    assert.match(matrix, /const CELL = 100/, 'the drawing grid changed size')
+    assert.match(matrix, /viewBox=\{`\$\{-PAD\} \$\{-PAD\}/, 'the viewBox changed')
   })
 })
 
@@ -193,14 +227,25 @@ describe('practice — nothing is lost on reload', () => {
 
 describe('the exam modes are not practice', () => {
   test('the timed runner took none of this', () => {
-    assert.ok(!/ExplanationSheet/.test(timed), 'the practice side panel leaked into timed')
+    assert.ok(!/SolutionPanel/.test(timed), 'the practice side panel leaked into timed')
     assert.ok(!/FeedbackSummary/.test(timed), 'the practice card feedback leaked into timed')
     assert.ok(!/answered: answers/.test(timed), 'practice draft state leaked into timed')
   })
 
-  test('timed still owns its clock and its action bar', () => {
+  test('timed still owns its clock and its own chrome', () => {
     assert.match(timed, /stageEndsAt|endsAt/, 'the timed runner lost its absolute deadline')
-    assert.match(timed, /PracticeActionBar/, 'the timed runner lost its action bar')
+    // It used to share `PracticeActionBar` with practice. It no longer does:
+    // a sitting is a takeover with its own dark header, clock and task
+    // navigator, which is the point of this whole describe block — the exam
+    // modes are not practice. Borrowing practice chrome again would be the
+    // drift this guards against, so the assertion is that it has its own.
+    assert.match(timed, /ExamChrome/, 'the timed runner lost its own exam chrome')
+    assert.match(timed, /ExamClock/, 'the timed runner lost its clock')
+    assert.match(timed, /TaskPanel/, 'the timed runner lost its task navigator')
+    assert.ok(
+      !/PracticeActionBar/.test(timed),
+      'the practice action bar came back into the exam runner',
+    )
   })
 
   test('only practice modes use the practice runner', () => {

@@ -1,15 +1,15 @@
 import { ProvenanceKey, ProvenanceTag } from '@/components/content/provenance'
 import { Section } from '@/components/exam/visuals'
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 import { ChecklistItems } from '@/components/exam/checklist-items'
 
 export const metadata = { title: 'Pre-exam checklist' }
 
 export default function ChecklistPage() {
   return (
-    <PageShell
+    <SubPage
+      title="Pre-exam checklist"
       description="Everything to settle before 26 September, with the official requirements kept separate from our practical advice."
-      wide
     >
       <div className="space-y-8">
         <ProvenanceKey kinds={['official', 'recommendation']} />
@@ -23,6 +23,6 @@ export default function ChecklistPage() {
           </p>
         </Section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }

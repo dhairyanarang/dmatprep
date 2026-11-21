@@ -1,0 +1,2214 @@
+[
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "high",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "circle",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "rotation": 0,
+            "colour": "blue"
+          },
+          {
+            "id": "s2",
+            "shape": "triangle",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "rotation": 90,
+            "colour": "orange"
+          },
+          {
+            "id": "s3",
+            "shape": "diamond",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "orange"
+          },
+          {
+            "id": "s4",
+            "shape": "square",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "yellow"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "circle",
+            "cell": {
+              "row": 0,
+              "col": 0
+            },
+            "rotation": 0,
+            "colour": "blue"
+          },
+          {
+            "id": "s2",
+            "shape": "triangle",
+            "cell": {
+              "row": 3,
+              "col": 2
+            },
+            "rotation": 180,
+            "colour": "pink"
+          },
+          {
+            "id": "s3",
+            "shape": "diamond",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "orange"
+          },
+          {
+            "id": "s4",
+            "shape": "square",
+            "cell": {
+              "row": 2,
+              "col": 1
+            },
+            "rotation": 0,
+            "colour": "green"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "circle",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "blue"
+          },
+          {
+            "id": "s2",
+            "shape": "triangle",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "black"
+          },
+          {
+            "id": "s3",
+            "shape": "diamond",
+            "cell": {
+              "row": 0,
+              "col": 0
+            },
+            "rotation": 0,
+            "colour": "orange"
+          },
+          {
+            "id": "s4",
+            "shape": "square",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "rotation": 0,
+            "colour": "yellow"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "circle",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "rotation": 0,
+            "colour": "blue"
+          },
+          {
+            "id": "s2",
+            "shape": "triangle",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "orange"
+          },
+          {
+            "id": "s3",
+            "shape": "diamond",
+            "cell": {
+              "row": 3,
+              "col": 0
+            },
+            "rotation": 0,
+            "colour": "orange"
+          },
+          {
+            "id": "s4",
+            "shape": "square",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "green"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 3,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 1
+                  },
+                  "rotation": 90,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 3,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 0
+                  },
+                  "rotation": 90,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 1,
+                    "col": 1
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 0
+                  },
+                  "rotation": 90,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "yellow"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "black"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 0,
+                    "col": 0
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 1
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "black"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 0,
+                    "col": 0
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 1
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "circle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 0,
+                  "colour": "blue"
+                },
+                {
+                  "id": "s2",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 3
+                  },
+                  "rotation": 180,
+                  "colour": "black"
+                },
+                {
+                  "id": "s3",
+                  "shape": "diamond",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "orange"
+                },
+                {
+                  "id": "s4",
+                  "shape": "square",
+                  "cell": {
+                    "row": 2,
+                    "col": 1
+                  },
+                  "rotation": 0,
+                  "colour": "green"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix2"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "diagonal",
+          "direction": "up-left",
+          "step": "x+1",
+          "boundary": "bounce"
+        },
+        "rotation": {
+          "type": "none"
+        },
+        "colour": {
+          "type": "constant"
+        }
+      },
+      "s2": {
+        "movement": {
+          "type": "border",
+          "direction": "counter-clockwise",
+          "step": "x+1"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": false
+        },
+        "colour": {
+          "type": "cycle",
+          "colours": [
+            "orange",
+            "pink",
+            "black"
+          ],
+          "accelerating": false
+        }
+      },
+      "s3": {
+        "movement": {
+          "type": "border",
+          "direction": "counter-clockwise",
+          "step": "x+1"
+        },
+        "rotation": {
+          "type": "none"
+        },
+        "colour": {
+          "type": "constant"
+        }
+      },
+      "s4": {
+        "movement": {
+          "type": "direction-cycle",
+          "directions": [
+            "left",
+            "up",
+            "right",
+            "down"
+          ],
+          "step": 1
+        },
+        "rotation": {
+          "type": "none"
+        },
+        "colour": {
+          "type": "cycle",
+          "colours": [
+            "yellow",
+            "green"
+          ],
+          "accelerating": false
+        }
+      }
+    },
+    "explanation": "The blue circle moves diagonally upwards to the left, by x + 1 fields (one, then two, then three, and so on), and when it meets a boundary it reverses and returns the same way. The orange triangle travels along the outer border counter clockwise, by x + 1 fields (one, then two, then three, and so on), and rotates 90 degrees to the right from panel to panel, and changes colour in the order orange → pink → black, repeating. The orange diamond travels along the outer border counter clockwise, by x + 1 fields (one, then two, then three, and so on). The yellow square moves one field at a time, repeating the direction order left, up, right, down, and changes colour in the order yellow → green, repeating. Continuing that from the fourth matrix gives the fifth matrix with the circle at R4C4, the triangle at R3C1, the diamond at R3C4, the square at R3C3, and the sixth with the circle at R3C3, the triangle at R3C4, the diamond at R1C1, the square at R3C2.",
+    "distractorNotes": {
+      "image1:matrix1": "The triangle has moved by a constant amount. This sequence accelerates by x + 1, so each transition is one field longer than the last.",
+      "image1:matrix3": "The circle has been reflected off the wall like a billiard ball. A bouncing figure returns the way it came, reversing both parts of a diagonal.",
+      "image2:matrix1": "The triangle is travelling the wrong way round. Its direction is set in the first two matrices and never changes.",
+      "image2:matrix3": "The diamond has moved by a constant amount. This sequence accelerates by x + 1, so each transition is one field longer than the last."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Do not try to read the whole grid at once. Pick one symbol — the circle is a good place to start — and follow only that one across the four matrices."
+      },
+      {
+        "level": 2,
+        "text": "The circle only changes position. Work out the direction first, then the size of the step."
+      },
+      {
+        "level": 3,
+        "text": "The gaps between consecutive positions of the circle are not equal. Measure all three, then continue the pattern."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "4 symbols, each following its own rule. Take one at a time and ignore the rest — the item is 4 small problems, not one large one.",
+      "steps": [
+        {
+          "title": "Track the circle",
+          "detail": "Follow only the circle across all four matrices. It only changes position.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the circle moves",
+          "detail": "The blue circle moves diagonally upwards to the left, by x + 1 fields (one, then two, then three, and so on), and when it meets a boundary it reverses and returns the same way.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Track the triangle",
+          "detail": "Follow only the triangle across all four matrices. It changes movement, rotation, colour — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s2",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the triangle moves",
+          "detail": "The orange triangle travels along the outer border counter clockwise, by x + 1 fields (one, then two, then three, and so on).",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The triangle also turns",
+          "detail": "It turns 90° to the right every panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The triangle also changes colour",
+          "detail": "orange → pink → black, repeating. Colour runs on its own clock, independent of position.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "colour",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Track the diamond",
+          "detail": "Follow only the diamond across all four matrices. It only changes position.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s3",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the diamond moves",
+          "detail": "The orange diamond travels along the outer border counter clockwise, by x + 1 fields (one, then two, then three, and so on).",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s3",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Track the square",
+          "detail": "Follow only the square across all four matrices. It changes movement, colour — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s4",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the square moves",
+          "detail": "The yellow square moves one field at a time, repeating the direction order left, up, right, down.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s4",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The square also changes colour",
+          "detail": "yellow → green, repeating. Colour runs on its own clock, independent of position.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s4",
+            "aspect": "colour",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the circle at R4C4, the triangle at R3C1, the diamond at R3C4, the square at R3C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the circle at R3C3, the triangle at R3C4, the diamond at R1C1, the square at R3C2.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: blue circle at R4C4, pink triangle at R3C1, orange diamond at R3C4, yellow square at R3C3. Sixth: blue circle at R3C3, black triangle at R3C4, orange diamond at R1C1, green square at R3C2.",
+      "takeaway": "Derive the sixth matrix from the fifth, never from the fourth in one jump. With x + 1 the two steps are different sizes, which is exactly where the slip happens."
+    },
+    "meta": {
+      "patternType": [
+        "diagonal-movement",
+        "boundary-travel",
+        "direction-cycle-movement",
+        "rotation",
+        "colour-cycle",
+        "x-plus-one",
+        "multiple-symbol",
+        "compound-rule"
+      ],
+      "skill": "reading stacked transformations on one symbol",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 10,
+      "distractorTypes": {
+        "image1:matrix1": "acceleration",
+        "image1:matrix3": "boundary",
+        "image2:matrix1": "movement-direction",
+        "image2:matrix3": "acceleration"
+      },
+      "generationNotes": "4 symbol(s), peak transformation load 4, total 10, accelerating"
+    },
+    "id": "fs-high-p1-004",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "p1",
+      "seed": 1441263106,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 3,
+        "attempt": 0
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-13"
+    },
+    "provenance": {
+      "author": "dMAT Prep — generated by the project generator under human direction",
+      "method": "scripts/generate/{figure-sequences,latin-squares}.mjs, batch p1; over-generated then selected on measured properties",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pass — verifyQuestion: 0 errors, 0 warnings; fs-inversion: exactly one continuation; geometry: 10 panels, no off-grid or overlapping placement, all options distinct",
+      "blindAdjudicationStatus": "pass — blind adjudicator chose matrix2/matrix2 at high confidence, matching the key; judged the continuation unique",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  },
+  {
+    "kind": "figure-sequence",
+    "section": "figure-sequences",
+    "difficulty": "high",
+    "grid": {
+      "rows": 4,
+      "cols": 4
+    },
+    "given": [
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "cross",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "pink"
+          },
+          {
+            "id": "s2",
+            "shape": "arrow",
+            "cell": {
+              "row": 2,
+              "col": 0
+            },
+            "rotation": 0,
+            "colour": "pink"
+          },
+          {
+            "id": "s3",
+            "shape": "triangle",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "rotation": 0,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "cross",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "pink"
+          },
+          {
+            "id": "s2",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "rotation": 270,
+            "colour": "green"
+          },
+          {
+            "id": "s3",
+            "shape": "triangle",
+            "cell": {
+              "row": 3,
+              "col": 2
+            },
+            "rotation": 90,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "cross",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "pink"
+          },
+          {
+            "id": "s2",
+            "shape": "arrow",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "rotation": 90,
+            "colour": "pink"
+          },
+          {
+            "id": "s3",
+            "shape": "triangle",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "rotation": 270,
+            "colour": "blue"
+          }
+        ]
+      },
+      {
+        "symbols": [
+          {
+            "id": "s1",
+            "shape": "cross",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "rotation": 0,
+            "colour": "pink"
+          },
+          {
+            "id": "s2",
+            "shape": "arrow",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "rotation": 180,
+            "colour": "green"
+          },
+          {
+            "id": "s3",
+            "shape": "triangle",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "rotation": 180,
+            "colour": "blue"
+          }
+        ]
+      }
+    ],
+    "images": [
+      {
+        "label": "image1",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 90,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "green"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 0,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 0,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 2
+                  },
+                  "rotation": 180,
+                  "colour": "blue"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      },
+      {
+        "label": "image2",
+        "options": [
+          {
+            "id": "matrix1",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 1
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 2,
+                    "col": 1
+                  },
+                  "rotation": 270,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix2",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 1
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 3,
+                    "col": 2
+                  },
+                  "rotation": 90,
+                  "colour": "blue"
+                }
+              ]
+            }
+          },
+          {
+            "id": "matrix3",
+            "panel": {
+              "symbols": [
+                {
+                  "id": "s1",
+                  "shape": "cross",
+                  "cell": {
+                    "row": 1,
+                    "col": 3
+                  },
+                  "rotation": 0,
+                  "colour": "pink"
+                },
+                {
+                  "id": "s2",
+                  "shape": "arrow",
+                  "cell": {
+                    "row": 1,
+                    "col": 1
+                  },
+                  "rotation": 90,
+                  "colour": "green"
+                },
+                {
+                  "id": "s3",
+                  "shape": "triangle",
+                  "cell": {
+                    "row": 3,
+                    "col": 2
+                  },
+                  "rotation": 270,
+                  "colour": "blue"
+                }
+              ]
+            }
+          }
+        ],
+        "correctOptionId": "matrix3"
+      }
+    ],
+    "rules": {
+      "s1": {
+        "movement": {
+          "type": "linear",
+          "axis": "vertical",
+          "line": 3,
+          "direction": "down",
+          "step": 1,
+          "boundary": "bounce"
+        },
+        "rotation": {
+          "type": "none"
+        },
+        "colour": {
+          "type": "constant"
+        }
+      },
+      "s2": {
+        "movement": {
+          "type": "diagonal",
+          "direction": "down-left",
+          "step": "x+1",
+          "boundary": "bounce"
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "ccw",
+          "degrees": 90,
+          "accelerating": true
+        },
+        "colour": {
+          "type": "cycle",
+          "colours": [
+            "pink",
+            "green"
+          ],
+          "accelerating": false
+        }
+      },
+      "s3": {
+        "movement": {
+          "type": "direction-cycle",
+          "directions": [
+            "down",
+            "right",
+            "up",
+            "left"
+          ],
+          "step": 1
+        },
+        "rotation": {
+          "type": "rotate",
+          "direction": "cw",
+          "degrees": 90,
+          "accelerating": true
+        },
+        "colour": {
+          "type": "constant"
+        }
+      }
+    },
+    "explanation": "The pink cross moves vertically along the fourth column, one field at a time, bouncing off the upper and lower boundary and returning the same way. The pink arrow moves diagonally upwards to the right, by x + 1 fields (one, then two, then three, and so on), and when it meets a boundary it reverses and returns the same way, and rotates 90 degrees to the left x + 1 times from panel to panel, and changes colour in the order pink → green, repeating. The blue triangle moves one field at a time, repeating the direction order down, right, up, left, and rotates 90 degrees to the right x + 1 times from panel to panel. Continuing that from the fourth matrix gives the fifth matrix with the cross at R1C4, the arrow at R1C3, the triangle at R3C3, and the sixth with the cross at R2C4, the arrow at R2C2, the triangle at R4C3.",
+    "distractorNotes": {
+      "image1:matrix1": "The triangle has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation.",
+      "image1:matrix2": "The arrow is the wrong colour: the cycle has been advanced by an extra step. Colour runs on its own clock, independent of where the figure sits.",
+      "image2:matrix1": "The triangle is travelling the wrong way round. Its direction is set in the first two matrices and never changes.",
+      "image2:matrix2": "The triangle has turned the wrong way. Check the direction of the turn separately from the movement — the eye follows the travel and stops registering orientation."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "Do not try to read the whole grid at once. Pick one symbol — the cross is a good place to start — and follow only that one across the four matrices."
+      },
+      {
+        "level": 2,
+        "text": "The cross only changes position. Work out the direction first, then the size of the step."
+      },
+      {
+        "level": 3,
+        "text": "Count the fields between consecutive positions of the cross, and look closely at the matrix where it reaches an edge — the sequence shows you what it does there."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "3 symbols, each following its own rule. Take one at a time and ignore the rest — the item is 3 small problems, not one large one.",
+      "steps": [
+        {
+          "title": "Track the cross",
+          "detail": "Follow only the cross across all four matrices. It only changes position.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s1",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the cross moves",
+          "detail": "The pink cross moves vertically along the fourth column, one field at a time, bouncing off the upper and lower boundary and returning the same way.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "It meets a boundary",
+          "detail": "The sequence shows you what happens at the wall rather than leaving you to assume it: the figure reverses and retraces its path. Use that observation instead of guessing which boundary rule applies.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s1",
+            "aspect": "boundary",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Track the arrow",
+          "detail": "Follow only the arrow across all four matrices. It changes movement, rotation, colour — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s2",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the arrow moves",
+          "detail": "The pink arrow moves diagonally upwards to the right, by x + 1 fields (one, then two, then three, and so on), and when it meets a boundary it reverses and returns the same way.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also turns",
+          "detail": "It turns x + 1 times each panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The arrow also changes colour",
+          "detail": "pink → green, repeating. Colour runs on its own clock, independent of position.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s2",
+            "aspect": "colour",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Track the triangle",
+          "detail": "Follow only the triangle across all four matrices. It changes movement, rotation — settle each one separately.",
+          "visual": {
+            "type": "fs-track",
+            "symbolId": "s3",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "How the triangle moves",
+          "detail": "The blue triangle moves one field at a time, repeating the direction order down, right, up, left.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s3",
+            "aspect": "movement",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "The triangle also turns",
+          "detail": "It turns x + 1 times each panel — check the facing separately from the travel, because the eye follows movement and stops registering orientation.",
+          "visual": {
+            "type": "fs-aspect",
+            "symbolId": "s3",
+            "aspect": "rotation",
+            "panels": [
+              0,
+              1,
+              2,
+              3
+            ]
+          }
+        },
+        {
+          "title": "Apply every rule once for the fifth matrix",
+          "detail": "That gives the cross at R1C4, the arrow at R1C3, the triangle at R3C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 4
+          }
+        },
+        {
+          "title": "Then once more for the sixth",
+          "detail": "Starting from the fifth — not the fourth — gives the cross at R2C4, the arrow at R2C2, the triangle at R4C3.",
+          "visual": {
+            "type": "fs-predict",
+            "panel": 5
+          }
+        }
+      ],
+      "answer": "Fifth matrix: pink cross at R1C4, pink arrow at R1C3, blue triangle at R3C3. Sixth: pink cross at R2C4, green arrow at R2C2, blue triangle at R4C3.",
+      "takeaway": "Derive the sixth matrix from the fifth, never from the fourth in one jump. With x + 1 the two steps are different sizes, which is exactly where the slip happens."
+    },
+    "meta": {
+      "patternType": [
+        "linear-movement",
+        "diagonal-movement",
+        "direction-cycle-movement",
+        "boundary-bounce",
+        "rotation",
+        "colour-cycle",
+        "x-plus-one",
+        "multiple-symbol",
+        "compound-rule"
+      ],
+      "skill": "reading stacked transformations on one symbol",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 9,
+      "distractorTypes": {
+        "image1:matrix1": "rotation",
+        "image1:matrix2": "colour",
+        "image2:matrix1": "movement-direction",
+        "image2:matrix2": "rotation"
+      },
+      "generationNotes": "3 symbol(s), peak transformation load 4, total 9, accelerating"
+    },
+    "id": "fs-high-p1-007",
+    "generator": {
+      "name": "figure-sequences",
+      "version": "3.2.0",
+      "batchId": "p1",
+      "seed": 1099387154,
+      "seedCoordinates": {
+        "section": "figure-sequences",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 6,
+        "attempt": 13
+      },
+      "config": {
+        "symbolRange": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            3
+          ],
+          "high": [
+            3,
+            4
+          ]
+        },
+        "rotatable": [
+          "triangle",
+          "arrow"
+        ],
+        "cycleColours": [
+          "black",
+          "pink",
+          "yellow",
+          "green",
+          "orange",
+          "blue"
+        ]
+      },
+      "verifiedAt": "2026-11-13"
+    },
+    "provenance": {
+      "author": "dMAT Prep — generated by the project generator under human direction",
+      "method": "scripts/generate/{figure-sequences,latin-squares}.mjs, batch p1; over-generated then selected on measured properties",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pass — verifyQuestion: 0 errors, 0 warnings; fs-inversion: exactly one continuation; geometry: 10 panels, no off-grid or overlapping placement, all options distinct",
+      "blindAdjudicationStatus": "pass — blind adjudicator chose matrix3/matrix3 at high confidence, matching the key; see adjudication.md for its rule-space caveat",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "D",
+        "C",
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "A"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, D already appear in row 2; C, E already appear in column 4 — so A is the only letter left for R2C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "In row 2, C and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C1 — which leaves C for R2C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in row 2 — so C is the only letter left for R2C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "In column 3, A and B are missing. A cannot go in R4C3 because it already appears in row 4, so A must go in R5C3 — which leaves B for R4C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "E already appears in row 3; A, C, D already appear in column 5 — so B is the only letter left for R3C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "In column 4, B and D are missing. B cannot go in R3C4 because it already appears in row 3, so B must go in R5C4 — which leaves D for R3C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C4 must be A; R2C1 must be E; R2C3 must be C; R5C3 must be A; R3C5 must be B; R5C4 must be B. A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+    "distractorNotes": {
+      "A": "A already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 5 (at R5C5), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C1 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 1 show only 1 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 0
+          }
+        },
+        {
+          "title": "R2C4 can only be A",
+          "detail": "B, D already appear in row 2; C, E already appear in column 4 — so A is the only letter left for R2C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In row 2, C and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C1 — which leaves C for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R2C3 can only be C",
+          "detail": "A, B, D, E already appear in row 2 — so C is the only letter left for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for A",
+          "detail": "In column 3, A and B are missing. A cannot go in R4C3 because it already appears in row 4, so A must go in R5C3 — which leaves B for R4C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C5 can only be B",
+          "detail": "E already appears in row 3; A, C, D already appear in column 5 — so B is the only letter left for R3C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 4
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for B",
+          "detail": "In column 4, B and D are missing. B cannot go in R3C4 because it already appears in row 3, so B must go in R5C4 — which leaves D for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 3
+            },
+            "letter": "B",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 0
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C1 is D.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "A": "derived-clash",
+        "B": "derived-clash",
+        "C": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-004",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 704577688,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 3,
+        "attempt": 5
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    },
+    "provenance": {
+      "author": "dMAT Prep — generated by the project generator under human direction",
+      "method": "scripts/generate/{figure-sequences,latin-squares}.mjs, batch p1; over-generated then selected on measured properties",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pass — verifyQuestion: 0 errors, 0 warnings; independent backtracking solver: 1 completion, target forced",
+      "blindAdjudicationStatus": "pass — blind adjudicator answered D at high confidence, matching the key; solved entirely by forced placements",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "E",
+        "C",
+        null,
+        null
+      ],
+      [
+        null,
+        "D",
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "In column 3, B and D are missing. D cannot go in R5C3 because it already appears in row 5, so D must go in R1C3 — which leaves B for R5C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A, D already appear in row 5; C, E already appear in column 3 — so B is the only letter left for R5C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "A, B, D already appear in row 5; E already appears in column 2 — so C is the only letter left for R5C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A already appears in row 4; C, D, E already appear in column 2 — so B is the only letter left for R4C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R1C3 must be D; R5C3 must be B; R5C2 must be C; R4C2 must be B. D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+    "distractorNotes": {
+      "B": "B already appears in row 1 (at R1C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 1 (at R1C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 2 (at R3C2), and a letter can only appear once per column.",
+      "E": "E already appears in column 2 (at R2C2), and a letter can only appear once per column."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C3. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R1C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 1 and column 2 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 0,
+            "col": 1
+          }
+        },
+        {
+          "title": "Only one cell is left for D",
+          "detail": "In column 3, B and D are missing. D cannot go in R5C3 because it already appears in row 5, so D must go in R1C3 — which leaves B for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "letter": "D",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R5C3 can only be B",
+          "detail": "A, D already appear in row 5; C, E already appear in column 3 — so B is the only letter left for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R5C2 can only be C",
+          "detail": "A, B, D already appear in row 5; E already appears in column 2 — so C is the only letter left for R5C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C2 can only be B",
+          "detail": "A already appears in row 4; C, D, E already appear in column 2 — so B is the only letter left for R4C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R1C2 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "B": "derived-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "direct-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-014",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 2930510533,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 13,
+        "attempt": 0
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    },
+    "provenance": {
+      "author": "dMAT Prep — generated by the project generator under human direction",
+      "method": "scripts/generate/{figure-sequences,latin-squares}.mjs, batch p1; over-generated then selected on measured properties",
+      "createdAt": "2026-11-13",
+      "source": null,
+      "sourceUrl": null,
+      "accessedAt": null,
+      "licence": "original work created for dMAT Prep",
+      "usageRestrictions": "none known",
+      "validationStatus": "pass — verifyQuestion: 0 errors, 0 warnings; independent backtracking solver: 3 completions, target forced to A in all of them",
+      "blindAdjudicationStatus": "pass — blind adjudicator answered A at high confidence, matching the key; target forced in all three whole-grid completions",
+      "humanReviewStatus": "pending",
+      "releaseStatus": "draft"
+    }
+  }
+]

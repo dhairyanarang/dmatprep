@@ -129,8 +129,19 @@ test('the file is data, not a computation', () => {
   }
 })
 
+test('no selected question is quarantined', () => {
+  // The free set is the shop window. A quarantined question tests a mechanic we
+  // can no longer support from the official material, so it must not be the
+  // first thing a candidate practises — or the thing they judge us on.
+  for (const section of SECTIONS) {
+    const byId = new Map(readBank(section).map((q) => [q.id, q]))
+    const offenders = freeSet.sections[section].filter((id) => byId.get(id)?.meta?.quarantined)
+    assert.deepEqual(offenders, [], `${section}: quarantined questions in the free set`)
+  }
+})
+
 test('the selection is locked, so any change must be deliberate', () => {
-  const LOCK = 'be7175da1bcd3838bcf026b696e2ac33089d1a5f669b0d2b479cb446ee3b777d'
+  const LOCK = '68f66f28e55b07a0ddc61180dfd17e9316e5ba177261b89132a8bd47da767b68'
   const actual = createHash('sha256').update(allIds.join('\n')).digest('hex')
   assert.equal(
     actual,

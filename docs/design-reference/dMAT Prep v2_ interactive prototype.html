@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>dMAT Prep: UI and flow review</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400..600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0A0A;--t2:#5F5F5F;--t3:#737373;--line:#E7E7E7;--line2:#DDDDDD;--soft:#EDEDED;--hair:#F0F0EE;
+  --side:#F3F2F0;--frame:#F8F7F5;--white:#FFFFFF;
+  --blue:#2F4BFF;--blue7:#1F37D9;--blue50:#EEF0FF;--blue100:#DDE2FF;--blue200:#BCC7FF;
+  --gold:#F2B33D;--gold7:#E8A82C;--gold50:#FFF5DF;--goldline:#F0D9A6;--goldtext:#8A5A00;--golddark:#3A2600;--goldsoft:#FFFBF2;
+  --ok:#16803C;--okbg:#E9F6EE;--okline:#CDEBD8;--oktext:#14672F;
+  --bad:#C9372C;--badbg:#FDEEEC;--badline:#F6D3CE;--badtext:#A22A1F;
+  --warn:#B26B00;--warnbg:#FFF4E0;--warnline:#F5DFB0;--warntext:#8A4B00;
+  --fig-ink:#0A0A0A;--fig-blue:#2F4BFF;--fig-teal:#0F9D8A;--fig-plum:#A63A8C;
+  --mono:'Geist Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{font-family:Geist,Inter,system-ui,-apple-system,sans-serif;font-size:14px;line-height:20px;color:var(--ink);background:var(--white);-webkit-font-smoothing:antialiased}
+a{color:var(--blue);text-decoration:none}
+a:hover{color:var(--blue7)}
+button{font-family:inherit;font-size:inherit;color:inherit}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+.mono{font-family:var(--mono)}
+.over{font-family:var(--mono);font-size:11px;line-height:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);font-weight:500}
+.ptitle{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;margin:0}
+.muted{color:var(--t2)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+h1,h2,h3,p{margin:0}
+
+/* shell */
+.app{display:flex;min-height:100vh}
+.side{width:240px;flex:none;background:var(--side);border-right:1px solid var(--line2);display:flex;flex-direction:column;position:sticky;top:0;height:100vh}
+.brand{height:52px;flex:none;padding:0 12px 0 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line2)}
+.brand a{flex:1;display:flex;align-items:center;gap:8px;color:var(--ink);font-weight:600}
+.logo{width:24px;height:24px;border-radius:5px;background:var(--ink);display:grid;place-items:center;flex:none}
+.iconbtn{width:30px;height:30px;border-radius:8px;border:1px solid var(--line);background:var(--white);display:grid;place-items:center;cursor:pointer;padding:0;color:var(--ink)}
+.iconbtn:hover{background:var(--frame)}
+.nav{flex:1;overflow:auto;padding:16px 12px;display:flex;flex-direction:column;gap:16px}
+.navgroup{display:flex;flex-direction:column;gap:8px}
+.navlabel{font-size:12px;font-weight:600;line-height:14px;padding:0 2px}
+.navitem{height:38px;display:flex;align-items:center;gap:9px;padding:0 10px;border-radius:8px;border:1px solid transparent;color:var(--t2);transition:background .15s}
+.navitem:hover{background:#ECEBE8;color:var(--ink)}
+.navitem.on{background:var(--white);border-color:var(--line);color:var(--ink);font-weight:600}
+.navitem .count{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--t3);font-weight:400}
+.divider{height:1px;background:var(--line2)}
+.sidebottom{padding:0 12px 12px;display:flex;flex-direction:column;gap:10px}
+.upcard{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.procard{background:var(--white);border:1px solid var(--goldline);border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:4px;color:var(--ink)}
+.procard:hover{color:var(--ink);border-color:var(--gold)}
+.userbtn{display:flex;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px solid var(--line);background:var(--white);text-align:left;cursor:pointer;width:100%;position:relative}
+.userbtn:hover{background:var(--frame)}
+.avatar{width:32px;height:32px;border-radius:99px;background:var(--ink);color:#F3F0E6;font-size:12px;font-weight:600;display:grid;place-items:center;flex:none}
+.menu{position:absolute;bottom:calc(100% + 6px);left:0;right:0;background:var(--white);border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 32px rgba(10,10,10,.14);padding:4px;z-index:30;animation:rise .16s var(--ease) both}
+.menu a,.menu button{display:flex;width:100%;align-items:center;gap:8px;height:34px;padding:0 10px;border-radius:6px;border:0;background:none;color:var(--ink);cursor:pointer;text-align:left}
+.menu a:hover,.menu button:hover{background:var(--frame)}
+.main{flex:1;min-width:0;display:flex;flex-direction:column}
+.top{height:52px;flex:none;padding:0 12px 0 16px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line2);background:var(--white);position:sticky;top:0;z-index:20}
+.crumbs{flex:1;min-width:0;display:flex;align-items:center;gap:6px;white-space:nowrap;overflow:hidden}
+.crumbs a{display:inline-flex;align-items:center;gap:6px;color:var(--t3)}
+.crumbs a:hover{color:var(--ink)}
+.crumbs b{font-weight:600;overflow:hidden;text-overflow:ellipsis}
+.search{flex:0 1 309px;min-width:120px;height:36px;padding:0 6px 0 10px;border-radius:8px;border:1px solid var(--line);background:rgba(243,242,240,.6);display:flex;align-items:center;gap:6px;color:var(--t2);cursor:pointer}
+.search:hover{border-color:var(--line2)}
+.search span:first-of-type{flex:1;text-align:left}
+.kbd{height:24px;padding:0 6px;border-radius:4px;background:rgba(0,0,0,.04);display:inline-flex;align-items:center;font-family:var(--mono);font-size:12px;color:var(--t2)}
+.menubtn{display:none}
+.page{padding:24px 32px 48px;display:flex;flex-direction:column;gap:20px;width:100%;flex:1}
+.pagehead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px}
+.h1{font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.015em}
+
+/* atoms */
+.btn{height:36px;padding:0 14px;border-radius:8px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:500;cursor:pointer;white-space:nowrap;transition:background .15s,transform .1s,border-color .15s,box-shadow .2s;text-decoration:none}
+.btn:active:not(:disabled){transform:scale(.98)}
+.btn-p{background:var(--blue);color:#fff}.btn-p:hover{background:var(--blue7);color:#fff}
+.btn-s{background:var(--white);border-color:var(--line);color:var(--ink)}.btn-s:hover{background:var(--frame);color:var(--ink)}
+.btn-d{background:var(--ink);color:#fff}.btn-d:hover{background:#262626;color:#fff}
+.btn-pro{background:var(--gold);color:var(--golddark);font-weight:600}.btn-pro:hover{background:var(--gold7);color:var(--golddark);box-shadow:0 6px 18px rgba(242,179,61,.35)}
+.btn-danger{background:var(--white);border-color:var(--badline);color:var(--badtext)}.btn-danger:hover{background:var(--badbg)}
+.btn-sm{height:30px;padding:0 10px;font-size:13px;border-radius:7px}
+.btn-lg{height:44px;padding:0 18px;font-size:15px;border-radius:10px}
+.btn:disabled{background:#EDECEA;color:#8C8C8C;border-color:transparent;cursor:not-allowed}
+.btn-block{width:100%}
+.pro{height:18px;padding:0 6px;border-radius:4px;background:var(--gold);color:var(--golddark);font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.04em;display:inline-flex;align-items:center;gap:4px;flex:none}
+.freebadge{height:18px;padding:0 6px;border-radius:4px;border:1px solid var(--line2);color:var(--t2);font-family:var(--mono);font-size:10px;font-weight:600;display:inline-flex;align-items:center}
+.pill{display:inline-flex;align-items:center;gap:6px;height:22px;padding:0 8px;border-radius:99px;border:1px solid;font-size:12px;font-weight:500;white-space:nowrap}
+.pill i{width:6px;height:6px;border-radius:99px;display:block}
+.p-ok{background:var(--okbg);border-color:var(--okline);color:var(--oktext)}.p-ok i{background:var(--ok)}
+.p-bad{background:var(--badbg);border-color:var(--badline);color:var(--badtext)}.p-bad i{background:var(--bad)}
+.p-warn{background:var(--warnbg);border-color:var(--warnline);color:var(--warntext)}.p-warn i{background:var(--warn)}
+.p-skip{background:var(--side);border-color:var(--line);color:var(--t2)}.p-skip i{background:#9A9A9A}
+.lv{height:22px;padding:0 8px;border-radius:6px;font-size:12px;font-weight:500;display:inline-flex;align-items:center}
+.lv-Easy{background:var(--side)}.lv-Medium{background:var(--blue50);color:var(--blue7)}.lv-Hard{background:var(--ink);color:#fff}
+.seg{display:inline-flex;gap:2px;padding:2px;border-radius:8px;background:var(--side);border:1px solid var(--line)}
+.seg button{height:28px;padding:0 10px;border:0;border-radius:6px;background:transparent;color:var(--t2);font-size:13px;font-weight:500;cursor:pointer}
+.seg button:hover{color:var(--ink)}
+.seg button.on{background:var(--white);color:var(--ink);box-shadow:0 1px 2px rgba(10,10,10,.08)}
+.chip{height:32px;padding:0 12px;border-radius:8px;border:1px solid var(--line2);background:var(--white);font-size:13px;font-weight:500;cursor:pointer}
+.chip:hover{border-color:#8E9DFF}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip.round{border-radius:99px;height:30px}
+
+/* panels */
+.panel{background:var(--frame);border:1px solid var(--line);border-radius:12px;padding:0 4px 4px;display:flex;flex-direction:column;min-width:0}
+.panel-h{min-height:44px;padding:0 10px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.surface{background:var(--white);border:1px solid var(--soft);border-radius:8px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:12px}
+.kpi{background:var(--frame);border:1px solid var(--line);border-radius:12px;padding:4px;display:flex;flex-direction:column}
+.kpi .surface{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.kpi .num{font-family:var(--mono);font-size:28px;line-height:32px;font-weight:500;letter-spacing:-.02em}
+.kpi .foot{min-height:30px;padding:0 10px;display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px;color:var(--t2)}
+.bar{height:4px;border-radius:99px;background:var(--blue50);overflow:hidden}
+.bar>i{display:block;height:100%;border-radius:99px;background:var(--blue);transition:width .6s var(--ease)}
+.row2{display:flex;flex-wrap:wrap;gap:12px;align-items:stretch}
+.tbl{width:100%;border-collapse:collapse;font-size:13px}
+.tbl th{text-align:left;padding:10px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);font-weight:500;border-bottom:1px solid var(--soft);white-space:nowrap}
+.tbl td{padding:11px 14px;border-bottom:1px solid #F3F3F1;vertical-align:middle}
+.tbl tr:last-child td{border-bottom:0}
+.tbl tbody tr{transition:background .12s}
+.tbl tbody tr:hover{background:#FAFAF9}
+.scrollx{overflow-x:auto}
+.listrow{display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px solid var(--hair);color:var(--ink);transition:background .12s}
+.listrow:last-child{border-bottom:0}
+a.listrow:hover,button.listrow:hover{background:#FAFAF9;color:var(--ink)}
+.lockrow{display:flex;align-items:center;gap:12px;padding:12px;border:1px dashed #E3C98E;border-radius:8px;background:var(--goldsoft);color:var(--ink);cursor:pointer;width:100%;text-align:left;transition:background .15s}
+.lockrow:hover{background:var(--gold50)}
+.lockrow:hover .lk{transform:rotate(-10deg)}
+.lk{transition:transform .2s}
+.note{padding:10px 12px;border-radius:8px;background:var(--frame);font-size:13px;line-height:19px;color:#3D3D3D;display:flex;gap:10px;align-items:flex-start}
+
+/* motion */
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes pop{0%{transform:scale(.5);opacity:0}60%{transform:scale(1.15);opacity:1}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:none}20%{transform:translateX(-4px)}40%{transform:translateX(4px)}60%{transform:translateX(-3px)}80%{transform:translateX(2px)}}
+@keyframes wiggle{0%,100%{transform:none}25%{transform:rotate(-12deg)}50%{transform:rotate(10deg)}75%{transform:rotate(-6deg)}}
+@keyframes modalIn{from{opacity:0;transform:translateY(12px) scale(.98)}to{opacity:1;transform:none}}
+@keyframes sheen{0%{background-position:-120% 0}100%{background-position:220% 0}}
+@keyframes shackle{0%,30%{transform:translateY(0) rotate(0)}70%{transform:translateY(-5px)}100%{transform:translateY(-5px) rotate(-28deg)}}
+@keyframes ring{0%{transform:scale(.6);opacity:0}30%{opacity:.6}100%{transform:scale(1.9);opacity:0}}
+@keyframes fillGold{from{background:#fff;color:var(--goldtext)}to{background:var(--gold);color:var(--golddark)}}
+@keyframes grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes toastIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@keyframes drain{from{transform:scaleX(1)}to{transform:scaleX(0)}}
+@keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:none}}
+@keyframes drawer{from{transform:translateX(-100%)}to{transform:none}}
+.rise{animation:rise .24s var(--ease) both}
+.pop{animation:pop .3s var(--ease) both}
+.shake{animation:shake .32s ease both}
+.wiggle{animation:wiggle .36s ease both}
+.slide{animation:slideIn .22s var(--ease) both}
+.sheen{background-image:linear-gradient(110deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.6) 50%,rgba(255,255,255,0) 70%);background-size:200% 100%;background-repeat:no-repeat;animation:sheen 1.6s ease .4s 1 both}
+.growbar{transform-origin:bottom;animation:grow .5s var(--ease) both}
+.spinner{width:16px;height:16px;border-radius:99px;border:2px solid rgba(58,38,0,.25);border-top-color:var(--golddark);animation:spin .7s linear infinite}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:1ms!important;animation-delay:0ms!important;transition-duration:1ms!important}}
+
+/* overlays */
+.scrim{position:fixed;inset:0;background:rgba(10,10,10,.42);display:flex;align-items:center;justify-content:center;padding:24px;z-index:60;animation:fade .2s ease both}
+.modal{width:100%;max-width:560px;max-height:calc(100vh - 48px);overflow:auto;background:var(--white);border-radius:16px;box-shadow:0 24px 64px rgba(10,10,10,.28);animation:modalIn .32s var(--ease) both;position:relative}
+.toasts{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:8px;z-index:80;pointer-events:none}
+.toast{pointer-events:auto;position:relative;overflow:hidden;min-width:280px;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--ink);color:#fff;font-size:13px;box-shadow:0 10px 30px rgba(10,10,10,.22);animation:toastIn .22s var(--ease) both}
+.toast button{border:0;background:none;color:#9FB0FF;font-weight:500;cursor:pointer;padding:0}
+.toast .drain{position:absolute;left:0;right:0;bottom:0;height:2px;background:#9FB0FF;transform-origin:left;animation:drain 3.8s linear both}
+.palette{position:fixed;inset:0;background:rgba(10,10,10,.32);z-index:70;display:flex;justify-content:center;padding:12vh 16px 16px;animation:fade .15s ease both}
+.palette .box{width:100%;max-width:560px;height:fit-content;background:var(--white);border-radius:12px;border:1px solid var(--line);box-shadow:0 24px 64px rgba(10,10,10,.25);overflow:hidden;animation:modalIn .2s var(--ease) both}
+.palette input{width:100%;height:48px;border:0;border-bottom:1px solid var(--soft);padding:0 16px;font-family:inherit;font-size:15px;outline:none}
+.palette ul{list-style:none;margin:0;padding:6px;max-height:360px;overflow:auto}
+.palette li button{width:100%;display:flex;align-items:center;gap:10px;height:40px;padding:0 10px;border-radius:8px;border:0;background:none;cursor:pointer;text-align:left}
+.palette li button.on,.palette li button:hover{background:var(--blue50)}
+
+/* review panel */
+.procol{border:1.5px solid var(--gold);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:20px;background:linear-gradient(180deg,var(--goldsoft) 0%,#fff 40%);position:relative;transition:transform .2s,box-shadow .2s}.procol:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(138,90,0,.12)}
+.cardgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:1100px){.cardgrid{grid-template-columns:1fr}}
+@media (min-width:1280px){body.reviewing #root>div:first-child{margin-right:336px}}
+.pbar{position:sticky;top:52px;z-index:15;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);border-bottom:1px solid var(--soft);padding:10px 32px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px}
+.qdot{width:28px;height:28px;border-radius:7px;border:1px solid var(--line2);background:#fff;font-family:var(--mono);font-size:12px;cursor:pointer;padding:0;transition:transform .1s}
+.qdot:hover{border-color:var(--ink)}.qdot.cur{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--blue)}
+.pwrap{display:flex;align-items:flex-start;flex:1;min-width:0}
+.qlist{flex:1;min-width:0;padding:20px 32px 64px;display:flex;flex-direction:column;gap:16px}
+.qlist>*{width:100%;max-width:820px;margin-left:auto;margin-right:auto}
+.qcard{scroll-margin:140px;transition:border-color .15s,box-shadow .2s}
+.qcard.act{border-color:var(--blue200);box-shadow:0 0 0 3px var(--blue50)}
+.qcard.sel{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue100)}
+.qcard.skip .qb{opacity:.55}
+.qb{padding:16px;display:flex;flex-direction:column;gap:14px}
+.qf{min-height:46px;padding:6px 6px 2px 8px;display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+.ftile{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px;border-radius:10px;border:1px solid var(--line);background:#fff}
+.ftile .mono{font-size:10px;color:var(--t3)}
+.ftile.q{border:1.5px dashed var(--blue200);background:#F8F9FF}
+.arr2{color:#A3A3A3;font-size:13px}
+.opt.fig{height:auto;flex-direction:column;align-items:center;padding:8px 10px 10px;gap:6px}
+.letter.right{background:#F2FAF5;border-color:var(--ok);color:var(--oktext)}
+.letter.wrong{background:#FEF6F5;border-color:var(--bad);color:var(--badtext)}
+.letter.dim{color:#A3A3A3}.letter:disabled{cursor:default}
+.spanel{flex:none;width:420px;position:sticky;top:var(--ptop,113px);height:calc(100vh - var(--ptop,113px));display:flex;flex-direction:column;border-left:1px solid var(--line2);background:#fff;overflow:auto}
+.sp-h{position:sticky;top:0;z-index:1;min-height:52px;padding:0 10px 0 16px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--soft)}
+.sp-f{position:sticky;bottom:0;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;background:#fff;border-top:1px solid var(--soft)}
+@media (max-width:1100px){.spanel{position:fixed;top:0;right:0;bottom:0;height:auto;width:min(420px,100%);z-index:66;box-shadow:-20px 0 60px rgba(10,10,10,.18)}}
+@media (max-width:860px){.pbar,.qlist{padding-left:16px;padding-right:16px}.pbar{position:static}}
+body.haspanel .review{display:none}
+.fseq{display:flex;flex-wrap:wrap;gap:12px}
+.fcell{margin:0;display:flex;flex-direction:column;align-items:center;gap:4px}
+.fcell figcaption{font-size:10px;color:var(--t3)}
+.fbox{display:block;width:96px;height:96px}
+.fbox.q{box-sizing:border-box;border:1.5px dashed var(--blue200);border-radius:6px;background:#F8F9FF;display:grid;place-items:center}
+.fbox.q b{font-family:var(--mono);font-size:24px;color:var(--blue);font-weight:500}
+.fparts{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:12px}
+.fpart{display:flex;flex-direction:column;gap:10px;padding:12px;border-radius:10px;background:var(--frame);border:1px solid var(--soft)}
+.scard{position:relative;transition:border-color .15s,box-shadow .2s,transform .2s}
+.scard:hover{border-color:#CFCFCF;box-shadow:0 10px 28px rgba(10,10,10,.07);transform:translateY(-1px)}
+.scard:has(.stretch:focus-visible){outline:2px solid var(--blue);outline-offset:2px}
+.scard .stretch{color:var(--ink)}.scard .stretch:focus-visible{outline:none}
+.scard .stretch::after{content:"";position:absolute;inset:0;border-radius:12px;z-index:1}
+.scard .go{color:var(--blue);opacity:0;transform:translateX(-4px);transition:opacity .15s,transform .15s}
+.scard:hover .go{opacity:1;transform:none}
+.starter{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;background:var(--frame);border:1px solid var(--line)}
+.lockcard{position:relative;z-index:2;padding:12px 14px;border-radius:10px}
+.unl{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:10px;border:1px solid var(--goldline);background:var(--goldsoft)}
+.passage{padding:14px 16px;border-radius:10px;background:var(--frame);border:1px solid var(--soft);font-size:14px;line-height:22px;display:flex;flex-direction:column;gap:10px}
+.ptbl{background:#fff;border:1px solid var(--soft);border-radius:8px;border-collapse:separate;border-spacing:0;overflow:hidden;max-width:420px}
+.ptbl th,.ptbl td{padding:8px 12px}
+.opt.txt{height:auto;min-height:52px;padding:10px 14px}.opt.txt .v{font-family:inherit;font-size:15px;font-weight:500}
+.review{position:fixed;right:16px;bottom:16px;z-index:50;display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.review-fab{height:40px;padding:0 14px;border-radius:99px;border:0;background:var(--ink);color:#fff;font-weight:500;display:flex;align-items:center;gap:8px;cursor:pointer;box-shadow:0 10px 30px rgba(10,10,10,.25)}
+.review-fab:hover{background:#262626}
+.review-panel{width:320px;max-width:calc(100vw - 32px);max-height:calc(100vh - 90px);overflow:auto;background:var(--white);border:1px solid var(--line);border-radius:14px;box-shadow:0 24px 64px rgba(10,10,10,.22);animation:rise .2s var(--ease) both}
+.review-panel h3{font-size:13px;font-weight:600}
+.flow{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-top:1px solid var(--hair)}
+.steps{display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.steps a{height:26px;padding:0 8px;border-radius:6px;background:var(--frame);border:1px solid var(--line);color:var(--ink);font-size:12px;display:inline-flex;align-items:center}
+.steps a:hover{border-color:var(--blue);color:var(--blue)}
+.steps a.cur{background:var(--blue);border-color:var(--blue);color:#fff}
+.steps .arr{color:#A3A3A3;font-size:11px}
+
+/* exam */
+.exam{min-height:100vh;display:flex;flex-direction:column}
+.examtop{min-height:56px;padding:8px 16px 8px 20px;display:flex;align-items:center;gap:16px;background:var(--ink);color:#fff;flex-wrap:wrap}
+.ghostd{height:34px;padding:0 12px;border-radius:8px;border:1px solid #333;background:transparent;color:#fff;font-size:13px;font-weight:500;display:inline-flex;align-items:center;gap:6px;cursor:pointer}
+.ghostd:hover{background:#262626;color:#fff}
+.grid5{display:grid;grid-template-columns:repeat(5,56px);grid-auto-rows:56px;border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--white)}
+.grid5 div{display:grid;place-items:center;font-family:var(--mono);font-size:20px;font-weight:500;border-right:1px solid #E0E0E0;border-bottom:1px solid #E0E0E0}
+.grid5 div:nth-child(5n){border-right:0}
+.grid5 div:nth-last-child(-n+5){border-bottom:0}
+
+.grid5 .tgt{background:var(--blue);color:#fff}
+.letter{height:52px;min-width:52px;border-radius:8px;border:1px solid var(--line);background:var(--white);font-family:var(--mono);font-size:18px;font-weight:500;cursor:pointer;transition:border-color .15s,background .15s,transform .1s}
+.letter:hover{border-color:#8E9DFF}
+.letter:active{transform:scale(.96)}
+.letter.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.tile{height:36px;border-radius:6px;border:1px solid var(--line);background:var(--white);font-family:var(--mono);font-size:12px;color:var(--t2);cursor:pointer;position:relative;padding:0}
+.tile:hover{border-color:var(--ink)}
+.tile.done{background:var(--blue);border-color:var(--blue);color:#fff}
+.tile.cur{border:1.5px solid var(--ink)}
+.tile .f{position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:99px;background:var(--warn)}
+
+/* practice */
+.opt{height:52px;display:flex;align-items:center;gap:12px;padding:0 14px;border-radius:8px;border:1px solid var(--line);background:var(--white);cursor:pointer;text-align:left;transition:border-color .15s,background .15s,transform .1s}
+.opt:hover:not(:disabled){border-color:#8E9DFF}
+.opt:active:not(:disabled){transform:scale(.98)}
+.opt .k{width:24px;height:24px;border-radius:6px;border:1px solid var(--line);display:grid;place-items:center;font-family:var(--mono);font-size:12px;color:var(--t2);background:var(--frame);flex:none}
+.opt .v{flex:1;font-family:var(--mono);font-size:18px;font-weight:500}
+.opt .tag{font-size:12px;font-weight:500}
+.opt.right{background:#F2FAF5;border-color:var(--ok);color:var(--oktext)}.opt.right .k{background:var(--ok);border-color:var(--ok);color:#fff}
+.opt.wrong{background:#FEF6F5;border-color:var(--bad);color:var(--badtext)}.opt.wrong .k{background:var(--bad);border-color:var(--bad);color:#fff}
+.opt.dim{color:#8C8C8C}
+.opt:disabled{cursor:default}
+.eq{padding:12px 14px;border-radius:8px;background:var(--frame);border:1px solid var(--soft);font-family:var(--mono);font-size:18px;font-weight:500}
+.eq.key{background:var(--blue50);border-color:#8E9DFF}
+
+/* responsive */
+@media (max-width:860px){
+  .side{position:fixed;left:0;top:0;bottom:0;z-index:65;transform:translateX(-100%);transition:transform .25s var(--ease)}
+  .side.open{transform:none;box-shadow:0 0 0 100vmax rgba(10,10,10,.35)}
+  .menubtn{display:grid}
+  .page{padding:20px 16px 96px}
+  .search span:first-of-type,.search .kbd{display:none}
+  .search{flex:none;width:36px;min-width:36px;padding:0;justify-content:center}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<script>
+/* ---------- icons (Lucide, 1.5 stroke) ---------- */
+const P={
+ home:'<rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/>',
+ prepare:'<path d="m16 6 4 14M12 6v14M8 8v12M4 4v16"/>',
+ test:'<path d="M12 20h9"/><path d="M16.4 3.6a2.1 2.1 0 0 1 3 3L7.4 18.6a2 2 0 0 1-.9.5l-2.9.8a.5.5 0 0 1-.6-.6l.8-2.9a2 2 0 0 1 .5-.9z"/>',
+ log:'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/>',
+ about:'<path d="M12 21V7"/><path d="m16 12 2 2 4-4"/><path d="M22 6V4a1 1 0 0 0-1-1h-5a4 4 0 0 0-4 4 4 4 0 0 0-4-4H3a1 1 0 0 0-1 1v13a1 1 0 0 0 1 1h6a3 3 0 0 1 3 3 3 3 0 0 1 3-3h6a1 1 0 0 0 1-1v-1.3"/>',
+ help:'<circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3M12 17h.01"/>',
+ collapse:'<path d="M3 19V5M13 6l-6 6 6 6M7 12h14"/>',
+ search:'<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+ user:'<circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/>',
+ crown:'<path d="M11.6 3.3a.5.5 0 0 1 .8 0l3 5.6a1 1 0 0 0 1.5.3l4.3-3.7a.5.5 0 0 1 .8.5l-2.9 10.3a1 1 0 0 1-1 .7H5.8a1 1 0 0 1-1-.7L2 6a.5.5 0 0 1 .8-.5l4.3 3.7a1 1 0 0 0 1.5-.3z"/><path d="M5 21h14"/>',
+ lock:'<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+ check:'<path d="M20 6 9 17l-5-5"/>',
+ x:'<path d="M18 6 6 18M6 6l12 12"/>',
+ right:'<path d="m9 18 6-6-6-6"/>',
+ left:'<path d="m15 18-6-6 6-6"/>',
+ down:'<path d="m6 9 6 6 6-6"/>',
+ arrow:'<path d="M5 12h14M12 5l7 7-7 7"/>',
+ updown:'<path d="m7 15 5 5 5-5M7 9l5-5 5 5"/>',
+ timer:'<path d="M10 2h4M12 14l3-3"/><circle cx="12" cy="14" r="8"/>',
+ flag:'<path d="M4 22V4a1 1 0 0 1 .4-.8A6 6 0 0 1 8 2c3 0 5 2 7.3 2q2 0 3.1-.8A1 1 0 0 1 20 4v10a1 1 0 0 1-.4.8A6 6 0 0 1 16 16c-3 0-5-2-8-2a6 6 0 0 0-4 1.5"/>',
+ bulb:'<path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5M9 18h6M10 22h4"/>',
+ bookmark:'<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+ cal:'<rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>',
+ shield:'<path d="M20 13c0 5-3.5 7.5-7.7 9a1 1 0 0 1-.7 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.2-2.7a1.2 1.2 0 0 1 1.5 0C14.5 3.8 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+ download:'<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>',
+ play:'<path d="M6 3l14 9-14 9z" fill="currentColor" stroke="none"/>',
+ menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',
+ map:'<path d="M14.1 3.1 9 5.4 3.6 3.1A1 1 0 0 0 2 4v14.4a1 1 0 0 0 .6.9l6 2.6a1 1 0 0 0 .8 0l5.1-2.3 5.4 2.3a1 1 0 0 0 1.4-.9V6.6a1 1 0 0 0-.6-.9l-6-2.6a1 1 0 0 0-.6 0Z"/><path d="M15 3.1v17.8M9 3.1v17.8"/>',
+ billing:'<rect width="20" height="14" x="2" y="5" rx="2"/><path d="M2 10h20"/>',
+ palette:'<circle cx="13.5" cy="6.5" r="1.5"/><circle cx="17.5" cy="10.5" r="1.5"/><circle cx="8.5" cy="7.5" r="1.5"/><circle cx="6.5" cy="12.5" r="1.5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.6-.7 1.6-1.7 0-.4-.2-.8-.4-1.1-.3-.3-.4-.7-.4-1.1a1.6 1.6 0 0 1 1.6-1.6H17c3 0 5.5-2.5 5.5-5.5C22 6 17.5 2 12 2z"/>',
+ grid4:'<rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/>',
+ func:'<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M9 17c2 0 2.8-1 2.8-2.8V10c0-2 1-3.3 3.2-3"/><path d="M9 11.2h5.7"/>',
+ grid9:'<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/>',
+ book:'<path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>',
+ reset:'<path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/>'
+};
+const ic=(n,s=16,sw=1.5,extra='')=>`<svg aria-hidden="true" width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round" ${extra}>${P[n]}</svg>`;
+const LOGO=`<span class="logo" aria-hidden="true"><svg width="14" height="16" viewBox="0 0 14 16"><path d="M2 2.5C2 1.7 2.7 1 3.5 1H8c.8 0 1.5.7 1.5 1.5V3h1c.8 0 1.5.7 1.5 1.5v3c0 .8-.7 1.5-1.5 1.5h-1v4.5c0 .8-.7 1.5-1.5 1.5H3.5C2.7 15 2 14.3 2 13.5z" fill="#F3F0E6"/><rect x="4.5" y="4" width="3" height="8" rx="1.2" fill="#0A0A0A"/></svg></span>`;
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=s=>Math.floor(s/60)+':'+String(s%60).padStart(2,'0');
+
+/* ---------- state ---------- */
+const DEF={plan:'free',route:'home',range:'daily',prepTab:'all',pset:'FS',pans:{},phint:{},preveal:{},panel:null,pfilter:'all',
+  q:0,pick:null,hint:0,saved:{},
+  exam:{task:7,answers:{1:'B',2:'C',3:'A',4:'D',5:'E',6:'A'},flags:{4:true},secs:1062},
+  log:{sub:'all',res:'all',sel:'#FS-1033'},
+  method:'upi',coupon:false,applied:false,paying:false,
+  refund:'idle',reason:null,refundOk:true,
+  elig:{},faq:0,pfaq:0,doc:'refund',
+  paywall:null,palette:false,review:false,menu:false,drawer:false,confirmSubmit:false};
+let S;try{S=JSON.parse(localStorage.getItem('dmatv2'))||null}catch(e){S=null}
+S=Object.assign(JSON.parse(JSON.stringify(DEF)),S||{});
+['paywall','palette','menu','drawer','confirmSubmit','paying'].forEach(k=>S[k]=DEF[k]);
+Object.keys(S.pans||{}).forEach(k=>{if(k.startsWith('#FS')&&!Array.isArray(S.pans[k]))delete S.pans[k]});
+const save=()=>{try{localStorage.setItem('dmatv2',JSON.stringify({plan:S.plan,saved:S.saved,refund:S.refund,pans:S.pans,pset:S.pset}))}catch(e){}};
+let FX=new Set();
+function set(p,fx){Object.assign(S,p);if(fx)[].concat(fx).forEach(f=>FX.add(f));save();render()}
+const isPro=()=>S.plan==='pro';
+
+/* ---------- routing (plain #name hashes) ---------- */
+const ROUTES={home:'Home',prepare:'Prepare',practice:'Practice',test:'Test',exam:'Exam mode',results:'Results',about:'About the exam',pricing:'Plans and pricing',checkout:'Checkout',unlocked:'Pro unlocked',billing:'Plan and billing',policies:'Help and policies',system:'Design system'};
+function syncRoute(){const r=(location.hash||'#home').slice(1);S.route=ROUTES[r]?r:'home';S.drawer=false;S.menu=false;render();window.scrollTo(0,0)}
+window.addEventListener('hashchange',syncRoute);
+const go=r=>{if(location.hash.slice(1)===r){S.route=r;render();window.scrollTo(0,0)}else location.hash=r};
+
+/* ---------- toasts ---------- */
+function toast(msg,undo){const t=document.createElement('div');t.className='toast';t.setAttribute('role','status');
+  t.innerHTML=`${ic('check',16,2,'style="color:#7BE3A0"')}<span style="flex:1">${esc(msg)}</span>${undo?'<button type="button">Undo</button>':''}<span class="drain"></span>`;
+  if(undo)t.querySelector('button').onclick=()=>{undo();t.remove()};
+  document.getElementById('toasts').appendChild(t);setTimeout(()=>t.remove(),4000)}
+
+/* ---------- data ---------- */
+const QUESTIONS=[
+ {id:'#ME-0117',sub:'Mathematical Equations',level:'Hard',kind:'math',
+  intro:'Each letter stands for a whole number from 1 to 20.',eqs:['3 × C = D','2 × A = B','B ÷ 10 = C','B − D − C + A = 22'],keyEq:3,ask:'What is C?',
+  opts:[['4','4 is double the answer. That happens when you multiply where the equation divides.'],['10','10 is A, a letter you find on the way. The question asks for C.'],['3','3 is one more than the answer, an off-by-one slip when adding up.'],['2','']],correct:3,
+  right:'No equation starts with one unknown. Push every definition into the line that uses all four letters, and it collapses to one.',
+  hints:['No single equation starts with one unknown. One line uses every letter: start there.','Write A, C and D in terms of B, then substitute into B − D − C + A = 22.','You get 1.1 × B = 22. Find B, then work your way to C.'],
+  steps:['Write everything in terms of B: A = B ÷ 2, C = B ÷ 10, D = 3 × C = 3B ÷ 10.','Substitute: B − 0.3B − 0.1B + 0.5B = 22, so 1.1B = 22.','B = 20, so A = 10, C = 2 and D = 6.','The question asks for C, so the answer is 2.'],pos:17,total:20,set:'Mathematical Equations · Starter set'},
+ {id:'#LS-0063',sub:'Latin Squares',level:'Medium',kind:'latin',
+  intro:'Each letter appears once in every row and every column.',ask:'Which letter goes in the marked cell?',
+  grid:[[null,null,'D','E',null],[null,'E','B','D','A'],[null,'B',null,null,'E'],[null,'D',null,null,'C'],[null,null,'E',null,'D']],target:[2,3],
+  opts:[['A',''],['B','Row 3 already has a B.'],['C','C fits at first glance, but row 3 needs its C in column 3.'],['D','Column 4 already has a D, in row 2.'],['E','Row 3 already has an E.']],correct:0,
+  right:'Look one step away: the forced cell in column 3 decides the marked one.',
+  hints:['Row 3 is missing A, C and D. Column 4 already has a D.','So the marked cell is A or C. Look at column 3, which is missing A and C.','Row 4 already has a C. What does that force in column 3?'],
+  steps:['Row 3 is missing A, C and D. Column 4 already has a D, so the marked cell is A or C.','Column 3 is missing A and C, in rows 3 and 4.','Row 4 already has a C, so row 4, column 3 is A and row 3, column 3 is C.','Row 3 now has its C, so the marked cell is A.'],pos:9,total:20,set:'Latin Squares · Starter set'}
+];
+/* ---------- practice sets ---------- */
+const LSGEN=[{"grid": [["E", "B", "A", null, "D"], [null, null, "D", "B", null], ["B", null, "E", "D", "A"], ["D", "A", null, null, "B"], ["C", null, "B", "A", null]], "target": [3, 2], "ans": "C", "rowk": ["A", "B", "D"], "colonly": ["E"], "colk": ["A", "B", "D", "E"], "level": "Easy"}, {"grid": [["B", "D", null, "E", "A"], [null, "A", null, "C", null], ["E", null, "A", "D", null], [null, null, "E", null, "D"], ["A", "E", null, null, "C"]], "target": [1, 0], "ans": "D", "rowk": ["A", "C"], "colonly": ["B", "E"], "colk": ["A", "B", "E"], "level": "Easy"}, {"grid": [["A", null, null, "E", null], ["E", "A", "B", "D", "C"], [null, null, "C", null, null], [null, "B", null, null, "D"], [null, null, "A", null, "E"]], "target": [0, 2], "ans": "D", "rowk": ["A", "E"], "colonly": ["B", "C"], "colk": ["A", "B", "C"], "level": "Medium"}, {"grid": [["E", null, null, null, null], ["C", "D", "A", "E", "B"], ["D", null, "C", null, null], [null, null, "E", null, null], [null, null, "D", "C", null]], "target": [0, 2], "ans": "B", "rowk": ["E"], "colonly": ["A", "C", "D"], "colk": ["A", "C", "D", "E"], "level": "Medium"}];
+const art=l=>'AE'.includes(l)?'an':'a';
+const SETS={
+ FS:{name:'Figure Sequences',short:'Figures',pace:75,qs:[{"id": "#FS-0008", "level": "Easy", "kind": "fs", "frames": [[["arrow", "ink", 1, 1, 0], ["dot", "blue", 0, 1, 0]], [["arrow", "ink", 1, 2, 0], ["dot", "blue", 0, 3, 0]], [["arrow", "ink", 1, 3, 0], ["dot", "blue", 2, 3, 0]], [["arrow", "ink", 2, 0, 0], ["dot", "blue", 3, 2, 0]]], "parts": [{"opts": [[[["arrow", "ink", 2, 1, 0], ["dot", "blue", 1, 0, 0]], "The blue circle moved too far."], [[["arrow", "ink", 2, 1, 0], ["dot", "blue", 3, 0, 0]], ""], [[["arrow", "ink", 2, 0, 0], ["dot", "blue", 3, 0, 0]], "The black arrow didn’t move."]], "correct": 1}, {"opts": [[[["arrow", "ink", 2, 3, 0], ["dot", "blue", 1, 0, 0]], "The black arrow moved too far."], [[["arrow", "ink", 2, 1, 0], ["dot", "blue", 1, 0, 0]], "The black arrow didn’t move."], [[["arrow", "ink", 2, 2, 0], ["dot", "blue", 1, 0, 0]], ""]], "correct": 2}], "right": "Two symbols, two simple rules. Naming each rule first made the options easy to check.", "hints": ["There are 2 symbols. Each one follows its own rule, so track them one at a time.", "The black arrow moves 1 cell along the rows (left to right, wrapping to the next row).", "The blue circle moves 2 cells clockwise around the outer ring."], "steps": ["The black arrow moves 1 cell along the rows (left to right, wrapping to the next row).", "The blue circle moves 2 cells clockwise around the outer ring.", "Apply every rule once for the fifth matrix (option B) and again for the sixth (option C)."]}, {"id": "#FS-0014", "level": "Easy", "kind": "fs", "frames": [[["rtri", "teal", 1, 1, 0], ["dot", "plum", 2, 1, 0]], [["rtri", "teal", 1, 1, 90], ["dot", "plum", 3, 1, 0]], [["rtri", "teal", 1, 1, 180], ["dot", "plum", 0, 2, 0]], [["rtri", "teal", 1, 1, 270], ["dot", "plum", 1, 2, 0]]], "parts": [{"opts": [[[["rtri", "teal", 1, 1, 180], ["dot", "plum", 2, 2, 0]], "The teal right-angle triangle turned the wrong way."], [[["rtri", "teal", 1, 1, 0], ["dot", "plum", 2, 2, 0]], ""], [[["rtri", "teal", 1, 1, 0], ["dot", "plum", 3, 2, 0]], "The plum circle moved too far."]], "correct": 1}, {"opts": [[[["rtri", "teal", 1, 1, 90], ["dot", "plum", 0, 3, 0]], "The plum circle moved too far."], [[["rtri", "teal", 1, 1, 0], ["dot", "plum", 3, 2, 0]], "The teal right-angle triangle didn’t turn."], [[["rtri", "teal", 1, 1, 90], ["dot", "plum", 3, 2, 0]], ""]], "correct": 2}], "right": "The triangle never moves, it only turns. Spotting what stays fixed is half the work.", "hints": ["There are 2 symbols. Each one follows its own rule, so track them one at a time.", "The teal right-angle triangle stays in the same cell and turns a quarter clockwise.", "The plum circle moves 1 cell down the columns (wrapping to the top of the next column)."], "steps": ["The teal right-angle triangle stays in the same cell and turns a quarter clockwise.", "The plum circle moves 1 cell down the columns (wrapping to the top of the next column).", "Apply every rule once for the fifth matrix (option B) and again for the sixth (option C)."]}, {"id": "#FS-0102", "level": "Medium", "kind": "fs", "frames": [[["rtri", "blue", 0, 0, 90], ["arrow", "ink", 1, 1, 90], ["dot", "teal", 2, 1, 0]], [["rtri", "blue", 0, 1, 180], ["arrow", "ink", 2, 0, 90], ["dot", "teal", 2, 1, 0]], [["rtri", "blue", 0, 2, 270], ["arrow", "ink", 2, 3, 90], ["dot", "teal", 2, 1, 0]], [["rtri", "blue", 0, 3, 0], ["arrow", "ink", 3, 2, 90], ["dot", "teal", 2, 1, 0]]], "parts": [{"opts": [[[["rtri", "blue", 1, 3, 90], ["arrow", "ink", 0, 1, 90], ["dot", "teal", 2, 1, 0]], ""], [[["rtri", "blue", 1, 3, 90], ["arrow", "ink", 3, 2, 90], ["dot", "teal", 2, 1, 0]], "The black arrow didn’t move."], [[["rtri", "blue", 1, 3, 0], ["arrow", "ink", 0, 1, 90], ["dot", "teal", 2, 1, 0]], "The blue right-angle triangle didn’t turn."]], "correct": 0}, {"opts": [[[["rtri", "blue", 2, 3, 180], ["arrow", "ink", 1, 0, 90], ["dot", "teal", 2, 1, 0]], ""], [[["rtri", "blue", 2, 3, 180], ["arrow", "ink", 0, 1, 90], ["dot", "teal", 2, 1, 0]], "The black arrow didn’t move."], [[["rtri", "blue", 3, 3, 180], ["arrow", "ink", 1, 0, 90], ["dot", "teal", 2, 1, 0]], "The blue right-angle triangle moved too far."]], "correct": 0}], "right": "Movement and turning together. You checked both for the triangle.", "hints": ["There are 3 symbols. Each one follows its own rule, so track them one at a time.", "The blue right-angle triangle moves 1 cell clockwise around the outer ring and turns a quarter clockwise.", "The black arrow moves 3 cells along the rows (left to right, wrapping to the next row). The teal circle stays in the same cell."], "steps": ["The blue right-angle triangle moves 1 cell clockwise around the outer ring and turns a quarter clockwise.", "The black arrow moves 3 cells along the rows (left to right, wrapping to the next row).", "The teal circle stays in the same cell.", "Apply every rule once for the fifth matrix (option A) and again for the sixth (option A)."]}, {"id": "#FS-0117", "level": "Medium", "kind": "fs", "frames": [[["rtri", "teal", 1, 1, 0], ["rtri", "plum", 0, 3, 180], ["arrow", "ink", 2, 2, 0]], [["rtri", "teal", 1, 3, 270], ["rtri", "plum", 0, 2, 0], ["arrow", "ink", 2, 2, 90]], [["rtri", "teal", 2, 1, 180], ["rtri", "plum", 0, 1, 180], ["arrow", "ink", 2, 2, 180]], [["rtri", "teal", 2, 3, 90], ["rtri", "plum", 0, 0, 0], ["arrow", "ink", 2, 2, 270]]], "parts": [{"opts": [[[["rtri", "teal", 3, 1, 0], ["rtri", "plum", 1, 0, 180], ["arrow", "ink", 2, 2, 0]], ""], [[["rtri", "teal", 3, 3, 0], ["rtri", "plum", 1, 0, 180], ["arrow", "ink", 2, 2, 0]], "The teal right-angle triangle moved too far."], [[["rtri", "teal", 3, 1, 180], ["rtri", "plum", 1, 0, 180], ["arrow", "ink", 2, 2, 0]], "The teal right-angle triangle turned the wrong way."]], "correct": 0}, {"opts": [[[["rtri", "teal", 3, 3, 90], ["rtri", "plum", 2, 0, 0], ["arrow", "ink", 2, 2, 90]], "The teal right-angle triangle turned the wrong way."], [[["rtri", "teal", 3, 3, 270], ["rtri", "plum", 2, 0, 0], ["arrow", "ink", 2, 2, 90]], ""], [[["rtri", "teal", 0, 1, 270], ["rtri", "plum", 2, 0, 0], ["arrow", "ink", 2, 2, 90]], "The teal right-angle triangle moved too far."]], "correct": 1}], "right": "Two right-angle triangles with different rules. Keeping them apart was the whole question.", "hints": ["There are 3 symbols. Each one follows its own rule, so track them one at a time.", "The teal right-angle triangle moves 2 cells along the rows (left to right, wrapping to the next row) and turns a quarter counter-clockwise.", "The plum right-angle triangle moves 1 cell counter-clockwise around the outer ring and turns half a turn. The black arrow stays in the same cell and turns a quarter clockwise."], "steps": ["The teal right-angle triangle moves 2 cells along the rows (left to right, wrapping to the next row) and turns a quarter counter-clockwise.", "The plum right-angle triangle moves 1 cell counter-clockwise around the outer ring and turns half a turn.", "The black arrow stays in the same cell and turns a quarter clockwise.", "Apply every rule once for the fifth matrix (option A) and again for the sixth (option B)."]}, {"id": "#FS-0233", "level": "Hard", "kind": "fs", "frames": [[["arrow", "ink", 1, 2, 0], ["tri", "blue", 3, 0, 0], ["dot", "plum", 1, 1, 0]], [["arrow", "ink", 1, 3, 90], ["tri", "teal", 0, 0, 0], ["dot", "plum", 3, 1, 0]], [["arrow", "ink", 2, 0, 180], ["tri", "plum", 0, 3, 0], ["dot", "plum", 1, 2, 0]], [["arrow", "ink", 2, 1, 270], ["tri", "blue", 3, 3, 0], ["dot", "plum", 3, 2, 0]]], "parts": [{"opts": [[[["arrow", "ink", 2, 1, 0], ["tri", "teal", 3, 0, 0], ["dot", "plum", 1, 3, 0]], "The black arrow didn’t move."], [[["arrow", "ink", 2, 2, 0], ["tri", "teal", 3, 0, 0], ["dot", "plum", 1, 3, 0]], ""], [[["arrow", "ink", 2, 2, 0], ["tri", "teal", 3, 0, 0], ["dot", "plum", 3, 3, 0]], "The plum circle moved too far."]], "correct": 1}, {"opts": [[[["arrow", "ink", 2, 3, 90], ["tri", "teal", 0, 0, 0], ["dot", "plum", 3, 3, 0]], "The triangle kept its old colour."], [[["arrow", "ink", 2, 3, 270], ["tri", "plum", 0, 0, 0], ["dot", "plum", 3, 3, 0]], "The black arrow turned the wrong way."], [[["arrow", "ink", 2, 3, 90], ["tri", "plum", 0, 0, 0], ["dot", "plum", 3, 3, 0]], ""]], "correct": 2}], "right": "Position, turn and colour all changed. You tracked every attribute.", "hints": ["There are 3 symbols. Each one follows its own rule, so track them one at a time.", "The black arrow moves 1 cell along the rows (left to right, wrapping to the next row) and turns a quarter clockwise.", "The triangle moves 3 cells clockwise around the outer ring, changing colour in the order blue, teal, plum. The plum circle moves 2 cells down the columns (wrapping to the top of the next column)."], "steps": ["The black arrow moves 1 cell along the rows (left to right, wrapping to the next row) and turns a quarter clockwise.", "The triangle moves 3 cells clockwise around the outer ring, changing colour in the order blue, teal, plum.", "The plum circle moves 2 cells down the columns (wrapping to the top of the next column).", "Apply every rule once for the fifth matrix (option B) and again for the sixth (option C)."]}, {"id": "#FS-0251", "level": "Hard", "kind": "fs", "frames": [[["rtri", "ink", 1, 2, 0], ["rtri", "blue", 0, 1, 270], ["rtri", "teal", 2, 2, 90], ["dot", "plum", 0, 0, 0]], [["rtri", "ink", 1, 2, 90], ["rtri", "blue", 0, 3, 270], ["rtri", "teal", 3, 2, 0], ["dot", "plum", 1, 0, 0]], [["rtri", "ink", 1, 2, 180], ["rtri", "blue", 2, 3, 270], ["rtri", "teal", 0, 3, 270], ["dot", "plum", 2, 0, 0]], [["rtri", "ink", 1, 2, 270], ["rtri", "blue", 3, 2, 270], ["rtri", "teal", 1, 3, 180], ["dot", "plum", 3, 0, 0]]], "parts": [{"opts": [[[["rtri", "ink", 1, 2, 0], ["rtri", "blue", 3, 2, 270], ["rtri", "teal", 2, 3, 90], ["dot", "plum", 3, 1, 0]], "The blue right-angle triangle didn’t move."], [[["rtri", "ink", 1, 2, 0], ["rtri", "blue", 3, 0, 270], ["rtri", "teal", 2, 3, 90], ["dot", "plum", 3, 1, 0]], ""], [[["rtri", "ink", 1, 2, 0], ["rtri", "blue", 3, 0, 270], ["rtri", "teal", 1, 3, 90], ["dot", "plum", 3, 1, 0]], "The teal right-angle triangle didn’t move."]], "correct": 1}, {"opts": [[[["rtri", "ink", 1, 2, 90], ["rtri", "blue", 1, 0, 270], ["rtri", "teal", 3, 3, 0], ["dot", "plum", 3, 2, 0]], ""], [[["rtri", "ink", 1, 2, 270], ["rtri", "blue", 1, 0, 270], ["rtri", "teal", 3, 3, 0], ["dot", "plum", 3, 2, 0]], "The black right-angle triangle turned the wrong way."], [[["rtri", "ink", 1, 2, 0], ["rtri", "blue", 1, 0, 270], ["rtri", "teal", 3, 3, 0], ["dot", "plum", 3, 2, 0]], "The black right-angle triangle didn’t turn."]], "correct": 0}], "right": "Three right-angle triangles, three rules. That is as busy as the real test gets.", "hints": ["There are 4 symbols. Each one follows its own rule, so track them one at a time.", "The black right-angle triangle stays in the same cell and turns a quarter clockwise.", "The blue right-angle triangle moves 2 cells clockwise around the outer ring. The teal right-angle triangle moves 1 cell down the columns (wrapping to the top of the next column) and turns a quarter counter-clockwise. The plum circle moves 1 cell counter-clockwise around the outer ring."], "steps": ["The black right-angle triangle stays in the same cell and turns a quarter clockwise.", "The blue right-angle triangle moves 2 cells clockwise around the outer ring.", "The teal right-angle triangle moves 1 cell down the columns (wrapping to the top of the next column) and turns a quarter counter-clockwise.", "The plum circle moves 1 cell counter-clockwise around the outer ring.", "Apply every rule once for the fifth matrix (option B) and again for the sixth (option A)."]}]},
+ ME:{name:'Mathematical Equations',short:'Equations',pace:75,qs:[
+  {id:'#ME-0021',level:'Easy',kind:'me',eqs:['A + B = 12','A − B = 4'],keyEq:1,ask:'What is A?',opts:[['8',''],['4','4 is B. The question asks for A.'],['6','6 is half of 12. Adding the two lines gives 2A = 16, not 12.'],['16','16 is 2A. Divide by 2 to get A.']],correct:0,
+   right:'Adding the lines cancelled B in one move.',
+   hints:['Two lines, two unknowns. Try adding them.','Adding cancels B: 2A = 16.','Divide by 2.'],
+   steps:['Add the two equations: (A + B) + (A − B) = 12 + 4.','B cancels, leaving 2A = 16.','So A = 8 (and B = 4).']},
+  {id:'#ME-0058',level:'Easy',kind:'me',eqs:['C = 3','B + C = 15','2 × A = B'],keyEq:0,ask:'What is A?',opts:[['12','12 is B. One more step: A is half of B.'],['6',''],['3','3 is C, the letter you’re given.'],['9','9 would make B = 18, and 18 + 3 is not 15.']],correct:1,
+   right:'Start from the given letter and walk the chain. That works for most Easy items.',
+   hints:['One letter is given outright. Start there.','C = 3, so B = 15 − 3.','B = 12 and 2 × A = B.'],
+   steps:['C = 3 is given.','B + C = 15, so B = 12.','2 × A = 12, so A = 6.']},
+  {id:'#ME-0142',level:'Medium',kind:'me',eqs:['A × B = 24','A + B = 10','A > B'],keyEq:1,ask:'What is A?',opts:[['4','4 is B. The third line says A is the larger one.'],['8','8 × 3 = 24, but 8 + 3 is 11, not 10.'],['6',''],['12','12 × 2 = 24, but 12 + 2 is 14.']],correct:2,
+   right:'Listing factor pairs is faster than algebra here.',
+   hints:['Which pairs of whole numbers multiply to 24?','1 × 24, 2 × 12, 3 × 8, 4 × 6. Which pair adds to 10?','4 and 6. A is the larger.'],
+   steps:['List pairs with product 24: 1 and 24, 2 and 12, 3 and 8, 4 and 6.','Only 4 and 6 add up to 10.','A > B, so A = 6 and B = 4.']},
+  {id:'#ME-0176',level:'Medium',kind:'me',eqs:['C = 9','B + 4 = C','A ÷ 3 = B'],keyEq:0,ask:'What is A?',opts:[['15',''],['5','5 is B. Multiply by 3 to get A.'],['27','27 is 9 × 3. You skipped the B + 4 = C step.'],['13','13 comes from 9 + 4. B + 4 = C means B is 4 less than C.']],correct:0,
+   right:'Every line was used once, in order. Clean.',
+   hints:['Start from the letter that is given.','B + 4 = 9, so B = 5.','A ÷ 3 = 5. What is A?'],
+   steps:['C = 9 is given.','B + 4 = 9, so B = 5.','A ÷ 3 = 5, so A = 15.']},
+  {id:'#ME-0117',level:'Hard',kind:'me',eqs:QUESTIONS[0].eqs,keyEq:3,ask:'What is C?',opts:QUESTIONS[0].opts,correct:3,right:QUESTIONS[0].right,hints:QUESTIONS[0].hints,steps:QUESTIONS[0].steps},
+  {id:'#ME-0231',level:'Hard',kind:'me',eqs:['3 × A − B = 10','B = A + 2'],keyEq:1,ask:'What is B?',opts:[['6','6 is A. The question asks for B.'],['8',''],['4','B = 4 means A = 2, and 3 × 2 − 4 is 2, not 10.'],['10','10 is the right side of the first line, not B.']],correct:1,
+   right:'Substituting the definition of B turned two unknowns into one.',
+   hints:['The second line defines B in terms of A. Substitute it.','3A − (A + 2) = 10.','2A − 2 = 10, so A = 6. Now find B.'],
+   steps:['Replace B with A + 2: 3A − (A + 2) = 10.','Simplify: 2A − 2 = 10, so 2A = 12 and A = 6.','B = A + 2 = 8.']}
+ ]},
+ LS:{name:'Latin Squares',short:'Squares',pace:75,qs:[]},
+ GA:{name:'General Academic Module',short:'Academic',pace:90,qs:[
+  {id:'#GA-0004',level:'Easy',kind:'ga',passage:`<p>Share of electricity from three renewable sources in one country.</p><table class="tbl ptbl"><thead><tr><th>Source</th><th>2020</th><th>2024</th></tr></thead><tbody><tr><td>Solar</td><td class="mono">6%</td><td class="mono">14%</td></tr><tr><td>Wind</td><td class="mono">10%</td><td class="mono">15%</td></tr><tr><td>Hydro</td><td class="mono">12%</td><td class="mono">11%</td></tr></tbody></table>`,
+   ask:'Which source grew the most between 2020 and 2024, in percentage points?',opts:[['Solar',''],['Wind','Wind grew by 5 points. Solar grew by 8.'],['Hydro','Hydro fell by 1 point.'],['They grew equally','Each source changed by a different amount.']],correct:0,
+   right:'Subtract column by column and compare. Tables reward a quick, careful scan.',
+   hints:['Work out each change: 2024 minus 2020.','Solar +8, Wind +5. What about Hydro?','Hydro went down. Pick the biggest increase.'],
+   steps:['Solar: 14 − 6 = +8 points.','Wind: 15 − 10 = +5 points.','Hydro: 11 − 12 = −1 point.','Solar grew the most.']},
+  {id:'#GA-0009',level:'Easy',kind:'ga',passage:'@GA-0004',
+   ask:'In 2024, what share of electricity came from the three sources combined?',opts:[['28%','28% is the 2020 total. The question asks about 2024.'],['29%','29% is solar and wind only. Hydro adds 11.'],['40%',''],['54%','54% adds the 2020 and 2024 values for solar and wind.']],correct:2,
+   right:'Right column, every row. Reading the year in the question first avoids the 2020 trap.',
+   hints:['Use only the 2024 column.','Add all three rows.','14 + 15 + 11.'],
+   steps:['Take the 2024 column: 14%, 15% and 11%.','14 + 15 + 11 = 40.','The three sources gave 40% of electricity in 2024.']},
+  {id:'#GA-0031',level:'Medium',kind:'ga',passage:'<p>A café sells coffee at ₹120 a cup. Each cup costs ₹45 to make. Rent and wages come to ₹30,000 a month.</p>',
+   ask:'How many cups must the café sell in a month to break even?',opts:[['250','250 divides the fixed costs by the price, not by the margin per cup.'],['300','300 cups earn ₹22,500 over cost, leaving a ₹7,500 loss.'],['400',''],['667','667 divides the fixed costs by the cost per cup.']],correct:2,
+   right:'Break-even is fixed costs divided by the margin per unit. You found the margin first.',
+   hints:['Each cup leaves some money after its own cost. How much?','₹120 − ₹45 = ₹75 per cup.','How many lots of ₹75 make ₹30,000?'],
+   steps:['Margin per cup: ₹120 − ₹45 = ₹75.','Fixed costs to cover: ₹30,000.','₹30,000 ÷ ₹75 = 400 cups.']},
+  {id:'#GA-0047',level:'Medium',kind:'ga',passage:'<p>A substance’s half-life is the time it takes for half of it to decay. A sample of 80 g has a half-life of 6 hours.</p>',
+   ask:'How much of the sample is left after 18 hours?',opts:[['40 g','40 g is after one half-life, 6 hours.'],['20 g','20 g is after two half-lives, 12 hours.'],['10 g',''],['0 g','Halving never reaches zero. Some is always left.']],correct:2,
+   right:'Count the half-lives first, then halve that many times.',
+   hints:['How many half-lives fit into 18 hours?','18 ÷ 6 = 3 half-lives.','Halve 80 g three times.'],
+   steps:['18 hours ÷ 6 hours = 3 half-lives.','80 g → 40 g → 20 g → 10 g.','10 g is left after 18 hours.']}
+ ]}
+};
+['#LS-0012','#LS-0019','#LS-0041','#LS-0047'].forEach((id,i)=>{const g=LSGEN[i],R=g.target[0]+1,C=g.target[1]+1;
+ SETS.LS.qs.push({id,level:g.level,kind:'ls',grid:g.grid,target:g.target,
+  opts:'ABCDE'.split('').map(l=>[l,l===g.ans?'':g.rowk.includes(l)?`Row ${R} already has ${art(l)} ${l}.`:`Column ${C} already has ${art(l)} ${l}.`]),correct:'ABCDE'.indexOf(g.ans),
+  right:g.rowk.length>=3?'Row first, then column. One letter was left.':'Neither line was enough alone. Combining them left one letter.',
+  hints:[`List the letters row ${R} already has.`,`Now add the letters column ${C} has.`,'One letter is missing from both.'],
+  steps:[`Row ${R} already has ${g.rowk.join(', ')}.`,`Column ${C} adds ${g.colonly.join(', ')}.`,`That leaves only ${g.ans} for the marked cell.`]})});
+{const q=QUESTIONS[1];SETS.LS.qs.push({id:q.id,level:'Hard',kind:'ls',grid:q.grid,target:q.target,opts:q.opts,correct:q.correct,right:q.right,hints:q.hints,steps:q.steps})}
+SETS.GA.qs.forEach(q=>{if(q.passage.startsWith('@'))q.passage=SETS.GA.qs.find(x=>x.id==='#'+q.passage.slice(1)).passage});
+const qById=id=>{for(const k in SETS){const q=SETS[k].qs.find(x=>x.id===id);if(q)return [k,q]}return [null,null]};
+
+/* figure-sequence matrices: 4x4 grid, symbols [shape,colour,row,col,rotation] */
+const FIGC={ink:'var(--fig-ink)',blue:'var(--fig-blue)',teal:'var(--fig-teal)',plum:'var(--fig-plum)'};
+const FIGP={arrow:'M10 3.5L16 10H12.5V16.5H7.5V10H4Z',tri:'M10 4L16.5 15.5H3.5Z',rtri:'M4.5 4.5V15.5H15.5Z'};
+function mtx(syms,size=96){let s='';
+ for(let i=1;i<4;i++)s+=`<path d="M${i*20} 0V80M0 ${i*20}H80" stroke="#E2E1DE" stroke-width=".8"/>`;
+ (syms||[]).forEach(([sh,col,r,c,rot])=>{const x=c*20,y=r*20,f=FIGC[col];
+  s+=sh==='dot'?`<circle cx="${x+10}" cy="${y+10}" r="5.6" fill="${f}"/>`:`<path d="${FIGP[sh]}" fill="${f}" stroke="${f}" stroke-width=".6" stroke-linejoin="round" transform="translate(${x} ${y}) rotate(${rot} 10 10)"/>`});
+ return `<svg width="${size}" height="${size}" viewBox="0 0 80 80" aria-hidden="true" style="display:block;border-radius:5px;background:var(--frame);box-shadow:inset 0 0 0 1.5px var(--ink)">${s}</svg>`}
+
+const isFS=q=>q.kind==='fs';
+function pPick(q){const a=S.pans[q.id];return isFS(q)?(Array.isArray(a)?a:[]):a}
+function pDone(q){const a=pPick(q);return isFS(q)?(a[0]!=null&&a[1]!=null):a!==undefined}
+function pState(id){const q=qById(id)[1];if(!pDone(q))return 'todo';const a=pPick(q);return (isFS(q)?(a[0]===q.parts[0].correct&&a[1]===q.parts[1].correct):a===q.correct)?'right':'wrong'}
+function pList(){const qs=SETS[S.pset].qs;return qs.filter(q=>{const st=pState(q.id);return S.pfilter==='all'||(S.pfilter==='todo'&&st==='todo')||(S.pfilter==='missed'&&st==='wrong')||(S.pfilter==='saved'&&S.saved[q.id])})}
+function pActive(){if(S.panel&&qById(S.panel)[0]===S.pset&&!pDone(qById(S.panel)[1]))return S.panel;const q=pList().find(q=>pState(q.id)==='todo');return q?q.id:null}
+function ansLabel(q,i){return q.opts[i][0]}
+function fsWhy(q){const a=pPick(q);const w=q.parts.map((p,k)=>a[k]!=null&&a[k]!==p.correct?p.opts[a[k]][1]:'').filter(Boolean);return w.join(' ')}
+function fsVerdict(q){const a=pPick(q);return q.parts.map((p,k)=>`${k?'sixth':'fifth'} ${a[k]===p.correct?'right':'wrong'}`).join(', ')}
+
+function qStem(q,st){
+ const done=st==='right'||st==='wrong';
+ if(q.kind==='me')return `<p class="muted">Each letter stands for a whole number from 1 to 20.</p><div style="display:flex;flex-wrap:wrap;gap:8px">${q.eqs.map((e,i)=>`<div style="flex:1 1 auto;white-space:nowrap" class="eq ${i===q.keyEq&&((S.phint[q.id]||0)>=1||done)?'key':''}">${e}</div>`).join('')}</div>`;
+ if(q.kind==='ls')return `<p class="muted">Each letter appears once in every row and every column.</p>`;
+ if(q.kind==='ga')return `<div class="passage">${q.passage}</div>`;
+ const a=pPick(q);
+ return `<p class="muted">Continue the sequence. Work out what the fifth and sixth matrices look like.</p>
+ <div class="fseq" role="img" aria-label="Four matrices in a sequence, then two missing">${q.frames.map((f,i)=>`<figure class="fcell"><span class="fbox">${mtx(f)}</span><figcaption class="mono">${i+1}</figcaption></figure>`).join('')}${[0,1].map(k=>`<figure class="fcell">${a[k]!=null?`<span class="fbox">${mtx(q.parts[k].opts[q.parts[k].correct][0])}</span>`:'<span class="fbox q"><b>?</b></span>'}<figcaption class="mono">${k+5}</figcaption></figure>`).join('')}</div>`}
+function qOpts(q,st){
+ const done=st==='right'||st==='wrong', pick=pPick(q);
+ if(q.kind==='fs'){
+  return `<div class="fparts">${q.parts.map((p,k)=>{const pk=pick[k],pd=pk!=null;
+   return `<div class="fpart"><div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px"><b style="font-weight:600">${k?'Sixth':'Fifth'} matrix</b>${pd?`<span class="${pk===p.correct?'':'shake'}" style="font-size:12px;font-weight:500;color:${pk===p.correct?'var(--oktext)':'var(--badtext)'}">${pk===p.correct?'Correct':'Answer is '+'ABC'[p.correct]}</span>`:`<span class="muted" style="font-size:12px">Pick one</span>`}</div>
+   <div role="radiogroup" aria-label="${k?'Sixth':'Fifth'} matrix options" style="display:flex;gap:8px;flex-wrap:wrap">${p.opts.map(([m],i)=>{const c=!pd?'':i===p.correct?'right':i===pk?'wrong':'dim';
+    return `<button type="button" class="opt fig ${c}" role="radio" aria-checked="${pk===i}" ${pd?'disabled':''} data-a="pAns" data-v="${q.id}|${k}|${i}"><span style="display:flex;justify-content:space-between;align-items:center;width:100%"><span class="k">${'ABC'[i]}</span><span class="tag">${!pd?'':i===p.correct?'Answer':i===pk?'Your pick':''}</span></span>${mtx(m,80)}</button>`}).join('')}</div></div>`}).join('')}</div>`}
+ const cls=i=>!done?'':i===q.correct?'right':i===pick?'wrong':'dim';
+ const tag=i=>!done?'':i===q.correct?'Answer':i===pick?'Your pick':'';
+ if(q.kind==='ls'){const [tr,tc]=q.target;
+  return `<div style="display:flex;flex-wrap:wrap;gap:24px;align-items:center"><div class="grid5" role="img" aria-label="5 by 5 grid, marked cell in row ${tr+1}, column ${tc+1}">${q.grid.map((row,r)=>row.map((v,c)=>{const T=r===tr&&c===tc;return `<div class="${T?'tgt':''}">${T?(done?q.opts[q.correct][0]:'?'):(v||'')}</div>`}).join('')).join('')}</div>
+  <div style="display:flex;flex-direction:column;gap:10px"><b style="font-size:16px;font-weight:600">Which letter goes in the marked cell?</b><div role="radiogroup" aria-label="Letters" style="display:flex;gap:8px;flex-wrap:wrap">${q.opts.map(([l],i)=>`<button type="button" class="letter ${cls(i)}" role="radio" aria-checked="${pick===i}" ${done?'disabled':''} data-a="pAns" data-v="${q.id}|0|${i}">${l}</button>`).join('')}</div></div></div>`}
+ const ga=q.kind==='ga';
+ return `<h3 style="font-size:16px;line-height:22px;font-weight:600">${q.ask}</h3><div role="radiogroup" aria-label="Answer options" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(${ga?260:150}px,100%),1fr));gap:8px">${q.opts.map(([v],i)=>`<button type="button" class="opt ${ga?'txt':''} ${cls(i)}" role="radio" aria-checked="${pick===i}" ${done?'disabled':''} data-a="pAns" data-v="${q.id}|0|${i}"><span class="k">${i+1}</span><span class="v">${v}</span><span class="tag">${tag(i)}</span></button>`).join('')}</div>`}
+function qCard(q,n,act){
+ const st=pState(q.id), sel=S.panel===q.id, saved=!!S.saved[q.id], h=S.phint[q.id]||0;
+ const pill={right:'<span class="pill p-ok"><i></i>Correct</span>',wrong:'<span class="pill p-bad"><i></i>Missed</span>',todo:''}[st];
+ const msg=st==='todo'?'':st==='right'?q.right:isFS(q)?fsWhy(q):q.opts[pPick(q)][1];
+ let foot;
+ if(st==='todo')foot='';
+ else foot=`<span class="${FX.has('ok:'+q.id)?'pop':''}" style="flex:none;width:22px;height:22px;border-radius:99px;background:${st==='right'?'var(--ok)':'var(--bad)'};color:#fff;display:grid;place-items:center">${ic(st==='right'?'check':'x',13,2.6)}</span><span style="flex:1 1 240px;min-width:0;font-size:13px;line-height:18px"><b style="font-weight:600;color:${st==='right'?'var(--oktext)':'var(--badtext)'}">${st==='right'?'Correct.':isFS(q)?'Not quite: '+fsVerdict(q)+'.':'Not quite. The answer is '+ansLabel(q,q.correct)+'.'}</b> <span style="color:#3D3D3D">${msg}</span></span><button type="button" class="btn ${sel?'btn-d':'btn-s'} btn-sm" data-a="pOpen" data-v="${q.id}">${sel?'Solution open':'View solution'} ${ic('arrow',14,1.8)}</button>`;
+ return `<article id="q-${q.id.slice(1)}" class="panel qcard ${st} ${act?'act':''} ${sel?'sel':''} ${FX.has('bad:'+q.id)&&!isFS(q)?'shake':''}" aria-label="Question ${n}">
+  <div class="panel-h" style="min-height:42px"><span style="display:flex;align-items:center;gap:8px;min-width:0"><span class="mono" style="font-size:12px;font-weight:600">Q${String(n).padStart(2,'0')}</span><span class="lv lv-${q.level}">${q.level}</span><span class="mono muted" style="font-size:12px">${q.id}</span></span>
+   <span style="display:flex;align-items:center;gap:6px">${pill}${st==='todo'?`<button type="button" class="btn btn-s btn-sm" style="height:28px;padding:0 8px;font-size:12px" data-a="pHint" data-v="${q.id}">${ic('bulb',14,1.8,'style="color:var(--blue)"')}${h?`Hint ${Math.min(h+1,3)} of 3`:'Hint'}</button>`:''}<button type="button" class="iconbtn" style="width:28px;height:28px;border:0;background:none;color:${saved?'var(--blue)':'var(--t2)'}" aria-pressed="${saved}" aria-label="Bookmark ${q.id}" data-a="saveId" data-v="${q.id}">${ic('bookmark',16,1.5,saved?'fill="currentColor"':'')}</button></span></div>
+  <div class="surface qb">${qStem(q,st)}${qOpts(q,st)}</div>
+  ${foot?`<div class="qf">${foot}</div>`:''}</article>`}
+function sPanel(){
+ const [k,q]=qById(S.panel);if(!q||k!==S.pset)return '';
+ const st=pState(q.id), done=st==='right'||st==='wrong', h=S.phint[q.id]||0, open=done||S.preveal[q.id];
+ const list=SETS[k].qs, i=list.indexOf(q);
+ const head=!done?'':st==='right'?(isFS(q)?'You got both matrices right':'You got it: '+ansLabel(q,q.correct)):isFS(q)?'Not quite: '+fsVerdict(q):'You picked '+ansLabel(q,pPick(q))+'. The answer is '+ansLabel(q,q.correct)+'.';
+ const body=!done?'':st==='right'?q.right:isFS(q)?fsWhy(q):q.opts[pPick(q)][1];
+ return `<aside class="spanel ${FX.has('panel')?'slide':''}" aria-label="Solution for ${q.id}">
+  <div class="sp-h"><span style="display:flex;align-items:center;gap:8px"><b style="font-weight:600">Q${String(i+1).padStart(2,'0')}</b><span class="mono muted" style="font-size:12px">${q.id}</span><span class="lv lv-${q.level}">${q.level}</span></span><button type="button" class="iconbtn" style="width:30px;height:30px;border:0" aria-label="Close panel" data-a="pClose">${ic('x',16)}</button></div>
+  <div style="padding:16px;display:flex;flex-direction:column;gap:16px;flex:1">
+   ${done?`<div style="border-radius:10px;border:1px solid ${st==='right'?'var(--okline)':'var(--badline)'};background:${st==='right'?'#F2FAF5':'#FEF6F5'};padding:12px 14px;display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;color:${st==='right'?'var(--oktext)':'var(--badtext)'}">${head}</b><span style="font-size:13px;line-height:19px;color:#3D3D3D">${body}</span></div>`:''}
+   ${isFS(q)&&open?`<div style="display:flex;gap:12px;align-items:flex-end">${q.parts.map((p,j)=>`<figure class="fcell" style="margin:0"><span class="fbox">${mtx(p.opts[p.correct][0],88)}</span><figcaption style="font-size:12px" class="muted">${j?'Sixth':'Fifth'} · option ${'ABC'[p.correct]}</figcaption></figure>`).join('')}</div>`:''}
+   <section class="panel"><div class="panel-h" style="min-height:38px"><span class="ptitle">Hints</span><span class="mono muted" style="font-size:12px">${open?'All shown':h+' of 3'}</span></div>
+    <div class="surface" style="padding:10px;display:flex;flex-direction:column;gap:8px">${q.hints.map((t,j)=>{const o=j<h||open;return `<div class="${j===h-1&&FX.has('hint')?'rise':''}" style="display:flex;gap:10px;padding:9px 10px;border-radius:8px;background:${o?'var(--blue50)':'var(--frame)'};color:${o?'#1A2A99':'#8C8C8C'};font-size:13px;line-height:19px"><span class="mono" style="font-size:11px;padding-top:1px;flex:none">H${j+1}</span><span>${o?t:'Hidden until you ask'}</span></div>`}).join('')}
+    ${open||h>=3?'':`<button type="button" class="btn btn-s btn-sm" data-a="pHint" data-v="${q.id}">${ic('bulb',14,1.8,'style="color:var(--blue)"')}Show hint ${h+1}</button>`}</div></section>
+   <section class="panel"><div class="panel-h" style="min-height:38px"><span class="ptitle">Full solution</span>${open?'':ic('lock',14,1.6,'style="color:var(--t3)"')}</div>
+    <div class="surface">${open?`<ol style="margin:0;padding:6px 0;list-style:none">${q.steps.map((s,j)=>`<li class="${FX.has('reveal')?'rise':''}" style="animation-delay:${j*60}ms;display:grid;grid-template-columns:24px 1fr;gap:10px;padding:10px 14px;font-size:13px;line-height:20px"><span class="mono" style="font-size:12px;color:var(--t3)">0${j+1}</span><span>${s}</span></li>`).join('')}</ol>`
+     :`<div style="padding:16px;display:flex;flex-direction:column;gap:10px;align-items:flex-start"><span style="font-size:13px;line-height:19px" class="muted">Try it first. The solution opens once you answer.</span><button type="button" class="btn btn-s btn-sm" data-a="pReveal" data-v="${q.id}">Reveal anyway</button></div>`}</div></section>
+  </div>
+  <div class="sp-f"><button type="button" class="btn btn-s btn-sm" data-a="pStep" data-v="-1" ${i<=0?'disabled':''}>${ic('left',14,1.8)}Previous</button><span class="mono muted" style="font-size:12px">${i+1} / ${list.length}</span><button type="button" class="btn btn-p btn-sm" data-a="pStep" data-v="1" ${i>=list.length-1?'disabled':''}>Next ${ic('right',14,1.8)}</button></div>
+ </aside>`}
+function practice(){
+ const set=SETS[S.pset], qs=set.qs, list=pList(), act=pActive();
+ const cnt=k=>{const q=SETS[k].qs;return [q.filter(pDone).length,q.length]};
+ const right=qs.filter(q=>pState(q.id)==='right').length, wrong=qs.filter(q=>pState(q.id)==='wrong').length, done=right+wrong;
+ const navc={right:'background:var(--ok);border-color:var(--ok);color:#fff',wrong:'background:var(--bad);border-color:var(--bad);color:#fff',todo:''};
+ return shell(['Prepare','prepare',set.name+' · Starter set'],`
+ <div class="pbar">
+  <div class="seg" role="tablist" aria-label="Subtest">${['FS','ME','LS','GA'].map(k=>{const [a,b]=cnt(k);return `<button type="button" role="tab" aria-selected="${S.pset===k}" class="${S.pset===k?'on':''}" data-a="pSet" data-v="${k}">${SETS[k].short} <span class="mono" style="font-size:11px;color:var(--t3);margin-left:4px">${a}/${b}</span></button>`}).join('')}</div>
+  <nav aria-label="Jump to question" style="display:flex;gap:4px;flex-wrap:wrap">${qs.map((q,i)=>{const st=pState(q.id);return `<button type="button" class="qdot ${q.id===act?'cur':''}" style="${navc[st]}" aria-label="Question ${i+1}, ${st}" data-a="pJump" data-v="${q.id}">${i+1}</button>`}).join('')}</nav>
+  <span style="flex:1"></span>
+  <span style="display:flex;align-items:center;gap:12px;font-size:12px" class="muted"><span><b class="mono" style="color:var(--ink);font-weight:500">${done}</b> of ${qs.length} answered</span><span style="color:var(--oktext)">${right} correct</span></span>
+  <div style="display:flex;gap:6px;flex-wrap:wrap">${[['all','All'],['todo','To do'],['missed','Missed'],['saved','Bookmarked']].map(([v,l])=>`<button type="button" class="chip round ${S.pfilter===v?'on':''}" style="height:28px;font-size:12px" aria-pressed="${S.pfilter===v}" data-a="pFilter" data-v="${v}">${l}</button>`).join('')}</div>
+ </div>
+ <div class="pwrap">
+  <main class="qlist" aria-label="${set.name} questions">
+   ${list.length?list.map(q=>qCard(q,qs.indexOf(q)+1,q.id===act)).join(''):`<div style="padding:48px 16px;text-align:center;border:1px dashed var(--line2);border-radius:12px" class="muted">Nothing here yet. <button type="button" data-a="pFilter" data-v="all" style="border:0;background:none;color:var(--blue);cursor:pointer;font:inherit">Show all questions</button></div>`}
+   ${S.pfilter==='all'?`<div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:12px;background:var(--frame);border:1px solid var(--line)"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">${done===qs.length?'Set complete: '+right+' of '+qs.length+' correct':'End of the starter set'}</b><span style="font-size:13px" class="muted">${isPro()?'Keep going with the full bank, sorted by difficulty.':(S.pset==='GA'?'Want more? Every General Academic pack is in Pro.':'Want more? All 473 Core questions, sorted by difficulty, are in Pro.')}</span></span><span style="display:flex;gap:8px">${done?`<button type="button" class="btn btn-s btn-sm" data-a="pResetSet">${ic('reset',14)}Start over</button>`:''}${NEXTSET[S.pset]?`<button type="button" class="btn btn-p btn-sm" data-a="pSet" data-v="${NEXTSET[S.pset]}">Next: ${SETS[NEXTSET[S.pset]].name}</button>`:`<a class="btn btn-p btn-sm" href="#test">Try a timed set</a>`}</span></div>`:''}
+   <p class="muted" style="font-size:12px;text-align:center">Keys: <span class="mono">${S.pset==='FS'?'1–3':S.pset==='LS'?'1–5':'1–4'}</span> answer · <span class="mono">H</span> hint · <span class="mono">Esc</span> close panel</p>
+  </main>
+  ${sPanel()}
+ </div>`)}
+const NEXTSET={FS:'ME',ME:'LS',LS:'GA'};
+function pScroll(id){requestAnimationFrame(()=>{const el=document.getElementById('q-'+id.slice(1));if(el)el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth',block:'center'})})}
+
+const CARDS=[
+ {g:'core',k:'Core · 25 min · 20 tasks',bank:173,mono:'FS',icon:'grid4',free:'20 free questions',name:'Figure Sequences',desc:'Track how each symbol moves, turns and changes colour, then pick the next two matrices.',lesson:'6 min',done:14,more:153,proSub:'Every rule, sorted by difficulty'},
+ {g:'core',k:'Core · 25 min · 20 tasks',bank:175,mono:'ME',icon:'func',free:'20 free questions',name:'Mathematical Equations',desc:'Solve small systems of equations for one letter, by substitution, fast.',lesson:'5 min',done:16,more:155,proSub:'Including the hardest multi-step systems'},
+ {g:'core',k:'Core · 25 min · 20 tasks',bank:125,mono:'LS',icon:'grid9',free:'20 free questions',name:'Latin Squares',desc:'Fill the marked cell so every row and column holds each letter once.',lesson:'4 min',done:8,more:105,proSub:'Chains of forced cells, like the exam’s hardest'},
+ {g:'gam',k:'General Academic · 90 min',bank:'5 packs',mono:'GA',icon:'book',free:'1 free pack',name:'General Academic Module',desc:'Read short academic texts, tables and figures, then answer single-choice questions from them.',lesson:'8 min',done:0,more:'4 more practice packs',proSub:'Maths, sciences, business and social sciences',packs:true}
+];
+const LOG=[
+ ['#FS-1033','FS','Figure Sequences','Rotation, two symbols','Hard','wrong',112,'Practice','1 h ago','B','C',2,'You tracked the circle but turned the triangle the wrong way. Rotation here is 90° clockwise per step.',true],
+ ['#FS-1029','FS','Figure Sequences','Rotation and colour','Hard','right',72,'Practice','1 h ago','A','A',1,'Clean and under pace.',true],
+ ['#ME-0117','ME','Equations','Four-letter system','Hard','right',44,'Mistake review','Wed','2','2',3,'Missed twice before by answering for A. Fixed on the third try.',false],
+ ['#LS-0311','LS','Latin Squares','Chain of two forced cells','Hard','right',58,'Timed set 4','Wed','D','D',1,'Under pace.',true],
+ ['#ME-0388','ME','Equations','Substitution with fractions','Hard','right',69,'Timed set 5','Wed','7','7',1,'Under pace.',true],
+ ['#FS-0877','FS','Figure Sequences','Colour cycle, four colours','Medium','slow',101,'Core mock','Tue','C','C',1,'Right, but 26 seconds over pace. Write the colour order once, then count along it.',false],
+ ['#LS-0207','LS','Latin Squares','Two left in a line','Medium','wrong',83,'Core mock','Tue','E','B',1,'You filled the marked cell before the forced one. Fill the forced cell first, then return.',false],
+ ['#ME-0254','ME','Equations','Three-letter system','Medium','right',51,'Core mock','Tue','5','5',1,'Under pace.',false],
+ ['#FS-0640','FS','Figure Sequences','Movement along the edge','Easy','skip',0,'Core mock','Tue','No answer','A',1,'Left blank when time ran out. A guess costs nothing.',false],
+ ['#LS-0122','LS','Latin Squares','Only one fits','Easy','right',33,'Practice','Mon','A','A',2,'Under pace.',false]
+];
+const RES={right:['Correct','p-ok'],wrong:['Missed','p-bad'],slow:['Over time','p-warn'],skip:['Skipped','p-skip']};
+
+/* ---------- shell ---------- */
+function navItem(r,label,icon,extra=''){const on=S.route===r||(r==='prepare'&&S.route==='practice')||(r==='test'&&S.route==='results');
+  return `<a class="navitem ${on?'on':''}" href="#${r}" ${on?'aria-current="page"':''}>${ic(icon,18)}<span>${label}</span>${extra}</a>`}
+function sidebar(){
+  const pro=isPro();
+  return `<nav class="side ${S.drawer?'open':''}" aria-label="Main">
+  <div class="brand"><a href="#home">${LOGO}dMAT Prep ${pro?'<span class="pro">PRO</span>':''}</a>
+    <button class="iconbtn" type="button" data-a="drawer" aria-label="Close menu">${ic('collapse',16)}</button></div>
+  <div class="nav">
+    <div class="navgroup"><span class="navlabel">Main menu</span><div>
+      ${navItem('home','Home','home')}${navItem('prepare','Prepare','prepare')}${navItem('test','Test','test')}
+    </div></div>
+    <div class="divider"></div>
+    <div class="navgroup"><span class="navlabel">The exam</span><div>
+      ${navItem('about','About the exam','about')}${navItem('policies','Help and policies','help')}
+    </div></div>
+  </div>
+  <div class="sidebottom">
+    ${pro?`<a class="procard" href="#billing"><span style="display:flex;align-items:center;justify-content:space-between"><b style="font-weight:600">Pro exam pass</b><span class="pro">ACTIVE</span></span><span style="font-size:12px" class="muted">Until 30 days after your exam</span></a>`
+    :`<div class="upcard"><div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:8px;background:var(--gold50);color:var(--goldtext);display:grid;place-items:center">${ic('crown',16)}</span><b style="font-weight:600">Go Pro</b></div>
+      <span style="font-size:12px;line-height:17px" class="muted">All 473 questions, full mock exams and pace insights by rule.</span>
+      <div style="display:flex;flex-direction:column;gap:6px"><div class="bar" style="background:#EDECEA"><i style="width:63%"></i></div><span style="font-size:11px" class="muted">38 of 60 free questions used</span></div>
+      <a class="btn btn-p btn-sm btn-block" href="#pricing">See plans</a></div>`}
+    <div style="position:relative">
+      ${S.menu?`<div class="menu" role="menu"><a href="#billing" role="menuitem">${ic('billing')}Plan and billing</a><a href="#pricing" role="menuitem">${ic('crown')}Plans and pricing</a><a href="#system" role="menuitem">${ic('palette')}Design system</a><button type="button" data-a="reset" role="menuitem">${ic('reset')}Reset the demo</button></div>`:''}
+      <button class="userbtn" type="button" data-a="menu" aria-expanded="${S.menu}"><span class="avatar">AM</span><span style="flex:1;min-width:0;display:flex;flex-direction:column"><b style="font-size:13px;font-weight:600">Aarav Mehta</b><span style="font-size:12px" class="muted">${pro?'Pro exam pass':'Free plan'}</span></span>${ic('updown',16,1.5,'style="color:var(--t2)"')}</button>
+    </div>
+  </div></nav>`}
+function topbar(parent,parentHref,current){
+  return `<header class="top">
+    <button class="iconbtn menubtn" type="button" data-a="drawer" aria-label="Open menu">${ic('menu',16)}</button>
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="#${parentHref}">${ic('home',18)}${parent}</a><span style="color:#A3A3A3" aria-hidden="true">/</span><b aria-current="page">${current}</b></nav>
+    <button class="search" type="button" data-a="palette" aria-label="Search">${ic('search')}<span>Search</span><span class="kbd">⌘K</span></button>
+    <a class="iconbtn" href="#billing" aria-label="Account" style="width:36px;height:36px;position:relative">${ic('user',20)}${isPro()?'<span style="position:absolute;right:-3px;top:-3px;width:10px;height:10px;border-radius:99px;background:var(--gold);border:2px solid #fff"></span>':''}</a>
+  </header>`}
+function shell(crumb,body){return `<div class="app">${sidebar()}<div class="main">${topbar(...crumb)}${body}</div></div>`}
+
+/* ---------- pages ---------- */
+function home(){
+  const pro=isPro();
+  const total=pro?[9,12,6,15,14,10,12,18,9,11,13,21,8,10]:[0,3,4,0,2,5,3,0,4,3,6,0,4,4];
+  const right=pro?[6,8,4,10,10,7,9,13,6,8,9,15,6,9]:[0,2,2,0,1,3,2,0,3,2,4,0,3,3];
+  const weekly=S.range==='weekly';
+  const unit=pro?3:1, rows=8;
+  const labels=['F','S','S','M','T','W','T','F','S','S','M','T','W','T'];
+  let cols;
+  if(weekly){const wk=pro?[[61,42],[107,78]]:[[17,10],[21,15]];
+    cols=wk.map((w,i)=>({cells:[...Array(rows)].map((_,k)=>{const a=k*(pro?14:3);return a<w[1]?'var(--blue)':a<w[0]?'var(--blue200)':'var(--side)'}),label:i?'This wk':'Last wk',tip:null,n:w}))}
+  else cols=total.map((t,i)=>({cells:[...Array(rows)].map((_,k)=>{const a=k*unit;return a<right[i]?'var(--blue)':a<t?'var(--blue200)':'var(--side)'}),label:labels[i],tip:i===(pro?11:10)?`${pro?'Tue, 25 Nov':'Mon, 17 Nov'}<br>${right[i]} correct · ${t-right[i]} missed`:null}));
+  const sum=total.reduce((a,b)=>a+b,0), rsum=right.reduce((a,b)=>a+b,0);
+  const recent=pro?[['#FS-1033','Figure Sequences','Hard','wrong','1:52','1 h ago'],['#FS-1029','Figure Sequences','Hard','right','1:12','1 h ago'],['#LS-0311','Latin Squares','Hard','right','0:58','Wed'],['#ME-0388','Equations','Hard','right','1:09','Wed'],['#ME-0117','Equations','Hard','right','0:44','Wed']]
+    :[['#FS-0412','Figure Sequences','Medium','wrong','1:48','2 h ago'],['#FS-0398','Figure Sequences','Medium','right','1:21','2 h ago'],['#ME-0117','Equations','Hard','wrong','1:05','Tue'],['#LS-0063','Latin Squares','Medium','right','0:52','Tue'],['#ME-0102','Equations','Easy','skip','0:00','Mon']];
+  const secs=t=>{const [m,s]=t.split(':').map(Number);return m*60+s};
+  const plan=pro?[['practice','Figure Sequences: rotation, Hard','15 questions · your slowest rule this week',true],['practice','Mistake review · 9 due','Brought back on schedule'],['test','Full exam-day mock','Saturday · 195 min with the break']]
+    :[['practice','Figure Sequences: colour cycles','10 questions · the rule you miss most',true],['practice','Retry 3 mistakes','From Tuesday’s Equations set'],['test','Latin Squares timed set','20 in 25 min · your free timed set']];
+  const kpi=(o,n,suf,foot,barw)=>`<div class="kpi"><div class="surface"><span class="over">${o}</span><div style="display:flex;align-items:baseline;gap:6px"><span class="num">${n}</span>${suf?`<span style="font-size:13px" class="muted">${suf}</span>`:''}</div>${barw?`<div class="bar"><i style="width:${barw}"></i></div>`:''}</div><div class="foot">${foot}</div></div>`;
+  return shell(['Home','home','Your progress'],`<main class="page">
+  <section class="pagehead"><div><h1 class="h1" style="display:flex;align-items:center;gap:10px">Welcome back, Aarav ${pro?'<span class="pro sheen" style="height:20px;font-size:11px;padding:0 7px">PRO</span>':''}</h1>
+    <p class="muted" style="margin-top:4px">${pro?'Thursday, 27 November · Week 3 of your 6-week plan':'Thursday, 20 November · Week 2 of your 6-week plan'}</p></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-s" href="#about">${ic('cal')}Exam on [your date]</a><a class="btn btn-p" href="#practice" data-a="startq" data-v="${pro?'LS':'FS'}">${ic('play',14)}Start today’s session</a></div></section>
+  <section class="kpis">
+    ${kpi('Days to your exam',pro?31:38,'','Sitting on [your date]')}
+    ${pro?kpi('Questions practised',186,'of 473','287 to go <a href="#prepare" style="font-weight:600">Practise</a>','39%'):kpi('Free questions used',38,'of 60','22 left <a href="#pricing" style="font-weight:600">Go Pro</a>','63%')}
+    ${kpi('Right at exam pace',pro?'71%':'64%','',`<span><b style="color:var(--ok);font-weight:600">+7%</b> ${pro?'since you went Pro':'vs last week'}</span>`)}
+    ${kpi('Streak',pro?10:3,'days',`<span style="display:flex;gap:4px" aria-label="This week">${[0,1,2,3,4,5,6].map(i=>`<i style="width:18px;height:6px;border-radius:99px;display:block;background:${pro?(i===3?'var(--gold)':'var(--blue)'):(i<3?'var(--blue)':i===3?'#fff;border:1px dashed var(--blue)':'var(--line)')}"></i>`).join('')}</span>`)}
+  </section>
+  <section class="row2">
+    <div class="panel" style="flex:2 1 480px"><div class="panel-h"><h2 class="ptitle">Questions per day</h2>
+      <div class="seg" role="radiogroup" aria-label="Range"><button type="button" role="radio" aria-checked="${!weekly}" class="${!weekly?'on':''}" data-a="range" data-v="daily">Daily</button><button type="button" role="radio" aria-checked="${weekly}" class="${weekly?'on':''}" data-a="range" data-v="weekly">Weekly</button></div></div>
+      <div class="surface" style="flex:1;padding:16px;display:flex;flex-direction:column;gap:14px">
+        <div style="display:flex;align-items:baseline;gap:16px;flex-wrap:wrap"><span style="font-size:13px" class="muted">Last 14 days</span><span class="mono" style="font-size:20px;font-weight:500">${sum} <span style="font-family:Geist;font-size:13px" class="muted">questions · ${rsum} correct</span></span>
+          <span style="margin-left:auto;display:flex;gap:14px;font-size:12px" class="muted"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:8px;height:8px;border-radius:2px;background:var(--blue);display:block"></i>Correct</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:8px;height:8px;border-radius:2px;background:var(--blue200);display:block"></i>Missed</span></span></div>
+        <div role="img" aria-label="${sum} questions over 14 days, ${rsum} correct" style="display:grid;grid-template-columns:28px 1fr;gap:10px">
+          <div class="mono" style="display:flex;flex-direction:column;justify-content:space-between;height:166px;font-size:10px;color:var(--t3);text-align:right"><span>${weekly?(pro?112:24):(pro?24:8)}</span><span>${weekly?(pro?56:12):(pro?12:4)}</span><span>0</span></div>
+          <div style="display:grid;grid-template-columns:repeat(${cols.length},minmax(0,1fr));gap:6px;align-items:end">
+            ${cols.map((c,i)=>`<div style="display:flex;flex-direction:column;align-items:center;gap:8px"><div style="display:flex;flex-direction:column-reverse;gap:4px;height:166px;position:relative">
+              ${c.cells.map((bg,k)=>`<span style="width:${weekly?'40px':'16px'};height:17px;border-radius:3px;background:${bg};${FX.has('range')?`animation:fade .3s ease ${k*30+i*20}ms both`:''}"></span>`).join('')}
+              ${c.tip?`<span style="position:absolute;bottom:${pro?118:120}px;left:50%;transform:translateX(-50%);width:140px;padding:8px 10px;border-radius:8px;background:var(--ink);color:#fff;font-size:12px;line-height:16px;box-shadow:0 6px 20px rgba(10,10,10,.18);z-index:2">${c.tip}</span>`:''}
+            </div><span class="mono" style="font-size:10px;color:${i===cols.length-1?'var(--ink)':'var(--t3)'}">${c.label}</span></div>`).join('')}
+          </div></div></div></div>
+    <div class="panel" style="flex:1 1 300px"><div class="panel-h"><h2 class="ptitle">Today’s plan</h2><span style="font-size:12px" class="muted">~25 min</span></div>
+      <div class="surface" style="flex:1;display:flex;flex-direction:column">
+        ${plan.map(([r,t,s,first])=>`<a class="listrow" href="#${r}" style="align-items:flex-start"><span aria-hidden="true" style="flex:none;width:20px;height:20px;border-radius:99px;border:1.5px solid ${first?'var(--blue)':'#CFCFCF'};margin-top:1px"></span><span style="flex:1;display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">${t}</b><span style="font-size:12px" class="muted">${s}</span></span>${first?'<span class="btn btn-p btn-sm" style="height:26px">Start</span>':''}</a>`).join('')}
+        <div class="note" style="margin:auto 10px 10px">${ic('bulb',16,1.5,'style="color:var(--blue);flex:none;margin-top:1px"')}${pro?'Rotation questions take you 1:38. Colour cycles dropped from 1:32 to 1:04.':'Figure Sequences take you 1:32 a question. The exam allows about 1:15.'}</div>
+      </div></div>
+  </section>
+  <section class="panel"><div class="panel-h" style="min-height:48px"><h2 class="ptitle">Recent questions</h2></div>
+    <div class="surface scrollx"><table class="tbl" style="min-width:640px"><thead><tr><th>Question</th><th>Subtest</th><th>Level</th><th>Result</th><th style="text-align:right">Time</th><th style="text-align:right">When</th></tr></thead><tbody>
+    ${recent.map(r=>`<tr><td class="mono muted">${r[0]}</td><td style="font-weight:500">${r[1]}</td><td class="muted">${r[2]}</td><td><span class="pill ${RES[r[3]][1]}"><i></i>${RES[r[3]][0]}</span></td><td class="mono" style="text-align:right;color:${secs(r[4])>75?'var(--warn)':'var(--ink)'}">${r[4]}</td><td class="muted" style="text-align:right">${r[5]}</td></tr>`).join('')}
+    </tbody></table></div></section>
+  </main>`)}
+
+function prepare(){
+  const pro=isPro();
+  return shell(['Home','home','Prepare'],`<main class="page">
+  <section><h1 class="h1">Prepare</h1><p class="muted" style="margin-top:4px">${pro?'Thursday, 27 November · Week 3 of your 6-week plan':'Thursday, 20 November · Week 2 of your 6-week plan'}</p></section>
+  <div class="cardgrid">
+  ${CARDS.map((c,i)=>{const ga=c.mono==='GA', dash=(56.5*(ga?0:c.done/20)).toFixed(1);
+    return `<article class="panel scard ${FX.has('tab')?'rise':''}" style="animation-delay:${i*40}ms">
+    <div class="panel-h" style="min-height:44px"><span class="over">${c.k}</span><span style="font-size:12px" class="muted">${pro?'Full bank unlocked':c.free}</span></div>
+    <div class="surface" style="flex:1;padding:16px;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;gap:14px;align-items:flex-start"><span aria-hidden="true" style="flex:none;width:44px;height:44px;border-radius:10px;background:var(--blue50);color:var(--blue);display:grid;place-items:center">${ic(c.icon,22,1.6)}</span>
+        <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:4px"><h2 style="font-size:16px;line-height:22px;font-weight:600;display:flex;align-items:center;gap:8px"><a class="stretch" href="#practice" data-a="startq" data-v="${c.mono}">${c.name}</a><span class="go" aria-hidden="true">${ic('arrow',16,1.8)}</span></h2><p style="font-size:13px;line-height:19px" class="muted">${c.desc}</p></div></div>
+      <div class="starter"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="var(--blue50)" stroke-width="3"/>${ga?'':`<circle cx="12" cy="12" r="9" fill="none" stroke="var(--blue)" stroke-width="3" stroke-dasharray="${dash} 60" transform="rotate(-90 12 12)" stroke-linecap="round"/>`}</svg>
+        <span style="display:flex;flex-direction:column;gap:1px"><b style="font-weight:600">${ga?'Starter pack':'Starter set'}</b><span style="font-size:12px" class="muted">${ga?'Not started':c.done+' of 20 done'}</span></span></div>
+      ${pro?`<div class="unl"><span style="width:20px;display:grid;place-items:center;color:var(--goldtext)">${ic('check',16,2)}</span><span style="flex:1;display:flex;flex-direction:column;gap:1px"><b style="font-weight:600">${ga?'All practice packs':'All '+c.bank+' questions'}</b><span style="font-size:12px;color:#6B4A00">${c.proSub}</span></span><span class="pro">UNLOCKED</span></div>`
+      :`<button type="button" class="lockrow lockcard" data-a="paywall" data-v="${c.mono}">${ic('lock',18,1.5,'class="lk" style="color:var(--goldtext)"')}<span style="flex:1;display:flex;flex-direction:column;gap:1px"><b style="font-weight:600">${ga?c.more:c.more+' more questions'}</b><span style="font-size:12px;color:#6B4A00">${c.proSub}</span></span><span class="pro">PRO</span></button>`}
+    </div></article>`}).join('')}
+  </div></main>`)}
+
+function testPage(){
+  const pro=isPro();
+  const mock=(title,sub,time,bar,locked,primary)=>`<${locked?'button type="button" data-a="paywall" data-v="MOCK"':'a href="#exam"'} class="${locked?'':''}" style="display:flex;flex-direction:column;gap:14px;padding:18px;border-radius:12px;border:1px solid ${primary?'var(--ink)':'var(--line)'};background:${primary?'var(--ink)':'var(--white)'};color:${primary?'#fff':'var(--ink)'};text-align:left;cursor:pointer;transition:border-color .15s,transform .15s">
+    <span style="display:flex;justify-content:space-between;align-items:center">${locked?'<span class="pro">PRO</span>':`<span class="over" style="color:${primary?'#BDBDBD':'var(--t2)'}">${pro?'Mock · unlimited':'Mock · free once'}</span>`}<span class="mono" style="font-size:13px;color:${primary?'#fff':'var(--t2)'}">${time}</span></span>
+    <span style="display:flex;flex-direction:column;gap:4px"><b style="font-size:18px;font-weight:600">${title}</b><span style="font-size:13px;color:${primary?'#BDBDBD':'var(--t2)'}">${sub}</span></span>
+    <span aria-hidden="true" style="display:flex;gap:3px;height:8px">${bar}</span>
+    <span style="height:36px;border-radius:8px;${locked?'border:1px solid #E3C98E;background:var(--goldsoft);color:var(--goldtext)':primary?'background:#fff;color:var(--ink)':'background:var(--blue);color:#fff'};font-weight:500;display:flex;align-items:center;justify-content:center;gap:6px">${locked?ic('lock',14,1.8)+'Included in Pro':ic('play',12)+'Start mock'}</span></${locked?'button':'a'}>`;
+  const b=(f,c)=>`<span style="flex:${f};border-radius:2px;background:${c}"></span>`;
+  const sets=[['FS','Figure Sequences','Best 13/20 · ran out of time','Retake',7],['ME','Mathematical Equations','Best 17/20 in 21:30','Retake',7],['LS','Latin Squares','Not taken yet','Start',5]];
+  return shell(['Home','home','Test'],`<main class="page">
+  <section><h1 class="h1">Test</h1><p class="muted" style="margin-top:4px">Exam rules apply: one clock per part, no hints, answers only at the end.</p></section>
+  <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:12px">
+    ${mock('Core Module mock','60 tasks across all three subtests','75:00',b(1,'#fff')+b(1,'#BDBDBD')+b(1,'#737373'),false,true)}
+    ${mock('General Academic mock','Text-based single-choice questions','90:00',b(1,'var(--blue200)'),!pro,false)}
+    ${mock('Full exam day','Both modules with the 30-minute break','195:00',b(25,'var(--blue)')+b(25,'var(--blue)')+b(25,'var(--blue)')+b(30,'repeating-linear-gradient(135deg,#E7E7E7 0 4px,#F8F7F5 4px 8px)')+b(90,'var(--blue200)'),!pro,false)}
+  </section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Timed sets · 20 tasks in 25 min</h2>${pro?'<span class="pro">ALL 22 OPEN</span>':''}</div><div class="surface">
+    ${sets.map(s=>`<div class="listrow" style="flex-wrap:wrap;padding:14px 16px"><span aria-hidden="true" class="mono" style="flex:none;width:36px;height:36px;border-radius:8px;background:var(--blue50);color:var(--blue);display:grid;place-items:center;font-size:12px;font-weight:600">${s[0]}</span>
+      <span style="flex:1 1 180px;display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">${s[1]} · Set 1</b><span style="font-size:12px" class="muted">${s[2]}</span></span>
+      <a class="btn btn-p btn-sm" href="#exam">${s[3]}</a>
+      ${pro?`<span class="seg">${['2','3','4','More'].map(n=>`<button type="button" data-a="goexam">${n==='More'?'+'+(s[4]-3):'Set '+n}</button>`).join('')}</span>`:`<button type="button" class="lockrow" style="width:auto;height:32px;padding:0 10px;font-size:13px;font-weight:500;color:var(--goldtext)" data-a="paywall" data-v="SET">${ic('lock',13,1.8,'class="lk"')}${s[4]} more sets</button>`}
+    </div>`).join('')}</div></section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Past attempts</h2></div><div class="surface">
+    <a class="listrow" href="#results" style="padding:12px 16px"><span style="flex:1;display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">Core Module mock</b><span style="font-size:12px" class="muted">Sunday, 16 November</span></span><span class="mono" style="font-size:14px">47/60</span>${ic('right',16,1.5,'style="color:var(--t2)"')}</a>
+    <a class="listrow" href="#results" style="padding:12px 16px"><span style="flex:1;display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">Mathematical Equations · Set 1</b><span style="font-size:12px" class="muted">Wednesday, 12 November</span></span><span class="mono" style="font-size:14px">17/20</span>${ic('right',16,1.5,'style="color:var(--t2)"')}</a>
+  </div></section></main>`)}
+
+const EXAM_GRID=QUESTIONS[1].grid;
+const EMPTY=[];EXAM_GRID.forEach((r,i)=>r.forEach((v,j)=>{if(!v)EMPTY.push([i,j])}));
+function examPage(){
+  const t=S.exam.task, tgt=EMPTY[(t*3)%EMPTY.length], a=S.exam.answers[t], fl=!!S.exam.flags[t];
+  const nDone=Object.keys(S.exam.answers).length, nFlag=Object.values(S.exam.flags).filter(Boolean).length;
+  const secs=S.exam.secs, low=secs<300;
+  return `<div class="exam">
+  <header class="examtop">
+    <div style="flex:1 1 260px;display:flex;align-items:center;gap:10px;min-width:0">${LOGO}<b style="font-weight:600">Core Module mock</b><span style="color:#8C8C8C">·</span><span style="color:#BDBDBD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Part 3 of 3, Latin Squares</span></div>
+    <div role="timer" aria-live="off" aria-label="Time left in this part" style="display:flex;align-items:center;gap:8px;height:36px;padding:0 14px;border-radius:8px;background:${low?'#3A1E00':'#1A1A1A'};border:1px solid ${low?'var(--warn)':'#333'}">${ic('timer',16,1.8,`style="color:${low?'var(--gold)':'#9FB0FF'}"`)}<span class="mono" id="clock" style="font-size:18px;font-weight:500;letter-spacing:.02em">${fmt(secs)}</span></div>
+    <div style="flex:1 1 260px;display:flex;justify-content:flex-end;gap:8px">
+      <button type="button" class="ghostd" data-a="flag" aria-pressed="${fl}" style="${fl?'border-color:var(--warn);background:#2B1D00;color:var(--gold)':''}">${ic('flag',14,1.5,fl?'fill="currentColor"':'')}${fl?'Flagged':'Flag'}</button>
+      <button type="button" class="ghostd" data-a="submitExam">Submit part</button></div>
+  </header>
+  <main style="flex:1;display:flex;flex-wrap:wrap;gap:24px;padding:28px 32px;width:100%">
+    <section style="flex:3 1 520px;min-width:0;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;justify-content:space-between"><span class="mono muted" style="font-size:12px">TASK ${String(t).padStart(2,'0')} / 20</span><span style="font-size:12px" class="muted">Answers save as you go</span></div>
+      <h1 style="font-size:20px;line-height:28px;font-weight:600;max-width:560px">Each letter appears exactly once in every row and every column. Which letter belongs in the marked cell?</h1>
+      <div style="display:flex;flex-wrap:wrap;gap:32px;align-items:center">
+        <div class="grid5" style="grid-template-columns:repeat(5,64px);grid-auto-rows:64px" role="img" aria-label="5 by 5 grid, marked cell in row ${tgt[0]+1}, column ${tgt[1]+1}">${EXAM_GRID.map((row,r)=>row.map((v,c)=>{const T=r===tgt[0]&&c===tgt[1],L=r===tgt[0]||c===tgt[1];return `<div class="${T?'tgt':L?'line':''}" style="font-size:22px">${T?(a||'?'):(v||'')}</div>`}).join('')).join('')}</div>
+        <div style="display:flex;flex-direction:column;gap:10px"><span style="font-size:13px" class="muted">Choose one</span>
+          <div role="radiogroup" aria-label="Letters" style="display:flex;gap:8px">${'ABCDE'.split('').map(l=>`<button type="button" class="letter ${a===l?'on':''}" role="radio" aria-checked="${a===l}" data-a="examPick" data-v="${l}">${l}</button>`).join('')}</div>
+          <button type="button" data-a="examClear" style="align-self:flex-start;height:32px;padding:0;border:0;background:none;font-size:13px;color:var(--t2);text-decoration:underline;cursor:pointer">Clear answer</button></div>
+      </div>
+      <div style="margin-top:auto;display:flex;justify-content:space-between;padding-top:20px;border-top:1px solid var(--soft)">
+        <button type="button" class="btn btn-s" data-a="examGo" data-v="${t-1}" ${t<=1?'disabled':''}>← Task ${t-1||1}</button>
+        <button type="button" class="btn btn-d" data-a="examGo" data-v="${t+1}" ${t>=20?'disabled':''}>Task ${Math.min(t+1,20)} →</button></div>
+    </section>
+    <aside style="flex:1 1 260px;min-width:0;display:flex;flex-direction:column;gap:12px">
+      <div class="panel"><div class="panel-h" style="min-height:40px"><span class="ptitle">Tasks</span><span style="font-size:12px" class="muted">${nDone} answered · ${nFlag} flagged</span></div>
+        <div class="surface" style="padding:12px;display:flex;flex-direction:column;gap:12px">
+          <div style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px">${[...Array(20)].map((_,i)=>{const n=i+1;return `<button type="button" class="tile ${S.exam.answers[n]?'done':''} ${n===t?'cur':''}" aria-label="Task ${n}" data-a="examGo" data-v="${n}">${String(n).padStart(2,'0')}${S.exam.flags[n]?'<span class="f"></span>':''}</button>`}).join('')}</div>
+          <div style="display:flex;flex-wrap:wrap;gap:12px;font-size:12px" class="muted"><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;background:var(--blue);display:block"></i>Answered</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:10px;height:10px;border-radius:3px;border:1.5px solid var(--ink);display:block"></i>Current</span><span style="display:inline-flex;align-items:center;gap:6px"><i style="width:6px;height:6px;border-radius:99px;background:var(--warn);display:block"></i>Flagged</span></div>
+        </div></div>
+      <p class="note">Stuck? Flag it and move on. A blank scores nothing, so guess before the clock ends.</p>
+    </aside>
+  </main>
+  ${S.confirmSubmit?`<div class="scrim" data-a="closeConfirm"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="cs" style="max-width:420px;padding:24px;display:flex;flex-direction:column;gap:14px" data-stop="1">
+    <h2 id="cs" style="font-size:18px;font-weight:600">Submit Latin Squares?</h2><p class="muted" style="line-height:21px">${20-nDone} tasks have no answer and ${nFlag} are flagged. You can’t come back to this part after submitting.</p>
+    <div style="display:flex;justify-content:flex-end;gap:8px"><button type="button" class="btn btn-s" data-a="closeConfirm">Keep working</button><button type="button" class="btn btn-d" data-a="doSubmit">Submit part</button></div></section></div>`:''}
+  </div>`}
+
+function results(){
+  const pro=isPro();
+  const parts=[['Figure Sequences',14,'25:00',true],['Mathematical Equations',17,'21:30'],['Latin Squares',16,'23:05']];
+  const secs=[62,70,95,58,81,110,74,66,90,102,71,88,79,96,84,118,135,0,0,0];
+  return shell(['Test','test','Core Module mock · Results'],`<main class="page">
+  <section class="pagehead"><div><p class="over" style="margin-bottom:6px">Core Module mock · Sunday, 16 November</p><h1 style="display:flex;align-items:baseline;gap:10px"><span class="mono" style="font-size:48px;line-height:52px;font-weight:500;letter-spacing:-.03em">47</span><span style="font-size:20px;font-weight:500;color:var(--t3)">/ 60 correct</span></h1></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><a class="btn btn-p" href="#practice">Retry the 13 misses</a></div></section>
+  <section class="kpis">${parts.map((p,i)=>`<div class="kpi"><div class="surface"><span class="over">${p[0]}</span><div style="display:flex;align-items:baseline;gap:6px"><span class="num">${p[1]}</span><span class="muted">/ 20</span></div><div class="bar"><i style="width:${p[1]*5}%;animation:fade .4s ease ${i*80}ms both"></i></div></div><div class="foot"><span>Time used</span><span class="mono" style="color:${p[3]?'var(--warn)':'var(--ink)'}">${p[2]}${p[3]?' · 3 blank':''}</span></div></div>`).join('')}</section>
+  <section class="row2">
+    <div class="panel" style="flex:2 1 480px"><div class="panel-h"><h2 class="ptitle">Where the clock went · Figure Sequences</h2></div>
+      <div class="surface" style="flex:1;padding:16px;display:flex;flex-direction:column;gap:12px">
+        <div role="img" aria-label="Seconds per task. Four tasks over 100 seconds. Tasks 18 to 20 blank." style="position:relative;height:160px;display:grid;grid-template-columns:repeat(20,minmax(0,1fr));gap:6px;align-items:end;background-image:radial-gradient(#E3E3E3 1px,transparent 1px);background-size:12px 12px">
+          <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:83px;border-top:1.5px dashed var(--ink)"></div><span aria-hidden="true" class="mono" style="position:absolute;right:0;bottom:87px;font-size:10px;background:#fff;padding:0 4px">75 s pace</span>
+          ${secs.map((s,i)=>s?`<div class="growbar" style="height:${Math.round(s/135*150)}px;border-radius:4px 4px 0 0;background:${s>100?'var(--warn)':'var(--blue)'};animation-delay:${i*25}ms" title="Task ${i+1}: ${fmt(s)}"></div>`:`<div style="height:150px;border-radius:4px 4px 0 0;border:1.5px dashed #CFCFCF" title="Task ${i+1}: blank"></div>`).join('')}
+        </div>
+        <div class="mono" style="display:flex;justify-content:space-between;font-size:10px;color:var(--t3)"><span>Task 1</span><span>10</span><span>20</span></div>
+        <p class="note">Four tasks ran past 1:40, so 18 to 20 got no answer. Next time, move on at 1:45 and guess in the last minute. A blank scores nothing.</p>
+      </div></div>
+    ${pro?`<div class="panel" style="flex:1 1 300px;border-color:var(--goldline);background:var(--goldsoft)"><div class="panel-h"><h2 class="ptitle">Pace by rule</h2><span class="pro">PRO</span></div><div class="surface" style="padding:16px;display:flex;flex-direction:column;gap:12px;flex:1">
+      ${[['Rotation',98],['Colour cycle',64],['Edge movement',58],['Two symbols',88]].map(([r,s])=>`<div style="display:flex;flex-direction:column;gap:6px"><div style="display:flex;justify-content:space-between;font-size:13px"><span>${r}</span><span class="mono" style="color:${s>75?'var(--warn)':'var(--ink)'}">${fmt(s)}</span></div><div style="position:relative;height:6px;border-radius:99px;background:var(--side)"><i style="position:absolute;left:0;top:0;bottom:0;width:${Math.round(s/120*100)}%;border-radius:99px;background:${s>75?'var(--warn)':'var(--blue)'}"></i><i style="position:absolute;left:62.5%;top:-3px;width:1px;height:12px;background:var(--ink)"></i></div></div>`).join('')}
+      <p class="note" style="margin-top:auto">Rotation is your slowest rule. Today’s plan starts there.</p></div></div>`
+    :`<div style="flex:1 1 300px;min-width:0;position:relative;border-radius:12px;border:1px solid var(--goldline);background:var(--goldsoft);overflow:hidden;min-height:260px">
+      <div aria-hidden="true" style="padding:18px;display:flex;flex-direction:column;gap:10px;filter:blur(3px);opacity:.55"><i style="height:12px;width:60%;border-radius:4px;background:#E3C98E;display:block"></i><i style="height:64px;border-radius:8px;background:repeating-linear-gradient(90deg,var(--gold) 0 10px,transparent 10px 16px);display:block"></i><i style="height:10px;width:80%;border-radius:4px;background:#E3C98E;display:block"></i><i style="height:10px;width:50%;border-radius:4px;background:#E3C98E;display:block"></i></div>
+      <div style="position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;justify-content:flex-end;gap:10px;background:linear-gradient(180deg,rgba(255,251,242,0) 0%,var(--goldsoft) 55%)"><span class="pro" style="align-self:flex-start">PRO</span><b style="font-size:16px;font-weight:600">See which rules cost you time</b><span style="font-size:13px;line-height:19px;color:#6B4A00">Pace and accuracy by rule, across every mock and set you take.</span><button type="button" class="btn btn-pro" data-a="paywall" data-v="INSIGHTS">Unlock insights</button></div></div>`}
+  </section></main>`)}
+
+function about(){
+  const a=S.elig, defs=[['level','Applying for',[['ma','Master’s'],['ba','Bachelor’s'],['phd','PhD']]],['intake','Intake',[['late','Summer 2027 or later'],['early','Earlier']]],['field','Your Bachelor’s field',[['eng','Engineering'],['com','Commerce, Finance, Economics'],['bus','Business, Management'],['other','Other']]],['aps','APS online registration before 29 June 2026?',[['yes','Yes'],['no','No']]]];
+  const n=defs.filter(d=>a[d[0]]).length;
+  let r=['var(--frame)','var(--soft)','var(--ink)',n+' of 4 answered','Answer all four to see where you stand.'];
+  const OK=['#F2FAF5','var(--okline)','var(--oktext)'],NEED=['var(--blue50)','var(--blue200)','var(--blue7)'],MAY=['var(--warnbg)','var(--warnline)','var(--warntext)'];
+  if(a.level&&a.level!=='ma')r=[...OK,'You don’t need it','The dMAT applies to Master’s applicants only.'];
+  else if(a.aps==='yes')r=[...OK,'You’re exempt','APS online registration completed before 29 June 2026 is exempt.'];
+  else if(a.intake==='early')r=[...OK,'Not for this intake','The requirement starts with the summer semester 2027.'];
+  else if(n===4&&a.field==='other')r=[...MAY,'Probably not','Your field is outside the three groups. The exact title on your degree decides.'];
+  else if(n===4)r=[...NEED,'Yes, you need the dMAT','Book through the g.a.s.t. portal. Your plan here counts down to that date.'];
+  const faqs=[['Is there negative marking?','The official instructions advise you to mark an answer for every task, even when unsure. A blank can only cost you.'],['Where can I take it?','At 11 test centres: 10 in India and 1 in Kathmandu.'],['Can I take it again?','Yes, at a later exam date. Each sitting is booked and paid for separately.'],['How do I get my result?','Your certificate comes through the g.a.s.t. portal with your score and a percentile rank.']];
+  const kp=(o,n,f)=>`<div class="kpi"><div class="surface"><span class="over">${o}</span><span class="num" style="font-size:26px">${n}</span></div><div class="foot">${f}</div></div>`;
+  return shell(['Home','home','About the exam'],`<main class="page">
+  <section><h1 class="h1">About the dMAT</h1><p class="muted" style="margin-top:4px">The aptitude test for Indian applicants to German Master’s programmes in engineering, economics and business.</p></section>
+  <section class="kpis">${kp('Exam day','195 min','Including a 30-minute break')}${kp('Fee','€150','Paid to g.a.s.t., not APS India')}${kp('Score scale','0–200','Mean of 100, no pass mark')}${kp('Certificate','No expiry','Use it for every application')}</section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Your exam day, to scale</h2></div><div class="surface" style="padding:16px;display:flex;flex-direction:column;gap:10px">
+    <div aria-hidden="true" style="display:flex;gap:4px;height:44px"><i style="flex:25;border-radius:6px;background:var(--blue)"></i><i style="flex:25;border-radius:6px;background:#4F66FF"></i><i style="flex:25;border-radius:6px;background:#7083FF"></i><i style="flex:30;border-radius:6px;background:repeating-linear-gradient(135deg,#EDEDED 0 5px,#F8F7F5 5px 10px)"></i><i style="flex:90;border-radius:6px;background:var(--blue200)"></i></div>
+    <div style="display:flex;gap:4px;font-size:12px;line-height:16px"><div style="flex:25"><b style="font-weight:600">Figure Seq.</b><br><span class="muted">20 · 25 min</span></div><div style="flex:25"><b style="font-weight:600">Equations</b><br><span class="muted">20 · 25 min</span></div><div style="flex:25"><b style="font-weight:600">Latin Sq.</b><br><span class="muted">20 · 25 min</span></div><div style="flex:30"><b style="font-weight:600">Break</b><br><span class="muted">30 min</span></div><div style="flex:90"><b style="font-weight:600">General Academic Module</b><br><span class="muted">90 min</span></div></div></div></section>
+  <section class="row2" style="align-items:flex-start">
+    <div class="panel" style="flex:1 1 420px"><div class="panel-h"><h2 class="ptitle">Do I need it?</h2>${n?'<button type="button" data-a="eligReset" style="border:0;background:none;color:var(--blue);font-size:12px;cursor:pointer">Start over</button>':''}</div><div class="surface" style="padding:16px;display:flex;flex-direction:column;gap:16px">
+      ${defs.map(([id,label,opts])=>`<fieldset style="margin:0;padding:0;border:0"><legend style="padding:0;margin-bottom:8px;font-weight:500">${label}</legend><div style="display:flex;flex-wrap:wrap;gap:6px">${opts.map(([v,l])=>`<button type="button" class="chip ${a[id]===v?'on':''}" aria-pressed="${a[id]===v}" data-a="elig" data-v="${id}:${v}">${l}</button>`).join('')}</div></fieldset>`).join('')}
+      <div role="status" aria-live="polite" class="${FX.has('elig')&&n===4?'rise':''}" style="padding:14px;border-radius:8px;background:${r[0]};border:1px solid ${r[1]};display:flex;flex-direction:column;gap:4px"><b style="font-weight:600;color:${r[2]}">${r[3]}</b><span style="font-size:13px;line-height:19px;color:#3D3D3D">${r[4]}</span>${r[3].startsWith('Yes')?'<a class="btn btn-p btn-sm" href="#practice" style="align-self:flex-start;margin-top:6px">Start practising</a>':''}</div>
+    </div></div>
+    <div class="panel" style="flex:1 1 420px"><div class="panel-h"><h2 class="ptitle">Common questions</h2></div><div class="surface">
+      ${faqs.map(([q,ans],i)=>{const o=S.faq===i;return `<div style="border-bottom:1px solid var(--hair)"><button type="button" aria-expanded="${o}" data-a="faq" data-v="${i}" style="width:100%;min-height:48px;padding:12px 16px;border:0;background:none;display:flex;align-items:center;gap:12px;font-weight:500;text-align:left;cursor:pointer"><span style="flex:1">${q}</span>${ic('down',16,1.5,`style="color:var(--t2);transition:transform .2s;transform:rotate(${o?180:0}deg)"`)}</button>${o?`<p class="${FX.has('faq')?'rise':''}" style="padding:0 16px 14px;font-size:13px;line-height:20px;color:#3D3D3D">${ans}</p>`:''}</div>`}).join('')}
+    </div><p style="margin:10px 8px 6px;font-size:12px" class="muted">From d-mat.de, the official preparatory materials and APS India. <a href="https://aps-india.de/dmat/" target="_blank" rel="noopener">APS India rules</a></p></div>
+  </section></main>`)}
+
+function pricing(){
+  const pro=isPro();
+  const freeList=['60 practice questions, 20 per subtest','1 timed set per subtest','1 Core Module mock','1 General Academic practice pack','Exam guide and eligibility check'];
+  const proList=['All 473 Core questions, plus new ones as we add them','All 22 timed sets','Unlimited mocks, including the full exam day','Every General Academic practice pack','Pace insights by rule and subtest','Mistake review that brings misses back'];
+  const rows=[['h','Practice'],['Core questions','60','All 473'],['Hints and full solutions','Yes','Yes'],['General Academic packs','1','All'],['h','Tests'],['Timed sets','3','All 22'],['Core Module mock','Once','Unlimited'],['Full exam-day mock','Not included','Unlimited'],['h','Insights'],['Pace insights by rule','Not included','Yes'],['Mistake review queue','Not included','Yes']];
+  const faqs=[['What happens when my pass ends?','You go back to Free. Your progress stays, and you can still read every solution you’ve already seen.'],['My exam date moved. Do I pay again?','No. Update your date in Plan and billing and your pass extends to 30 days after the new date, once per purchase.'],['Can I get a refund?','Yes, the full amount within [7] days of buying, if you’ve used fewer than [50] Pro questions. The refund policy has the details.'],['Is this official dMAT material?','No. dMAT Prep is independent. Questions follow the published format and are checked by a solver, but they are not official test items.'],['Do you offer discounts?','Coupon codes work at checkout when we run them. We don’t hide a lower price behind a countdown timer.']];
+  return shell(['Home','home','Plans and pricing'],`<main class="page" style="align-items:stretch;gap:44px;padding-top:48px">
+  <section style="text-align:center;display:flex;flex-direction:column;gap:12px;align-items:center"><span class="over">Plans</span><h1 style="font-size:36px;line-height:42px;font-weight:600;letter-spacing:-.03em;text-wrap:balance;max-width:720px">Practise free. Go Pro when the date gets real.</h1><p class="muted" style="font-size:15px;line-height:22px;text-wrap:pretty;max-width:620px">One payment, no subscription. Pro stays active until 30 days after your exam, so a reschedule doesn’t cost you twice.</p></section>
+  <section style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:16px">
+    <article style="border:1px solid var(--line);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:6px"><b style="font-size:16px;font-weight:600">Free</b><span style="display:flex;align-items:baseline;gap:6px"><span class="mono" style="font-size:36px;line-height:40px;font-weight:500">₹0</span><span class="muted">forever</span></span><span class="muted">Learn every question type and see how you do.</span></div>
+      ${pro?'<a class="btn btn-s btn-lg" href="#home" style="height:40px;font-size:14px">Included in your pass</a>':'<span class="btn btn-s btn-lg" style="height:40px;font-size:14px;background:var(--frame);color:var(--t2);cursor:default">Your current plan</span>'}
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px">${freeList.map(f=>`<li style="display:flex;gap:10px">${ic('check',16,1.8,'style="flex:none;margin-top:2px"')}${f}</li>`).join('')}</ul></article>
+    <article class="procol">
+      <span style="position:absolute;top:-12px;left:24px;height:24px;padding:0 10px;border-radius:99px;background:var(--ink);color:#fff;font-size:12px;font-weight:500;display:inline-flex;align-items:center">Recommended for exam prep</span>
+      <div style="display:flex;flex-direction:column;gap:6px"><span style="display:flex;align-items:center;gap:8px"><b style="font-size:16px;font-weight:600">Pro exam pass</b><span class="pro sheen">PRO</span></span><span style="display:flex;align-items:baseline;gap:6px"><span class="mono" style="font-size:36px;line-height:40px;font-weight:500">₹[PRICE]</span><span style="color:#6B4A00">one time</span></span><span class="muted">Everything, until 30 days after your exam.</span></div>
+      ${pro?'<a class="btn btn-s btn-lg" href="#billing" style="height:40px;font-size:14px;border-color:var(--goldline);color:var(--goldtext)">'+ic('check',16,2)+'You’re on Pro · Manage</a>':'<a class="btn btn-pro btn-lg" href="#checkout" style="height:40px;font-size:14px">Unlock Pro '+ic('arrow',16,2)+'</a>'}
+      <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px"><li style="font-size:12px;font-weight:600;color:#6B4A00">Everything in Free, plus</li>${proList.map(f=>`<li style="display:flex;gap:10px">${ic('check',16,2,'style="flex:none;margin-top:2px;color:var(--blue)"')}${f}</li>`).join('')}</ul></article>
+  </section>
+  <section style="width:100%;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:12px">
+    ${[['shield','Refund within [7] days','Full amount, if you’ve used fewer than [50] Pro questions.','var(--ok)'],['cal','Never renews','No card saved for later, no surprise charge.','var(--ink)'],['lock','UPI, cards, netbanking','Handled by [PAYMENT PROVIDER]. We never see card details.','var(--ink)']].map(g=>`<div style="display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:12px;background:var(--frame);border:1px solid var(--line)">${ic(g[0],20,1.5,`style="flex:none;color:${g[3]}"`)}<span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">${g[1]}</b><span style="font-size:13px" class="muted">${g[2]}</span></span></div>`).join('')}
+  </section>
+  <section style="width:100%;display:flex;flex-direction:column;gap:14px"><h2 style="font-size:20px;font-weight:600">Compare plans</h2>
+    <div class="scrollx" style="border:1px solid var(--line);border-radius:12px"><table class="tbl" style="min-width:560px;font-size:14px"><thead><tr style="background:var(--frame)"><th></th><th style="width:170px;color:var(--ink);font-family:Geist;font-size:14px;text-transform:none;letter-spacing:0;font-weight:600">Free</th><th style="width:210px;background:var(--gold50);color:var(--golddark);font-family:Geist;font-size:14px;text-transform:none;letter-spacing:0;font-weight:600">Pro exam pass</th></tr></thead><tbody>
+    ${rows.map(r=>r[0]==='h'?`<tr><td colspan="3" class="over" style="padding:18px 16px 8px">${r[1]}</td></tr>`:`<tr><td>${r[0]}</td><td style="color:${r[1]==='Not included'?'#A3A3A3':'var(--ink)'}">${r[1]}</td><td style="background:var(--goldsoft);font-weight:500">${r[2]}</td></tr>`).join('')}
+    </tbody></table></div></section>
+  <section style="width:100%;display:flex;flex-direction:column;gap:14px"><h2 style="font-size:20px;font-weight:600">Questions about Pro</h2>
+    <div style="border:1px solid var(--line);border-radius:12px;overflow:hidden">${faqs.map(([q,ans],i)=>{const o=S.pfaq===i;return `<div style="border-bottom:1px solid var(--hair)"><button type="button" aria-expanded="${o}" data-a="pfaq" data-v="${i}" style="width:100%;min-height:52px;padding:14px 16px;border:0;background:#fff;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;text-align:left;cursor:pointer"><span style="flex:1">${q}</span>${ic('down',16,1.5,`style="color:var(--t2);transition:transform .2s;transform:rotate(${o?180:0}deg)"`)}</button>${o?`<p class="${FX.has('pfaq')?'rise':''}" style="padding:0 16px 16px;line-height:21px;color:#3D3D3D">${ans}</p>`:''}</div>`}).join('')}</div>
+    <p style="font-size:13px" class="muted">Teaching a batch? Coaching centres can ask about group passes at [CONTACT EMAIL].</p></section>
+  </main>`)}
+
+function checkout(){
+  if(isPro()&&!S.paying)return `<div style="min-height:100vh;display:grid;place-items:center;padding:24px;text-align:center"><div style="display:flex;flex-direction:column;gap:12px;align-items:center"><span class="pro" style="height:24px;font-size:12px;padding:0 10px">PRO</span><h1 class="h1">You already have Pro</h1><p class="muted">Your pass is active until 30 days after your exam.</p><a class="btn btn-p" href="#home">Go to home</a></div></div>`;
+  const m=[['upi','UPI','Any UPI app, approve on your phone','Pay with UPI'],['card','Debit or credit card','Visa, Mastercard, RuPay','Pay by card'],['nb','Netbanking','All major Indian banks','Pay with netbanking']];
+  const cur=m.find(x=>x[0]===S.method);
+  return `<div style="min-height:100vh;background:var(--frame);display:flex;flex-direction:column">
+  <header style="height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border-bottom:1px solid var(--line2)">
+    <a href="#pricing" style="display:inline-flex;align-items:center;gap:8px;color:var(--t2)">${ic('left')}Back to plans</a><span style="display:inline-flex;align-items:center;gap:8px;font-weight:600">${LOGO}dMAT Prep</span><span style="display:inline-flex;align-items:center;gap:6px;font-size:13px" class="muted">${ic('lock',14)}Secure checkout</span></header>
+  <main style="flex:1;width:100%;padding:40px 32px;display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start">
+    <section style="flex:3 1 420px;min-width:0;display:flex;flex-direction:column;gap:16px"><h1 class="h1">Unlock Pro</h1>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><span style="width:22px;height:22px;border-radius:99px;background:var(--ink);color:#fff;font-size:12px;font-weight:600;display:grid;place-items:center">1</span><b style="font-weight:600">Confirm your exam date</b></div>
+        <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:12px 14px;border-radius:8px;background:var(--frame);border:1px solid var(--soft)"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:500">[Your exam date]</b><span style="font-size:12px" class="muted">Pro runs until 30 days after this</span></span><a href="#billing" style="font-size:13px;font-weight:500">Change</a></div></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px"><div style="display:flex;align-items:center;gap:10px"><span style="width:22px;height:22px;border-radius:99px;background:var(--ink);color:#fff;font-size:12px;font-weight:600;display:grid;place-items:center">2</span><b style="font-weight:600">How would you like to pay?</b></div>
+        <div role="radiogroup" aria-label="Payment method" style="display:flex;flex-direction:column;gap:8px">${m.map(x=>{const on=S.method===x[0];return `<button type="button" role="radio" aria-checked="${on}" data-a="method" data-v="${x[0]}" style="display:flex;align-items:center;gap:12px;min-height:56px;padding:10px 14px;border-radius:10px;border:1px solid ${on?'var(--blue)':'var(--line)'};background:${on?'#F5F6FF':'#fff'};box-shadow:${on?'0 0 0 3px var(--blue100)':'none'};text-align:left;cursor:pointer;transition:all .15s"><span style="flex:none;width:18px;height:18px;border-radius:99px;border:1.5px solid ${on?'var(--blue)':'#CFCFCF'};display:grid;place-items:center"><i style="width:8px;height:8px;border-radius:99px;background:${on?'var(--blue)':'transparent'};display:block"></i></span><span style="flex:1;display:flex;flex-direction:column;gap:2px"><b style="font-weight:500">${x[1]}</b><span style="font-size:12px" class="muted">${x[2]}</span></span></button>`}).join('')}</div></div>
+      <div style="background:#fff;border:1px solid var(--line);border-radius:12px;padding:16px 20px;display:flex;flex-direction:column;gap:12px">
+        <button type="button" data-a="coupon" aria-expanded="${S.coupon}" style="align-self:flex-start;padding:0;border:0;background:none;font-weight:500;color:var(--blue);cursor:pointer">${S.applied?'Remove coupon':S.coupon?'Hide coupon':'Have a coupon code?'}</button>
+        ${S.coupon&&!S.applied?`<form class="rise" data-form="coupon" style="display:flex;gap:8px;flex-wrap:wrap;margin:0"><label style="flex:1 1 220px;display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Coupon code<input name="code" type="text" placeholder="Try FIRSTTRY" autocomplete="off" style="height:36px;padding:0 10px;border:1px solid var(--line2);border-radius:8px;font-family:var(--mono);font-size:14px"></label><button type="submit" class="btn btn-s" style="align-self:flex-end">Apply</button></form>${S.couponErr?`<span style="font-size:12px;color:var(--badtext)">${esc(S.couponErr)}</span>`:''}`:''}
+        ${S.applied?`<span class="rise" role="status" style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--oktext)">${ic('check',14,2)}FIRSTTRY applied: ₹[DISCOUNT] off</span>`:''}
+      </div>
+    </section>
+    <aside style="flex:2 1 300px;min-width:0;position:sticky;top:24px"><div style="background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden">
+      <div style="padding:20px;display:flex;flex-direction:column;gap:14px;border-bottom:1px solid var(--soft);background:linear-gradient(180deg,var(--goldsoft),#fff)"><span class="over">Order summary</span><div style="display:flex;align-items:flex-start;gap:12px"><span style="flex:none;width:40px;height:40px;border-radius:10px;background:var(--gold);color:var(--golddark);display:grid;place-items:center">${ic('crown',20,1.6)}</span><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:600">Pro exam pass</b><span style="font-size:12px" class="muted">Until 30 days after [your exam date]</span></span></div></div>
+      <dl style="margin:0;padding:16px 20px;display:grid;grid-template-columns:1fr auto;gap:10px"><dt class="muted">Pro exam pass</dt><dd class="mono" style="margin:0">₹[PRICE]</dd>${S.applied?'<dt style="color:var(--oktext)">Coupon</dt><dd class="mono" style="margin:0;color:var(--oktext)">−₹[DISCOUNT]</dd>':''}<dt class="muted">GST</dt><dd class="muted" style="margin:0">[Included]</dd><dt style="font-weight:600;padding-top:10px;border-top:1px solid var(--soft)">Total today</dt><dd class="mono" style="margin:0;padding-top:10px;border-top:1px solid var(--soft);font-size:18px;font-weight:500">₹[TOTAL]</dd></dl>
+      <div style="padding:0 20px 20px;display:flex;flex-direction:column;gap:10px">
+        <button type="button" class="btn btn-pro btn-lg btn-block" data-a="pay" ${S.paying?'disabled style="background:var(--gold);color:var(--golddark)"':''}>${S.paying?'<span class="spinner"></span>Confirming payment':ic('lock',16,1.8)+cur[3]+' · ₹[TOTAL]'}</button>
+        <span style="font-size:12px;line-height:17px;text-align:center" class="muted">You’ll finish on [PAYMENT PROVIDER]. One payment, never renews. Full refund within [7] days. <a href="#policies">Terms and refunds</a></span>
+      </div></div></aside>
+  </main></div>`}
+
+function unlocked(){
+  return `<div style="min-height:100vh;display:flex;flex-direction:column;background-image:radial-gradient(#ECEBE8 1px,transparent 1px);background-size:16px 16px">
+  <header style="height:56px;padding:0 24px;display:flex;align-items:center;justify-content:space-between;background:#fff;border-bottom:1px solid var(--line2)"><span style="display:inline-flex;align-items:center;gap:8px;font-weight:600">${LOGO}dMAT Prep <span class="pro">PRO</span></span><button type="button" class="btn btn-s btn-sm" data-a="replay">Replay animation</button></header>
+  <main style="flex:1;display:flex;align-items:center;justify-content:center;padding:40px 24px">
+   <section id="celebrate" style="width:100%;max-width:520px;background:#fff;border:1px solid var(--line);border-radius:20px;padding:36px 32px 28px;display:flex;flex-direction:column;align-items:center;gap:20px;text-align:center">
+    <style>#celebrate .sh{transform-origin:16px 12px;animation:shackle .9s cubic-bezier(.3,1.4,.5,1) .2s both}#celebrate .gf{animation:fillGold .4s ease .9s both}#celebrate .rg{animation:ring 1.2s ease-out .7s both}#celebrate .rg2{animation:ring 1.2s ease-out .95s both}#celebrate .st{animation:rise .35s ease both}</style>
+    <div aria-hidden="true" style="position:relative;width:96px;height:96px;display:grid;place-items:center"><span class="rg" style="position:absolute;inset:8px;border-radius:99px;border:2px solid var(--gold)"></span><span class="rg2" style="position:absolute;inset:8px;border-radius:99px;border:2px solid var(--gold)"></span>
+      <span class="gf" style="width:80px;height:80px;border-radius:24px;border:1.5px solid var(--gold);display:grid;place-items:center"><svg width="40" height="40" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="14" width="20" height="14" rx="3"/><path class="sh" d="M10 14V10a6 6 0 0 1 12 0v4"/><circle cx="16" cy="21" r="1.6" fill="currentColor"/></svg></span></div>
+    <div style="display:flex;flex-direction:column;gap:8px"><h1 class="st" style="font-size:28px;line-height:34px;font-weight:600;letter-spacing:-.02em;animation-delay:.8s">You’re Pro, Aarav.</h1><p class="st muted" style="line-height:21px;animation-delay:.9s">Everything is open until 30 days after your exam. Your receipt is on its way to your email.</p></div>
+    <ul style="list-style:none;margin:0;padding:0;width:100%;border:1px solid var(--soft);border-radius:12px;text-align:left;overflow:hidden">
+      ${[['New questions','+413'],['Timed sets','+19'],['Mocks, including the full exam day','Unlimited'],['General Academic packs','+4'],['Pace insights by rule','On']].map((r,i)=>`<li class="st" style="animation-delay:${1+i*.08}s;display:flex;align-items:center;gap:12px;padding:12px 14px;border-bottom:1px solid var(--hair)">${ic('check',16,2,'style="color:var(--blue)"')}<span style="flex:1">${r[0]}</span><span class="mono" style="font-weight:500">${r[1]}</span></li>`).join('')}
+    </ul>
+    <div class="st" style="animation-delay:1.45s;width:100%;display:flex;flex-direction:column;gap:8px"><a class="btn btn-p btn-lg btn-block" href="#practice" data-a="startq" data-v="LS">Continue Latin Squares ${ic('arrow',16,2)}</a><a class="btn btn-s btn-block" href="#home" style="height:40px">Go to home</a></div>
+   </section></main></div>`}
+
+function billing(){
+  const pro=isPro();
+  if(!pro)return shell(['Account','home','Plan and billing'],`<main class="page">
+    <section><h1 class="h1">Plan and billing</h1><p class="muted" style="margin-top:4px">You’re on Free. Nothing to pay, nothing renews.</p></section>
+    <section style="border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px"><div style="display:flex;flex-direction:column;gap:4px"><span style="display:flex;align-items:center;gap:8px"><b style="font-size:18px;font-weight:600">Free</b><span class="freebadge">CURRENT</span></span><span class="muted">38 of 60 free questions used · 1 Core mock left</span></div><a class="btn btn-pro" href="#pricing">${ic('crown',16,1.6)}See Pro</a></section>
+    <section class="panel"><div class="panel-h"><h2 class="ptitle">Exam date</h2></div><div class="surface" style="padding:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:500">[Your exam date]</b><span style="font-size:12px" class="muted">Your plan and countdown use this date</span></span><button type="button" class="btn btn-s btn-sm" data-a="toast" data-v="Date picker opens here">Change date</button></div></section>
+    <section class="panel"><div class="panel-h"><h2 class="ptitle">Payments</h2></div><div class="surface" style="padding:28px;text-align:center" class="muted"><span class="muted">No payments yet.</span></div></section></main>`);
+  const done=S.refund==='done', ok=S.refundOk;
+  const reasons=['It isn’t what I expected','My exam got cancelled or I don’t need it','I bought it by mistake','Something else'];
+  return shell(['Account','home','Plan and billing'],`<main class="page" style="gap:16px">
+  <section><h1 class="h1">Plan and billing</h1><p class="muted" style="margin-top:4px">One payment, nothing renews. Here’s what you have and how to change it.</p></section>
+  <section style="border:1px solid var(--goldline);border-radius:12px;background:linear-gradient(180deg,var(--goldsoft),#fff 70%);padding:20px;display:flex;flex-direction:column;gap:16px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-start;justify-content:space-between;gap:12px"><div style="display:flex;flex-direction:column;gap:4px"><span style="display:flex;align-items:center;gap:8px"><b style="font-size:18px;font-weight:600">Pro exam pass</b><span class="pro" style="height:20px">${done?'REFUND PENDING':'ACTIVE'}</span></span><span class="muted">Bought 20 November for ₹[TOTAL] · Active until 30 days after your exam</span></div><a class="btn btn-s btn-sm" href="#pricing">What’s included</a></div>
+    <div style="display:flex;flex-direction:column;gap:6px"><div style="height:6px;border-radius:99px;background:#F3E7CC;overflow:hidden"><i style="display:block;width:12%;height:100%;border-radius:99px;background:var(--gold)"></i></div><div style="display:flex;justify-content:space-between;font-size:12px;color:#6B4A00"><span>Day 2</span><span>Exam [your date]</span><span>Ends 30 days later</span></div></div>
+  </section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Exam date</h2></div><div class="surface" style="padding:16px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><span style="display:flex;flex-direction:column;gap:2px"><b style="font-weight:500">[Your exam date]</b><span style="font-size:12px" class="muted">Moved your sitting? Your pass moves with it once, for free.</span></span><button type="button" class="btn btn-s btn-sm" data-a="toast" data-v="Date picker opens here">Change date</button></div></section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Payments</h2></div><div class="surface scrollx"><table class="tbl" style="min-width:520px"><thead><tr><th>Date</th><th>Item</th><th>Method</th><th>Amount</th><th>Status</th><th></th></tr></thead><tbody><tr><td>20 Nov 2026</td><td style="font-weight:500">Pro exam pass</td><td class="muted">UPI</td><td class="mono">₹[TOTAL]</td><td><span class="pill ${done?'p-warn':'p-ok'}"><i></i>${done?'Refund pending':'Paid'}</span></td><td style="text-align:right"><button type="button" data-a="toast" data-v="Invoice downloads as PDF" style="border:0;background:none;color:var(--blue);font-weight:500;cursor:pointer">Invoice</button></td></tr></tbody></table></div></section>
+  <section class="panel"><div class="panel-h"><h2 class="ptitle">Refund</h2><span style="display:flex;align-items:center;gap:10px"><span class="seg" aria-label="Preview state"><button type="button" class="${ok?'on':''}" data-a="refundOk" data-v="1">Eligible</button><button type="button" class="${!ok?'on':''}" data-a="refundOk" data-v="0">Not eligible</button></span><a href="#policies" style="font-size:12px">Refund policy</a></span></div>
+   <div class="surface" style="padding:16px;display:flex;flex-direction:column;gap:14px">
+   ${S.refund==='idle'?`<ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px">
+      <li style="display:flex;align-items:center;gap:10px">${ic('check',16,2,'style="color:var(--ok)"')}<span>Within [7] days of buying</span><span style="margin-left:auto;font-size:12px" class="muted">Day 2 of 7</span></li>
+      <li style="display:flex;align-items:center;gap:10px">${ok?ic('check',16,2,'style="color:var(--ok)"'):ic('x',16,2,'style="color:var(--bad)"')}<span>Fewer than [50] Pro questions used</span><span style="margin-left:auto;font-size:12px" class="muted">${ok?'34 used':'126 used'}</span></li></ul>
+      <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding-top:14px;border-top:1px solid var(--hair)"><span style="color:#3D3D3D">${ok?'You can get the full ₹[TOTAL] back until 27 November.':'This pass isn’t eligible for an automatic refund. If something went wrong, tell us and we’ll look at it.'}</span>${ok?'<button type="button" class="btn btn-danger btn-sm" data-a="refund" data-v="form">Request a refund</button>':'<a href="#policies" style="font-weight:500;font-size:13px">Write to us</a>'}</div>`
+   :S.refund==='form'?`<form class="rise" data-form="refund" style="display:flex;flex-direction:column;gap:14px;margin:0"><fieldset style="margin:0;padding:0;border:0;display:flex;flex-direction:column;gap:8px"><legend style="padding:0;margin-bottom:8px;font-weight:600">What made you change your mind?</legend>
+      ${reasons.map((r,i)=>{const on=S.reason===i;return `<button type="button" role="radio" aria-checked="${on}" data-a="reason" data-v="${i}" style="display:flex;align-items:center;gap:10px;min-height:40px;padding:0 12px;border-radius:8px;border:1px solid ${on?'var(--blue)':'var(--line)'};background:${on?'#F5F6FF':'#fff'};text-align:left;cursor:pointer"><span style="width:16px;height:16px;border-radius:99px;border:1.5px solid ${on?'var(--blue)':'#CFCFCF'};display:grid;place-items:center"><i style="width:8px;height:8px;border-radius:99px;background:${on?'var(--blue)':'transparent'};display:block"></i></span>${r}</button>`}).join('')}</fieldset>
+      <label style="display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:500">Anything else? <span style="font-weight:400" class="muted">Optional</span><textarea rows="3" style="padding:8px 10px;border:1px solid var(--line2);border-radius:8px;font-family:inherit;font-size:14px;resize:vertical"></textarea></label>
+      <p class="note">₹[TOTAL] goes back to your UPI account. Pro stays on until the refund is approved, then you’re back on Free with your progress kept.</p>
+      <div style="display:flex;justify-content:flex-end;gap:8px"><button type="button" class="btn btn-s" data-a="refund" data-v="idle">Keep Pro</button><button type="submit" class="btn" ${S.reason===null?'disabled':''} style="${S.reason===null?'':'background:var(--bad);color:#fff'}">Request refund</button></div></form>`
+   :`<div class="rise" role="status" style="display:flex;flex-direction:column;gap:14px"><b style="font-weight:600">Refund requested</b><ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:14px">
+      <li style="display:grid;grid-template-columns:20px 1fr;gap:12px"><span class="pop" style="width:20px;height:20px;border-radius:99px;background:var(--ok);color:#fff;display:grid;place-items:center">${ic('check',12,3)}</span><span style="display:flex;flex-direction:column"><b style="font-weight:500">Requested</b><span style="font-size:12px" class="muted">Just now</span></span></li>
+      <li style="display:grid;grid-template-columns:20px 1fr;gap:12px"><span style="width:20px;height:20px;border-radius:99px;border:1.5px solid var(--blue)"></span><span style="display:flex;flex-direction:column"><b style="font-weight:500">Approved</b><span style="font-size:12px" class="muted">Within [2] working days. We’ll email you.</span></span></li>
+      <li style="display:grid;grid-template-columns:20px 1fr;gap:12px"><span style="width:20px;height:20px;border-radius:99px;border:1.5px solid #CFCFCF"></span><span style="display:flex;flex-direction:column"><b style="font-weight:500">Money back</b><span style="font-size:12px" class="muted">[5–7] working days after approval</span></span></li></ol>
+      <div style="display:flex;gap:12px;flex-wrap:wrap"><button type="button" data-a="refund" data-v="idle" style="padding:0;border:0;background:none;color:var(--blue);font-size:13px;cursor:pointer">Changed your mind? Cancel the request</button><button type="button" data-a="approve" style="padding:0;border:0;background:none;color:var(--t2);font-size:13px;cursor:pointer;text-decoration:underline">Simulate approval (back to Free)</button></div></div>`}
+   </div></section></main>`)}
+
+const DOCS={refund:['Refund policy',['Full refund within [7] days of buying, if you’ve used fewer than [50] Pro questions.','Ask from Plan and billing in two clicks. No emails back and forth.','Money goes back to the way you paid, within [5–7] working days of approval.'],
+ [['Who can get a refund','You can ask for a full refund of the Pro exam pass within [7] days of buying it, as long as you have answered fewer than [50] questions that are only in Pro. Both are shown live in Plan and billing, so you always know where you stand.'],['How to ask','Open Plan and billing, choose Request a refund and tell us why in one tap. We approve requests within [2] working days and email you when it’s done.'],['When the money arrives','Refunds go back to the payment method you used. UPI and cards usually show the amount within [5–7] working days of approval. Your bank may take longer.'],['What happens to your account','Pro stays on until the refund is approved. After that you are back on Free. Your progress and streak stay with you.'],['Exam cancelled or moved','If your sitting is moved, your pass moves with it once, for free. If the exam you booked is cancelled and you can’t take another, write to us at any time and we’ll refund you outside the [7]-day window.']]],
+ terms:['Terms of service',['dMAT Prep is an independent practice tool, not official dMAT material.','Your Pro pass is for you alone and lasts until 30 days after your exam.','Don’t copy or share the question bank.'],
+ [['Who we are','dMAT Prep is run by [LEGAL ENTITY], [ADDRESS]. We are not connected to g.a.s.t., APS India or the makers of the dMAT. Our questions follow the published format but are not official test items.'],['Your account','You need an account to save progress. Keep your sign-in to yourself. One Pro pass covers one person.'],['The Pro exam pass','Pro is a one-time payment. It is active from the moment you pay until 30 days after the exam date you set. It never renews and we never charge you again without asking.'],['Fair use of the questions','The questions, explanations and solutions are ours. You may use them to prepare. You may not copy, scrape, resell or post them elsewhere. We may end access for accounts that do.'],['No guarantee of a score','Practice helps, but we can’t promise a particular dMAT result. Nothing here replaces the official instructions from g.a.s.t. and APS India.'],['Changes and contact','If these terms change in a way that matters to you, we’ll tell you in the app before it takes effect. Questions go to [SUPPORT EMAIL].']]],
+ privacy:['Privacy',['We store your answers and times to show your progress.','We never sell your data or show ads.','Payment details stay with [PAYMENT PROVIDER]. We never see your card or UPI PIN.'],
+ [['What we collect','Your name and email, your exam date, and every answer you give with the time it took. That’s what powers your plan and your insights.'],['What we don’t collect','We don’t see card numbers, bank details or UPI PINs. [PAYMENT PROVIDER] handles payment and tells us only whether it succeeded.'],['Who sees it','Only you, and the few people who run dMAT Prep when they need to fix a problem. Data is stored with [HOSTING PROVIDER].'],['Deleting your data','You can delete your account from settings at any time. We erase your answers within [30] days, apart from payment records the law asks us to keep.']]],
+ fair:['Fair use',['Use dMAT Prep as much as you like to prepare.','One person per account.','No scraping or sharing the question bank.'],
+ [['Unlimited means unlimited','Retake sets and mocks as often as you like. There is no hidden cap on practice.'],['One person per account','If we see one account used from many places at once, we may ask you to confirm it’s you.'],['Automated access','Bots, scrapers and bulk downloads are not allowed. They slow the app for everyone and copy work that others paid for.']]]};
+function policies(){
+  const d=DOCS[S.doc];
+  return shell(['Help and policies','policies',d[0]],`<main class="page" style="flex-direction:row;flex-wrap:wrap;gap:40px;align-items:flex-start;padding-top:32px">
+  <nav aria-label="Policies" style="flex:0 1 200px;min-width:180px;display:flex;flex-direction:column;gap:2px;position:sticky;top:76px"><span class="over" style="padding:0 10px 8px">Policies</span>
+    ${Object.entries(DOCS).map(([k,v])=>`<button type="button" aria-current="${S.doc===k?'page':'false'}" data-a="doc" data-v="${k}" style="height:36px;padding:0 10px;border-radius:8px;border:1px solid ${S.doc===k?'var(--line)':'transparent'};background:${S.doc===k?'#fff':'transparent'};color:${S.doc===k?'var(--ink)':'var(--t2)'};font-weight:${S.doc===k?600:400};text-align:left;cursor:pointer">${v[0]}</button>`).join('')}
+    <div style="margin-top:20px;padding:14px;border-radius:12px;border:1px solid var(--line);display:flex;flex-direction:column;gap:6px"><b style="font-weight:600">Still stuck?</b><span style="font-size:13px;line-height:19px" class="muted">Write to [SUPPORT EMAIL]. We reply within [2] working days.</span></div></nav>
+  <article class="${FX.has('doc')?'rise':''}" style="flex:1 1 520px;min-width:0;display:flex;flex-direction:column;gap:24px">
+    <div role="note" style="display:flex;gap:10px;padding:10px 12px;border-radius:8px;background:var(--warnbg);border:1px solid var(--warnline);font-size:13px;line-height:19px;color:#5A3A06">${ic('help',16,1.8,'style="flex:none;margin-top:1px;color:var(--warn)"')}Draft for design. Bracketed values are decisions for you, and a lawyer should review the text before it goes live.</div>
+    <header style="display:flex;flex-direction:column;gap:8px"><h1 style="font-size:30px;line-height:36px;font-weight:600;letter-spacing:-.02em">${d[0]}</h1><span style="font-size:13px" class="muted">Last updated [date]</span></header>
+    <section class="panel"><div class="panel-h" style="min-height:40px"><span class="ptitle">The short version</span></div><ul class="surface" style="margin:0;padding:14px 16px 14px 34px;display:flex;flex-direction:column;gap:8px;line-height:21px">${d[1].map(s=>`<li>${s}</li>`).join('')}</ul></section>
+    ${d[2].map((s,i)=>`<section style="display:flex;flex-direction:column;gap:8px"><h2 style="font-size:17px;line-height:24px;font-weight:600;display:flex;gap:10px"><span class="mono" style="font-size:13px;color:var(--t3);padding-top:2px">0${i+1}</span>${s[0]}</h2><p style="padding-left:30px;line-height:23px;color:#2E2E2E;text-wrap:pretty;max-width:none">${s[1]}</p></section>`).join('')}
+  </article></main>`)}
+
+function system(){
+  const sw=(n,h,u)=>`<div style="border:1px solid var(--line);border-radius:12px;padding:4px;background:var(--frame)"><div style="height:48px;border-radius:8px;background:${h};border:1px solid rgba(0,0,0,.06)"></div><div style="padding:8px 6px 4px;display:flex;flex-direction:column;gap:1px"><b style="font-size:13px;font-weight:600">${n}</b><span class="mono muted" style="font-size:11px">${h}</span><span class="muted" style="font-size:11px">${u}</span></div></div>`;
+  const grp=(t,n,arr)=>`<div style="display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:start"><div style="padding-top:6px"><b style="font-weight:600">${t}</b><br><span style="font-size:12px" class="muted">${n}</span></div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:10px">${arr.map(a=>sw(...a)).join('')}</div></div>`;
+  const types=[['Display 40/44 · 600','font-size:40px;line-height:44px;font-weight:600;letter-spacing:-.03em','Ready in 38 days'],['Title 24/32 · 600','font-size:24px;line-height:32px;font-weight:600;letter-spacing:-.015em','Welcome back, Aarav'],['Heading 16/22 · 600','font-size:16px;line-height:22px;font-weight:600','Figure Sequences: colour cycles'],['Body 14/20 · 400','font-size:14px','Each letter appears once in every row and column.'],['Small 12/17','font-size:12px;line-height:17px','22 free questions left'],['Overline · mono','font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;font-weight:500','Questions per day'],['Metric · mono 28','font-family:var(--mono);font-size:28px;line-height:32px;font-weight:500','64% · 1:15']];
+  return shell(['Home','home','Design system'],`<main class="page" style="gap:40px">
+  <section style="display:flex;flex-direction:column;gap:12px;padding-bottom:28px;border-bottom:1px solid var(--line)"><span class="over">Design system · v0.1</span><h1 style="font-size:40px;line-height:44px;font-weight:600;letter-spacing:-.03em">Calm by default. Blue when it matters.</h1>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:16px">${[['Warm neutrals carry the page','Paper-white surfaces, hairline borders, no shadows at rest.'],['One blue for one job','Blue marks the next action and your progress. Nothing else.'],['Gold means Pro','Reserved for the paid tier, so it always reads as a signal.']].map((p,i)=>`<div><span class="mono muted" style="font-size:11px">0${i+1}</span><br><b style="font-weight:600">${p[0]}</b><br><span class="muted" style="font-size:13px">${p[1]}</span></div>`).join('')}</div></section>
+  <section style="display:flex;flex-direction:column;gap:20px"><h2 class="ptitle muted">Colour</h2>
+    ${grp('Neutrals','Warm, from your Figma',[['Ink','#0A0A0A','Text, strong buttons'],['Text 2','#5F5F5F','Secondary, 6.4:1'],['Text 3','#737373','Meta, 4.7:1'],['Line','#E7E7E7','Card borders'],['Sidebar','#F3F2F0','Shell, chips'],['Frame','#F8F7F5','Panel frames']])}
+    ${grp('Primary','Next action, progress',[['Blue 50','#EEF0FF','Tints'],['Blue 200','#BCC7FF','Chart data'],['Blue 500','#2F4BFF','Primary, 5.9:1'],['Blue 700','#1F37D9','Hover, links']])}
+    ${grp('Pro','Paid tier only',[['Gold 50','#FFF5DF','Pro surfaces'],['Gold 400','#F2B33D','Badge, Pro button'],['Gold 800','#8A5A00','Pro text']])}
+    ${grp('Feedback','Always with a word',[['Success','#16803C','Correct'],['Warning','#B26B00','Over time'],['Error','#C9372C','Missed']])}
+    ${grp('Figures','Question art only',[['Fig ink','#0A0A0A','Arrows, symbols'],['Fig blue','#2F4BFF','Symbols'],['Fig teal','#0F9D8A','Symbols'],['Fig plum','#A63A8C','Symbols']])}
+  </section>
+  <section class="row2" style="gap:32px;align-items:flex-start"><div style="flex:1 1 440px;display:flex;flex-direction:column;gap:12px"><h2 class="ptitle muted">Type · Geist and Geist Mono</h2><div style="border:1px solid var(--line);border-radius:12px;overflow:hidden">${types.map(t=>`<div style="display:grid;grid-template-columns:130px 1fr;gap:16px;align-items:baseline;padding:14px 16px;border-bottom:1px solid var(--hair)"><span class="mono muted" style="font-size:11px">${t[0]}</span><span style="${t[1]}">${t[2]}</span></div>`).join('')}</div><p style="font-size:12px" class="muted">Your Figma uses Messina Sans. Geist stands in with near-identical proportions.</p></div>
+    <div style="flex:1 1 360px;display:flex;flex-direction:column;gap:12px"><h2 class="ptitle muted">Components</h2>
+      <div style="border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:14px"><div style="display:flex;flex-wrap:wrap;gap:8px"><button class="btn btn-p" type="button">Primary</button><button class="btn btn-s" type="button">Secondary</button><button class="btn btn-d" type="button">Strong</button><button class="btn btn-pro" type="button">${ic('crown',14,1.8)}Unlock Pro</button><button class="btn" type="button" disabled>Disabled</button></div>
+      <div style="display:flex;flex-wrap:wrap;gap:8px"><span class="pill p-ok"><i></i>Correct</span><span class="pill p-bad"><i></i>Missed</span><span class="pill p-warn"><i></i>Over time</span><span class="pill p-skip"><i></i>Skipped</span><span class="lv lv-Easy">Easy</span><span class="lv lv-Medium">Medium</span><span class="lv lv-Hard">Hard</span><span class="pro">PRO</span><span class="freebadge">FREE</span></div>
+      <button type="button" class="lockrow" data-a="paywall" data-v="LS">${ic('lock',16,1.5,'class="lk" style="color:var(--goldtext)"')}<span style="flex:1"><b style="font-weight:500">Locked row</b><br><span style="font-size:12px;color:#6B4A00">Hover, then click to open the paywall</span></span><span class="pro">PRO</span></button>
+      <div class="seg"><button class="on" type="button">Daily</button><button type="button">Weekly</button></div>
+      <button type="button" class="btn btn-s btn-sm" style="align-self:flex-start" data-a="toast" data-v="Bookmarked #ME-0117">Show a toast</button></div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:8px">${[[4,'Badges'],[6,'Small'],[8,'Buttons'],[12,'Panels'],[99,'Pills']].map(r=>`<div style="text-align:center"><div style="height:52px;border:1.5px solid var(--ink);border-radius:${r[0]}px;background:var(--frame)"></div><span class="mono" style="font-size:11px">${r[0]===99?'Full':r[0]}</span><br><span class="muted" style="font-size:11px">${r[1]}</span></div>`).join('')}</div>
+    </div></section></main>`)}
+
+/* ---------- paywall ---------- */
+const PAYWALL={
+ FS:['Keep going with all 173 Figure Sequences','Your free starter set has 20. Pro opens the other 153, sorted by difficulty, and everything below.'],
+ ME:['Keep going with all 175 Equations','Your free starter set has 20. Pro opens the other 155, sorted by difficulty, and everything below.'],
+ LS:['Keep going with all 125 Latin Squares','Your free starter set has 20. Pro opens the other 105, sorted by difficulty, and everything below.'],
+ GA:['Open every General Academic pack','Free includes one practice pack. Pro adds the other four, covering maths, sciences, business and social sciences.'],
+ MOCK:['Rehearse the whole exam day','Free includes one Core mock. Pro adds the General Academic mock and the full 195-minute day, as often as you like.'],
+ SET:['Take every timed set','Free includes one set per subtest. Pro opens all 22, so you can practise pace until it’s automatic.'],
+ INSIGHTS:['See which rules cost you time','Pro tracks pace and accuracy by rule across every set and mock, and builds your plan from it.'],};
+function paywall(){const c=PAYWALL[S.paywall]||PAYWALL.LS;
+ return `<div class="scrim" data-a="closePaywall"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="pw" data-stop="1">
+  <div style="padding:24px 24px 0;display:flex;flex-direction:column;gap:14px"><button type="button" class="iconbtn" data-a="closePaywall" aria-label="Close" style="position:absolute;top:14px;right:14px;width:32px;height:32px;border:0">${ic('x',18)}</button>
+   <span class="pro sheen" style="align-self:flex-start;height:24px;padding:0 8px;font-size:11px">${ic('crown',12,2)}PRO</span>
+   <div><h2 id="pw" style="font-size:22px;line-height:30px;font-weight:600;letter-spacing:-.015em;padding-right:32px">${c[0]}</h2><p class="muted" style="margin-top:6px">${c[1]}</p></div></div>
+  <ul style="list-style:none;margin:18px 24px 0;padding:0;display:flex;flex-direction:column;gap:10px">${[['All 473 Core questions','and every new one we add'],['Every timed set and mock','including the full 195-minute exam day'],['All General Academic packs','maths, sciences, business and more'],['Pace insights by rule','across every set and mock']].map((x,i)=>`<li class="rise" style="animation-delay:${.1+i*.05}s;display:flex;gap:10px">${ic('check',18,2,'style="flex:none;margin-top:1px;color:var(--blue)"')}<span><b style="font-weight:600">${x[0]}</b> <span class="muted">${x[1]}</span></span></li>`).join('')}</ul>
+  <div style="margin:20px 24px 0;padding:14px 16px;border-radius:12px;background:var(--goldsoft);border:1px solid var(--goldline);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px"><div style="display:flex;flex-direction:column;gap:2px"><span style="display:flex;align-items:baseline;gap:6px"><span class="mono" style="font-size:24px;line-height:28px;font-weight:500">₹[PRICE]</span><span style="color:#6B4A00">one time</span></span><span style="font-size:12px;color:#6B4A00">Pro until 30 days after your exam. No subscription.</span></div><a href="#pricing" data-a="closePaywall" style="font-size:13px;font-weight:500">Compare plans</a></div>
+  <div style="padding:20px 24px 24px;display:flex;flex-direction:column;gap:12px"><a class="btn btn-pro btn-lg btn-block" href="#checkout" data-a="closePaywall">Unlock Pro ${ic('arrow',16,2)}</a>
+   <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px;font-size:12px" class="muted"><span style="display:inline-flex;align-items:center;gap:6px">${ic('shield',14,1.8,'style="color:var(--ok)"')}Full refund within [7] days. <a href="#policies" data-a="closePaywall">Refund policy</a></span><button type="button" data-a="closePaywall" style="border:0;background:none;color:var(--t2);cursor:pointer;padding:0;font-size:12px">Keep practising free</button></div></div>
+ </section></div>`}
+
+/* ---------- palette ---------- */
+let palQ='',palI=0;
+const palItems=()=>[['home','Home','home'],['prepare','Prepare','prepare'],['practice','Practice a question','test'],['test','Test','test'],['exam','Start the Core mock','timer'],['results','Last results','log'],['about','About the exam','about'],['about','Do I need the dMAT?','help'],['pricing','Plans and pricing','crown'],['billing','Plan and billing','billing'],['policies','Refund policy','shield'],['system','Design system','palette']].filter(x=>x[1].toLowerCase().includes(palQ.toLowerCase()));
+function palette(){const it=palItems();palI=Math.min(palI,Math.max(0,it.length-1));
+ return `<div class="palette" data-a="closePalette"><div class="box" data-stop="1" role="dialog" aria-label="Search"><input id="palin" type="text" placeholder="Search pages and actions" value="${esc(palQ)}" autocomplete="off" aria-label="Search">
+ <ul role="listbox">${it.map((x,i)=>`<li><button type="button" class="${i===palI?'on':''}" data-a="palGo" data-v="${x[0]}">${ic(x[2],16)}${x[1]}<span class="mono muted" style="margin-left:auto;font-size:11px">#${x[0]}</span></button></li>`).join('')||'<li style="padding:16px" class="muted">No matches</li>'}</ul></div></div>`}
+
+/* ---------- review panel ---------- */
+const FLOWS=[
+ ['Daily practice','First thing a returning student does',['home','prepare','practice']],
+ ['Test under exam rules','Mock with a running clock, then results',['test','exam','results']],
+ ['Upgrade to Pro','Locked set, paywall, pricing, checkout',['prepare','paywall:LS','pricing','checkout','unlocked','home']],
+ ['Life on Pro','Billing, policies and a refund request',['billing','policies']],
+ ['Know the exam','Facts, eligibility check, FAQ',['about']]];
+function review(){
+ return `<div class="review">${S.review?`<div class="review-panel" role="dialog" aria-label="Review flows">
+  <div style="padding:14px;display:flex;flex-direction:column;gap:10px"><div style="display:flex;align-items:center;justify-content:space-between"><h3>Review the flows</h3><button type="button" class="iconbtn" style="border:0;width:28px;height:28px" data-a="review" aria-label="Close">${ic('x',16)}</button></div>
+   <div style="display:flex;align-items:center;justify-content:space-between;gap:8px"><span style="font-size:13px" class="muted">Plan</span><span class="seg"><button type="button" class="${!isPro()?'on':''}" data-a="plan" data-v="free">Free</button><button type="button" class="${isPro()?'on':''}" data-a="plan" data-v="pro">Pro</button></span></div></div>
+  ${FLOWS.map(f=>`<div class="flow"><h3>${f[0]}</h3><span style="font-size:12px" class="muted">${f[1]}</span><div class="steps">${f[2].map((s,i)=>{const [r,pw]=s.split(':');return `${i?'<span class="arr">→</span>':''}<a href="#${pw?'prepare':r}" class="${S.route===r&&!pw?'cur':''}" ${pw?`data-a="paywall" data-v="${pw}"`:''}>${pw?'Paywall':ROUTES[r]}</a>`}).join('')}</div></div>`).join('')}
+  <div class="flow"><h3>All screens</h3><div class="steps">${Object.entries(ROUTES).map(([r,l])=>`<a href="#${r}" class="${S.route===r?'cur':''}">${l}</a>`).join('')}</div></div>
+  <div class="flow" style="flex-direction:row;justify-content:space-between;align-items:center"><span style="font-size:12px" class="muted">Tip: ⌘K opens search</span><button type="button" class="btn btn-s btn-sm" data-a="reset">${ic('reset',14)}Reset demo</button></div>
+ </div>`:''}<button type="button" class="review-fab" data-a="review" aria-expanded="${S.review}">${ic('map',16)}Review flows · ${isPro()?'Pro':'Free'}</button></div>`}
+
+/* ---------- render ---------- */
+const VIEWS={home,prepare,practice,test:testPage,exam:examPage,results,about,pricing,checkout,unlocked,billing,policies,system};
+function render(){
+  const root=document.getElementById('root');
+  const focusId=document.activeElement&&document.activeElement.id;
+  root.innerHTML=VIEWS[S.route]()+(S.paywall?paywall():'')+(S.palette?palette():'')+(S.route==='exam'?'':review());
+  document.title=(ROUTES[S.route]||'Home')+' · dMAT Prep';
+  document.body.classList.toggle('reviewing',!!S.review&&S.route!=='exam');
+  document.body.classList.toggle('haspanel',!!document.querySelector('.spanel'));
+  const pb=document.querySelector('.pbar');if(pb)document.documentElement.style.setProperty('--ptop',(52+pb.offsetHeight)+'px');
+  if(S.palette){const i=document.getElementById('palin');if(i){i.focus();i.setSelectionRange(i.value.length,i.value.length)}}
+  else if(focusId){const el=document.getElementById(focusId);if(el)el.focus()}
+  FX=new Set();
+  manageClock();
+}
+let clock=null;
+function manageClock(){
+  if(S.route==='exam'&&!clock){clock=setInterval(()=>{if(S.exam.secs<=0)return;S.exam.secs--;const c=document.getElementById('clock');if(c)c.textContent=fmt(S.exam.secs);if(S.exam.secs===299)render()},1000)}
+  if(S.route!=='exam'&&clock){clearInterval(clock);clock=null}
+}
+
+/* ---------- actions ---------- */
+const A={
+ drawer:()=>set({drawer:!S.drawer}),
+ menu:()=>set({menu:!S.menu}),
+ review:()=>set({review:!S.review}),
+ plan:v=>{set({plan:v});toast(v==='pro'?'Previewing the Pro plan':'Previewing the Free plan')},
+ reset:()=>{try{localStorage.removeItem('dmatv2')}catch(e){}S=JSON.parse(JSON.stringify(DEF));S.review=true;toast('Demo reset to Free');go('home');render()},
+ palette:()=>{palQ='';palI=0;set({palette:true})},
+ closePalette:()=>set({palette:false}),
+ palGo:v=>{set({palette:false});go(v)},
+ range:v=>set({range:v},'range'),
+ prepTab:v=>set({prepTab:v},'tab'),
+ startq:v=>{if(SETS[v]){S.pset=v;S.panel=null;S.pfilter='all'}},
+ pSet:v=>{set({pset:v,panel:null,pfilter:'all'});window.scrollTo(0,0)},
+ pFilter:v=>set({pfilter:v}),
+ pAns:v=>{const [id,k,n]=v.split('|');const q=qById(id)[1];let fx;
+   if(isFS(q)){const arr=[...pPick(q)];if(arr[+k]!=null)return;arr[+k]=+n;S.pans={...S.pans,[id]:arr};fx=[];if(+n!==q.parts[+k].correct)fx.push('bad:'+id);if(arr[0]!=null&&arr[1]!=null)fx.push('ok:'+id)}
+   else{if(S.pans[id]!==undefined)return;S.pans={...S.pans,[id]:+n};fx=+n===q.correct?'ok:'+id:['bad:'+id,'ok:'+id]}
+   set({},fx)},
+ pOpen:id=>{set({panel:S.panel===id?null:id},'panel')},
+ pClose:()=>set({panel:null}),
+ pHint:id=>{const h=S.phint[id]||0;S.phint={...S.phint,[id]:Math.min(3,h+1)};set({panel:id},S.panel===id?'hint':['hint','panel'])},
+ pReveal:id=>{S.preveal={...S.preveal,[id]:true};set({},'reveal')},
+ pStep:v=>{const qs=SETS[S.pset].qs,i=qs.findIndex(q=>q.id===S.panel),n=qs[i+ +v];if(n){set({panel:n.id});pScroll(n.id)}},
+ pJump:id=>{if(S.pfilter!=='all'&&!pList().some(q=>q.id===id))set({pfilter:'all'});if(S.panel)set({panel:id});pScroll(id)},
+ pResetSet:()=>{const ids=SETS[S.pset].qs.map(q=>q.id);const a={...S.pans},h={...S.phint},r={...S.preveal};ids.forEach(i=>{delete a[i];delete h[i];delete r[i]});set({pans:a,phint:h,preveal:r,panel:null});window.scrollTo(0,0)},
+ saveId:v=>{const on=!S.saved[v];S.saved={...S.saved,[v]:on};set({},'save');toast(on?'Bookmarked '+v:'Bookmark removed',()=>{S.saved={...S.saved,[v]:!on};render()})},
+ paywall:(v,el,e)=>{if(isPro()&&!['INSIGHTS'].includes(v)){if(v==='MOCK'||v==='SET')go('exam');return}
+   if(el&&el.querySelector('.lk')){el.querySelector('.lk').classList.add('wiggle');setTimeout(()=>set({paywall:v}),220)}else set({paywall:v})},
+ closePaywall:()=>set({paywall:null}),
+ goexam:()=>go('exam'),
+ flag:()=>{const t=S.exam.task;S.exam.flags={...S.exam.flags,[t]:!S.exam.flags[t]};render()},
+ examPick:v=>{S.exam.answers={...S.exam.answers,[S.exam.task]:v};render()},
+ examClear:()=>{const a={...S.exam.answers};delete a[S.exam.task];S.exam.answers=a;render()},
+ examGo:v=>{const n=+v;if(n>=1&&n<=20){S.exam.task=n;render()}},
+ submitExam:()=>set({confirmSubmit:true}),
+ closeConfirm:()=>set({confirmSubmit:false}),
+ doSubmit:()=>{set({confirmSubmit:false});go('results')},
+ elig:v=>{const [k,x]=v.split(':');S.elig={...S.elig,[k]:x};set({},'elig')},
+ eligReset:()=>set({elig:{}}),
+ faq:v=>set({faq:S.faq===+v?-1:+v},'faq'),
+ pfaq:v=>set({pfaq:S.pfaq===+v?-1:+v},'pfaq'),
+ method:v=>set({method:v}),
+ coupon:()=>set(S.applied?{applied:false,coupon:false}:{coupon:!S.coupon,couponErr:''}),
+ pay:()=>{if(S.paying)return;set({paying:true});setTimeout(()=>{S.paying=false;S.plan='pro';save();go('unlocked')},1400)},
+ replay:()=>{const c=document.getElementById('celebrate');if(!c)return;const p=c.parentNode,n=c.cloneNode(true);p.replaceChild(n,c)},
+ logSub:v=>{S.log={...S.log,sub:v};render()},
+ logRes:v=>{S.log={...S.log,res:v};render()},
+ logSel:v=>{S.log={...S.log,sel:v};set({},'sel')},
+ export:()=>toast('CSV export starts here'),
+ refundOk:v=>set({refundOk:v==='1',refund:'idle',reason:null}),
+ refund:v=>set({refund:v,reason:v==='form'?S.reason:null}),
+ reason:v=>set({reason:+v}),
+ approve:()=>{set({plan:'free',refund:'idle',reason:null});toast('Refund approved. You’re back on Free, progress kept.');go('home')},
+ doc:v=>set({doc:v},'doc'),
+ toast:v=>toast(v)
+};
+document.addEventListener('click',e=>{
+  const el=e.target.closest('[data-a]');
+  if(!el){if(S.menu&&!e.target.closest('.userbtn'))set({menu:false});return}
+  if(el.classList.contains('scrim')||el.classList.contains('palette')){if(e.target.closest('[data-stop]')&&!e.target.closest('[data-a]:not(.scrim):not(.palette)'))return;if(e.target!==el&&e.target.closest('[data-stop]'))return}
+  const a=el.dataset.a, v=el.dataset.v;
+  if(el.tagName!=='A')e.preventDefault();
+  if(A[a])A[a](v,el,e);
+});
+document.addEventListener('submit',e=>{const f=e.target.dataset.form;if(!f)return;e.preventDefault();
+  if(f==='coupon'){const code=(new FormData(e.target).get('code')||'').trim().toUpperCase();if(code==='FIRSTTRY'){set({applied:true,coupon:false,couponErr:''});toast('Coupon applied')}else set({couponErr:code?'That code isn’t valid. Try FIRSTTRY.':'Enter a code first.'})}
+  if(f==='refund'&&S.reason!==null){set({refund:'done'});toast('Refund requested')}});
+document.addEventListener('input',e=>{if(e.target.id==='palin'){palQ=e.target.value;palI=0;render()}});
+document.addEventListener('keydown',e=>{
+  if((e.metaKey||e.ctrlKey)&&e.key.toLowerCase()==='k'){e.preventDefault();S.palette?A.closePalette():A.palette();return}
+  if(e.key==='Escape'){if(S.palette)return A.closePalette();if(S.route==='practice'&&S.panel)return A.pClose();if(S.paywall)return A.closePaywall();if(S.confirmSubmit)return A.closeConfirm();if(S.review)return A.review();if(S.menu)return A.menu()}
+  if(S.palette){const it=palItems();if(e.key==='ArrowDown'){palI=Math.min(palI+1,it.length-1);render();e.preventDefault()}if(e.key==='ArrowUp'){palI=Math.max(palI-1,0);render();e.preventDefault()}if(e.key==='Enter'&&it[palI]){A.palGo(it[palI][0])}return}
+  const tag=(e.target.tagName||'').toLowerCase();if(tag==='input'||tag==='textarea')return;
+  if(S.route==='practice'){const id=pActive();const q=id&&qById(id)[1];const n=parseInt(e.key,10);const k=e.key.toLowerCase();
+    if(k==='escape'&&S.panel)return A.pClose();
+    if(q&&n>=1&&!pDone(q)){const part=isFS(q)?(pPick(q)[0]==null?0:1):0;const max=isFS(q)?3:q.opts.length;if(n<=max){A.pAns(id+'|'+part+'|'+(n-1));if(pDone(q)&&!S.panel){const nx=pList().find(x=>pState(x.id)==='todo');if(nx)setTimeout(()=>pScroll(nx.id),450)}}}
+    if(q&&k==='h')A.pHint(id)}
+  if(S.route==='exam'){if('abcde'.includes(e.key.toLowerCase())&&e.key.length===1)A.examPick(e.key.toUpperCase());if(e.key==='ArrowRight')A.examGo(S.exam.task+1);if(e.key==='ArrowLeft')A.examGo(S.exam.task-1)}
+});
+if(!location.hash)history.replaceState(null,'','#home');
+try{S.review=!localStorage.getItem('dmatv2-seen');localStorage.setItem('dmatv2-seen','1')}catch(e){S.review=true}
+syncRoute();
+</script>
+</body>
+</html>

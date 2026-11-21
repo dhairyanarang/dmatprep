@@ -1,0 +1,4420 @@
+[
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "B",
+        "E",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        "D",
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        "A",
+        "D",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "C already appears in row 2; B, D, E already appear in column 3 — so A is the only letter left for R2C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "B, E already appear in row 1; A, D already appear in column 2 — so C is the only letter left for R1C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "In column 2, B and E are missing. B cannot go in R5C2 because it already appears in row 5, so B must go in R2C2 — which leaves E for R5C2.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "D, E already appear in row 3; B, C already appear in column 4 — so A is the only letter left for R3C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "C",
+        "reason": "A, D, E already appear in row 3; B already appears in column 5 — so C is the only letter left for R3C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A, B, D already appear in row 4; C already appears in column 5 — so E is the only letter left for R4C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 2; E already appears in column 5 — so D is the only letter left for R2C5.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C3 must be A; R1C2 must be C; R2C2 must be B; R3C4 must be A; R3C5 must be C; R4C5 must be E. A, B, C already appear in row 2; E already appears in column 5 — so D is the only letter left for R2C5.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in column 5 (at R5C5), and a letter can only appear once per column.",
+      "C": "C already appears in row 2 (at R2C4), and a letter can only appear once per row.",
+      "E": "E already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 2 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C3. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C5 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 5 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 4
+          }
+        },
+        {
+          "title": "R2C3 can only be A",
+          "detail": "C already appears in row 2; B, D, E already appear in column 3 — so A is the only letter left for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C2 can only be C",
+          "detail": "B, E already appear in row 1; A, D already appear in column 2 — so C is the only letter left for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for B",
+          "detail": "In column 2, B and E are missing. B cannot go in R5C2 because it already appears in row 5, so B must go in R2C2 — which leaves E for R5C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C4 can only be A",
+          "detail": "D, E already appear in row 3; B, C already appear in column 4 — so A is the only letter left for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C5 can only be C",
+          "detail": "A, D, E already appear in row 3; B already appears in column 5 — so C is the only letter left for R3C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 4
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C5 can only be E",
+          "detail": "A, B, D already appear in row 4; C already appears in column 5 — so E is the only letter left for R4C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 4
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "A, B, C already appear in row 2; E already appears in column 5 — so D is the only letter left for R2C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 4
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C5 is D.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "A": "derived-clash",
+        "B": "direct-clash",
+        "C": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-001",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 1555655442,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 0,
+        "attempt": 0
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "B",
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "A"
+      ],
+      [
+        null,
+        "E",
+        "D",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "B",
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 4; A, B already appear in column 1 — so C is the only letter left for R4C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "In column 1, D and E are missing. E cannot go in R3C1 because it already appears in row 3, so E must go in R5C1 — which leaves D for R3C1.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "B, E already appear in row 5; A, D already appear in column 3 — so C is the only letter left for R5C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "B, C, E already appear in row 5; A already appears in column 5 — so D is the only letter left for R5C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 5 — so A is the only letter left for R5C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R4C1 must be C; R5C1 must be E; R5C3 must be C; R5C5 must be D. B, C, D, E already appear in row 5 — so A is the only letter left for R5C2.",
+    "distractorNotes": {
+      "B": "B already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "C": "C already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 5 (at R5C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in column 2 (at R4C2), and a letter can only appear once per column."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 2 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R4C1. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 2 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "title": "R4C1 can only be C",
+          "detail": "D, E already appear in row 4; A, B already appear in column 1 — so C is the only letter left for R4C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 0
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In column 1, D and E are missing. E cannot go in R3C1 because it already appears in row 3, so E must go in R5C1 — which leaves D for R3C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R5C3 can only be C",
+          "detail": "B, E already appear in row 5; A, D already appear in column 3 — so C is the only letter left for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R5C5 can only be D",
+          "detail": "B, C, E already appear in row 5; A already appears in column 5 — so D is the only letter left for R5C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 4
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, C, D, E already appear in row 5 — so A is the only letter left for R5C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 1
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C2 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "B": "direct-clash",
+        "C": "derived-clash",
+        "D": "derived-clash",
+        "E": "direct-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-002",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 2968333376,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 1,
+        "attempt": 0
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "A",
+        "D",
+        null,
+        "B",
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        "E",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "D"
+      ],
+      [
+        "C",
+        "A",
+        null,
+        null,
+        null
+      ],
+      [
+        "B",
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "B, E already appear in row 2; A, C already appear in column 1 — so D is the only letter left for R2C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "D already appears in row 3; A, B, C already appear in column 1 — so E is the only letter left for R3C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "In column 2, C and E are missing. E cannot go in R3C2 because it already appears in row 3, so E must go in R5C2 — which leaves C for R3C2.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 3; A, B already appear in column 2 — so C is the only letter left for R3C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "C, D, E already appear in row 3; B already appears in column 4 — so A is the only letter left for R3C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "In column 4, C and D are missing. C cannot go in R4C4 because it already appears in row 4, so C must go in R5C4 — which leaves D for R4C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "B, C, E already appear in row 5; D already appears in column 5 — so A is the only letter left for R5C5.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C1 must be D; R3C1 must be E; R5C2 must be E; R3C2 must be C; R3C4 must be A; R5C4 must be C. B, C, E already appear in row 5; D already appears in column 5 — so A is the only letter left for R5C5.",
+    "distractorNotes": {
+      "B": "B already appears in row 5 (at R5C1), and a letter can only appear once per row.",
+      "C": "C already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 5 (at R3C5), and a letter can only appear once per column.",
+      "E": "E already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 5 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C1. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C5 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 5 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 4
+          }
+        },
+        {
+          "title": "R2C1 can only be D",
+          "detail": "B, E already appear in row 2; A, C already appear in column 1 — so D is the only letter left for R2C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 0
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C1 can only be E",
+          "detail": "D already appears in row 3; A, B, C already appear in column 1 — so E is the only letter left for R3C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In column 2, C and E are missing. E cannot go in R3C2 because it already appears in row 3, so E must go in R5C2 — which leaves C for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 1
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C2 can only be C",
+          "detail": "D, E already appear in row 3; A, B already appear in column 2 — so C is the only letter left for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C4 can only be A",
+          "detail": "C, D, E already appear in row 3; B already appears in column 4 — so A is the only letter left for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for C",
+          "detail": "In column 4, C and D are missing. C cannot go in R4C4 because it already appears in row 4, so C must go in R5C4 — which leaves D for R4C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, C, E already appear in row 5; D already appears in column 5 — so A is the only letter left for R5C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 4
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C5 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "B": "direct-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-003",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 212480780,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 2,
+        "attempt": 18
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "D",
+        "C",
+        null
+      ],
+      [
+        null,
+        "B",
+        null,
+        null,
+        "D"
+      ],
+      [
+        null,
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "A"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "D",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, D already appear in row 2; C, E already appear in column 4 — so A is the only letter left for R2C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "In row 2, C and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C1 — which leaves C for R2C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in row 2 — so C is the only letter left for R2C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "In column 3, A and B are missing. A cannot go in R4C3 because it already appears in row 4, so A must go in R5C3 — which leaves B for R4C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "E already appears in row 3; A, C, D already appear in column 5 — so B is the only letter left for R3C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "In column 4, B and D are missing. B cannot go in R3C4 because it already appears in row 3, so B must go in R5C4 — which leaves D for R3C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C4 must be A; R2C1 must be E; R2C3 must be C; R5C3 must be A; R3C5 must be B; R5C4 must be B. A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+    "distractorNotes": {
+      "A": "A already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "B": "B already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 5 (at R5C5), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C1 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 1 show only 1 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 0
+          }
+        },
+        {
+          "title": "R2C4 can only be A",
+          "detail": "B, D already appear in row 2; C, E already appear in column 4 — so A is the only letter left for R2C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In row 2, C and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C1 — which leaves C for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R2C3 can only be C",
+          "detail": "A, B, D, E already appear in row 2 — so C is the only letter left for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for A",
+          "detail": "In column 3, A and B are missing. A cannot go in R4C3 because it already appears in row 4, so A must go in R5C3 — which leaves B for R4C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C5 can only be B",
+          "detail": "E already appears in row 3; A, C, D already appear in column 5 — so B is the only letter left for R3C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 4
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for B",
+          "detail": "In column 4, B and D are missing. B cannot go in R3C4 because it already appears in row 3, so B must go in R5C4 — which leaves D for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 3
+            },
+            "letter": "B",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "A, B, C already appear in row 5; E already appears in column 1 — so D is the only letter left for R5C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 0
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C1 is D.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "A": "derived-clash",
+        "B": "derived-clash",
+        "C": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-004",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 704577688,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 3,
+        "attempt": 5
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "C"
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "C",
+        null,
+        null,
+        "E"
+      ],
+      [
+        "A",
+        null,
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        "D",
+        null,
+        null,
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "D already appears in row 2; A, C, E already appear in column 5 — so B is the only letter left for R2C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "B",
+        "reason": "C, E already appear in row 3; A, D already appear in column 1 — so B is the only letter left for R3C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "C already appears in row 1; A, B, D already appear in column 1 — so E is the only letter left for R1C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A, E already appear in row 4; C, D already appear in column 2 — so B is the only letter left for R4C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "In row 4, C and D are missing. C cannot go in R4C5 because it already appears in column 5, so C must go in R4C4 — which leaves D for R4C5.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "In column 2, A and E are missing. E cannot go in R1C2 because it already appears in row 1, so E must go in R2C2 — which leaves A for R1C2.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, D, E already appear in row 2; C already appears in column 4 — so A is the only letter left for R2C4.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C5 must be B; R3C1 must be B; R1C1 must be E; R4C2 must be B; R4C4 must be C; R2C2 must be E. B, D, E already appear in row 2; C already appears in column 4 — so A is the only letter left for R2C4.",
+    "distractorNotes": {
+      "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 2 (at R2C1), and a letter can only appear once per row.",
+      "E": "E already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 2 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C5. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C4 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 4 show only 1 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "title": "R2C5 can only be B",
+          "detail": "D already appears in row 2; A, C, E already appear in column 5 — so B is the only letter left for R2C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 4
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C1 can only be B",
+          "detail": "C, E already appear in row 3; A, D already appear in column 1 — so B is the only letter left for R3C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 0
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C1 can only be E",
+          "detail": "C already appears in row 1; A, B, D already appear in column 1 — so E is the only letter left for R1C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C2 can only be B",
+          "detail": "A, E already appear in row 4; C, D already appear in column 2 — so B is the only letter left for R4C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for C",
+          "detail": "In row 4, C and D are missing. C cannot go in R4C5 because it already appears in column 5, so C must go in R4C4 — which leaves D for R4C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In column 2, A and E are missing. E cannot go in R1C2 because it already appears in row 1, so E must go in R2C2 — which leaves A for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, D, E already appear in row 2; C already appears in column 4 — so A is the only letter left for R2C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C4 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "B": "derived-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-005",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 789727186,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 4,
+        "attempt": 11
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "A",
+        null,
+        "C",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        "D",
+        null,
+        null,
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        "E",
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "In column 4, A and E are missing. E cannot go in R4C4 because it already appears in row 4, so E must go in R2C4 — which leaves A for R4C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "B, D already appear in row 3; A, C already appear in column 5 — so E is the only letter left for R3C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "B, D, E already appear in row 3; A already appears in column 2 — so C is the only letter left for R3C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 4; B, D already appear in column 4 — so A is the only letter left for R4C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "D",
+        "reason": "In row 4, B and D are missing. D cannot go in R4C1 because it already appears in column 1, so D must go in R4C2 — which leaves B for R4C1.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "E already appears in row 2; A, C, D already appear in column 2 — so B is the only letter left for R2C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R2C4 must be E; R3C5 must be E; R3C2 must be C; R3C3 must be A; R4C4 must be A; R4C2 must be D. E already appears in row 2; A, C, D already appear in column 2 — so B is the only letter left for R2C2.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R1C2), and a letter can only appear once per column.",
+      "C": "C already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in row 2 (at R2C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 2 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 2 show only 1 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 1
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In column 4, A and E are missing. E cannot go in R4C4 because it already appears in row 4, so E must go in R2C4 — which leaves A for R4C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C5 can only be E",
+          "detail": "B, D already appear in row 3; A, C already appear in column 5 — so E is the only letter left for R3C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 4
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C2 can only be C",
+          "detail": "B, D, E already appear in row 3; A already appears in column 2 — so C is the only letter left for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C3 can only be A",
+          "detail": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C4 can only be A",
+          "detail": "C, E already appear in row 4; B, D already appear in column 4 — so A is the only letter left for R4C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for D",
+          "detail": "In row 4, B and D are missing. D cannot go in R4C1 because it already appears in column 1, so D must go in R4C2 — which leaves B for R4C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "letter": "D",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "E already appears in row 2; A, C, D already appear in column 2 — so B is the only letter left for R2C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C2 is B.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "A": "direct-clash",
+        "C": "derived-clash",
+        "D": "derived-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-006",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 1633037400,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 5,
+        "attempt": 0
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "B",
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "C"
+      ],
+      [
+        "D",
+        "A",
+        null,
+        null,
+        null
+      ],
+      [
+        "E",
+        null,
+        null,
+        "D",
+        null
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 2
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "A, B already appear in row 1; D, E already appear in column 4 — so C is the only letter left for R1C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "C, E already appear in row 3; B, D already appear in column 1 — so A is the only letter left for R3C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "C",
+        "reason": "A, B, D, E already appear in column 1 — so C is the only letter left for R2C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "A, D already appear in row 4; C, E already appear in column 4 — so B is the only letter left for R4C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "C",
+        "reason": "In row 4, C and E are missing. C cannot go in R4C5 because it already appears in column 5, so C must go in R4C3 — which leaves E for R4C5.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "D, E already appear in row 5; A, C already appear in column 3 — so B is the only letter left for R5C3.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 6,
+    "explanation": "Fill the forced cells first: R1C4 must be C; R3C1 must be A; R2C1 must be C; R4C4 must be B; R4C3 must be C. D, E already appear in row 5; A, C already appear in column 3 — so B is the only letter left for R5C3.",
+    "distractorNotes": {
+      "A": "A already appears in column 3 (at R1C3), and a letter can only appear once per column.",
+      "C": "C already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C1), and a letter can only appear once per row."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 5 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 3 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C3 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 3 show only 3 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 2
+          }
+        },
+        {
+          "title": "R1C4 can only be C",
+          "detail": "A, B already appear in row 1; D, E already appear in column 4 — so C is the only letter left for R1C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C1 can only be A",
+          "detail": "C, E already appear in row 3; B, D already appear in column 1 — so A is the only letter left for R3C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 0
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R2C1 can only be C",
+          "detail": "A, B, D, E already appear in column 1 — so C is the only letter left for R2C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 0
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C4 can only be B",
+          "detail": "A, D already appear in row 4; C, E already appear in column 4 — so B is the only letter left for R4C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for C",
+          "detail": "In row 4, C and E are missing. C cannot go in R4C5 because it already appears in column 5, so C must go in R4C3 — which leaves E for R4C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 2
+            },
+            "letter": "C",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "D, E already appear in row 5; A, C already appear in column 3 — so B is the only letter left for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C3 is B.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 6,
+      "distractorTypes": {
+        "A": "direct-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "direct-clash"
+      },
+      "generationNotes": "depth 6, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-007",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 1691568931,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 6,
+        "attempt": 11
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "A",
+        null,
+        "D"
+      ],
+      [
+        "E",
+        null,
+        null,
+        "B",
+        null
+      ],
+      [
+        null,
+        "A",
+        null,
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "B"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "C",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "B, E already appear in row 2; C, D already appear in column 5 — so A is the only letter left for R2C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "A, C already appear in row 3; B, D already appear in column 4 — so E is the only letter left for R3C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "A, D already appear in row 1; B, E already appear in column 4 — so C is the only letter left for R1C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "In row 1, B and E are missing. E cannot go in R1C1 because it already appears in column 1, so E must go in R1C2 — which leaves B for R1C1.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "B, D already appear in row 5; A, E already appear in column 2 — so C is the only letter left for R5C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R2C5 must be A; R3C4 must be E; R1C4 must be C; R1C2 must be E. B, D already appear in row 5; A, E already appear in column 2 — so C is the only letter left for R5C2.",
+    "distractorNotes": {
+      "A": "A already appears in column 2 (at R3C2), and a letter can only appear once per column.",
+      "B": "B already appears in row 5 (at R5C5), and a letter can only appear once per row.",
+      "D": "D already appears in row 5 (at R5C4), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 2 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R2C5. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 2 show only 3 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 1
+          }
+        },
+        {
+          "title": "R2C5 can only be A",
+          "detail": "B, E already appear in row 2; C, D already appear in column 5 — so A is the only letter left for R2C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 4
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C4 can only be E",
+          "detail": "A, C already appear in row 3; B, D already appear in column 4 — so E is the only letter left for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C4 can only be C",
+          "detail": "A, D already appear in row 1; B, E already appear in column 4 — so C is the only letter left for R1C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In row 1, B and E are missing. E cannot go in R1C1 because it already appears in column 1, so E must go in R1C2 — which leaves B for R1C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, D already appear in row 5; A, E already appear in column 2 — so C is the only letter left for R5C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C2 is C.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "A": "direct-clash",
+        "B": "direct-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-008",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 3839024532,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 7,
+        "attempt": 21
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "E",
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "B",
+        "D",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "C",
+        "B",
+        null
+      ],
+      [
+        null,
+        "B",
+        "D",
+        null,
+        "C"
+      ]
+    ],
+    "target": {
+      "row": 4,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "E already appears in row 1; B, C, D already appear in column 3 — so A is the only letter left for R1C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "A, E already appear in row 1; B, D already appear in column 4 — so C is the only letter left for R1C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in column 3 — so E is the only letter left for R3C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "In column 4, A and E are missing. E cannot go in R3C4 because it already appears in row 3, so E must go in R5C4 — which leaves A for R3C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 5 — so A is the only letter left for R5C1.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R1C3 must be A; R1C4 must be C; R3C3 must be E; R5C4 must be E. B, C, D, E already appear in row 5 — so A is the only letter left for R5C1.",
+    "distractorNotes": {
+      "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row.",
+      "C": "C already appears in row 5 (at R5C5), and a letter can only appear once per row.",
+      "D": "D already appears in row 5 (at R5C3), and a letter can only appear once per row.",
+      "E": "E already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C3. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R5C1 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 5 and column 1 show only 3 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 4,
+            "col": 0
+          }
+        },
+        {
+          "title": "R1C3 can only be A",
+          "detail": "E already appears in row 1; B, C, D already appear in column 3 — so A is the only letter left for R1C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C4 can only be C",
+          "detail": "A, E already appear in row 1; B, D already appear in column 4 — so C is the only letter left for R1C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C3 can only be E",
+          "detail": "A, B, C, D already appear in column 3 — so E is the only letter left for R3C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In column 4, A and E are missing. E cannot go in R3C4 because it already appears in row 3, so E must go in R5C4 — which leaves A for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 3
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, C, D, E already appear in row 5 — so A is the only letter left for R5C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 0
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R5C1 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "B": "direct-clash",
+        "C": "direct-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-009",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 3448530801,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 8,
+        "attempt": 12
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        "B",
+        "C",
+        "A",
+        null
+      ],
+      [
+        null,
+        "E",
+        null,
+        null,
+        null
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        null
+      ],
+      [
+        "C",
+        "A",
+        null,
+        null,
+        "E"
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 4
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 4
+        },
+        "letter": "D",
+        "reason": "A, B, C already appear in row 1; E already appears in column 5 — so D is the only letter left for R1C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C1.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "D already appears in row 3; A, B, E already appear in column 2 — so C is the only letter left for R3C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "B",
+        "reason": "C, D already appear in row 3; A, E already appear in column 4 — so B is the only letter left for R3C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "B, C, D already appear in row 3; E already appears in column 5 — so A is the only letter left for R3C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "In column 4, C and D are missing. C cannot go in R5C4 because it already appears in row 5, so C must go in R2C4 — which leaves D for R5C4.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "B",
+        "reason": "C, E already appear in row 2; A, D already appear in column 5 — so B is the only letter left for R2C5.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 7,
+    "explanation": "Fill the forced cells first: R1C5 must be D; R1C1 must be E; R3C2 must be C; R3C4 must be B; R3C5 must be A; R2C4 must be C. C, E already appear in row 2; A, D already appear in column 5 — so B is the only letter left for R2C5.",
+    "distractorNotes": {
+      "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 2 (at R2C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "E": "E already appears in row 2 (at R2C2), and a letter can only appear once per row."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 6 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 5 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C5. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C5 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 5 show only 1 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 4
+          }
+        },
+        {
+          "title": "R1C5 can only be D",
+          "detail": "A, B, C already appear in row 1; E already appears in column 5 — so D is the only letter left for R1C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 4
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C1 can only be E",
+          "detail": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C2 can only be C",
+          "detail": "D already appears in row 3; A, B, E already appear in column 2 — so C is the only letter left for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C4 can only be B",
+          "detail": "C, D already appear in row 3; A, E already appear in column 4 — so B is the only letter left for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C5 can only be A",
+          "detail": "B, C, D already appear in row 3; E already appears in column 5 — so A is the only letter left for R3C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 4
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for C",
+          "detail": "In column 4, C and D are missing. C cannot go in R5C4 because it already appears in row 5, so C must go in R2C4 — which leaves D for R5C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "C, E already appear in row 2; A, D already appear in column 5 — so B is the only letter left for R2C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 4
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C5 is B.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 7,
+      "distractorTypes": {
+        "A": "derived-clash",
+        "C": "derived-clash",
+        "D": "derived-clash",
+        "E": "direct-clash"
+      },
+      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-010",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 120411702,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 9,
+        "attempt": 19
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        "C",
+        "B",
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        "B"
+      ],
+      [
+        "B",
+        "E",
+        null,
+        null,
+        "C"
+      ],
+      [
+        "D",
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "B",
+        "A",
+        null
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 3
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "E",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 2,
+          "col": 3
+        },
+        "letter": "D",
+        "reason": "B, C, E already appear in row 3; A already appears in column 4 — so D is the only letter left for R3C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 2
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "In column 3, D and E are missing. D cannot go in R4C3 because it already appears in row 4, so D must go in R2C3 — which leaves E for R4C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 2
+        },
+        "letter": "E",
+        "reason": "D already appears in row 4; A, B, C already appear in column 3 — so E is the only letter left for R4C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 3
+        },
+        "letter": "C",
+        "reason": "D, E already appear in row 4; A, B already appear in column 4 — so C is the only letter left for R4C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 3
+        },
+        "letter": "E",
+        "reason": "B, D already appear in row 2; A, C already appear in column 4 — so E is the only letter left for R2C4.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 6,
+    "explanation": "Fill the forced cells first: R3C4 must be D; R3C3 must be A; R2C3 must be D; R4C3 must be E; R4C4 must be C. B, D already appear in row 2; A, C already appear in column 4 — so E is the only letter left for R2C4.",
+    "distractorNotes": {
+      "A": "A already appears in column 4 (at R5C4), and a letter can only appear once per column.",
+      "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row.",
+      "C": "C already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 5 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 4 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R3C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C4 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 4 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 3
+          }
+        },
+        {
+          "title": "R3C4 can only be D",
+          "detail": "B, C, E already appear in row 3; A already appears in column 4 — so D is the only letter left for R3C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 3
+            },
+            "letter": "D",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R3C3 can only be A",
+          "detail": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 2
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for D",
+          "detail": "In column 3, D and E are missing. D cannot go in R4C3 because it already appears in row 4, so D must go in R2C3 — which leaves E for R4C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 2
+            },
+            "letter": "D",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R4C3 can only be E",
+          "detail": "D already appears in row 4; A, B, C already appear in column 3 — so E is the only letter left for R4C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 2
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C4 can only be C",
+          "detail": "D, E already appear in row 4; A, B already appear in column 4 — so C is the only letter left for R4C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 3
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, D already appear in row 2; A, C already appear in column 4 — so E is the only letter left for R2C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 3
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C4 is E.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 6,
+      "distractorTypes": {
+        "A": "direct-clash",
+        "B": "direct-clash",
+        "C": "derived-clash",
+        "D": "derived-clash"
+      },
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-011",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 2675603839,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 10,
+        "attempt": 1
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        "B",
+        null,
+        "D",
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "B"
+      ],
+      [
+        null,
+        null,
+        "B",
+        "C",
+        "D"
+      ],
+      [
+        null,
+        null,
+        null,
+        "E",
+        "A"
+      ],
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    ],
+    "target": {
+      "row": 1,
+      "col": 0
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 3
+        },
+        "letter": "A",
+        "reason": "B, C, D already appear in row 1; E already appears in column 4 — so A is the only letter left for R1C4.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 0
+        },
+        "letter": "E",
+        "reason": "In row 3, A and E are missing. E cannot go in R3C2 because it already appears in column 2, so E must go in R3C1 — which leaves A for R3C2.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 2,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "B, D already appear in row 2; A, E already appear in column 2 — so C is the only letter left for R2C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 0
+        },
+        "letter": "A",
+        "reason": "B, C, D already appear in row 2; E already appears in column 1 — so A is the only letter left for R2C1.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 6,
+    "explanation": "Fill the forced cells first: R1C4 must be A; R1C2 must be E; R3C1 must be E; R3C2 must be A; R2C2 must be C. B, C, D already appear in row 2; E already appears in column 1 — so A is the only letter left for R2C1.",
+    "distractorNotes": {
+      "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row.",
+      "C": "C already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in row 2 (at R2C4), and a letter can only appear once per row.",
+      "E": "E already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 5 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — column 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C4. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R2C1 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 2 and column 1 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 1,
+            "col": 0
+          }
+        },
+        {
+          "title": "R1C4 can only be A",
+          "detail": "B, C, D already appear in row 1; E already appears in column 4 — so A is the only letter left for R1C4.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 3
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R1C2 can only be E",
+          "detail": "A, B, C, D already appear in row 1 — so E is the only letter left for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In row 3, A and E are missing. E cannot go in R3C2 because it already appears in column 2, so E must go in R3C1 — which leaves A for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 0
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R3C2 can only be A",
+          "detail": "B, C, D, E already appear in row 3 — so A is the only letter left for R3C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 2,
+              "col": 1
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R2C2 can only be C",
+          "detail": "B, D already appear in row 2; A, E already appear in column 2 — so C is the only letter left for R2C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "B, C, D already appear in row 2; E already appears in column 1 — so A is the only letter left for R2C1.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 0
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R2C1 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 6,
+      "distractorTypes": {
+        "B": "direct-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 6, clue density 0.42, 3 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-012",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 1952680031,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 11,
+        "attempt": 4
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        "B"
+      ],
+      [
+        "C",
+        null,
+        null,
+        "D",
+        null
+      ],
+      [
+        null,
+        "D",
+        null,
+        null,
+        "C"
+      ],
+      [
+        null,
+        null,
+        null,
+        "A",
+        null
+      ],
+      [
+        null,
+        "A",
+        "E",
+        null,
+        "D"
+      ]
+    ],
+    "target": {
+      "row": 3,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "B",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 3,
+          "col": 4
+        },
+        "letter": "E",
+        "reason": "A already appears in row 4; B, C, D already appear in column 5 — so E is the only letter left for R4C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 4
+        },
+        "letter": "A",
+        "reason": "C, D already appear in row 2; B, E already appear in column 5 — so A is the only letter left for R2C5.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 1,
+          "col": 1
+        },
+        "letter": "E",
+        "reason": "In row 2, B and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C2 — which leaves B for R2C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "B already appears in row 1; A, D, E already appear in column 2 — so C is the only letter left for R1C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A, E already appear in row 4; C, D already appear in column 2 — so B is the only letter left for R4C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R4C5 must be E; R2C5 must be A; R2C2 must be E; R1C2 must be C. A, E already appear in row 4; C, D already appear in column 2 — so B is the only letter left for R4C2.",
+    "distractorNotes": {
+      "A": "A already appears in row 4 (at R4C4), and a letter can only appear once per row.",
+      "C": "C already appears in row 4 (at R4C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 2 (at R3C2), and a letter can only appear once per column.",
+      "E": "E already appears in row 4 (at R4C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 4 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R4C5. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R4C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 4 and column 2 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 3,
+            "col": 1
+          }
+        },
+        {
+          "title": "R4C5 can only be E",
+          "detail": "A already appears in row 4; B, C, D already appear in column 5 — so E is the only letter left for R4C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 4
+            },
+            "letter": "E",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R2C5 can only be A",
+          "detail": "C, D already appear in row 2; B, E already appear in column 5 — so A is the only letter left for R2C5.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 4
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Only one cell is left for E",
+          "detail": "In row 2, B and E are missing. E cannot go in R2C3 because it already appears in column 3, so E must go in R2C2 — which leaves B for R2C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 1,
+              "col": 1
+            },
+            "letter": "E",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R1C2 can only be C",
+          "detail": "B already appears in row 1; A, D, E already appear in column 2 — so C is the only letter left for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "A, E already appear in row 4; C, D already appear in column 2 — so B is the only letter left for R4C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R4C2 is B.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "A": "direct-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "derived-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-013",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 2441675450,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 12,
+        "attempt": 31
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  },
+  {
+    "kind": "latin-square",
+    "section": "latin-squares",
+    "difficulty": "high",
+    "size": 5,
+    "letters": [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E"
+    ],
+    "grid": [
+      [
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      [
+        null,
+        "E",
+        "C",
+        null,
+        null
+      ],
+      [
+        null,
+        "D",
+        "E",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        "A",
+        null,
+        null
+      ],
+      [
+        null,
+        null,
+        null,
+        "D",
+        "A"
+      ]
+    ],
+    "target": {
+      "row": 0,
+      "col": 1
+    },
+    "options": [
+      {
+        "id": "A",
+        "letter": "A"
+      },
+      {
+        "id": "B",
+        "letter": "B"
+      },
+      {
+        "id": "C",
+        "letter": "C"
+      },
+      {
+        "id": "D",
+        "letter": "D"
+      },
+      {
+        "id": "E",
+        "letter": "E"
+      }
+    ],
+    "correctOptionId": "A",
+    "solutionSteps": [
+      {
+        "cell": {
+          "row": 0,
+          "col": 2
+        },
+        "letter": "D",
+        "reason": "In column 3, B and D are missing. D cannot go in R5C3 because it already appears in row 5, so D must go in R1C3 — which leaves B for R5C3.",
+        "technique": "pair-elimination"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 2
+        },
+        "letter": "B",
+        "reason": "A, D already appear in row 5; C, E already appear in column 3 — so B is the only letter left for R5C3.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 4,
+          "col": 1
+        },
+        "letter": "C",
+        "reason": "A, B, D already appear in row 5; E already appears in column 2 — so C is the only letter left for R5C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 3,
+          "col": 1
+        },
+        "letter": "B",
+        "reason": "A already appears in row 4; C, D, E already appear in column 2 — so B is the only letter left for R4C2.",
+        "technique": "naked-single"
+      },
+      {
+        "cell": {
+          "row": 0,
+          "col": 1
+        },
+        "letter": "A",
+        "reason": "D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+        "technique": "naked-single"
+      }
+    ],
+    "forcedPlacementDepth": 5,
+    "explanation": "Fill the forced cells first: R1C3 must be D; R5C3 must be B; R5C2 must be C; R4C2 must be B. D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+    "distractorNotes": {
+      "B": "B already appears in row 1 (at R1C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "C": "C already appears in row 1 (at R1C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
+      "D": "D already appears in column 2 (at R3C2), and a letter can only appear once per column.",
+      "E": "E already appears in column 2 (at R2C2), and a letter can only appear once per column."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "The marked cell is not settled yet. About 4 other cells must be filled in first."
+      },
+      {
+        "level": 2,
+        "text": "Look for a line that is missing only two letters — row 1 is worth checking."
+      },
+      {
+        "level": 3,
+        "text": "Start with R1C3. Once that cell is filled, come back to the marked cell."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "Nothing is forced at R1C2 yet. A quicker way in is a line that is missing only two letters — that fixes a cell elsewhere, and the marked cell follows.",
+      "steps": [
+        {
+          "title": "Read the marked cell’s row and column",
+          "detail": "Row 1 and column 2 show only 2 different letters between them, so the marked cell is not settled yet. Somewhere else has to give first.",
+          "visual": {
+            "type": "ls-lines",
+            "row": 0,
+            "col": 1
+          }
+        },
+        {
+          "title": "Only one cell is left for D",
+          "detail": "In column 3, B and D are missing. D cannot go in R5C3 because it already appears in row 5, so D must go in R1C3 — which leaves B for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 2
+            },
+            "letter": "D",
+            "technique": "pair-elimination"
+          }
+        },
+        {
+          "title": "R5C3 can only be B",
+          "detail": "A, D already appear in row 5; C, E already appear in column 3 — so B is the only letter left for R5C3.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 2
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R5C2 can only be C",
+          "detail": "A, B, D already appear in row 5; E already appears in column 2 — so C is the only letter left for R5C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 4,
+              "col": 1
+            },
+            "letter": "C",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "R4C2 can only be B",
+          "detail": "A already appears in row 4; C, D, E already appear in column 2 — so B is the only letter left for R4C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 3,
+              "col": 1
+            },
+            "letter": "B",
+            "technique": "naked-single"
+          }
+        },
+        {
+          "title": "Now the marked cell is forced",
+          "detail": "D already appears in row 1; B, C, E already appear in column 2 — so A is the only letter left for R1C2.",
+          "visual": {
+            "type": "ls-place",
+            "cell": {
+              "row": 0,
+              "col": 1
+            },
+            "letter": "A",
+            "technique": "naked-single"
+          }
+        }
+      ],
+      "answer": "The marked cell R1C2 is A.",
+      "takeaway": "When no cell jumps out, stop looking at cells and look at lines: a row or column missing exactly two letters is usually the fastest way to break the deadlock. It reaches the same placement you would find by checking each cell in turn — it just gets there quicker."
+    },
+    "meta": {
+      "patternType": [
+        "deep-chain",
+        "pair-elimination"
+      ],
+      "skill": "line-based positional deduction",
+      "dmatAlignment": "officially_documented",
+      "reasoningDepth": 5,
+      "distractorTypes": {
+        "B": "derived-clash",
+        "C": "derived-clash",
+        "D": "direct-clash",
+        "E": "direct-clash"
+      },
+      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+    },
+    "id": "ls-high-p1-014",
+    "generator": {
+      "name": "latin-squares",
+      "version": "3.0.0",
+      "batchId": "p1",
+      "seed": 2930510533,
+      "seedCoordinates": {
+        "section": "latin-squares",
+        "tier": "high",
+        "batchId": "p1",
+        "index": 13,
+        "attempt": 0
+      },
+      "config": {
+        "bands": {
+          "low": {
+            "depth": [
+              1,
+              2
+            ],
+            "density": [
+              0.3,
+              0.6
+            ]
+          },
+          "medium": {
+            "depth": [
+              3,
+              4
+            ],
+            "density": [
+              0.2,
+              0.5
+            ]
+          },
+          "high": {
+            "depth": [
+              5,
+              7
+            ],
+            "density": [
+              0.2,
+              0.45
+            ]
+          }
+        }
+      },
+      "verifiedAt": "2026-11-13"
+    }
+  }
+]

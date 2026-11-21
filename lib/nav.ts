@@ -1,7 +1,11 @@
 import {
   BookOpenCheck,
+  FileText,
+  Info,
+  Mail,
+  ShieldCheck,
   Grid3x3,
-  LayoutDashboard,
+  Home,
   LayoutGrid,
   Library,
   SquareFunction,
@@ -40,8 +44,16 @@ export type NavGroup = {
 }
 
 /**
- * Four destinations, in the design's order and wording. Each hub page lists
- * what is inside it, so the sidebar never has to grow.
+ * Four destinations, in two groups.
+ *
+ * Still four — the group headings divide them, they do not add a fifth. The
+ * division is what you are doing versus what you are looking up: Home, Prepare
+ * and Test are the daily loop, while About the Exam and the informational
+ * pages below it are reference you consult deliberately and then leave.
+ *
+ * About the Exam used to sit in the middle of the working list while
+ * Information sat alone at the foot of the sidebar, which put two halves of
+ * the same thing at opposite ends of the panel. They are now adjacent.
  *
  * Review was removed for the public beta. Its data model, its calculations and
  * its components all stay — mistakes now surface where they are actually
@@ -50,15 +62,53 @@ export type NavGroup = {
  */
 export const NAV: NavGroup[] = [
   {
-    label: 'dMAT Prep',
+    label: 'Main menu',
     links: [
-      { href: '/', label: 'Home', hint: 'What to do next', icon: LayoutDashboard },
-      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      // The same glyph the breadcrumb uses for Home. Two different house
+      // icons for one destination reads as two destinations.
+      { href: '/', label: 'Home', hint: 'What to do next', icon: Home },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
     ],
   },
+  {
+    label: 'The exam',
+    links: [
+      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      { href: '/information', label: 'Information', hint: 'Who runs this, and the policies', icon: Info },
+    ],
+  },
 ]
+
+/**
+ * The informational pages, in one list.
+ *
+ * These are not destinations — they are the pages a candidate needs once, to
+ * check who runs this or how to get help. They used to live in a large global
+ * footer under every screen, which put legal boilerplate below practice
+ * questions and made the app feel like a brochure. Then they lived in a
+ * collapsed sidebar dropdown, which hid the policies behind a click nobody
+ * makes twice.
+ *
+ * They are now a section with a landing page and an internal sidebar, like
+ * About the Exam. This list is what that sidebar renders, and the only list
+ * of them anywhere.
+ *
+ * Pricing is deliberately NOT here. It is part of the product rather than its
+ * paperwork, and it is reached from the places that are actually about buying:
+ * the sidebar's Pro card, the Pro dialog, and the account page.
+ */
+export const INFO_LINKS: { href: string; label: string; icon: LucideIcon }[] = [
+  { href: '/information', label: 'Overview', icon: Info },
+  { href: '/contact', label: 'Help and contact', icon: Mail },
+  { href: '/privacy', label: 'Your data', icon: ShieldCheck },
+  { href: '/terms', label: 'Terms', icon: FileText },
+]
+
+/** The informational page a path is, if it is one. */
+export function infoLinkFor(pathname: string) {
+  return INFO_LINKS.find((l) => l.href === pathname)
+}
 
 /** Which top-level destination a path belongs to. */
 const OWNS: Record<string, (path: string) => boolean> = {
@@ -69,13 +119,21 @@ const OWNS: Record<string, (path: string) => boolean> = {
     // Module B's untimed practice sits under Prepare; its timed session does
     // not, for the same reason Module A's timed runs belong to Test.
     (path.startsWith('/module-b') && !path.startsWith('/module-b/timed')) ||
-    path.startsWith('/study-plan') ||
-    path.startsWith('/practice/quick'),
+    path.startsWith('/practice/quick') ||
+    // Retrying mistakes is untimed practice with hints, so it belongs to
+    // Prepare — which is also what its breadcrumb says. Leaving it to the
+    // catch-all below put it under Test, and the two disagreed on screen.
+    path.startsWith('/practice/mistakes'),
   '/test': (path) =>
     path.startsWith('/test') ||
     path.startsWith('/module-b/timed') ||
-    (path.startsWith('/practice') && !path.startsWith('/practice/quick')),
+    (path.startsWith('/practice') &&
+      !path.startsWith('/practice/quick') &&
+      !path.startsWith('/practice/mistakes')),
   '/exam': (path) => path.startsWith('/exam'),
+  '/information': (path) =>
+    path.startsWith('/information') ||
+    INFO_LINKS.some((link) => link.href !== '/information' && path === link.href),
 }
 
 export function isActive(pathname: string, href: string): boolean {

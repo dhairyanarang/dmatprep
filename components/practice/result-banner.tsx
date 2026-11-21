@@ -102,8 +102,11 @@ function answerRows(question: Question, selection: Selection): Row[] {
       return {
         label: `Image ${i + 1}`,
         yours: chosen ? chosen.replace('matrix', 'Matrix ') : null,
-        answer: image.correctOptionId.replace('matrix', 'Matrix '),
-        correct: chosen === image.correctOptionId,
+        // Defence in depth. `ResultBanner` is not rendered for a question
+        // without its solution, but this used to throw a TypeError rather than
+        // degrade, which turned a withheld answer into a blank screen.
+        answer: image.correctOptionId?.replace('matrix', 'Matrix ') ?? '—',
+        correct: Boolean(image.correctOptionId) && chosen === image.correctOptionId,
       }
     })
   }
@@ -126,8 +129,8 @@ function answerRows(question: Question, selection: Selection): Row[] {
     {
       label: 'Marked cell',
       yours: chosen ?? null,
-      answer: question.correctOptionId,
-      correct: chosen === question.correctOptionId,
+      answer: question.correctOptionId ?? '—',
+      correct: Boolean(question.correctOptionId) && chosen === question.correctOptionId,
     },
   ]
 }

@@ -1,7 +1,12 @@
 import { guide as figureSequencesGuide } from '@/content/sections/figure-sequences/guide'
 import { guide as latinSquaresGuide } from '@/content/sections/latin-squares/guide'
 import { guide as mathematicalEquationsGuide } from '@/content/sections/mathematical-equations/guide'
-import { STUDY_PLAN } from '@/content/study-plan/plan'
+import {
+  CORE_MOCK_IDS,
+  CORE_MOCK_SIZE,
+  coreMockLabel,
+} from '@/lib/content/mock-label'
+import { INFO_LINKS } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 import type { SectionGuide } from '@/lib/types/content'
 
@@ -75,11 +80,12 @@ const PAGES: SearchEntry[] = [
     group: 'Prepare',
   },
   {
-    id: 'study-plan',
-    title: 'Study plan',
-    description: 'Week by week to exam day',
-    href: '/study-plan',
+    id: 'mistakes',
+    title: 'Your mistakes',
+    description: 'Everything you answered wrong and have not since got right',
+    href: '/practice/mistakes',
     group: 'Prepare',
+    keywords: ['review', 'wrong', 'retry', 'missed'],
   },
 
   {
@@ -91,11 +97,35 @@ const PAGES: SearchEntry[] = [
   },
   {
     id: 'mock',
-    title: 'Module A mock',
-    description: 'All three subtests back to back, 75 minutes',
+    title: 'Open simulation',
+    description: 'All three subtests back to back, 75 minutes, planned fresh each run',
     href: '/practice/simulation',
     group: 'Test',
-    keywords: ['simulation', 'full test'],
+    keywords: ['simulation', 'full test', 'module a mock'],
+  },
+  {
+    id: 'information',
+    title: 'Information',
+    description: 'Who runs this, what it stores, and the terms',
+    href: '/information',
+    group: 'Go to',
+    keywords: ['help', 'policy', 'legal', 'privacy', 'terms', 'contact', 'support'],
+  },
+  {
+    id: 'pricing',
+    title: 'Plans and pricing',
+    description: 'What is free, what Pro adds, and what it costs',
+    href: '/pricing',
+    group: 'Go to',
+    keywords: ['pro', 'buy', 'upgrade', 'price', 'cost', 'plans'],
+  },
+  {
+    id: 'account',
+    title: 'Account',
+    description: 'Who you are, what is stored, and what this account can open',
+    href: '/account',
+    group: 'Go to',
+    keywords: ['sign in', 'sign out', 'plan', 'membership', 'data', 'delete'],
   },
 
   {
@@ -156,6 +186,57 @@ const PAGES: SearchEntry[] = [
   },
 ]
 
+/**
+ * The four fixed mocks.
+ *
+ * Named from the constants in `lib/content/mock-label.ts` rather than read
+ * from `content/access/core-mocks.json`: this module ships to the client on
+ * every page, and the file carries all 240 question ids. A test asserts the
+ * constants match the file.
+ */
+function mockEntries(): SearchEntry[] {
+  return CORE_MOCK_IDS.map((id) => ({
+    id,
+    title: coreMockLabel(id) ?? id,
+    description: `${CORE_MOCK_SIZE} questions, fixed — the same test every time`,
+    href: `/test/mock/${id}`,
+    group: 'Test' as const,
+    keywords: ['mock', 'core mock', 'exam', 'full test'],
+  }))
+}
+
+/**
+ * The informational pages, from the same list the sidebar renders. One list,
+ * so a page cannot be in the navigation and missing from search.
+ */
+/**
+ * Extra terms that should find an informational page.
+ *
+ * Refunds used to be a page of their own. It is a section of the Terms now,
+ * and someone searching the word still has to land on it — an empty result
+ * for "refund" reads as "we have no policy", which is not what happened.
+ */
+const INFO_KEYWORDS: Record<string, string[]> = {
+  '/terms': ['refund', 'refunds', 'cancel', 'licence', 'liability', 'payment'],
+  '/privacy': ['data', 'delete', 'cookies', 'storage', 'gdpr'],
+  '/contact': ['help', 'support', 'email', 'problem', 'stuck'],
+  '/information': ['about', 'who runs this', 'independent', 'policies'],
+}
+
+function infoEntries(): SearchEntry[] {
+  // Any page PAGES already describes properly keeps its richer entry — /privacy
+  // has a description there that "Your data" alone does not carry, and two rows
+  // for one page is worse than either.
+  const described = new Set(PAGES.map((p) => p.href))
+  return INFO_LINKS.filter((link) => !described.has(link.href)).map((link) => ({
+    id: `info-${link.href.replace(/\//g, '')}`,
+    title: link.label,
+    href: link.href,
+    group: 'Go to' as const,
+    keywords: ['information', 'policy', 'legal', 'help', ...(INFO_KEYWORDS[link.href] ?? [])],
+  }))
+}
+
 function sectionEntries(): SearchEntry[] {
   return SECTIONS.flatMap((section) => [
     {
@@ -198,22 +279,13 @@ function guideEntries(): SearchEntry[] {
   )
 }
 
-function planEntries(): SearchEntry[] {
-  return STUDY_PLAN.map((week) => ({
-    id: week.id,
-    title: `Week ${week.weekNumber}: ${week.focus}`,
-    description: week.summary,
-    href: '/study-plan',
-    group: 'Prepare' as const,
-    keywords: ['study plan', 'schedule'],
-  }))
-}
 
 export const SEARCH_ENTRIES: SearchEntry[] = [
   ...PAGES,
+  ...mockEntries(),
+  ...infoEntries(),
   ...sectionEntries(),
   ...guideEntries(),
-  ...planEntries(),
 ]
 
 /**

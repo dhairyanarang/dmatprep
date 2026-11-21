@@ -12,9 +12,9 @@
   --color-foreground: var(--foreground);
   /* Literal family names: Tailwind v4 resolves @theme inline at parse time, so
      var(--font-inter) (injected by next/font at runtime) never resolves here. */
-  --font-sans: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", "JetBrains Mono Fallback", ui-monospace, monospace;
-  --font-heading: "Manrope", "Manrope Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-heading: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -60,11 +60,31 @@
   /* One hue per Core Module section, so a section is recognisable at a glance
      in the sidebar, on its pages and on the dashboard. */
   /* Brand teal and its on-surface CTA, straight from the Figma variables. */
+  --color-gold: var(--gold);
+  --color-gold-strong: var(--gold-strong);
+  --color-gold-tint: var(--gold-tint);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-line: var(--gold-line);
+  --color-gold-text: var(--gold-text);
+  --color-gold-dark: var(--gold-dark);
   --color-brand: var(--brand);
   --color-brand-foreground: var(--brand-foreground);
+  --color-brand-foreground-muted: var(--brand-foreground-muted);
+  --color-brand-strong: var(--brand-strong);
   --color-brand-cta: var(--brand-cta);
   --color-brand-cta-foreground: var(--brand-cta-foreground);
   --color-surface-muted: var(--surface-muted);
+
+  /* Structural neutrals from the v2 prototype. The palette already matched it;
+     these are the four planes and three hairlines its layouts are built from,
+     which were previously spelled out as literal hexes at call sites. */
+  --color-frame: var(--frame);
+  --color-soft: var(--soft);
+  --color-hair: var(--hair);
+  --color-line2: var(--line2);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
 
   --color-figures: var(--figures);
   --color-figures-tint: var(--figures-tint);
@@ -92,236 +112,480 @@
 }
 
 /**
- * The PrepdMAT design system, taken from the Figma file.
+ * The dMAT Prep design system — v2, from
+ * `docs/design-reference/dMAT Prep v2_ interactive prototype.html`.
  *
- * A warm neutral foundation — #2e2b27 on white, #756f69 for secondary text,
- * #e5e4e1 hairlines — with a single brand teal (#025964) doing the work colour
- * used to be spread across four hues. Colour carries meaning here; it does not
- * decorate. One theme only.
+ * Near-black #0a0a0a on white, #5f5f5f for secondary text, #e7e7e7 hairlines,
+ * and a warm #f3f2f0 plane behind the navigation. Two chromatic colours, each
+ * meaning exactly one thing:
+ *
+ *   BLUE  #2f4bff  action. Primary buttons, links, the active nav row, focus.
+ *   GOLD  #f2b33d  membership. Pro badges, locked rows, the upgrade path.
+ *
+ * Keeping those apart is what stops the interface nagging: if gold ever starts
+ * reading as "click me", every locked row becomes an advert. Blue asks you to
+ * do something; gold tells you what you have.
+ *
+ * The subtests regain distinct hues — blue, teal, plum — because the prototype
+ * uses them as content in the figure diagrams, where "the teal symbol" has to
+ * mean something. They are tags, never actions.
+ *
+ * Token NAMES were kept and only their VALUES retuned, so every component
+ * adopted v2 without a single class rename. One theme only.
  */
 :root {
   /* Surfaces and text — Figma: Surface/*, Text/*, Border/default. */
   --background: #ffffff;
-  --foreground: #2e2b27;
+  --foreground: #0a0a0a;
   --card: #ffffff;
-  --card-foreground: #2e2b27;
+  --card-foreground: #0a0a0a;
   --popover: #ffffff;
-  --popover-foreground: #2e2b27;
-  --surface-muted: #f6f5f2;
+  --popover-foreground: #0a0a0a;
+  --surface-muted: #f8f7f5;
 
-  /* Brand. The teal is the primary action on light surfaces; the green pill is
-     the CTA that sits *on* the teal surface, never on white. */
-  --brand: #025964;
+  /* Brand. The blue is the primary action on light surfaces; the gold pill is
+     the CTA that sits *on* the blue surface, never on white. */
+  --brand: #2f4bff;
   --brand-foreground: #ffffff;
-  --brand-cta: #01d37e;
-  /* Figma pairs the pill with #007a7b, which is 3.0:1 on this green and fails
-     AA at 12px. Darkened to hold the same hue at 5.8:1. */
-  --brand-cta-foreground: #00494b;
+  /* The pressed/hover step for the action colour. One token, so a blue button
+     and a blue link darken by the same amount. */
+  --brand-strong: #1f37d9;
+  /* The secondary line on a brand-coloured card — a description under a title,
+     never a label on its own.
 
-  --primary: #025964;
+     A token rather than a `text-white/70` at three call sites, and that is the
+     whole reason it exists. It WAS a literal alpha at each site, measured once
+     against the old teal, where 70% cleared AA at 4.81:1. The v2 retune changed
+     --brand to this blue and the three literals stayed as they were, now at
+     3.66:1 — the kind of failure CLAUDE.md records having fixed twice already,
+     because a chromatic surface changes under text that nobody re-measures.
+     85% is 4.68:1 on this blue; recheck it here, once, if --brand moves. */
+  --brand-foreground-muted: color-mix(in srgb, #ffffff 85%, var(--brand));
+  --brand-cta: #f2b33d;
+  /* Figma pairs the pill with #007a7b, which is 3.0:1 on this gold and fails
+     AA at 12px. Darkened to hold the same hue at 5.8:1. */
+  --brand-cta-foreground: #3a2600;
+
+  --primary: #2f4bff;
   --primary-foreground: #ffffff;
-  --secondary: #f6f5f2;
-  --secondary-foreground: #2e2b27;
-  --muted: #f6f5f2;
-  --muted-foreground: #756f69;
-  --accent: #f6f5f2;
-  --accent-foreground: #2e2b27;
-  --destructive: #bf191e;
-  --border: #e5e4e1;
-  --input: #e5e4e1;
-  --ring: #025964;
-  --chart-1: #025964;
-  --chart-2: #01d37e;
-  --chart-3: #756f69;
-  --chart-4: #1c7a33;
-  --chart-5: #bf191e;
+  --secondary: #f3f2f0;
+  --secondary-foreground: #0a0a0a;
+  --muted: #f8f7f5;
+  --muted-foreground: #5f5f5f;
+  --accent: #eef0ff;
+  --accent-foreground: #1f37d9;
+  --destructive: #c9372c;
+  --border: #e7e7e7;
+  --input: #dddddd;
+  --ring: #2f4bff;
+  --chart-1: #2f4bff;
+  --chart-2: #f2b33d;
+  --chart-3: #5f5f5f;
+  --chart-4: #16803c;
+  --chart-5: #c9372c;
   --radius: 8px;
 
   /* Status. A practice app needs a real right/wrong signal, so these stay —
      retuned to sit in the warm neutral palette rather than beside it. */
-  --success: #1c7a33;
-  --success-fg: #16612a;
-  --success-tint: #eaf4ec;
+  --success: #16803c;
+  --success-fg: #14672f;
+  --success-tint: #e9f6ee;
   /* Caution is a neutral marked state, not a fifth hue. */
-  --warning: #756f69;
-  --warning-fg: #514c47;
-  --warning-tint: #f6f5f2;
-  --danger: #bf191e;
-  --danger-fg: #bf191e;
-  --danger-tint: #faeded;
+  --warning: #b26b00;
+  --warning-fg: #8a4b00;
+  --warning-tint: #fff4e0;
+  --danger: #c9372c;
+  --danger-fg: #a22a1f;
+  --danger-tint: #fdeeec;
 
   /* Section identity comes from the icon in this system, not from a hue — the
      design gives all three subtests the same teal. These remain for the figure
      diagrams, where colour is content rather than decoration. */
-  --figures: #025964;
-  --figures-tint: #e6eff0;
-  --equations: #025964;
-  --equations-tint: #e6eff0;
-  --latin: #025964;
-  --latin-tint: #e6eff0;
+  --figures: #2f4bff;
+  --figures-tint: #eef0ff;
+  --equations: #0f9d8a;
+  --equations-tint: #e6f5f2;
+  --latin: #a63a8c;
+  --latin-tint: #f7ebf4;
 
   /* Figure panels stay a light surface so a symbol the explanation calls
      "black" never renders white. */
-  --figure-panel: #f6f5f2;
-  --figure-line: #b8b4ae;
-  --figure-frame: #2e2b27;
-  --figure-focus: #025964;
-  --figure-trail: rgba(2, 89, 100, 0.12);
+  --figure-panel: #f8f7f5;
+  --figure-line: #c9c7c2;
+  --figure-frame: #0a0a0a;
+  --figure-focus: #2f4bff;
+  --figure-trail: rgba(47, 75, 255, 0.12);
 
   /* The sidebar is a cool light plane against the warm content area — the one
      place the design steps outside the warm neutrals, which is what separates
      navigation from page. */
-  --sidebar: #f5f7f9;
-  --sidebar-foreground: #2e2b27;
-  --sidebar-primary: #025964;
+  --sidebar: #f3f2f0;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #2f4bff;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: #ffffff;
-  --sidebar-accent-foreground: #025964;
-  --sidebar-border: #e7e7e7;
-  --sidebar-ring: #025964;
+  --sidebar-accent-foreground: #0a0a0a;
+  --sidebar-border: #dddddd;
+  --sidebar-ring: #2f4bff;
+
+  /* Pro. Gold is the ONLY place a second chromatic colour appears, and it means
+     exactly one thing: paid access. Blue is action, gold is membership — if
+     gold ever reads as "click me" the distinction has been lost. */
+  --gold: #f2b33d;
+  --gold-strong: #e8a82c;
+  --gold-tint: #fff5df;
+  --gold-soft: #fffbf2;
+  --gold-line: #f0d9a6;
+  --gold-text: #8a5a00;
+  --gold-dark: #3a2600;
+
+  /* The prototype's planes, inside out: white surface on a warm frame, inside
+     a card, on the page. Hairlines step from soft to line to line2 as the
+     thing they separate grows. */
+  --frame: #f8f7f5;
+  --soft: #ededed;
+  --hair: #f0f0ee;
+  --line2: #dddddd;
+  --brand-50: #eef0ff;
+  --brand-100: #dde2ff;
+  --brand-200: #bcc7ff;
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  html {
-    @apply font-sans;
-  }
-  body {
-    @apply bg-background text-foreground;
-    /* The design sets tracking per style rather than globally: body and meta
-       run at 0, and only 16px+ tightens. Left neutral here so the utilities
-       below are the only thing that moves it. */
-    letter-spacing: 0;
-  }
-
-  /* Manrope's own 500 and 600 are the design's Medium and SemiBold. The old
-     system remapped these to 510/590 for Inter's variable axis; Manrope has
-     real cuts at these weights, so the remap is gone. */
-
-  /* Eyebrows: 12px medium, uppercase, +0.08em — used on every card label. */
-  .text-eyebrow {
-    font-size: 12px;
-    line-height: 16px;
-    font-weight: 500;
-    letter-spacing: var(--tracking-eyebrow);
-    text-transform: uppercase;
-  }
-  /* The countdown numeral: 36px medium, line-height 1. */
-  .text-countdown {
-    font-size: 36px;
-    line-height: 36px;
-    font-weight: 500;
-    letter-spacing: 0;
-  }
-  /* The card metric: 24px semibold, -0.6px. */
-  .text-metric {
-    font-size: 24px;
-    line-height: 28px;
-    font-weight: 600;
-    letter-spacing: -0.025em;
-  }
-}
-
-/**
- * Motion.
+/*
+ * One keyframe for both corner bursts.
  *
- * Every animation in dMAT Prep answers one of: did my action register, what
- * changed, where did I go, or is something being worked on. Nothing decorative,
- * and nothing during a timed question that could pull the eye off the task.
- *
- * Three speeds and one curve:
- *
- *   control  120ms  a button, an icon, a hover — fast enough to read as the
- *                   surface responding rather than as an animation;
- *   panel    200ms  a card, a disclosure, page content arriving;
- *   group    300ms  reserved for a whole group moving together, which in
- *                   practice is only the staggered page entrance.
- *
- * The curve is a plain decelerate — no overshoot, no spring. Content that
- * bounces into place reads as a marketing site; content that slows to a stop
- * reads as a product.
+ * The travel vector arrives per particle as `--dx` / `--dy`, signed so the
+ * left and right bursts share this animation rather than needing one each.
+ * The 62% stop is the apex: most of the distance is covered by then, which is
+ * what makes it read as thrown rather than floated, and `--drop` pulls the
+ * last stretch back down so the paper falls instead of freezing mid-air.
  */
-@theme inline {
-  --duration-control: 120ms;
-  --duration-panel: 200ms;
-  --duration-group: 300ms;
-  --ease-out-soft: cubic-bezier(0, 0, 0.2, 1);
+@keyframes confetti-burst {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  7% {
+    opacity: 1;
+  }
+  62% {
+    opacity: 1;
+    transform: translate3d(calc(var(--dx) * 0.84), var(--dy), 0)
+      rotate(calc(var(--rot) * 0.68));
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--dx), calc(var(--dy) + var(--drop)), 0) rotate(var(--rot));
+  }
 }
 
-@layer utilities {
-  /*
-   * The page entrance: content lifts 8px into place as it fades.
-   *
-   * `both` matters — the element holds the opening frame through its delay and
-   * the closing frame afterwards, so nothing flashes at full opacity before its
-   * turn and nothing is left transparent once it has had it.
-   */
-  @keyframes enter-up {
-    from {
-      opacity: 0;
-      transform: translateY(8px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+/*
+ * The border colour every bare `border-*` utility falls back to.
+ *
+ * Tailwind v4 changed this default from gray-200 to `currentColor`, and
+ * shadcn's own setup restores it with a base rule that this stylesheet never
+ * had. The consequence was visible and wrong: every `border`, `border-b` and
+ * `border-t` written without an explicit colour — the Overview/Practice tab
+ * rule, `Alert`, `Card`'s footer, `Sheet`, the sub-nav and nav-list chips, the
+ * equation frame, the worked-example box — drew in the text colour, which is
+ * #0a0a0a. A near-black hairline where the design system asks for #e7e7e7.
+ *
+ * Measured, not inferred: the tab divider computed to `1px rgb(0, 0, 0)`.
+ *
+ * `--color-border` is the theme mapping of `--border`, which is #e7e7e7 and is
+ * the same value the v2 prototype calls `--line`. Fixing it here rather than at
+ * each call site is what this file is for.
+ */
+/*
+ * Reduced motion, honoured globally.
+ *
+ * Most animation in the product already carries Tailwind's `motion-safe:`
+ * prefix and is therefore already conditional. What is not is the vendored
+ * shadcn layer — Alert Dialog, Tooltip, Select, Skeleton — whose `animate-in`
+ * and `animate-out` utilities run unconditionally. Rather than edit owned
+ * third-party source in a dozen places, the preference is answered once here.
+ *
+ * `animate-spin` is deliberately exempt. CLAUDE.md's rule is that motion
+ * answers a question or it does not ship, and one of the questions it lists is
+ * "is something being worked on" — a frozen spinner answers it wrongly. It
+ * keeps turning, slower, so it still reads as progress without drawing the eye.
+ *
+ * This replaces a rule that `page-shell.tsx` and CLAUDE.md both claimed existed
+ * and which did not.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
   }
 
-  /*
-   * Applied to a page's own container, so the *sections* stagger — header, then
-   * banner, then the first group of cards. Deliberately one level deep: every
-   * heading, icon and paragraph animating in turn is the thing that would make
-   * this feel like a landing page rather than a tool.
-   *
-   * The delay stops climbing after the fourth child. On a long page the fifth
-   * section is usually below the fold anyway, and a visible element should
-   * never be waiting half a second for permission to exist.
-   */
-  .stagger-enter > * {
-    animation: enter-up var(--duration-panel) var(--ease-out-soft) both;
-  }
-  .stagger-enter > *:nth-child(2) {
-    animation-delay: 45ms;
-  }
-  .stagger-enter > *:nth-child(3) {
-    animation-delay: 90ms;
-  }
-  .stagger-enter > *:nth-child(4) {
-    animation-delay: 135ms;
-  }
-  .stagger-enter > *:nth-child(n + 5) {
-    animation-delay: 160ms;
+  .animate-spin {
+    animation-duration: 1.4s !important;
   }
 }
 
 @layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
+  }
+}
+
+@layer components {
   /*
-   * The honest reading of "reduce": not "slightly less", but "none". Anything
-   * built from a transition still lands in its final state instantly, so no
-   * interface depends on motion to be usable.
+   * The practice layout.
    *
-   * This backs up the `motion-safe:` prefixes at the call sites rather than
-   * replacing them — a utility added later without one is still covered.
+   * The question list is the only thing in flow. Hints and the working live in
+   * `.spanel`, which is fixed to the right edge of the viewport rather than
+   * being a column here — see the note on it below. `.pwrap-open` is what makes
+   * room for it, and only while it is open.
    */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-      /*
-       * Delays have to go too, and this is not a detail. The staggered entrance
-       * holds each section at opacity 0 until its turn; zeroing the duration
-       * without zeroing the delay would leave real content invisible for the
-       * length of the stagger — motion preferences turning into missing content
-       * is the one failure this block exists to prevent.
-       */
-      animation-delay: 0.01ms !important;
-      transition-delay: 0.01ms !important;
+  .pwrap {
+    display: flex;
+    align-items: flex-start;
+    min-width: 0;
+  }
+
+  .qlist {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /*
+   * Dimensions and placement are the prototype's:
+   *
+   *   .spanel { width:420px; height:calc(100vh - var(--ptop));
+   *             border-left:1px solid var(--line2); background:#fff;
+   *             overflow:auto }
+   *
+   * The prototype's shell is full-bleed, so its in-flow panel already sits on
+   * the right edge of the viewport. Ours is not: the practice page lives in a
+   * centred container with its own padding, so an in-flow column left a strip
+   * of page between the panel and the edge. Fixing it to the viewport is what
+   * reproduces the prototype's placement rather than its markup — and it has a
+   * second benefit, which is that a closed panel reserves nothing at all.
+   *
+   * `--ptop` is measured from the question control bar (see PracticeRunner), so
+   * the panel starts exactly where that bar ends and never covers it. The top
+   * bar sits above at z-20 and is never reached, because the panel begins below
+   * it.
+   */
+  .spanel {
+    position: fixed;
+    top: var(--ptop, 141px);
+    right: 0;
+    bottom: 0;
+    width: min(420px, 100%);
+    /*
+     * Below the question control bar (z-15) and the top bar (z-20), above the
+     * page's own content. `--ptop` is the bar's STUCK position, so before the
+     * page is scrolled the bar sits lower than the panel's top edge and the two
+     * overlap by the distance still to be scrolled. The bar must win that strip
+     * — it holds the navigator and the filters — so the panel passes beneath it
+     * rather than over it.
+     */
+    z-index: 14;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border-left: 1px solid var(--line2);
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
+
+  @media (max-width: 1023px) {
+    .spanel {
+      /* A phone has no room for a column beside the question, so the panel
+         covers the page and is dismissed rather than lived with. */
+      top: 0;
+      z-index: 66;
+      box-shadow: -20px 0 60px rgb(10 10 10 / 0.18);
     }
+  }
+
+  @media (min-width: 1024px) {
+    /* Make room for it only while it is there. The panel is fixed, so the
+       question column has to be told to stop short of it; closed, nothing is
+       reserved and the question uses the full width. */
+    .pwrap-open {
+      padding-right: 420px;
+    }
+  }
+
+  .sp-h {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    min-height: 52px;
+    padding: 0 10px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--card);
+    border-bottom: 1px solid var(--soft);
+  }
+
+  .sp-f {
+    position: sticky;
+    bottom: 0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--card);
+    border-top: 1px solid var(--soft);
+  }
+
+  /*
+   * The prototype's signature container: a warm frame holding an inset white
+   * surface, with a small mono-capitalised header between them.
+   *
+   * Three classes rather than twelve utilities at every call site, because
+   * this shape appears on every page and the 4px inset is the whole trick —
+   * get it wrong by a pixel and the nesting stops reading. See
+   * `docs/design-reference/`.
+   */
+  .panel {
+    background: var(--frame);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+
+  .panel-h {
+    min-height: 44px;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .surface {
+    background: var(--card);
+    border: 1px solid var(--soft);
+    border-radius: 8px;
+  }
+
+  /* The panel's own label, and the eyebrow above a page heading. Mono and
+     letterspaced so a two-word title reads as a label rather than a sentence. */
+  .ptitle,
+  .over {
+    font-family: var(--font-mono), ui-monospace, monospace;
+    font-size: 11px;
+    line-height: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    font-weight: 500;
+  }
+  .ptitle {
+    font-size: 12px;
+  }
+
+  /* A row inside a surface. The last one drops its rule so the surface's own
+     radius is not cut by a line. */
+  .listrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px;
+    border-bottom: 1px solid var(--hair);
+    color: var(--foreground);
+    transition: background 0.12s;
+  }
+  .listrow:last-child {
+    border-bottom: 0;
+  }
+  a.listrow:hover,
+  button.listrow:hover {
+    background: #fafaf9;
+  }
+
+  /* A card you can click anywhere on. The link stretches over the whole card
+     via ::after, so the heading stays the accessible name and the rest of the
+     card is not a nest of nested links. */
+  .scard {
+    position: relative;
+    transition:
+      border-color 0.15s,
+      box-shadow 0.2s,
+      transform 0.2s;
+  }
+  .scard:hover {
+    border-color: #cfcfcf;
+    box-shadow: 0 10px 28px rgba(10, 10, 10, 0.07);
+    transform: translateY(-1px);
+  }
+  .scard .stretch::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 12px;
+    z-index: 1;
+  }
+  .scard:has(.stretch:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  .scard .stretch:focus-visible {
+    outline: none;
+  }
+  .scard .go {
+    color: var(--brand);
+    opacity: 0;
+    transform: translateX(-4px);
+    transition:
+      opacity 0.15s,
+      transform 0.15s;
+  }
+  .scard:hover .go {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* A thin progress rail. Used for subtest coverage and mock scores; never for
+     anything the acid-lime rule would have claimed. */
+  .rail {
+    height: 4px;
+    border-radius: 99px;
+    background: var(--brand-50);
+    overflow: hidden;
+  }
+  .rail > i {
+    display: block;
+    height: 100%;
+    border-radius: 99px;
+    background: var(--brand);
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+  }
+
+  /* A quiet aside inside a surface — the one-line coaching note. */
+  .note {
+    padding: 10px 12px;
+    border-radius: 8px;
+    background: var(--frame);
+    font-size: 13px;
+    line-height: 19px;
+    color: #3d3d3d;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
   }
 }

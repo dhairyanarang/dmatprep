@@ -31,15 +31,20 @@ const ANSWERS: { q: string; a: React.ReactNode; more?: React.ReactNode }[] = [
     q: 'Do I need to sit it?',
     a: (
       <>
-        It applies to Master&rsquo;s applicants in Engineering; Commerce, Accounting, Finance or
-        Economics; and Business or Management, targeting summer semester 2027 or later.
+        It applies to Master&rsquo;s applicants targeting summer semester 2027 or later whose
+        previous degree is in Engineering or Technology; Commerce, Accounting, Finance or
+        Economics; Business or Management; Tourism, Travel and Hospitality; or an integrated or
+        dual-degree programme with a component in one of those.
       </>
     ),
     more: (
       <>
-        APS India is explicit that the list is guidance and not exhaustive, and that the official
-        degree title decides. Exemptions cover pre-29 June 2026 APS registrations, existing
-        certificate holders, Bachelor&rsquo;s and PhD applicants, and confirmed exchange programmes.{' '}
+        That is APS India&rsquo;s list, revised on 5 November 2026. g.a.s.t. still prints a shorter
+        one of three groups, without Tourism or the dual-degree rule; we show APS India&rsquo;s
+        because the g.a.s.t. FAQ says APS India decides eligibility. APS India is explicit that the
+        list is guidance and not exhaustive, and that the official degree title decides. Exemptions
+        cover pre-29 June 2026 APS registrations, existing certificate holders,
+        Bachelor&rsquo;s and PhD applicants, and confirmed exchange programmes.{' '}
         <Link href="/exam/logistics">Dates &amp; logistics</Link> lists them.
       </>
     ),

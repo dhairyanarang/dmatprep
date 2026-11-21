@@ -124,14 +124,30 @@ describe('GAM product — navigation', () => {
     assert.match(crumbs, /parts\[0\] === 'module-b' && parts\[1\] === 'practice'/)
   })
 
-  test('Module B is reachable from Prepare and from Test, and adds no fifth destination', () => {
+  test('Module B is reachable from Prepare and from Test, and never from the sidebar', () => {
     assert.match(read('../../app/prepare/page.tsx'), /href="\/module-b"/)
     assert.match(read('../../app/test/page.tsx'), /href="\/module-b\/timed"/)
-    // Four destinations and no more: Module B lives inside Prepare and Test.
+
     const nav = read('../../lib/nav.ts')
     const links = nav.slice(nav.indexOf('export const NAV'), nav.indexOf('const OWNS'))
-    assert.ok(!links.includes('module-b'), 'Module B was added to the sidebar as a fifth destination')
-    assert.equal((links.match(/href: '/g) ?? []).length, 4, 'the sidebar no longer has four links')
+    assert.ok(!links.includes('module-b'), 'Module B was added to the sidebar as a destination')
+
+    /**
+     * Five rows, in two groups.
+     *
+     * This asserted four until Information became a section with its own
+     * landing page and internal sidebar rather than a dropdown in the
+     * sidebar's footer — a change asked for directly, and the shape the v2
+     * prototype has: Home, Prepare and Test under "Main menu", About the Exam
+     * and Information under "The exam".
+     *
+     * The number is still pinned, because the point of the rule was never the
+     * figure four. It was that the sidebar does not grow quietly: a sixth row
+     * should take a decision and an edit here, not a convenient afternoon.
+     */
+    const navBlock = links.slice(links.indexOf('export const NAV'), links.indexOf('export const INFO_LINKS'))
+    assert.equal((navBlock.match(/href: '/g) ?? []).length, 5, 'the sidebar grew a row')
+    assert.match(navBlock, /href: '\/information'/, 'Information left the sidebar')
     assert.match(nav, /path\.startsWith\('\/module-b\/timed'\)/, 'the timed session is not owned by Test')
   })
 })

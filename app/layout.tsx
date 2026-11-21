@@ -1,5 +1,8 @@
 import type { Metadata } from 'next'
-import { JetBrains_Mono, Manrope } from 'next/font/google'
+import { GeistMono } from 'geist/font/mono'
+import { GeistSans } from 'geist/font/sans'
+
+import { Analytics } from '@vercel/analytics/react'
 
 import { Clarity } from '@/components/analytics/clarity'
 import { AuthNotice } from '@/components/auth/auth-notice'
@@ -7,26 +10,15 @@ import { SyncProvider } from '@/components/auth/sync-provider'
 import { DevAnnotations } from '@/components/dev/annotations'
 
 import { AppSidebar } from '@/components/layout/app-sidebar'
-import { MobileNav } from '@/components/layout/mobile-nav'
 import { TopBar } from '@/components/layout/top-bar'
+import { ProDialogProvider } from '@/components/payments/pro-dialog'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
 
 import './globals.css'
 
-// Manrope is the product face in the design, which uses 400/500/600. Loading it
-// as a variable font gives those exact weights rather than the nearest static cut.
-const manrope = Manrope({
-  variable: '--font-manrope',
-  subsets: ['latin'],
-})
-
 // Stands in for Berkeley Mono, which is commercial. Reserved for equations,
 // grid letters and IDs — never headings or body copy.
-const jetbrainsMono = JetBrains_Mono({
-  variable: '--font-jetbrains-mono',
-  subsets: ['latin'],
-})
 
 const SITE_URL = 'https://dmatprep.vercel.app'
 const TITLE = 'dMAT Prep — Prepare smarter for the dMAT'
@@ -82,20 +74,26 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
     <html
       lang="en"
-      className={`${manrope.variable} ${jetbrainsMono.variable} h-full antialiased`}
+      className={`${GeistSans.variable} ${GeistMono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <TooltipProvider>
+          <ProDialogProvider>
           <div className="flex min-h-svh">
             <AppSidebar />
 
             <div className="flex min-w-0 flex-1 flex-col">
-              <MobileNav />
               <TopBar />
               <AuthNotice />
+              {/* No global footer. The independence statement is carried on
+                  every page by the sidebar's one-line version, and in full by
+                  `PageDisclaimer` on the informational pages — rather than
+                  three paragraphs of legal text under a half-answered
+                  question. */}
               <main className="flex-1">{children}</main>
             </div>
           </div>
+          </ProDialogProvider>
           <Toaster />
           {/* Moves progress between this browser and the cloud. Renders nothing,
               and does nothing at all for a guest. */}
@@ -108,6 +106,17 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
         {/* Behavioural analytics. Renders nothing outside a production
             deployment, and never identifies anyone. */}
         <Clarity />
+
+        {/* Page views and the purchase funnel.
+            Two different tools doing two different jobs, not duplicate
+            tracking: Clarity records sessions to show how a page is used,
+            Vercel Analytics counts page views and the nine funnel events in
+            `lib/analytics/events.ts`. Neither is sent an email address, a name,
+            a user id or any payment detail.
+            Outside a Vercel deployment this logs to the console instead of
+            sending, so local testing produces no production data — the same is
+            true of Clarity, which does not render at all off production. */}
+        <Analytics />
       </body>
     </html>
   )

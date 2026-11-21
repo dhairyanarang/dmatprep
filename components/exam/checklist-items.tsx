@@ -18,7 +18,7 @@ const GROUPS: { title: string; items: { id: string; kind: Provenance; text: stri
       {
         id: 'chk-register',
         kind: 'official',
-        text: 'Register through the g.a.s.t. participant portal and pay the €150 fee. Registration closes 15 September 2026.',
+        text: 'Register through the g.a.s.t. participant portal and pay the €150 fee. Registration for the January 2027 sitting closes 4 January 2027; the March sitting closes 1 March 2027.',
       },
       {
         id: 'chk-id-match',

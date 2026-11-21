@@ -1,14 +1,14 @@
 import { ConfidenceBadge } from '@/components/content/source-ref'
 import { MilestoneTrack, ScoreScale, Section, Stat, StatGrid } from '@/components/exam/visuals'
-import { PageShell } from '@/components/layout/page-shell'
+import { SubPage } from '@/components/layout/sub-nav'
 
 export const metadata = { title: 'Scoring & Results' }
 
 export default function ExamScoringPage() {
   return (
-    <PageShell
+    <SubPage
+      title="Scoring & results"
       description="No pass, no fail — a score, a percentile, and a certificate that never expires."
-      wide
     >
       <div className="space-y-10">
         <StatGrid>
@@ -76,6 +76,6 @@ export default function ExamScoringPage() {
           </p>
         </Section>
       </div>
-    </PageShell>
+    </SubPage>
   )
 }

@@ -97,7 +97,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R3C3 must be C. B, C, E already appear in row 3; D already appears in column 4 — so A is the only letter left for R3C4.",
+    "explanation": "In column 3, A and C are missing. C cannot go in R4C3 because it already appears in row 4, so C must go in R3C3 — which leaves A for R4C3. B, C, E already appear in row 3; D already appears in column 4 — so A is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row.",
       "C": "C already appears in row 3 (at R3C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -174,7 +174,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -280,7 +287,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R5C3 must be C. A already appears in row 2; B, C, E already appear in column 3 — so D is the only letter left for R2C3.",
+    "explanation": "In row 5, C and D are missing. C cannot go in R5C4 because it already appears in column 4, so C must go in R5C3 — which leaves D for R5C4. A already appears in row 2; B, C, E already appear in column 3 — so D is the only letter left for R2C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C5), and a letter can only appear once per row.",
       "B": "B already appears in column 3 (at R4C3), and a letter can only appear once per column.",
@@ -357,7 +364,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -463,7 +477,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R3C4 must be A. A, D already appear in row 3; B, C already appear in column 3 — so E is the only letter left for R3C3.",
+    "explanation": "In column 4, A and B are missing. A cannot go in R5C4 because it already appears in row 5, so A must go in R3C4 — which leaves B for R5C4. A, D already appear in row 3; B, C already appear in column 3 — so E is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in column 3 (at R4C3), and a letter can only appear once per column.",
@@ -540,7 +554,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -646,7 +667,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R2C1 must be A. A, B already appear in row 2; C, D already appear in column 4 — so E is the only letter left for R2C4.",
+    "explanation": "In column 1, A and E are missing. A cannot go in R1C1 because it already appears in row 1, so A must go in R2C1 — which leaves E for R1C1. A, B already appear in row 2; C, D already appear in column 4 — so E is the only letter left for R2C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row.",
@@ -723,7 +744,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -829,7 +857,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R2C3 must be C. B, C already appear in row 2; A, E already appear in column 1 — so D is the only letter left for R2C1.",
+    "explanation": "In column 3, C and E are missing. C cannot go in R1C3 because it already appears in row 1, so C must go in R2C3 — which leaves E for R1C3. B, C already appear in row 2; A, E already appear in column 1 — so D is the only letter left for R2C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 1 (at R3C1), and a letter can only appear once per column.",
       "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row.",
@@ -906,7 +934,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1089,7 +1124,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1250,7 +1292,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1411,7 +1460,14 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1572,7 +1628,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1755,7 +1818,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -1938,7 +2008,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2121,7 +2198,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2304,7 +2388,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2465,7 +2556,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2626,7 +2724,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2741,7 +2846,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R1C5 must be B; R1C2 must be C. D, E already appear in row 2; B, C already appear in column 2 — so A is the only letter left for R2C2.",
+    "explanation": "Fill the forced cells first: R1C5 must be B. In row 1, C and E are missing. C cannot go in R1C3 because it already appears in column 3, so C must go in R1C2 — which leaves E for R1C3. D, E already appear in row 2; B, C already appear in column 2 — so A is the only letter left for R2C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in column 2 (at R3C2), and a letter can only appear once per column.",
       "C": "C already appears in row 2 (at R2C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -2831,7 +2936,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -2946,7 +3058,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R4C3 must be E; R2C3 must be C. A, B, C, E already appear in column 3 — so D is the only letter left for R3C3.",
+    "explanation": "Fill the forced cells first: R4C3 must be E. In row 2, C and D are missing. C cannot go in R2C4 because it already appears in column 4, so C must go in R2C3 — which leaves D for R2C4. A, B, C, E already appear in column 3 — so D is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R1C3), and a letter can only appear once per column.",
       "B": "B already appears in column 3 (at R5C3), and a letter can only appear once per column.",
@@ -3036,7 +3148,14 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3160,7 +3279,7 @@
       }
     ],
     "forcedPlacementDepth": 4,
-    "explanation": "Fill the forced cells first: R2C4 must be E; R2C3 must be D; R1C5 must be C. A, D, E already appear in row 2; C already appears in column 5 — so B is the only letter left for R2C5.",
+    "explanation": "Fill the forced cells first: R2C4 must be E; R2C3 must be D. In row 1, C and E are missing. C cannot go in R1C3 because it already appears in column 3, so C must go in R1C5 — which leaves E for R1C3. A, D, E already appear in row 2; C already appears in column 5 — so B is the only letter left for R2C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C2), and a letter can only appear once per row.",
       "C": "C already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -3263,7 +3382,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3378,7 +3504,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R1C2 must be B; R2C5 must be A. B, C, D already appear in row 1; A already appears in column 5 — so E is the only letter left for R1C5.",
+    "explanation": "Fill the forced cells first: R1C2 must be B. In row 2, A and C are missing. A cannot go in R2C1 because it already appears in column 1, so A must go in R2C5 — which leaves C for R2C1. B, C, D already appear in row 1; A already appears in column 5 — so E is the only letter left for R1C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 1 (at R1C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -3468,7 +3594,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3592,7 +3725,7 @@
       }
     ],
     "forcedPlacementDepth": 4,
-    "explanation": "Fill the forced cells first: R5C3 must be D; R3C3 must be E; R3C5 must be D. D, E already appear in row 3; B, C already appear in column 4 — so A is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R5C3 must be D. In column 3, C and E are missing. E cannot go in R1C3 because it already appears in row 1, so E must go in R3C3 — which leaves C for R1C3. In column 5, B and D are missing. D cannot go in R5C5 because it already appears in row 5, so D must go in R3C5 — which leaves B for R5C5. D, E already appear in row 3; B, C already appear in column 4 — so A is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in column 4 (at R1C4), and a letter can only appear once per column.",
       "C": "C already appears in column 4 (at R5C4), and a letter can only appear once per column.",
@@ -3695,7 +3828,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -3900,7 +4040,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4105,7 +4252,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4310,7 +4464,14 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4537,7 +4698,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4742,7 +4910,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -4947,7 +5122,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5152,7 +5334,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5357,7 +5546,14 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5562,7 +5758,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5767,7 +5970,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -5918,7 +6128,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C1 must be C; R1C4 must be D; R2C1 must be A; R1C5 must be B; R4C1 must be E; R4C4 must be C. A already appears in row 2; B, C, D already appear in column 4 — so E is the only letter left for R2C4.",
+    "explanation": "Fill the forced cells first: R1C1 must be C; R1C4 must be D. In column 1, A and E are missing. A cannot go in R4C1 because it already appears in row 4, so A must go in R2C1 — which leaves E for R4C1. That frees more cells: R1C5 must be B; R4C1 must be E; R4C4 must be C. A already appears in row 2; B, C, D already appear in column 4 — so E is the only letter left for R2C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in column 4 (at R5C4), and a letter can only appear once per column.",
@@ -6052,7 +6262,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -6060,7 +6270,17 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.25, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.25, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6202,7 +6422,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C1 must be A; R1C5 must be C; R4C5 must be D; R4C1 must be C; R3C1 must be B. A, B, C, E already appear in column 1 — so D is the only letter left for R5C1.",
+    "explanation": "In row 1, A and C are missing. A cannot go in R1C5 because it already appears in column 5, so A must go in R1C1 — which leaves C for R1C5. That frees more cells: R1C5 must be C; R4C5 must be D; R4C1 must be C; R3C1 must be B. A, B, C, E already appear in column 1 — so D is the only letter left for R5C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -6323,7 +6543,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -6331,7 +6551,17 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6473,7 +6703,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C3 must be B; R1C2 must be C; R5C1 must be C; R2C1 must be B; R4C1 must be D. C already appears in row 3; B, D, E already appear in column 1 — so A is the only letter left for R3C1.",
+    "explanation": "Fill the forced cells first: R1C3 must be B; R1C2 must be C. In row 5, B and C are missing. C cannot go in R5C2 because it already appears in column 2, so C must go in R5C1 — which leaves B for R5C2. That frees more cells: R2C1 must be B; R4C1 must be D. C already appears in row 3; B, D, E already appear in column 1 — so A is the only letter left for R3C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 3 (at R3C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 3 (at R3C3), and a letter can only appear once per row.",
@@ -6594,7 +6824,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -6602,7 +6832,17 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -6744,7 +6984,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C2 must be B; R4C2 must be C; R5C1 must be C; R2C1 must be E; R2C4 must be C. A, D already appear in row 3; B, C already appear in column 4 — so E is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R1C2 must be B; R4C2 must be C; R5C1 must be C; R2C1 must be E. In row 2, A and C are missing. C cannot go in R2C3 because it already appears in column 3, so C must go in R2C4 — which leaves A for R2C3. A, D already appear in row 3; B, C already appear in column 4 — so E is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row.",
       "B": "B already appears in column 4 (at R5C4), and a letter can only appear once per column.",
@@ -6865,7 +7105,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -6873,7 +7113,17 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7024,7 +7274,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C2 must be A; R1C3 must be B; R3C2 must be E; R3C1 must be A; R5C2 must be D; R5C3 must be E. D, E already appear in row 5; A, B already appear in column 1 — so C is the only letter left for R5C1.",
+    "explanation": "Fill the forced cells first: R1C2 must be A; R1C3 must be B; R3C2 must be E; R3C1 must be A. In column 2, C and D are missing. D cannot go in R4C2 because it already appears in row 4, so D must go in R5C2 — which leaves C for R4C2. That frees more cells: R5C3 must be E. D, E already appear in row 5; A, B already appear in column 1 — so C is the only letter left for R5C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in column 1 (at R4C1), and a letter can only appear once per column.",
@@ -7158,7 +7408,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7166,7 +7416,17 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7308,7 +7568,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C2 must be C; R2C2 must be D; R2C4 must be A; R3C1 must be A; R4C1 must be D. B, C already appear in row 1; A, D already appear in column 1 — so E is the only letter left for R1C1.",
+    "explanation": "In column 2, C and D are missing. C cannot go in R2C2 because it already appears in row 2, so C must go in R1C2 — which leaves D for R2C2. That frees more cells: R2C2 must be D; R2C4 must be A. In row 3, A and D are missing. A cannot go in R3C4 because it already appears in column 4, so A must go in R3C1 — which leaves D for R3C4. That frees more cells: R4C1 must be D. B, C already appear in row 1; A, D already appear in column 1 — so E is the only letter left for R1C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 1 (at R1C4), and a letter can only appear once per row.",
@@ -7429,7 +7689,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7437,7 +7697,17 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7570,7 +7840,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R1C4 must be A; R1C2 must be E; R3C2 must be D; R3C4 must be E. A, D already appear in row 5; C, E already appear in column 4 — so B is the only letter left for R5C4.",
+    "explanation": "In row 1, A and E are missing. A cannot go in R1C2 because it already appears in column 2, so A must go in R1C4 — which leaves E for R1C2. That frees more cells: R1C2 must be E; R3C2 must be D; R3C4 must be E. A, D already appear in row 5; C, E already appear in column 4 — so B is the only letter left for R5C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C2), and a letter can only appear once per row.",
       "C": "C already appears in column 4 (at R4C4), and a letter can only appear once per column.",
@@ -7686,7 +7956,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -7828,7 +8105,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R4C5 must be A; R3C4 must be A; R3C1 must be B; R2C1 must be E; R2C5 must be B. A, B, C, E already appear in column 5 — so D is the only letter left for R5C5.",
+    "explanation": "Fill the forced cells first: R4C5 must be A; R3C4 must be A; R3C1 must be B; R2C1 must be E. In row 2, B and D are missing. B cannot go in R2C4 because it already appears in column 4, so B must go in R2C5 — which leaves D for R2C4. A, B, C, E already appear in column 5 — so D is the only letter left for R5C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -7949,7 +8226,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -7957,7 +8234,17 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8090,7 +8377,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R3C4 must be E; R3C1 must be A; R5C1 must be D; R5C3 must be B. A, C, E already appear in row 3; B already appears in column 3 — so D is the only letter left for R3C3.",
+    "explanation": "Fill the forced cells first: R3C4 must be E. In column 1, A and D are missing. A cannot go in R5C1 because it already appears in row 5, so A must go in R3C1 — which leaves D for R5C1. That frees more cells: R5C1 must be D. In row 5, B and E are missing. B cannot go in R5C5 because it already appears in column 5, so B must go in R5C3 — which leaves E for R5C5. A, C, E already appear in row 3; B already appears in column 3 — so D is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -8206,7 +8493,14 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8357,7 +8651,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C2 must be A; R5C2 must be C; R4C1 must be E; R3C1 must be A; R2C1 must be B; R2C4 must be A. C, D already appear in row 5; A, B already appear in column 4 — so E is the only letter left for R5C4.",
+    "explanation": "Fill the forced cells first: R1C2 must be A; R5C2 must be C; R4C1 must be E; R3C1 must be A; R2C1 must be B. In row 2, A and C are missing. A cannot go in R2C5 because it already appears in column 5, so A must go in R2C4 — which leaves C for R2C5. C, D already appear in row 5; A, B already appear in column 4 — so E is the only letter left for R5C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in column 4 (at R4C4), and a letter can only appear once per column.",
@@ -8491,7 +8785,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -8499,7 +8793,17 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8650,7 +8954,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C3 must be C; R5C5 must be B; R5C2 must be A; R1C5 must be D; R3C2 must be B; R3C3 must be D. A, B already appear in row 5; C, D already appear in column 3 — so E is the only letter left for R5C3.",
+    "explanation": "In row 1, C and D are missing. C cannot go in R1C5 because it already appears in column 5, so C must go in R1C3 — which leaves D for R1C5. In column 5, B and D are missing. B cannot go in R1C5 because it already appears in row 1, so B must go in R5C5 — which leaves D for R1C5. That frees more cells: R5C2 must be A; R1C5 must be D; R3C2 must be B; R3C3 must be D. A, B already appear in row 5; C, D already appear in column 3 — so E is the only letter left for R5C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R4C3), and a letter can only appear once per column.",
       "B": "B already appears in row 5 (at R5C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -8784,7 +9088,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -8792,7 +9096,17 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -8934,7 +9248,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C2 must be D; R5C2 must be B; R1C1 must be E; R1C3 must be A; R5C3 must be D. B, C, D already appear in row 5; E already appears in column 1 — so A is the only letter left for R5C1.",
+    "explanation": "Fill the forced cells first: R1C2 must be D; R5C2 must be B. In row 1, A and E are missing. E cannot go in R1C3 because it already appears in column 3, so E must go in R1C1 — which leaves A for R1C3. That frees more cells: R1C3 must be A; R5C3 must be D. B, C, D already appear in row 5; E already appears in column 1 — so A is the only letter left for R5C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 5 (at R5C5), and a letter can only appear once per row.",
@@ -9055,7 +9369,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -9063,7 +9377,17 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.25, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.25, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9214,7 +9538,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R4C3 must be A; R3C3 must be C; R3C4 must be A; R3C1 must be D; R1C1 must be C; R1C4 must be D. B, E already appear in row 2; A, D already appear in column 4 — so C is the only letter left for R2C4.",
+    "explanation": "Fill the forced cells first: R4C3 must be A; R3C3 must be C. In row 3, A and D are missing. A cannot go in R3C1 because it already appears in column 1, so A must go in R3C4 — which leaves D for R3C1. That frees more cells: R3C1 must be D; R1C1 must be C; R1C4 must be D. B, E already appear in row 2; A, D already appear in column 4 — so C is the only letter left for R2C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C3), and a letter can only appear once per row.",
@@ -9348,7 +9672,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -9356,7 +9680,17 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.42, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.42, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9507,7 +9841,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R3C5 must be D; R2C5 must be B; R4C4 must be C; R2C4 must be E; R2C1 must be C; R3C1 must be E. A, B, C already appear in row 1; E already appears in column 1 — so D is the only letter left for R1C1.",
+    "explanation": "Fill the forced cells first: R3C5 must be D; R2C5 must be B; R4C4 must be C; R2C4 must be E. In row 2, C and D are missing. C cannot go in R2C3 because it already appears in column 3, so C must go in R2C1 — which leaves D for R2C3. That frees more cells: R3C1 must be E. A, B, C already appear in row 1; E already appears in column 1 — so D is the only letter left for R1C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C4), and a letter can only appear once per row.",
       "B": "B already appears in row 1 (at R1C2), and a letter can only appear once per row.",
@@ -9641,7 +9975,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -9649,7 +9983,17 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -9800,7 +10144,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R4C1 must be C; R1C3 must be A; R2C3 must be D; R2C5 must be C; R4C2 must be D; R1C2 must be B. A, B, E already appear in row 1; C already appears in column 1 — so D is the only letter left for R1C1.",
+    "explanation": "In row 4, C and D are missing. C cannot go in R4C2 because it already appears in column 2, so C must go in R4C1 — which leaves D for R4C2. In column 3, A and D are missing. A cannot go in R2C3 because it already appears in row 2, so A must go in R1C3 — which leaves D for R2C3. That frees more cells: R2C3 must be D; R2C5 must be C; R4C2 must be D; R1C2 must be B. A, B, E already appear in row 1; C already appears in column 1 — so D is the only letter left for R1C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 1 (at R1C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -9934,7 +10278,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -9942,7 +10286,17 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "generator": {
       "name": "latin-squares",
@@ -10047,7 +10401,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R5C1 must be B. A already appears in row 4; B, D, E already appear in column 1 — so C is the only letter left for R4C1.",
+    "explanation": "In row 5, B and C are missing. B cannot go in R5C4 because it already appears in column 4, so B must go in R5C1 — which leaves C for R5C4. A already appears in row 4; B, D, E already appear in column 1 — so C is the only letter left for R4C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C3), and a letter can only appear once per row.",
       "B": "B already appears in row 4 (at R4C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -10124,7 +10478,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.58, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-001",
     "generator": {
@@ -10328,7 +10689,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-002",
     "generator": {
@@ -10532,7 +10900,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-003",
     "generator": {
@@ -10681,7 +11056,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R1C5 must be C. A, B, E already appear in row 4; C already appears in column 5 — so D is the only letter left for R4C5.",
+    "explanation": "In row 1, C and E are missing. C cannot go in R1C2 because it already appears in column 2, so C must go in R1C5 — which leaves E for R1C2. A, B, E already appear in row 4; C already appears in column 5 — so D is the only letter left for R4C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C2), and a letter can only appear once per row.",
       "B": "B already appears in row 4 (at R4C1), and a letter can only appear once per row.",
@@ -10758,7 +11133,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-004",
     "generator": {
@@ -10984,7 +11366,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b2-005",
     "generator": {
@@ -11142,7 +11531,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R4C3 must be D; R4C4 must be E. A, C, D, E already appear in row 4 — so B is the only letter left for R4C5.",
+    "explanation": "Fill the forced cells first: R4C3 must be D. In column 4, B and E are missing. E cannot go in R1C4 because it already appears in row 1, so E must go in R4C4 — which leaves B for R1C4. A, C, D, E already appear in row 4 — so B is the only letter left for R4C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C2), and a letter can only appear once per row.",
       "C": "C already appears in row 4 (at R4C1), and a letter can only appear once per row.",
@@ -11232,7 +11621,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-001",
     "generator": {
@@ -11480,7 +11876,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-002",
     "generator": {
@@ -11728,7 +12131,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-003",
     "generator": {
@@ -11886,7 +12296,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R1C3 must be A; R3C3 must be B. A, B, D, E already appear in column 3 — so C is the only letter left for R2C3.",
+    "explanation": "Fill the forced cells first: R1C3 must be A. In row 3, B and C are missing. B cannot go in R3C4 because it already appears in column 4, so B must go in R3C3 — which leaves C for R3C4. A, B, D, E already appear in column 3 — so C is the only letter left for R2C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -11976,7 +12386,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-004",
     "generator": {
@@ -12224,7 +12641,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b2-005",
     "generator": {
@@ -12418,7 +12842,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C3 must be C; R4C1 must be E; R2C4 must be B; R3C4 must be C; R5C1 must be A; R5C3 must be B. D, E already appear in row 4; B, C already appear in column 3 — so A is the only letter left for R4C3.",
+    "explanation": "Fill the forced cells first: R1C3 must be C. In column 1, A and E are missing. E cannot go in R5C1 because it already appears in row 5, so E must go in R4C1 — which leaves A for R5C1. That frees more cells: R2C4 must be B; R3C4 must be C; R5C1 must be A; R5C3 must be B. D, E already appear in row 4; B, C already appear in column 3 — so A is the only letter left for R4C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 4 (at R4C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 4 (at R4C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -12552,7 +12976,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "derived-clash",
@@ -12560,7 +12984,17 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-001",
     "generator": {
@@ -12736,7 +13170,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R3C5 must be C; R3C3 must be D; R1C3 must be C; R1C4 must be B. A, C, D already appear in row 3; B already appears in column 4 — so E is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R3C5 must be C; R3C3 must be D; R1C3 must be C. In row 1, B and D are missing. B cannot go in R1C2 because it already appears in column 2, so B must go in R1C4 — which leaves D for R1C2. A, C, D already appear in row 3; B already appears in column 4 — so E is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row.",
       "B": "B already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -12852,7 +13286,14 @@
         "C": "derived-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b2-002",
     "generator": {
@@ -13046,7 +13487,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C5 must be C; R4C5 must be B; R4C2 must be A; R4C4 must be D; R2C4 must be B; R5C4 must be A. C, D already appear in row 1; A, B already appear in column 4 — so E is the only letter left for R1C4.",
+    "explanation": "In column 5, B and C are missing. C cannot go in R4C5 because it already appears in row 4, so C must go in R1C5 — which leaves B for R4C5. That frees more cells: R4C5 must be B; R4C2 must be A. In row 4, D and E are missing. D cannot go in R4C1 because it already appears in column 1, so D must go in R4C4 — which leaves E for R4C1. That frees more cells: R2C4 must be B; R5C4 must be A. C, D already appear in row 1; A, B already appear in column 4 — so E is the only letter left for R1C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 1 (at R1C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -13180,7 +13621,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -13188,7 +13629,17 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-003",
     "generator": {
@@ -13373,7 +13824,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R3C3 must be B; R2C5 must be D; R1C5 must be B; R3C4 must be E; R2C4 must be A. A, C, D already appear in row 2; B already appears in column 3 — so E is the only letter left for R2C3.",
+    "explanation": "In row 3, B and E are missing. B cannot go in R3C4 because it already appears in column 4, so B must go in R3C3 — which leaves E for R3C4. In column 5, B and D are missing. D cannot go in R1C5 because it already appears in row 1, so D must go in R2C5 — which leaves B for R1C5. That frees more cells: R1C5 must be B; R3C4 must be E; R2C4 must be A. A, C, D already appear in row 2; B already appears in column 3 — so E is the only letter left for R2C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -13494,7 +13945,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -13502,7 +13953,17 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b2-004",
     "generator": {
@@ -13678,7 +14139,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R2C2 must be C; R2C3 must be A; R4C4 must be E; R5C4 must be B. B already appears in row 5; A, C, D already appear in column 2 — so E is the only letter left for R5C2.",
+    "explanation": "Fill the forced cells first: R2C2 must be C; R2C3 must be A; R4C4 must be E. In column 4, A and B are missing. B cannot go in R1C4 because it already appears in row 1, so B must go in R5C4 — which leaves A for R1C4. B already appears in row 5; A, C, D already appear in column 2 — so E is the only letter left for R5C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 2 (at R4C2), and a letter can only appear once per column.",
       "B": "B already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -13794,7 +14255,14 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b2-005",
     "generator": {
@@ -13943,7 +14411,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R4C3 must be C. B, D already appear in row 3; A, C already appear in column 3 — so E is the only letter left for R3C3.",
+    "explanation": "In row 4, B and C are missing. C cannot go in R4C1 because it already appears in column 1, so C must go in R4C3 — which leaves B for R4C1. B, D already appear in row 3; A, C already appear in column 3 — so E is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R5C3), and a letter can only appear once per column.",
       "B": "B already appears in row 3 (at R3C5), and a letter can only appear once per row.",
@@ -14020,7 +14488,14 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-001",
     "generator": {
@@ -14246,7 +14721,14 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-002",
     "generator": {
@@ -14472,7 +14954,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-003",
     "generator": {
@@ -14621,7 +15110,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R4C1 must be B. A, B, D already appear in row 4; E already appears in column 3 — so C is the only letter left for R4C3.",
+    "explanation": "In column 1, B and E are missing. B cannot go in R1C1 because it already appears in row 1, so B must go in R4C1 — which leaves E for R1C1. A, B, D already appear in row 4; E already appears in column 3 — so C is the only letter left for R4C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C5), and a letter can only appear once per row.",
       "B": "B already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -14698,7 +15187,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-004",
     "generator": {
@@ -14924,7 +15420,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b4-005",
     "generator": {
@@ -15091,7 +15594,7 @@
       }
     ],
     "forcedPlacementDepth": 4,
-    "explanation": "Fill the forced cells first: R1C5 must be D; R1C2 must be B; R5C5 must be B. A, E already appear in row 3; B, D already appear in column 5 — so C is the only letter left for R3C5.",
+    "explanation": "In row 1, B and D are missing. D cannot go in R1C2 because it already appears in column 2, so D must go in R1C5 — which leaves B for R1C2. That frees more cells: R1C2 must be B. In row 5, B and C are missing. B cannot go in R5C2 because it already appears in column 2, so B must go in R5C5 — which leaves C for R5C2. A, E already appear in row 3; B, D already appear in column 5 — so C is the only letter left for R3C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row.",
       "B": "B already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -15194,7 +15697,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-001",
     "generator": {
@@ -15442,7 +15952,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-002",
     "generator": {
@@ -15690,7 +16207,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.25, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-003",
     "generator": {
@@ -15848,7 +16372,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R2C5 must be B; R1C5 must be C. E already appears in row 5; B, C, D already appear in column 5 — so A is the only letter left for R5C5.",
+    "explanation": "In row 2, B and E are missing. B cannot go in R2C1 because it already appears in column 1, so B must go in R2C5 — which leaves E for R2C1. That frees more cells: R1C5 must be C. E already appears in row 5; B, C, D already appear in column 5 — so A is the only letter left for R5C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -15938,7 +16462,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-004",
     "generator": {
@@ -16208,7 +16739,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b4-005",
     "generator": {
@@ -16393,7 +16931,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R4C2 must be D; R4C5 must be B; R2C2 must be A; R2C4 must be C; R4C4 must be E. A, B, D, E already appear in row 4 — so C is the only letter left for R4C3.",
+    "explanation": "Fill the forced cells first: R4C2 must be D. In column 5, B and C are missing. B cannot go in R3C5 because it already appears in row 3, so B must go in R4C5 — which leaves C for R3C5. That frees more cells: R2C2 must be A; R2C4 must be C; R4C4 must be E. A, B, D, E already appear in row 4 — so C is the only letter left for R4C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C1), and a letter can only appear once per row.",
       "B": "B already appears in column 3 (at R2C3), and a letter can only appear once per column.",
@@ -16514,7 +17052,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -16522,7 +17060,17 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b4-001",
     "generator": {
@@ -16707,7 +17255,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C4 must be E; R1C2 must be C; R1C3 must be D; R4C2 must be E; R5C2 must be B. B already appears in row 5; C, D, E already appear in column 4 — so A is the only letter left for R5C4.",
+    "explanation": "Fill the forced cells first: R1C4 must be E; R1C2 must be C; R1C3 must be D; R4C2 must be E. In column 2, A and B are missing. B cannot go in R2C2 because it already appears in row 2, so B must go in R5C2 — which leaves A for R2C2. B already appears in row 5; C, D, E already appear in column 4 — so A is the only letter left for R5C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in column 4 (at R2C4), and a letter can only appear once per column.",
@@ -16828,7 +17376,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "B": "derived-clash",
@@ -16836,7 +17384,17 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b4-002",
     "generator": {
@@ -17012,7 +17570,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R1C5 must be B; R1C3 must be D; R5C3 must be C; R5C4 must be E. B, C, D already appear in row 1; E already appears in column 4 — so A is the only letter left for R1C4.",
+    "explanation": "In column 5, B and D are missing. B cannot go in R5C5 because it already appears in row 5, so B must go in R1C5 — which leaves D for R5C5. That frees more cells: R1C3 must be D; R5C3 must be C. In row 5, D and E are missing. E cannot go in R5C5 because it already appears in column 5, so E must go in R5C4 — which leaves D for R5C5. B, C, D already appear in row 1; E already appears in column 4 — so A is the only letter left for R1C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 1 (at R1C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 1 (at R1C2), and a letter can only appear once per row.",
@@ -17128,7 +17686,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-003",
     "generator": {
@@ -17304,7 +17869,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R4C4 must be A; R4C2 must be C; R2C4 must be E; R2C1 must be A. A, C, D, E already appear in row 2 — so B is the only letter left for R2C2.",
+    "explanation": "Fill the forced cells first: R4C4 must be A. In row 4, C and D are missing. C cannot go in R4C3 because it already appears in column 3, so C must go in R4C2 — which leaves D for R4C3. In column 4, B and E are missing. E cannot go in R1C4 because it already appears in row 1, so E must go in R2C4 — which leaves B for R1C4. That frees more cells: R2C1 must be A. A, C, D, E already appear in row 2 — so B is the only letter left for R2C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 2 (at R2C3), and a letter can only appear once per row.",
@@ -17420,7 +17985,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-004",
     "generator": {
@@ -17596,7 +18168,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R1C3 must be B; R1C4 must be E; R2C1 must be E; R2C3 must be A. D already appears in row 5; A, B, C already appear in column 3 — so E is the only letter left for R5C3.",
+    "explanation": "In row 1, B and E are missing. B cannot go in R1C4 because it already appears in column 4, so B must go in R1C3 — which leaves E for R1C4. That frees more cells: R1C4 must be E; R2C1 must be E; R2C3 must be A. D already appears in row 5; A, B, C already appear in column 3 — so E is the only letter left for R5C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -17712,7 +18284,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b4-005",
     "generator": {
@@ -17861,7 +18440,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R4C1 must be E. B, C already appear in row 5; A, E already appear in column 1 — so D is the only letter left for R5C1.",
+    "explanation": "In row 4, B and E are missing. E cannot go in R4C4 because it already appears in column 4, so E must go in R4C1 — which leaves B for R4C4. B, C already appear in row 5; A, E already appear in column 1 — so D is the only letter left for R5C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 1 (at R2C1), and a letter can only appear once per column.",
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row.",
@@ -17938,7 +18517,14 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-001",
     "generator": {
@@ -18164,7 +18750,14 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-002",
     "generator": {
@@ -18390,7 +18983,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-003",
     "generator": {
@@ -18539,7 +19139,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R1C5 must be E. E already appears in row 1; A, B, C already appear in column 3 — so D is the only letter left for R1C3.",
+    "explanation": "In column 5, C and E are missing. E cannot go in R2C5 because it already appears in row 2, so E must go in R1C5 — which leaves C for R2C5. E already appears in row 1; A, B, C already appear in column 3 — so D is the only letter left for R1C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R5C3), and a letter can only appear once per column.",
       "B": "B already appears in column 3 (at R2C3), and a letter can only appear once per column.",
@@ -18616,7 +19216,14 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-004",
     "generator": {
@@ -18842,7 +19449,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-005",
     "generator": {
@@ -19046,7 +19660,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-006",
     "generator": {
@@ -19195,7 +19816,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R4C1 must be E. B, D already appear in row 1; A, E already appear in column 1 — so C is the only letter left for R1C1.",
+    "explanation": "In row 4, C and E are missing. E cannot go in R4C4 because it already appears in column 4, so E must go in R4C1 — which leaves C for R4C4. B, D already appear in row 1; A, E already appear in column 1 — so C is the only letter left for R1C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 1 (at R5C1), and a letter can only appear once per column.",
       "B": "B already appears in row 1 (at R1C4), and a letter can only appear once per row.",
@@ -19272,7 +19893,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-007",
     "generator": {
@@ -19476,7 +20104,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 1, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 1, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-008",
     "generator": {
@@ -19702,7 +20337,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-009",
     "generator": {
@@ -19851,7 +20493,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R2C3 must be C. B, D already appear in row 3; A, C already appear in column 3 — so E is the only letter left for R3C3.",
+    "explanation": "In row 2, B and C are missing. C cannot go in R2C4 because it already appears in column 4, so C must go in R2C3 — which leaves B for R2C4. B, D already appear in row 3; A, C already appear in column 3 — so E is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R5C3), and a letter can only appear once per column.",
       "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row.",
@@ -19928,7 +20570,14 @@
         "C": "derived-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-010",
     "generator": {
@@ -20154,7 +20803,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-011",
     "generator": {
@@ -20380,7 +21036,14 @@
         "C": "direct-clash",
         "D": "derived-clash"
       },
-      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.54, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-012",
     "generator": {
@@ -20529,7 +21192,7 @@
       }
     ],
     "forcedPlacementDepth": 2,
-    "explanation": "Fill the forced cells first: R1C3 must be D. B, D already appear in row 1; A, E already appear in column 1 — so C is the only letter left for R1C1.",
+    "explanation": "In column 3, A and D are missing. D cannot go in R3C3 because it already appears in row 3, so D must go in R1C3 — which leaves A for R3C3. B, D already appear in row 1; A, E already appear in column 1 — so C is the only letter left for R1C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 1 (at R4C1), and a letter can only appear once per column.",
       "B": "B already appears in row 1 (at R1C2), and a letter can only appear once per row.",
@@ -20606,7 +21269,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 2, clue density 0.42, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-low-b5-013",
     "generator": {
@@ -20773,7 +21443,7 @@
       }
     ],
     "forcedPlacementDepth": 4,
-    "explanation": "Fill the forced cells first: R4C1 must be B; R3C1 must be A; R3C4 must be C. B already appears in row 4; C, D, E already appear in column 4 — so A is the only letter left for R4C4.",
+    "explanation": "In column 1, A and B are missing. B cannot go in R3C1 because it already appears in row 3, so B must go in R4C1 — which leaves A for R3C1. That frees more cells: R3C1 must be A; R3C4 must be C. B already appears in row 4; C, D, E already appear in column 4 — so A is the only letter left for R4C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 4 (at R4C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -20876,7 +21546,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-001",
     "generator": {
@@ -21146,7 +21823,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-002",
     "generator": {
@@ -21394,7 +22078,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-003",
     "generator": {
@@ -21552,7 +22243,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R1C2 must be D; R5C2 must be C. E already appears in row 3; A, C, D already appear in column 2 — so B is the only letter left for R3C2.",
+    "explanation": "Fill the forced cells first: R1C2 must be D. In row 5, C and E are missing. C cannot go in R5C4 because it already appears in column 4, so C must go in R5C2 — which leaves E for R5C4. E already appears in row 3; A, C, D already appear in column 2 — so B is the only letter left for R3C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 2 (at R2C2), and a letter can only appear once per column.",
       "C": "C already appears in row 3 (at R3C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -21642,7 +22333,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-004",
     "generator": {
@@ -21890,7 +22588,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.33, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-005",
     "generator": {
@@ -22160,7 +22865,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-006",
     "generator": {
@@ -22318,7 +23030,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R5C2 must be A; R2C2 must be B. D, E already appear in row 4; A, B already appear in column 2 — so C is the only letter left for R4C2.",
+    "explanation": "Fill the forced cells first: R5C2 must be A. In row 2, B and C are missing. B cannot go in R2C4 because it already appears in column 4, so B must go in R2C2 — which leaves C for R2C4. D, E already appear in row 4; A, B already appear in column 2 — so C is the only letter left for R4C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 4 (at R4C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -22408,7 +23120,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-007",
     "generator": {
@@ -22656,7 +23375,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.29, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-008",
     "generator": {
@@ -22926,7 +23652,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-009",
     "generator": {
@@ -23084,7 +23817,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R5C2 must be B; R4C2 must be A. C already appears in row 2; A, B, E already appear in column 2 — so D is the only letter left for R2C2.",
+    "explanation": "In row 5, A and B are missing. B cannot go in R5C5 because it already appears in column 5, so B must go in R5C2 — which leaves A for R5C5. That frees more cells: R4C2 must be A. C already appears in row 2; A, B, E already appear in column 2 — so D is the only letter left for R2C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -23174,7 +23907,14 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-010",
     "generator": {
@@ -23422,7 +24162,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-011",
     "generator": {
@@ -23692,7 +24439,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-012",
     "generator": {
@@ -23859,7 +24613,7 @@
       }
     ],
     "forcedPlacementDepth": 4,
-    "explanation": "Fill the forced cells first: R3C4 must be A; R2C2 must be A; R2C5 must be B. A, B, C, D already appear in row 2 — so E is the only letter left for R2C4.",
+    "explanation": "In row 3, A and B are missing. A cannot go in R3C3 because it already appears in column 3, so A must go in R3C4 — which leaves B for R3C3. In column 2, A and E are missing. A cannot go in R5C2 because it already appears in row 5, so A must go in R2C2 — which leaves E for R5C2. That frees more cells: R2C5 must be B. A, B, C, D already appear in row 2 — so E is the only letter left for R2C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -23962,7 +24716,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-013",
     "generator": {
@@ -24232,7 +24993,14 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.29, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-014",
     "generator": {
@@ -24502,7 +25270,14 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 4, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-015",
     "generator": {
@@ -24660,7 +25435,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R2C2 must be D; R1C1 must be E. A, E already appear in row 1; C, D already appear in column 2 — so B is the only letter left for R1C2.",
+    "explanation": "In row 2, A and D are missing. D cannot go in R2C3 because it already appears in column 3, so D must go in R2C2 — which leaves A for R2C3. In column 1, D and E are missing. E cannot go in R5C1 because it already appears in row 5, so E must go in R1C1 — which leaves D for R5C1. A, E already appear in row 1; C, D already appear in column 2 — so B is the only letter left for R1C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C4), and a letter can only appear once per row.",
       "C": "C already appears in column 2 (at R5C2), and a letter can only appear once per column.",
@@ -24750,7 +25525,14 @@
         "D": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-016",
     "generator": {
@@ -24998,7 +25780,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-017",
     "generator": {
@@ -25246,7 +26035,14 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.50, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.50, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-018",
     "generator": {
@@ -25404,7 +26200,7 @@
       }
     ],
     "forcedPlacementDepth": 3,
-    "explanation": "Fill the forced cells first: R2C3 must be D; R5C3 must be B. E already appears in row 3; A, B, D already appear in column 3 — so C is the only letter left for R3C3.",
+    "explanation": "Fill the forced cells first: R2C3 must be D. In row 5, B and C are missing. B cannot go in R5C5 because it already appears in column 5, so B must go in R5C3 — which leaves C for R5C5. E already appears in row 3; A, B, D already appear in column 3 — so C is the only letter left for R3C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 3 (at R4C3), and a letter can only appear once per column.",
       "B": "B already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -25494,7 +26290,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 3, clue density 0.46, 0 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-medium-b5-019",
     "generator": {
@@ -25688,7 +26491,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R3C4 must be D; R2C4 must be B; R3C1 must be A; R2C1 must be D; R2C5 must be A; R4C1 must be B. B, C already appear in row 4; A, E already appear in column 5 — so D is the only letter left for R4C5.",
+    "explanation": "Fill the forced cells first: R3C4 must be D; R2C4 must be B; R3C1 must be A; R2C1 must be D; R2C5 must be A. In column 1, B and E are missing. B cannot go in R1C1 because it already appears in row 1, so B must go in R4C1 — which leaves E for R1C1. B, C already appear in row 4; A, E already appear in column 5 — so D is the only letter left for R4C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -25822,7 +26625,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -25830,7 +26633,17 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-001",
     "generator": {
@@ -26024,7 +26837,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C1 must be A; R1C2 must be E; R1C5 must be B; R3C1 must be C; R3C2 must be D; R2C2 must be A. D already appears in row 5; A, C, E already appear in column 2 — so B is the only letter left for R5C2.",
+    "explanation": "Fill the forced cells first: R1C1 must be A. In row 1, B and E are missing. E cannot go in R1C5 because it already appears in column 5, so E must go in R1C2 — which leaves B for R1C5. That frees more cells: R1C5 must be B; R3C1 must be C. In row 3, A and D are missing. D cannot go in R3C3 because it already appears in column 3, so D must go in R3C2 — which leaves A for R3C3. That frees more cells: R2C2 must be A. D already appears in row 5; A, C, E already appear in column 2 — so B is the only letter left for R5C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in column 2 (at R4C2), and a letter can only appear once per column.",
@@ -26158,7 +26971,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -26166,7 +26979,17 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-002",
     "generator": {
@@ -26360,7 +27183,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C5 must be B; R1C2 must be E; R4C5 must be C; R2C5 must be A; R3C5 must be D; R3C1 must be B. A already appears in row 2; B, C, E already appear in column 1 — so D is the only letter left for R2C1.",
+    "explanation": "Fill the forced cells first: R1C5 must be B; R1C2 must be E; R4C5 must be C. In column 5, A and D are missing. A cannot go in R3C5 because it already appears in row 3, so A must go in R2C5 — which leaves D for R3C5. That frees more cells: R3C5 must be D; R3C1 must be B. A already appears in row 2; B, C, E already appear in column 1 — so D is the only letter left for R2C1. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 1 (at R5C1), and a letter can only appear once per column.",
       "B": "B already appears in row 2 (at R2C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -26494,7 +27317,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "direct-clash",
@@ -26502,7 +27325,17 @@
         "C": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.38, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-003",
     "generator": {
@@ -26696,7 +27529,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C1 must be A; R1C3 must be B; R1C2 must be E; R2C1 must be C; R2C3 must be A; R5C3 must be C. C, E already appear in row 5; B, D already appear in column 5 — so A is the only letter left for R5C5.",
+    "explanation": "Fill the forced cells first: R1C1 must be A; R1C3 must be B; R1C2 must be E; R2C1 must be C; R2C3 must be A. In column 3, C and D are missing. C cannot go in R3C3 because it already appears in row 3, so C must go in R5C3 — which leaves D for R3C3. C, E already appear in row 5; B, D already appear in column 5 — so A is the only letter left for R5C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in column 5 (at R2C5), and a letter can only appear once per column.",
       "C": "C already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -26830,7 +27663,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "direct-clash",
@@ -26838,7 +27671,17 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 5 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 5 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-004",
     "generator": {
@@ -27023,7 +27866,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C2 must be A; R1C4 must be C; R5C2 must be C; R3C3 must be B; R3C2 must be E. A already appears in row 2; C, D, E already appear in column 2 — so B is the only letter left for R2C2.",
+    "explanation": "In row 1, A and C are missing. A cannot go in R1C4 because it already appears in column 4, so A must go in R1C2 — which leaves C for R1C4. That frees more cells: R1C4 must be C. In row 5, B and C are missing. C cannot go in R5C4 because it already appears in column 4, so C must go in R5C2 — which leaves B for R5C4. That frees more cells: R3C3 must be B; R3C2 must be E. A already appears in row 2; C, D, E already appear in column 2 — so B is the only letter left for R2C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C3), and a letter can only appear once per row.",
       "C": "C already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -27144,7 +27987,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -27152,7 +27995,17 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-005",
     "generator": {
@@ -27328,7 +28181,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R2C3 must be E; R1C3 must be A; R1C4 must be E; R1C1 must be C. A, C, D, E already appear in row 1 — so B is the only letter left for R1C2.",
+    "explanation": "Fill the forced cells first: R2C3 must be E. In column 3, A and B are missing. A cannot go in R5C3 because it already appears in row 5, so A must go in R1C3 — which leaves B for R5C3. That frees more cells: R1C4 must be E; R1C1 must be C. A, C, D, E already appear in row 1 — so B is the only letter left for R1C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 1 (at R1C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -27444,7 +28297,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-006",
     "generator": {
@@ -27620,7 +28480,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R3C3 must be E; R4C4 must be A; R2C2 must be C; R3C2 must be B. A, B, D, E already appear in row 3 — so C is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R3C3 must be E. In row 4, A and E are missing. A cannot go in R4C1 because it already appears in column 1, so A must go in R4C4 — which leaves E for R4C1. That frees more cells: R2C2 must be C; R3C2 must be B. A, B, D, E already appear in row 3 — so C is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C5), and a letter can only appear once per row.",
       "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -27736,7 +28596,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-007",
     "generator": {
@@ -27912,7 +28779,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R1C4 must be A; R4C4 must be D; R4C2 must be B; R5C2 must be D. A, E already appear in row 1; B, D already appear in column 2 — so C is the only letter left for R1C2.",
+    "explanation": "In column 4, A and D are missing. A cannot go in R4C4 because it already appears in row 4, so A must go in R1C4 — which leaves D for R4C4. That frees more cells: R4C4 must be D. In row 4, B and C are missing. B cannot go in R4C5 because it already appears in column 5, so B must go in R4C2 — which leaves C for R4C5. That frees more cells: R5C2 must be D. A, E already appear in row 1; B, D already appear in column 2 — so C is the only letter left for R1C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 2 (at R3C2), and a letter can only appear once per column.",
       "B": "B already appears in row 1 (at R1C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -28028,7 +28895,14 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.38, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-008",
     "generator": {
@@ -28222,7 +29096,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R1C1 must be E; R3C1 must be C; R2C1 must be D; R4C2 must be E; R5C2 must be A; R5C4 must be E. B, C already appear in row 3; D, E already appear in column 4 — so A is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R1C1 must be E. In column 1, C and D are missing. C cannot go in R2C1 because it already appears in row 2, so C must go in R3C1 — which leaves D for R2C1. That frees more cells: R2C1 must be D; R4C2 must be E; R5C2 must be A; R5C4 must be E. B, C already appear in row 3; D, E already appear in column 4 — so A is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "B": "B already appears in row 3 (at R3C2), and a letter can only appear once per row.",
       "C": "C already appears in column 4 (at R1C4), and a letter can only appear once per column.",
@@ -28356,7 +29230,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "B": "direct-clash",
@@ -28364,7 +29238,17 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 7, clue density 0.29, 4 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.29, 4 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-009",
     "generator": {
@@ -28558,7 +29442,7 @@
       }
     ],
     "forcedPlacementDepth": 7,
-    "explanation": "Fill the forced cells first: R3C2 must be A; R1C3 must be A; R1C5 must be C; R3C5 must be D; R1C1 must be E; R3C1 must be B. A, B, C, D already appear in row 3 — so E is the only letter left for R3C4.",
+    "explanation": "In column 2, A and E are missing. A cannot go in R2C2 because it already appears in row 2, so A must go in R3C2 — which leaves E for R2C2. That frees more cells: R1C3 must be A; R1C5 must be C. In column 5, B and D are missing. D cannot go in R4C5 because it already appears in row 4, so D must go in R3C5 — which leaves B for R4C5. That frees more cells: R1C1 must be E; R3C1 must be B. A, B, C, D already appear in row 3 — so E is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 3 (at R3C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -28692,7 +29576,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 7,
       "distractorTypes": {
         "A": "derived-clash",
@@ -28700,7 +29584,17 @@
         "C": "direct-clash",
         "D": "direct-clash"
       },
-      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 7, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-010",
     "generator": {
@@ -28876,7 +29770,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R1C3 must be E; R2C3 must be C; R2C4 must be B; R1C4 must be C. C, E already appear in row 1; A, B already appear in column 5 — so D is the only letter left for R1C5.",
+    "explanation": "In column 3, C and E are missing. E cannot go in R2C3 because it already appears in row 2, so E must go in R1C3 — which leaves C for R2C3. That frees more cells: R2C3 must be C; R2C4 must be B; R1C4 must be C. C, E already appear in row 1; A, B already appear in column 5 — so D is the only letter left for R1C5. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 5 (at R5C5), and a letter can only appear once per column.",
       "B": "B already appears in column 5 (at R4C5), and a letter can only appear once per column.",
@@ -28992,7 +29886,14 @@
         "C": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-011",
     "generator": {
@@ -29177,7 +30078,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R3C2 must be A; R1C3 must be A; R4C3 must be C; R1C5 must be D; R4C5 must be E. C, E already appear in row 4; A, B already appear in column 2 — so D is the only letter left for R4C2.",
+    "explanation": "Fill the forced cells first: R3C2 must be A; R1C3 must be A. In column 3, B and C are missing. C cannot go in R5C3 because it already appears in row 5, so C must go in R4C3 — which leaves B for R5C3. That frees more cells: R1C5 must be D. In column 5, B and E are missing. E cannot go in R2C5 because it already appears in row 2, so E must go in R4C5 — which leaves B for R2C5. C, E already appear in row 4; A, B already appear in column 2 — so D is the only letter left for R4C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in column 2 (at R1C2), and a letter can only appear once per column.",
@@ -29298,7 +30199,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -29306,7 +30207,17 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-012",
     "generator": {
@@ -29491,7 +30402,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R4C1 must be A; R3C1 must be E; R2C1 must be C; R1C1 must be B; R1C3 must be A. C already appears in row 2; A, D, E already appear in column 3 — so B is the only letter left for R2C3.",
+    "explanation": "Fill the forced cells first: R4C1 must be A; R3C1 must be E. In column 1, B and C are missing. C cannot go in R1C1 because it already appears in row 1, so C must go in R2C1 — which leaves B for R1C1. That frees more cells: R1C1 must be B; R1C3 must be A. C already appears in row 2; A, D, E already appear in column 3 — so B is the only letter left for R2C3. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 2 (at R2C5), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 2 (at R2C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -29612,7 +30523,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -29620,7 +30531,17 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 3 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-013",
     "generator": {
@@ -29805,7 +30726,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R5C2 must be D; R4C5 must be E; R4C3 must be C; R3C3 must be E; R3C4 must be C. C, D, E already appear in row 3; A already appears in column 2 — so B is the only letter left for R3C2.",
+    "explanation": "Fill the forced cells first: R5C2 must be D; R4C5 must be E; R4C3 must be C. In column 3, A and E are missing. E cannot go in R1C3 because it already appears in row 1, so E must go in R3C3 — which leaves A for R1C3. That frees more cells: R3C4 must be C. C, D, E already appear in row 3; A already appears in column 2 — so B is the only letter left for R3C2. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in column 2 (at R4C2), and a letter can only appear once per column.",
       "C": "C already appears in row 3 (at R3C4), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -29926,7 +30847,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "direct-clash",
@@ -29934,7 +30855,17 @@
         "D": "direct-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.38, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-014",
     "generator": {
@@ -30119,7 +31050,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R2C4 must be A; R3C4 must be C; R5C3 must be A; R1C3 must be E; R5C1 must be E. A, B, E already appear in row 5; C already appears in column 4 — so D is the only letter left for R5C4.",
+    "explanation": "In row 2, A and D are missing. A cannot go in R2C5 because it already appears in column 5, so A must go in R2C4 — which leaves D for R2C5. That frees more cells: R3C4 must be C. In column 3, A and E are missing. A cannot go in R1C3 because it already appears in row 1, so A must go in R5C3 — which leaves E for R1C3. That frees more cells: R1C3 must be E. In column 1, D and E are missing. E cannot go in R1C1 because it already appears in row 1, so E must go in R5C1 — which leaves D for R1C1. A, B, E already appear in row 5; C already appears in column 4 — so D is the only letter left for R5C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 5 (at R5C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 5 (at R5C2), and a letter can only appear once per row.",
@@ -30240,7 +31171,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -30248,7 +31179,17 @@
         "C": "derived-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 6, clue density 0.42, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.42, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-015",
     "generator": {
@@ -30433,7 +31374,7 @@
       }
     ],
     "forcedPlacementDepth": 6,
-    "explanation": "Fill the forced cells first: R1C5 must be A; R3C5 must be D; R1C4 must be B; R1C2 must be C; R3C2 must be A. A, D, E already appear in row 3; B already appears in column 4 — so C is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R1C5 must be A; R3C5 must be D. In row 1, B and C are missing. B cannot go in R1C2 because it already appears in column 2, so B must go in R1C4 — which leaves C for R1C2. That frees more cells: R1C2 must be C; R3C2 must be A. A, D, E already appear in row 3; B already appears in column 4 — so C is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 3 (at R3C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -30554,7 +31495,7 @@
         "pair-elimination"
       ],
       "skill": "line-based positional deduction",
-      "dmatAlignment": "officially_documented",
+      "dmatAlignment": "reasonable_extrapolation",
       "reasoningDepth": 6,
       "distractorTypes": {
         "A": "derived-clash",
@@ -30562,7 +31503,17 @@
         "D": "derived-clash",
         "E": "direct-clash"
       },
-      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 6, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "deduction depth 6-7"
+        ]
+      }
     },
     "id": "ls-high-b5-016",
     "generator": {
@@ -30738,7 +31689,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R2C5 must be B; R2C4 must be E; R2C2 must be C; R3C2 must be A. A, C already appear in row 3; D, E already appear in column 4 — so B is the only letter left for R3C4.",
+    "explanation": "Fill the forced cells first: R2C5 must be B. In row 2, C and E are missing. E cannot go in R2C2 because it already appears in column 2, so E must go in R2C4 — which leaves C for R2C2. That frees more cells: R2C2 must be C. In column 2, A and B are missing. A cannot go in R1C2 because it already appears in row 1, so A must go in R3C2 — which leaves B for R1C2. A, C already appear in row 3; D, E already appear in column 4 — so B is the only letter left for R3C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 3 (at R3C2), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "C": "C already appears in row 3 (at R3C5), and a letter can only appear once per row.",
@@ -30854,7 +31805,14 @@
         "D": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 2 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-017",
     "generator": {
@@ -31030,7 +31988,7 @@
       }
     ],
     "forcedPlacementDepth": 5,
-    "explanation": "Fill the forced cells first: R4C3 must be B; R4C2 must be E; R1C1 must be D; R4C1 must be A. A, B, C, E already appear in row 4 — so D is the only letter left for R4C4.",
+    "explanation": "In column 3, B and D are missing. B cannot go in R5C3 because it already appears in row 5, so B must go in R4C3 — which leaves D for R5C3. That frees more cells: R4C2 must be E; R1C1 must be D; R4C1 must be A. A, B, C, E already appear in row 4 — so D is the only letter left for R4C4. The pair is a shortcut rather than a requirement: on a line missing only two letters it is the same deduction as a naked single at the partner cell, so the chain closes either way.",
     "distractorNotes": {
       "A": "A already appears in row 4 (at R4C1), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
       "B": "B already appears in row 4 (at R4C3), and a letter can only appear once per row. That clash only becomes visible once you fill in the cells the puzzle forces first.",
@@ -31146,7 +32104,14 @@
         "C": "direct-clash",
         "E": "derived-clash"
       },
-      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines"
+      "generationNotes": "depth 5, clue density 0.33, 1 prerequisite(s) outside the target's lines",
+      "provenance": {
+        "format": "stated",
+        "answerFormat": "stated",
+        "answerOptionCount": "demonstrated",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
     },
     "id": "ls-high-b5-018",
     "generator": {

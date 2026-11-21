@@ -2,42 +2,53 @@
 
 import Link from 'next/link'
 
-import { FIXED_DATES } from '@/content/exam/key-dates'
-import { daysUntil } from '@/lib/dates/countdown'
-import { useToday } from '@/lib/dates/use-today'
+import { COMMERCE_ENABLED } from '@/lib/payments/config'
+import { useEntitlement } from '@/lib/payments/use-entitlement'
 import { cn } from '@/lib/utils'
 
-const EXAM = FIXED_DATES.find((d) => d.id === 'exam-date')!
-
 /**
- * Brand plus a live countdown. The date alone was static decoration; days
- * remaining is the one number worth having permanently on screen.
+ * The brand row: a 24px mark, the name, and a PRO badge when the account has
+ * one.
+ *
+ * The countdown that used to sit under the name has moved to the dashboard,
+ * where the design puts it — as a figure with a label, beside the other three.
+ * A number small enough to fit under a wordmark could not say what it counted,
+ * so it had to be read twice to be understood.
  */
 export function SidebarBrand({ className }: { className?: string }) {
-  const today = useToday()
-  const days = today ? daysUntil(EXAM.date, today) : null
+  const entitlement = useEntitlement()
+  const pro = COMMERCE_ENABLED && entitlement.ready && entitlement.access
 
   return (
     <Link
       href="/"
       className={cn(
-        'flex items-center gap-3 rounded-md transition-opacity hover:opacity-80',
+        'focus-visible:ring-ring flex min-w-0 flex-1 items-center gap-2 rounded transition-opacity hover:opacity-80 focus-visible:ring-2 focus-visible:outline-none',
         className,
       )}
     >
       <span
         aria-hidden
-        className="bg-foreground text-background flex size-9 shrink-0 items-center justify-center rounded-[9px] text-base font-semibold"
+        className="bg-foreground text-background flex size-6 shrink-0 items-center justify-center rounded-[5px] text-[13px] font-semibold"
       >
         D
       </span>
-
-      <span className="min-w-0">
-        <span className="block text-sm leading-5 font-semibold">dMAT Prep</span>
-        <span className="text-muted-foreground block text-xs leading-4 tabular-nums">
-          {days === null ? ' ' : days > 0 ? `${days} days to exam` : 'Exam day'}
-        </span>
-      </span>
+      <span className="truncate text-sm leading-5 font-semibold">dMAT Prep</span>
+      {pro ? <ProBadge /> : null}
     </Link>
+  )
+}
+
+/** The one badge that means paid access. Gold, mono, never blue. */
+export function ProBadge({ className }: { className?: string }) {
+  return (
+    <span
+      className={cn(
+        'bg-gold text-gold-dark flex h-[18px] shrink-0 items-center rounded-sm px-1.5 font-mono text-[10px] leading-none font-semibold tracking-[0.04em]',
+        className,
+      )}
+    >
+      PRO
+    </span>
   )
 }

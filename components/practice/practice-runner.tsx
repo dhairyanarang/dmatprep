@@ -1,25 +1,31 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Bookmark } from 'lucide-react'
+import { toast } from 'sonner'
 
-import { ReadingMeasure } from '@/components/layout/page-shell'
+import { PremiumLocked } from '@/components/practice/premium-locked'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
-import { ExplanationSheet } from '@/components/practice/explanation-sheet'
+import {
+  PracticeBar,
+  type DifficultyFilter,
+  type DotState,
+  type StatusFilter,
+} from '@/components/practice/practice-bar'
+import { SolutionPanel, HintTrigger } from '@/components/practice/solution-panel'
 import { FeedbackSummary } from '@/components/practice/feedback-panel'
-import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
-import { Card, CardContent, CardHeader } from '@/components/ui/card'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
+import type { PublicQuestion } from '@/lib/content/registry'
+import { scrollBehavior } from '@/lib/motion'
+import { cn } from '@/lib/utils'
+
+/** Stable empty map: a fresh `{}` each render would re-run every memo on it. */
+const EMPTY_BOOKMARKS: Record<string, boolean> = {}
 import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
+import { useSolutions } from '@/lib/solutions/use-solutions'
 import type { SectionId } from '@/lib/sections'
 import {
   answeredCorrectly,
@@ -29,7 +35,7 @@ import {
   type PracticeMode,
 } from '@/lib/types/progress'
 import {
-  DIFFICULTIES,
+  hasSolution,
   isCorrect,
   requiredSelectionCount,
   type Difficulty,
@@ -40,12 +46,17 @@ import {
 type Filter = Difficulty | 'all'
 
 /** A question nobody has touched yet. Module scope so it is referentially stable. */
-const UNANSWERED: PracticeAnswer = { selection: {}, hintsUsed: 0, submitted: false }
+const UNANSWERED: PracticeAnswer = {
+  selection: {},
+  hintsUsed: 0,
+  submitted: false,
+}
 
 type RunnerProps = {
   /** Absent for a mixed session; each attempt is filed under its own question's section. */
   sectionId?: SectionId
-  questions: Question[]
+  /** Answer-free records as the page serves them; solutions are fetched and merged below. */
+  questions: PublicQuestion[]
   mode?: PracticeMode
   showProgress?: boolean
   showFilter?: boolean
@@ -74,9 +85,47 @@ export function PracticeRunner(props: RunnerProps) {
   const ready = useProgressReady()
   const progress = useProgress()
 
+  // The page served these without their answers. Fetch the other half and merge
+  // it back, so everything below this line sees complete questions exactly as it
+  // always has. See lib/solutions/use-solutions.ts.
+  const sections = useMemo(
+    () => [...new Set(props.questions.map((q) => q.section))],
+    [props.questions],
+  )
+  const solutions = useSolutions(sections)
+  const hydrate = solutions.ready ? solutions.hydrate : null
+
+  /**
+   * Hydrated once, and held.
+   *
+   * This was `solutions.hydrate(props.questions)` in the render body, which
+   * returned a new array every render. `pool` below memoises on it, so that
+   * memo never actually held — and its body re-reads `progress` to sort
+   * answered questions to the back. The note there says `progress` is excluded
+   * from the dependencies because "re-sorting mid-session would shuffle the
+   * deck under the candidate's feet after every answer". Leaving a dependency
+   * out does nothing when a different one changes identity on every render, so
+   * that is precisely what it did.
+   */
+  const questions = useMemo(
+    () => (hydrate ? hydrate(props.questions) : []),
+    [hydrate, props.questions],
+  )
+
   const key = props.mode === 'quick' ? 'quick' : `practice:${props.sectionId ?? 'mixed'}`
 
-  if (!ready) {
+  if (solutions.error) {
+    return (
+      <div className="border-border bg-card rounded-2xl border p-5">
+        <p className="text-sm">
+          The answers and explanations for this section could not be loaded, so practice would not
+          be able to mark your work. Check your connection and reload the page.
+        </p>
+      </div>
+    )
+  }
+
+  if (!ready || !solutions.ready) {
     return (
       <div className="space-y-5">
         <Skeleton className="h-4 w-40" />
@@ -86,12 +135,12 @@ export function PracticeRunner(props: RunnerProps) {
   }
 
   const saved = progress.practiceDrafts[key]
-  const known = new Set(props.questions.map((q) => q.id))
+  const known = new Set(questions.map((q) => q.id))
   // A draft written before the bank was regenerated points at questions that no
   // longer exist. Better to start clean than to restore a broken position.
   const draft = saved && saved.questionIds.every((id) => known.has(id)) ? saved : null
 
-  return <PracticeSession {...props} draftKey={key} initialDraft={draft} />
+  return <PracticeSession {...props} questions={questions} draftKey={key} initialDraft={draft} />
 }
 
 function PracticeSession({
@@ -102,9 +151,14 @@ function PracticeSession({
   showFilter = true,
   draftKey,
   initialDraft,
-}: RunnerProps & { draftKey: string; initialDraft: PracticeDraft | null }) {
+}: Omit<RunnerProps, 'questions'> & {
+  /** Hydrated by `PracticeRunner` above: solutions merged back in. */
+  questions: Question[]
+  draftKey: string
+  initialDraft: PracticeDraft | null
+}) {
   const progress = useProgress()
-  const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft } =
+  const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft, toggleBookmark } =
     useProgressActions()
 
   const [filter, setFilter] = useState<Filter>(initialDraft?.filter ?? 'all')
@@ -133,8 +187,73 @@ function PracticeSession({
     return seeded
   })
 
-  /** The question whose working is open in the side panel, if any. */
-  const [detailId, setDetailId] = useState<string | null>(null)
+  /**
+   * Which question the hint sidebar is showing.
+   *
+   * It is a SELECTION, not an "is the panel open" flag, and that is the whole
+   * difference between this and what came before. On desktop the sidebar is a
+   * permanent second column, so there is always a question it belongs to; null
+   * here only means "nothing chosen yet", and the first visible question is
+   * used until something is.
+   */
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  /**
+   * Whether the hint sidebar is showing, at every width.
+   *
+   * Closed by default. It was a permanent column for a while, which meant a
+   * 420px panel of mostly "Hidden until you ask" sat beside every question
+   * whether or not anyone had asked for a hint. "Need a hint?" toggles it, the
+   * panel's own close button closes it, and because the panel is fixed to the
+   * viewport rather than in flow, closing it reserves no column and leaves no
+   * gap — there is simply nothing there.
+   */
+  const [panelOpen, setPanelOpen] = useState(false)
+
+  /**
+   * Bookmarks live in the progress store, so they survive a reload and a
+   * navigation exactly as attempts do. `toggleBookmark` returns the state it
+   * ended in, which is what the toast reports — and what Undo puts back.
+   */
+  const bookmarks = progress.bookmarks ?? EMPTY_BOOKMARKS
+
+  const handleBookmark = useCallback(
+    (question: Question) => {
+      const nowSaved = toggleBookmark(question.id)
+      toast(nowSaved ? `Bookmarked ${question.id}` : 'Bookmark removed', {
+        action: { label: 'Undo', onClick: () => toggleBookmark(question.id) },
+      })
+    },
+    [toggleBookmark],
+  )
+
+  /**
+   * Where the sidebar starts, measured rather than assumed.
+   *
+   * The sidebar sticks directly beneath the question control bar, and that bar
+   * is not a fixed height: it wraps its question navigator and its filter
+   * chips, so it is 89px on a wide screen and taller on a narrow one. A
+   * constant put the panel's header underneath the bar. This writes the real
+   * figure into `--ptop`, which `.spanel` uses for both its offset and its
+   * height, and re-measures whenever the bar reflows.
+   */
+  const barBox = useRef<HTMLDivElement>(null)
+  const wrap = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const bar = barBox.current
+    const target = wrap.current
+    if (!bar || !target) return
+    const apply = () => {
+      // 52px is the top bar the control bar itself sticks under.
+      target.style.setProperty('--ptop', `${Math.round(bar.getBoundingClientRect().height) + 52}px`)
+    }
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(bar)
+    return () => observer.disconnect()
+  }, [])
+  const [status, setStatus] = useState<StatusFilter>('all')
 
   /**
    * Time is measured between commits rather than from when a question was first
@@ -152,8 +271,7 @@ function PracticeSession({
   )
 
   const pool = useMemo(() => {
-    const filtered =
-      filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
+    const filtered = filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
 
     // A restored run keeps the order it had, so a question stays where it was
     // on the page across a reload.
@@ -218,6 +336,10 @@ function PracticeSession({
    */
   const commit = useCallback(
     (question: Question, sel: Selection, hintsUsed: number) => {
+      // Unreachable through the interface — a locked question renders no
+      // options — but an attempt recorded here would be permanent and wrong,
+      // and `attempts` has no update policy to correct it with.
+      if (!hasSolution(question)) return
       patch(question.id, { selection: sel, submitted: true })
       const now = Date.now()
       recordAttempt({
@@ -276,8 +398,51 @@ function PracticeSession({
     )
   }
 
-  const detail = detailId ? pool.find((q) => q.id === detailId) : undefined
-  const detailAnswer = (detail && answers[detail.id]) || UNANSWERED
+  /**
+   * The status filter is a view, not progress.
+   *
+   * Difficulty is kept in the draft because it changes which questions are in
+   * the set; "show me only the ones I missed" changes nothing about the set
+   * and should not survive a reload as if it had.
+   */
+  const stateOf = (question: Question): DotState => {
+    if (!hasSolution(question)) return 'locked'
+    const answer = answers[question.id]
+    if (!answer?.submitted) return 'todo'
+    return isCorrect(question, answer.selection) ? 'right' : 'wrong'
+  }
+
+  const visible = pool.filter((question) => {
+    if (status === 'all') return true
+    if (status === 'saved') return Boolean(bookmarks[question.id])
+    const state = stateOf(question)
+    return status === 'todo' ? state === 'todo' || state === 'locked' : state === 'wrong'
+  })
+
+  /**
+   * Resolved against what is on screen, so the list and the sidebar can never
+   * disagree. Filtering to "Missed" while the sidebar shows a question that is
+   * no longer in the list is exactly the desynchronisation this avoids: the
+   * selection falls back to the first visible question instead.
+   */
+  const selected = visible.find((q) => q.id === selectedId) ?? visible[0]
+  const selectedAnswer = (selected && answers[selected.id]) || UNANSWERED
+
+  /**
+   * Hints are read from the selected question's own record, so a hint revealed
+   * on Q7 cannot show up under Q8. The panel holds no hint state of its own.
+   */
+  const stepTo = (delta: -1 | 1) => {
+    if (!selected) return
+    const next = visible[visible.indexOf(selected) + delta]
+    if (!next) return
+    setSelectedId(next.id)
+    document
+      .getElementById(`question-${next.id}`)
+      ?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' })
+  }
+
+  const correctCount = pool.reduce((n, question) => n + (stateOf(question) === 'right' ? 1 : 0), 0)
 
   return (
     <div className="space-y-5">
@@ -285,35 +450,109 @@ function PracticeSession({
         <SectionProgress sectionId={sectionId} bankSize={questions.length} />
       ) : null}
 
-      {/* Sticky so the count and the filter stay reachable however far down the
-          bank the learner has scrolled. */}
-      <div className="bg-background/95 supports-[backdrop-filter]:bg-background/85 sticky top-0 z-10 -mx-4 flex flex-wrap items-center justify-between gap-3 border-b px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6">
-        <span className="text-muted-foreground text-sm tabular-nums">
-          {answeredCount} / {pool.length} answered
-        </span>
-        {showFilter ? <FilterBar filter={filter} onChange={handleFilter} /> : null}
-      </div>
+      <PracticeBar
+        ref={barBox}
+        // The questions ON SCREEN, not the whole set.
+        //
+        // It used to map the pool, so after filtering to "To do" the strip
+        // still carried a dot for every answered question — and clicking one
+        // did not go there, because the card was not rendered. The selection
+        // fell through to a neighbour instead, so dot 4 quietly selected
+        // question 5. Every dot now maps to a question that is actually
+        // present, and `number` keeps the card's own numbering.
+        dots={visible.map((question) => ({
+          id: question.id,
+          number: pool.indexOf(question) + 1,
+          state: stateOf(question),
+          difficulty: question.difficulty,
+          bookmarked: Boolean(bookmarks[question.id]),
+        }))}
+        answered={answeredCount}
+        correct={correctCount}
+        total={pool.length}
+        status={status}
+        onStatus={setStatus}
+        difficulty={filter as DifficultyFilter}
+        onDifficulty={(value) => handleFilter(value as Filter)}
+        showDifficulty={showFilter}
+        current={selected?.id ?? null}
+        onJump={(id) => {
+          // Selecting and scrolling are one action: the navigator moves the
+          // page AND the sidebar, or the two drift apart.
+          setSelectedId(id)
+          document
+            .getElementById(`question-${id}`)
+            ?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' })
+        }}
+      />
 
-      {pool.length === 0 ? (
-        <p className="text-muted-foreground rounded-lg border border-dashed p-8 text-center text-sm">
-          No {filter} questions in this section.
-        </p>
+      {visible.length === 0 ? (
+        <div className="border-line2 text-muted-foreground rounded-xl border border-dashed p-12 text-center text-sm">
+          {status === 'missed'
+            ? 'Nothing missed here — every question you have answered in this view was right.'
+            : status === 'todo'
+              ? 'Nothing left to do in this view.'
+              : status === 'saved'
+                ? 'No bookmarks yet. Use the bookmark on a question to keep it here.'
+                : `No ${filter} questions in this section.`}{' '}
+          <button
+            type="button"
+            onClick={() => setStatus('all')}
+            className="text-brand cursor-pointer border-0 bg-none font-medium"
+          >
+            Show all questions
+          </button>
+        </div>
       ) : null}
 
-      {/* Slightly more air between questions than between the page's own
-          furniture above, so the column reads as a list of separate things. */}
-      <div className="space-y-6">
-        {pool.map((question, i) => (
-          <QuestionCard
-            key={question.id}
-            question={question}
-            position={i + 1}
-            answer={answers[question.id] ?? UNANSWERED}
-            onSelect={handleSelect}
-            onReveal={(n) => patch(question.id, { hintsUsed: n })}
-            onSeeMore={() => setDetailId(question.id)}
+      {/* The prototype's `.pwrap`: the question list, and the hint/solution
+          panel beside it. Below `lg` the panel is a drawer and this collapses
+          back to a single column on its own. */}
+      <div className={cn('pwrap', panelOpen && 'pwrap-open')} ref={wrap}>
+        <div className="qlist">
+          {visible.map((question) => (
+            <QuestionCard
+              key={question.id}
+              question={question}
+              position={pool.indexOf(question) + 1}
+              answer={answers[question.id] ?? UNANSWERED}
+              open={question.id === selected?.id && panelOpen}
+              bookmarked={Boolean(bookmarks[question.id])}
+              onSelect={handleSelect}
+              onBookmark={() => handleBookmark(question)}
+              onSeeMore={() => {
+                // Toggle: a second press on the same question's trigger closes
+                // the panel rather than re-opening what is already open.
+                if (panelOpen && selected?.id === question.id) {
+                  setPanelOpen(false)
+                  return
+                }
+                setSelectedId(question.id)
+                setPanelOpen(true)
+              }}
+            />
+          ))}
+        </div>
+
+        {selected && panelOpen ? (
+          <SolutionPanel
+            // Keyed on the question, so a panel built for one question is never
+            // re-used for the next: its scroll position and any transient state
+            // reset with it, and hints cannot bleed across.
+            key={selected.id}
+            question={selected}
+            selection={selectedAnswer.selection}
+            hintsUsed={selectedAnswer.hintsUsed}
+            position={pool.indexOf(selected) + 1}
+            total={pool.length}
+            answered={selectedAnswer.submitted}
+            atStart={visible.indexOf(selected) === 0}
+            atEnd={visible.indexOf(selected) === visible.length - 1}
+            onReveal={(n) => patch(selected.id, { hintsUsed: n })}
+            onClose={() => setPanelOpen(false)}
+            onStep={stepTo}
           />
-        ))}
+        ) : null}
       </div>
 
       {pool.length > 0 && answeredCount === pool.length && sectionId ? (
@@ -329,20 +568,14 @@ function PracticeSession({
           }}
         />
       ) : null}
-
-      <ExplanationSheet
-        question={detail ?? null}
-        selection={detailAnswer.selection}
-        hintsUsed={detailAnswer.hintsUsed}
-        position={detail ? pool.findIndex((q) => q.id === detail.id) + 1 : 0}
-        onClose={() => setDetailId(null)}
-      />
     </div>
   )
 }
 
 /**
- * One question, self-contained.
+ * One question, as the design's panel: a header strip carrying its number,
+ * difficulty and result, an inset white surface holding the question itself,
+ * and — once answered — a footer that says what happened.
  *
  * `content-visibility` is the whole reason a hundred and seventy of these can
  * share a page: every card is in the DOM and reachable, but the browser skips
@@ -353,42 +586,113 @@ function QuestionCard({
   question,
   position,
   answer,
+  open,
+  bookmarked,
   onSelect,
-  onReveal,
+  onBookmark,
   onSeeMore,
 }: {
   question: Question
   position: number
   answer: PracticeAnswer
+  /** Whether this question's hints and working are the ones in the side panel. */
+  open: boolean
+  bookmarked: boolean
   onSelect: (question: Question, key: string, optionId: string) => void
-  onReveal: (next: number) => void
+  onBookmark: () => void
   onSeeMore: () => void
 }) {
   const { selection, submitted, hintsUsed } = answer
   const answered = Object.keys(selection).length >= requiredSelectionCount(question)
 
-  return (
-    <Card
-      id={`question-${question.id}`}
-      // The one place this view departs from DESIGN.md, which separates surfaces
-      // with hairline borders and never with shadows. On a page that is nothing
-      // but a column of cards, a border alone leaves them reading as one ruled
-      // sheet; the faintest lift is what makes each question a thing of its own.
-      // `shadow-xs` and no more — the rule still does most of the work.
-      className="scroll-mt-20 shadow-xs [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
-    >
-      {/* A header with a rule under it, so the eye can find the top of a
-          question without reading anything. CardHeader already pads itself to
-          the card's spacing when it carries a border. */}
-      <CardHeader className="flex flex-row items-center justify-between gap-3 border-b">
-        <span className="text-foreground text-sm font-medium tabular-nums">
-          Question {position}
-        </span>
-        <DifficultyBadge difficulty={question.difficulty} />
-      </CardHeader>
+  /**
+   * The answer half never arrived, so this question is not ours to grade.
+   *
+   * Locked BEFORE the options rather than after an attempt: a question that
+   * cannot be graded must not be answerable, or the only honest outcomes are a
+   * silent nothing and a wrong "incorrect".
+   */
+  const locked = !hasSolution(question)
+  const right = submitted && isCorrect(question, selection)
 
-      <CardContent className="space-y-5">
-        <ReadingMeasure>
+  return (
+    <article
+      id={`question-${question.id}`}
+      aria-label={`Question ${position}`}
+      className={cn(
+        'panel scroll-mt-32 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]',
+        // Which question the panel is about, said on the question itself.
+        open && 'ring-brand/35 ring-2',
+      )}
+    >
+      <div className="panel-h min-h-[42px]">
+        <span className="flex min-w-0 items-center gap-2">
+          <span className="font-mono text-xs font-semibold tabular-nums">
+            Q{String(position).padStart(2, '0')}
+          </span>
+          <DifficultyBadge difficulty={question.difficulty} />
+          <span className="text-muted-foreground truncate font-mono text-xs">{question.id}</span>
+        </span>
+
+        <span className="flex shrink-0 items-center gap-1.5">
+          {submitted ? (
+            <span
+              className={cn(
+                'inline-flex h-[22px] items-center gap-1.5 rounded-full border px-2 text-xs font-medium',
+                right
+                  ? 'bg-success-tint border-success/30 text-success-fg'
+                  : 'bg-danger-tint border-danger/30 text-danger-fg',
+              )}
+            >
+              <i
+                aria-hidden
+                className="block size-1.5 rounded-full"
+                style={{
+                  background: right ? 'var(--success)' : 'var(--danger)',
+                }}
+              />
+              {right ? 'Correct' : 'Missed'}
+            </span>
+          ) : null}
+
+          {!locked && question.hints?.length ? (
+            <HintTrigger
+              hintsUsed={hintsUsed}
+              total={question.hints.length}
+              open={open}
+              onOpen={onSeeMore}
+            />
+          ) : null}
+
+          {/*
+            The prototype's bookmark: a 28px borderless icon button beside the
+            hint control, brand-coloured and filled when set, muted and
+            outlined when not.
+
+              color: ${saved ? 'var(--blue)' : 'var(--t2)'}
+              aria-pressed="${saved}"
+          */}
+          <button
+            type="button"
+            onClick={onBookmark}
+            aria-pressed={bookmarked}
+            aria-label={
+              bookmarked ? `Remove bookmark from ${question.id}` : `Bookmark ${question.id}`
+            }
+            className={cn(
+              'grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150',
+              bookmarked ? 'text-brand' : 'text-muted-foreground hover:text-foreground',
+            )}
+          >
+            <Bookmark className="size-4" fill={bookmarked ? 'currentColor' : 'none'} />
+          </button>
+        </span>
+      </div>
+
+      <div className="surface flex flex-col gap-3.5 p-4">
+        {locked ? (
+          <PremiumLocked questionId={question.id} />
+        ) : (
           <QuestionView
             question={question}
             selection={selection}
@@ -396,58 +700,28 @@ function QuestionCard({
             onSelect={(key, optionId) => onSelect(question, key, optionId)}
             compactOptions
           />
-        </ReadingMeasure>
+        )}
 
-        {!submitted && question.hints?.length ? (
-          <>
-            <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
-            <div className="flex flex-wrap items-center gap-2">
-              {hintsUsed === 0 ? <HintTrigger onReveal={() => onReveal(1)} /> : null}
-              {!answered ? (
-                <p className="text-muted-foreground text-sm">
-                  {requiredSelectionCount(question) === 2
-                    ? 'Choose an option for both images.'
-                    : 'Choose an option.'}
-                </p>
-              ) : null}
-            </div>
-          </>
+        {!locked && !submitted && !answered ? (
+          <p className="text-muted-foreground text-sm">
+            {requiredSelectionCount(question) === 2
+              ? 'Choose an option for both images.'
+              : 'Choose an option.'}
+          </p>
         ) : null}
+      </div>
 
-        {submitted ? (
+      {!locked && submitted ? (
+        <div className="flex min-h-[46px] flex-wrap items-center gap-2.5 px-2 pt-1.5 pb-0.5">
           <FeedbackSummary
             question={question}
             selection={selection}
-            correct={isCorrect(question, selection)}
+            correct={right}
             hintsUsed={hintsUsed}
             onSeeMore={onSeeMore}
           />
-        ) : null}
-      </CardContent>
-    </Card>
-  )
-}
-
-function FilterBar({ filter, onChange }: { filter: Filter; onChange: (value: Filter) => void }) {
-  return (
-    <div className="flex items-center gap-2">
-      <label htmlFor="difficulty-filter" className="text-muted-foreground text-sm">
-        Difficulty
-      </label>
-      {/* Base UI hands back `value | null`; ignore the null clear. */}
-      <Select value={filter} onValueChange={(value) => value && onChange(value)}>
-        <SelectTrigger id="difficulty-filter" size="sm" className="w-32">
-          <SelectValue />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="all">All</SelectItem>
-          {DIFFICULTIES.map((d) => (
-            <SelectItem key={d} value={d}>
-              {d[0].toUpperCase() + d.slice(1)}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+        </div>
+      ) : null}
+    </article>
   )
 }

@@ -66,6 +66,13 @@ export const DIRECTION_CYCLES = [
  * defend, not every reading we happened to build.
  */
 export function* candidateMovements(startCell) {
+  // A symbol that holds its cell. Attested in Exercises 3 and 6, each of which
+  // carries a rotation clause with no movement clause, and filed under
+  // FS_CONTRACT.review. It belongs in the candidate space whether or not the
+  // generator emits it: a candidate looking at four panels in which a symbol has
+  // not moved can legitimately read "it does not move", and the gate has to
+  // consider that reading or it is not asking the right question.
+  yield { type: 'static' }
   for (const axis of ['vertical', 'horizontal']) {
     const line = axis === 'vertical' ? startCell.col : startCell.row
     const directions = axis === 'vertical' ? ['up', 'down'] : ['left', 'right']

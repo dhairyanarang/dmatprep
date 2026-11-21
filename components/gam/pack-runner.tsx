@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { ArrowLeft, ArrowRight, CircleCheck, FileText, Timer } from 'lucide-react'
 
 import { GamResults } from '@/components/gam/results'
@@ -19,17 +19,53 @@ import {
   type GamDraft,
   type GamMode,
 } from '@/lib/gam/progress'
-import type { GamPackFile, GamQuestion, SourcePack } from '@/lib/types/gam'
+import type {
+  GamSolutionEntry,
+  PublicGamPackFile,
+  PublicGamQuestion,
+} from '@/lib/gam/registry'
+import type { GamQuestion, SourcePack } from '@/lib/types/gam'
 
 type Props = {
-  files: GamPackFile[]
+  files: PublicGamPackFile[]
   mode: GamMode
   /** Absolute session length in minutes; timed sessions only. */
   minutes?: number
   storageKey: string
 }
 
-type Flat = { pack: SourcePack; question: GamQuestion; indexInPack: number; packSize: number }
+type Flat = {
+  pack: SourcePack
+  question: PublicGamQuestion
+  indexInPack: number
+  packSize: number
+}
+
+/** The same row once the answer half has been merged back in. */
+type MarkedFlat = Omit<Flat, 'question'> & { question: GamQuestion }
+
+type GamSolutionMap = Record<string, GamSolutionEntry>
+
+/**
+ * Ask the server to mark this session.
+ *
+ * Called when the candidate submits and never before. The pages serve packs
+ * with `correctOptionId`, `explanation`, `refutations`, `supportSpans` and
+ * `computation` stripped out, so until this resolves the browser holds nothing
+ * that answers a question — which is the whole point, and was not true while
+ * `/module-b/timed` prerendered all nineteen keys into its own HTML.
+ */
+async function fetchGamSolutions(packIds: string[]): Promise<GamSolutionMap> {
+  const response = await fetch('/api/module-b/mark', {
+    method: 'POST',
+    headers: { 'content-type': 'application/json' },
+    body: JSON.stringify({ packIds }),
+  })
+  if (!response.ok) throw new Error(`mark: HTTP ${response.status}`)
+  const body = (await response.json()) as { solutions?: GamSolutionMap }
+  if (!body.solutions) throw new Error('mark: no solutions in response')
+  return body.solutions
+}
 
 /**
  * The GAM runner.
@@ -115,6 +151,18 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
   const [submitted, setSubmitted] = useState(() => draft?.submitted ?? false)
   const [timedOut, setTimedOut] = useState(false)
 
+  /**
+   * Submitted *in this mount*, as opposed to restored from a draft that was
+   * already submitted. Only the former is a result worth recording — reopening
+   * a finished session must not append a second attempt for every question,
+   * which is what recording on `submitted` alone would do.
+   */
+  const [justSubmitted, setJustSubmitted] = useState(false)
+  const [solutions, setSolutions] = useState<GamSolutionMap | null>(null)
+  const [markFailed, setMarkFailed] = useState(false)
+  const [markAttempt, setMarkAttempt] = useState(0)
+  const recorded = useRef(false)
+
   const current = flat[index]
   const answeredCount = Object.keys(answers).length
 
@@ -135,36 +183,25 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
     [answers, files, index, mode, saveDraft, session, storageKey, submitted],
   )
 
+  /**
+   * Submitting is still synchronous, and that is deliberate.
+   *
+   * It has to be: the clock calls this at zero, and a submission that could
+   * fail on a network request would be a timed session that ran out and then
+   * lost the work. So this records the decision locally and immediately — the
+   * draft is already persisted — and the marking happens afterwards, once the
+   * answer key arrives. Nothing about the candidate's session depends on the
+   * request succeeding; only the score does, and that can be retried.
+   */
   const submit = useCallback(
     (ranOut: boolean) => {
       if (submitted) return
       setSubmitted(true)
       setTimedOut(ranOut)
-
-      const attempts = flat
-        .filter((f) => answers[f.question.id])
-        .map((f) => ({
-          packId: f.pack.id,
-          questionId: f.question.id,
-          chosenOptionId: answers[f.question.id],
-          correct: answers[f.question.id] === f.question.correctOptionId,
-          mode,
-        }))
-      recordAttempts(attempts)
-      recordSession({
-        id: `${storageKey}:${session.startedAt}`,
-        mode,
-        packIds: files.map((f) => f.pack.id),
-        at: new Date().toISOString(),
-        durationMs: Date.now() - new Date(session.startedAt).getTime(),
-        timedOut: ranOut,
-        total: flat.length,
-        answered: attempts.length,
-        correct: attempts.filter((a) => a.correct).length,
-      })
+      setJustSubmitted(true)
       persist({ submitted: true })
     },
-    [answers, files, flat, mode, persist, recordAttempts, recordSession, session, storageKey, submitted],
+    [persist, submitted],
   )
 
   /* --- the clock ------------------------------------------------------- */
@@ -181,6 +218,88 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
     const id = window.setInterval(tick, 1000)
     return () => window.clearInterval(id)
   }, [resolved, session, submit, submitted])
+
+  /* --- marking ---------------------------------------------------------- */
+
+  /**
+   * Fetch the answer key, once the session is over.
+   *
+   * Runs for a restored-and-already-submitted draft as well as for a fresh
+   * submission, because the review screen needs the explanations either way.
+   * `markAttempt` is in the dependency list so the retry button can re-run it.
+   */
+  useEffect(() => {
+    if (!submitted || solutions) return
+    let live = true
+    fetchGamSolutions(files.map((f) => f.pack.id))
+      .then((map) => {
+        if (live) setSolutions(map)
+      })
+      .catch(() => {
+        if (live) setMarkFailed(true)
+      })
+    return () => {
+      live = false
+    }
+  }, [submitted, solutions, files, markAttempt])
+
+  /** The session, with the answer half merged back in. */
+  const marked = useMemo<MarkedFlat[] | null>(
+    () =>
+      solutions
+        ? flat.map((f) => ({
+            ...f,
+            question: { ...f.question, ...solutions[f.question.id] } as GamQuestion,
+          }))
+        : null,
+    [flat, solutions],
+  )
+
+  /**
+   * Record the attempts, once, when the key is in hand.
+   *
+   * This used to happen inside `submit`, which could do it synchronously
+   * because the answers were already in the page. The guard is a ref rather
+   * than state so that re-running this effect — which the dependency list
+   * makes possible — cannot record a second time.
+   */
+  useEffect(() => {
+    if (!justSubmitted || !marked || recorded.current) return
+    recorded.current = true
+
+    const attempts = marked
+      .filter((f) => answers[f.question.id])
+      .map((f) => ({
+        packId: f.pack.id,
+        questionId: f.question.id,
+        chosenOptionId: answers[f.question.id],
+        correct: answers[f.question.id] === f.question.correctOptionId,
+        mode,
+      }))
+    recordAttempts(attempts)
+    recordSession({
+      id: `${storageKey}:${session.startedAt}`,
+      mode,
+      packIds: files.map((f) => f.pack.id),
+      at: new Date().toISOString(),
+      durationMs: Date.now() - new Date(session.startedAt).getTime(),
+      timedOut,
+      total: marked.length,
+      answered: attempts.length,
+      correct: attempts.filter((a) => a.correct).length,
+    })
+  }, [
+    answers,
+    files,
+    justSubmitted,
+    marked,
+    mode,
+    recordAttempts,
+    recordSession,
+    session,
+    storageKey,
+    timedOut,
+  ])
 
   const choose = (optionId: string) => {
     if (submitted) return
@@ -200,6 +319,12 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
     setAnswers({})
     setSubmitted(false)
     setIndex(0)
+    // The answer key goes with it. Keeping it would mean a fresh session was
+    // being sat by a browser that already held its answers.
+    setJustSubmitted(false)
+    setSolutions(null)
+    setMarkFailed(false)
+    recorded.current = false
     const now = Date.now()
     setSession({
       startedAt: new Date(now).toISOString(),
@@ -235,9 +360,43 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
   }
 
   if (submitted) {
+    if (markFailed) {
+      return (
+        <PageContainer className="py-6">
+          <Card className="mx-auto max-w-md">
+            <CardContent className="space-y-4 pt-5">
+              <h1 className="text-lg tracking-tight">We could not mark that session</h1>
+              <p className="text-muted-foreground text-sm leading-relaxed">
+                Your answers are saved — all {answeredCount} of them — and nothing has been
+                lost. The scoring needs a connection, so check yours and try again.
+              </p>
+              <Button
+                onClick={() => {
+                  setMarkFailed(false)
+                  setMarkAttempt((n) => n + 1)
+                }}
+              >
+                Try marking again
+              </Button>
+            </CardContent>
+          </Card>
+        </PageContainer>
+      )
+    }
+
+    if (!marked) {
+      return (
+        <PageContainer className="space-y-4 py-6">
+          <h1 className="text-lg tracking-tight">Marking your session…</h1>
+          <Skeleton className="h-24 w-full" />
+          <Skeleton className="h-72 w-full" />
+        </PageContainer>
+      )
+    }
+
     return (
       <GamResults
-        flat={flat}
+        flat={marked}
         answers={answers}
         timedOut={timedOut}
         onRestart={restart}
@@ -280,11 +439,15 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
       <div className="grid gap-5 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
         {/* The source stays put while the questions of its pack are worked
             through — moving it would break the one thing GAM is testing. */}
-        <Card className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-y-auto">
-          <CardContent className="pt-5">
+        <section className="panel lg:sticky lg:top-[68px] lg:max-h-[calc(100vh-88px)]">
+          <div className="panel-h">
+            <h2 className="ptitle">Source</h2>
+            <span className="text-muted-foreground text-xs">Stays while you answer</span>
+          </div>
+          <div className="surface flex-1 overflow-y-auto p-4">
             <SourcePackView pack={current.pack} />
-          </CardContent>
-        </Card>
+          </div>
+        </section>
 
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-1.5">
@@ -297,13 +460,11 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
                   onClick={() => go(at)}
                   aria-current={at === index}
                   aria-label={`Question ${f.indexInPack + 1}${answers[f.question.id] ? ', answered' : ''}`}
-                  className={`size-7 rounded-md border text-xs transition-colors duration-150 ${
-                    at === index
-                      ? 'border-foreground bg-accent'
-                      : answers[f.question.id]
-                        ? 'border-foreground/40'
-                        : 'border-border text-muted-foreground'
-                  }`}
+                  className={`size-7 rounded-[7px] border font-mono text-xs transition-colors duration-150 ${
+                    answers[f.question.id]
+                      ? 'border-brand bg-brand text-brand-foreground'
+                      : 'border-line2 bg-card text-muted-foreground hover:border-foreground'
+                  } ${at === index ? 'border-foreground border-[1.5px]' : ''}`}
                 >
                   {f.indexInPack + 1}
                 </button>
@@ -314,9 +475,23 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
             </span>
           </div>
 
-          <Card>
-            <CardContent className="space-y-4 pt-5">
-              <p className="text-[15px] leading-relaxed">{current.question.stem}</p>
+          <article className="panel">
+            <div className="panel-h min-h-[42px]">
+              <span className="flex min-w-0 items-center gap-2">
+                <span className="font-mono text-xs font-semibold tabular-nums">
+                  Q{String(current.indexInPack + 1).padStart(2, '0')}
+                </span>
+                <span className="text-muted-foreground truncate font-mono text-xs">
+                  {current.question.id}
+                </span>
+              </span>
+              <span className="text-muted-foreground text-xs">Single choice</span>
+            </div>
+
+            <div className="surface flex flex-col gap-3.5 p-4">
+              <p className="max-w-[560px] text-base leading-[22px] font-semibold">
+                {current.question.stem}
+              </p>
               <div className="grid gap-2">
                 {current.question.options.map((option) => (
                   <OptionButton
@@ -332,8 +507,8 @@ function Runner({ files, mode, minutes, storageKey }: Props) {
                   </OptionButton>
                 ))}
               </div>
-            </CardContent>
-          </Card>
+            </div>
+          </article>
 
           <div className="flex items-center justify-between">
             <Button variant="ghost" size="sm" onClick={() => go(index - 1)} disabled={index === 0}>

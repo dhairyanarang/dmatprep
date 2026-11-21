@@ -199,15 +199,27 @@ export function FigureUnknown({
       role="img"
       aria-label="Unknown matrix, to be determined"
     >
+      {/*
+        The prototype's `.fbox.q`: a dashed blue-200 outline over a very pale
+        blue ground, with the mark itself in brand blue.
+
+          .fbox.q { border:1.5px dashed var(--blue200); background:#F8F9FF }
+          .fbox.q b { color: var(--blue) }
+
+        It read as another grey panel before, which made the two cells the
+        candidate has to supply look like two more cells they had been given.
+      */}
       <rect
         x={-PAD}
         y={-PAD}
         width={width + PAD * 2}
         height={height + PAD * 2}
         rx={8}
-        fill="var(--figure-panel)"
+        fill="var(--brand-50)"
+        stroke="var(--brand-200)"
+        strokeWidth={3}
+        strokeDasharray="10 8"
       />
-      <rect x={0} y={0} width={width} height={height} fill="none" stroke="var(--figure-frame)" strokeWidth={4} />
       <text
         x={width / 2}
         y={height / 2}
@@ -215,7 +227,7 @@ export function FigureUnknown({
         dominantBaseline="central"
         fontSize={CELL * 1.1}
         fontWeight={600}
-        fill="var(--figure-frame)"
+        fill="var(--brand)"
       >
         ?
       </text>

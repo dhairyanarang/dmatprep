@@ -16,8 +16,9 @@ export const guide: SectionGuide = {
     { type: 'heading', text: 'The constraint, in full' },
     { type: 'diagram', kind: 'ls-constraint' },
     {
-      type: 'quote',
-      text: 'Each letter can only appear once in each row and each column. Only the letters that are shown as response options can appear in the grid.',
+      // Paraphrased, not quoted — see docs/COPYRIGHT_REVIEW.md.
+      type: 'prose',
+      text: 'A letter appears at most once along any row and at most once down any column. The grid uses no letters beyond the ones offered as response options, so there is never a sixth letter hiding in it.',
       sources: [{ id: 'gam-pdf', page: 24 }],
     },
 
@@ -34,8 +35,11 @@ export const guide: SectionGuide = {
       ],
     },
     {
-      type: 'quote',
-      text: 'In the second example, you first need to fill in “B“ in the first row of the last column. Then you can replace the question mark with “D”, because it is the only letter that does not appear in the last column.',
+      // Paraphrased, not quoted — see docs/COPYRIGHT_REVIEW.md. The original
+      // walked through an official example the candidate cannot see here, so
+      // the paraphrase states the principle that example demonstrates instead.
+      type: 'prose',
+      text: 'The official worked solution for the second example takes this same order. It places a forced letter into another cell first; once that letter is down, the marked cell’s column is short of exactly one letter, and that letter is the answer.',
       sources: [{ id: 'gam-pdf', page: 25 }],
     },
 

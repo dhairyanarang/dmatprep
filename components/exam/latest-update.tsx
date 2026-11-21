@@ -1,19 +1,21 @@
 'use client'
 
-import { ArrowUpRight, Star } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 
-import { BrandPattern } from '@/components/dashboard/brand-pattern'
 import { CATEGORY_LABEL, latestUpdate } from '@/content/exam/updates'
 import { formatDate } from '@/lib/dates/countdown'
 import { useToday } from '@/lib/dates/use-today'
 
 /**
- * The one filled surface on About the Exam: what changed, when, and where to
- * verify it.
+ * What changed about the exam, when, and where to verify it.
  *
- * A discovery surface, not an article. Three lines and a link out to the
- * official document — anything longer belongs at the source, where it can be
- * read in full and in context.
+ * It used to be a large filled blue panel — the loudest thing on a page whose
+ * job is reference. An update is worth noticing, not worth shouting: it is a
+ * panel like every other now, and reads as part of the page rather than an
+ * announcement pasted over it.
+ *
+ * Three lines and a link out to the official document. Anything longer belongs
+ * at the source, where it can be read in full and in context.
  *
  * When there is nothing new it says so plainly. A placeholder update would be
  * indistinguishable from a real one at a glance, which is precisely the failure
@@ -23,48 +25,24 @@ export function LatestUpdate() {
   const today = useToday()
   const update = latestUpdate(today)
 
-  if (!update) {
-    return (
-      <section
-        aria-label="Latest dMAT updates"
-        className="border-border bg-surface-muted flex flex-col gap-1.5 rounded-2xl border p-5"
-      >
-        <p className="text-eyebrow text-muted-foreground">Latest dMAT updates</p>
-        <p className="text-sm font-medium">No new official updates.</p>
-        <p className="text-muted-foreground text-sm">
-          Registration and exam dates are on{' '}
-          <span className="text-foreground">Dates and Logistics</span>, with the source behind
-          every claim.
-        </p>
-      </section>
-    )
-  }
-
   return (
-    <section
-      aria-label="Latest dMAT updates"
-      className="bg-brand relative overflow-hidden rounded-2xl p-5"
-    >
-      <BrandPattern />
+    <section aria-label="Latest dMAT updates" className="panel">
+      <div className="panel-h">
+        <h2 className="ptitle">Latest dMAT updates</h2>
+        {update ? (
+          <span className="text-muted-foreground text-xs">
+            {formatDate(update.publishedAt)}
+          </span>
+        ) : null}
+      </div>
 
-      <div className="relative flex flex-col gap-5">
-        <p className="text-eyebrow flex items-center gap-2 text-white">
-          <Star className="size-5 shrink-0" aria-hidden />
-          Latest dMAT updates
-        </p>
-
-        {/* Nowrap from `sm`: the design keeps the action on the row with the
-            headline, and a long summary should take the space it needs rather
-            than pushing the button onto a line of its own. */}
-        <div className="flex flex-wrap items-end justify-between gap-4 sm:flex-nowrap">
-          <div className="min-w-0 flex-1 space-y-2">
-            <h2 className="text-base leading-tight font-semibold text-balance text-white">
-              {update.title}
-            </h2>
-            <p className="text-sm leading-tight font-medium text-white/60">{update.summary}</p>
-            <p className="text-xs font-medium text-white/60">
-              {formatDate(update.publishedAt)} · {update.sourceName} ·{' '}
-              {CATEGORY_LABEL[update.category]}
+      {update ? (
+        <div className="surface flex flex-wrap items-end justify-between gap-4 p-4 sm:flex-nowrap">
+          <div className="min-w-0 flex-1 space-y-1.5">
+            <h3 className="text-sm leading-5 font-semibold text-balance">{update.title}</h3>
+            <p className="text-muted-foreground text-[13px] leading-[19px]">{update.summary}</p>
+            <p className="text-muted-foreground text-xs">
+              {update.sourceName} · {CATEGORY_LABEL[update.category]}
             </p>
           </div>
 
@@ -72,13 +50,22 @@ export function LatestUpdate() {
             href={update.sourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="bg-brand-cta text-brand-cta-foreground hover:bg-brand-cta/90 flex h-8 shrink-0 items-center gap-2.5 rounded-full px-3 text-xs font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-white focus-visible:outline-none"
+            className="border-border bg-card hover:bg-frame focus-visible:ring-ring flex h-9 shrink-0 items-center gap-2 rounded-lg border px-3 text-[13px] font-medium transition-colors focus-visible:ring-2 focus-visible:outline-none"
           >
             <ArrowUpRight className="size-4" aria-hidden />
             Read at the source
           </a>
         </div>
-      </div>
+      ) : (
+        <div className="surface flex flex-col gap-1.5 p-4">
+          <p className="text-sm font-medium">No new official updates.</p>
+          <p className="text-muted-foreground text-[13px] leading-[19px]">
+            Registration and exam dates are on{' '}
+            <span className="text-foreground">Dates &amp; logistics</span>, with the source behind
+            every claim.
+          </p>
+        </div>
+      )}
     </section>
   )
 }

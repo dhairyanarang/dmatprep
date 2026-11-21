@@ -1,58 +1,42 @@
-import { LayoutDashboard } from 'lucide-react'
-
-import { CountdownCard } from '@/components/dashboard/countdown-card'
-import { NextStep } from '@/components/dashboard/next-step'
-import { ProgressSnapshot } from '@/components/dashboard/progress-snapshot'
-import { ExamLinks } from '@/components/exam/exam-links'
-import { PageHeader } from '@/components/layout/page-header'
+import { ActivityChart } from '@/components/dashboard/activity-chart'
+import { DashboardHead } from '@/components/dashboard/dashboard-head'
+import { DashboardKpis } from '@/components/dashboard/dashboard-kpis'
+import { RecentQuestions } from '@/components/dashboard/recent-questions'
+import { TodayPlan } from '@/components/dashboard/today-plan'
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageContainer } from '@/components/layout/page-shell'
-import { FIXED_DATES } from '@/content/exam/key-dates'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
 
 /**
- * Home, in the design's order: the two dates, the single recommended action,
- * progress, then the exam reference. Nothing else — no streaks, no charts, no
- * activity feed.
+ * Home, in the design's composition: greeting and the one action, four
+ * figures, then activity beside what to do next, then the log.
+ *
+ * Every number on it is derived from this candidate's own attempts and the
+ * committed exam dates. There is no sample data anywhere, which is why a new
+ * visitor sees honest zeroes and an empty state rather than a demo.
  */
 export default function HomePage() {
   const bankSizes = Object.fromEntries(
     SECTIONS.map((s) => [s.id, getBankSize(s.id)]),
   ) as Record<SectionId, number>
 
-  const registration = FIXED_DATES.find((d) => d.id === 'registration-deadline')!
-  const exam = FIXED_DATES.find((d) => d.id === 'exam-date')!
-
   return (
-    <div className="bg-[linear-gradient(180deg,rgba(2,89,100,0.12)_0px,rgba(2,89,100,0)_120px)]">
-      <PageContainer className="stagger-enter flex flex-col gap-6 py-6">
-        <PageHeader
-          icon={LayoutDashboard}
-          title="Home"
-          description="View your performance at a glance"
-        />
+    <PageContainer className="stagger-enter flex flex-1 flex-col gap-5 pt-6 pb-12">
+      <DashboardHead bankSizes={bankSizes} />
 
-        <div className="grid gap-4 sm:grid-cols-2">
-          <CountdownCard
-            label="Registration closes"
-            date={registration.date}
-            unit="Days to Register"
-          />
-          <CountdownCard label="Exam day" date={exam.date} unit="Days to the Exam" />
-        </div>
+      <DashboardKpis bankSizes={bankSizes} />
 
-        <NextStep bankSizes={bankSizes} />
+      <div className="flex flex-wrap items-stretch gap-3">
+        <ActivityChart />
+        <TodayPlan bankSizes={bankSizes} />
+      </div>
 
-        <section className="flex flex-col gap-2.5">
-          <h2 className="text-sm font-medium">Your Progress</h2>
-          <ProgressSnapshot bankSizes={bankSizes} />
-        </section>
+      <RecentQuestions />
 
-        <section className="flex flex-col gap-2.5">
-          <h2 className="text-sm font-medium">Know about the Exam</h2>
-          <ExamLinks />
-        </section>
-      </PageContainer>
-    </div>
+      {/* The full statement, on the page every first-time visitor lands on.
+          Every other route carries the one-line version in the sidebar. */}
+      <PageDisclaimer />
+    </PageContainer>
   )
 }
