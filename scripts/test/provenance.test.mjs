@@ -53,7 +53,9 @@ test('Mathematical Equations never claims a documented option count', () => {
   assert.equal(SECTION_PROVENANCE['mathematical-equations'].answerOptionCount.grade, 'unknown')
 
   const bank = readBank('mathematical-equations')
-  assert.equal(bank.length, 175, 'the ME bank size moved — re-check this expectation')
+  // 175 → 210: batch b10. Re-checked — every item below, including the 16 new
+  // quadratic-type ones, still grades its option count `unknown`.
+  assert.equal(bank.length, 210, 'the ME bank size moved — re-check this expectation')
   for (const q of bank) {
     assert.equal(q.meta.provenance.answerOptionCount, 'unknown', `${q.id}: claims an option count`)
     assert.notEqual(

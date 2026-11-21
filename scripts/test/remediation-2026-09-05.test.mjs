@@ -178,10 +178,12 @@ describe('Core remediation — retirement was append-only', () => {
   })
 
   test('section counts are unchanged by the repair', () => {
-    assert.equal(fs.length, 173)
-    assert.equal(me.length, 175)
+    // me 175 → 210 (batch b10) and fs 173 → 200 (batch b11) on 22 November
+    // 2026, the exam-alignment pass. The repair itself still moved nothing.
+    assert.equal(fs.length, 200)
+    assert.equal(me.length, 210)
     assert.equal(ls.length, 125)
-    assert.equal(fs.length + me.length + ls.length, 473)
+    assert.equal(fs.length + me.length + ls.length, 535)
   })
 })
 
@@ -200,7 +202,11 @@ describe('Core remediation — the official difficulty ladder is recorded, not e
     // divergence visible. If these move, it was not this remediation.
     const byTier = { low: 0, medium: 0, high: 0 }
     for (const q of me) byTier[q.difficulty]++
-    assert.deepEqual(byTier, { low: 58, medium: 58, high: 59 })
+    // b10 added 0 low, 15 medium and 20 high, by plan: the brief asked for
+    // harder material, and depth 1 is by definition an item that falls to one
+    // equation. The low tier is therefore untouched, which is the thing this
+    // test was written to watch.
+    assert.deepEqual(byTier, { low: 58, medium: 73, high: 79 })
   })
 
   test('the source of record is the 02.09.2026 build', () => {

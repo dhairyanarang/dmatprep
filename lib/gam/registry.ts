@@ -1,8 +1,12 @@
 import cachePolicy from '@/content/gam/packs/gam-computational-sciences-cache-policy-001.json'
+import finiteAutomata from '@/content/gam/packs/gam-computational-sciences-finite-automata-001.json'
 import portTariff from '@/content/gam/packs/gam-economics-port-tariff-001.json'
 import twoStageInspection from '@/content/gam/packs/gam-mathematics-two-stage-inspection-001.json'
+import chargeInventory from '@/content/gam/packs/gam-natural-sciences-charge-inventory-001.json'
 import lakeOxygen from '@/content/gam/packs/gam-natural-sciences-lake-oxygen-001.json'
+import fixedPriceRights from '@/content/gam/packs/gam-business-administration-fixed-price-rights-001.json'
 import codingAgreement from '@/content/gam/packs/gam-social-sciences-coding-agreement-001.json'
+import twoStageSampling from '@/content/gam/packs/gam-social-sciences-two-stage-sampling-001.json'
 
 import type { GamPackFile, GamQuestion, SourcePack } from '@/lib/types/gam'
 
@@ -23,6 +27,13 @@ const FILES = [
   portTariff,
   codingAgreement,
   cachePolicy,
+  // Exam-alignment set, 22 November 2026 — ten questions across the topics
+  // reported from the September 2026 sitting. `automated-pass` only: every
+  // mechanical gate is green and no person has read them yet.
+  fixedPriceRights,
+  chargeInventory,
+  finiteAutomata,
+  twoStageSampling,
 ] as unknown as GamPackFile[]
 
 /**

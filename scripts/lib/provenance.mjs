@@ -119,7 +119,18 @@ export function classifyMechanics(q) {
     const { allowed, review } = FS_CONTRACT
     const symbols = Object.keys(q.rules ?? {}).length
     if (symbols > allowed.maxSymbols) down('unsupported', `${symbols} symbols`)
+    // Shape lives on the panels, not on the rule, so a rotating symbol's
+    // carrier has to be looked up before it can be graded.
+    const shapeOf = new Map((q.given?.[0]?.symbols ?? []).map((s) => [s.id, s.shape]))
     for (const [sym, r] of Object.entries(q.rules ?? {})) {
+      if (r.rotation?.type === 'rotate') {
+        const shape = shapeOf.get(sym)
+        if (shape && review.rotationShapes.includes(shape)) {
+          down('extrapolated', `${sym}: rotation on a ${shape}, which no official exercise rotates`)
+        } else if (shape && !allowed.rotationShapes.includes(shape)) {
+          down('unsupported', `${sym}: rotation on a ${shape}, where a quarter turn is not legible`)
+        }
+      }
       const m = r.movement ?? {}
       if (!allowed.movementTypes.includes(m.type)) {
         if (m.type === 'static' && review.staticRotatingSymbol) down('extrapolated', `${sym}: static rotating symbol`)
@@ -136,13 +147,23 @@ export function classifyMechanics(q) {
   }
 
   if (q.kind === 'math-equations') {
-    const consts = (q.equations ?? []).join(' ').match(/\d+/g) ?? []
+    const text = (q.equations ?? []).join(' ')
+    const consts = text.match(/\d+/g) ?? []
     if (consts.some((n) => Number(n) > ME_CONTRACT.review.constantsAbove)) {
       down('extrapolated', `constant above ${ME_CONTRACT.review.constantsAbove}`)
     }
     if (!ME_CONTRACT.allowed.variableCounts.includes((q.variables ?? []).length)) {
       down('unsupported', `${(q.variables ?? []).length} letters`)
     }
+    // A letter multiplied by a letter. No official exercise does this; it is
+    // permitted on first-hand testimony about the live exam alone, so an item
+    // that uses it must never read as officially documented. Squares and
+    // products are reported separately because they are different claims: a
+    // square is a factor lookup, a product is a divisor-pair search.
+    const square = /\b([A-Z])\s*×\s*\1\b/.test(text)
+    const product = /\b([A-Z])\s*×\s*(?!\1\b)[A-Z]\b/.test(text)
+    if (square) down('extrapolated', 'letter squared (A × A) — not in the official exercises')
+    if (product) down('extrapolated', 'letter × letter — not in the official exercises')
   }
 
   if (q.kind === 'latin-square') {

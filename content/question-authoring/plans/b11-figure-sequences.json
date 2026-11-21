@@ -1,0 +1,184 @@
+{
+  "batchId": "b11",
+  "name": "b11 \u2014 Figure Sequences, exam-alignment pass (1/12/15)",
+  "section": "figure-sequences",
+  "generatorVersion": "3.3.0",
+  "counts": {
+    "low": 0,
+    "medium": 12,
+    "high": 15
+  },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs and a direct read of questions.json, 22 November 2026, against the 87 ACTIVE items (86 of 173 are quarantined for direction-cycle and reach no pool)",
+    "tiers": {
+      "low": 21,
+      "medium": 38,
+      "high": 28
+    },
+    "symbolsPerItem": {
+      "1": 21,
+      "2": 26,
+      "3": 28,
+      "4": 12
+    },
+    "rotatingSymbolsPerItem": {
+      "0": 21,
+      "1": 46,
+      "2": 20
+    },
+    "shapesUsed": {
+      "arrow": 58,
+      "triangle": 53,
+      "circle": 22,
+      "square": 21,
+      "diamond": 20,
+      "hexagon": 16,
+      "cross": 15
+    },
+    "observation": "The rotating-symbol histogram stops dead at 2, and not by choice. `ROTATABLE` held exactly two shapes \u2014 triangle and arrow \u2014 and a shape may not repeat within an item, so three rotating symbols was unreachable by construction in all 87 active items. The brief reports several figures turning in different directions in the live sitting, so this is the single binding gap in the subtest."
+  },
+  "overrepresented": [
+    "at most two rotating symbols per item (87 of 87 items)",
+    "arrow and triangle as the rotating carriers (every rotating symbol in the bank is one of the two)",
+    "items where rotation is carried by a single symbol (46 of 87)"
+  ],
+  "gaps": [
+    "three and four rotating symbols in one item \u2014 zero items, structurally impossible before this batch",
+    "opposed rotation directions within one item",
+    "visually confusable pairs \u2014 the bank has no two shapes a candidate could mistake for one another",
+    "right-angle triangles and lightning/zigzag figures, both reported from the sitting"
+  ],
+  "mechanics": {
+    "allowed": [
+      "linear and diagonal movement at 1 field, bounce-as-reversal",
+      "x+1 on movement or rotation",
+      "border travel cw/ccw at 1, 2 or x+1 fields",
+      "rotation of 90 degrees either direction",
+      "colour cycles of 2 or 3 colours, all visible in the shown matrices",
+      "1 to 4 symbols"
+    ],
+    "review": [
+      "rotation on right-triangle and bolt \u2014 FS_CONTRACT.review.rotationShapes; the rotation rule itself is stated for the subtest, but no official exercise turns either shape",
+      "static rotating symbol (not used in this batch \u2014 the pilot items still await human sign-off)",
+      "180/270 degree rotation",
+      "white in a colour cycle"
+    ],
+    "forbidden": [
+      "direction-cycle \u2014 quarantined, and the reason 86 items are out of every pool",
+      "wrap-around or teleportation",
+      "billiard reflection as the correct boundary behaviour",
+      "linear or diagonal movement above one field per step other than x+1, including in distractors",
+      "figures disappearing, overlapping or leaving the matrix",
+      "more than 4 symbols",
+      "mid-sequence movement-type switches",
+      "shown matrices admitting more than one legal continuation",
+      "a colour cycle containing a colour never shown",
+      "accelerating colour cycles"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "peak transformation load on a single symbol, measured after simulation, never inherited from the plan",
+    "low": "1 symbol, peakLoad <= 2, movement only",
+    "medium": "2-3 symbols, peakLoad == 3 \u2014 at least one symbol stacking movement with rotation and colour, the official Ex 3 / Ex 4 standard",
+    "high": "3-4 symbols, peakLoad >= 4, reached by acceleration or by stacking movement + rotation + colour on a symbol that also meets a wall"
+  },
+  "distractorConstraints": {
+    "families": [
+      "movement-step",
+      "movement-direction",
+      "boundary",
+      "rotation",
+      "colour",
+      "acceleration"
+    ],
+    "perImage": "two distinct families, at most one positional nudge",
+    "note": "A rotation-heavy item makes the rotation and colour families carry more of the load by construction: with every symbol turning, a distractor that differs only in one symbol's facing is both plausible and genuinely close to the correct panel. That is the brief's 'incorrect options visually close to the correct answer', and it comes from the item shape rather than from a change to the distractor code."
+  },
+  "structuralConstraints": {
+    "maxPerFingerprint": 2,
+    "lowTierCeiling": "0 items. The low tier is 1 symbol with movement only, so its distinct fingerprint space is nearly exhausted \u2014 a consequence of the direction-cycle quarantine, not a choice. This batch originally took its one remaining slot; the item was then dropped, because a fresh batch could no longer place ANY low item afterwards and the capacity test that watches this is worth more than one easy question in a batch whose whole purpose is harder material.",
+    "rotationHeavyShare": "10 of 28 items (36%) \u2014 enough to make three- and four-rotator items ordinary rather than exotic, while leaving the majority of the batch on the documented single- and double-rotator shapes"
+  },
+  "seedStrategy": "Per-slot seeds from (generator, section, batchId, tier, index, attempt), as scripts/lib/seed.mjs defines. Append-only: no existing id is touched and every committed item must still rebuild byte-identically from its own stamp. Measured success rates for the new mechanic are 15.7% (medium, 2 symbols), 6.4% (medium, 3), 15.0% (high, 3) and 4.0% (high, 4) against a 4000-attempt budget per slot.",
+  "expectedDistribution": {
+    "low": "none \u2014 see structuralConstraints.lowTierCeiling",
+    "medium": "12 items at peakLoad 3 \u2014 4 rotation-heavy, 2 forced to 3 symbols, 6 drawn freely",
+    "high": "15 items at peakLoad >= 4 \u2014 3 rotation-heavy with 4 symbols, 3 rotation-heavy with 3, 2 forced to 4 symbols for the official Ex 5 / Ex 6 shape, 7 drawn freely",
+    "bankAfter": {
+      "activeTotal": 114,
+      "quarantined": 86,
+      "fileTotal": 200
+    }
+  },
+  "slotTargets": {
+    "medium": [
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 2
+      },
+      {
+        "symbols": 3
+      },
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 3
+      },
+      null,
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 2
+      },
+      {
+        "symbols": 3
+      },
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 3
+      },
+      null,
+      null
+    ],
+    "high": [
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 4
+      },
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 3
+      },
+      null,
+      {
+        "symbols": 4
+      },
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 4
+      },
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 3
+      },
+      null,
+      {
+        "symbols": 4
+      },
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 4
+      },
+      null,
+      {
+        "mechanic": "rotation-heavy",
+        "symbols": 3
+      },
+      null,
+      null
+    ]
+  }
+}

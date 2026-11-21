@@ -106,12 +106,49 @@ describe('mathematical equations — correctness invariants hold', () => {
     }
   })
 
-  test('no quadratic terms and no operators beyond + − × ÷', () => {
+  test('no operators beyond + − × ÷, and no letter divided by a letter', () => {
     for (const q of sample) {
       const text = q.equations.join(' ')
-      assert.ok(!/[A-Z]\s*[×÷]\s*[A-Z]/.test(text), `${q.id} multiplies two letters`)
+      assert.ok(!/[A-Z]\s*÷\s*[A-Z]/.test(text), `${q.id} divides a letter by a letter`)
       assert.ok(!/[\^%√]|\*\*/.test(text), `${q.id} uses an unsupported construct`)
     }
+  })
+
+  /**
+   * Letter × letter is permitted (ME_CONTRACT.review.letterProduct) but it is
+   * NOT officially documented — no g.a.s.t. exercise multiplies two unknowns.
+   * The permission and the honest grading have to travel together, or the bank
+   * quietly starts claiming the exam documents a shape it never shows. This is
+   * the assertion that ties them.
+   */
+  test('every item using a letter product is graded an extrapolation', () => {
+    const quadratic = sample.filter((q) => /\b([A-Z]) × [A-Z]\b/.test(q.equations.join(' ')))
+    assert.ok(quadratic.length > 0, 'no quadratic-type item was generated at all')
+    for (const q of quadratic) {
+      assert.equal(
+        q.meta.provenance.mechanics,
+        'extrapolated',
+        `${q.id} uses a letter product but grades "${q.meta.provenance.mechanics}"`,
+      )
+      assert.notEqual(
+        q.meta.dmatAlignment,
+        'officially_documented',
+        `${q.id} claims the official material documents a letter product`,
+      )
+    }
+  })
+
+  test('quadratic shapes stay a minority, and never reach the low tier', () => {
+    const quadratic = sample.filter((q) => /\b([A-Z]) × [A-Z]\b/.test(q.equations.join(' ')))
+    assert.ok(
+      quadratic.length / sample.length <= 0.35,
+      `${quadratic.length}/${sample.length} items are quadratic — they are crowding out the documented shapes`,
+    )
+    assert.equal(
+      quadratic.filter((q) => q.difficulty === 'low').length,
+      0,
+      'a quadratic shape reached the low tier',
+    )
   })
 })
 

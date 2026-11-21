@@ -7,6 +7,14 @@ import { MockTiles } from '@/components/test/mock-tiles'
 import { PastAttempts } from '@/components/test/past-attempts'
 import { getBankSize } from '@/lib/content/registry'
 import { getCoreMocks, mockSize } from '@/lib/content/mocks'
+import {
+  BREAK_MINUTES,
+  CORE_STAGE_MINUTES,
+  FULL_MOCK_LABEL,
+  GAM_MINUTES,
+  fullMockCoreSize,
+  fullMockGamSize,
+} from '@/lib/content/full-mock'
 import { SECTION_ICON } from '@/lib/nav'
 import { GAM_TOTAL_MINUTES, totalGamQuestions } from '@/lib/gam/registry'
 import { SECTIONS, SECTION_IDS, type SectionId } from '@/lib/sections'
@@ -68,6 +76,20 @@ export default function TestPage() {
         </div>
         <MockTiles mocks={mocks} />
       </section>
+
+      {/* The only mock that runs BOTH modules. The four above are Module A
+          only, which is the half the four were built for; this is the one
+          shaped like the real sitting. */}
+      <Panel title="Full dMAT mock · both modules">
+        <TileCard
+          href="/test/full-mock"
+          icon={Timer}
+          title={FULL_MOCK_LABEL}
+          description={`The whole examination in order: ${fullMockCoreSize()} Core questions in three ${CORE_STAGE_MINUTES}-minute subtests, a ${BREAK_MINUTES}-minute break, then ${fullMockGamSize()} General Academic questions under the module's ${GAM_MINUTES}-minute clock. Its Core questions appear in none of the four mocks above, so working through those does not spoil it. The General Academic half is pilot material, not yet reviewed by a person.`}
+          meta={`${CORE_STAGE_MINUTES * 3 + BREAK_MINUTES + GAM_MINUTES} mins`}
+          className="border-0 shadow-none"
+        />
+      </Panel>
 
       <Panel title={`Timed sets · 20 tasks in 25 min`} meta={`${totalQuestions} questions in the bank`}>
         {SECTIONS.map((section) => {

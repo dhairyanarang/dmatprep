@@ -177,7 +177,9 @@ describe('GAM product — routes exist for every active pack', () => {
     const counts = ['figure-sequences', 'mathematical-equations', 'latin-squares'].map((s) =>
       JSON.parse(read(`../../content/sections/${s}/questions.json`)).length,
     )
-    assert.deepEqual(counts, [173, 175, 125])
+    // 175 → 210: batch b10, the exam-alignment pass. Updated deliberately;
+    // the assertion is that GAM work does not move these, not that they never move.
+    assert.deepEqual(counts, [200, 210, 125])
     assert.ok(existsSync(new URL('../../app/module-a/[section]/practice/page.tsx', import.meta.url)))
     const practiceRunner = read('../../components/practice/practice-runner.tsx')
     assert.ok(!practiceRunner.toLowerCase().includes('gam'), 'the Core runner knows about GAM')

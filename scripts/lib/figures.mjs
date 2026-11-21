@@ -16,7 +16,7 @@
 export const GRID = { rows: 4, cols: 4 }
 
 export const COLOURS = ['black', 'white', 'pink', 'yellow', 'green', 'orange', 'blue']
-export const SHAPES = ['square', 'circle', 'triangle', 'diamond', 'hexagon', 'arrow', 'cross']
+export const SHAPES = ['square', 'circle', 'triangle', 'diamond', 'hexagon', 'arrow', 'cross', 'right-triangle', 'bolt']
 
 const STRAIGHT = { up: [-1, 0], down: [1, 0], left: [0, -1], right: [0, 1] }
 const DIAGONAL = {

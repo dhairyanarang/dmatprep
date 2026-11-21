@@ -42,8 +42,8 @@
       "caveat": "The two halves ran on DIFFERENT models, deliberately: Claude Opus 5 ablated and Claude Sonnet 5 re-answered blind. That is stronger independence than one model doing both, since Opus is the pack author’s own model. The blind half agreed with the key on 3 of 3, with exactly one defensible option on all three. The ablation half found that withdrawing gam-econ-pt-001-q4 removed that question’s leaks and nothing else: both findings previously recorded against q1 are intact, and a new weak coupling now runs q1 to q2. Agreement between two models is evidence about these questions; it is not a person taking responsibility for them."
     }
   ],
-  "activePacks": 5,
-  "activeQuestions": 16,
+  "activePacks": 9,
+  "activeQuestions": 26,
   "retiredPacks": [
     {
       "id": "gam-business-administration-break-even-001",
@@ -107,6 +107,63 @@
     }
   ],
   "packs": [
+    {
+      "id": "gam-business-administration-fixed-price-rights-001",
+      "domain": "business-administration",
+      "title": "Fixed-price rights on a metals exchange",
+      "questions": 3,
+      "contentHash": "9324266cc2e860dbace900d8fe168374",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 2
+      },
+      "independent": {
+        "round": null,
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 0,
+          "supported": 0,
+          "independent": 0
+        },
+        "contributesUnderSection510": {}
+      },
+      "blockers": [
+        "no independent adjudication (pack \"gam-business-administration-fixed-price-rights-001\" was not covered by round \"independent-2026-11-18\")",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-business-administration-fixed-price-rights-001::awaiting-adjudication",
+          "question": "This pack has not been through an independent adjudication round as it now stands, so there is nothing yet for a reviewer to weigh: pack \"gam-business-administration-fixed-price-rights-001\" was not covered by round \"independent-2026-11-18\".",
+          "evidence": [
+            {
+              "note": "Run the round before reviewing this pack."
+            }
+          ],
+          "ifAccepted": "n/a — the round must run first.",
+          "ifNotAccepted": "n/a — the round must run first."
+        },
+        {
+          "id": "gam-business-administration-fixed-price-rights-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "9324266cc2e860dbace900d8fe168374",
+              "questions": 3
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {}
+    },
     {
       "id": "gam-computational-sciences-cache-policy-001",
       "domain": "computational-sciences",
@@ -241,6 +298,63 @@
       }
     },
     {
+      "id": "gam-computational-sciences-finite-automata-001",
+      "domain": "computational-sciences",
+      "title": "Deterministic and nondeterministic finite automata",
+      "questions": 3,
+      "contentHash": "103c3312aa880a604e4e5b0284b58a85",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": null,
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 0,
+          "supported": 0,
+          "independent": 0
+        },
+        "contributesUnderSection510": {}
+      },
+      "blockers": [
+        "no independent adjudication (pack \"gam-computational-sciences-finite-automata-001\" was not covered by round \"independent-2026-11-18\")",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-computational-sciences-finite-automata-001::awaiting-adjudication",
+          "question": "This pack has not been through an independent adjudication round as it now stands, so there is nothing yet for a reviewer to weigh: pack \"gam-computational-sciences-finite-automata-001\" was not covered by round \"independent-2026-11-18\".",
+          "evidence": [
+            {
+              "note": "Run the round before reviewing this pack."
+            }
+          ],
+          "ifAccepted": "n/a — the round must run first.",
+          "ifNotAccepted": "n/a — the round must run first."
+        },
+        {
+          "id": "gam-computational-sciences-finite-automata-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "103c3312aa880a604e4e5b0284b58a85",
+              "questions": 3
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {}
+    },
+    {
       "id": "gam-economics-port-tariff-001",
       "domain": "economics",
       "title": "A port’s tariff for handling cargo",
@@ -249,7 +363,7 @@
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
-        "warnings": 1,
+        "warnings": 2,
         "leakageErrors": 0,
         "leakageWarnings": 0
       },
@@ -395,7 +509,7 @@
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
-        "warnings": 0,
+        "warnings": 1,
         "leakageErrors": 0,
         "leakageWarnings": 0
       },
@@ -530,6 +644,63 @@
           }
         ]
       }
+    },
+    {
+      "id": "gam-natural-sciences-charge-inventory-001",
+      "domain": "natural-sciences",
+      "title": "A charge inventory for four laboratory samples",
+      "questions": 2,
+      "contentHash": "bb38cf26f4d50feeda70f2a798ef0acb",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": null,
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 0,
+          "supported": 0,
+          "independent": 0
+        },
+        "contributesUnderSection510": {}
+      },
+      "blockers": [
+        "no independent adjudication (pack \"gam-natural-sciences-charge-inventory-001\" was not covered by round \"independent-2026-11-18\")",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-natural-sciences-charge-inventory-001::awaiting-adjudication",
+          "question": "This pack has not been through an independent adjudication round as it now stands, so there is nothing yet for a reviewer to weigh: pack \"gam-natural-sciences-charge-inventory-001\" was not covered by round \"independent-2026-11-18\".",
+          "evidence": [
+            {
+              "note": "Run the round before reviewing this pack."
+            }
+          ],
+          "ifAccepted": "n/a — the round must run first.",
+          "ifNotAccepted": "n/a — the round must run first."
+        },
+        {
+          "id": "gam-natural-sciences-charge-inventory-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "bb38cf26f4d50feeda70f2a798ef0acb",
+              "questions": 2
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {}
     },
     {
       "id": "gam-natural-sciences-lake-oxygen-001",
@@ -821,6 +992,63 @@
           }
         ]
       }
+    },
+    {
+      "id": "gam-social-sciences-two-stage-sampling-001",
+      "domain": "social-sciences",
+      "title": "A two-stage sampling plan for a household survey",
+      "questions": 2,
+      "contentHash": "cfaace177378052f8bd5d765cc03e330",
+      "reviewStatus": "automated-pass",
+      "automated": {
+        "errors": 0,
+        "warnings": 0,
+        "leakageErrors": 0,
+        "leakageWarnings": 0
+      },
+      "independent": {
+        "round": null,
+        "raisedIssues": [],
+        "dependency": {
+          "determined": 0,
+          "supported": 0,
+          "independent": 0
+        },
+        "contributesUnderSection510": {}
+      },
+      "blockers": [
+        "no independent adjudication (pack \"gam-social-sciences-two-stage-sampling-001\" was not covered by round \"independent-2026-11-18\")",
+        "not signed off by a person"
+      ],
+      "decisions": [
+        {
+          "id": "gam-social-sciences-two-stage-sampling-001::awaiting-adjudication",
+          "question": "This pack has not been through an independent adjudication round as it now stands, so there is nothing yet for a reviewer to weigh: pack \"gam-social-sciences-two-stage-sampling-001\" was not covered by round \"independent-2026-11-18\".",
+          "evidence": [
+            {
+              "note": "Run the round before reviewing this pack."
+            }
+          ],
+          "ifAccepted": "n/a — the round must run first.",
+          "ifNotAccepted": "n/a — the round must run first."
+        },
+        {
+          "id": "gam-social-sciences-two-stage-sampling-001::sign-off",
+          "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
+          "evidence": [
+            {
+              "contentHash": "cfaace177378052f8bd5d765cc03e330",
+              "questions": 2
+            },
+            {
+              "note": "Sign-off requires a named reviewer and a date; the gate rejects a claim without both."
+            }
+          ],
+          "ifAccepted": "reviewStatus becomes human-reviewed and the pack can ship.",
+          "ifNotAccepted": "reviewStatus becomes rejected and the pack is retired."
+        }
+      ],
+      "flaggedQuestions": {}
     }
   ]
 }

@@ -1,0 +1,145 @@
+{
+  "batchId": "b10",
+  "name": "b10 — Mathematical Equations, exam-alignment pass (0/15/20)",
+  "section": "mathematical-equations",
+  "generatorVersion": "4.0.0",
+  "counts": { "low": 0, "medium": 15, "high": 20 },
+  "currentCoverage": {
+    "note": "node scripts/audit-bank.mjs and a direct read of questions.json, 22 November 2026, against the 172 active items (3 quarantined of 175)",
+    "tiers": { "low": 56, "medium": 58, "high": 58 },
+    "lettersPerItem": { "2": 30, "3": 62, "4": 80 },
+    "reasoningDepth": { "1": 56, "2": 58, "3": 15, "4": 18, "5": 14, "6": 11 },
+    "patterns": {
+      "direct-substitution": 150,
+      "pin-operated": 106,
+      "mixed-operations": 105,
+      "define-compound": 84,
+      "define-linear": 70,
+      "define-multiplicative": 57,
+      "multi-term": 28,
+      "elimination": 22,
+      "pair-constant": 17,
+      "combining": 16,
+      "pin-constant": 8
+    },
+    "quadraticItems": 0,
+    "observation": "Every one of the 172 active items is linear in its letters: no item multiplies two unknowns, because the contract forbade it until this batch. Depth is also heavily front-loaded — 114 of 172 items sit at depth 1 or 2, and only 25 reach depth 5 or more. The two together are what the brief describes as 'too simple and too easy compared with the actual examination'."
+  },
+  "overrepresented": [
+    "direct-substitution as the solving route (150 of 172 items)",
+    "pin-operated as the determining equation (106 of 172)",
+    "depth 1 and 2 (114 of 172 items), which is where an item falls to a single simple equation",
+    "linear-in-the-letters systems (172 of 172)"
+  ],
+  "gaps": [
+    "quadratic-type reasoning — squares and letter products — zero items, reported first-hand from the 26 September 2026 sitting",
+    "divisor-pair search as a solving technique, as distinct from forward substitution",
+    "depth 5 and 6 at high (25 of 58 high items)",
+    "elimination via a combining equation (22 of 172), and the subset-spanning form of it (official Ex 6) in particular"
+  ],
+  "mechanics": {
+    "allowed": [
+      "integer letter values in 1..20, exactly one solution per letter",
+      "operators + − × ÷ only",
+      "2 to 4 letters",
+      "chain, star and mixed definition topologies",
+      "bare pins and operated pins",
+      "linear, multiplicative and compound definitions",
+      "two unknowns equal to a constant",
+      "multiple multiplicative terms",
+      "combining equations over all letters or a subset"
+    ],
+    "review": [
+      "a letter multiplied by itself (square pin, `A × A = 169`) — ME_CONTRACT.review.letterProduct",
+      "a letter multiplied by another letter (product pair, `A × B = 72` with `A − B = 1`) — ME_CONTRACT.review.letterProduct",
+      "numeric constants above 18, which both quadratic shapes necessarily carry on their right-hand side",
+      "the one-letter/four-option question format"
+    ],
+    "forbidden": [
+      "operators beyond + − × ÷",
+      "exponent or radical notation (^, **, √)",
+      "a letter divided by a letter",
+      "non-integer, zero or negative letter values",
+      "letter values outside 1..20",
+      "systems without exactly one solution",
+      "an inverted-operation distractor note blaming an operator the system does not contain",
+      "a level-2 hint quoting an equation that contains only the asked letter"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "reasoning depth, measured by replaying the propagation a solver performs, never inherited from the plan",
+    "low": "not generated in this batch — the brief asks for harder material, and depth 1 is by definition an item that falls to one equation",
+    "medium": "depth exactly 2; square pins appear here, where the root lookup is the first of two steps",
+    "high": "depth 3 to 6, and the asked letter may not be the first letter determined; both quadratic shapes appear, and a product pair measures at depth 3 or more by construction because neither of its two equations determines a letter alone"
+  },
+  "distractorConstraints": {
+    "families": ["wrong-variable", "off-by-one", "inverted-operation", "sign-error", "stopped-early"],
+    "maxOffByOnePerItem": 1,
+    "requireWrongVariable": "whenever a letter's value is in range and distinct from the answer",
+    "rejectAmbiguous": "any option value that satisfies two error families at once is rejected outright — it diagnoses nothing",
+    "note": "The quadratic shapes add a genuine new wrong-answer route: the other member of the factor pair. It is caught by the existing wrong-variable family, since on a product pair the partner letter IS the other factor."
+  },
+  "structuralConstraints": {
+    "maxPerFingerprint": 2,
+    "noRepeatedLeftHandSide": true,
+    "quadraticShare": "16 of 35 items (46%) in this batch, 16 of 207 (7.7%) bank-wide. Two sources, and the second was initially mis-predicted here: 7 slots name a quadratic shape outright, and the slots left null fall through to the index-based rotation in `defaultTargetFor`, which is correct — a null slot means 'no opinion', which is exactly when the default should apply. A deliberately hard batch is the right place for the higher share; what matters is that it did not displace the documented shapes, and it did not: 5 combining (4 of them the subset-spanning Ex 6 form), 9 multi-term, 5 bare pins and 1 pair-constant all survived.",
+    "quadraticShareGuard": "An earlier design put the quadratic shapes into the random `determiningPool` instead. That went badly and is why they are index-placed: both shapes succeed far more often than `combineOver` does, so the retry loop selected for them, and a 42-item batch came back with 18 quadratic items and ONE combining equation — an extrapolated shape crowding out a documented one."
+  },
+  "seedStrategy": "Per-slot seeds from (generator, section, batchId, tier, index, attempt), as scripts/lib/seed.mjs defines. Append-only: no existing id is touched and every committed item must still rebuild byte-identically from its own stamp.",
+  "expectedDistribution": {
+    "medium": "15 items at depth 2. Named slots: 3 square pins, 2 two-coefficient multi-term, 1 bare pin. The 9 null slots draw freely, except that `defaultTargetFor` claims medium index 2 for a further square pin.",
+    "high": "20 items at depth 3-6, asked letter never the first determined. Named slots: 4 product pairs, 3 square pins, 4 subset-spanning combining, 2 two-coefficient multi-term. The 7 null slots draw freely, except where `defaultTargetFor` claims them.",
+    "bankAfter": { "low": 58, "medium": 73, "high": 79, "activeTotal": 207 },
+    "measuredAfterGeneration": {
+      "note": "node scripts/verify-bank.mjs plus a direct read, 22 November 2026, after the batch was appended",
+      "depths": { "2": 15, "3": 4, "4": 7, "5": 5, "6": 4 },
+      "squarePin": 11,
+      "productPair": 5,
+      "subsetCombining": 5,
+      "multiTerm": 9,
+      "pinConstant": 5,
+      "bankDepthsAfter": { "1": 56, "2": 73, "3": 19, "4": 25, "5": 19, "6": 15 }
+    }
+  },
+  "slotTargets": {
+    "medium": [
+      null,
+      { "shape": "square-pin" },
+      null,
+      { "shape": "multi-term-coefficients" },
+      null,
+      null,
+      { "shape": "square-pin" },
+      null,
+      null,
+      { "shape": "multi-term-coefficients" },
+      null,
+      { "shape": "square-pin" },
+      null,
+      { "shape": "pin-constant" },
+      null
+    ],
+    "high": [
+      { "shape": "product-pair" },
+      null,
+      { "shape": "combining-subset" },
+      { "shape": "square-pin" },
+      null,
+      { "shape": "multi-term-coefficients" },
+      { "shape": "product-pair" },
+      null,
+      { "shape": "combining-subset" },
+      { "shape": "square-pin" },
+      null,
+      { "shape": "multi-term-coefficients" },
+      { "shape": "product-pair" },
+      null,
+      { "shape": "combining-subset" },
+      { "shape": "square-pin" },
+      null,
+      null,
+      { "shape": "product-pair" },
+      { "shape": "combining-subset" }
+    ]
+  }
+}

@@ -120,16 +120,26 @@ const stateOf = (file, extra = {}) =>
 
 describe('GAM pilot — shape', () => {
   test('every active pack sits within the pilot size band', () => {
-    assert.equal(activePacks.length, 5)
+    // 5 → 9 on 22 November 2026: the exam-alignment set added four packs.
+    assert.equal(activePacks.length, 9)
     for (const f of activePacks) {
-      // Upper bound only, plus a floor of 3 to catch a pack gutted by accident.
+      // Upper bound only, plus a floor to catch a pack gutted by accident.
       // The floor used to be 5, which was our own invention — the official
       // exercises carry 8, 6, 7 and 5 questions and state no per-source count,
       // and a pack loses questions when adjudication finds they do no work.
       // gam-ba-sr-001-q5 was retired on 8 September 2026 for exactly that, which
       // is a reason to record, not a rule to breach.
+      //
+      // Lowered from 3 to 2 on 22 November 2026. The floor exists to catch an
+      // ACCIDENT — a pack that lost its questions without anyone noticing — and
+      // two of the exam-alignment packs hold two questions deliberately, because
+      // their source states exactly two independent rules and a third question
+      // would have had to re-ask one of them. That is the coupling the whole
+      // small-pack experiment of 8 September 2026 was run to avoid. A floor that
+      // forces a redundant question buys nothing and costs the property the
+      // floor was never meant to protect.
       assert.ok(
-        f.questions.length >= 3 && f.questions.length <= 8,
+        f.questions.length >= 2 && f.questions.length <= 8,
         `${f.pack.id} has ${f.questions.length} questions`,
       )
     }
@@ -144,14 +154,27 @@ describe('GAM pilot — shape', () => {
 
   test('domains are drawn from the eight the official material names', () => {
     for (const { pack } of packs) assert.ok(GAM_DOMAINS.includes(pack.domain), pack.domain)
-    // One pack per domain in the live set. Retired packs are excluded: they
-    // accumulate as the bank is replaced and will repeat domains that the
-    // active set covers once, which says nothing about what ships.
-    assert.equal(
-      new Set(activePacks.map((p) => p.pack.domain)).size,
-      activePacks.length,
-      'two active packs share a domain',
+    // Retired packs are excluded: they accumulate as the bank is replaced and
+    // will repeat domains that the active set covers once, which says nothing
+    // about what ships.
+    //
+    // This asserted ONE pack per domain until 22 November 2026. That was a
+    // five-pack pilot's way of buying breadth, and it stops being expressible
+    // the moment the set grows past eight, since eight is all the domains there
+    // are. What it was protecting is breadth, so breadth is what is asserted
+    // now: the live set must still span most of the official eight, and no
+    // single domain may dominate it.
+    const byDomain = new Map()
+    for (const p of activePacks) {
+      byDomain.set(p.pack.domain, (byDomain.get(p.pack.domain) ?? 0) + 1)
+    }
+    assert.ok(
+      byDomain.size >= 6,
+      `the live set spans only ${byDomain.size} of the eight official domains`,
     )
+    for (const [domain, n] of byDomain) {
+      assert.ok(n <= 2, `${domain} carries ${n} active packs — one domain is dominating the set`)
+    }
   })
 
   test('the four structural formats required of the pilot are present', () => {
@@ -1149,13 +1172,17 @@ describe('GAM pilot — the retired pack cannot re-enter', () => {
 })
 
 describe('GAM pilot — Core module is untouched', () => {
-  test('the Core bank still holds 473 active questions', () => {
+  // 473 → 508 on 22 November 2026: batch b10 appended 35 Mathematical Equations
+  // items for the exam-alignment pass. The point of this pin is that GAM work
+  // never touches the Core bank, so it is updated deliberately when Core work
+  // changes it and left alone otherwise.
+  test('the Core bank still holds 535 active questions', () => {
     const counts = ['figure-sequences', 'mathematical-equations', 'latin-squares'].map((s) => {
       const url = new URL(`../../content/sections/${s}/questions.json`, import.meta.url)
       return JSON.parse(readFileSync(url, 'utf8')).length
     })
-    assert.deepEqual(counts, [173, 175, 125])
-    assert.equal(counts.reduce((a, b) => a + b, 0), 473)
+    assert.deepEqual(counts, [200, 210, 125])
+    assert.equal(counts.reduce((a, b) => a + b, 0), 535)
   })
 
   test('GAM content lives outside the Core section directories', () => {
