@@ -8,6 +8,9 @@ export type DifficultyFilter = Difficulty | 'all'
 
 export type DotState = 'todo' | 'right' | 'wrong' | 'locked'
 
+/** Shown in each dot's label, since the navigator carries no colour for it. */
+export type DotInfo = { id: string; state: DotState; difficulty?: string }
+
 /**
  * The practice bar: where you are in the set, and what you are looking at.
  *
@@ -20,7 +23,9 @@ export type DotState = 'todo' | 'right' | 'wrong' | 'locked'
  * hundred questions without a scrollbar and a good memory.
  */
 export function PracticeBar({
+  ref,
   dots,
+  current,
   answered,
   correct,
   total,
@@ -31,7 +36,16 @@ export function PracticeBar({
   showDifficulty = true,
   onJump,
 }: {
-  dots: { id: string; state: DotState }[]
+  /**
+   * The runner measures this bar's height to position the hint sidebar
+   * directly beneath it. It must land on the bar's own root: wrapping the bar
+   * in a measurable div gives the sticky element a parent box exactly its own
+   * size, and a sticky element with no room to travel scrolls away.
+   */
+  ref?: React.Ref<HTMLDivElement>
+  dots: DotInfo[]
+  /** The question the sidebar is showing, ringed in the navigator. */
+  current: string | null
   answered: number
   correct: number
   total: number
@@ -43,7 +57,10 @@ export function PracticeBar({
   onJump: (id: string) => void
 }) {
   return (
-    <div className="bg-background/95 supports-[backdrop-filter]:bg-background/85 border-soft sticky top-13 z-15 -mx-4 flex flex-wrap items-center gap-x-4 gap-y-2.5 border-b px-4 py-2.5 backdrop-blur sm:-mx-8 sm:px-8">
+    <div
+      ref={ref}
+      className="bg-background/95 supports-[backdrop-filter]:bg-background/85 border-soft sticky top-13 z-15 -mx-4 flex flex-wrap items-center gap-x-4 gap-y-2.5 border-b px-4 py-2.5 backdrop-blur sm:-mx-8 sm:px-8"
+    >
       {/* Capped height with its own scroll: a 172-question bank would
           otherwise push everything below it off the screen. */}
       <nav
@@ -55,8 +72,16 @@ export function PracticeBar({
             key={dot.id}
             type="button"
             onClick={() => onJump(dot.id)}
+            aria-current={dot.id === current ? 'true' : undefined}
+            // Difficulty is in the label rather than the colour on purpose: the
+            // prototype's navigator encodes status and nothing else, and a
+            // second colour axis in a 28px square would make neither readable.
+            // The difficulty chips filter it; the card's badge shows it.
+            title={`Question ${i + 1}${dot.difficulty ? ` · ${dot.difficulty}` : ''}`}
             aria-label={`Question ${i + 1}, ${
               dot.state === 'locked' ? 'locked' : dot.state === 'todo' ? 'not answered' : dot.state
+            }${dot.difficulty ? `, ${dot.difficulty}` : ''}${
+              dot.id === current ? ', selected' : ''
             }`}
             className={cn(
               'size-7 shrink-0 rounded-[7px] border font-mono text-xs transition-colors',
@@ -65,6 +90,9 @@ export function PracticeBar({
               dot.state === 'wrong' && 'border-danger bg-danger text-white',
               dot.state === 'locked' && 'border-gold-line bg-gold-soft text-gold-text',
               dot.state === 'todo' && 'border-line2 bg-card hover:border-foreground',
+              // The prototype's `.qdot.cur`:
+              //   box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--blue)
+              dot.id === current && 'ring-background ring-offset-brand ring-2 ring-offset-2',
             )}
           >
             {i + 1}
@@ -77,9 +105,7 @@ export function PracticeBar({
           <b className="text-foreground font-mono font-medium tabular-nums">{answered}</b> of{' '}
           {total} answered
         </span>
-        {answered > 0 ? (
-          <span className="text-success-fg">{correct} correct</span>
-        ) : null}
+        {answered > 0 ? <span className="text-success-fg">{correct} correct</span> : null}
       </div>
 
       <div className="flex flex-wrap gap-1.5">

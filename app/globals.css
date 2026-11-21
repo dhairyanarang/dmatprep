@@ -323,8 +323,16 @@
   .pwrap {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
     min-width: 0;
+  }
+
+  @media (min-width: 1024px) {
+    /* Flush, because the divider is the panel's own left border — a gap here
+       would put a stripe of page between the question and its hints. The list
+       keeps its breathing room with padding instead. */
+    .qlist {
+      padding-right: 24px;
+    }
   }
 
   .qlist {
@@ -335,13 +343,28 @@
     gap: 16px;
   }
 
+  /*
+   * Dimensions are the prototype's, not an approximation of them:
+   *
+   *   .spanel { width:420px; position:sticky; top:var(--ptop,113px);
+   *             height:calc(100vh - var(--ptop,113px));
+   *             border-left:1px solid var(--line2); background:#fff;
+   *             overflow:auto }
+   *
+   * `--ptop` is the top bar plus the question control bar — 52px + 52px here,
+   * where the prototype's own bar is a little taller at 113px total. A rounded,
+   * all-round-bordered 400px card was the earlier guess at this and it was
+   * wrong in four ways: the artifact's panel is 420 wide, square, bordered on
+   * its left edge only, and runs the full height of the viewport below the bar.
+   */
   .spanel {
     display: flex;
     flex-direction: column;
     background: var(--card);
     overflow: auto;
     overscroll-behavior: contain;
-    /* Phone and tablet: a drawer over the page, dismissible. */
+    /* Phone and tablet: a drawer over the page, dismissible. The prototype
+       does the same at its own breakpoint. */
     position: fixed;
     inset: 0 0 0 auto;
     width: min(420px, 100%);
@@ -352,17 +375,21 @@
 
   @media (min-width: 1024px) {
     .spanel {
-      /* Desktop: an in-flow column. It cannot obscure the question because it
-         does not overlap it. */
-      position: sticky;
-      top: var(--ptop, 104px);
+      /* Desktop: an in-flow column that overlaps nothing and does not move.
+         `inset` is reset BEFORE `top`, not after — declared the other way
+         round it sets `top: auto` and a sticky element with no offset never
+         sticks, which is exactly what happened: the panel scrolled away with
+         the page while looking correctly positioned at rest. */
       inset: auto;
+      position: sticky;
+      top: var(--ptop, 141px);
       flex: none;
-      width: 400px;
-      height: calc(100vh - var(--ptop, 104px) - 16px);
+      width: 420px;
+      height: calc(100vh - var(--ptop, 141px));
       z-index: 1;
-      border-radius: 12px;
-      border: 1px solid var(--line2);
+      border-radius: 0;
+      border: 0;
+      border-left: 1px solid var(--line2);
       box-shadow: none;
     }
   }

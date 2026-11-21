@@ -40,7 +40,11 @@ import {
 type Filter = Difficulty | 'all'
 
 /** A question nobody has touched yet. Module scope so it is referentially stable. */
-const UNANSWERED: PracticeAnswer = { selection: {}, hintsUsed: 0, submitted: false }
+const UNANSWERED: PracticeAnswer = {
+  selection: {},
+  hintsUsed: 0,
+  submitted: false,
+}
 
 type RunnerProps = {
   /** Absent for a mixed session; each attempt is filed under its own question's section. */
@@ -177,8 +181,49 @@ function PracticeSession({
     return seeded
   })
 
-  /** The question whose working is open in the side panel, if any. */
-  const [detailId, setDetailId] = useState<string | null>(null)
+  /**
+   * Which question the hint sidebar is showing.
+   *
+   * It is a SELECTION, not an "is the panel open" flag, and that is the whole
+   * difference between this and what came before. On desktop the sidebar is a
+   * permanent second column, so there is always a question it belongs to; null
+   * here only means "nothing chosen yet", and the first visible question is
+   * used until something is.
+   */
+  const [selectedId, setSelectedId] = useState<string | null>(null)
+
+  /**
+   * Mobile only. Below `lg` the sidebar is a drawer over the page, so it needs
+   * a way to be dismissed; above `lg` it is a column and this is ignored.
+   */
+  const [drawerOpen, setDrawerOpen] = useState(false)
+
+  /**
+   * Where the sidebar starts, measured rather than assumed.
+   *
+   * The sidebar sticks directly beneath the question control bar, and that bar
+   * is not a fixed height: it wraps its question navigator and its filter
+   * chips, so it is 89px on a wide screen and taller on a narrow one. A
+   * constant put the panel's header underneath the bar. This writes the real
+   * figure into `--ptop`, which `.spanel` uses for both its offset and its
+   * height, and re-measures whenever the bar reflows.
+   */
+  const barBox = useRef<HTMLDivElement>(null)
+  const wrap = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const bar = barBox.current
+    const target = wrap.current
+    if (!bar || !target) return
+    const apply = () => {
+      // 52px is the top bar the control bar itself sticks under.
+      target.style.setProperty('--ptop', `${Math.round(bar.getBoundingClientRect().height) + 52}px`)
+    }
+    apply()
+    const observer = new ResizeObserver(apply)
+    observer.observe(bar)
+    return () => observer.disconnect()
+  }, [])
   const [status, setStatus] = useState<StatusFilter>('all')
 
   /**
@@ -197,8 +242,7 @@ function PracticeSession({
   )
 
   const pool = useMemo(() => {
-    const filtered =
-      filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
+    const filtered = filter === 'all' ? questions : questions.filter((q) => q.difficulty === filter)
 
     // A restored run keeps the order it had, so a question stays where it was
     // on the page across a reload.
@@ -325,9 +369,6 @@ function PracticeSession({
     )
   }
 
-  const detail = detailId ? pool.find((q) => q.id === detailId) : undefined
-  const detailAnswer = (detail && answers[detail.id]) || UNANSWERED
-
   /**
    * The status filter is a view, not progress.
    *
@@ -348,10 +389,30 @@ function PracticeSession({
     return status === 'todo' ? state === 'todo' || state === 'locked' : state === 'wrong'
   })
 
-  const correctCount = pool.reduce(
-    (n, question) => n + (stateOf(question) === 'right' ? 1 : 0),
-    0,
-  )
+  /**
+   * Resolved against what is on screen, so the list and the sidebar can never
+   * disagree. Filtering to "Missed" while the sidebar shows a question that is
+   * no longer in the list is exactly the desynchronisation this avoids: the
+   * selection falls back to the first visible question instead.
+   */
+  const selected = visible.find((q) => q.id === selectedId) ?? visible[0]
+  const selectedAnswer = (selected && answers[selected.id]) || UNANSWERED
+
+  /**
+   * Hints are read from the selected question's own record, so a hint revealed
+   * on Q7 cannot show up under Q8. The panel holds no hint state of its own.
+   */
+  const stepTo = (delta: -1 | 1) => {
+    if (!selected) return
+    const next = visible[visible.indexOf(selected) + delta]
+    if (!next) return
+    setSelectedId(next.id)
+    document
+      .getElementById(`question-${next.id}`)
+      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  }
+
+  const correctCount = pool.reduce((n, question) => n + (stateOf(question) === 'right' ? 1 : 0), 0)
 
   return (
     <div className="space-y-5">
@@ -360,7 +421,12 @@ function PracticeSession({
       ) : null}
 
       <PracticeBar
-        dots={pool.map((question) => ({ id: question.id, state: stateOf(question) }))}
+        ref={barBox}
+        dots={pool.map((question) => ({
+          id: question.id,
+          state: stateOf(question),
+          difficulty: question.difficulty,
+        }))}
         answered={answeredCount}
         correct={correctCount}
         total={pool.length}
@@ -369,11 +435,15 @@ function PracticeSession({
         difficulty={filter as DifficultyFilter}
         onDifficulty={(value) => handleFilter(value as Filter)}
         showDifficulty={showFilter}
-        onJump={(id) =>
+        current={selected?.id ?? null}
+        onJump={(id) => {
+          // Selecting and scrolling are one action: the navigator moves the
+          // page AND the sidebar, or the two drift apart.
+          setSelectedId(id)
           document
             .getElementById(`question-${id}`)
             ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-        }
+        }}
       />
 
       {visible.length === 0 ? (
@@ -396,7 +466,7 @@ function PracticeSession({
       {/* The prototype's `.pwrap`: the question list, and the hint/solution
           panel beside it. Below `lg` the panel is a drawer and this collapses
           back to a single column on its own. */}
-      <div className="pwrap">
+      <div className="pwrap" ref={wrap}>
         <div className="qlist">
           {visible.map((question) => (
             <QuestionCard
@@ -404,31 +474,35 @@ function PracticeSession({
               question={question}
               position={pool.indexOf(question) + 1}
               answer={answers[question.id] ?? UNANSWERED}
-              open={question.id === detailId}
+              open={question.id === selected?.id}
               onSelect={handleSelect}
-              onSeeMore={() => setDetailId(question.id)}
+              onSeeMore={() => {
+                setSelectedId(question.id)
+                // Only meaningful below `lg`, where the sidebar is a drawer.
+                setDrawerOpen(true)
+              }}
             />
           ))}
         </div>
 
-        {detail ? (
+        {selected ? (
           <SolutionPanel
-            question={detail}
-            selection={detailAnswer.selection}
-            hintsUsed={detailAnswer.hintsUsed}
-            position={pool.indexOf(detail) + 1}
+            // Keyed on the question, so a panel built for one question is never
+            // re-used for the next: its scroll position and any transient state
+            // reset with it, and hints cannot bleed across.
+            key={selected.id}
+            question={selected}
+            selection={selectedAnswer.selection}
+            hintsUsed={selectedAnswer.hintsUsed}
+            position={pool.indexOf(selected) + 1}
             total={pool.length}
-            answered={detailAnswer.submitted}
-            onReveal={(n) => patch(detail.id, { hintsUsed: n })}
-            onClose={() => setDetailId(null)}
-            onStep={(delta) => {
-              const next = pool[pool.indexOf(detail) + delta]
-              if (!next) return
-              setDetailId(next.id)
-              document
-                .getElementById(`question-${next.id}`)
-                ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-            }}
+            answered={selectedAnswer.submitted}
+            atStart={visible.indexOf(selected) === 0}
+            atEnd={visible.indexOf(selected) === visible.length - 1}
+            hiddenOnMobile={!drawerOpen}
+            onReveal={(n) => patch(selected.id, { hintsUsed: n })}
+            onClose={() => setDrawerOpen(false)}
+            onStep={stepTo}
           />
         ) : null}
       </div>
@@ -446,7 +520,6 @@ function PracticeSession({
           }}
         />
       ) : null}
-
     </div>
   )
 }
@@ -522,18 +595,16 @@ function QuestionCard({
               <i
                 aria-hidden
                 className="block size-1.5 rounded-full"
-                style={{ background: right ? 'var(--success)' : 'var(--danger)' }}
+                style={{
+                  background: right ? 'var(--success)' : 'var(--danger)',
+                }}
               />
               {right ? 'Correct' : 'Missed'}
             </span>
           ) : null}
 
           {!locked && question.hints?.length ? (
-            <HintTrigger
-              hintsUsed={hintsUsed}
-              total={question.hints.length}
-              onOpen={onSeeMore}
-            />
+            <HintTrigger hintsUsed={hintsUsed} total={question.hints.length} onOpen={onSeeMore} />
           ) : null}
         </span>
       </div>
@@ -574,4 +645,3 @@ function QuestionCard({
     </article>
   )
 }
-

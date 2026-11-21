@@ -99,7 +99,7 @@ describe('practice — hints and the working open beside the page', () => {
   test('See more and the hint button both open the one panel', () => {
     assert.match(feedback, /See more/)
     assert.match(runner, /<SolutionPanel/)
-    assert.match(runner, /setDetailId\(question\.id\)/)
+    assert.match(runner, /setSelectedId\(question\.id\)/)
     // The hint trigger opens that same panel. It used to unfold a block inside
     // the card, which pushed every question below it down the page.
     assert.match(runner, /<HintTrigger[\s\S]{0,200}onOpen=\{onSeeMore\}/)
@@ -127,7 +127,7 @@ describe('practice — hints and the working open beside the page', () => {
   test('the panel steps between questions without closing', () => {
     assert.match(panel, /onStep\(-1\)/)
     assert.match(panel, /onStep\(1\)/)
-    assert.match(runner, /onStep=\{\(delta\) =>/)
+    assert.match(runner, /onStep=\{stepTo\}/)
   })
 
   test('the panel is a drawer on a phone and a column on desktop', () => {
@@ -152,7 +152,7 @@ describe('practice — hints and the working open beside the page', () => {
     // asking for a hint means.
     assert.ok(!/recordAttempt/.test(panel), 'the panel records attempts')
     assert.ok(!/setAnswers/.test(panel), 'the panel mutates answers')
-    assert.match(runner, /onSeeMore=\{\(\) => setDetailId\(question\.id\)\}/)
+    assert.match(runner, /setSelectedId\(question\.id\)/)
   })
 
   test('it shows the existing detailed content unchanged', () => {
@@ -174,9 +174,27 @@ describe('practice — figure sequences', () => {
     assert.ok(!/compactOptions/.test(timed), 'the timed runner picked up the practice sizing')
   })
 
-  test('the grid, the panels and the answer logic are untouched', () => {
-    assert.match(view, /grid-cols-3 gap-2 sm:grid-cols-6/, 'the sequence layout changed')
+  test('the sequence is fixed cells that wrap, not a stretching grid', () => {
+    // It was `grid-cols-3 sm:grid-cols-6`, which sized every matrix to a sixth
+    // of whatever the column happened to be — so the figures grew with the page
+    // and dominated the question. The prototype's `.fseq` is a wrapping flex row
+    // of fixed 96px cells with a 12px gap; 76px below `sm` keeps all six legible
+    // on a phone without a sideways scroll.
+    assert.match(view, /flex flex-wrap gap-3/, 'the sequence is not a wrapping row')
+    assert.match(view, /w-\[76px\] max-w-none sm:w-24/, 'the fixed cell size went away')
+    assert.ok(
+      !/sm:grid-cols-6/.test(view),
+      'the stretching six-column grid is back',
+    )
+  })
+
+  test('the figures themselves are untouched', () => {
+    // Sizing is a CSS width on the <svg>. The viewBox, the cell geometry and
+    // the answer wiring must not move with it.
     assert.match(view, /image\.correctOptionId/, 'the answer key wiring changed')
+    const matrix = read('../../components/render/figure-matrix.tsx')
+    assert.match(matrix, /const CELL = 100/, 'the drawing grid changed size')
+    assert.match(matrix, /viewBox=\{`\$\{-PAD\} \$\{-PAD\}/, 'the viewBox changed')
   })
 })
 

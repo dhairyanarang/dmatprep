@@ -49,30 +49,48 @@ function FigureSequenceView({
         <p className="mb-3 max-w-[560px] text-base leading-[22px] font-semibold">
           Continue the sequence. Work out what the fifth and sixth matrices look like.
         </p>
-        {/* Three-up on phones so all six panels are visible at once; the whole
-            point of the task is comparing them, so horizontal scrolling here
-            actively gets in the way. */}
-        <div className="grid grid-cols-3 gap-2 sm:grid-cols-6">
+        {/*
+          The prototype's `.fseq`: a wrapping flex row of fixed 96px cells with
+          a 12px gap and a mono caption under each, NOT a six-column grid.
+
+          The difference is the whole fix. A `grid-cols-6` stretched every
+          matrix to whatever a sixth of the column happened to be, so the
+          sequence grew with the page and dominated the question — and it grew
+          again whenever the layout got wider. A fixed cell that wraps is the
+          same size everywhere and leaves the options room to breathe.
+
+          76px below `sm` keeps all six legible on a phone without a sideways
+          scroll, which is what the old three-up grid was protecting.
+        */}
+        <div
+          className="flex flex-wrap gap-3"
+          role="group"
+          aria-label="Four matrices in a sequence, then two missing"
+        >
           {question.given.map((panel, i) => (
-            <FigureMatrix
-              key={i}
-              panel={panel}
-              rows={question.grid.rows}
-              cols={question.grid.cols}
-              title={`Matrix ${i + 1}`}
-              className="max-w-none"
-            />
+            <figure key={i} className="m-0 flex flex-col items-center gap-1">
+              <FigureMatrix
+                panel={panel}
+                rows={question.grid.rows}
+                cols={question.grid.cols}
+                title={`Matrix ${i + 1}`}
+                className="w-[76px] max-w-none sm:w-24"
+              />
+              <figcaption className="text-muted-foreground font-mono text-[10px]">
+                {i + 1}
+              </figcaption>
+            </figure>
           ))}
-          <FigureUnknown
-            rows={question.grid.rows}
-            cols={question.grid.cols}
-            className="max-w-none"
-          />
-          <FigureUnknown
-            rows={question.grid.rows}
-            cols={question.grid.cols}
-            className="max-w-none"
-          />
+          {[5, 6].map((n) => (
+            <figure key={n} className="m-0 flex flex-col items-center gap-1">
+              <FigureUnknown
+                rows={question.grid.rows}
+                cols={question.grid.cols}
+                className="w-[76px] max-w-none sm:w-24"
+              />
+              <figcaption className="text-muted-foreground font-mono text-[10px]">{n}</figcaption>
+            </figure>
+          ))}
         </div>
       </div>
 

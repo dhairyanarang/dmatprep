@@ -40,6 +40,9 @@ export function SolutionPanel({
   position,
   total,
   answered,
+  atStart,
+  atEnd,
+  hiddenOnMobile,
   onReveal,
   onClose,
   onStep,
@@ -52,6 +55,11 @@ export function SolutionPanel({
   position: number
   total: number
   answered: boolean
+  /** Whether stepping back or forward would leave the filtered list. */
+  atStart: boolean
+  atEnd: boolean
+  /** Below `lg` the sidebar is a drawer; above it this is ignored. */
+  hiddenOnMobile: boolean
   onReveal: (next: number) => void
   onClose: () => void
   onStep: (delta: -1 | 1) => void
@@ -68,12 +76,6 @@ export function SolutionPanel({
     return () => window.removeEventListener('keydown', onKey)
   }, [onClose])
 
-  // Bring the panel into view when it opens on a phone, where it is a drawer
-  // that would otherwise appear off the side of a scrolled page.
-  useEffect(() => {
-    panel.current?.focus({ preventScroll: true })
-  }, [])
-
   const hints = question.hints ?? []
   const right = answered && isCorrect(question, selection)
 
@@ -81,7 +83,7 @@ export function SolutionPanel({
     <aside
       ref={panel}
       tabIndex={-1}
-      className="spanel focus:outline-none"
+      className={cn('spanel focus:outline-none', hiddenOnMobile && 'max-lg:hidden')}
       aria-label={`Hints and solution for question ${position}`}
     >
       <div className="sp-h">
@@ -96,7 +98,7 @@ export function SolutionPanel({
           type="button"
           onClick={onClose}
           aria-label="Close hints and solution"
-          className="text-muted-foreground hover:text-foreground grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150"
+          className="text-muted-foreground hover:text-foreground grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150 lg:hidden"
         >
           <X className="size-4" />
         </button>
@@ -177,7 +179,7 @@ export function SolutionPanel({
         <Button
           variant="outline"
           size="sm"
-          disabled={position <= 1}
+          disabled={atStart}
           onClick={() => onStep(-1)}
           aria-label="Previous question"
         >
@@ -190,7 +192,7 @@ export function SolutionPanel({
         <Button
           variant="outline"
           size="sm"
-          disabled={position >= total}
+          disabled={atEnd}
           onClick={() => onStep(1)}
           aria-label="Next question"
         >
