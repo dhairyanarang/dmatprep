@@ -74,7 +74,10 @@ export function CheckoutView({
       <div className="bg-frame fixed inset-0 z-50 overflow-auto">
         {justActivated ? <EdgeConfetti /> : null}
 
-        <div className="mx-auto flex min-h-full w-full max-w-[560px] flex-col justify-center px-4 py-12 sm:px-6">
+        {/* Above the bursts, which sit at z-0. This is what lets the confetti
+            cross the middle of the screen without touching the legibility of
+            the heading, the account or the buttons. */}
+        <div className="relative z-10 mx-auto flex min-h-full w-full max-w-[560px] flex-col justify-center px-4 py-12 sm:px-6">
           <div className="border-gold-line bg-card relative flex flex-col gap-5 rounded-2xl border p-6 sm:p-8">
             <div className="flex flex-col gap-3">
               <span

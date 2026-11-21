@@ -251,25 +251,148 @@
   --brand-200: #bcc7ff;
 }
 
-@keyframes confetti-fall {
+/*
+ * One keyframe for both corner bursts.
+ *
+ * The travel vector arrives per particle as `--dx` / `--dy`, signed so the
+ * left and right bursts share this animation rather than needing one each.
+ * The 62% stop is the apex: most of the distance is covered by then, which is
+ * what makes it read as thrown rather than floated, and `--drop` pulls the
+ * last stretch back down so the paper falls instead of freezing mid-air.
+ */
+@keyframes confetti-burst {
   0% {
     opacity: 0;
-    transform: translateY(0) rotate(0deg);
+    transform: translate3d(0, 0, 0) rotate(0deg);
   }
-  8% {
+  7% {
     opacity: 1;
   }
-  80% {
+  62% {
     opacity: 1;
+    transform: translate3d(calc(var(--dx) * 0.84), var(--dy), 0)
+      rotate(calc(var(--rot) * 0.68));
   }
   100% {
     opacity: 0;
-    /* Past the bottom of any viewport this product is used on. */
-    transform: translateY(105vh) rotate(540deg);
+    transform: translate3d(var(--dx), calc(var(--dy) + var(--drop)), 0) rotate(var(--rot));
+  }
+}
+
+/*
+ * The border colour every bare `border-*` utility falls back to.
+ *
+ * Tailwind v4 changed this default from gray-200 to `currentColor`, and
+ * shadcn's own setup restores it with a base rule that this stylesheet never
+ * had. The consequence was visible and wrong: every `border`, `border-b` and
+ * `border-t` written without an explicit colour — the Overview/Practice tab
+ * rule, `Alert`, `Card`'s footer, `Sheet`, the sub-nav and nav-list chips, the
+ * equation frame, the worked-example box — drew in the text colour, which is
+ * #0a0a0a. A near-black hairline where the design system asks for #e7e7e7.
+ *
+ * Measured, not inferred: the tab divider computed to `1px rgb(0, 0, 0)`.
+ *
+ * `--color-border` is the theme mapping of `--border`, which is #e7e7e7 and is
+ * the same value the v2 prototype calls `--line`. Fixing it here rather than at
+ * each call site is what this file is for.
+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-border, currentColor);
   }
 }
 
 @layer components {
+  /*
+   * The practice two-column shape, ported from the v2 prototype's `.pwrap`.
+   *
+   * The prototype puts hints and the full working in a panel BESIDE the
+   * question list rather than inside it, and that placement is the point: an
+   * inline hint block pushed every question below it down the page, so asking
+   * for a hint on a bank of 170 items cost you your place. Here the list keeps
+   * its position and the panel sticks beside it.
+   *
+   * Below `lg` the panel becomes a right-hand drawer instead of a column,
+   * because 420px of panel beside a question is unusable on a phone — the
+   * prototype does exactly the same thing at its own breakpoint.
+   */
+  .pwrap {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    min-width: 0;
+  }
+
+  .qlist {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .spanel {
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    overflow: auto;
+    overscroll-behavior: contain;
+    /* Phone and tablet: a drawer over the page, dismissible. */
+    position: fixed;
+    inset: 0 0 0 auto;
+    width: min(420px, 100%);
+    z-index: 66;
+    border-left: 1px solid var(--line2);
+    box-shadow: -20px 0 60px rgb(10 10 10 / 0.18);
+  }
+
+  @media (min-width: 1024px) {
+    .spanel {
+      /* Desktop: an in-flow column. It cannot obscure the question because it
+         does not overlap it. */
+      position: sticky;
+      top: var(--ptop, 104px);
+      inset: auto;
+      flex: none;
+      width: 400px;
+      height: calc(100vh - var(--ptop, 104px) - 16px);
+      z-index: 1;
+      border-radius: 12px;
+      border: 1px solid var(--line2);
+      box-shadow: none;
+    }
+  }
+
+  .sp-h {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    min-height: 52px;
+    padding: 0 10px 0 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--card);
+    border-bottom: 1px solid var(--soft);
+  }
+
+  .sp-f {
+    position: sticky;
+    bottom: 0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    background: var(--card);
+    border-top: 1px solid var(--soft);
+  }
+
   /*
    * The prototype's signature container: a warm frame holding an inset white
    * surface, with a small mono-capitalised header between them.

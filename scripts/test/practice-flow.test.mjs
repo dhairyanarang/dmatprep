@@ -14,7 +14,7 @@ import { readFileSync } from 'node:fs'
 
 const read = (p) => readFileSync(new URL(p, import.meta.url), 'utf8')
 const runner = read('../../components/practice/practice-runner.tsx')
-const sheet = read('../../components/practice/explanation-sheet.tsx')
+const panel = read('../../components/practice/solution-panel.tsx')
 const feedback = read('../../components/practice/feedback-panel.tsx')
 const view = read('../../components/practice/question-view.tsx')
 const timed = read('../../components/practice/timed-runner.tsx')
@@ -95,59 +95,68 @@ describe('practice — choosing is answering', () => {
   })
 })
 
-describe('practice — the detail opens beside the page', () => {
-  test('See more opens a panel rather than expanding the card', () => {
+describe('practice — hints and the working open beside the page', () => {
+  test('See more and the hint button both open the one panel', () => {
     assert.match(feedback, /See more/)
-    assert.match(runner, /<ExplanationSheet/)
+    assert.match(runner, /<SolutionPanel/)
     assert.match(runner, /setDetailId\(question\.id\)/)
+    // The hint trigger opens that same panel. It used to unfold a block inside
+    // the card, which pushed every question below it down the page.
+    assert.match(runner, /<HintTrigger[\s\S]{0,200}onOpen=\{onSeeMore\}/)
+    assert.ok(!/<HintPanel/.test(runner), 'the inline hint block is back')
   })
 
   test('the panel names its question and can be closed', () => {
-    assert.match(sheet, /Question \{position\}/)
-    assert.match(sheet, /onOpenChange=\{\(open\) => !open && onClose\(\)\}/)
+    assert.match(panel, /Q\{String\(position\)\.padStart\(2, '0'\)\}/)
+    assert.match(panel, /aria-label="Close hints and solution"/)
+    assert.match(panel, /event\.key === 'Escape'/, 'Escape does not close the drawer')
   })
 
-  test('the desktop panel is wide enough to read a walkthrough in', () => {
-    // It sat at 384px for a while because the primitive's own
-    // `data-[side=right]:sm:max-w-sm` outranked a bare `sm:` utility. The
-    // override has to carry the data attribute or the width silently reverts.
+  test('every hint slot is visible, and an unasked one says so', () => {
+    // The prototype shows all three slots, so how much help exists is known
+    // before any of it is spent.
+    assert.match(panel, /Hidden until you ask/)
+    assert.match(panel, /Show hint \{hintsUsed \+ 1\}/)
+  })
+
+  test('the working stays locked until the question is answered', () => {
+    assert.match(panel, /Try it first\. The working opens once you answer\./)
+    assert.match(panel, /\{answered \?/)
+  })
+
+  test('the panel steps between questions without closing', () => {
+    assert.match(panel, /onStep\(-1\)/)
+    assert.match(panel, /onStep\(1\)/)
+    assert.match(runner, /onStep=\{\(delta\) =>/)
+  })
+
+  test('the panel is a drawer on a phone and a column on desktop', () => {
+    // A 420px panel beside a question is unusable on a phone; an overlay on
+    // desktop covers the very question it is explaining. `.spanel` is each of
+    // those, by breakpoint.
+    const css = read('../../app/globals.css')
     assert.match(
-      sheet,
-      /sm:data-\[side=right\]:max-w-\[min\(768px,60vw\)\]/,
-      'the desktop panel width would lose to the primitive and fall back to 384px',
+      css,
+      /\.spanel \{[\s\S]*?position: fixed/,
+      'the panel is not a drawer by default',
+    )
+    assert.match(
+      css,
+      /@media \(min-width: 1024px\) \{[\s\S]*?\.spanel \{[\s\S]*?position: sticky/,
+      'the panel never becomes an in-flow column, so it overlaps the question on desktop',
     )
   })
 
-  test('it becomes a bottom sheet on a narrow screen', () => {
-    assert.match(sheet, /max-sm:data-\[side=right\]:bottom-0/, 'a phone would get a side drawer')
-    assert.match(sheet, /max-sm:data-\[side=right\]:h-\[85dvh\]/)
-    assert.match(sheet, /max-sm:data-\[side=right\]:w-full/)
-    // Every phone override has to carry the data attribute as well as the
-    // breakpoint: the primitive sizes by `data-[side=right]`, so a bare
-    // `max-sm:` utility loses on specificity and the sheet stays a narrow
-    // column. That is a real bug this caught once already.
-    const phoneOverrides = sheet.match(/'max-sm:[^']+'/g) ?? []
-    assert.ok(phoneOverrides.length > 0, 'the phone treatment has gone')
-    for (const line of phoneOverrides) {
-      for (const cls of line.replace(/'/g, '').split(/\s+/)) {
-        assert.match(
-          cls,
-          /^max-sm:data-\[side=right\]:/,
-          `${cls} will lose to the primitive's own data-[side] rule`,
-        )
-      }
-    }
-  })
-
   test('opening it records nothing and changes no answer', () => {
-    // The only state it touches is which question is open.
-    assert.ok(!/recordAttempt/.test(sheet), 'the panel records attempts')
-    assert.ok(!/setAnswers|patch\(/.test(sheet), 'the panel mutates answers')
+    // The only answer state it may touch is the hint count, which is what
+    // asking for a hint means.
+    assert.ok(!/recordAttempt/.test(panel), 'the panel records attempts')
+    assert.ok(!/setAnswers/.test(panel), 'the panel mutates answers')
     assert.match(runner, /onSeeMore=\{\(\) => setDetailId\(question\.id\)\}/)
   })
 
   test('it shows the existing detailed content unchanged', () => {
-    assert.match(sheet, /FeedbackDetail/)
+    assert.match(panel, /FeedbackDetail/)
     assert.match(feedback, /<SolutionViewer question=\{question\} defaultOpen \/>/)
     assert.match(feedback, /Why the other options are wrong/)
   })
@@ -202,7 +211,7 @@ describe('practice — nothing is lost on reload', () => {
 
 describe('the exam modes are not practice', () => {
   test('the timed runner took none of this', () => {
-    assert.ok(!/ExplanationSheet/.test(timed), 'the practice side panel leaked into timed')
+    assert.ok(!/SolutionPanel/.test(timed), 'the practice side panel leaked into timed')
     assert.ok(!/FeedbackSummary/.test(timed), 'the practice card feedback leaked into timed')
     assert.ok(!/answered: answers/.test(timed), 'practice draft state leaked into timed')
   })

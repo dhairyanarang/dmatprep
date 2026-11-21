@@ -10,9 +10,8 @@ import {
   type DotState,
   type StatusFilter,
 } from '@/components/practice/practice-bar'
-import { ExplanationSheet } from '@/components/practice/explanation-sheet'
+import { SolutionPanel, HintTrigger } from '@/components/practice/solution-panel'
 import { FeedbackSummary } from '@/components/practice/feedback-panel'
-import { HintPanel, HintTrigger } from '@/components/practice/hint-panel'
 import { QuestionView } from '@/components/practice/question-view'
 import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
@@ -394,20 +393,44 @@ function PracticeSession({
         </div>
       ) : null}
 
-      {/* Slightly more air between questions than between the page's own
-          furniture above, so the column reads as a list of separate things. */}
-      <div className="flex flex-col gap-4">
-        {visible.map((question) => (
-          <QuestionCard
-            key={question.id}
-            question={question}
-            position={pool.indexOf(question) + 1}
-            answer={answers[question.id] ?? UNANSWERED}
-            onSelect={handleSelect}
-            onReveal={(n) => patch(question.id, { hintsUsed: n })}
-            onSeeMore={() => setDetailId(question.id)}
+      {/* The prototype's `.pwrap`: the question list, and the hint/solution
+          panel beside it. Below `lg` the panel is a drawer and this collapses
+          back to a single column on its own. */}
+      <div className="pwrap">
+        <div className="qlist">
+          {visible.map((question) => (
+            <QuestionCard
+              key={question.id}
+              question={question}
+              position={pool.indexOf(question) + 1}
+              answer={answers[question.id] ?? UNANSWERED}
+              open={question.id === detailId}
+              onSelect={handleSelect}
+              onSeeMore={() => setDetailId(question.id)}
+            />
+          ))}
+        </div>
+
+        {detail ? (
+          <SolutionPanel
+            question={detail}
+            selection={detailAnswer.selection}
+            hintsUsed={detailAnswer.hintsUsed}
+            position={pool.indexOf(detail) + 1}
+            total={pool.length}
+            answered={detailAnswer.submitted}
+            onReveal={(n) => patch(detail.id, { hintsUsed: n })}
+            onClose={() => setDetailId(null)}
+            onStep={(delta) => {
+              const next = pool[pool.indexOf(detail) + delta]
+              if (!next) return
+              setDetailId(next.id)
+              document
+                .getElementById(`question-${next.id}`)
+                ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }}
           />
-        ))}
+        ) : null}
       </div>
 
       {pool.length > 0 && answeredCount === pool.length && sectionId ? (
@@ -424,13 +447,6 @@ function PracticeSession({
         />
       ) : null}
 
-      <ExplanationSheet
-        question={detail ?? null}
-        selection={detailAnswer.selection}
-        hintsUsed={detailAnswer.hintsUsed}
-        position={detail ? pool.findIndex((q) => q.id === detail.id) + 1 : 0}
-        onClose={() => setDetailId(null)}
-      />
     </div>
   )
 }
@@ -449,15 +465,16 @@ function QuestionCard({
   question,
   position,
   answer,
+  open,
   onSelect,
-  onReveal,
   onSeeMore,
 }: {
   question: Question
   position: number
   answer: PracticeAnswer
+  /** Whether this question's hints and working are the ones in the side panel. */
+  open: boolean
   onSelect: (question: Question, key: string, optionId: string) => void
-  onReveal: (next: number) => void
   onSeeMore: () => void
 }) {
   const { selection, submitted, hintsUsed } = answer
@@ -477,7 +494,11 @@ function QuestionCard({
     <article
       id={`question-${question.id}`}
       aria-label={`Question ${position}`}
-      className="panel scroll-mt-32 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]"
+      className={cn(
+        'panel scroll-mt-32 [contain-intrinsic-size:auto_36rem] [content-visibility:auto]',
+        // Which question the panel is about, said on the question itself.
+        open && 'ring-brand/35 ring-2',
+      )}
     >
       <div className="panel-h min-h-[42px]">
         <span className="flex min-w-0 items-center gap-2">
@@ -507,8 +528,12 @@ function QuestionCard({
             </span>
           ) : null}
 
-          {!locked && !submitted && question.hints?.length && hintsUsed === 0 ? (
-            <HintTrigger onReveal={() => onReveal(1)} />
+          {!locked && question.hints?.length ? (
+            <HintTrigger
+              hintsUsed={hintsUsed}
+              total={question.hints.length}
+              onOpen={onSeeMore}
+            />
           ) : null}
         </span>
       </div>
@@ -525,10 +550,6 @@ function QuestionCard({
             compactOptions
           />
         )}
-
-        {!locked && !submitted && question.hints?.length && hintsUsed > 0 ? (
-          <HintPanel hints={question.hints} revealed={hintsUsed} onReveal={onReveal} />
-        ) : null}
 
         {!locked && !submitted && !answered ? (
           <p className="text-muted-foreground text-sm">
