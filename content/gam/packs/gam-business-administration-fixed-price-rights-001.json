@@ -109,7 +109,7 @@
         }
       }
     ],
-    "contentHash": "9324266cc2e860dbace900d8fe168374"
+    "contentHash": "1a7853b4a5750d6f2794d56176d447f0"
   },
   "questions": [
     {
@@ -294,7 +294,7 @@
         },
         {
           "id": "opt-b",
-          "text": "R1, because its strike is the lowest of the three"
+          "text": "R1, because its strike is the tied-lowest of the three"
         },
         {
           "id": "opt-c",
@@ -327,7 +327,7 @@
         "opt-b": {
           "blockId": "p2",
           "family": "wrong-direction-of-effect",
-          "reason": "R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits."
+          "reason": "R1 shares the lowest strike in the table with R3, but that is beside the point: R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits."
         },
         "opt-c": {
           "blockId": "p1",

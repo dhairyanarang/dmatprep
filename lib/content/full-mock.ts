@@ -5,7 +5,13 @@ import { getPublicPack, type PublicGamPackFile } from '@/lib/gam/registry'
 import { SECTION_BY_ID, SECTION_IDS, type SectionId } from '@/lib/sections'
 
 /**
- * The full-dMAT mock: Core, a break, then the General Academic Module.
+ * The Core + GAM sample sitting: Core, a break, then a SAMPLE of the General
+ * Academic Module.
+ *
+ * Deliberately not called a full-length mock. The Core half is complete at 60
+ * questions in the official shape; the General Academic half holds 10 of the
+ * roughly 60 the real module carries, and every surface that shows this sitting
+ * says so.
  *
  * Deliberately its own module rather than part of `lib/content/mocks.ts`. That
  * one resolves the four frozen Core mocks and must keep knowing nothing about
@@ -39,12 +45,30 @@ export type FullMockStage = {
 export const FULL_MOCK_ID = fullMock.id as string
 export const FULL_MOCK_LABEL = fullMock.label as string
 
-/** OFFICIAL — GAM PDF pp. 8, 18, 25. */
+/** OFFICIAL — GAM PDF pp. 8, 18, 25. The Core half is complete, so this is exact. */
 export const CORE_STAGE_MINUTES = fullMock.minutesPerCoreStage as number
-/** OFFICIAL — GAM PDF p. 34. */
+
+/**
+ * OURS, not official — and the distinction matters enough to keep in the type.
+ *
+ * The official module is 90 minutes (GAM PDF p. 34) for approximately 60
+ * questions (d-mat.de FAQ), which is about 90 seconds each. We have 10
+ * questions, so the stage runs 15 minutes at that rate. Giving 10 questions the
+ * full 90 would have reproduced the module's length while destroying its pace,
+ * which is the part every account of the real sitting calls the difficulty.
+ */
 export const GAM_MINUTES = fullMock.gamMinutes as number
+
+/** OFFICIAL — GAM PDF p. 34. Kept because the fact holds even though we cannot fill it. */
+export const OFFICIAL_GAM_MINUTES = fullMock.officialGamMinutes as number
+/** OFFICIAL, approximate — d-mat.de FAQ. */
+export const OFFICIAL_GAM_QUESTIONS_APPROX = fullMock.officialGamQuestionsApprox as number
+
 /** OFFICIAL — GAM PDF p. 6, "about three hours with a break of 30 minutes". */
 export const BREAK_MINUTES = fullMock.breakMinutes as number
+
+/** What this sitting runs, as distinct from the real examination's 195 minutes. */
+export const TOTAL_MINUTES = fullMock.totalMinutes as number
 
 const SECTIONS = fullMock.sections as Record<string, string[]>
 

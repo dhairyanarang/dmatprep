@@ -12,6 +12,9 @@ import {
   CORE_STAGE_MINUTES,
   FULL_MOCK_LABEL,
   GAM_MINUTES,
+  OFFICIAL_GAM_MINUTES,
+  OFFICIAL_GAM_QUESTIONS_APPROX,
+  TOTAL_MINUTES,
   fullMockCoreSize,
   fullMockGamSize,
 } from '@/lib/content/full-mock'
@@ -77,16 +80,17 @@ export default function TestPage() {
         <MockTiles mocks={mocks} />
       </section>
 
-      {/* The only mock that runs BOTH modules. The four above are Module A
-          only, which is the half the four were built for; this is the one
-          shaped like the real sitting. */}
-      <Panel title="Full dMAT mock · both modules">
+      {/* The only sitting that runs BOTH modules. The four above are Module A
+          only. This is NOT a full-length examination and must not be sold as
+          one: the Core half is complete, the General Academic half is a tenth
+          of a module, and the title says sample for that reason. */}
+      <Panel title="Core + General Academic · both modules">
         <TileCard
           href="/test/full-mock"
           icon={Timer}
           title={FULL_MOCK_LABEL}
-          description={`The whole examination in order: ${fullMockCoreSize()} Core questions in three ${CORE_STAGE_MINUTES}-minute subtests, a ${BREAK_MINUTES}-minute break, then ${fullMockGamSize()} General Academic questions under the module's ${GAM_MINUTES}-minute clock. Its Core questions appear in none of the four mocks above, so working through those does not spoil it. The General Academic half is pilot material, not yet reviewed by a person.`}
-          meta={`${CORE_STAGE_MINUTES * 3 + BREAK_MINUTES + GAM_MINUTES} mins`}
+          description={`A complete Core Module — ${fullMockCoreSize()} questions in three ${CORE_STAGE_MINUTES}-minute subtests — then a ${BREAK_MINUTES}-minute break and a SAMPLE of the General Academic Module: ${fullMockGamSize()} questions in ${GAM_MINUTES} minutes. That is the official pace of about 90 seconds a question, not the official module length: the real module runs roughly ${OFFICIAL_GAM_QUESTIONS_APPROX} questions in ${OFFICIAL_GAM_MINUTES} minutes, so this is a sixth of it. Its Core questions appear in none of the four mocks above. The General Academic half is pilot material, not yet reviewed by a person.`}
+          meta={`${TOTAL_MINUTES} mins`}
           className="border-0 shadow-none"
         />
       </Panel>

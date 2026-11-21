@@ -1,5 +1,5 @@
 /**
- * The full-dMAT mock — the one sitting that runs both modules.
+  * The Core + GAM sample sitting — the one sitting that runs both modules.
  *
  * Four properties, each easy to break without noticing:
  *
@@ -24,7 +24,7 @@ const full = read('content/access/full-mock.json')
 const coreMocks = read('content/access/core-mocks.json')
 const SECTIONS = ['figure-sequences', 'mathematical-equations', 'latin-squares']
 
-describe('the full dMAT mock — Core half', () => {
+describe('the sample sitting — Core half', () => {
   test('three subtests of twenty, sixty questions in all', () => {
     assert.equal(full.questionsPerSection, 20)
     for (const section of SECTIONS) {
@@ -71,7 +71,7 @@ describe('the full dMAT mock — Core half', () => {
   })
 })
 
-describe('the full dMAT mock — General Academic half', () => {
+describe('the sample sitting — General Academic half', () => {
   test('it names a fixed list of packs, not whatever happens to be active', () => {
     assert.ok(Array.isArray(full.gamPackIds))
     assert.ok(full.gamPackIds.length > 0, 'the sitting has no General Academic half')
@@ -109,21 +109,60 @@ describe('the full dMAT mock — General Academic half', () => {
   })
 })
 
-describe('the full dMAT mock — timing', () => {
-  test('the stage lengths are the official ones', () => {
-    // GAM PDF pp. 8, 18, 25 — each Core subtest is 25 minutes / 20 items.
+describe('the sample sitting — timing', () => {
+  test('the Core stages and the break are the official lengths', () => {
+    // GAM PDF pp. 8, 18, 25 — each Core subtest is 25 minutes / 20 items. The
+    // Core half is complete, so these are exact rather than scaled.
     assert.equal(full.minutesPerCoreStage, 25)
-    // GAM PDF p. 34 — the Subject Module runs 90 minutes in total.
-    assert.equal(full.gamMinutes, 90)
     // GAM PDF p. 6 — "about three hours with a break of 30 minutes".
     assert.equal(full.breakMinutes, 30)
   })
 
-  test('the parts add up to the 195 minutes the repository computes', () => {
-    // The known discrepancy, recorded rather than resolved: the PDF says "about
-    // three hours", d-mat.de says three and a half. 75 + 30 + 90 is what the
-    // parts actually come to, and it is what this sitting runs.
+  test('the official General Academic figures are still recorded', () => {
+    // They do not stop being true because our sample cannot fill them, and a
+    // later pass that authors ~50 more questions needs them to scale back up.
+    assert.equal(full.officialGamMinutes, 90) // GAM PDF p. 34
+    assert.equal(full.officialGamQuestionsApprox, 60) // d-mat.de FAQ
+  })
+
+  /**
+   * The GAM stage runs at the official PACE, not the official LENGTH.
+   *
+   * 90 official minutes over ~60 official questions is ~90 seconds each. With
+   * 10 questions that is 15 minutes. The first build of this sitting gave those
+   * 10 questions the full 90 minutes, which reproduced the module's duration
+   * while destroying its pace — 540 seconds a question — and taught a candidate
+   * exactly the wrong thing about the one property every account of the real
+   * sitting calls the difficulty.
+   */
+  test('the General Academic stage runs at the official per-question rate', () => {
+    assert.equal(full.gamSecondsPerQuestion, 90)
+    const expected = Math.round((full.gamQuestionCount * full.gamSecondsPerQuestion) / 60)
+    assert.equal(full.gamMinutes, expected, 'the stage length is not the rate times the question count')
+    assert.equal(full.gamMinutes, 15)
+    const secondsEach = (full.gamMinutes * 60) / full.gamQuestionCount
+    assert.equal(secondsEach, 90, `${secondsEach}s per question, not the official ~90s`)
+  })
+
+  test('the sitting reports its own length, not the examination’s 195 minutes', () => {
     const total = full.minutesPerCoreStage * 3 + full.breakMinutes + full.gamMinutes
-    assert.equal(total, 195)
+    assert.equal(total, 120)
+    assert.equal(full.totalMinutes, total, 'totalMinutes disagrees with the stages')
+    assert.notEqual(
+      full.totalMinutes,
+      195,
+      'this is a sample sitting; claiming the examination’s full length would be the overstatement the 15-minute stage exists to avoid',
+    )
+  })
+
+  test('it is labelled a sample, not a full-length examination', () => {
+    assert.match(full.label, /sample/i, `label "${full.label}" does not say it is a sample`)
+    assert.ok(!/full[- ]length/i.test(full.label))
+    assert.match(full.note, /sample/i)
+    // The honest ratio has to be visible somewhere a reader will meet it.
+    assert.ok(
+      full.gamQuestionCount < full.officialGamQuestionsApprox,
+      'if the sample ever reaches full length, revisit the label and the clock together',
+    )
   })
 })

@@ -1,0 +1,91 @@
+{
+  "batchId": "b12",
+  "name": "b12 — Mathematical Equations, LCM family and two product-pair replacements (0/4/6)",
+  "section": "mathematical-equations",
+  "generatorVersion": "4.1.0",
+  "counts": { "low": 0, "medium": 4, "high": 6 },
+  "currentCoverage": {
+    "note": "Direct read of questions.json after retiring me-high-b10-007 and me-high-b10-014, 22 November 2026. 208 items in file, 205 active.",
+    "tiers": { "low": 56, "medium": 73, "high": 76 },
+    "quadraticItems": 14,
+    "productPairItems": 3,
+    "lcmItems": 0,
+    "observation": "Two defects found in review drove this batch. First, two of the five product-pair items had a product with only one factor pair inside 1..20, so their difference equation did no work and their explanation overstated the search; both are retired. Second, divisibility reasoning in the bank is incidental — it falls out of `÷` definitions — and exactly one item in 207 happened to require a genuine common multiple. There was no LCM family."
+  },
+  "overrepresented": [
+    "divisibility as a side effect of a single `÷` definition rather than as the thing being tested",
+    "substitution as the only route into a system"
+  ],
+  "gaps": [
+    "a deliberate lowest-common-multiple family — zero items before this batch",
+    "product-pair items whose difference constraint genuinely discriminates (3 of the original 5 did; the 2 that did not are retired)"
+  ],
+  "mechanics": {
+    "allowed": [
+      "integer letter values in 1..20, exactly one solution per letter",
+      "operators + − × ÷ only",
+      "2 to 4 letters",
+      "chain, star and mixed definition topologies",
+      "bare pins and operated pins",
+      "linear, multiplicative and compound definitions",
+      "two unknowns equal to a constant",
+      "multiple multiplicative terms",
+      "combining equations over all letters or a subset",
+      "lcm-pin — two divisions of one letter by different constants. Each is official Ex 2 (`B ÷ 2 = A`); two of them against one root is two documented definitions, so this family needs no REVIEW grade and classifies as `documented` mechanics."
+    ],
+    "review": [
+      "a letter multiplied by another letter (product pair) — ME_CONTRACT.review.letterProduct",
+      "numeric constants above 18, which a product necessarily carries",
+      "the one-letter/four-option question format"
+    ],
+    "forbidden": [
+      "operators beyond + − × ÷",
+      "exponent or radical notation (^, **, √)",
+      "a letter divided by a letter",
+      "non-integer, zero or negative letter values",
+      "letter values outside 1..20",
+      "systems without exactly one solution",
+      "a product whose in-range factor pairs number fewer than two — new in 4.1.0, and the reason two b10 items are retired"
+    ]
+  },
+  "difficultyModel": {
+    "metric": "reasoning depth, measured by replaying the propagation a solver performs, never inherited from the plan",
+    "low": "not generated — the brief asks for harder material",
+    "medium": "depth exactly 2",
+    "high": "depth 3 to 6, and the asked letter may not be the first letter determined. An lcm-pin system has no equation with a single unknown at the start, so its root measures at depth 2 or more by construction."
+  },
+  "distractorConstraints": {
+    "families": ["wrong-variable", "off-by-one", "inverted-operation", "sign-error", "stopped-early"],
+    "maxOffByOnePerItem": 1,
+    "requireWrongVariable": "whenever a letter's value is in range and distinct from the answer",
+    "rejectAmbiguous": "any option value that satisfies two error families at once is rejected outright",
+    "note": "An LCM item's natural wrong answer is one of the two quotients, which the existing wrong-variable family already covers — both are letters of the system."
+  },
+  "structuralConstraints": {
+    "maxPerFingerprint": 2,
+    "noRepeatedLeftHandSide": true,
+    "lcmPairTable": "Divisor pairs are built, not listed: both divisors at most 10, their lowest common multiple inside 1..20, and twice that multiple outside it. The last condition is what makes the pair pin the root with no extra equation. The divisor cap is what stops a single division doing the job on its own — `D ÷ 12 = X` has one solution in range, which would have made an LCM-shaped item solvable without any common multiple. Eight pairs survive."
+  },
+  "seedStrategy": "Per-slot seeds from (generator, section, batchId, tier, index, attempt). Append-only: the two retired ids stay reserved forever and are never reassigned; every other committed item must still rebuild byte-identically from its own stamp.",
+  "expectedDistribution": {
+    "medium": "4 lcm-pin items at depth 2",
+    "high": "2 product-pair replacements and 4 lcm-pin items at depth 3-6",
+    "bankAfter": { "low": 56, "medium": 77, "high": 82, "activeTotal": 215 }
+  },
+  "slotTargets": {
+    "medium": [
+      { "shape": "lcm-pin" },
+      { "shape": "lcm-pin" },
+      { "shape": "lcm-pin" },
+      { "shape": "lcm-pin" }
+    ],
+    "high": [
+      { "shape": "product-pair" },
+      { "shape": "lcm-pin" },
+      { "shape": "product-pair" },
+      { "shape": "lcm-pin" },
+      { "shape": "lcm-pin" },
+      { "shape": "lcm-pin" }
+    ]
+  }
+}

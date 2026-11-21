@@ -130,7 +130,7 @@ line-chart — x: Settlement price in euro per tonne · y: Net result for the ho
 
 ### `gam-ba-fpr-001-q2`
 
-> At which settlement price do the holders of R1 and R2 end the day with exactly the same net result?
+> At which settlement price do the holders of the two buy-rights end the day with exactly the same net result?
 
 - **(opt-a)** 2455 euro per tonne ← **KEY**
 - **(opt-b)** 2490 euro per tonne
@@ -173,7 +173,7 @@ line-chart — x: Settlement price in euro per tonne · y: Net result for the ho
 > A trader is convinced the settlement price will end far below every strike in the table. Which right in the table rewards that view, and why?
 
 - **(opt-a)** R3, because a sell-right gains as the settlement price falls below its strike ← **KEY**
-- **(opt-b)** R1, because its strike is the lowest of the three
+- **(opt-b)** R1, because its strike is the tied-lowest of the three
 - **(opt-c)** R2, because it costs the least to buy
 - **(opt-d)** None of them, because the premium is paid whatever happens
 
@@ -181,7 +181,7 @@ line-chart — x: Settlement price in euro per tonne · y: Net result for the ho
 
 **Why each other option is wrong**
 
-- **(opt-b)** — *wrong-direction-of-effect*, from `p2`: R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits.
+- **(opt-b)** — *wrong-direction-of-effect*, from `p2`: R1 shares the lowest strike in the table with R3, but that is beside the point: R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits.
 - **(opt-c)** — *right-concept-wrong-scope*, from `p1`: Cost is not the issue the question asks about. R2 is also a buy-right, so a falling price makes it lapse, and the holder is then down by the premium rather than ahead.
 - **(opt-d)** — *contradicts-source*, from `p2`: The premium is indeed always paid, but the source sets the net result as the value of the right less that premium, and a sell-right can be worth far more than the premium when the price falls.
 

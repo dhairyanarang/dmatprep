@@ -112,7 +112,7 @@
       "domain": "business-administration",
       "title": "Fixed-price rights on a metals exchange",
       "questions": 3,
-      "contentHash": "9324266cc2e860dbace900d8fe168374",
+      "contentHash": "1a7853b4a5750d6f2794d56176d447f0",
       "reviewStatus": "automated-pass",
       "automated": {
         "errors": 0,
@@ -151,7 +151,7 @@
           "question": "Having read the source and every question, key, explanation and refutation: is this pack correct, fair and fit to put in front of a candidate?",
           "evidence": [
             {
-              "contentHash": "9324266cc2e860dbace900d8fe168374",
+              "contentHash": "1a7853b4a5750d6f2794d56176d447f0",
               "questions": 3
             },
             {

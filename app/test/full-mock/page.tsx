@@ -5,20 +5,31 @@ import {
   CORE_STAGE_MINUTES,
   FULL_MOCK_LABEL,
   GAM_MINUTES,
+  OFFICIAL_GAM_MINUTES,
+  OFFICIAL_GAM_QUESTIONS_APPROX,
   fullMockCoreSize,
   fullMockCoreStages,
   fullMockGamPacks,
+  fullMockGamSize,
 } from '@/lib/content/full-mock'
 
-export const metadata = { title: 'Full dMAT mock' }
+export const metadata = { title: 'Core + GAM sample simulation' }
 
 /**
- * The one mock that runs both modules, in the shape of the real examination.
+ * The one sitting that runs both modules — as a SAMPLE, not a full-length mock.
  *
- * The four Core mocks are Module A only. This adds the half that was missing:
- * three Core subtests of 25 minutes, a 30-minute break, then the General
- * Academic Module for 90 minutes — 75 + 30 + 90, the breakdown recorded in
- * `content/exam/claims.ts` as the computed 195 minutes.
+ * The four Core mocks are Module A only. This adds the half that was missing,
+ * and is honest about how much of it we have: three Core subtests of 25 minutes
+ * (complete, and the official shape), a 30-minute break, then 10 General
+ * Academic questions in 15 minutes.
+ *
+ * **Fifteen, not the official ninety.** The real module is 90 minutes for
+ * approximately 60 questions, about 90 seconds each. Ten questions on a
+ * 90-minute clock would have reproduced the duration and destroyed the pace,
+ * which is the property every account of the real sitting names as the
+ * difficulty. 15 minutes is those 10 questions at the official rate. When the
+ * General Academic bank reaches full length, the clock scales back up with it —
+ * `scripts/build-full-mock.mjs` derives it rather than hard-coding it.
  *
  * Its Core questions are disjoint from all four Core mocks, so working through
  * those does not spoil this sitting. The question lists are committed in
@@ -36,6 +47,9 @@ export default function FullMockPage() {
         gamPacks={fullMockGamPacks()}
         coreMinutesPerStage={CORE_STAGE_MINUTES}
         gamMinutes={GAM_MINUTES}
+        gamQuestionCount={fullMockGamSize()}
+        officialGamMinutes={OFFICIAL_GAM_MINUTES}
+        officialGamQuestions={OFFICIAL_GAM_QUESTIONS_APPROX}
         breakMinutes={BREAK_MINUTES}
         coreSize={fullMockCoreSize()}
       />

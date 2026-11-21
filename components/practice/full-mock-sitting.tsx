@@ -95,13 +95,21 @@ export function FullMockSitting({
   gamPacks,
   coreMinutesPerStage,
   gamMinutes,
+  gamQuestionCount,
+  officialGamMinutes,
+  officialGamQuestions,
   breakMinutes,
   coreSize,
 }: {
   coreStages: StageSpec[]
   gamPacks: PublicGamPackFile[]
   coreMinutesPerStage: number
+  /** OURS: the official per-question rate applied to the sample, not the module length. */
   gamMinutes: number
+  gamQuestionCount: number
+  /** OFFICIAL, for the comparison the candidate is owed. */
+  officialGamMinutes: number
+  officialGamQuestions: number
   breakMinutes: number
   coreSize: number
 }) {
@@ -114,8 +122,8 @@ export function FullMockSitting({
       <>
         <TimedLauncher
           mode="simulation"
-          title="Full dMAT mock — Core Module"
-          note={`${coreSize} questions in three subtests of ${coreMinutesPerStage} minutes, in the order the real test uses. The General Academic Module follows after a ${breakMinutes}-minute break.`}
+          title="Core + GAM sample simulation — Core Module"
+          note={`${coreSize} questions in three subtests of ${coreMinutesPerStage} minutes, in the order the real test uses — this half is complete. A ${breakMinutes}-minute break follows, then a sample of the General Academic Module.`}
           minutesPerStage={coreMinutesPerStage}
           stages={coreStages}
         />
@@ -153,7 +161,10 @@ export function FullMockSitting({
                 back, or carry straight on if you are only practising the second half.
               </p>
               <p className="text-muted-foreground max-w-prose text-sm leading-6">
-                The General Academic Module that follows runs for {gamMinutes} minutes in one block.
+                The General Academic section that follows is a <b>sample</b>, not the full module:{' '}
+                {gamQuestionCount} questions in {gamMinutes} minutes. That is the real module’s pace of
+                about 90 seconds a question, not its length — it runs roughly{' '}
+                {officialGamQuestions} questions in {officialGamMinutes} minutes.
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
@@ -184,7 +195,8 @@ export function FullMockSitting({
           <CardContent className="flex flex-wrap items-center justify-between gap-4 p-5">
             <p className="text-muted-foreground flex items-center gap-2 text-sm">
               <Check className="size-4" aria-hidden />
-              This is the second and final module of the sitting.
+              Final section — a {gamQuestionCount}-question sample of the General Academic Module,
+              which really holds about {officialGamQuestions}.
             </p>
             <Button variant="outline" onClick={() => go('core')}>
               Back to the Core Module

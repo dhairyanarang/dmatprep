@@ -55,8 +55,17 @@ export const GENERATOR_NAME = 'math-equations'
  * two unknowns — so `classifyMechanics` grades any item using them
  * `extrapolated`, and they can never roll up to `officially_documented`.
  * Major version because `ME_CONTRACT` moved a rule out of `forbidden`.
+ *
+ * 4.1.0 — two fixes from the 22 November 2026 review. A product pair is now
+ * refused unless its product has at least TWO factor pairs inside 1..20, since
+ * with only one the difference equation picks nothing and the item is far
+ * easier than its tier claims; the explanation also names the exact pair count
+ * instead of saying "several". And a deliberate `lcm-pin` family: two divisions
+ * of one letter by different constants, which settle it only together, so the
+ * way in is the lowest common multiple. That family is built from documented
+ * mechanics alone (official Ex 2's `B ÷ 2 = A`, twice) and needs no REVIEW grade.
  */
-export const GENERATOR_VERSION = '4.0.0'
+export const GENERATOR_VERSION = '4.1.0'
 
 const NAMES = ['A', 'B', 'C', 'D']
 const inRange = (v) => Number.isInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE
@@ -467,6 +476,17 @@ function squarePin(name, value) {
  * solutions and breaks the official one-solution rule. A difference is
  * antisymmetric and fixes which letter is which.
  */
+/** Every factor pair of `product` with both factors inside the 1..20 rule. */
+function inRangeFactorPairs(product) {
+  const pairs = []
+  for (let a = MIN_VALUE; a <= MAX_VALUE; a++) {
+    if (product % a !== 0) continue
+    const b = product / a
+    if (b > a && b <= MAX_VALUE) pairs.push([b, a])
+  }
+  return pairs
+}
+
 function productPair(hiName, hiValue, loName, loValue) {
   if (!inRange(hiValue) || !inRange(loValue)) return null
   if (hiValue <= loValue) return null
@@ -475,23 +495,92 @@ function productPair(hiName, hiValue, loName, loValue) {
   // Official combining equations all carry a small positive right-hand side;
   // the product is unavoidably larger, but the difference stays in that shape.
   if (product > 200 || difference > 18) return null
+
+  /**
+   * THE DIFFERENCE EQUATION MUST DO WORK.
+   *
+   * Review of the first batch found two items where it did none: 143 and 55
+   * each have exactly one factor pair inside 1..20 (11×13 and 5×11), so the
+   * product alone already fixed both letters and the difference merely agreed
+   * with it. Those items were still correct and uniquely solvable — they were
+   * simply far easier than their tier claimed, and their explanation said the
+   * difference picked a pair "out of the several", which was not true of them.
+   *
+   * Requiring two or more in-range pairs makes the divisor search real: the
+   * candidate must enumerate the pairs and test them, which is the whole reason
+   * this shape exists.
+   */
+  const pairs = inRangeFactorPairs(product)
+  if (pairs.length < 2) return null
+
+  // Name the count rather than saying "several", so the explanation is exactly
+  // true of this item instead of being true of the family on average.
+  const pairWord = `${pairs.length} factor pairs of ${product} that fit 1–20`
+
   return {
     product: {
       eq: { lhs: op('×', variable(hiName), variable(loName)), rhs: num(product) },
-      step: `${hiName} × ${loName} = ${product} and ${hiName} − ${loName} = ${difference}. Of the factor pairs of ${product}, only ${hiValue} × ${loValue} differs by ${difference}, so ${hiName} = ${hiValue} and ${loName} = ${loValue}.`,
+      step: `${hiName} × ${loName} = ${product} and ${hiName} − ${loName} = ${difference}. Of the ${pairWord}, only ${hiValue} × ${loValue} differs by ${difference}, so ${hiName} = ${hiValue} and ${loName} = ${loValue}.`,
       opKind: 'product',
       shape: 'product-pair',
       constant: product,
     },
     difference: {
       eq: { lhs: op('−', variable(hiName), variable(loName)), rhs: num(difference) },
-      step: `${hiName} − ${loName} = ${difference} is the constraint that picks one factor pair out of the several that multiply to ${product}.`,
+      step: `${hiName} − ${loName} = ${difference} is what picks that pair out of the ${pairWord}; the product alone does not settle either letter.`,
       opKind: '−',
       shape: 'product-pair-difference',
       constant: difference,
     },
   }
 }
+
+/* ------------------------------------------------- lowest common multiple */
+
+const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
+const lcm = (a, b) => (a / gcd(a, b)) * b
+
+/**
+ * Divisor pairs whose lowest common multiple is the ONLY common multiple in 1..20.
+ *
+ * This is what makes an LCM item single-valued without any extra constraint:
+ * if `D ÷ 3` and `D ÷ 4` are both whole, D is a multiple of 12, and the next
+ * one — 24 — is outside the documented range. So the pair of divisions pins D
+ * on its own, and the candidate gets there by finding the lowest common
+ * multiple rather than by substitution.
+ *
+ * Built rather than listed, so the range rule is enforced by the same constant
+ * everywhere. The quotients are required distinct from each other and from the
+ * root: a system where two letters share a value is harder to write honest
+ * `wrong-variable` distractors for.
+ *
+ * **Entirely within the documented mechanics.** A letter divided by a constant
+ * is official Exercise 2 (`B ÷ 2 = A`); two of them against one root is two
+ * documented definitions, not a new shape. Unlike the quadratic families this
+ * needs no REVIEW grade — `classifyMechanics` leaves it `documented`.
+ */
+const LCM_PAIRS = (() => {
+  const out = []
+  // NEITHER divisor may exceed 10. A divisor above half the range has exactly
+  // one multiple inside 1..20, so `D ÷ 12 = X` pins D on its own and the second
+  // division contributes nothing — the item would look like an LCM question and
+  // be solvable without ever taking a common multiple. Caught while checking
+  // the generated table rather than by assuming the construction was sound.
+  const SOLE_PIN = Math.floor(MAX_VALUE / 2)
+  for (let d1 = 2; d1 <= SOLE_PIN; d1++) {
+    for (let d2 = d1 + 1; d2 <= SOLE_PIN; d2++) {
+      const L = lcm(d1, d2)
+      if (L > MAX_VALUE) continue // no common multiple in range at all
+      if (L * 2 <= MAX_VALUE) continue // a second one fits, so the root is not pinned
+      const q1 = L / d1
+      const q2 = L / d2
+      if (q1 === q2 || q1 === L || q2 === L) continue
+      if (!inRange(q1) || !inRange(q2)) continue
+      out.push({ d1, d2, lcm: L, q1, q2 })
+    }
+  }
+  return out
+})()
 
 /* ------------------------------------------------------------ system build */
 
@@ -525,6 +614,25 @@ function buildSystem(rng, { varCount, topology, determining: determiningKind, pr
   // defined from the root the way every other shape defines its letters — the
   // ordinary definition loop therefore starts one letter later.
   let firstDefined = 1
+  let lcmChoice = null
+  if (determiningKind === 'lcm') {
+    if (varCount < 3 || LCM_PAIRS.length === 0) return null
+    lcmChoice = pick(rng, LCM_PAIRS)
+    values[names[0]] = lcmChoice.lcm
+    values[names[1]] = lcmChoice.q1
+    values[names[2]] = lcmChoice.q2
+    // The second division joins the ordinary definition list; the first plays
+    // the determining role. Neither settles the root alone — it is the pair
+    // that does, which is the whole point of the family.
+    definitions.push({
+      eq: { lhs: op('÷', variable(names[0]), num(lcmChoice.d2)), rhs: variable(names[2]) },
+      step: `${names[0]} ÷ ${lcmChoice.d2} = ${names[2]}, so ${names[2]} = ${lcmChoice.lcm} ÷ ${lcmChoice.d2} = ${lcmChoice.q2}.`,
+      opKind: '÷',
+      shape: 'lcm-division',
+      constant: lcmChoice.d2,
+    })
+    firstDefined = 3
+  }
   if (determiningKind === 'product') {
     if (varCount < 2) return null
     const hiValue = randInt(rng, 4, 16)
@@ -599,7 +707,17 @@ function buildSystem(rng, { varCount, topology, determining: determiningKind, pr
   }
 
   let determining
-  if (determiningKind === 'square') {
+  if (determiningKind === 'lcm') {
+    determining = lcmChoice
+      ? {
+          eq: { lhs: op('÷', variable(names[0]), num(lcmChoice.d1)), rhs: variable(names[1]) },
+          step: `${names[0]} ÷ ${lcmChoice.d1} and ${names[0]} ÷ ${lcmChoice.d2} both come out whole, so ${names[0]} is a multiple of ${lcmChoice.d1} and of ${lcmChoice.d2}. The lowest such number is ${lcmChoice.lcm}, and the next one is ${lcmChoice.lcm * 2}, which is outside 1–20 — so ${names[0]} = ${lcmChoice.lcm} and ${names[1]} = ${lcmChoice.q1}.`,
+          opKind: 'lcm',
+          shape: 'lcm-pin',
+          constant: lcmChoice.d1,
+        }
+      : null
+  } else if (determiningKind === 'square') {
     determining = squarePin(names[0], values[names[0]])
   } else if (determiningKind === 'product') {
     const pair = productPair(names[0], values[names[0]], names[1], values[names[1]])
@@ -822,7 +940,9 @@ function buildSolution(order, values, asked, determining, equationStrings) {
   const determiningText = determiningEq ? renderEquation(determiningEq) : equationStrings[0]
   const multiplicative = determining.opKind === '×' || determining.opKind === '÷'
 
-  const takeaway = determining.opKind === 'product'
+  const takeaway = determining.opKind === 'lcm'
+    ? 'When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all.'
+    : determining.opKind === 'product'
     ? 'A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting.'
     : determining.opKind === 'square'
       ? 'Knowing the squares to 14 × 14 on sight turns this whole family into a one-step read. Only the positive root is in range, so a square never leaves two cases to check.'
@@ -847,6 +967,7 @@ const OPERATION_WORD = {
   '÷': 'divides',
   square: 'multiplies by itself',
   product: 'multiplies by another letter',
+  lcm: 'divides, alongside a second division of the same letter',
 }
 
 function buildHints(order, asked, determining) {
@@ -854,12 +975,15 @@ function buildHints(order, asked, determining) {
   const first = order[0]
   const firstEq = first.equation ? renderEquation(first.equation) : null
   const opensWithSubstitution = first.kind === 'substitute'
+  const lcmPinned = determining?.opKind === 'lcm'
 
   // A product pair also "opens with substitution" as far as the solver is
   // concerned, but the generic level-1 text points at a combining equation that
   // mentions every letter — and a product-pair system has no such equation. The
   // hint would have sent the candidate looking for a line that is not there.
-  const level1 = determining?.opKind === 'product'
+  const level1 = lcmPinned
+    ? 'No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value.'
+    : determining?.opKind === 'product'
     ? 'No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone.'
     : opensWithSubstitution
       ? 'No single equation starts with one unknown, so do not go looking for one. One equation mentions every letter — that is the way in.'
@@ -884,7 +1008,9 @@ function buildHints(order, asked, determining) {
   const squarePinned = determining?.opKind === 'square'
   const productPinned = determining?.opKind === 'product'
 
-  const level2 = opensWithSubstitution
+  const level2 = lcmPinned
+    ? 'Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20.'
+    : opensWithSubstitution
     ? productPinned
       ? `Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference.`
       : `Substitute the other equations into ${firstEq}. Everything is defined in terms of ${first.name}.`
@@ -978,6 +1104,13 @@ function planFor(rng, difficulty, target = null) {
     case 'product-pair': // `A × B = 72` with `A − B = 1` — REVIEW, not official
       varCount = Math.max(varCount, 3)
       determining = 'product'
+      break
+    // `D ÷ 3 = A` with `D ÷ 4 = B` — ALLOWED. Two documented division
+    // definitions (official Ex 2) that only settle the root together, so the
+    // way in is the lowest common multiple.
+    case 'lcm-pin':
+      varCount = Math.max(varCount, 3)
+      determining = 'lcm'
       break
     default:
       break

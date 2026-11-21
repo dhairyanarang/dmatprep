@@ -36887,212 +36887,6 @@
     "section": "mathematical-equations",
     "difficulty": "high",
     "equations": [
-      "C − A = 2",
-      "C × A = 143",
-      "A − 3 = B"
-    ],
-    "variables": [
-      "A",
-      "B",
-      "C"
-    ],
-    "asked": "B",
-    "options": [
-      {
-        "id": "opt-7",
-        "value": 7
-      },
-      {
-        "id": "opt-4",
-        "value": 4
-      },
-      {
-        "id": "opt-8",
-        "value": 8
-      },
-      {
-        "id": "opt-11",
-        "value": 11
-      }
-    ],
-    "correctOptionId": "opt-8",
-    "solution": {
-      "C": 13,
-      "A": 11,
-      "B": 8
-    },
-    "solutionSteps": [
-      "C × A = 143 and C − A = 2. Of the factor pairs of 143, only 13 × 11 differs by 2, so C = 13 and A = 11.",
-      "C − A = 2 is the constraint that picks one factor pair out of the several that multiply to 143.",
-      "A − 3 = B, so B = 11 − 3 = 8.",
-      "Full solution: A = 11, B = 8, C = 13. The question asks for B, so the answer is 8."
-    ],
-    "explanation": "C × A = 143 and C − A = 2. Of the factor pairs of 143, only 13 × 11 differs by 2, so C = 13 and A = 11. C − A = 2 is the constraint that picks one factor pair out of the several that multiply to 143. A − 3 = B, so B = 11 − 3 = 8. Full solution: A = 11, B = 8, C = 13. The question asks for B, so the answer is 8.",
-    "distractorNotes": {
-      "opt-11": "11 is the value of A, not B — this is the right system solved for the wrong letter.",
-      "opt-4": "4 is half the correct value, which is what you get if you divide where the equation multiplies.",
-      "opt-7": "7 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
-    },
-    "hints": [
-      {
-        "level": 1,
-        "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
-      },
-      {
-        "level": 2,
-        "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
-      },
-      {
-        "level": 3,
-        "text": "Solve for A first, then substitute it into the equation that defines C, and keep going until you reach B."
-      }
-    ],
-    "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
-      "steps": [
-        {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into C − A = 2 leaves A as the only unknown, which gives A = 11.",
-          "visual": {
-            "type": "me-equation",
-            "equation": "C − A = 2",
-            "note": "A = 11"
-          }
-        },
-        {
-          "title": "Substitute to reach C",
-          "detail": "C − A = 2 has C as its only unknown, so C = 13.",
-          "visual": {
-            "type": "me-equation",
-            "equation": "C − A = 2",
-            "note": "C = 13"
-          }
-        },
-        {
-          "title": "Substitute to reach B",
-          "detail": "A − 3 = B has B as its only unknown, so B = 8.",
-          "visual": {
-            "type": "me-equation",
-            "equation": "A − 3 = B",
-            "note": "B = 8"
-          }
-        },
-        {
-          "title": "Read the question again before answering",
-          "detail": "The chain also fixes A = 11, C = 13. The question asks for B.",
-          "visual": {
-            "type": "me-values",
-            "values": {
-              "C": 13,
-              "A": 11,
-              "B": 8
-            }
-          }
-        }
-      ],
-      "answer": "B = 8.",
-      "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
-    },
-    "meta": {
-      "patternType": [
-        "direct-substitution",
-        "3-variable-system",
-        "chain-topology",
-        "multi-step-substitution",
-        "product-pair",
-        "product-pair-difference",
-        "define-linear"
-      ],
-      "skill": "forward substitution along a chain",
-      "dmatAlignment": "reasonable_extrapolation",
-      "reasoningDepth": 5,
-      "officialStructure": {
-        "letters": 3,
-        "equations": 3
-      },
-      "distractorTypes": {
-        "opt-11": "wrong-variable",
-        "opt-4": "inverted-operation",
-        "opt-7": "off-by-one"
-      },
-      "generationNotes": "3 letters, chain topology, depth 5, 0 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-linear",
-      "provenance": {
-        "format": "demonstrated",
-        "answerFormat": "stated",
-        "answerOptionCount": "unknown",
-        "mechanics": "extrapolated",
-        "originality": "original-generated",
-        "mechanicNotes": [
-          "constant above 18",
-          "letter × letter — not in the official exercises"
-        ]
-      }
-    },
-    "id": "me-high-b10-007",
-    "generator": {
-      "name": "math-equations",
-      "version": "4.0.0",
-      "batchId": "b10",
-      "seed": 1966908428,
-      "seedCoordinates": {
-        "section": "mathematical-equations",
-        "tier": "high",
-        "batchId": "b10",
-        "index": 6,
-        "attempt": 0
-      },
-      "config": {
-        "depthTargets": {
-          "low": [
-            1,
-            1
-          ],
-          "medium": [
-            2,
-            2
-          ],
-          "high": [
-            3,
-            6
-          ]
-        },
-        "varChoices": {
-          "low": [
-            2,
-            2,
-            3,
-            3,
-            4
-          ],
-          "medium": [
-            2,
-            3,
-            3,
-            4,
-            4
-          ],
-          "high": [
-            3,
-            3,
-            4,
-            4,
-            4
-          ]
-        },
-        "topologies": [
-          "chain",
-          "star",
-          "mixed"
-        ]
-      },
-      "verifiedAt": "2026-11-21"
-    }
-  },
-  {
-    "kind": "math-equations",
-    "section": "mathematical-equations",
-    "difficulty": "high",
-    "equations": [
       "D = 9",
       "14 − D = A",
       "11 − D = C"
@@ -38355,203 +38149,6 @@
     "section": "mathematical-equations",
     "difficulty": "high",
     "equations": [
-      "A × B = 55",
-      "A − 4 = D",
-      "A − B = 6"
-    ],
-    "variables": [
-      "A",
-      "B",
-      "D"
-    ],
-    "asked": "B",
-    "options": [
-      {
-        "id": "opt-6",
-        "value": 6
-      },
-      {
-        "id": "opt-11",
-        "value": 11
-      },
-      {
-        "id": "opt-7",
-        "value": 7
-      },
-      {
-        "id": "opt-5",
-        "value": 5
-      }
-    ],
-    "correctOptionId": "opt-5",
-    "solution": {
-      "A": 11,
-      "B": 5,
-      "D": 7
-    },
-    "solutionSteps": [
-      "A × B = 55 and A − B = 6. Of the factor pairs of 55, only 11 × 5 differs by 6, so A = 11 and B = 5.",
-      "A − B = 6 is the constraint that picks one factor pair out of the several that multiply to 55.",
-      "A − 4 = D, so D = 11 − 4 = 7.",
-      "Full solution: A = 11, B = 5, D = 7. The question asks for B, so the answer is 5."
-    ],
-    "explanation": "A × B = 55 and A − B = 6. Of the factor pairs of 55, only 11 × 5 differs by 6, so A = 11 and B = 5. A − B = 6 is the constraint that picks one factor pair out of the several that multiply to 55. A − 4 = D, so D = 11 − 4 = 7. Full solution: A = 11, B = 5, D = 7. The question asks for B, so the answer is 5.",
-    "distractorNotes": {
-      "opt-7": "7 is the value of D, not B — this is the right system solved for the wrong letter.",
-      "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting a constant.",
-      "opt-11": "11 is the value of A, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for B."
-    },
-    "hints": [
-      {
-        "level": 1,
-        "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
-      },
-      {
-        "level": 2,
-        "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
-      },
-      {
-        "level": 3,
-        "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
-      }
-    ],
-    "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
-      "steps": [
-        {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A × B = 55 leaves A as the only unknown, which gives A = 11.",
-          "visual": {
-            "type": "me-equation",
-            "equation": "A × B = 55",
-            "note": "A = 11"
-          }
-        },
-        {
-          "title": "Substitute to reach B",
-          "detail": "A × B = 55 has B as its only unknown, so B = 5.",
-          "visual": {
-            "type": "me-equation",
-            "equation": "A × B = 55",
-            "note": "B = 5"
-          }
-        },
-        {
-          "title": "Read the question again before answering",
-          "detail": "The chain also fixes A = 11, D = 7. The question asks for B.",
-          "visual": {
-            "type": "me-values",
-            "values": {
-              "A": 11,
-              "B": 5,
-              "D": 7
-            }
-          }
-        }
-      ],
-      "answer": "B = 5.",
-      "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
-    },
-    "meta": {
-      "patternType": [
-        "direct-substitution",
-        "3-variable-system",
-        "star-topology",
-        "multi-step-substitution",
-        "product-pair",
-        "product-pair-difference",
-        "define-linear"
-      ],
-      "skill": "forward substitution along a star",
-      "dmatAlignment": "reasonable_extrapolation",
-      "reasoningDepth": 4,
-      "officialStructure": {
-        "letters": 3,
-        "equations": 3
-      },
-      "distractorTypes": {
-        "opt-7": "wrong-variable",
-        "opt-6": "off-by-one",
-        "opt-11": "stopped-early"
-      },
-      "generationNotes": "3 letters, star topology, depth 4, 0 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-linear",
-      "provenance": {
-        "format": "demonstrated",
-        "answerFormat": "stated",
-        "answerOptionCount": "unknown",
-        "mechanics": "extrapolated",
-        "originality": "original-generated",
-        "mechanicNotes": [
-          "constant above 18",
-          "letter × letter — not in the official exercises"
-        ]
-      }
-    },
-    "id": "me-high-b10-014",
-    "generator": {
-      "name": "math-equations",
-      "version": "4.0.0",
-      "batchId": "b10",
-      "seed": 994652336,
-      "seedCoordinates": {
-        "section": "mathematical-equations",
-        "tier": "high",
-        "batchId": "b10",
-        "index": 13,
-        "attempt": 1
-      },
-      "config": {
-        "depthTargets": {
-          "low": [
-            1,
-            1
-          ],
-          "medium": [
-            2,
-            2
-          ],
-          "high": [
-            3,
-            6
-          ]
-        },
-        "varChoices": {
-          "low": [
-            2,
-            2,
-            3,
-            3,
-            4
-          ],
-          "medium": [
-            2,
-            3,
-            3,
-            4,
-            4
-          ],
-          "high": [
-            3,
-            3,
-            4,
-            4,
-            4
-          ]
-        },
-        "topologies": [
-          "chain",
-          "star",
-          "mixed"
-        ]
-      },
-      "verifiedAt": "2026-11-21"
-    }
-  },
-  {
-    "kind": "math-equations",
-    "section": "mathematical-equations",
-    "difficulty": "high",
-    "equations": [
       "3 × A − 9 = D",
       "A ÷ 9 = C",
       "A ÷ 3 = B",
@@ -39752,6 +39349,1939 @@
         "tier": "high",
         "batchId": "b10",
         "index": 19,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "B ÷ 9 = C",
+      "B ÷ 2 = D"
+    ],
+    "variables": [
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-17",
+        "value": 17
+      },
+      {
+        "id": "opt-9",
+        "value": 9
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      }
+    ],
+    "correctOptionId": "opt-18",
+    "solution": {
+      "B": 18,
+      "D": 9,
+      "C": 2
+    },
+    "solutionSteps": [
+      "B ÷ 2 and B ÷ 9 both come out whole, so B is a multiple of 2 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so B = 18 and D = 9.",
+      "B ÷ 9 = C, so C = 18 ÷ 9 = 2.",
+      "Full solution: B = 18, C = 2, D = 9. The question asks for B, so the answer is 18."
+    ],
+    "explanation": "B ÷ 2 and B ÷ 9 both come out whole, so B is a multiple of 2 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so B = 18 and D = 9. B ÷ 9 = C, so C = 18 ÷ 9 = 2. Full solution: B = 18, C = 2, D = 9. The question asks for B, so the answer is 18.",
+    "distractorNotes": {
+      "opt-2": "2 is the value of C, not B — this is the right system solved for the wrong letter.",
+      "opt-17": "17 is one less than the correct value — an off-by-one slip when adding or subtracting a constant.",
+      "opt-9": "9 is the value of D, not B — this is the right system solved for the wrong letter."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Once the substitution leaves B alone on one side, rearrange for it — that is the letter you are asked for."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B ÷ 9 = C leaves B as the only unknown, which gives B = 18.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "B ÷ 9 = C",
+            "note": "B = 18"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes C = 2, D = 9. The question asks for B.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "B": 18,
+              "D": 9,
+              "C": 2
+            }
+          }
+        }
+      ],
+      "answer": "B = 18.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "star-topology",
+        "two-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a star",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-2": "wrong-variable",
+        "opt-17": "off-by-one",
+        "opt-9": "wrong-variable"
+      },
+      "generationNotes": "3 letters, star topology, depth 2, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-medium-b12-001",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 1546389633,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "medium",
+        "batchId": "b12",
+        "index": 0,
+        "attempt": 1
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "D ÷ 7 = C",
+      "D ÷ 2 = B"
+    ],
+    "variables": [
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-13",
+        "value": 13
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-7",
+        "value": 7
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      }
+    ],
+    "correctOptionId": "opt-14",
+    "solution": {
+      "D": 14,
+      "B": 7,
+      "C": 2
+    },
+    "solutionSteps": [
+      "D ÷ 2 and D ÷ 7 both come out whole, so D is a multiple of 2 and of 7. The lowest such number is 14, and the next one is 28, which is outside 1–20 — so D = 14 and B = 7.",
+      "D ÷ 7 = C, so C = 14 ÷ 7 = 2.",
+      "Full solution: B = 7, C = 2, D = 14. The question asks for D, so the answer is 14."
+    ],
+    "explanation": "D ÷ 2 and D ÷ 7 both come out whole, so D is a multiple of 2 and of 7. The lowest such number is 14, and the next one is 28, which is outside 1–20 — so D = 14 and B = 7. D ÷ 7 = C, so C = 14 ÷ 7 = 2. Full solution: B = 7, C = 2, D = 14. The question asks for D, so the answer is 14.",
+    "distractorNotes": {
+      "opt-7": "7 is the value of B, not D — this is the right system solved for the wrong letter.",
+      "opt-13": "13 is one less than the correct value — an off-by-one slip when adding or subtracting a constant.",
+      "opt-2": "2 is the value of C, not D — this is the right system solved for the wrong letter."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Once the substitution leaves D alone on one side, rearrange for it — that is the letter you are asked for."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D ÷ 7 = C leaves D as the only unknown, which gives D = 14.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "D ÷ 7 = C",
+            "note": "D = 14"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes C = 2, B = 7. The question asks for D.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "D": 14,
+              "B": 7,
+              "C": 2
+            }
+          }
+        }
+      ],
+      "answer": "D = 14.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "star-topology",
+        "two-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a star",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-7": "wrong-variable",
+        "opt-13": "off-by-one",
+        "opt-2": "wrong-variable"
+      },
+      "generationNotes": "3 letters, star topology, depth 2, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-medium-b12-002",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 1341515093,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "medium",
+        "batchId": "b12",
+        "index": 1,
+        "attempt": 4
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "A ÷ 3 = C",
+      "A ÷ 5 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-15",
+        "value": 15
+      },
+      {
+        "id": "opt-14",
+        "value": 14
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-15",
+    "solution": {
+      "A": 15,
+      "C": 5,
+      "B": 3
+    },
+    "solutionSteps": [
+      "A ÷ 3 and A ÷ 5 both come out whole, so A is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so A = 15 and C = 5.",
+      "A ÷ 5 = B, so B = 15 ÷ 5 = 3.",
+      "Full solution: A = 15, B = 3, C = 5. The question asks for A, so the answer is 15."
+    ],
+    "explanation": "A ÷ 3 and A ÷ 5 both come out whole, so A is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so A = 15 and C = 5. A ÷ 5 = B, so B = 15 ÷ 5 = 3. Full solution: A = 15, B = 3, C = 5. The question asks for A, so the answer is 15.",
+    "distractorNotes": {
+      "opt-5": "5 is the value of C, not A — this is the right system solved for the wrong letter.",
+      "opt-14": "14 is one less than the correct value — an off-by-one slip when adding or subtracting a constant.",
+      "opt-3": "3 is the value of B, not A — this is the right system solved for the wrong letter."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Once the substitution leaves A alone on one side, rearrange for it — that is the letter you are asked for."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 3 = C leaves A as the only unknown, which gives A = 15.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 3 = C",
+            "note": "A = 15"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes C = 5, B = 3. The question asks for A.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 15,
+              "C": 5,
+              "B": 3
+            }
+          }
+        }
+      ],
+      "answer": "A = 15.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "mixed-topology",
+        "two-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a mixed",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-5": "wrong-variable",
+        "opt-14": "off-by-one",
+        "opt-3": "wrong-variable"
+      },
+      "generationNotes": "3 letters, mixed topology, depth 2, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-medium-b12-003",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 3157719458,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "medium",
+        "batchId": "b12",
+        "index": 2,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "medium",
+    "equations": [
+      "A ÷ 9 = D",
+      "A ÷ 6 = C"
+    ],
+    "variables": [
+      "A",
+      "C",
+      "D"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-19",
+        "value": 19
+      }
+    ],
+    "correctOptionId": "opt-18",
+    "solution": {
+      "A": 18,
+      "C": 3,
+      "D": 2
+    },
+    "solutionSteps": [
+      "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3.",
+      "A ÷ 9 = D, so D = 18 ÷ 9 = 2.",
+      "Full solution: A = 18, C = 3, D = 2. The question asks for A, so the answer is 18."
+    ],
+    "explanation": "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3. A ÷ 9 = D, so D = 18 ÷ 9 = 2. Full solution: A = 18, C = 3, D = 2. The question asks for A, so the answer is 18.",
+    "distractorNotes": {
+      "opt-3": "3 is the value of C, not A — this is the right system solved for the wrong letter.",
+      "opt-19": "19 is one more than the correct value — an off-by-one slip when adding or subtracting a constant.",
+      "opt-2": "2 is the value of D, not A — this is the right system solved for the wrong letter."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Once the substitution leaves A alone on one side, rearrange for it — that is the letter you are asked for."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 9 = D leaves A as the only unknown, which gives A = 18.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 9 = D",
+            "note": "A = 18"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes D = 2, C = 3. The question asks for A.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 18,
+              "C": 3,
+              "D": 2
+            }
+          }
+        }
+      ],
+      "answer": "A = 18.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "chain-topology",
+        "two-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a chain",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 2,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-3": "wrong-variable",
+        "opt-19": "off-by-one",
+        "opt-2": "wrong-variable"
+      },
+      "generationNotes": "3 letters, chain topology, depth 2, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-medium-b12-004",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 183892078,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "medium",
+        "batchId": "b12",
+        "index": 3,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "D ÷ 4 = B",
+      "D − A = 3",
+      "D ÷ 2 = C",
+      "D × A = 40"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "A",
+    "options": [
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "D": 8,
+      "A": 5,
+      "B": 2,
+      "C": 4
+    },
+    "solutionSteps": [
+      "D × A = 40 and D − A = 3. Of the 3 factor pairs of 40 that fit 1–20, only 8 × 5 differs by 3, so D = 8 and A = 5.",
+      "D − A = 3 is what picks that pair out of the 3 factor pairs of 40 that fit 1–20; the product alone does not settle either letter.",
+      "D ÷ 4 = B, so B = 8 ÷ 4 = 2.",
+      "D ÷ 2 = C, so C = 8 ÷ 2 = 4.",
+      "Full solution: A = 5, B = 2, C = 4, D = 8. The question asks for A, so the answer is 5."
+    ],
+    "explanation": "D × A = 40 and D − A = 3. Of the 3 factor pairs of 40 that fit 1–20, only 8 × 5 differs by 3, so D = 8 and A = 5. D − A = 3 is what picks that pair out of the 3 factor pairs of 40 that fit 1–20; the product alone does not settle either letter. D ÷ 4 = B, so B = 8 ÷ 4 = 2. D ÷ 2 = C, so C = 8 ÷ 2 = 4. Full solution: A = 5, B = 2, C = 4, D = 8. The question asks for A, so the answer is 5.",
+    "distractorNotes": {
+      "opt-8": "8 is the value of D, not A — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting a constant."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
+      },
+      {
+        "level": 2,
+        "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
+      },
+      {
+        "level": 3,
+        "text": "Solve for D first, then substitute it into the equation that defines B, and keep going until you reach A."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D ÷ 4 = B leaves D as the only unknown, which gives D = 8.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "D ÷ 4 = B",
+            "note": "D = 8"
+          }
+        },
+        {
+          "title": "Substitute to reach B",
+          "detail": "D ÷ 4 = B has B as its only unknown, so B = 2.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "D ÷ 4 = B",
+            "note": "B = 2"
+          }
+        },
+        {
+          "title": "Substitute to reach A",
+          "detail": "D − A = 3 has A as its only unknown, so A = 5.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "D − A = 3",
+            "note": "A = 5"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes D = 8, B = 2, C = 4. The question asks for A.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "D": 8,
+              "A": 5,
+              "B": 2,
+              "C": 4
+            }
+          }
+        }
+      ],
+      "answer": "A = 5.",
+      "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "4-variable-system",
+        "star-topology",
+        "multi-step-substitution",
+        "mixed-operations",
+        "product-pair",
+        "product-pair-difference",
+        "define-multiplicative"
+      ],
+      "skill": "forward substitution along a star",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 6,
+      "officialStructure": {
+        "letters": 4,
+        "equations": 4
+      },
+      "distractorTypes": {
+        "opt-8": "wrong-variable",
+        "opt-10": "inverted-operation",
+        "opt-6": "off-by-one"
+      },
+      "generationNotes": "4 letters, star topology, depth 6, 2 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-multiplicative",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18",
+          "letter × letter — not in the official exercises"
+        ]
+      }
+    },
+    "id": "me-high-b12-001",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 4029619511,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 0,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A ÷ 3 = D",
+      "A ÷ 4 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "D"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      },
+      {
+        "id": "opt-12",
+        "value": 12
+      }
+    ],
+    "correctOptionId": "opt-3",
+    "solution": {
+      "A": 12,
+      "D": 4,
+      "B": 3
+    },
+    "solutionSteps": [
+      "A ÷ 3 and A ÷ 4 both come out whole, so A is a multiple of 3 and of 4. The lowest such number is 12, and the next one is 24, which is outside 1–20 — so A = 12 and D = 4.",
+      "A ÷ 4 = B, so B = 12 ÷ 4 = 3.",
+      "Full solution: A = 12, B = 3, D = 4. The question asks for B, so the answer is 3."
+    ],
+    "explanation": "A ÷ 3 and A ÷ 4 both come out whole, so A is a multiple of 3 and of 4. The lowest such number is 12, and the next one is 24, which is outside 1–20 — so A = 12 and D = 4. A ÷ 4 = B, so B = 12 ÷ 4 = 3. Full solution: A = 12, B = 3, D = 4. The question asks for B, so the answer is 3.",
+    "distractorNotes": {
+      "opt-12": "12 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-6": "6 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-2": "2 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Solve for A first, then substitute it into the equation that defines D, and keep going until you reach B."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 3 = D leaves A as the only unknown, which gives A = 12.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 3 = D",
+            "note": "A = 12"
+          }
+        },
+        {
+          "title": "Substitute to reach D",
+          "detail": "A ÷ 3 = D has D as its only unknown, so D = 4.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 3 = D",
+            "note": "D = 4"
+          }
+        },
+        {
+          "title": "Substitute to reach B",
+          "detail": "A ÷ 4 = B has B as its only unknown, so B = 3.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 4 = B",
+            "note": "B = 3"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes A = 12, D = 4. The question asks for B.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 12,
+              "D": 4,
+              "B": 3
+            }
+          }
+        }
+      ],
+      "answer": "B = 3.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "chain-topology",
+        "multi-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a chain",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 4,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-12": "wrong-variable",
+        "opt-6": "inverted-operation",
+        "opt-2": "off-by-one"
+      },
+      "generationNotes": "3 letters, chain topology, depth 4, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-high-b12-002",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 459643387,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 1,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A − D = 2",
+      "A ÷ 2 = B",
+      "A × D = 80",
+      "A ÷ 10 = C"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-16",
+        "value": 16
+      },
+      {
+        "id": "opt-8",
+        "value": 8
+      },
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      }
+    ],
+    "correctOptionId": "opt-8",
+    "solution": {
+      "A": 10,
+      "D": 8,
+      "B": 5,
+      "C": 1
+    },
+    "solutionSteps": [
+      "A × D = 80 and A − D = 2. Of the 3 factor pairs of 80 that fit 1–20, only 10 × 8 differs by 2, so A = 10 and D = 8.",
+      "A − D = 2 is what picks that pair out of the 3 factor pairs of 80 that fit 1–20; the product alone does not settle either letter.",
+      "A ÷ 2 = B, so B = 10 ÷ 2 = 5.",
+      "A ÷ 10 = C, so C = 10 ÷ 10 = 1.",
+      "Full solution: A = 10, B = 5, C = 1, D = 8. The question asks for D, so the answer is 8."
+    ],
+    "explanation": "A × D = 80 and A − D = 2. Of the 3 factor pairs of 80 that fit 1–20, only 10 × 8 differs by 2, so A = 10 and D = 8. A − D = 2 is what picks that pair out of the 3 factor pairs of 80 that fit 1–20; the product alone does not settle either letter. A ÷ 2 = B, so B = 10 ÷ 2 = 5. A ÷ 10 = C, so C = 10 ÷ 10 = 1. Full solution: A = 10, B = 5, C = 1, D = 8. The question asks for D, so the answer is 8.",
+    "distractorNotes": {
+      "opt-1": "1 is the value of C, not D — this is the right system solved for the wrong letter.",
+      "opt-4": "4 is half the correct value, which is what you get if you divide where the equation multiplies.",
+      "opt-16": "16 is double the correct value, which is what you get if you multiply where the equation divides."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
+      },
+      {
+        "level": 2,
+        "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
+      },
+      {
+        "level": 3,
+        "text": "Solve for A first, then substitute it into the equation that defines D, and keep going until you reach D."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A − D = 2 leaves A as the only unknown, which gives A = 10.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A − D = 2",
+            "note": "A = 10"
+          }
+        },
+        {
+          "title": "Substitute to reach D",
+          "detail": "A − D = 2 has D as its only unknown, so D = 8.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A − D = 2",
+            "note": "D = 8"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes A = 10, B = 5, C = 1. The question asks for D.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 10,
+              "D": 8,
+              "B": 5,
+              "C": 1
+            }
+          }
+        }
+      ],
+      "answer": "D = 8.",
+      "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "4-variable-system",
+        "star-topology",
+        "multi-step-substitution",
+        "mixed-operations",
+        "product-pair",
+        "product-pair-difference",
+        "define-multiplicative"
+      ],
+      "skill": "forward substitution along a star",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 5,
+      "officialStructure": {
+        "letters": 4,
+        "equations": 4
+      },
+      "distractorTypes": {
+        "opt-1": "wrong-variable",
+        "opt-4": "inverted-operation",
+        "opt-16": "inverted-operation"
+      },
+      "generationNotes": "4 letters, star topology, depth 5, 2 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-multiplicative",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "extrapolated",
+        "originality": "original-generated",
+        "mechanicNotes": [
+          "constant above 18",
+          "letter × letter — not in the official exercises"
+        ]
+      }
+    },
+    "id": "me-high-b12-003",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 3286038461,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 2,
+        "attempt": 1
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "B ÷ 5 = C",
+      "B ÷ 3 = D"
+    ],
+    "variables": [
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "D",
+    "options": [
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-6",
+        "value": 6
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-3",
+        "value": 3
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "B": 15,
+      "D": 5,
+      "C": 3
+    },
+    "solutionSteps": [
+      "B ÷ 3 and B ÷ 5 both come out whole, so B is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so B = 15 and D = 5.",
+      "B ÷ 5 = C, so C = 15 ÷ 5 = 3.",
+      "Full solution: B = 15, C = 3, D = 5. The question asks for D, so the answer is 5."
+    ],
+    "explanation": "B ÷ 3 and B ÷ 5 both come out whole, so B is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so B = 15 and D = 5. B ÷ 5 = C, so C = 15 ÷ 5 = 3. Full solution: B = 15, C = 3, D = 5. The question asks for D, so the answer is 5.",
+    "distractorNotes": {
+      "opt-3": "3 is the value of C, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for D.",
+      "opt-10": "10 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting a constant."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Solve for B first, then substitute it into the equation that defines C, and keep going until you reach D."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B ÷ 5 = C leaves B as the only unknown, which gives B = 15.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "B ÷ 5 = C",
+            "note": "B = 15"
+          }
+        },
+        {
+          "title": "Substitute to reach C",
+          "detail": "B ÷ 5 = C has C as its only unknown, so C = 3.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "B ÷ 5 = C",
+            "note": "C = 3"
+          }
+        },
+        {
+          "title": "Substitute to reach D",
+          "detail": "B ÷ 3 = D has D as its only unknown, so D = 5.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "B ÷ 3 = D",
+            "note": "D = 5"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes B = 15, C = 3. The question asks for D.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "B": 15,
+              "D": 5,
+              "C": 3
+            }
+          }
+        }
+      ],
+      "answer": "D = 5.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "chain-topology",
+        "multi-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a chain",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 4,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-3": "stopped-early",
+        "opt-10": "inverted-operation",
+        "opt-6": "off-by-one"
+      },
+      "generationNotes": "3 letters, chain topology, depth 4, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-high-b12-004",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 2981525168,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 3,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "A ÷ 6 = C",
+      "A ÷ 9 = B"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C"
+    ],
+    "asked": "B",
+    "options": [
+      {
+        "id": "opt-1",
+        "value": 1
+      },
+      {
+        "id": "opt-18",
+        "value": 18
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      },
+      {
+        "id": "opt-2",
+        "value": 2
+      }
+    ],
+    "correctOptionId": "opt-2",
+    "solution": {
+      "A": 18,
+      "C": 3,
+      "B": 2
+    },
+    "solutionSteps": [
+      "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3.",
+      "A ÷ 9 = B, so B = 18 ÷ 9 = 2.",
+      "Full solution: A = 18, B = 2, C = 3. The question asks for B, so the answer is 2."
+    ],
+    "explanation": "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3. A ÷ 9 = B, so B = 18 ÷ 9 = 2. Full solution: A = 18, B = 2, C = 3. The question asks for B, so the answer is 2.",
+    "distractorNotes": {
+      "opt-18": "18 is the value of A, not B — this is the right system solved for the wrong letter.",
+      "opt-4": "4 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-1": "1 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Solve for A first, then substitute it into the equation that defines C, and keep going until you reach B."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 6 = C leaves A as the only unknown, which gives A = 18.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 6 = C",
+            "note": "A = 18"
+          }
+        },
+        {
+          "title": "Substitute to reach C",
+          "detail": "A ÷ 6 = C has C as its only unknown, so C = 3.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 6 = C",
+            "note": "C = 3"
+          }
+        },
+        {
+          "title": "Substitute to reach B",
+          "detail": "A ÷ 9 = B has B as its only unknown, so B = 2.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 9 = B",
+            "note": "B = 2"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes A = 18, C = 3. The question asks for B.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 18,
+              "C": 3,
+              "B": 2
+            }
+          }
+        }
+      ],
+      "answer": "B = 2.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "3-variable-system",
+        "chain-topology",
+        "multi-step-substitution",
+        "lcm-pin",
+        "lcm-division"
+      ],
+      "skill": "forward substitution along a chain",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 4,
+      "officialStructure": {
+        "letters": 3,
+        "equations": 2
+      },
+      "distractorTypes": {
+        "opt-18": "wrong-variable",
+        "opt-4": "inverted-operation",
+        "opt-1": "off-by-one"
+      },
+      "generationNotes": "3 letters, chain topology, depth 4, 1 multiplicative operation(s), shapes: lcm-pin/lcm-division",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-high-b12-005",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 30554162,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 4,
+        "attempt": 0
+      },
+      "config": {
+        "depthTargets": {
+          "low": [
+            1,
+            1
+          ],
+          "medium": [
+            2,
+            2
+          ],
+          "high": [
+            3,
+            6
+          ]
+        },
+        "varChoices": {
+          "low": [
+            2,
+            2,
+            3,
+            3,
+            4
+          ],
+          "medium": [
+            2,
+            3,
+            3,
+            4,
+            4
+          ],
+          "high": [
+            3,
+            3,
+            4,
+            4,
+            4
+          ]
+        },
+        "topologies": [
+          "chain",
+          "star",
+          "mixed"
+        ]
+      },
+      "verifiedAt": "2026-11-21"
+    }
+  },
+  {
+    "kind": "math-equations",
+    "section": "mathematical-equations",
+    "difficulty": "high",
+    "equations": [
+      "8 × D = B",
+      "A ÷ 4 = C",
+      "A ÷ 10 = D"
+    ],
+    "variables": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "asked": "C",
+    "options": [
+      {
+        "id": "opt-16",
+        "value": 16
+      },
+      {
+        "id": "opt-10",
+        "value": 10
+      },
+      {
+        "id": "opt-5",
+        "value": 5
+      },
+      {
+        "id": "opt-4",
+        "value": 4
+      }
+    ],
+    "correctOptionId": "opt-5",
+    "solution": {
+      "A": 20,
+      "C": 5,
+      "D": 2,
+      "B": 16
+    },
+    "solutionSteps": [
+      "A ÷ 4 and A ÷ 10 both come out whole, so A is a multiple of 4 and of 10. The lowest such number is 20, and the next one is 40, which is outside 1–20 — so A = 20 and C = 5.",
+      "A ÷ 10 = D, so D = 20 ÷ 10 = 2.",
+      "8 × D = B, so B = 8 × 2 = 16.",
+      "Full solution: A = 20, B = 16, C = 5, D = 2. The question asks for C, so the answer is 5."
+    ],
+    "explanation": "A ÷ 4 and A ÷ 10 both come out whole, so A is a multiple of 4 and of 10. The lowest such number is 20, and the next one is 40, which is outside 1–20 — so A = 20 and C = 5. A ÷ 10 = D, so D = 20 ÷ 10 = 2. 8 × D = B, so B = 8 × 2 = 16. Full solution: A = 20, B = 16, C = 5, D = 2. The question asks for C, so the answer is 5.",
+    "distractorNotes": {
+      "opt-16": "16 is the value of B, not C — this is the right system solved for the wrong letter.",
+      "opt-10": "10 is double the correct value, which is what you get if you multiply where the equation divides.",
+      "opt-4": "4 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+    },
+    "hints": [
+      {
+        "level": 1,
+        "text": "No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value."
+      },
+      {
+        "level": 2,
+        "text": "Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20."
+      },
+      {
+        "level": 3,
+        "text": "Solve for A first, then substitute it into the equation that defines C, and keep going until you reach C."
+      }
+    ],
+    "walkthrough": {
+      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "steps": [
+        {
+          "title": "Collapse the combining equation",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into 8 × D = B leaves A as the only unknown, which gives A = 20.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "8 × D = B",
+            "note": "A = 20"
+          }
+        },
+        {
+          "title": "Substitute to reach C",
+          "detail": "A ÷ 4 = C has C as its only unknown, so C = 5.",
+          "visual": {
+            "type": "me-equation",
+            "equation": "A ÷ 4 = C",
+            "note": "C = 5"
+          }
+        },
+        {
+          "title": "Read the question again before answering",
+          "detail": "The chain also fixes A = 20, D = 2, B = 16. The question asks for C.",
+          "visual": {
+            "type": "me-values",
+            "values": {
+              "A": 20,
+              "C": 5,
+              "D": 2,
+              "B": 16
+            }
+          }
+        }
+      ],
+      "answer": "C = 5.",
+      "takeaway": "When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all."
+    },
+    "meta": {
+      "patternType": [
+        "direct-substitution",
+        "4-variable-system",
+        "chain-topology",
+        "multi-step-substitution",
+        "mixed-operations",
+        "lcm-pin",
+        "lcm-division",
+        "define-multiplicative"
+      ],
+      "skill": "forward substitution along a chain",
+      "dmatAlignment": "reasonable_extrapolation",
+      "reasoningDepth": 4,
+      "officialStructure": {
+        "letters": 4,
+        "equations": 3
+      },
+      "distractorTypes": {
+        "opt-16": "wrong-variable",
+        "opt-10": "inverted-operation",
+        "opt-4": "off-by-one"
+      },
+      "generationNotes": "4 letters, chain topology, depth 4, 2 multiplicative operation(s), shapes: lcm-pin/lcm-division/define-multiplicative",
+      "provenance": {
+        "format": "demonstrated",
+        "answerFormat": "stated",
+        "answerOptionCount": "unknown",
+        "mechanics": "documented",
+        "originality": "original-generated"
+      }
+    },
+    "id": "me-high-b12-006",
+    "generator": {
+      "name": "math-equations",
+      "version": "4.1.0",
+      "batchId": "b12",
+      "seed": 4158165099,
+      "seedCoordinates": {
+        "section": "mathematical-equations",
+        "tier": "high",
+        "batchId": "b12",
+        "index": 5,
         "attempt": 0
       },
       "config": {

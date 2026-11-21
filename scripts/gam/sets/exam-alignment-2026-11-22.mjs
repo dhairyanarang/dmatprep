@@ -262,7 +262,11 @@ const optionContracts = {
         'A trader is convinced the settlement price will end far below every strike in the table. Which right in the table rewards that view, and why?',
       options: [
         { id: 'opt-a', text: 'R3, because a sell-right gains as the settlement price falls below its strike' },
-        { id: 'opt-b', text: 'R1, because its strike is the lowest of the three' },
+        // "tied-lowest", not "lowest": R1 and R3 both strike at 2400. The
+        // distractor is wrong because R1 is a buy-right, and it must not ALSO
+        // be rejectable on a factual slip about the table — a careful candidate
+        // would then be eliminating it for the wrong reason.
+        { id: 'opt-b', text: 'R1, because its strike is the tied-lowest of the three' },
         { id: 'opt-c', text: 'R2, because it costs the least to buy' },
         { id: 'opt-d', text: 'None of them, because the premium is paid whatever happens' },
       ],
@@ -286,7 +290,7 @@ const optionContracts = {
           blockId: 'p2',
           family: 'wrong-direction-of-effect',
           reason:
-            'R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits.',
+            'R1 shares the lowest strike in the table with R3, but that is beside the point: R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits.',
         },
         'opt-c': {
           blockId: 'p1',

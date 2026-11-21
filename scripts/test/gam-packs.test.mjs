@@ -1176,13 +1176,13 @@ describe('GAM pilot — Core module is untouched', () => {
   // items for the exam-alignment pass. The point of this pin is that GAM work
   // never touches the Core bank, so it is updated deliberately when Core work
   // changes it and left alone otherwise.
-  test('the Core bank still holds 535 active questions', () => {
+  test('the Core bank still holds 543 active questions', () => {
     const counts = ['figure-sequences', 'mathematical-equations', 'latin-squares'].map((s) => {
       const url = new URL(`../../content/sections/${s}/questions.json`, import.meta.url)
       return JSON.parse(readFileSync(url, 'utf8')).length
     })
-    assert.deepEqual(counts, [200, 210, 125])
-    assert.equal(counts.reduce((a, b) => a + b, 0), 535)
+    assert.deepEqual(counts, [200, 218, 125])
+    assert.equal(counts.reduce((a, b) => a + b, 0), 543)
   })
 
   test('GAM content lives outside the Core section directories', () => {
