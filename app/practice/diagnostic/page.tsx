@@ -14,6 +14,9 @@ const UNIT: Record<string, string> = {
 export default function DiagnosticPage() {
   return (
     <PageShell wide>
+      {/* Same reason as the other runners: a takeover with its own chrome
+            and no visible page title, which still needs an h1. */}
+      <h1 className="sr-only">dMAT Prep diagnostic</h1>
       <TimedLauncher
         mode="diagnostic"
         title="dMAT Prep diagnostic"

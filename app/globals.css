@@ -296,6 +296,39 @@
  * the same value the v2 prototype calls `--line`. Fixing it here rather than at
  * each call site is what this file is for.
  */
+/*
+ * Reduced motion, honoured globally.
+ *
+ * Most animation in the product already carries Tailwind's `motion-safe:`
+ * prefix and is therefore already conditional. What is not is the vendored
+ * shadcn layer — Alert Dialog, Tooltip, Select, Skeleton — whose `animate-in`
+ * and `animate-out` utilities run unconditionally. Rather than edit owned
+ * third-party source in a dozen places, the preference is answered once here.
+ *
+ * `animate-spin` is deliberately exempt. CLAUDE.md's rule is that motion
+ * answers a question or it does not ship, and one of the questions it lists is
+ * "is something being worked on" — a frozen spinner answers it wrongly. It
+ * keeps turning, slower, so it still reads as progress without drawing the eye.
+ *
+ * This replaces a rule that `page-shell.tsx` and CLAUDE.md both claimed existed
+ * and which did not.
+ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  ::before,
+  ::after {
+    animation-duration: 0.01ms !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-spin {
+    animation-duration: 1.4s !important;
+  }
+}
+
 @layer base {
   *,
   ::after,

@@ -19,6 +19,7 @@ import { SectionProgress } from '@/components/practice/section-progress'
 import { SetComplete } from '@/components/practice/set-complete'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { PublicQuestion } from '@/lib/content/registry'
+import { scrollBehavior } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 
 /** Stable empty map: a fresh `{}` each render would re-run every memo on it. */
@@ -438,7 +439,7 @@ function PracticeSession({
     setSelectedId(next.id)
     document
       .getElementById(`question-${next.id}`)
-      ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      ?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' })
   }
 
   const correctCount = pool.reduce((n, question) => n + (stateOf(question) === 'right' ? 1 : 0), 0)
@@ -451,8 +452,17 @@ function PracticeSession({
 
       <PracticeBar
         ref={barBox}
-        dots={pool.map((question) => ({
+        // The questions ON SCREEN, not the whole set.
+        //
+        // It used to map the pool, so after filtering to "To do" the strip
+        // still carried a dot for every answered question — and clicking one
+        // did not go there, because the card was not rendered. The selection
+        // fell through to a neighbour instead, so dot 4 quietly selected
+        // question 5. Every dot now maps to a question that is actually
+        // present, and `number` keeps the card's own numbering.
+        dots={visible.map((question) => ({
           id: question.id,
+          number: pool.indexOf(question) + 1,
           state: stateOf(question),
           difficulty: question.difficulty,
           bookmarked: Boolean(bookmarks[question.id]),
@@ -472,7 +482,7 @@ function PracticeSession({
           setSelectedId(id)
           document
             .getElementById(`question-${id}`)
-            ?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            ?.scrollIntoView({ behavior: scrollBehavior(), block: 'start' })
         }}
       />
 

@@ -2,11 +2,12 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Check, CloudOff, RefreshCw, Sparkles, Trash2, UserRound } from 'lucide-react'
+import { Check, CloudOff, RefreshCw, Sparkles, Trash2 } from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
 import { SupportLink } from '@/components/support/support-link'
 import { Panel } from '@/components/layout/page-shell'
+import { UserAvatar } from '@/components/layout/user-avatar'
 import { Button } from '@/components/ui/button'
 import { ButtonLink } from '@/components/ui/button-link'
 import { Card, CardContent } from '@/components/ui/card'
@@ -74,18 +75,12 @@ function IdentityCard() {
     <Card>
       <CardContent className="space-y-4">
         <div className="flex items-start gap-3">
-          <span
-            aria-hidden
-            className="bg-muted text-foreground/70 flex size-10 shrink-0 items-center justify-center overflow-hidden rounded-full"
-          >
-            {user?.avatarUrl ? (
-              /* eslint-disable-next-line @next/next/no-img-element --
-                 an arbitrary remote avatar URL; see components/auth/account-menu.tsx. */
-              <img src={user.avatarUrl} alt="" className="size-full object-cover" />
-            ) : (
-              <UserRound className="size-5" />
-            )}
-          </span>
+          <UserAvatar
+            user={user}
+            className="bg-muted text-foreground/70 size-10"
+            textClassName="text-sm"
+            iconClassName="size-5"
+          />
 
           {/* Redacted in session replays — the one page that shows both. */}
           <div className="min-w-0 flex-1" data-clarity-mask="true">

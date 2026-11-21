@@ -28,9 +28,12 @@ export default async function CoreMockPage({ params }: PageProps<'/test/mock/[mo
   const stages = mockStages(found)
 
   return (
-    <PageShell
-      wide
-    >
+    <PageShell wide>
+      {/* The exam runners are a takeover with their own chrome, so there is no
+            visible page title to carry the h1. Every page needs one all the
+            same: without it a screen reader lands here with nothing above the
+            sidebar's section headings. */}
+      <h1 className="sr-only">{found.label}</h1>
       <TimedLauncher
         mode="simulation"
         title={found.label}

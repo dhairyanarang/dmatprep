@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 
+import { scrollBehavior } from '@/lib/motion'
 import { cn } from '@/lib/utils'
 import { DIFFICULTIES, type Difficulty } from '@/lib/types/question'
 
@@ -13,6 +14,15 @@ export type DotState = 'todo' | 'right' | 'wrong' | 'locked'
 /** Shown in each dot's label, since the navigator carries no colour for it. */
 export type DotInfo = {
   id: string
+  /**
+   * The question's number in the WHOLE set, not its position in this list.
+   *
+   * The navigator shows only the questions the filter left on screen, but each
+   * keeps the number its card shows. Under "To do" the strip reads 2, 3, 5…
+   * with the answered ones simply absent — rather than renumbering, which
+   * would make dot 4 and card Q05 the same question.
+   */
+  number: number
   state: DotState
   difficulty?: string
   /** Bookmarked questions carry a pip, so the list shows them without a filter. */
@@ -75,7 +85,7 @@ export function PracticeBar({
   useEffect(() => {
     if (!current) return
     const dot = strip.current?.querySelector(`[data-dot="${CSS.escape(current)}"]`)
-    dot?.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'nearest' })
+    dot?.scrollIntoView({ behavior: scrollBehavior(), block: 'nearest', inline: 'nearest' })
   }, [current])
 
   return (
@@ -95,9 +105,25 @@ export function PracticeBar({
       <nav
         ref={strip}
         aria-label="Jump to question"
-        className="scrollbar-thin flex min-w-0 flex-1 gap-1 overflow-x-auto overflow-y-hidden py-0.5"
+        /*
+         * `p-1 -m-1` is not spacing — it is room for the selected ring.
+         *
+         * The ring is a box-shadow drawn OUTSIDE the 28px dot, 4px of it on
+         * every side (`0 0 0 2px` brand over `0 0 0 4px` background, which is
+         * the prototype's `.qdot.cur`). This element is a scroll container, so
+         * anything outside its content box is clipped — and with zero padding
+         * the first dot sat flush against the left edge and lost the left half
+         * of its ring, which is what looked like question 1 being cut off. Top
+         * and bottom were losing 2px each for the same reason.
+         *
+         * The padding gives the ring its 4px; the equal negative margin takes
+         * the same 4px back off the outside, so nothing moves visually and no
+         * alignment gap is introduced. `scroll-p-1` applies the same margin to
+         * scrollIntoView, so a dot scrolled to either end keeps its ring too.
+         */
+        className="scrollbar-thin -m-1 flex min-w-0 flex-1 scroll-p-1 gap-1 overflow-x-auto overflow-y-hidden p-1"
       >
-        {dots.map((dot, i) => (
+        {dots.map((dot) => (
           <button
             key={dot.id}
             type="button"
@@ -108,8 +134,8 @@ export function PracticeBar({
             // prototype's navigator encodes status and nothing else, and a
             // second colour axis in a 28px square would make neither readable.
             // The difficulty chips filter it; the card's badge shows it.
-            title={`Question ${i + 1}${dot.difficulty ? ` · ${dot.difficulty}` : ''}`}
-            aria-label={`Question ${i + 1}, ${
+            title={`Question ${dot.number}${dot.difficulty ? ` · ${dot.difficulty}` : ''}`}
+            aria-label={`Question ${dot.number}, ${
               dot.state === 'locked' ? 'locked' : dot.state === 'todo' ? 'not answered' : dot.state
             }${dot.difficulty ? `, ${dot.difficulty}` : ''}${
               dot.id === current ? ', selected' : ''
@@ -127,7 +153,7 @@ export function PracticeBar({
               dot.id === current && 'ring-background ring-offset-brand ring-2 ring-offset-2',
             )}
           >
-            {i + 1}
+            {dot.number}
             {dot.bookmarked ? (
               <span
                 aria-hidden

@@ -30,6 +30,11 @@ export default async function TimedSectionPage({ params }: PageProps<'/practice/
 
   return (
     <PageShell wide>
+      {/* The exam runners are a takeover with their own chrome, so there is no
+            visible page title to carry the h1. Every page needs one all the
+            same: without it a screen reader lands here with nothing above the
+            sidebar's section headings. */}
+      <h1 className="sr-only">{`${meta.title} practice mock`}</h1>
       <TimedLauncher
         mode="timed"
         title={`${meta.title} practice mock`}

@@ -2,12 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import { ChevronsUpDown, LogOut, ShieldCheck, Sparkles, UserRound } from 'lucide-react'
+import { ChevronsUpDown, LogOut, ShieldCheck, Sparkles } from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
 import { useAuth, useAuthActions } from '@/lib/auth/use-auth'
 import { COMMERCE_ENABLED } from '@/lib/payments/config'
 import { useEntitlement } from '@/lib/payments/use-entitlement'
+import { UserAvatar } from '@/components/layout/user-avatar'
 import { cn } from '@/lib/utils'
 
 /**
@@ -58,13 +59,6 @@ export function AccountRow({ onNavigate }: { onNavigate?: () => void }) {
           ? 'Free plan'
           : 'Signed in'
 
-  const initials = (user?.name ?? user?.email ?? '')
-    .split(/[\s@._-]+/)
-    .filter(Boolean)
-    .slice(0, 2)
-    .map((part) => part[0]?.toUpperCase())
-    .join('')
-
   return (
     <div ref={root} className="relative">
       {open ? (
@@ -109,21 +103,11 @@ export function AccountRow({ onNavigate }: { onNavigate?: () => void }) {
         aria-haspopup="menu"
         className="border-border bg-card hover:bg-frame focus-visible:ring-ring flex w-full items-center gap-2.5 rounded-[10px] border p-2 text-left transition-colors focus-visible:ring-2 focus-visible:outline-none"
       >
-        <span
-          aria-hidden
-          className="bg-foreground grid size-8 shrink-0 place-items-center overflow-hidden rounded-full text-xs font-semibold text-[#f3f0e6]"
-        >
-          {user?.avatarUrl ? (
-            /* eslint-disable-next-line @next/next/no-img-element --
-               a Google avatar is an arbitrary remote URL; routing one 32px
-               picture through next/image would mean whitelisting a host. */
-            <img src={user.avatarUrl} alt="" className="size-full object-cover" />
-          ) : initials ? (
-            initials
-          ) : (
-            <UserRound className="size-4" />
-          )}
-        </span>
+        <UserAvatar
+          user={user}
+          className="bg-foreground size-8 text-[#f3f0e6]"
+          textClassName="text-xs"
+        />
 
         {/* The one place in the sidebar that can hold a real name and address. */}
         <span className="flex min-w-0 flex-1 flex-col" data-clarity-mask="true">
