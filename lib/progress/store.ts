@@ -30,6 +30,8 @@ export interface ProgressStore {
   /** Store a completed timed session so its result survives a reload. */
   recordSession(result: SessionResult): void
   toggleMilestone(id: string): void
+  /** Bookmark a question, or remove it. Returns the state it ended in. */
+  toggleBookmark(questionId: string): boolean
   setKeyDates(dates: KeyDate[]): void
 
   /** Note that questions have been shown, spending them from one pool only. */

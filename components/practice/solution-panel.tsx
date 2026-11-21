@@ -42,7 +42,6 @@ export function SolutionPanel({
   answered,
   atStart,
   atEnd,
-  hiddenOnMobile,
   onReveal,
   onClose,
   onStep,
@@ -58,8 +57,6 @@ export function SolutionPanel({
   /** Whether stepping back or forward would leave the filtered list. */
   atStart: boolean
   atEnd: boolean
-  /** Below `lg` the sidebar is a drawer; above it this is ignored. */
-  hiddenOnMobile: boolean
   onReveal: (next: number) => void
   onClose: () => void
   onStep: (delta: -1 | 1) => void
@@ -83,7 +80,7 @@ export function SolutionPanel({
     <aside
       ref={panel}
       tabIndex={-1}
-      className={cn('spanel focus:outline-none', hiddenOnMobile && 'max-lg:hidden')}
+      className="spanel focus:outline-none"
       aria-label={`Hints and solution for question ${position}`}
     >
       <div className="sp-h">
@@ -98,7 +95,7 @@ export function SolutionPanel({
           type="button"
           onClick={onClose}
           aria-label="Close hints and solution"
-          className="text-muted-foreground hover:text-foreground grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150 lg:hidden"
+          className="text-muted-foreground hover:text-foreground grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150"
         >
           <X className="size-4" />
         </button>
@@ -215,18 +212,22 @@ export function SolutionPanel({
 export function HintTrigger({
   hintsUsed,
   total,
+  open,
   onOpen,
 }: {
   hintsUsed: number
   total: number
+  /** Whether this question's panel is the one currently showing. */
+  open: boolean
   onOpen: () => void
 }) {
   return (
     <Button
       variant="outline"
       size="sm"
-      className="h-7 px-2 text-xs"
+      className={cn('h-7 px-2 text-xs', open && 'border-brand text-brand')}
       onClick={onOpen}
+      aria-expanded={open}
       aria-label={hintsUsed > 0 ? `Hints, ${hintsUsed} of ${total} shown` : 'Need a hint?'}
     >
       <Lightbulb className="text-brand size-3.5" aria-hidden />

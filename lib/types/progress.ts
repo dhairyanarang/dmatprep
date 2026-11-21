@@ -227,6 +227,16 @@ export type ProgressState = {
   exposure: ExposureEntry[]
   activeSession: ActiveSession | null
   practiceDrafts: Record<string, PracticeDraft>
+  /**
+   * Questions the candidate has bookmarked, keyed by question id.
+   *
+   * Local to this browser, deliberately and for now. `user_state` carries
+   * `milestones` and `key_dates` and has no general-purpose column, so syncing
+   * these to the cloud would need a migration — which has not been applied.
+   * Optional so that a store written before bookmarks existed still loads, and
+   * an absent map simply means nothing is bookmarked.
+   */
+  bookmarks?: Record<string, boolean>
   lastSession?: {
     sectionId: SectionId
     questionId: string
@@ -243,6 +253,7 @@ export const EMPTY_PROGRESS: ProgressState = {
   exposure: [],
   activeSession: null,
   practiceDrafts: {},
+  bookmarks: {},
 }
 
 export type DifficultyStats = { attempts: number; correct: number }

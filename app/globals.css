@@ -308,31 +308,17 @@
 
 @layer components {
   /*
-   * The practice two-column shape, ported from the v2 prototype's `.pwrap`.
+   * The practice layout.
    *
-   * The prototype puts hints and the full working in a panel BESIDE the
-   * question list rather than inside it, and that placement is the point: an
-   * inline hint block pushed every question below it down the page, so asking
-   * for a hint on a bank of 170 items cost you your place. Here the list keeps
-   * its position and the panel sticks beside it.
-   *
-   * Below `lg` the panel becomes a right-hand drawer instead of a column,
-   * because 420px of panel beside a question is unusable on a phone — the
-   * prototype does exactly the same thing at its own breakpoint.
+   * The question list is the only thing in flow. Hints and the working live in
+   * `.spanel`, which is fixed to the right edge of the viewport rather than
+   * being a column here — see the note on it below. `.pwrap-open` is what makes
+   * room for it, and only while it is open.
    */
   .pwrap {
     display: flex;
     align-items: flex-start;
     min-width: 0;
-  }
-
-  @media (min-width: 1024px) {
-    /* Flush, because the divider is the panel's own left border — a gap here
-       would put a stripe of page between the question and its hints. The list
-       keeps its breathing room with padding instead. */
-    .qlist {
-      padding-right: 24px;
-    }
   }
 
   .qlist {
@@ -344,53 +330,63 @@
   }
 
   /*
-   * Dimensions are the prototype's, not an approximation of them:
+   * Dimensions and placement are the prototype's:
    *
-   *   .spanel { width:420px; position:sticky; top:var(--ptop,113px);
-   *             height:calc(100vh - var(--ptop,113px));
+   *   .spanel { width:420px; height:calc(100vh - var(--ptop));
    *             border-left:1px solid var(--line2); background:#fff;
    *             overflow:auto }
    *
-   * `--ptop` is the top bar plus the question control bar — 52px + 52px here,
-   * where the prototype's own bar is a little taller at 113px total. A rounded,
-   * all-round-bordered 400px card was the earlier guess at this and it was
-   * wrong in four ways: the artifact's panel is 420 wide, square, bordered on
-   * its left edge only, and runs the full height of the viewport below the bar.
+   * The prototype's shell is full-bleed, so its in-flow panel already sits on
+   * the right edge of the viewport. Ours is not: the practice page lives in a
+   * centred container with its own padding, so an in-flow column left a strip
+   * of page between the panel and the edge. Fixing it to the viewport is what
+   * reproduces the prototype's placement rather than its markup — and it has a
+   * second benefit, which is that a closed panel reserves nothing at all.
+   *
+   * `--ptop` is measured from the question control bar (see PracticeRunner), so
+   * the panel starts exactly where that bar ends and never covers it. The top
+   * bar sits above at z-20 and is never reached, because the panel begins below
+   * it.
    */
   .spanel {
+    position: fixed;
+    top: var(--ptop, 141px);
+    right: 0;
+    bottom: 0;
+    width: min(420px, 100%);
+    /*
+     * Below the question control bar (z-15) and the top bar (z-20), above the
+     * page's own content. `--ptop` is the bar's STUCK position, so before the
+     * page is scrolled the bar sits lower than the panel's top edge and the two
+     * overlap by the distance still to be scrolled. The bar must win that strip
+     * — it holds the navigator and the filters — so the panel passes beneath it
+     * rather than over it.
+     */
+    z-index: 14;
     display: flex;
     flex-direction: column;
     background: var(--card);
+    border-left: 1px solid var(--line2);
     overflow: auto;
     overscroll-behavior: contain;
-    /* Phone and tablet: a drawer over the page, dismissible. The prototype
-       does the same at its own breakpoint. */
-    position: fixed;
-    inset: 0 0 0 auto;
-    width: min(420px, 100%);
-    z-index: 66;
-    border-left: 1px solid var(--line2);
-    box-shadow: -20px 0 60px rgb(10 10 10 / 0.18);
+  }
+
+  @media (max-width: 1023px) {
+    .spanel {
+      /* A phone has no room for a column beside the question, so the panel
+         covers the page and is dismissed rather than lived with. */
+      top: 0;
+      z-index: 66;
+      box-shadow: -20px 0 60px rgb(10 10 10 / 0.18);
+    }
   }
 
   @media (min-width: 1024px) {
-    .spanel {
-      /* Desktop: an in-flow column that overlaps nothing and does not move.
-         `inset` is reset BEFORE `top`, not after — declared the other way
-         round it sets `top: auto` and a sticky element with no offset never
-         sticks, which is exactly what happened: the panel scrolled away with
-         the page while looking correctly positioned at rest. */
-      inset: auto;
-      position: sticky;
-      top: var(--ptop, 141px);
-      flex: none;
-      width: 420px;
-      height: calc(100vh - var(--ptop, 141px));
-      z-index: 1;
-      border-radius: 0;
-      border: 0;
-      border-left: 1px solid var(--line2);
-      box-shadow: none;
+    /* Make room for it only while it is there. The panel is fixed, so the
+       question column has to be told to stop short of it; closed, nothing is
+       reserved and the question uses the full width. */
+    .pwrap-open {
+      padding-right: 420px;
     }
   }
 

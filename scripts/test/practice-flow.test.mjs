@@ -130,21 +130,19 @@ describe('practice — hints and the working open beside the page', () => {
     assert.match(runner, /onStep=\{stepTo\}/)
   })
 
-  test('the panel is a drawer on a phone and a column on desktop', () => {
-    // A 420px panel beside a question is unusable on a phone; an overlay on
-    // desktop covers the very question it is explaining. `.spanel` is each of
-    // those, by breakpoint.
+  test('the panel is fixed to the viewport, never in the content column', () => {
+    // An in-flow column left a strip of page between the panel and the edge,
+    // and reserved 420px even when closed. Fixed to the viewport it does
+    // neither. The full placement contract lives in
+    // `prepare-entry-points.test.mjs`.
     const css = read('../../app/globals.css')
-    assert.match(
-      css,
-      /\.spanel \{[\s\S]*?position: fixed/,
-      'the panel is not a drawer by default',
-    )
-    assert.match(
-      css,
-      /@media \(min-width: 1024px\) \{[\s\S]*?\.spanel \{[\s\S]*?position: sticky/,
-      'the panel never becomes an in-flow column, so it overlaps the question on desktop',
-    )
+    // Scoped to the .spanel rule itself: `.sp-h` and `.sp-f` are legitimately
+    // sticky INSIDE the panel, and a looser match reads straight past into them.
+    const rule = /\.spanel \{([\s\S]*?)\n  \}/.exec(css)
+    assert.ok(rule, 'the .spanel rule is missing')
+    assert.match(rule[1], /position: fixed/)
+    assert.match(rule[1], /right: 0/)
+    assert.ok(!/position: sticky/.test(rule[1]), 'the panel is an in-flow column again')
   })
 
   test('opening it records nothing and changes no answer', () => {

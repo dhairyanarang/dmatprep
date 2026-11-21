@@ -1,6 +1,8 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Bookmark } from 'lucide-react'
+import { toast } from 'sonner'
 
 import { PremiumLocked } from '@/components/practice/premium-locked'
 import { DifficultyBadge } from '@/components/practice/difficulty-badge'
@@ -18,6 +20,9 @@ import { SetComplete } from '@/components/practice/set-complete'
 import { Skeleton } from '@/components/ui/skeleton'
 import type { PublicQuestion } from '@/lib/content/registry'
 import { cn } from '@/lib/utils'
+
+/** Stable empty map: a fresh `{}` each render would re-run every memo on it. */
+const EMPTY_BOOKMARKS: Record<string, boolean> = {}
 import { useProgress, useProgressActions, useProgressReady } from '@/lib/progress/use-progress'
 import { useSolutions } from '@/lib/solutions/use-solutions'
 import type { SectionId } from '@/lib/sections'
@@ -152,7 +157,7 @@ function PracticeSession({
   initialDraft: PracticeDraft | null
 }) {
   const progress = useProgress()
-  const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft } =
+  const { recordAttempt, recordExposure, setPracticeDraft, clearPracticeDraft, toggleBookmark } =
     useProgressActions()
 
   const [filter, setFilter] = useState<Filter>(initialDraft?.filter ?? 'all')
@@ -193,10 +198,33 @@ function PracticeSession({
   const [selectedId, setSelectedId] = useState<string | null>(null)
 
   /**
-   * Mobile only. Below `lg` the sidebar is a drawer over the page, so it needs
-   * a way to be dismissed; above `lg` it is a column and this is ignored.
+   * Whether the hint sidebar is showing, at every width.
+   *
+   * Closed by default. It was a permanent column for a while, which meant a
+   * 420px panel of mostly "Hidden until you ask" sat beside every question
+   * whether or not anyone had asked for a hint. "Need a hint?" toggles it, the
+   * panel's own close button closes it, and because the panel is fixed to the
+   * viewport rather than in flow, closing it reserves no column and leaves no
+   * gap — there is simply nothing there.
    */
-  const [drawerOpen, setDrawerOpen] = useState(false)
+  const [panelOpen, setPanelOpen] = useState(false)
+
+  /**
+   * Bookmarks live in the progress store, so they survive a reload and a
+   * navigation exactly as attempts do. `toggleBookmark` returns the state it
+   * ended in, which is what the toast reports — and what Undo puts back.
+   */
+  const bookmarks = progress.bookmarks ?? EMPTY_BOOKMARKS
+
+  const handleBookmark = useCallback(
+    (question: Question) => {
+      const nowSaved = toggleBookmark(question.id)
+      toast(nowSaved ? `Bookmarked ${question.id}` : 'Bookmark removed', {
+        action: { label: 'Undo', onClick: () => toggleBookmark(question.id) },
+      })
+    },
+    [toggleBookmark],
+  )
 
   /**
    * Where the sidebar starts, measured rather than assumed.
@@ -385,6 +413,7 @@ function PracticeSession({
 
   const visible = pool.filter((question) => {
     if (status === 'all') return true
+    if (status === 'saved') return Boolean(bookmarks[question.id])
     const state = stateOf(question)
     return status === 'todo' ? state === 'todo' || state === 'locked' : state === 'wrong'
   })
@@ -426,6 +455,7 @@ function PracticeSession({
           id: question.id,
           state: stateOf(question),
           difficulty: question.difficulty,
+          bookmarked: Boolean(bookmarks[question.id]),
         }))}
         answered={answeredCount}
         correct={correctCount}
@@ -452,7 +482,9 @@ function PracticeSession({
             ? 'Nothing missed here — every question you have answered in this view was right.'
             : status === 'todo'
               ? 'Nothing left to do in this view.'
-              : `No ${filter} questions in this section.`}{' '}
+              : status === 'saved'
+                ? 'No bookmarks yet. Use the bookmark on a question to keep it here.'
+                : `No ${filter} questions in this section.`}{' '}
           <button
             type="button"
             onClick={() => setStatus('all')}
@@ -466,7 +498,7 @@ function PracticeSession({
       {/* The prototype's `.pwrap`: the question list, and the hint/solution
           panel beside it. Below `lg` the panel is a drawer and this collapses
           back to a single column on its own. */}
-      <div className="pwrap" ref={wrap}>
+      <div className={cn('pwrap', panelOpen && 'pwrap-open')} ref={wrap}>
         <div className="qlist">
           {visible.map((question) => (
             <QuestionCard
@@ -474,18 +506,25 @@ function PracticeSession({
               question={question}
               position={pool.indexOf(question) + 1}
               answer={answers[question.id] ?? UNANSWERED}
-              open={question.id === selected?.id}
+              open={question.id === selected?.id && panelOpen}
+              bookmarked={Boolean(bookmarks[question.id])}
               onSelect={handleSelect}
+              onBookmark={() => handleBookmark(question)}
               onSeeMore={() => {
+                // Toggle: a second press on the same question's trigger closes
+                // the panel rather than re-opening what is already open.
+                if (panelOpen && selected?.id === question.id) {
+                  setPanelOpen(false)
+                  return
+                }
                 setSelectedId(question.id)
-                // Only meaningful below `lg`, where the sidebar is a drawer.
-                setDrawerOpen(true)
+                setPanelOpen(true)
               }}
             />
           ))}
         </div>
 
-        {selected ? (
+        {selected && panelOpen ? (
           <SolutionPanel
             // Keyed on the question, so a panel built for one question is never
             // re-used for the next: its scroll position and any transient state
@@ -499,9 +538,8 @@ function PracticeSession({
             answered={selectedAnswer.submitted}
             atStart={visible.indexOf(selected) === 0}
             atEnd={visible.indexOf(selected) === visible.length - 1}
-            hiddenOnMobile={!drawerOpen}
             onReveal={(n) => patch(selected.id, { hintsUsed: n })}
-            onClose={() => setDrawerOpen(false)}
+            onClose={() => setPanelOpen(false)}
             onStep={stepTo}
           />
         ) : null}
@@ -539,7 +577,9 @@ function QuestionCard({
   position,
   answer,
   open,
+  bookmarked,
   onSelect,
+  onBookmark,
   onSeeMore,
 }: {
   question: Question
@@ -547,7 +587,9 @@ function QuestionCard({
   answer: PracticeAnswer
   /** Whether this question's hints and working are the ones in the side panel. */
   open: boolean
+  bookmarked: boolean
   onSelect: (question: Question, key: string, optionId: string) => void
+  onBookmark: () => void
   onSeeMore: () => void
 }) {
   const { selection, submitted, hintsUsed } = answer
@@ -604,8 +646,36 @@ function QuestionCard({
           ) : null}
 
           {!locked && question.hints?.length ? (
-            <HintTrigger hintsUsed={hintsUsed} total={question.hints.length} onOpen={onSeeMore} />
+            <HintTrigger
+              hintsUsed={hintsUsed}
+              total={question.hints.length}
+              open={open}
+              onOpen={onSeeMore}
+            />
           ) : null}
+
+          {/*
+            The prototype's bookmark: a 28px borderless icon button beside the
+            hint control, brand-coloured and filled when set, muted and
+            outlined when not.
+
+              color: ${saved ? 'var(--blue)' : 'var(--t2)'}
+              aria-pressed="${saved}"
+          */}
+          <button
+            type="button"
+            onClick={onBookmark}
+            aria-pressed={bookmarked}
+            aria-label={
+              bookmarked ? `Remove bookmark from ${question.id}` : `Bookmark ${question.id}`
+            }
+            className={cn(
+              'grid size-7 shrink-0 cursor-pointer place-items-center rounded-md transition-colors duration-150',
+              bookmarked ? 'text-brand' : 'text-muted-foreground hover:text-foreground',
+            )}
+          >
+            <Bookmark className="size-4" fill={bookmarked ? 'currentColor' : 'none'} />
+          </button>
         </span>
       </div>
 

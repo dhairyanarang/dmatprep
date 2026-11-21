@@ -138,5 +138,13 @@ export function migrateProgress(raw: unknown): ProgressState {
         ? (parsed.practiceDrafts as never)
         : {},
     lastSession: parsed.lastSession as never,
+    // Read back explicitly, because this function rebuilds the state from a
+    // list of known fields rather than spreading what it was given — anything
+    // not named here is dropped on load, which is exactly what happened to
+    // bookmarks the first time.
+    bookmarks:
+      parsed.bookmarks && typeof parsed.bookmarks === 'object'
+        ? (parsed.bookmarks as Record<string, boolean>)
+        : {},
   }
 }

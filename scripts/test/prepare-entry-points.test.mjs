@@ -139,41 +139,63 @@ describe('the hint sidebar is a column, not something that opens', () => {
   })
 })
 
-describe('the sidebar reproduces the prototype’s dimensions', () => {
-  test('420px wide, square, bordered on its left edge only', () => {
-    const desktop = /@media \(min-width: 1024px\) \{\s*\.spanel \{([\s\S]*?)\}/.exec(css)
-    assert.ok(desktop, 'the desktop .spanel rule is missing')
-    const block = desktop[1]
-    assert.match(block, /width: 420px/, 'the prototype panel is 420px')
-    assert.match(block, /border-radius: 0/, 'the prototype panel is square')
+describe('the sidebar is fixed to the viewport edge and toggles', () => {
+  test('420px, pinned to the right edge, bordered on its left only', () => {
+    const rule = /\.spanel \{([\s\S]*?)\n  \}/.exec(css)
+    assert.ok(rule, 'the .spanel rule is missing')
+    const block = rule[1]
+    assert.match(block, /position: fixed/, 'the panel is not fixed to the viewport')
+    assert.match(block, /right: 0/, 'the panel is not on the right edge')
+    assert.match(block, /width: min\(420px, 100%\)/, 'the prototype panel is 420px')
     assert.match(block, /border-left: 1px solid var\(--line2\)/)
-    assert.match(block, /position: sticky/)
+    assert.match(block, /top: var\(--ptop, 141px\)/, 'the panel does not start below the control bar')
   })
 
-  test('inset is reset before top, or it never sticks', () => {
-    // Declared the other way round, `inset: auto` sets `top: auto` and a sticky
-    // element with no offset scrolls away. It looked right at rest and failed
-    // the moment the page moved, which is exactly how it shipped once.
-    const desktop = /@media \(min-width: 1024px\) \{\s*\.spanel \{([\s\S]*?)\}/.exec(css)[1]
-    assert.ok(
-      desktop.indexOf('inset: auto') < desktop.indexOf('top: var(--ptop'),
-      'inset is declared after top, so the sticky offset is reset to auto',
-    )
+  test('it passes beneath the control bar rather than over it', () => {
+    // `--ptop` is the bar's STUCK position, so before the page is scrolled the
+    // bar sits lower and the two overlap. The bar holds the navigator and the
+    // filters, so it has to win that strip.
+    const block = /\.spanel \{([\s\S]*?)\n  \}/.exec(css)[1]
+    const z = /z-index: (\d+)/.exec(block)
+    assert.ok(z, 'the panel has no z-index')
+    assert.ok(Number(z[1]) < 15, `panel z-index ${z[1]} is not below the control bar's 15`)
   })
 
   test('its offset is measured from the control bar, not assumed', () => {
-    // The bar wraps its navigator and chips, so it is not a fixed height. A
-    // constant put the panel header underneath it.
+    // The bar wraps its chips, so it is not a fixed height.
     assert.match(runner, /ResizeObserver/)
     assert.match(runner, /setProperty\(\s*'--ptop'/)
-    assert.match(css, /top: var\(--ptop, 141px\)/)
-    assert.match(css, /height: calc\(100vh - var\(--ptop, 141px\)\)/)
   })
 
-  test('it is a drawer below lg and a column above, never an overlay on desktop', () => {
-    assert.match(css, /\.spanel \{[\s\S]*?position: fixed/, 'no drawer treatment for phones')
-    assert.match(panel, /hiddenOnMobile && 'max-lg:hidden'/)
-    // A permanent column has nothing to close, so the close control is mobile-only.
-    assert.match(panel, /lg:hidden/)
+  test('a closed panel reserves nothing', () => {
+    // It only makes room while it is open, and because the panel is fixed the
+    // question column is full width the rest of the time.
+    assert.match(css, /\.pwrap-open \{\s*padding-right: 420px/)
+    assert.match(runner, /panelOpen && 'pwrap-open'/)
+    assert.match(runner, /\{selected && panelOpen \?/, 'the panel renders when closed')
+  })
+
+  test('it is closed by default and the trigger toggles it', () => {
+    assert.match(runner, /useState\(false\)/)
+    assert.match(runner, /if \(panelOpen && selected\?\.id === question\.id\) \{/, 'the trigger does not toggle')
+    assert.match(runner, /setPanelOpen\(false\)/)
+    assert.match(panel, /aria-label="Close hints and solution"/)
+    assert.match(runner, /onClose=\{\(\) => setPanelOpen\(false\)\}/)
+  })
+
+  test('the close control is available at every width', () => {
+    // It used to be mobile-only, because the panel was a permanent column that
+    // could not be closed. It can be closed now, everywhere.
+    const closeBtn = /aria-label="Close hints and solution"[\s\S]{0,400}?\/>/.exec(panel)
+    assert.ok(closeBtn, 'the close button is gone')
+    assert.ok(!/lg:hidden/.test(closeBtn[0]), 'the close button is hidden on desktop')
+  })
+
+  test('a phone gets an overlay it can dismiss, not a column', () => {
+    assert.match(
+      css,
+      /@media \(max-width: 1023px\) \{[\s\S]*?\.spanel \{[\s\S]*?z-index: 66/,
+      'the phone treatment is gone',
+    )
   })
 })
