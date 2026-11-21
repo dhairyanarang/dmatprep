@@ -110,10 +110,19 @@ const check = (name, ok, detail) => {
   // Only routes where a candidate ANSWERS. A section overview is a guide, and
   // its worked examples show their answers because that is what a worked
   // example is — counting those as a leak would be wrong.
-  // Core only. Module B is a separate, labelled pilot and is explicitly not
-  // split, so folding it in here would hide the Core result behind it.
+  // Module B is in scope as of 21 November 2026. It used to be excluded here,
+  // on the grounds that it was "a separate, labelled pilot and explicitly not
+  // split" — which was true, and was precisely why it should not have been
+  // exempt: `/module-b/timed` was prerendering all 19 of its answer keys into
+  // static HTML while this check reported green. It is split now, so it is
+  // measured like everything else.
   const practice = payloads.filter(
-    (f) => !f.includes('/module-b/') && (/\/practice[./]/.test(f) || /module-a\/[^/]+\/practice/.test(f)),
+    (f) =>
+      /\/practice[./]/.test(f) ||
+      /module-a\/[^/]+\/practice/.test(f) ||
+      /\/module-b\//.test(f) ||
+      /\/module-b\.(html|rsc)$/.test(f) ||
+      f.includes('/module-b/timed'),
   )
   const worst = practice
     .map((f) => ({ route: f.slice(BUILD.length), n: count(readFileSync(f, 'utf8')) }))
@@ -130,11 +139,11 @@ const check = (name, ok, detail) => {
   }
 
   check(
-    'Answers are not shipped with the question on any Core practice route',
+    'Answers are not shipped with the question on any route where one is answered',
     (worst?.n ?? 0) === 0,
-    `${practice.length} Core practice payloads, worst carries ${worst?.n ?? 0}. ` +
+    `${practice.length} answering payloads across Core and Module B, worst carries ${worst?.n ?? 0}. ` +
       `Section overviews carry ${overviews} between them, which is their worked examples and is intended. ` +
-      `Build-wide peak ${peak.n} at ${peak.route} — Module B, not split.`,
+      `Build-wide peak ${peak.n} at ${peak.route}, which is a guide and not a question.`,
   )
 }
 

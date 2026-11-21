@@ -1,5 +1,5 @@
 import { GamPackRunner } from '@/components/gam/pack-runner'
-import { GAM_TOTAL_MINUTES, getPacks } from '@/lib/gam/registry'
+import { GAM_TOTAL_MINUTES, getPublicPacks } from '@/lib/gam/registry'
 
 export const metadata = { title: 'Timed session — Module B' }
 
@@ -14,7 +14,7 @@ export const metadata = { title: 'Timed session — Module B' }
 export default function GamTimedPage() {
   return (
     <GamPackRunner
-      files={getPacks()}
+      files={getPublicPacks()}
       mode="timed"
       minutes={GAM_TOTAL_MINUTES}
       storageKey="gam:timed"

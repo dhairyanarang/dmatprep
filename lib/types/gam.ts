@@ -38,7 +38,19 @@ export type GamFigureSpec =
       xLabel: string
       yLabel: string
       series: { id: string; label: string; points: [number, number][] }[]
-      annotations?: { at: [number, number]; label: string }[]
+      /**
+       * Two shapes, both attested.
+       *
+       * `at` pins a note to a coordinate. Without it the note is prose about
+       * the chart — `scripts/gam/sets/small-packs-2026-09-08.mjs` writes the
+       * lake-oxygen readings that way on purpose, so the numbers are part of
+       * the source and not only part of the picture, and
+       * `scripts/gam/lib/validate.mjs` reads `label`/`detail` for every
+       * annotation regardless of type. `at` was required here while the
+       * authoring side never set it, which is why the renderer crashed on the
+       * one active pack that has a chart.
+       */
+      annotations?: { at?: [number, number]; label: string; detail?: string }[]
     }
   | {
       type: 'schematic'

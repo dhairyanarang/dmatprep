@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 
 import { GamPackRunner } from '@/components/gam/pack-runner'
-import { getPack, getPackIds } from '@/lib/gam/registry'
+import { getPack, getPackIds, getPublicPack } from '@/lib/gam/registry'
 
 export function generateStaticParams() {
   return getPackIds().map((pack) => ({ pack }))
@@ -17,7 +17,9 @@ export default async function GamPackPracticePage({
   params,
 }: PageProps<'/module-b/practice/[pack]'>) {
   const { pack } = await params
-  const file = getPack(pack)
+  // The stripped half. `getPack` still backs `generateMetadata` above, which
+  // reads the title on the server and sends no question to the browser.
+  const file = getPublicPack(pack)
   if (!file) notFound()
 
   return <GamPackRunner files={[file]} mode="practice" storageKey={`gam:practice:${pack}`} />

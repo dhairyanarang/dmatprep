@@ -76,13 +76,21 @@ const ANSWER_KEYS = ['correctOptionId', 'explanation', 'distractorNotes', 'walkt
  *     before   73 of 215 payloads carried answer content, peak 2,197 keys
  *     after    37 of 188 payloads,                        peak    57 keys
  *
- * What is left is Module B, which was not split and still ships 19 GAM answers
- * and explanations, plus the worked examples in the section guides — where the
- * answer is the point of the block and belongs there.
+ * Module B was then split too, on 21 November 2026, and it was the larger
+ * hole: `/module-b/timed` prerendered 19 `correctOptionId`s into static HTML —
+ * 16 live questions plus 3 retired ones riding along inside
+ * `pack.provenance.retiredQuestions` — so an anonymous `curl` returned the
+ * whole key. The answers now live behind `POST /api/module-b/mark`. See
+ * `module-b-exposure.test.mjs`, which gates that route specifically.
  *
- * Ratcheted to the measured peak so the Core gain cannot quietly regress.
+ *     after Core split      37 of 188 payloads, peak 57
+ *     after Module B split  12 of 230 payloads, peak  4
+ *
+ * What is left is the worked examples in the section guides, where the answer
+ * is the point of the block and belongs there. Ratcheted to that measured peak
+ * so neither gain can quietly regress.
  */
-const EXPOSURE_BASELINE = 57
+const EXPOSURE_BASELINE = 4
 
 function buildFiles() {
   const out = []
@@ -214,14 +222,37 @@ test('NEGATIVE CONTROL: the retired-content detector rejects a planted leak', ()
 
 /* ----------------------------------------------------- answer-key exposure */
 
-test('answer keys and teaching content stay out of the public payload', { todo: 'Core is done — every practice route measures zero. What remains is Module B, which has not been split, and the guides\' worked examples, where the answer belongs. Drop this flag when Module B is split.', skip: needsBuild }, () => {
-  const { peak, where } = peakAnswerKeyExposure()
-  assert.equal(peak, 0, `answer-bearing content in a public payload: ${where}`)
+/**
+ * The gate that replaced the todo this test used to carry.
+ *
+ * "Peak zero everywhere" was never reachable and the flag said so badly: it
+ * blamed Module B, which is now fixed, and the section guides, which are not a
+ * leak at all — a worked example that withheld its answer would not be a
+ * worked example. So the gate is drawn where it means something. Anywhere a
+ * candidate answers a question, the payload must carry no answer; the guides
+ * are listed as the exception and the ratchet below holds them in place.
+ */
+test('no route where a question is answered carries an answer', { skip: needsBuild }, () => {
+  const ANSWERING = ['/practice', '/test', '/module-b']
+  const offenders = []
+  for (const file of buildFiles()) {
+    const route = file.slice(root.length).replace('.next/server/app', '')
+    if (!ANSWERING.some((prefix) => route.startsWith(prefix))) continue
+    const text = readFileSync(file, 'utf8')
+    for (const key of ANSWER_KEYS) {
+      const n = text.split(`"${key}\\"`).length - 1 + (text.split(`"${key}":`).length - 1)
+      if (n > 0) offenders.push(`${route} (${key} ×${n})`)
+    }
+  }
+  assert.deepEqual(offenders, [], `answer content on an answering route:\n  ${offenders.join('\n  ')}`)
 })
 
 test('answer-key exposure has not got worse than the recorded baseline', { skip: needsBuild }, () => {
   const { peak, where } = peakAnswerKeyExposure()
-  assert.ok(peak > 0, 'measured zero — if the leak is fixed, drop the todo flag above and this ratchet')
+  // Still expected to be nonzero: the section guides' worked examples. A zero
+  // here means the guides stopped showing their answers, which is a different
+  // regression and worth hearing about.
+  assert.ok(peak > 0, 'measured zero — the section guides should still carry their worked answers')
   assert.ok(
     peak <= EXPOSURE_BASELINE,
     `exposure rose from ${EXPOSURE_BASELINE} to ${peak}: ${where}`,
