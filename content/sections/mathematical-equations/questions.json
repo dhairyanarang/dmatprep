@@ -6045,7 +6045,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × D + 2 = B. Everything is defined in terms of C."
+        "text": "Substitute the other equations into A + C = 12. Everything is defined in terms of C."
       },
       {
         "level": 3,
@@ -6057,10 +6057,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × D + 2 = B leaves C as the only unknown, which gives C = 4.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A + C = 12 leaves C as the only unknown, which gives C = 4.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × D + 2 = B",
+            "equation": "A + C = 12",
             "note": "C = 4"
           }
         },
@@ -6258,7 +6258,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × D = C. Everything is defined in terms of D."
+        "text": "Do not start from a line that defines one letter in terms of another — those are what you substitute. Find the one whose right-hand side is a plain number, and push the others into it."
       },
       {
         "level": 3,
@@ -6270,10 +6270,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × D = C leaves D as the only unknown, which gives D = 2.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D + B = 6 leaves D as the only unknown, which gives D = 2.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × D = C",
+            "equation": "D + B = 6",
             "note": "D = 2"
           }
         },
@@ -9162,7 +9162,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × C = B. Everything is defined in terms of C."
+        "text": "Substitute the other equations into D + C = 12. Everything is defined in terms of C."
       },
       {
         "level": 3,
@@ -9174,10 +9174,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × C = B leaves C as the only unknown, which gives C = 9.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D + C = 12 leaves C as the only unknown, which gives C = 9.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × C = B",
+            "equation": "D + C = 12",
             "note": "C = 9"
           }
         },
@@ -18767,7 +18767,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × A = B. Everything is defined in terms of A."
+        "text": "Substitute the other equations into A + B = 18. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -18779,10 +18779,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × A = B leaves A as the only unknown, which gives A = 6.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A + B = 18 leaves A as the only unknown, which gives A = 6.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × A = B",
+            "equation": "A + B = 18",
             "note": "A = 6"
           }
         },
@@ -22289,7 +22289,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × B − 5 = D. Everything is defined in terms of A."
+        "text": "Substitute the other equations into C + A = 18. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -22301,10 +22301,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × B − 5 = D leaves A as the only unknown, which gives A = 6.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into C + A = 18 leaves A as the only unknown, which gives A = 6.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × B − 5 = D",
+            "equation": "C + A = 18",
             "note": "A = 6"
           }
         },
@@ -23492,7 +23492,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into D ÷ 4 = B. Everything is defined in terms of A."
+        "text": "Substitute the other equations into A − D + B = 9. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -23504,10 +23504,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into D ÷ 4 = B leaves A as the only unknown, which gives A = 12.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A − D + B = 9 leaves A as the only unknown, which gives A = 12.",
           "visual": {
             "type": "me-equation",
-            "equation": "D ÷ 4 = B",
+            "equation": "A − D + B = 9",
             "note": "A = 12"
           }
         },
@@ -23700,7 +23700,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × B − 2 = A. Everything is defined in terms of B."
+        "text": "Substitute the other equations into B − C + A = 1. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -23712,10 +23712,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × B − 2 = A leaves B as the only unknown, which gives B = 3.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B − C + A = 1 leaves B as the only unknown, which gives B = 3.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × B − 2 = A",
+            "equation": "B − C + A = 1",
             "note": "B = 3"
           }
         },
@@ -24312,7 +24312,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × B + 3 × A = D. Everything is defined in terms of B."
+        "text": "Substitute the other equations into B + A = 8. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -24324,10 +24324,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × B + 3 × A = D leaves B as the only unknown, which gives B = 7.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B + A = 8 leaves B as the only unknown, which gives B = 7.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × B + 3 × A = D",
+            "equation": "B + A = 8",
             "note": "B = 7"
           }
         },
@@ -24720,7 +24720,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × A − 9 = B. Everything is defined in terms of D."
+        "text": "Substitute the other equations into D + C = 14. Everything is defined in terms of D."
       },
       {
         "level": 3,
@@ -24732,10 +24732,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × A − 9 = B leaves D as the only unknown, which gives D = 1.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D + C = 14 leaves D as the only unknown, which gives D = 1.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × A − 9 = B",
+            "equation": "D + C = 14",
             "note": "D = 1"
           }
         },
@@ -25136,7 +25136,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 4 × A = D. Everything is defined in terms of A."
+        "text": "Substitute the other equations into D − B + A = 13. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -25148,10 +25148,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 4 × A = D leaves A as the only unknown, which gives A = 3.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D − B + A = 13 leaves A as the only unknown, which gives A = 3.",
           "visual": {
             "type": "me-equation",
-            "equation": "4 × A = D",
+            "equation": "D − B + A = 13",
             "note": "A = 3"
           }
         },
@@ -26997,7 +26997,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × B − 8 = A. Everything is defined in terms of B."
+        "text": "Substitute the other equations into D + B = 16. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -27009,10 +27009,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × B − 8 = A leaves B as the only unknown, which gives B = 13.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D + B = 16 leaves B as the only unknown, which gives B = 13.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × B − 8 = A",
+            "equation": "D + B = 16",
             "note": "B = 13"
           }
         },
@@ -27411,7 +27411,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 4 × A − 9 = D. Everything is defined in terms of A."
+        "text": "Substitute the other equations into D − B + C = 16. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -27423,10 +27423,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 4 × A − 9 = D leaves A as the only unknown, which gives A = 4.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D − B + C = 16 leaves A as the only unknown, which gives A = 4.",
           "visual": {
             "type": "me-equation",
-            "equation": "4 × A − 9 = D",
+            "equation": "D − B + C = 16",
             "note": "A = 4"
           }
         },
@@ -27614,7 +27614,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × A + 2 × D = C. Everything is defined in terms of D."
+        "text": "Substitute the other equations into D + A = 10. Everything is defined in terms of D."
       },
       {
         "level": 3,
@@ -27626,10 +27626,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × A + 2 × D = C leaves D as the only unknown, which gives D = 8.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into D + A = 10 leaves D as the only unknown, which gives D = 8.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × A + 2 × D = C",
+            "equation": "D + A = 10",
             "note": "D = 8"
           }
         },
@@ -27821,7 +27821,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × A − 1 = B. Everything is defined in terms of B."
+        "text": "Substitute the other equations into B − D − C = 4. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -27833,10 +27833,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × A − 1 = B leaves B as the only unknown, which gives B = 20.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B − D − C = 4 leaves B as the only unknown, which gives B = 20.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × A − 1 = B",
+            "equation": "B − D − C = 4",
             "note": "B = 20"
           }
         },
