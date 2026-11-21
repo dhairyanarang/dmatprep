@@ -65,7 +65,7 @@ export const GENERATOR_NAME = 'math-equations'
  * way in is the lowest common multiple. That family is built from documented
  * mechanics alone (official Ex 2's `B ÷ 2 = A`, twice) and needs no REVIEW grade.
  */
-export const GENERATOR_VERSION = '4.1.0'
+export const GENERATOR_VERSION = '4.1.2'
 
 const NAMES = ['A', 'B', 'C', 'D']
 const inRange = (v) => Number.isInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE
@@ -127,9 +127,32 @@ export function solveOrder(equations, variables) {
       if (unblocked > 0 && (!best || unblocked > best.unblocked)) best = { name, unblocked }
     }
 
+    /**
+     * The equation the collapse actually happens in.
+     *
+     * This used to fall back to "the first equation with two or more letters",
+     * which is frequently a plain definition and not the line anything collapses
+     * into. The walkthrough then told the candidate to substitute into an
+     * equation that substitution leaves with TWO unknowns — 13 items in the bank
+     * said so, 5 of them new on this branch. Found in the 22 November 2026 audit
+     * by testing the claim rather than reading it.
+     *
+     * Pick the widest equation instead, preferring one whose right-hand side is a
+     * constant, which is the shape a combining equation actually has. This field
+     * is used for NARRATION ONLY — `cost` and the letter chosen are computed
+     * above and do not depend on it — so correcting it cannot move a difficulty
+     * tier or change which letter is asked.
+     */
+    // A COMBINING equation has a numeric right-hand side: `A − B + C = 10`,
+    // `A + D = 10`. An equation ending in a single letter is a DEFINITION of
+    // that letter and is what gets substituted INTO the combining one, never
+    // the other way round. Width alone is not the test and picking the widest
+    // first got `2 × A + 2 × D = C` — a three-letter definition of C — over the
+    // two-letter `A + D = 10` that the collapse actually happens in.
+    const widest = (list) => [...list].sort((a, b) => eqVars(b).size - eqVars(a).size)[0]
+    const numericRhs = equations.filter((eq) => eq.rhs.t === 'num' && eqVars(eq).size >= 2)
     const combining =
-      equations.find((eq) => eqVars(eq).size === variables.length) ??
-      equations.find((eq) => eqVars(eq).size >= 2)
+      widest(numericRhs) ?? widest(equations.filter((eq) => eqVars(eq).size >= 2))
     // Collapsing a combining equation is not one move. Official Ex 5 pushes three
     // definitions into `A − B + C − D = 2` and simplifies
     // `5B − B + 10B − (11 + B) = 2` before B falls out — and both exercises that
@@ -905,23 +928,55 @@ function buildSolution(order, values, asked, determining, equationStrings) {
   const relevant = order.slice(0, askedIndex + 1)
   const opensWithSubstitution = order[0].kind === 'substitute'
 
-  const keyInsight = opensWithSubstitution
-    ? 'No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.'
-    : `One equation has only a single unknown. Solve that first, then every other letter follows from it${askedIndex === 0 ? ' — and it is the letter the question asks for' : ''}.`
+  /**
+   * A product pair and an LCM pin both "open with substitution" as far as the
+   * solver is concerned — no equation starts with a single unknown — but NEITHER
+   * is solved by substituting into a combining equation, and neither item has
+   * one. The generic wording below described a move those items do not contain
+   * and named an equation that substitution does not in fact reduce to one
+   * unknown. Found in the 22 November 2026 audit by checking, for every item,
+   * whether the equation the walkthrough cites really is left with one unknown
+   * once the other definitions are pushed in; it was not, in 13 of them.
+   *
+   * Each family now states its own route. The `step` strings these items carry
+   * in `solutionSteps` were always correct — it is only this second, narrated
+   * copy of the reasoning that was wrong.
+   */
+  const opensWithProduct = determining?.opKind === 'product'
+  const opensWithLcm = determining?.opKind === 'lcm'
+
+  const keyInsight = opensWithLcm
+    ? 'No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.'
+    : opensWithProduct
+      ? 'No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.'
+      : opensWithSubstitution
+        ? 'No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.'
+        : `One equation has only a single unknown. Solve that first, then every other letter follows from it${askedIndex === 0 ? ' — and it is the letter the question asks for' : ''}.`
+
+  const openingTitle = opensWithLcm
+    ? 'Take the lowest common multiple'
+    : opensWithProduct
+      ? 'Search the factor pairs'
+      : 'Collapse the combining equation'
 
   const steps = relevant.map((entry, i) => {
     const eqText = entry.equation ? renderEquation(entry.equation) : null
+    const opening = i === 0 && entry.kind === 'substitute'
+    // The determining form already carries a sentence that describes its own
+    // route exactly; reuse it rather than narrating a second, generic version.
+    const openingDetail = (opensWithLcm || opensWithProduct) && determining?.step
+      ? determining.step
+      : `Every other equation defines a letter in terms of another. Substituting them into ${eqText} leaves ${entry.name} as the only unknown, which gives ${entry.name} = ${values[entry.name]}.`
     return {
       title:
         i === 0
           ? entry.kind === 'substitute'
-            ? 'Collapse the combining equation'
+            ? openingTitle
             : 'Start where only one letter is unknown'
           : `Substitute to reach ${entry.name}`,
-      detail:
-        entry.kind === 'substitute'
-          ? `Every other equation defines a letter in terms of another. Substituting them into ${eqText} leaves ${entry.name} as the only unknown, which gives ${entry.name} = ${values[entry.name]}.`
-          : `${eqText} has ${entry.name} as its only unknown, so ${entry.name} = ${values[entry.name]}.`,
+      detail: opening
+        ? openingDetail
+        : `${eqText} has ${entry.name} as its only unknown, so ${entry.name} = ${values[entry.name]}.`,
       visual: eqText ? { type: 'me-equation', equation: eqText, note: `${entry.name} = ${values[entry.name]}` } : undefined,
     }
   })

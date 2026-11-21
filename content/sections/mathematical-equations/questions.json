@@ -35692,13 +35692,13 @@
       "B": 4
     },
     "solutionSteps": [
-      "A × C = 84 and A − C = 5. Of the factor pairs of 84, only 12 × 7 differs by 5, so A = 12 and C = 7.",
-      "A − C = 5 is the constraint that picks one factor pair out of the several that multiply to 84.",
+      "A × C = 84 and A − C = 5. Of the 2 factor pairs of 84 that fit 1–20, only 12 × 7 differs by 5, so A = 12 and C = 7.",
+      "A − C = 5 is what picks that pair out of the 2 factor pairs of 84 that fit 1–20; the product alone does not settle either letter.",
       "2 × C = D, so D = 2 × 7 = 14.",
       "A ÷ 3 = B, so B = 12 ÷ 3 = 4.",
       "Full solution: A = 12, B = 4, C = 7, D = 14. The question asks for B, so the answer is 4."
     ],
-    "explanation": "A × C = 84 and A − C = 5. Of the factor pairs of 84, only 12 × 7 differs by 5, so A = 12 and C = 7. A − C = 5 is the constraint that picks one factor pair out of the several that multiply to 84. 2 × C = D, so D = 2 × 7 = 14. A ÷ 3 = B, so B = 12 ÷ 3 = 4. Full solution: A = 12, B = 4, C = 7, D = 14. The question asks for B, so the answer is 4.",
+    "explanation": "A × C = 84 and A − C = 5. Of the 2 factor pairs of 84 that fit 1–20, only 12 × 7 differs by 5, so A = 12 and C = 7. A − C = 5 is what picks that pair out of the 2 factor pairs of 84 that fit 1–20; the product alone does not settle either letter. 2 × C = D, so D = 2 × 7 = 14. A ÷ 3 = B, so B = 12 ÷ 3 = 4. Full solution: A = 12, B = 4, C = 7, D = 14. The question asks for B, so the answer is 4.",
     "distractorNotes": {
       "opt-14": "14 is the value of D, not B — this is the right system solved for the wrong letter.",
       "opt-8": "8 is double the correct value, which is what you get if you multiply where the equation divides.",
@@ -35719,11 +35719,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A × C = 84 leaves A as the only unknown, which gives A = 12.",
+          "title": "Search the factor pairs",
+          "detail": "A × C = 84 and A − C = 5. Of the 2 factor pairs of 84 that fit 1–20, only 12 × 7 differs by 5, so A = 12 and C = 7.",
           "visual": {
             "type": "me-equation",
             "equation": "A × C = 84",
@@ -36129,7 +36129,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × B + D = A. Everything is defined in terms of C."
+        "text": "Substitute the other equations into A + D − B = 16. Everything is defined in terms of C."
       },
       {
         "level": 3,
@@ -36141,10 +36141,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × B + D = A leaves C as the only unknown, which gives C = 18.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A + D − B = 16 leaves C as the only unknown, which gives C = 18.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × B + D = A",
+            "equation": "A + D − B = 16",
             "note": "C = 18"
           }
         },
@@ -36747,7 +36747,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 2 × A + 2 × D = C. Everything is defined in terms of A."
+        "text": "Substitute the other equations into A + D = 10. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -36759,10 +36759,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 2 × A + 2 × D = C leaves A as the only unknown, which gives A = 4.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A + D = 10 leaves A as the only unknown, which gives A = 4.",
           "visual": {
             "type": "me-equation",
-            "equation": "2 × A + 2 × D = C",
+            "equation": "A + D = 10",
             "note": "A = 4"
           }
         },
@@ -37145,7 +37145,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 4 × D + 3 = B. Everything is defined in terms of B."
+        "text": "Substitute the other equations into B − C + A = 9. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -37157,10 +37157,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 4 × D + 3 = B leaves B as the only unknown, which gives B = 15.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into B − C + A = 9 leaves B as the only unknown, which gives B = 15.",
           "visual": {
             "type": "me-equation",
-            "equation": "4 × D + 3 = B",
+            "equation": "B − C + A = 9",
             "note": "B = 15"
           }
         },
@@ -37575,7 +37575,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into B ÷ 9 = A. Everything is defined in terms of B."
+        "text": "Substitute the other equations into A − B + C = 10. Everything is defined in terms of B."
       },
       {
         "level": 3,
@@ -37587,10 +37587,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into B ÷ 9 = A leaves B as the only unknown, which gives B = 9.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into A − B + C = 10 leaves B as the only unknown, which gives B = 9.",
           "visual": {
             "type": "me-equation",
-            "equation": "B ÷ 9 = A",
+            "equation": "A − B + C = 10",
             "note": "B = 9"
           }
         },
@@ -37978,12 +37978,12 @@
       "C": 2
     },
     "solutionSteps": [
-      "B × A = 60 and B − A = 4. Of the factor pairs of 60, only 10 × 6 differs by 4, so B = 10 and A = 6.",
-      "B − A = 4 is the constraint that picks one factor pair out of the several that multiply to 60.",
+      "B × A = 60 and B − A = 4. Of the 4 factor pairs of 60 that fit 1–20, only 10 × 6 differs by 4, so B = 10 and A = 6.",
+      "B − A = 4 is what picks that pair out of the 4 factor pairs of 60 that fit 1–20; the product alone does not settle either letter.",
       "B ÷ 5 = C, so C = 10 ÷ 5 = 2.",
       "Full solution: A = 6, B = 10, C = 2. The question asks for C, so the answer is 2."
     ],
-    "explanation": "B × A = 60 and B − A = 4. Of the factor pairs of 60, only 10 × 6 differs by 4, so B = 10 and A = 6. B − A = 4 is the constraint that picks one factor pair out of the several that multiply to 60. B ÷ 5 = C, so C = 10 ÷ 5 = 2. Full solution: A = 6, B = 10, C = 2. The question asks for C, so the answer is 2.",
+    "explanation": "B × A = 60 and B − A = 4. Of the 4 factor pairs of 60 that fit 1–20, only 10 × 6 differs by 4, so B = 10 and A = 6. B − A = 4 is what picks that pair out of the 4 factor pairs of 60 that fit 1–20; the product alone does not settle either letter. B ÷ 5 = C, so C = 10 ÷ 5 = 2. Full solution: A = 6, B = 10, C = 2. The question asks for C, so the answer is 2.",
     "distractorNotes": {
       "opt-10": "10 is the value of B, not C — this is the right system solved for the wrong letter.",
       "opt-4": "4 is double the correct value, which is what you get if you multiply where the equation divides.",
@@ -38004,11 +38004,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into B − A = 4 leaves B as the only unknown, which gives B = 10.",
+          "title": "Search the factor pairs",
+          "detail": "B × A = 60 and B − A = 4. Of the 4 factor pairs of 60 that fit 1–20, only 10 × 6 differs by 4, so B = 10 and A = 6.",
           "visual": {
             "type": "me-equation",
             "equation": "B − A = 4",
@@ -38206,7 +38206,7 @@
       },
       {
         "level": 2,
-        "text": "Substitute the other equations into 3 × A − 9 = D. Everything is defined in terms of A."
+        "text": "Substitute the other equations into C − B + A = 7. Everything is defined in terms of A."
       },
       {
         "level": 3,
@@ -38218,10 +38218,10 @@
       "steps": [
         {
           "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 3 × A − 9 = D leaves A as the only unknown, which gives A = 9.",
+          "detail": "Every other equation defines a letter in terms of another. Substituting them into C − B + A = 7 leaves A as the only unknown, which gives A = 9.",
           "visual": {
             "type": "me-equation",
-            "equation": "3 × A − 9 = D",
+            "equation": "C − B + A = 7",
             "note": "A = 9"
           }
         },
@@ -39031,13 +39031,13 @@
       "A": 1
     },
     "solutionSteps": [
-      "C × D = 30 and C − D = 7. Of the factor pairs of 30, only 10 × 3 differs by 7, so C = 10 and D = 3.",
-      "C − D = 7 is the constraint that picks one factor pair out of the several that multiply to 30.",
+      "C × D = 30 and C − D = 7. Of the 3 factor pairs of 30 that fit 1–20, only 10 × 3 differs by 7, so C = 10 and D = 3.",
+      "C − D = 7 is what picks that pair out of the 3 factor pairs of 30 that fit 1–20; the product alone does not settle either letter.",
       "C ÷ 2 = B, so B = 10 ÷ 2 = 5.",
       "C ÷ 10 = A, so A = 10 ÷ 10 = 1.",
       "Full solution: A = 1, B = 5, C = 10, D = 3. The question asks for B, so the answer is 5."
     ],
-    "explanation": "C × D = 30 and C − D = 7. Of the factor pairs of 30, only 10 × 3 differs by 7, so C = 10 and D = 3. C − D = 7 is the constraint that picks one factor pair out of the several that multiply to 30. C ÷ 2 = B, so B = 10 ÷ 2 = 5. C ÷ 10 = A, so A = 10 ÷ 10 = 1. Full solution: A = 1, B = 5, C = 10, D = 3. The question asks for B, so the answer is 5.",
+    "explanation": "C × D = 30 and C − D = 7. Of the 3 factor pairs of 30 that fit 1–20, only 10 × 3 differs by 7, so C = 10 and D = 3. C − D = 7 is what picks that pair out of the 3 factor pairs of 30 that fit 1–20; the product alone does not settle either letter. C ÷ 2 = B, so B = 10 ÷ 2 = 5. C ÷ 10 = A, so A = 10 ÷ 10 = 1. Full solution: A = 1, B = 5, C = 10, D = 3. The question asks for B, so the answer is 5.",
     "distractorNotes": {
       "opt-1": "1 is the value of A, not B — this is the right system solved for the wrong letter.",
       "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting a constant.",
@@ -39058,14 +39058,14 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into C ÷ 2 = B leaves C as the only unknown, which gives C = 10.",
+          "title": "Search the factor pairs",
+          "detail": "C × D = 30 and C − D = 7. Of the 3 factor pairs of 30 that fit 1–20, only 10 × 3 differs by 7, so C = 10 and D = 3.",
           "visual": {
             "type": "me-equation",
-            "equation": "C ÷ 2 = B",
+            "equation": "C × D = 30",
             "note": "C = 10"
           }
         },
@@ -39462,11 +39462,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into B ÷ 9 = C leaves B as the only unknown, which gives B = 18.",
+          "title": "Take the lowest common multiple",
+          "detail": "B ÷ 2 and B ÷ 9 both come out whole, so B is a multiple of 2 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so B = 18 and D = 9.",
           "visual": {
             "type": "me-equation",
             "equation": "B ÷ 9 = C",
@@ -39643,11 +39643,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into D ÷ 7 = C leaves D as the only unknown, which gives D = 14.",
+          "title": "Take the lowest common multiple",
+          "detail": "D ÷ 2 and D ÷ 7 both come out whole, so D is a multiple of 2 and of 7. The lowest such number is 14, and the next one is 28, which is outside 1–20 — so D = 14 and B = 7.",
           "visual": {
             "type": "me-equation",
             "equation": "D ÷ 7 = C",
@@ -39824,11 +39824,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 3 = C leaves A as the only unknown, which gives A = 15.",
+          "title": "Take the lowest common multiple",
+          "detail": "A ÷ 3 and A ÷ 5 both come out whole, so A is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so A = 15 and C = 5.",
           "visual": {
             "type": "me-equation",
             "equation": "A ÷ 3 = C",
@@ -40005,11 +40005,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 9 = D leaves A as the only unknown, which gives A = 18.",
+          "title": "Take the lowest common multiple",
+          "detail": "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3.",
           "visual": {
             "type": "me-equation",
             "equation": "A ÷ 9 = D",
@@ -40192,14 +40192,14 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into D ÷ 4 = B leaves D as the only unknown, which gives D = 8.",
+          "title": "Search the factor pairs",
+          "detail": "D × A = 40 and D − A = 3. Of the 3 factor pairs of 40 that fit 1–20, only 8 × 5 differs by 3, so D = 8 and A = 5.",
           "visual": {
             "type": "me-equation",
-            "equation": "D ÷ 4 = B",
+            "equation": "D − A = 3",
             "note": "D = 8"
           }
         },
@@ -40398,11 +40398,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 3 = D leaves A as the only unknown, which gives A = 12.",
+          "title": "Take the lowest common multiple",
+          "detail": "A ÷ 3 and A ÷ 4 both come out whole, so A is a multiple of 3 and of 4. The lowest such number is 12, and the next one is 24, which is outside 1–20 — so A = 12 and D = 4.",
           "visual": {
             "type": "me-equation",
             "equation": "A ÷ 3 = D",
@@ -40603,11 +40603,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A − D = 2 leaves A as the only unknown, which gives A = 10.",
+          "title": "Search the factor pairs",
+          "detail": "A × D = 80 and A − D = 2. Of the 3 factor pairs of 80 that fit 1–20, only 10 × 8 differs by 2, so A = 10 and D = 8.",
           "visual": {
             "type": "me-equation",
             "equation": "A − D = 2",
@@ -40800,11 +40800,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into B ÷ 5 = C leaves B as the only unknown, which gives B = 15.",
+          "title": "Take the lowest common multiple",
+          "detail": "B ÷ 3 and B ÷ 5 both come out whole, so B is a multiple of 3 and of 5. The lowest such number is 15, and the next one is 30, which is outside 1–20 — so B = 15 and D = 5.",
           "visual": {
             "type": "me-equation",
             "equation": "B ÷ 5 = C",
@@ -40999,11 +40999,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into A ÷ 6 = C leaves A as the only unknown, which gives A = 18.",
+          "title": "Take the lowest common multiple",
+          "detail": "A ÷ 6 and A ÷ 9 both come out whole, so A is a multiple of 6 and of 9. The lowest such number is 18, and the next one is 36, which is outside 1–20 — so A = 18 and C = 3.",
           "visual": {
             "type": "me-equation",
             "equation": "A ÷ 6 = C",
@@ -41202,11 +41202,11 @@
       }
     ],
     "walkthrough": {
-      "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+      "keyInsight": "No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.",
       "steps": [
         {
-          "title": "Collapse the combining equation",
-          "detail": "Every other equation defines a letter in terms of another. Substituting them into 8 × D = B leaves A as the only unknown, which gives A = 20.",
+          "title": "Take the lowest common multiple",
+          "detail": "A ÷ 4 and A ÷ 10 both come out whole, so A is a multiple of 4 and of 10. The lowest such number is 20, and the next one is 40, which is outside 1–20 — so A = 20 and C = 5.",
           "visual": {
             "type": "me-equation",
             "equation": "8 × D = B",
