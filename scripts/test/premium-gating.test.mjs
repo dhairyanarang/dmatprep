@@ -170,10 +170,26 @@ test('.pilot/ can never be committed', () => {
 
 test('the rewrite that hides premium exists ONLY in pilot mode', () => {
   const config = readFileSync(join(root, 'next.config.ts'), 'utf8')
+  // The predicate is PILOT_SOLUTIONS, not COMMERCE_ENABLED. This test passed
+  // while production was down: it asserted the right intent against a predicate
+  // production also satisfies, so "pilot mode" and "commerce is on" were the
+  // same condition and the rewrite followed commerce into production.
   assert.match(
     config,
-    /if \(process\.env\.COMMERCE_ENABLED !== '1'\) return \[\]/,
+    /if \(process\.env\.PILOT_SOLUTIONS !== '1'\) return \[\]/,
     'production must get no rewrite at all',
+  )
+  assert.ok(
+    !/COMMERCE_ENABLED !== '1'\) return \[\]/.test(config),
+    'the rewrite must not be gated on COMMERCE_ENABLED — production sets it too',
+  )
+  // The other half of the same contract: the only thing that may turn the
+  // rewrite on is the pilot launcher.
+  const launcher = readFileSync(join(root, 'scripts/dev-pilot.mjs'), 'utf8')
+  assert.match(
+    launcher,
+    /env\.PILOT_SOLUTIONS = '1'/,
+    'the pilot must set the flag its own rewrite depends on',
   )
   assert.match(config, /beforeFiles/, 'it must be a beforeFiles rewrite to override public/')
   // A path parameter, not a query one. `?section=:section` did not substitute,

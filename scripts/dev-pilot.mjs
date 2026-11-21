@@ -203,6 +203,13 @@ for (const key of [...REQUIRED, ...OPTIONAL]) {
   if (pilot[key] !== undefined) env[key] = pilot[key]
 }
 
+// The pilot serves its free half from `.pilot/solutions/` through a rewrite in
+// next.config.ts. That rewrite is gated on THIS variable rather than on
+// COMMERCE_ENABLED, because production sets COMMERCE_ENABLED too — and when it
+// did, the rewrite pointed production at a git-ignored directory and took every
+// practice screen down. This file is the only thing that sets it.
+env.PILOT_SOLUTIONS = '1'
+
 console.log('')
 console.log('  pilot environment loaded')
 console.log(`    Supabase project   ${actual}`)

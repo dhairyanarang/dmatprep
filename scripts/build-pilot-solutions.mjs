@@ -2,9 +2,12 @@
 /**
  * Generate the PILOT free-solutions set.
  *
- * The committed `public/solutions/*.json` carry every active solution, which is
- * correct for production today: every Core question is free. Testing the
- * entitlement gate needs the opposite — a public set holding only the free 150,
+ * The committed `public/solutions/*.json` carry every active solution. A
+ * production build does not serve them as committed: `prebuild` runs
+ * `scripts/build-solutions.mjs`, which rewrites them down to the free 150
+ * whenever COMMERCE_ENABLED=1. The pilot runs `next dev`, which never runs
+ * `prebuild`, so locally those files still hold all 384 — and testing the
+ * entitlement gate needs the opposite, a public set holding only the free 150,
  * so that an unentitled user genuinely cannot retrieve a premium answer.
  *
  * Rather than rewrite the committed files and rely on remembering to restore
@@ -13,9 +16,15 @@
  *
  *   node scripts/build-pilot-solutions.mjs
  *
- * `next.config.ts` rewrites `/solutions/:section.json` to a route handler that
- * serves these files, but ONLY when COMMERCE_ENABLED=1. In production there is
- * no rewrite and the static file is served exactly as before.
+ * `next.config.ts` rewrites `/solutions/:section` to a route handler that serves
+ * these files, but ONLY when PILOT_SOLUTIONS=1, which `scripts/dev-pilot.mjs`
+ * sets and nothing else does.
+ *
+ * That gate used to be COMMERCE_ENABLED, and this comment used to end "in
+ * production there is no rewrite". It stopped being true the moment commerce was
+ * switched on in production: the rewrite followed it there, pointed at this
+ * git-ignored directory, and took every practice screen down for free and paid
+ * users alike.
  */
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 

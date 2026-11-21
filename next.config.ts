@@ -30,12 +30,22 @@ const nextConfig: NextConfig = {
    * is the only way to stop a committed static file being served without
    * deleting or rewriting it.
    *
-   * With COMMERCE_ENABLED unset — which is every production build — this list
-   * is empty, no rewrite exists, and `/solutions/*.json` is served from
-   * `public/` exactly as it always has been.
+   * The gate is `PILOT_SOLUTIONS`, set only by `scripts/dev-pilot.mjs`. It was
+   * `COMMERCE_ENABLED`, on the premise that production would never turn commerce
+   * on. Launch falsified that premise: the rewrite activated in production and
+   * sent every solution request to a handler that reads `.pilot/`, which is
+   * git-ignored and never built on Vercel. Every practice screen reported that
+   * answers could not be loaded, for free and paid users alike, because the free
+   * half is a hard dependency of the marking gate.
+   *
+   * Production needs no rewrite and never did. `prebuild` runs
+   * `scripts/build-solutions.mjs`, which already writes the free 150 — and only
+   * those — into `public/solutions/` whenever COMMERCE_ENABLED=1. Two independent
+   * mechanisms exist; this one belongs to the pilot, and shadowing the other in
+   * production is what broke it.
    */
   async rewrites() {
-    if (process.env.COMMERCE_ENABLED !== '1') return []
+    if (process.env.PILOT_SOLUTIONS !== '1') return []
     return {
       beforeFiles: [
         {
