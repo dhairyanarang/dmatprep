@@ -44,12 +44,44 @@ export const GENERATOR_NAME = 'figure-sequences'
  * 3.2.0 — a generation plan may set a per-slot symbol-count target, so the
  * four-symbol high shape (official Ex 5, Ex 6) is exercised deliberately instead
  * of by a ~10% draw. Targets steer construction only; every gate is unchanged.
+ *
+ * 3.3.0 — exam-alignment pass, from the repository owner's account of the
+ * 26 September 2026 sitting. Two new legibly-rotating shapes (`right-triangle`,
+ * `bolt`) and a `rotation-heavy` slot mechanic in which every symbol turns and
+ * neighbours turn opposite ways. The shapes are the enabling change rather than
+ * decoration: only `triangle` and `arrow` could rotate legibly and shapes may
+ * not repeat within an item, so **no item in the 87-item active bank had more
+ * than two rotating symbols**, and three or four was unreachable by construction.
+ * Both new shapes are REVIEW-class carriers, so items that turn one grade
+ * `extrapolated` (FS_CONTRACT.review.rotationShapes).
  */
-export const GENERATOR_VERSION = '3.2.0'
+export const GENERATOR_VERSION = '3.3.0'
 
 /** Only shapes whose orientation is visible may rotate. */
-const ROTATABLE = ['triangle', 'arrow']
-const ALL_SHAPES = ['square', 'circle', 'triangle', 'diamond', 'hexagon', 'arrow', 'cross']
+/**
+ * Shapes whose facing is legible, so a 90° turn can actually be read.
+ *
+ * `right-triangle` and `bolt` were added on 22 November 2026. The pair before
+ * them was the binding constraint on the whole subtest: shapes may not repeat
+ * within an item, so with exactly two rotatable shapes **no item in the bank
+ * could ever show more than two rotating symbols**, and the September 2026
+ * sitting is reported as showing several turning in different directions.
+ *
+ * Both are REVIEW-class carriers — no official exercise rotates either — so an
+ * item that turns one grades `extrapolated`. See FS_CONTRACT.review.rotationShapes.
+ */
+const ROTATABLE = ['triangle', 'arrow', 'right-triangle', 'bolt']
+const ALL_SHAPES = [
+  'square',
+  'circle',
+  'triangle',
+  'diamond',
+  'hexagon',
+  'arrow',
+  'cross',
+  'right-triangle',
+  'bolt',
+]
 
 /** White needs a stroke to read on a light panel, so keep it out of cycles. */
 const CYCLE_COLOURS = COLOURS.filter((c) => c !== 'white')
@@ -124,6 +156,39 @@ function makePlans(rng, difficulty, target = null) {
   }
 
   if (difficulty === 'low') return [{ extras: 0, accel: false, wantBounce: false }]
+
+  /**
+   * Every symbol turns, and neighbouring symbols turn opposite ways.
+   *
+   * Reported from the September 2026 sitting, and corroborated by a candidate
+   * write-up describing "several identical elements that differed only in angle
+   * or position, with some turning clockwise and others anticlockwise". The old
+   * generator could not produce it for a structural reason rather than a
+   * deliberate one: only `triangle` and `arrow` rotate legibly and shapes may
+   * not repeat, so two rotating symbols was the hard ceiling. `right-triangle`
+   * and `bolt` lift it to four.
+   *
+   * Directions alternate by index rather than being drawn, because a draw gives
+   * all-same directions a quarter of the time on two symbols — and an item where
+   * everything turns the same way is not the thing being tested here.
+   */
+  if (target?.mechanic === 'rotation-heavy') {
+    if (difficulty === 'low') return null
+    const accelerate = difficulty === 'high' && rng() < 0.5
+    const plans = []
+    for (let i = 0; i < count; i++) {
+      plans.push({
+        // The first symbol still carries the tier's load requirement; the rest
+        // need only their rotation to count as rotating.
+        extras: i === 0 ? 2 : 1,
+        accel: i === 0 ? accelerate : false,
+        wantBounce: i === 0 && difficulty === 'high' && !accelerate,
+        forceRotation: true,
+        rotateDir: i % 2 === 0 ? 'cw' : 'ccw',
+      })
+    }
+    return plans
+  }
 
   if (difficulty === 'medium') {
     // At least one symbol must stack movement with rotation and/or colour, which
@@ -240,7 +305,7 @@ function makeSymbol(rng, id, difficulty, plan, usedShapes) {
   }
 
   // A symbol that must rotate needs a shape whose orientation is legible.
-  const wantsRotation = plan.extras > 0 && (plan.extras === 2 || rng() < 0.5)
+  const wantsRotation = plan.forceRotation || (plan.extras > 0 && (plan.extras === 2 || rng() < 0.5))
   const pool = wantsRotation
     ? ROTATABLE.filter((s) => !usedShapes.has(s))
     : ALL_SHAPES.filter((s) => !usedShapes.has(s))
@@ -256,7 +321,9 @@ function makeSymbol(rng, id, difficulty, plan, usedShapes) {
   const rotation = rotate
     ? {
         type: 'rotate',
-        direction: pick(rng, ['cw', 'ccw']),
+        // A rotation-heavy plan assigns the direction so neighbouring symbols
+        // genuinely oppose each other; everything else still draws it.
+        direction: plan.rotateDir ?? pick(rng, ['cw', 'ccw']),
         degrees: 90,
         accelerating: plan.accel && rng() < 0.4,
       }

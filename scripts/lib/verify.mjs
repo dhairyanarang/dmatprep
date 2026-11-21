@@ -457,8 +457,13 @@ function verifyFigureSequence(q) {
   // carry a legible facing. On a square, circle, diamond or hexagon a 90° turn
   // is invisible or indistinguishable from no turn at all, and the item becomes
   // unanswerable rather than merely hard. The generator restricts rotation to
-  // these two shapes already; this is the gate that makes it a rule.
-  const ROTATION_LEGIBLE = new Set(['arrow', 'triangle'])
+  // these shapes already; this is the gate that makes it a rule.
+  //
+  // `right-triangle` and `bolt` joined the set on 22 November 2026. Both carry
+  // an unmistakable facing, which is the whole requirement here. Being outside
+  // the pair the official exercises actually rotate, any item that turns one
+  // grades `extrapolated` — see FS_CONTRACT.review.rotationShapes.
+  const ROTATION_LEGIBLE = new Set(['arrow', 'triangle', 'right-triangle', 'bolt'])
   const shapeOf = new Map(q.given[0].symbols.map((sym) => [sym.id, sym.shape]))
   for (const [id, rule] of Object.entries(q.rules)) {
     if (rule.movement?.type === 'static' && !ROTATION_LEGIBLE.has(shapeOf.get(id))) {

@@ -43,6 +43,27 @@ function shapePath(shape: FigureShape, r: number): string {
       const t = r * 0.36
       return `M ${-t} ${-r} H ${t} V ${-t} H ${r} V ${t} H ${t} V ${r} H ${-t} V ${t} H ${-r} V ${-t} H ${-t} Z`
     }
+    // A right angle at the bottom-left, so the hypotenuse runs bottom-left to
+    // top-right and a quarter turn is unmistakable. Deliberately similar to
+    // `triangle` at a glance and clearly different once read — telling two
+    // near-identical figures apart is part of the task.
+    case 'right-triangle':
+      return `M ${-r} ${-r} V ${r} H ${r} Z`
+    // A lightning bolt. Strongly asymmetric in both axes, which is what makes
+    // its orientation readable at 30px; the narrow waist keeps it from reading
+    // as a blob when it is filled with a dark colour.
+    case 'bolt': {
+      const w = r * 0.62
+      return [
+        `M ${w * 0.55} ${-r}`,
+        `L ${-w} ${r * 0.12}`,
+        `L ${-w * 0.08} ${r * 0.12}`,
+        `L ${-w * 0.62} ${r}`,
+        `L ${w} ${-r * 0.2}`,
+        `L ${w * 0.1} ${-r * 0.2}`,
+        'Z',
+      ].join(' ')
+    }
     case 'circle':
     default:
       return ''

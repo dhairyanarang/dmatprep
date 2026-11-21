@@ -1,0 +1,238 @@
+{
+  "pack": {
+    "id": "gam-natural-sciences-charge-inventory-001",
+    "domain": "natural-sciences",
+    "title": "A charge inventory for four laboratory samples",
+    "defines": [
+      "proton",
+      "electron",
+      "neutron",
+      "net charge",
+      "neutral"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "exam-alignment-2026-11-22",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the exam-alignment pass of 22 November 2026, against topics reported first-hand from the 26 September 2026 sitting. Original scenario, original figures, no official topic reused. Automated gates only — not yet read by a person."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Counting charge in the Halden detector"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "Three kinds of particle make up the samples in this study. A proton carries one unit of positive charge. An electron carries one unit of negative charge. A neutron carries no charge at all. The net charge of a sample is the number of protons it contains minus the number of electrons it contains, counted in those same units, and neutrons never enter that calculation."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "The detector counts each kind of particle separately and reports the totals. A sample holding exactly as many electrons as protons is called neutral. A sample holding more electrons than protons has taken on extra electrons, and one holding fewer has lost some; the number taken on or lost is the size of the difference between the two counts."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Table 1 — particle counts reported by the detector",
+        "columns": [
+          "Sample",
+          "Protons",
+          "Electrons",
+          "Neutrons"
+        ],
+        "rows": [
+          [
+            "S1",
+            "26",
+            "24",
+            "30"
+          ],
+          [
+            "S2",
+            "17",
+            "18",
+            "18"
+          ],
+          [
+            "S3",
+            "11",
+            "11",
+            "12"
+          ],
+          [
+            "S4",
+            "8",
+            "10",
+            "8"
+          ]
+        ]
+      }
+    ],
+    "contentHash": "bb38cf26f4d50feeda70f2a798ef0acb"
+  },
+  "questions": [
+    {
+      "id": "gam-ns-chi-001-q1",
+      "packId": "gam-natural-sciences-charge-inventory-001",
+      "stem": "What is the net charge of sample S1, in the units used by the study?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "Plus 2 units"
+        },
+        {
+          "id": "opt-b",
+          "text": "Minus 2 units"
+        },
+        {
+          "id": "opt-c",
+          "text": "Plus 32 units"
+        },
+        {
+          "id": "opt-d",
+          "text": "Plus 50 units"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p1",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "the number of protons it contains minus the number of electrons it contains"
+        },
+        {
+          "blockId": "t1",
+          "quote": "26"
+        }
+      ],
+      "computation": {
+        "expression": "26 - 24",
+        "expected": 2,
+        "unit": "units of charge"
+      },
+      "explanation": "S1 holds 26 protons and 24 electrons. The net charge is the proton count minus the electron count, which is 26 minus 24, or plus 2 units. The 30 neutrons are ignored, because the source states that neutrons never enter the calculation.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "p1",
+          "family": "wrong-direction-of-effect",
+          "reason": "This subtracts the protons from the electrons instead. The source fixes the order: protons first, then electrons taken away from them."
+        },
+        "opt-c": {
+          "blockId": "p1",
+          "family": "misapplied-formula",
+          "reason": "This adds the neutron count into the total. The source states explicitly that neutrons carry no charge and never enter the calculation."
+        },
+        "opt-d": {
+          "blockId": "p1",
+          "family": "swapped-quantities",
+          "reason": "This adds the protons and electrons together rather than subtracting. Adding them would treat an electron as adding charge, when it carries the opposite sign to a proton."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Only two of the four columns in the table matter for this question. The paragraph says which."
+        },
+        {
+          "level": 2,
+          "text": "The two particles that carry charge carry it in opposite senses, so one count is taken away from the other."
+        },
+        {
+          "level": 3,
+          "text": "Read the order of the subtraction off the source rather than choosing it, because reversing it flips the sign of the answer."
+        }
+      ],
+      "difficulty": "low",
+      "meta": {
+        "stepCount": 1,
+        "blockSpan": 2,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "id": "gam-ns-chi-001-q2",
+      "packId": "gam-natural-sciences-charge-inventory-001",
+      "stem": "Which sample has taken on the greatest number of extra electrons?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "Sample S4"
+        },
+        {
+          "id": "opt-b",
+          "text": "Sample S2"
+        },
+        {
+          "id": "opt-c",
+          "text": "Sample S1"
+        },
+        {
+          "id": "opt-d",
+          "text": "Sample S3"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "comparative",
+      "dependsOn": [
+        "p2",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "A sample holding more electrons than protons has taken on extra electrons"
+        },
+        {
+          "blockId": "t1",
+          "quote": "10"
+        }
+      ],
+      "explanation": "A sample has taken on extra electrons when it holds more electrons than protons, and the number taken on is the size of that difference. S4 holds 10 electrons against 8 protons, a difference of two. S2 holds 18 against 17, a difference of one. S1 holds fewer electrons than protons and S3 holds equal numbers, so neither has taken any on. S4 therefore has the greatest number.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "S2 has indeed taken on extra electrons, but only one of them. Another sample in the table has a larger excess of electrons over protons."
+        },
+        "opt-c": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "S1 holds fewer electrons than protons, so by the definition in the source it has lost electrons rather than taken any on."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "S3 holds exactly as many electrons as protons, which the source calls neutral. A neutral sample has taken on none."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The question is about a comparison between two columns, done once for each row of the table."
+        },
+        {
+          "level": 2,
+          "text": "Work out the difference between the electron count and the proton count for every sample before choosing."
+        },
+        {
+          "level": 3,
+          "text": "A difference in the other direction does not count here, and neither does a difference of zero."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    }
+  ]
+}

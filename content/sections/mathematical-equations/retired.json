@@ -2981,5 +2981,418 @@
         "verifiedAt": "2026-09-03"
       }
     }
+  },
+  {
+    "id": "me-high-b10-007",
+    "retiredAt": "2026-11-21",
+    "reason": "Degenerate product pair: 143 has exactly one factor pair inside the documented 1..20 range (11 x 13), so the difference equation that is supposed to pick a pair out of several picked nothing — the product alone already fixed both letters. The item was correct and uniquely solvable, but far easier than its high tier claimed, and its explanation said the difference chose \"out of the several that multiply to 143\", which was not true of this item. Identified in the 22 November 2026 review. Superseded by math-equations generator 4.1.0, which refuses any product with fewer than two in-range factor pairs and names the exact count in the explanation. Replaced by batch b12.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "high",
+      "equations": [
+        "C − A = 2",
+        "C × A = 143",
+        "A − 3 = B"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "C"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-4",
+          "value": 4
+        },
+        {
+          "id": "opt-8",
+          "value": 8
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        }
+      ],
+      "correctOptionId": "opt-8",
+      "solution": {
+        "C": 13,
+        "A": 11,
+        "B": 8
+      },
+      "solutionSteps": [
+        "C × A = 143 and C − A = 2. Of the factor pairs of 143, only 13 × 11 differs by 2, so C = 13 and A = 11.",
+        "C − A = 2 is the constraint that picks one factor pair out of the several that multiply to 143.",
+        "A − 3 = B, so B = 11 − 3 = 8.",
+        "Full solution: A = 11, B = 8, C = 13. The question asks for B, so the answer is 8."
+      ],
+      "explanation": "C × A = 143 and C − A = 2. Of the factor pairs of 143, only 13 × 11 differs by 2, so C = 13 and A = 11. C − A = 2 is the constraint that picks one factor pair out of the several that multiply to 143. A − 3 = B, so B = 11 − 3 = 8. Full solution: A = 11, B = 8, C = 13. The question asks for B, so the answer is 8.",
+      "distractorNotes": {
+        "opt-11": "11 is the value of A, not B — this is the right system solved for the wrong letter.",
+        "opt-4": "4 is half the correct value, which is what you get if you divide where the equation multiplies.",
+        "opt-7": "7 is one less than the correct value — an off-by-one slip when adding or subtracting a constant."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
+        },
+        {
+          "level": 2,
+          "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines C, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+        "steps": [
+          {
+            "title": "Collapse the combining equation",
+            "detail": "Every other equation defines a letter in terms of another. Substituting them into C − A = 2 leaves A as the only unknown, which gives A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "C − A = 2",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Substitute to reach C",
+            "detail": "C − A = 2 has C as its only unknown, so C = 13.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "C − A = 2",
+              "note": "C = 13"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "A − 3 = B has B as its only unknown, so B = 8.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A − 3 = B",
+              "note": "B = 8"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 11, C = 13. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "C": 13,
+                "A": 11,
+                "B": 8
+              }
+            }
+          }
+        ],
+        "answer": "B = 8.",
+        "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "chain-topology",
+          "multi-step-substitution",
+          "product-pair",
+          "product-pair-difference",
+          "define-linear"
+        ],
+        "skill": "forward substitution along a chain",
+        "dmatAlignment": "reasonable_extrapolation",
+        "reasoningDepth": 5,
+        "officialStructure": {
+          "letters": 3,
+          "equations": 3
+        },
+        "distractorTypes": {
+          "opt-11": "wrong-variable",
+          "opt-4": "inverted-operation",
+          "opt-7": "off-by-one"
+        },
+        "generationNotes": "3 letters, chain topology, depth 5, 0 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-linear",
+        "provenance": {
+          "format": "demonstrated",
+          "answerFormat": "stated",
+          "answerOptionCount": "unknown",
+          "mechanics": "extrapolated",
+          "originality": "original-generated",
+          "mechanicNotes": [
+            "constant above 18",
+            "letter × letter — not in the official exercises"
+          ]
+        }
+      },
+      "id": "me-high-b10-007",
+      "generator": {
+        "name": "math-equations",
+        "version": "4.0.0",
+        "batchId": "b10",
+        "seed": 1966908428,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "high",
+          "batchId": "b10",
+          "index": 6,
+          "attempt": 0
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-11-21"
+      }
+    }
+  },
+  {
+    "id": "me-high-b10-014",
+    "retiredAt": "2026-11-21",
+    "reason": "Degenerate product pair: 55 has exactly one factor pair inside the documented 1..20 range (5 x 11), so the difference equation that is supposed to pick a pair out of several picked nothing — the product alone already fixed both letters. The item was correct and uniquely solvable, but far easier than its high tier claimed, and its explanation said the difference chose \"out of the several that multiply to 55\", which was not true of this item. Identified in the 22 November 2026 review. Superseded by math-equations generator 4.1.0, which refuses any product with fewer than two in-range factor pairs and names the exact count in the explanation. Replaced by batch b12.",
+    "question": {
+      "kind": "math-equations",
+      "section": "mathematical-equations",
+      "difficulty": "high",
+      "equations": [
+        "A × B = 55",
+        "A − 4 = D",
+        "A − B = 6"
+      ],
+      "variables": [
+        "A",
+        "B",
+        "D"
+      ],
+      "asked": "B",
+      "options": [
+        {
+          "id": "opt-6",
+          "value": 6
+        },
+        {
+          "id": "opt-11",
+          "value": 11
+        },
+        {
+          "id": "opt-7",
+          "value": 7
+        },
+        {
+          "id": "opt-5",
+          "value": 5
+        }
+      ],
+      "correctOptionId": "opt-5",
+      "solution": {
+        "A": 11,
+        "B": 5,
+        "D": 7
+      },
+      "solutionSteps": [
+        "A × B = 55 and A − B = 6. Of the factor pairs of 55, only 11 × 5 differs by 6, so A = 11 and B = 5.",
+        "A − B = 6 is the constraint that picks one factor pair out of the several that multiply to 55.",
+        "A − 4 = D, so D = 11 − 4 = 7.",
+        "Full solution: A = 11, B = 5, D = 7. The question asks for B, so the answer is 5."
+      ],
+      "explanation": "A × B = 55 and A − B = 6. Of the factor pairs of 55, only 11 × 5 differs by 6, so A = 11 and B = 5. A − B = 6 is the constraint that picks one factor pair out of the several that multiply to 55. A − 4 = D, so D = 11 − 4 = 7. Full solution: A = 11, B = 5, D = 7. The question asks for B, so the answer is 5.",
+      "distractorNotes": {
+        "opt-7": "7 is the value of D, not B — this is the right system solved for the wrong letter.",
+        "opt-6": "6 is one more than the correct value — an off-by-one slip when adding or subtracting a constant.",
+        "opt-11": "11 is the value of A, the letter you have to work out on the way. Stopping there answers the wrong question — the item asks for B."
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone."
+        },
+        {
+          "level": 2,
+          "text": "Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference."
+        },
+        {
+          "level": 3,
+          "text": "Solve for A first, then substitute it into the equation that defines B, and keep going until you reach B."
+        }
+      ],
+      "walkthrough": {
+        "keyInsight": "No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.",
+        "steps": [
+          {
+            "title": "Collapse the combining equation",
+            "detail": "Every other equation defines a letter in terms of another. Substituting them into A × B = 55 leaves A as the only unknown, which gives A = 11.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A × B = 55",
+              "note": "A = 11"
+            }
+          },
+          {
+            "title": "Substitute to reach B",
+            "detail": "A × B = 55 has B as its only unknown, so B = 5.",
+            "visual": {
+              "type": "me-equation",
+              "equation": "A × B = 55",
+              "note": "B = 5"
+            }
+          },
+          {
+            "title": "Read the question again before answering",
+            "detail": "The chain also fixes A = 11, D = 7. The question asks for B.",
+            "visual": {
+              "type": "me-values",
+              "values": {
+                "A": 11,
+                "B": 5,
+                "D": 7
+              }
+            }
+          }
+        ],
+        "answer": "B = 5.",
+        "takeaway": "A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting."
+      },
+      "meta": {
+        "patternType": [
+          "direct-substitution",
+          "3-variable-system",
+          "star-topology",
+          "multi-step-substitution",
+          "product-pair",
+          "product-pair-difference",
+          "define-linear"
+        ],
+        "skill": "forward substitution along a star",
+        "dmatAlignment": "reasonable_extrapolation",
+        "reasoningDepth": 4,
+        "officialStructure": {
+          "letters": 3,
+          "equations": 3
+        },
+        "distractorTypes": {
+          "opt-7": "wrong-variable",
+          "opt-6": "off-by-one",
+          "opt-11": "stopped-early"
+        },
+        "generationNotes": "3 letters, star topology, depth 4, 0 multiplicative operation(s), shapes: product-pair/product-pair-difference/define-linear",
+        "provenance": {
+          "format": "demonstrated",
+          "answerFormat": "stated",
+          "answerOptionCount": "unknown",
+          "mechanics": "extrapolated",
+          "originality": "original-generated",
+          "mechanicNotes": [
+            "constant above 18",
+            "letter × letter — not in the official exercises"
+          ]
+        }
+      },
+      "id": "me-high-b10-014",
+      "generator": {
+        "name": "math-equations",
+        "version": "4.0.0",
+        "batchId": "b10",
+        "seed": 994652336,
+        "seedCoordinates": {
+          "section": "mathematical-equations",
+          "tier": "high",
+          "batchId": "b10",
+          "index": 13,
+          "attempt": 1
+        },
+        "config": {
+          "depthTargets": {
+            "low": [
+              1,
+              1
+            ],
+            "medium": [
+              2,
+              2
+            ],
+            "high": [
+              3,
+              6
+            ]
+          },
+          "varChoices": {
+            "low": [
+              2,
+              2,
+              3,
+              3,
+              4
+            ],
+            "medium": [
+              2,
+              3,
+              3,
+              4,
+              4
+            ],
+            "high": [
+              3,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          "topologies": [
+            "chain",
+            "star",
+            "mixed"
+          ]
+        },
+        "verifiedAt": "2026-11-21"
+      }
+    }
   }
 ]

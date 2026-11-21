@@ -1,0 +1,239 @@
+{
+  "pack": {
+    "id": "gam-social-sciences-two-stage-sampling-001",
+    "domain": "social-sciences",
+    "title": "A two-stage sampling plan for a household survey",
+    "defines": [
+      "block",
+      "first stage",
+      "second stage",
+      "self-weighting",
+      "response rate"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "exam-alignment-2026-11-22",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the exam-alignment pass of 22 November 2026, against topics reported first-hand from the 26 September 2026 sitting. Original scenario, original figures, no official topic reused. Automated gates only — not yet read by a person."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Designing the Rothcarn household survey"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "The survey team must reach households in a district of 4000 households, arranged in 50 blocks of 80 households each. Rather than list every household in the district, the team draws its sample in two stages. In the first stage it selects 10 of the 50 blocks, every block having the same chance of being chosen. In the second stage it selects 8 households from inside each chosen block, every household in that block again being equally likely. A household can enter the sample only if its own block was selected at the first stage."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "The chance that any particular household joins the sample is the chance that its block is selected multiplied by the chance that the household is then drawn from within that block. The team calls a plan self-weighting when that product works out the same for every household in the district, and it treats the property as worth protecting, because a plan that loses it needs every answer reweighted before any total can be reported."
+      },
+      {
+        "kind": "figure",
+        "id": "f1",
+        "caption": "Figure 1 — response rate achieved in each wave of the survey",
+        "spec": {
+          "type": "line-chart",
+          "xLabel": "Survey wave",
+          "yLabel": "Response rate in per cent",
+          "series": [
+            {
+              "id": "s1",
+              "label": "Response rate",
+              "points": [
+                [
+                  1,
+                  72
+                ],
+                [
+                  2,
+                  64
+                ],
+                [
+                  3,
+                  61
+                ],
+                [
+                  4,
+                  60
+                ]
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "label": "Recorded rates",
+              "detail": "The rates achieved were 72, 64, 61 and 60 per cent in waves one to four."
+            },
+            {
+              "label": "How the waves differed",
+              "detail": "The first wave was conducted in person and the later three by telephone."
+            }
+          ]
+        }
+      }
+    ],
+    "contentHash": "cfaace177378052f8bd5d765cc03e330"
+  },
+  "questions": [
+    {
+      "id": "gam-ss-tss-001-q1",
+      "packId": "gam-social-sciences-two-stage-sampling-001",
+      "stem": "What is the chance that a particular household in the district joins the sample?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "A chance of 0.02"
+        },
+        {
+          "id": "opt-b",
+          "text": "A chance of 0.2"
+        },
+        {
+          "id": "opt-c",
+          "text": "A chance of 0.1"
+        },
+        {
+          "id": "opt-d",
+          "text": "A chance of 0.3"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p1",
+        "p2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "the chance that its block is selected multiplied by the chance that the household is then drawn from within that block"
+        },
+        {
+          "blockId": "p1",
+          "quote": "it selects 10 of the 50 blocks"
+        }
+      ],
+      "computation": {
+        "expression": "(10 / 50) * (8 / 80)",
+        "expected": 0.02
+      },
+      "explanation": "A household’s block is one of 50, and 10 of them are selected, so the chance at the first stage is 10 in 50. If the block is selected, 8 of its 80 households are drawn, so the chance at the second stage is 8 in 80. The source says to multiply the two, giving one fifth times one tenth, which is 0.02.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the chance of the first stage alone. Selecting the block does not put a household in the sample; the second stage still has to draw it."
+        },
+        "opt-c": {
+          "blockId": "p2",
+          "family": "right-concept-wrong-scope",
+          "reason": "This is the chance of the second stage alone, which applies only to households whose block was already selected. It ignores the first stage entirely."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "This adds the two stage probabilities instead of multiplying them. The source states the combination is a product, and adding them would make the chance rise as the design became more selective."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Two things both have to happen before a household is interviewed, and the source names them in order."
+        },
+        {
+          "level": 2,
+          "text": "Write each stage as a fraction of the group it is drawn from, not as a fraction of the whole district."
+        },
+        {
+          "level": 3,
+          "text": "The paragraph tells you how to combine the two stages, and the operation it names is not addition."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": false
+      }
+    },
+    {
+      "id": "gam-ss-tss-001-q2",
+      "packId": "gam-social-sciences-two-stage-sampling-001",
+      "stem": "Which statement about the survey is supported by Figure 1 alone?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "The response rate was lower in each wave than in the wave before it"
+        },
+        {
+          "id": "opt-b",
+          "text": "The response rate fell by the same amount between each pair of neighbouring waves"
+        },
+        {
+          "id": "opt-c",
+          "text": "The response rate fell below half of those approached by the final wave"
+        },
+        {
+          "id": "opt-d",
+          "text": "Conducting the first wave in person is what kept its response rate highest"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "f1",
+          "quote": "The rates achieved were 72, 64, 61 and 60 per cent in waves one to four."
+        }
+      ],
+      "explanation": "The figure records 72, 64, 61 and 60 per cent across the four waves. Each value is smaller than the one before it, so the rate did fall from wave to wave. The falls themselves are of eight, three and one point, which are not equal, and the lowest rate recorded is 60 per cent, which is above half.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "f1",
+          "family": "contradicts-source",
+          "reason": "The successive falls are eight points, then three, then one. They are plainly unequal, and the first is larger than the other two together."
+        },
+        "opt-c": {
+          "blockId": "f1",
+          "family": "contradicts-source",
+          "reason": "The lowest rate the figure records is 60 per cent, which is well above half of those approached. No wave falls below 50 per cent."
+        },
+        "opt-d": {
+          "blockId": "f1",
+          "family": "plausible-but-unstated",
+          "reason": "The figure notes which wave was in person and which were by telephone, but it shows no comparison that could isolate the cause. The highest rate coming first is equally consistent with the order of the waves mattering."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Read the four recorded values off the figure before you look at the options."
+        },
+        {
+          "level": 2,
+          "text": "Three of the four statements can be settled by comparing those values with each other or with a half."
+        },
+        {
+          "level": 3,
+          "text": "The remaining statement asks what caused something, which a single series of readings cannot establish on its own."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 1,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    }
+  ]
+}

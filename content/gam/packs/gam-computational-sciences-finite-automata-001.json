@@ -1,0 +1,361 @@
+{
+  "pack": {
+    "id": "gam-computational-sciences-finite-automata-001",
+    "domain": "computational-sciences",
+    "title": "Deterministic and nondeterministic finite automata",
+    "defines": [
+      "finite automaton",
+      "state",
+      "start state",
+      "accepting state",
+      "transition rule",
+      "DFA",
+      "NFA"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "exam-alignment-2026-11-22",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the exam-alignment pass of 22 November 2026, against topics reported first-hand from the 26 September 2026 sitting. Original scenario, original figures, no official topic reused. Automated gates only — not yet read by a person."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Two machines that read strings of symbols"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "A finite automaton reads a string of symbols one at a time from left to right, and remembers exactly one thing: which state it is currently in. It begins in a designated start state. Each symbol it reads moves it from its current state to another state, according to a fixed transition rule. When the string runs out the automaton accepts it if the machine has finished in an accepting state, and rejects it otherwise. An automaton is called deterministic, written DFA, when its transition rule gives exactly one next state for every pairing of a current state with a symbol: no pairing may be left out, and none may offer a choice."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "A nondeterministic automaton, written NFA, relaxes that requirement. For a given state and symbol it may list no next state at all, or it may list several. Reading a string then traces not a single path but a set of them at once. Such a machine accepts a string when at least one of those paths ends in an accepting state, and rejects it only when every path fails to do so. The machine is never described as choosing between paths, and nothing in the rule tells it which to prefer."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Table 1 — transition rule for machine M, which is deterministic",
+        "columns": [
+          "State",
+          "On symbol a",
+          "On symbol b"
+        ],
+        "rows": [
+          [
+            "Q0, the start state",
+            "Q1",
+            "Q0"
+          ],
+          [
+            "Q1",
+            "Q1",
+            "Q2"
+          ],
+          [
+            "Q2, an accepting state",
+            "Q1",
+            "Q0"
+          ]
+        ]
+      },
+      {
+        "kind": "table",
+        "id": "t2",
+        "caption": "Table 2 — transition rule for machine N, over the same two symbols",
+        "columns": [
+          "State",
+          "On symbol a",
+          "On symbol b"
+        ],
+        "rows": [
+          [
+            "P0, the start state",
+            "P0 and P1",
+            "P0"
+          ],
+          [
+            "P1",
+            "no next state",
+            "P2"
+          ],
+          [
+            "P2, an accepting state",
+            "no next state",
+            "no next state"
+          ]
+        ]
+      },
+      {
+        "kind": "figure",
+        "id": "f1",
+        "caption": "Figure 1 — the three states of machine M and how they are reached",
+        "spec": {
+          "type": "schematic",
+          "parts": [
+            {
+              "id": "g1",
+              "label": "Q0",
+              "detail": "Where every run of machine M begins. Reading b keeps the machine here."
+            },
+            {
+              "id": "g2",
+              "label": "Q1",
+              "detail": "Reached from any state by reading a. Reading a again leaves the machine here."
+            },
+            {
+              "id": "g3",
+              "label": "Q2",
+              "detail": "Reached only from Q1, and only by reading b. This is the one accepting state."
+            }
+          ],
+          "annotations": [
+            {
+              "label": "Reading the diagram",
+              "detail": "Each state names where the machine goes next for each of the two symbols."
+            }
+          ]
+        }
+      }
+    ],
+    "contentHash": "103c3312aa880a604e4e5b0284b58a85"
+  },
+  "questions": [
+    {
+      "id": "gam-cs-fa-001-q1",
+      "packId": "gam-computational-sciences-finite-automata-001",
+      "stem": "Machine M reads the string a b a b. In which state does it finish, and does it accept the string?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "It finishes in Q2 and accepts the string"
+        },
+        {
+          "id": "opt-b",
+          "text": "It finishes in Q1 and rejects the string"
+        },
+        {
+          "id": "opt-c",
+          "text": "It finishes in Q0 and rejects the string"
+        },
+        {
+          "id": "opt-d",
+          "text": "It finishes in Q2 but rejects the string, because Q2 is not the start state"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "read-exhibit",
+      "dependsOn": [
+        "p1",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "accepts it if the machine has finished in an accepting state"
+        },
+        {
+          "blockId": "t1",
+          "quote": "Q2, an accepting state"
+        }
+      ],
+      "explanation": "Machine M starts in Q0. Reading a moves it to Q1. Reading b moves it from Q1 to Q2. Reading a moves it from Q2 back to Q1. Reading the final b moves it from Q1 to Q2 again. The string has run out with the machine in Q2, which the table marks as an accepting state, so the string is accepted.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "t1",
+          "family": "arithmetic-slip",
+          "reason": "Q1 is where the machine sits after the third symbol, not the fourth. The final b has still to be read, and it moves the machine on."
+        },
+        "opt-c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This follows the column for the wrong symbol at some step. Reading b from Q1 does not return the machine to the start state; only reading b from Q2 or from Q0 does that."
+        },
+        "opt-d": {
+          "blockId": "p1",
+          "family": "contradicts-source",
+          "reason": "Acceptance depends on finishing in an accepting state, which the source states plainly. There is no requirement anywhere that the final state also be the start state."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Track one thing only as you read the string: the state the machine is sitting in after each symbol."
+        },
+        {
+          "level": 2,
+          "text": "Write down the four moves one under the other rather than trying to hold them together in your head."
+        },
+        {
+          "level": 3,
+          "text": "Only the state after the very last symbol decides the outcome; the states passed through along the way do not."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 4,
+        "blockSpan": 2,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "id": "gam-cs-fa-001-q2",
+      "packId": "gam-computational-sciences-finite-automata-001",
+      "stem": "What makes the rule in Table 2 fail the definition of a deterministic machine?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "At least one pairing of a state with a symbol offers a choice of next states, and others name none at all"
+        },
+        {
+          "id": "opt-b",
+          "text": "It has a different number of states from machine M"
+        },
+        {
+          "id": "opt-c",
+          "text": "Its start state is not also an accepting state"
+        },
+        {
+          "id": "opt-d",
+          "text": "It lists the two symbols in a different order from the first table"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "qualitative-inference",
+      "dependsOn": [
+        "p1",
+        "t2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p1",
+          "quote": "no pairing may be left out, and none may offer a choice"
+        },
+        {
+          "blockId": "t2",
+          "quote": "P0 and P1"
+        }
+      ],
+      "explanation": "The definition requires exactly one next state for every pairing of a state with a symbol. Table 2 breaks that in both available ways at once: P0 on symbol a names two next states, which is a choice, while P1 on symbol a and P2 on either symbol name none, which leaves pairings out. Either failure alone would be enough.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "The definition says nothing about how many states a machine has. Both tables happen to list three, but a deterministic machine may have any number."
+        },
+        "opt-c": {
+          "blockId": "p1",
+          "family": "plausible-but-unstated",
+          "reason": "Nothing in the definition relates the start state to the accepting states. A machine may have them coincide or not, and remain deterministic either way."
+        },
+        "opt-d": {
+          "blockId": "t2",
+          "family": "contradicts-source",
+          "reason": "Both tables carry the same two symbol columns in the same order, so this describes something that is not the case, and column order would not bear on determinism in any event."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The definition in the first paragraph ends with two conditions joined together. Test the second table against each separately."
+        },
+        {
+          "level": 2,
+          "text": "Look along each row of the second table and count how many next states each cell names."
+        },
+        {
+          "level": 3,
+          "text": "A cell naming more than one next state and a cell naming none are different failures, and the table contains both."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "id": "gam-cs-fa-001-q3",
+      "packId": "gam-computational-sciences-finite-automata-001",
+      "stem": "Does machine N accept the string b a?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "No, because every path the machine can trace ends in a state that is not accepting"
+        },
+        {
+          "id": "opt-b",
+          "text": "Yes, because one of the paths reaches P2"
+        },
+        {
+          "id": "opt-c",
+          "text": "Yes, because the machine returns to its start state, and a run that returns there succeeds"
+        },
+        {
+          "id": "opt-d",
+          "text": "It cannot be decided without knowing which of the two paths the machine chooses"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p2",
+        "t2"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "rejects it only when every path fails to do so"
+        },
+        {
+          "blockId": "t2",
+          "quote": "P0 and P1"
+        }
+      ],
+      "explanation": "Machine N starts in P0. Reading b keeps it in P0, the only entry available. Reading a from P0 then leads to P0 and to P1 at the same time, so after the string there are two live paths, one ending in P0 and one in P1. Neither is the accepting state P2, and the source says a string is rejected only when every path fails to end in an accepting state. Every path fails here, so the string is rejected.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "t2",
+          "family": "arithmetic-slip",
+          "reason": "No path reaches P2 on this string. P2 can only be entered from P1 by reading b, and the string offers no b after the machine first reaches P1."
+        },
+        "opt-c": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Returning to the start state has no bearing on acceptance. The source makes acceptance depend on finishing in an accepting state, and P0 is not one."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "This treats the machine as picking a path, which the source rules out directly: it states that the machine is never described as choosing, and that all paths are traced at once."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "This machine does not sit in one state as it reads. Keep a set of the states it could be in."
+        },
+        {
+          "level": 2,
+          "text": "One cell of the second table names two next states, so the set of live states can grow as you read."
+        },
+        {
+          "level": 3,
+          "text": "The verdict depends on whether any member of the final set is accepting, not on picking one of them."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 3,
+        "blockSpan": 2,
+        "transferDistance": 2,
+        "requiresExhibit": true
+      }
+    }
+  ]
+}

@@ -121,11 +121,37 @@ describe('mathematical equations mechanics contract', () => {
     assert.deepEqual(equationContractErrors(ok), [])
   })
 
-  test('rejects a quadratic term', () => {
-    assert.match(
-      equationContractErrors({ ...ok, equations: ['A × B = 12'] }).join(' '),
-      /quadratic/,
+  // Letter × letter moved from FORBIDDEN to REVIEW on 22 November 2026, on the
+  // repository owner's first-hand account of the live September 2026 sitting.
+  // See ME_CONTRACT.review.letterProduct. The contract no longer rejects it —
+  // instead `classifyMechanics` grades it `extrapolated`, which is asserted in
+  // provenance.test.mjs. What stays rejected is asserted here.
+  test('accepts a letter multiplied by a letter (REVIEW-class, not forbidden)', () => {
+    assert.deepEqual(
+      equationContractErrors({ ...ok, equations: ['A × B = 12', 'A − B = 1'], solution: { A: 4, B: 3 } }),
+      [],
     )
+    assert.deepEqual(
+      equationContractErrors({ ...ok, equations: ['A × A = 16'], solution: { A: 4, B: 6 } }),
+      [],
+    )
+  })
+
+  test('still rejects a letter DIVIDED by a letter', () => {
+    assert.match(
+      equationContractErrors({ ...ok, equations: ['A ÷ B = 2'] }).join(' '),
+      /divides a letter by a letter/,
+    )
+  })
+
+  test('still rejects exponent and radical notation', () => {
+    for (const bad of ['A ^ 2 = 16', 'A ** 2 = 16', '√A = 4']) {
+      assert.match(
+        equationContractErrors({ ...ok, equations: [bad] }).join(' '),
+        /unsupported algebraic construct|not an allowed operator/,
+        `${bad} was accepted`,
+      )
+    }
   })
 
   test('rejects values outside 1..20', () => {

@@ -47,8 +47,25 @@ export const GENERATOR_NAME = 'math-equations'
  * would otherwise be printed on the page — official Example 1 gives `B = 6` so
  * that A can be solved for), and a slot may target the exact two-coefficient
  * multi-term form.
+ *
+ * 4.0.0 — quadratic-type shapes, on the repository owner's first-hand account of
+ * the 26 September 2026 sitting. Two new determining forms: `square-pin`
+ * (`A × A = 169`) at medium and high, and `product-pair` (`A × B = 72` with
+ * `A − B = 1`) at high. Both are REVIEW-class — no official exercise multiplies
+ * two unknowns — so `classifyMechanics` grades any item using them
+ * `extrapolated`, and they can never roll up to `officially_documented`.
+ * Major version because `ME_CONTRACT` moved a rule out of `forbidden`.
+ *
+ * 4.1.0 — two fixes from the 22 November 2026 review. A product pair is now
+ * refused unless its product has at least TWO factor pairs inside 1..20, since
+ * with only one the difference equation picks nothing and the item is far
+ * easier than its tier claims; the explanation also names the exact pair count
+ * instead of saying "several". And a deliberate `lcm-pin` family: two divisions
+ * of one letter by different constants, which settle it only together, so the
+ * way in is the lowest common multiple. That family is built from documented
+ * mechanics alone (official Ex 2's `B ÷ 2 = A`, twice) and needs no REVIEW grade.
  */
-export const GENERATOR_VERSION = '3.3.0'
+export const GENERATOR_VERSION = '4.1.2'
 
 const NAMES = ['A', 'B', 'C', 'D']
 const inRange = (v) => Number.isInteger(v) && v >= MIN_VALUE && v <= MAX_VALUE
@@ -110,9 +127,32 @@ export function solveOrder(equations, variables) {
       if (unblocked > 0 && (!best || unblocked > best.unblocked)) best = { name, unblocked }
     }
 
+    /**
+     * The equation the collapse actually happens in.
+     *
+     * This used to fall back to "the first equation with two or more letters",
+     * which is frequently a plain definition and not the line anything collapses
+     * into. The walkthrough then told the candidate to substitute into an
+     * equation that substitution leaves with TWO unknowns — 13 items in the bank
+     * said so, 5 of them new on this branch. Found in the 22 November 2026 audit
+     * by testing the claim rather than reading it.
+     *
+     * Pick the widest equation instead, preferring one whose right-hand side is a
+     * constant, which is the shape a combining equation actually has. This field
+     * is used for NARRATION ONLY — `cost` and the letter chosen are computed
+     * above and do not depend on it — so correcting it cannot move a difficulty
+     * tier or change which letter is asked.
+     */
+    // A COMBINING equation has a numeric right-hand side: `A − B + C = 10`,
+    // `A + D = 10`. An equation ending in a single letter is a DEFINITION of
+    // that letter and is what gets substituted INTO the combining one, never
+    // the other way round. Width alone is not the test and picking the widest
+    // first got `2 × A + 2 × D = C` — a three-letter definition of C — over the
+    // two-letter `A + D = 10` that the collapse actually happens in.
+    const widest = (list) => [...list].sort((a, b) => eqVars(b).size - eqVars(a).size)[0]
+    const numericRhs = equations.filter((eq) => eq.rhs.t === 'num' && eqVars(eq).size >= 2)
     const combining =
-      equations.find((eq) => eqVars(eq).size === variables.length) ??
-      equations.find((eq) => eqVars(eq).size >= 2)
+      widest(numericRhs) ?? widest(equations.filter((eq) => eqVars(eq).size >= 2))
     // Collapsing a combining equation is not one move. Official Ex 5 pushes three
     // definitions into `A − B + C − D = 2` and simplifies
     // `5B − B + 10B − (11 + B) = 2` before B falls out — and both exercises that
@@ -403,6 +443,168 @@ function combineOver(rng, names, values) {
   }
 }
 
+/* ------------------------------------------- quadratic-type builders (REVIEW) */
+
+/**
+ * Squares small enough to be recognised rather than computed.
+ *
+ * Capped at 14 deliberately. The subtest allows no notes and no calculator, so
+ * a square the candidate cannot recognise on sight is a lookup they cannot
+ * perform — that is lengthening the arithmetic, not deepening the reasoning,
+ * and the brief ruled it out explicitly.
+ *
+ * It starts at 4 for the opposite reason: `A × A = 4` and `A × A = 9` are read
+ * at a glance and add no step at all, and their right-hand sides are small
+ * enough to be mistaken for the ordinary constants the other shapes use.
+ */
+const SQUARE_ROOTS = [4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+
+/**
+ * Pin a letter by its own square: `A × A = 169`.
+ *
+ * REVIEW-class — see `ME_CONTRACT.review.letterProduct`. No official exercise
+ * squares a letter; this exists because the repository owner met squared values
+ * in the live September 2026 sitting.
+ *
+ * It is one solving step but not a trivial one: the candidate must recognise
+ * the square and take its root. Only the positive root is in range, so the
+ * 1..20 rule keeps the system single-valued without any extra constraint —
+ * which is exactly why this form is safe to generate.
+ */
+function squarePin(name, value) {
+  if (!SQUARE_ROOTS.includes(value)) return null
+  const square = value * value
+  return {
+    eq: { lhs: op('×', variable(name), variable(name)), rhs: num(square) },
+    step: `${name} × ${name} = ${square}. Only ${value} squares to ${square} within 1–20, so ${name} = ${value}.`,
+    opKind: 'square',
+    shape: 'square-pin',
+    constant: square,
+  }
+}
+
+/**
+ * Fix two letters together by their product and their difference:
+ * `A × B = 72` with `A − B = 1`, giving A = 9 and B = 8.
+ *
+ * REVIEW-class, and the genuinely quadratic shape of the two: neither equation
+ * determines a letter on its own, so the candidate has to enumerate the divisor
+ * pairs of the product and test them against the difference. That is the
+ * reasoning the brief asks for, and it is why no item built this way can be
+ * answered by reading one equation.
+ *
+ * **The second constraint is a difference, never a sum, and that is load-bearing.**
+ * `A × B = 72` with `A + B = 17` is satisfied by (8,9) *and* (9,8) — the letters
+ * are distinguishable, so a symmetric pair of constraints always admits two
+ * solutions and breaks the official one-solution rule. A difference is
+ * antisymmetric and fixes which letter is which.
+ */
+/** Every factor pair of `product` with both factors inside the 1..20 rule. */
+function inRangeFactorPairs(product) {
+  const pairs = []
+  for (let a = MIN_VALUE; a <= MAX_VALUE; a++) {
+    if (product % a !== 0) continue
+    const b = product / a
+    if (b > a && b <= MAX_VALUE) pairs.push([b, a])
+  }
+  return pairs
+}
+
+function productPair(hiName, hiValue, loName, loValue) {
+  if (!inRange(hiValue) || !inRange(loValue)) return null
+  if (hiValue <= loValue) return null
+  const product = hiValue * loValue
+  const difference = hiValue - loValue
+  // Official combining equations all carry a small positive right-hand side;
+  // the product is unavoidably larger, but the difference stays in that shape.
+  if (product > 200 || difference > 18) return null
+
+  /**
+   * THE DIFFERENCE EQUATION MUST DO WORK.
+   *
+   * Review of the first batch found two items where it did none: 143 and 55
+   * each have exactly one factor pair inside 1..20 (11×13 and 5×11), so the
+   * product alone already fixed both letters and the difference merely agreed
+   * with it. Those items were still correct and uniquely solvable — they were
+   * simply far easier than their tier claimed, and their explanation said the
+   * difference picked a pair "out of the several", which was not true of them.
+   *
+   * Requiring two or more in-range pairs makes the divisor search real: the
+   * candidate must enumerate the pairs and test them, which is the whole reason
+   * this shape exists.
+   */
+  const pairs = inRangeFactorPairs(product)
+  if (pairs.length < 2) return null
+
+  // Name the count rather than saying "several", so the explanation is exactly
+  // true of this item instead of being true of the family on average.
+  const pairWord = `${pairs.length} factor pairs of ${product} that fit 1–20`
+
+  return {
+    product: {
+      eq: { lhs: op('×', variable(hiName), variable(loName)), rhs: num(product) },
+      step: `${hiName} × ${loName} = ${product} and ${hiName} − ${loName} = ${difference}. Of the ${pairWord}, only ${hiValue} × ${loValue} differs by ${difference}, so ${hiName} = ${hiValue} and ${loName} = ${loValue}.`,
+      opKind: 'product',
+      shape: 'product-pair',
+      constant: product,
+    },
+    difference: {
+      eq: { lhs: op('−', variable(hiName), variable(loName)), rhs: num(difference) },
+      step: `${hiName} − ${loName} = ${difference} is what picks that pair out of the ${pairWord}; the product alone does not settle either letter.`,
+      opKind: '−',
+      shape: 'product-pair-difference',
+      constant: difference,
+    },
+  }
+}
+
+/* ------------------------------------------------- lowest common multiple */
+
+const gcd = (a, b) => (b === 0 ? a : gcd(b, a % b))
+const lcm = (a, b) => (a / gcd(a, b)) * b
+
+/**
+ * Divisor pairs whose lowest common multiple is the ONLY common multiple in 1..20.
+ *
+ * This is what makes an LCM item single-valued without any extra constraint:
+ * if `D ÷ 3` and `D ÷ 4` are both whole, D is a multiple of 12, and the next
+ * one — 24 — is outside the documented range. So the pair of divisions pins D
+ * on its own, and the candidate gets there by finding the lowest common
+ * multiple rather than by substitution.
+ *
+ * Built rather than listed, so the range rule is enforced by the same constant
+ * everywhere. The quotients are required distinct from each other and from the
+ * root: a system where two letters share a value is harder to write honest
+ * `wrong-variable` distractors for.
+ *
+ * **Entirely within the documented mechanics.** A letter divided by a constant
+ * is official Exercise 2 (`B ÷ 2 = A`); two of them against one root is two
+ * documented definitions, not a new shape. Unlike the quadratic families this
+ * needs no REVIEW grade — `classifyMechanics` leaves it `documented`.
+ */
+const LCM_PAIRS = (() => {
+  const out = []
+  // NEITHER divisor may exceed 10. A divisor above half the range has exactly
+  // one multiple inside 1..20, so `D ÷ 12 = X` pins D on its own and the second
+  // division contributes nothing — the item would look like an LCM question and
+  // be solvable without ever taking a common multiple. Caught while checking
+  // the generated table rather than by assuming the construction was sound.
+  const SOLE_PIN = Math.floor(MAX_VALUE / 2)
+  for (let d1 = 2; d1 <= SOLE_PIN; d1++) {
+    for (let d2 = d1 + 1; d2 <= SOLE_PIN; d2++) {
+      const L = lcm(d1, d2)
+      if (L > MAX_VALUE) continue // no common multiple in range at all
+      if (L * 2 <= MAX_VALUE) continue // a second one fits, so the root is not pinned
+      const q1 = L / d1
+      const q2 = L / d2
+      if (q1 === q2 || q1 === L || q2 === L) continue
+      if (!inRange(q1) || !inRange(q2)) continue
+      out.push({ d1, d2, lcm: L, q1, q2 })
+    }
+  }
+  return out
+})()
+
 /* ------------------------------------------------------------ system build */
 
 const TOPOLOGIES = ['chain', 'star', 'mixed']
@@ -420,7 +622,10 @@ function buildSystem(rng, { varCount, topology, determining: determiningKind, pr
   // A, B, C, D the root was always A, so every depth-1 item asked for A — the
   // audit measured the asked letter at A=16, B=15, D=9, C=5 across the bank.
   const names = shuffle(rng, NAMES).slice(0, varCount)
-  const rootValue = randInt(rng, 2, 14)
+  // A square pin can only fix a value whose square is recognisable, so the root
+  // is drawn from that set rather than from the general range.
+  const rootValue =
+    determiningKind === 'square' ? pick(rng, SQUARE_ROOTS) : randInt(rng, 2, 14)
   const values = { [names[0]]: rootValue }
   const definitions = []
 
@@ -428,7 +633,47 @@ function buildSystem(rng, { varCount, topology, determining: determiningKind, pr
   // the last definition and needs at least three letters.
   const multiTermAt = useMultiTerm && varCount >= 3 ? varCount - 1 : -1
 
-  for (let i = 1; i < names.length; i++) {
+  // A product pair fixes names[0] and names[1] TOGETHER, so names[1] is not
+  // defined from the root the way every other shape defines its letters — the
+  // ordinary definition loop therefore starts one letter later.
+  let firstDefined = 1
+  let lcmChoice = null
+  if (determiningKind === 'lcm') {
+    if (varCount < 3 || LCM_PAIRS.length === 0) return null
+    lcmChoice = pick(rng, LCM_PAIRS)
+    values[names[0]] = lcmChoice.lcm
+    values[names[1]] = lcmChoice.q1
+    values[names[2]] = lcmChoice.q2
+    // The second division joins the ordinary definition list; the first plays
+    // the determining role. Neither settles the root alone — it is the pair
+    // that does, which is the whole point of the family.
+    definitions.push({
+      eq: { lhs: op('÷', variable(names[0]), num(lcmChoice.d2)), rhs: variable(names[2]) },
+      step: `${names[0]} ÷ ${lcmChoice.d2} = ${names[2]}, so ${names[2]} = ${lcmChoice.lcm} ÷ ${lcmChoice.d2} = ${lcmChoice.q2}.`,
+      opKind: '÷',
+      shape: 'lcm-division',
+      constant: lcmChoice.d2,
+    })
+    firstDefined = 3
+  }
+  if (determiningKind === 'product') {
+    if (varCount < 2) return null
+    const hiValue = randInt(rng, 4, 16)
+    const loPool = []
+    for (let lo = 2; lo < hiValue; lo++) {
+      if (hiValue * lo <= 200 && hiValue - lo <= 18) loPool.push(lo)
+    }
+    if (loPool.length === 0) return null
+    const loValue = pick(rng, loPool)
+    const pair = productPair(names[0], hiValue, names[1], loValue)
+    if (!pair) return null
+    values[names[0]] = hiValue
+    values[names[1]] = loValue
+    definitions.push(pair.difference)
+    firstDefined = 2
+  }
+
+  for (let i = firstDefined; i < names.length; i++) {
     const defined = names.slice(0, i)
     const sourceName =
       topology === 'chain'
@@ -485,7 +730,22 @@ function buildSystem(rng, { varCount, topology, determining: determiningKind, pr
   }
 
   let determining
-  if (determiningKind === 'pin') {
+  if (determiningKind === 'lcm') {
+    determining = lcmChoice
+      ? {
+          eq: { lhs: op('÷', variable(names[0]), num(lcmChoice.d1)), rhs: variable(names[1]) },
+          step: `${names[0]} ÷ ${lcmChoice.d1} and ${names[0]} ÷ ${lcmChoice.d2} both come out whole, so ${names[0]} is a multiple of ${lcmChoice.d1} and of ${lcmChoice.d2}. The lowest such number is ${lcmChoice.lcm}, and the next one is ${lcmChoice.lcm * 2}, which is outside 1–20 — so ${names[0]} = ${lcmChoice.lcm} and ${names[1]} = ${lcmChoice.q1}.`,
+          opKind: 'lcm',
+          shape: 'lcm-pin',
+          constant: lcmChoice.d1,
+        }
+      : null
+  } else if (determiningKind === 'square') {
+    determining = squarePin(names[0], values[names[0]])
+  } else if (determiningKind === 'product') {
+    const pair = productPair(names[0], values[names[0]], names[1], values[names[1]])
+    determining = pair?.product ?? null
+  } else if (determiningKind === 'pin') {
     determining = forceBare
       ? { eq: { lhs: variable(names[0]), rhs: num(values[names[0]]) }, step: `${names[0]} = ${values[names[0]]} is given directly.`, opKind: 'none', shape: 'pin-constant', constant: null }
       : pinRoot(rng, names[0], values[names[0]], preferMultiplicative)
@@ -668,23 +928,55 @@ function buildSolution(order, values, asked, determining, equationStrings) {
   const relevant = order.slice(0, askedIndex + 1)
   const opensWithSubstitution = order[0].kind === 'substitute'
 
-  const keyInsight = opensWithSubstitution
-    ? 'No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.'
-    : `One equation has only a single unknown. Solve that first, then every other letter follows from it${askedIndex === 0 ? ' — and it is the letter the question asks for' : ''}.`
+  /**
+   * A product pair and an LCM pin both "open with substitution" as far as the
+   * solver is concerned — no equation starts with a single unknown — but NEITHER
+   * is solved by substituting into a combining equation, and neither item has
+   * one. The generic wording below described a move those items do not contain
+   * and named an equation that substitution does not in fact reduce to one
+   * unknown. Found in the 22 November 2026 audit by checking, for every item,
+   * whether the equation the walkthrough cites really is left with one unknown
+   * once the other definitions are pushed in; it was not, in 13 of them.
+   *
+   * Each family now states its own route. The `step` strings these items carry
+   * in `solutionSteps` were always correct — it is only this second, narrated
+   * copy of the reasoning that was wrong.
+   */
+  const opensWithProduct = determining?.opKind === 'product'
+  const opensWithLcm = determining?.opKind === 'lcm'
+
+  const keyInsight = opensWithLcm
+    ? 'No equation starts with a single unknown, and there is nothing to substitute. One letter is divided by two different numbers, so it must be a multiple of both — the lowest common multiple is what settles it.'
+    : opensWithProduct
+      ? 'No equation starts with a single unknown. Two equations share the same pair of letters, one as a product and one as a difference: list the factor pairs of the product and test them against the difference.'
+      : opensWithSubstitution
+        ? 'No equation starts with a single unknown. Push the definitions into the equation that mentions every letter, and it collapses to one.'
+        : `One equation has only a single unknown. Solve that first, then every other letter follows from it${askedIndex === 0 ? ' — and it is the letter the question asks for' : ''}.`
+
+  const openingTitle = opensWithLcm
+    ? 'Take the lowest common multiple'
+    : opensWithProduct
+      ? 'Search the factor pairs'
+      : 'Collapse the combining equation'
 
   const steps = relevant.map((entry, i) => {
     const eqText = entry.equation ? renderEquation(entry.equation) : null
+    const opening = i === 0 && entry.kind === 'substitute'
+    // The determining form already carries a sentence that describes its own
+    // route exactly; reuse it rather than narrating a second, generic version.
+    const openingDetail = (opensWithLcm || opensWithProduct) && determining?.step
+      ? determining.step
+      : `Every other equation defines a letter in terms of another. Substituting them into ${eqText} leaves ${entry.name} as the only unknown, which gives ${entry.name} = ${values[entry.name]}.`
     return {
       title:
         i === 0
           ? entry.kind === 'substitute'
-            ? 'Collapse the combining equation'
+            ? openingTitle
             : 'Start where only one letter is unknown'
           : `Substitute to reach ${entry.name}`,
-      detail:
-        entry.kind === 'substitute'
-          ? `Every other equation defines a letter in terms of another. Substituting them into ${eqText} leaves ${entry.name} as the only unknown, which gives ${entry.name} = ${values[entry.name]}.`
-          : `${eqText} has ${entry.name} as its only unknown, so ${entry.name} = ${values[entry.name]}.`,
+      detail: opening
+        ? openingDetail
+        : `${eqText} has ${entry.name} as its only unknown, so ${entry.name} = ${values[entry.name]}.`,
       visual: eqText ? { type: 'me-equation', equation: eqText, note: `${entry.name} = ${values[entry.name]}` } : undefined,
     }
   })
@@ -703,11 +995,17 @@ function buildSolution(order, values, asked, determining, equationStrings) {
   const determiningText = determiningEq ? renderEquation(determiningEq) : equationStrings[0]
   const multiplicative = determining.opKind === '×' || determining.opKind === '÷'
 
-  const takeaway = opensWithSubstitution
-    ? 'When nothing has a single unknown, do not hunt for one. Substitute every definition into the equation that mentions all the letters — that is what collapses it.'
-    : multiplicative
-      ? `Divisibility narrows this kind of item fast: in ${determiningText} the coefficient tells you which multiples are even possible, which is often quicker than solving forward.`
-      : `Scan for the equation with one unknown before reading the rest. Here that is ${determiningText}, and it is not always the first line in the list.`
+  const takeaway = determining.opKind === 'lcm'
+    ? 'When one letter is divided by two different numbers, it has to be a common multiple of both. The lowest common multiple is usually the only one that fits inside 1–20, which settles the letter without any substitution at all.'
+    : determining.opKind === 'product'
+    ? 'A product of two letters is a divisor search, not a rearrangement. List the factor pairs of the product that fall inside 1–20, then let the second equation pick the pair — that is far quicker than substituting.'
+    : determining.opKind === 'square'
+      ? 'Knowing the squares to 14 × 14 on sight turns this whole family into a one-step read. Only the positive root is in range, so a square never leaves two cases to check.'
+      : opensWithSubstitution
+        ? 'When nothing has a single unknown, do not hunt for one. Substitute every definition into the equation that mentions all the letters — that is what collapses it.'
+        : multiplicative
+          ? `Divisibility narrows this kind of item fast: in ${determiningText} the coefficient tells you which multiples are even possible, which is often quicker than solving forward.`
+          : `Scan for the equation with one unknown before reading the rest. Here that is ${determiningText}, and it is not always the first line in the list.`
 
   return {
     keyInsight,
@@ -722,6 +1020,9 @@ const OPERATION_WORD = {
   '−': 'subtracts from or from a number',
   '×': 'multiplies',
   '÷': 'divides',
+  square: 'multiplies by itself',
+  product: 'multiplies by another letter',
+  lcm: 'divides, alongside a second division of the same letter',
 }
 
 function buildHints(order, asked, determining) {
@@ -729,10 +1030,19 @@ function buildHints(order, asked, determining) {
   const first = order[0]
   const firstEq = first.equation ? renderEquation(first.equation) : null
   const opensWithSubstitution = first.kind === 'substitute'
+  const lcmPinned = determining?.opKind === 'lcm'
 
-  const level1 = opensWithSubstitution
-    ? 'No single equation starts with one unknown, so do not go looking for one. One equation mentions every letter — that is the way in.'
-    : 'One of the equations has only a single unknown. Find it before you read the others.'
+  // A product pair also "opens with substitution" as far as the solver is
+  // concerned, but the generic level-1 text points at a combining equation that
+  // mentions every letter — and a product-pair system has no such equation. The
+  // hint would have sent the candidate looking for a line that is not there.
+  const level1 = lcmPinned
+    ? 'No single equation starts with one unknown. Two of them divide the SAME letter by different numbers, which tells you something about that letter before you know its value.'
+    : determining?.opKind === 'product'
+    ? 'No single equation starts with one unknown. Two of them share the same pair of letters — take those two together rather than hunting for a line you can solve alone.'
+    : opensWithSubstitution
+      ? 'No single equation starts with one unknown, so do not go looking for one. One equation mentions every letter — that is the way in.'
+      : 'One of the equations has only a single unknown. Find it before you read the others.'
 
   // Quoting the starting equation is the documented job of level 2 (spec §8) —
   // but when that equation contains only the asked letter, quoting it *is* the
@@ -746,14 +1056,26 @@ function buildHints(order, asked, determining) {
   // phrasing told the candidate to "undo that operation on both sides" when there
   // was nothing on either side to undo — caught in the second pilot's review.
   const barePin = determining?.opKind === 'none'
+  // A square is undone by a root, not by "the inverse operation on both sides",
+  // and a product pair is not undone at all — it is searched. Both need their
+  // own level-2 wording, or the generic phrasing describes a move that does not
+  // exist in the item.
+  const squarePinned = determining?.opKind === 'square'
+  const productPinned = determining?.opKind === 'product'
 
-  const level2 = opensWithSubstitution
-    ? `Substitute the other equations into ${firstEq}. Everything is defined in terms of ${first.name}.`
+  const level2 = lcmPinned
+    ? 'Both divisions have to come out whole, so that letter is a multiple of each divisor. Find the smallest number that is a multiple of both, then check whether a second one even fits inside 1–20.'
+    : opensWithSubstitution
+    ? productPinned
+      ? `Two of the equations mention the same pair of letters — one as a product, one as a difference. Neither settles a letter alone; list the factor pairs of the product and test them against the difference.`
+      : `Substitute the other equations into ${firstEq}. Everything is defined in terms of ${first.name}.`
     : barePin
       ? 'One of the equations gives a letter its value outright, with nothing done to it. Start from that line and work outwards.'
-      : quotingWouldReveal
-        ? `The equation you want is the one that ${OPERATION_WORD[determining?.opKind] ?? 'operates on'} ${asked} and nothing else. Find it, then undo that operation on both sides.`
-        : `Look at ${firstEq}.`
+      : squarePinned
+        ? 'One equation multiplies a letter by itself. Recognise the square and take its root — only the positive root is inside 1–20, so there is no second case to consider.'
+        : quotingWouldReveal
+          ? `The equation you want is the one that ${OPERATION_WORD[determining?.opKind] ?? 'operates on'} ${asked} and nothing else. Find it, then undo that operation on both sides.`
+          : `Look at ${firstEq}.`
 
   const level3 =
     askedIndex === 0
@@ -831,6 +1153,20 @@ function planFor(rng, difficulty, target = null) {
       determining = 'combine'
       forceSubsetCombine = true
       break
+    case 'square-pin': // `A × A = 169` — REVIEW, not official
+      determining = 'square'
+      break
+    case 'product-pair': // `A × B = 72` with `A − B = 1` — REVIEW, not official
+      varCount = Math.max(varCount, 3)
+      determining = 'product'
+      break
+    // `D ÷ 3 = A` with `D ÷ 4 = B` — ALLOWED. Two documented division
+    // definitions (official Ex 2) that only settle the root together, so the
+    // way in is the lowest common multiple.
+    case 'lcm-pin':
+      varCount = Math.max(varCount, 3)
+      determining = 'lcm'
+      break
     default:
       break
   }
@@ -848,7 +1184,14 @@ function planFor(rng, difficulty, target = null) {
 
 export function buildMathEquations(rng, difficulty, ctx = {}) {
   const preferMultiplicative = ctx.preferMultiplicative ?? rng() < 0.55
-  const plan = planFor(rng, difficulty, ctx.target)
+  // The default target is derived from the slot's own coordinates, here rather
+  // than in `generateMathEquations`, so that EVERY replay path agrees. Injecting
+  // it from the batch wrapper broke the reproducibility gate immediately: the
+  // wrapper applied a target, a direct rebuild from the same stamped seed did
+  // not, and the item came back different. `preferMultiplicative` is derived
+  // from `ctx.index` for exactly the same reason.
+  const target = ctx.target ?? defaultTargetFor(difficulty, ctx.index ?? 0)
+  const plan = planFor(rng, difficulty, target)
   const system = buildSystem(rng, { ...plan, preferMultiplicative })
   if (!system) return null
 
@@ -983,6 +1326,48 @@ export function generateMathEquations({ batchId, quotas, existing = [], verified
     config: { depthTargets: DEPTH_TARGET, varChoices: VAR_CHOICES, topologies: TOPOLOGIES },
     slotTargets,
     build: (rng, difficulty, ctx) =>
-      buildMathEquations(rng, difficulty, { preferMultiplicative: ctx.index % 2 === 0, target: ctx.target }),
+      buildMathEquations(rng, difficulty, {
+        preferMultiplicative: ctx.index % 2 === 0,
+        index: ctx.index,
+        target: ctx.target,
+      }),
   })
+}
+
+/**
+ * Which slots get a quadratic-type shape, decided by slot index rather than by
+ * a draw.
+ *
+ * The first attempt put `square` and `product` into the random `determiningPool`
+ * and it went badly in a way worth recording: both shapes succeed far more often
+ * than `combine` does (`combineOver` returns null whenever its right-hand side
+ * falls outside 1..18), so the retry loop selected for them. A 42-item batch came
+ * back with 18 quadratic items and **one** combining equation — the officially
+ * documented shape had been crowded out of the bank by an extrapolated one.
+ *
+ * Placing them by index fixes the proportion exactly — 1 in 5 medium slots, 2 in
+ * 5 high slots — and keeps it reproducible, which a draw against a biased retry
+ * loop never was. It also leaves `low` untouched: a square pin asked at its own
+ * root is a one-step root lookup, and the brief rules out items that fall to one
+ * simple equation.
+ *
+ * An explicit `slotTargets` entry from a generation plan always wins over this.
+ *
+ * **`combining-subset` is reserved here too, and that is not incidental.**
+ * Taking two in five high slots for quadratic shapes halved how often the draw
+ * reached a combining equation — measured, 6 combining items in a 42-item batch
+ * before the change and 3 after, with the officially documented subset form
+ * (`C + D − A = 1`, leaving B out — Ex 6) falling from 1 to 0. One was never a
+ * margin worth trusting either. Reserving a slot for it makes the official shape
+ * a guarantee rather than an accident, which is the stronger position of the two
+ * regardless of what the quadratic shapes are doing.
+ */
+function defaultTargetFor(difficulty, index) {
+  if (difficulty === 'medium' && index % 5 === 2) return { shape: 'square-pin' }
+  if (difficulty === 'high') {
+    if (index % 5 === 0) return { shape: 'combining-subset' }
+    if (index % 5 === 1) return { shape: 'square-pin' }
+    if (index % 5 === 3) return { shape: 'product-pair' }
+  }
+  return null
 }

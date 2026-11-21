@@ -222,6 +222,19 @@ export type FigureShape =
   | 'hexagon'
   | 'arrow'
   | 'cross'
+  /**
+   * Added 22 November 2026 for the exam-alignment pass. Both carry an
+   * unmistakable facing, which is the only property that matters here: until
+   * now just `triangle` and `arrow` could legibly rotate, so no item could ever
+   * show more than two rotating symbols at once. The September 2026 sitting is
+   * reported as showing several figures turning in different directions.
+   *
+   * `right-triangle` is also deliberately close to `triangle` — similar shapes
+   * that are hard to tell apart at a glance are part of what made the real
+   * subtest harder than our bank.
+   */
+  | 'right-triangle'
+  | 'bolt'
 
 export type Rotation = 0 | 90 | 180 | 270
 

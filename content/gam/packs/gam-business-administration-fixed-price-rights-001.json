@@ -1,0 +1,366 @@
+{
+  "pack": {
+    "id": "gam-business-administration-fixed-price-rights-001",
+    "domain": "business-administration",
+    "title": "Fixed-price rights on a metals exchange",
+    "defines": [
+      "buy-right",
+      "sell-right",
+      "strike price",
+      "premium",
+      "settlement price",
+      "net result"
+    ],
+    "provenance": {
+      "originality": "original",
+      "draftedBy": "exam-alignment-2026-11-22",
+      "reviewStatus": "automated-pass",
+      "notes": "Written for the exam-alignment pass of 22 November 2026, against topics reported first-hand from the 26 September 2026 sitting. Original scenario, original figures, no official topic reused. Automated gates only — not yet read by a person."
+    },
+    "blocks": [
+      {
+        "kind": "heading",
+        "id": "h1",
+        "text": "Fixed-price rights at the Meridian Exchange"
+      },
+      {
+        "kind": "paragraph",
+        "id": "p1",
+        "text": "The Meridian Exchange sells two kinds of fixed-price right over one tonne of refined zinc. A buy-right lets whoever holds it purchase a tonne at a stated strike price on the settlement date, whatever the market is doing that day. A sell-right lets its holder sell a tonne at the strike price on the same terms. A holder is never obliged to use a right, and an unused right simply lapses. The sum paid for a right when it is bought is called the premium, and the premium is paid whether or not the right is later used."
+      },
+      {
+        "kind": "paragraph",
+        "id": "p2",
+        "text": "On the settlement date the exchange values every right by one rule. A buy-right is worth the settlement price minus its strike price when that difference is positive, and nothing otherwise. A sell-right is worth its strike price minus the settlement price when that difference is positive, and nothing otherwise. The net result for the holder is that value less the premium already paid, so a right that lapses leaves its holder down by exactly the premium."
+      },
+      {
+        "kind": "table",
+        "id": "t1",
+        "caption": "Table 1 — rights offered on the March zinc contract, in euro per tonne",
+        "columns": [
+          "Right",
+          "Kind",
+          "Strike price",
+          "Premium"
+        ],
+        "rows": [
+          [
+            "R1",
+            "buy-right",
+            "2400",
+            "90"
+          ],
+          [
+            "R2",
+            "buy-right",
+            "2550",
+            "35"
+          ],
+          [
+            "R3",
+            "sell-right",
+            "2400",
+            "80"
+          ]
+        ]
+      },
+      {
+        "kind": "figure",
+        "id": "f1",
+        "caption": "Figure 1 — net result for the holder of R1 against the settlement price",
+        "spec": {
+          "type": "line-chart",
+          "xLabel": "Settlement price in euro per tonne",
+          "yLabel": "Net result for the holder in euro per tonne",
+          "series": [
+            {
+              "id": "s1",
+              "label": "R1 net result",
+              "points": [
+                [
+                  2200,
+                  -90
+                ],
+                [
+                  2400,
+                  -90
+                ],
+                [
+                  2500,
+                  10
+                ],
+                [
+                  2700,
+                  210
+                ]
+              ]
+            }
+          ],
+          "annotations": [
+            {
+              "label": "Below the strike",
+              "detail": "The line is flat: the right lapses and the holder is down by the premium."
+            },
+            {
+              "label": "Above the strike",
+              "detail": "The line rises by one euro for every euro the settlement price rises."
+            }
+          ]
+        }
+      }
+    ],
+    "contentHash": "1a7853b4a5750d6f2794d56176d447f0"
+  },
+  "questions": [
+    {
+      "id": "gam-ba-fpr-001-q1",
+      "packId": "gam-business-administration-fixed-price-rights-001",
+      "stem": "Zinc settles at 2610 euro per tonne. What is the net result for the holder of R1?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "A gain of 120 euro per tonne"
+        },
+        {
+          "id": "opt-b",
+          "text": "A gain of 210 euro per tonne"
+        },
+        {
+          "id": "opt-c",
+          "text": "A gain of 60 euro per tonne"
+        },
+        {
+          "id": "opt-d",
+          "text": "A gain of 300 euro per tonne"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "apply-formula",
+      "dependsOn": [
+        "p2",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "A buy-right is worth the settlement price minus its strike price when that difference is positive"
+        },
+        {
+          "blockId": "t1",
+          "quote": "2400"
+        }
+      ],
+      "computation": {
+        "expression": "2610 - 2400 - 90",
+        "expected": 120,
+        "unit": "euro per tonne"
+      },
+      "explanation": "R1 is a buy-right with a strike of 2400 and a premium of 90. At a settlement price of 2610 the right is worth 2610 minus 2400, which is 210. The net result subtracts the premium already paid, giving 210 minus 90, or a gain of 120 euro per tonne.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "p2",
+          "family": "misapplied-formula",
+          "reason": "This is the value of the right before the premium is taken off. The source defines the net result as that value less the premium already paid."
+        },
+        "opt-c": {
+          "blockId": "t1",
+          "family": "right-concept-wrong-scope",
+          "reason": "This applies the strike price of R2 rather than R1. The question asks about R1, whose strike is the lower of the two buy-rights in the table."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "This adds the premium to the value of the right instead of taking it off. The premium is money already spent, so it can only reduce the net result, never increase it."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Two numbers in the table belong to R1, and the paragraph tells you what to do with each of them in turn."
+        },
+        {
+          "level": 2,
+          "text": "Work out what the right is worth on the settlement date first, using only the settlement price and the strike."
+        },
+        {
+          "level": 3,
+          "text": "The premium was paid when the right was bought, so it comes off whatever the right turns out to be worth."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 2,
+        "transferDistance": 0,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "id": "gam-ba-fpr-001-q2",
+      "packId": "gam-business-administration-fixed-price-rights-001",
+      "stem": "At which settlement price do the holders of the two buy-rights end the day with exactly the same net result?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "2455 euro per tonne"
+        },
+        {
+          "id": "opt-b",
+          "text": "2490 euro per tonne"
+        },
+        {
+          "id": "opt-c",
+          "text": "2515 euro per tonne"
+        },
+        {
+          "id": "opt-d",
+          "text": "There is no such price, because R2 always does better above its strike"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "comparative",
+      "dependsOn": [
+        "p2",
+        "t1",
+        "f1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "a right that lapses leaves its holder down by exactly the premium"
+        },
+        {
+          "blockId": "t1",
+          "quote": "2550"
+        },
+        {
+          "blockId": "f1",
+          "quote": "The line is flat: the right lapses and the holder is down by the premium."
+        }
+      ],
+      "computation": {
+        "expression": "2400 + 90 - 35",
+        "expected": 2455,
+        "unit": "euro per tonne"
+      },
+      "explanation": "Between the two strikes R2 has lapsed, so its holder is down by its premium of 35, while R1 is already worth the settlement price minus 2400. Setting that value less the premium of 90 equal to minus 35 gives a settlement price of 2400 plus 90 minus 35, which is 2455. Above 2550 both rights gain a euro for every euro the price rises, so the gap between them never closes again, and below 2400 both have lapsed at different premiums.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "f1",
+          "family": "arithmetic-slip",
+          "reason": "This is the price at which R1 alone breaks even, where its own line crosses zero. The question asks where the two holders match each other, not where one of them matches nothing."
+        },
+        "opt-c": {
+          "blockId": "t1",
+          "family": "swapped-quantities",
+          "reason": "This adds the premium of R1 to the strike of R2 and subtracts nothing. The two rights belong to different strikes and premiums, which cannot be mixed across rows of the table."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "plausible-but-unstated",
+          "reason": "Above its strike R2 does gain at the same rate, but the two lines have already met below it, where R2 has lapsed and R1 has not. The source gives a rule for the region between the strikes as well as above them."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "The two rights do not behave the same way everywhere. Split the settlement price into the regions where each right is worth using."
+        },
+        {
+          "level": 2,
+          "text": "In the stretch between the two strikes, one of the rights has lapsed, so its holder is simply down by what they paid."
+        },
+        {
+          "level": 3,
+          "text": "Set the two net results equal in that stretch and solve for the settlement price, then check the answer lies inside it."
+        }
+      ],
+      "difficulty": "high",
+      "meta": {
+        "stepCount": 4,
+        "blockSpan": 3,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    },
+    {
+      "id": "gam-ba-fpr-001-q3",
+      "packId": "gam-business-administration-fixed-price-rights-001",
+      "stem": "A trader is convinced the settlement price will end far below every strike in the table. Which right in the table rewards that view, and why?",
+      "options": [
+        {
+          "id": "opt-a",
+          "text": "R3, because a sell-right gains as the settlement price falls below its strike"
+        },
+        {
+          "id": "opt-b",
+          "text": "R1, because its strike is the tied-lowest of the three"
+        },
+        {
+          "id": "opt-c",
+          "text": "R2, because it costs the least to buy"
+        },
+        {
+          "id": "opt-d",
+          "text": "None of them, because the premium is paid whatever happens"
+        }
+      ],
+      "correctOptionId": "opt-a",
+      "reasoning": "classify-scenario",
+      "dependsOn": [
+        "p1",
+        "p2",
+        "t1"
+      ],
+      "supportSpans": [
+        {
+          "blockId": "p2",
+          "quote": "A sell-right is worth its strike price minus the settlement price when that difference is positive"
+        },
+        {
+          "blockId": "t1",
+          "quote": "sell-right"
+        }
+      ],
+      "explanation": "Only R3 is a sell-right. Its value is the strike minus the settlement price whenever that is positive, so the further the price falls below 2400 the more it is worth, and a large enough fall covers the premium of 80 and leaves a gain. Both buy-rights move the other way and lapse when the price ends below their strikes.",
+      "refutations": {
+        "opt-b": {
+          "blockId": "p2",
+          "family": "wrong-direction-of-effect",
+          "reason": "R1 shares the lowest strike in the table with R3, but that is beside the point: R1 is a buy-right, and a buy-right is worth something only when the settlement price finishes above its strike. A falling price makes it lapse however low its strike sits."
+        },
+        "opt-c": {
+          "blockId": "p1",
+          "family": "right-concept-wrong-scope",
+          "reason": "Cost is not the issue the question asks about. R2 is also a buy-right, so a falling price makes it lapse, and the holder is then down by the premium rather than ahead."
+        },
+        "opt-d": {
+          "blockId": "p2",
+          "family": "contradicts-source",
+          "reason": "The premium is indeed always paid, but the source sets the net result as the value of the right less that premium, and a sell-right can be worth far more than the premium when the price falls."
+        }
+      },
+      "hints": [
+        {
+          "level": 1,
+          "text": "Two of the three entries in the table are the same kind of instrument as each other. Find the one that is not."
+        },
+        {
+          "level": 2,
+          "text": "Read the two valuation rules side by side and note which direction of price movement each one rewards."
+        },
+        {
+          "level": 3,
+          "text": "The premium is a fixed cost for every right, so it cannot be what separates a good choice from a bad one here."
+        }
+      ],
+      "difficulty": "medium",
+      "meta": {
+        "stepCount": 2,
+        "blockSpan": 3,
+        "transferDistance": 1,
+        "requiresExhibit": true
+      }
+    }
+  ]
+}

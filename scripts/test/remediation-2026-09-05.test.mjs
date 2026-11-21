@@ -168,7 +168,11 @@ describe('Core remediation — retirement was append-only', () => {
     ]) {
       assert.ok(fsRetired.includes(id), `${id} is not recorded as retired`)
     }
-    assert.equal(readRetired('mathematical-equations').length, 22, 'ME retirement count moved')
+    // 22 → 24: me-high-b10-007 (product 143) and me-high-b10-014 (product 55)
+    // were retired on 22 November 2026. Each had a single factor pair inside
+    // 1..20, so the difference equation that was meant to pick one pair out of
+    // several picked nothing. Both replaced in batch b12.
+    assert.equal(readRetired('mathematical-equations').length, 24, 'ME retirement count moved')
     assert.ok(
       readRetired('mathematical-equations')
         .map((e) => e.question?.id ?? e.id)
@@ -178,10 +182,12 @@ describe('Core remediation — retirement was append-only', () => {
   })
 
   test('section counts are unchanged by the repair', () => {
-    assert.equal(fs.length, 173)
-    assert.equal(me.length, 175)
+    // me 175 → 210 (batch b10) and fs 173 → 200 (batch b11) on 22 November
+    // 2026, the exam-alignment pass. The repair itself still moved nothing.
+    assert.equal(fs.length, 200)
+    assert.equal(me.length, 218)
     assert.equal(ls.length, 125)
-    assert.equal(fs.length + me.length + ls.length, 473)
+    assert.equal(fs.length + me.length + ls.length, 543)
   })
 })
 
@@ -200,7 +206,13 @@ describe('Core remediation — the official difficulty ladder is recorded, not e
     // divergence visible. If these move, it was not this remediation.
     const byTier = { low: 0, medium: 0, high: 0 }
     for (const q of me) byTier[q.difficulty]++
-    assert.deepEqual(byTier, { low: 58, medium: 58, high: 59 })
+    // b10 added 0 low, 15 medium and 20 high, by plan: the brief asked for
+    // harder material, and depth 1 is by definition an item that falls to one
+    // equation. The low tier is therefore untouched, which is the thing this
+    // test was written to watch.
+    // b12 added 4 medium and 6 high: the LCM family, plus two product-pair
+    // replacements for the degenerate items retired on 22 November 2026.
+    assert.deepEqual(byTier, { low: 58, medium: 77, high: 83 })
   })
 
   test('the source of record is the 02.09.2026 build', () => {

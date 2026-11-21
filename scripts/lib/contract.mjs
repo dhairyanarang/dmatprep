@@ -46,6 +46,8 @@ export const FS_CONTRACT = {
      */
     maxSymbols: 4,
     minSymbols: 1,
+    /** The shapes the official exercises are actually seen to rotate. */
+    rotationShapes: ['triangle', 'arrow'],
   },
   review: {
     /** p. 8 names colour in the x+1 rule, but no exercise demonstrates it. */
@@ -55,6 +57,22 @@ export const FS_CONTRACT = {
     rotationDegrees: [180, 270],
     /** Ex 5 cycles white→pink→yellow; we exclude it only for legibility. */
     whiteInCycle: true,
+    /**
+     * Rotating a shape the official exercises never rotate.
+     *
+     * The rule itself — "rotation about the symbol's own axis" — is stated for
+     * the subtest, so this is a composition of a documented mechanic with an
+     * undocumented carrier rather than a new mechanic. That is what REVIEW is
+     * for, and it is a weaker claim than ALLOWED, so items that use it grade
+     * `extrapolated`.
+     *
+     * Added because `triangle` and `arrow` were the only legibly-rotating
+     * shapes and shapes cannot repeat within an item, which capped every item
+     * in the bank at two rotating symbols. The brief reports several figures
+     * turning in different directions in the live sitting, which that ceiling
+     * made unreachable.
+     */
+    rotationShapes: ['right-triangle', 'bolt'],
   },
   forbidden: [
     'wrap-around or teleportation',
@@ -163,10 +181,43 @@ export const ME_CONTRACT = {
      * for a single letter, so the *asking* is documented; the option count is not.
      */
     fourOptionFormat: true,
+    /**
+     * A letter multiplied by a letter — `A × A = 81`, `A × B = 24`.
+     *
+     * This was FORBIDDEN until 22 November 2026, and the reason it was
+     * forbidden still stands: **no official exercise multiplies two unknowns.**
+     * Every multiplicative term in the preparatory material is an integer
+     * coefficient against a single letter (`3 × A`, `10 × B`, `2 × A + 2 × C`).
+     * On the official material alone this mechanic is not attested.
+     *
+     * It is permitted now on ONE piece of evidence: the repository owner sat
+     * the 26 September 2026 dMAT and reports meeting squared values and
+     * quadratic-type relationships. That is first-hand primary testimony about
+     * the live exam, which the preparatory PDF does not claim to exhaust — the
+     * official FAQ itself says sample difficulty "may differ from that of the
+     * actual test".
+     *
+     * It is NOT permitted on the strength of third-party dMAT guides. Several
+     * describe the same thing, and CLAUDE.md's rule zero forbids citing them
+     * even to corroborate. They are recorded in the branch report as context
+     * and establish nothing here.
+     *
+     * Consequences, all enforced rather than trusted:
+     *   · The operator set does not move. `A × A`, never `A²`, `A^2` or `√A`.
+     *     Exponent notation is a change to what the candidate is SHOWN, and
+     *     nothing attests that.
+     *   · Letter ÷ letter stays forbidden. The testimony and every reading of
+     *     it describe multiplication and squaring; division of two unknowns is
+     *     a further invention and would also threaten the integer rule.
+     *   · Any item using it grades `extrapolated` in `classifyMechanics`, so it
+     *     can never claim to be officially documented.
+     */
+    letterProduct: true,
   },
   forbidden: [
     'operators beyond + − × ÷',
-    'quadratic or higher-power terms',
+    'exponent or radical notation (^, **, √)',
+    'a letter divided by a letter',
     'non-integer, zero or negative letter values',
     'letter values outside 1..20',
     'systems without exactly one solution',
@@ -185,8 +236,14 @@ export function equationContractErrors({ equations, solution, variables }) {
     }
   }
   if (/\^|\*\*|√|%/.test(text)) errors.push('system contains an unsupported algebraic construct')
-  // A letter multiplied by a letter is a quadratic term.
-  if (/[A-Z]\s*[×÷]\s*[A-Z]/.test(text)) errors.push('system multiplies or divides two letters — quadratic')
+  // A letter multiplied by a letter is REVIEW-class, not forbidden — see
+  // ME_CONTRACT.review.letterProduct for what permits it and on what evidence.
+  // A letter DIVIDED by a letter remains forbidden: nothing attests it, and it
+  // is the form that most easily escapes the 1..20 integer rule.
+  if (/[A-Z]\s*÷\s*[A-Z]/.test(text)) errors.push('system divides a letter by a letter')
+  if (!ME_CONTRACT.review.letterProduct && /[A-Z]\s*×\s*[A-Z]/.test(text)) {
+    errors.push('system multiplies two letters — quadratic')
+  }
 
   if (!ME_CONTRACT.allowed.variableCounts.includes(variables.length)) {
     errors.push(`${variables.length} variables; the official exercises use 2 to 4`)
