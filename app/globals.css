@@ -251,6 +251,24 @@
   --brand-200: #bcc7ff;
 }
 
+@keyframes confetti-fall {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg);
+  }
+  8% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    /* Past the bottom of any viewport this product is used on. */
+    transform: translateY(105vh) rotate(540deg);
+  }
+}
+
 @layer components {
   /*
    * The prototype's signature container: a warm frame holding an inset white

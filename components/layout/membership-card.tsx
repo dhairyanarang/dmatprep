@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Crown } from 'lucide-react'
+import { ChevronRight, Crown } from 'lucide-react'
 
 import { ProBadge } from '@/components/layout/sidebar-brand'
 import { useAuth } from '@/lib/auth/use-auth'
@@ -29,7 +29,14 @@ import { useFreeUsage } from '@/lib/payments/use-free-usage'
  * switch flips is what made the offering undiscoverable in the product that
  * is actually running.
  */
-export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
+export function MembershipCard({
+  onNavigate,
+  bankSize,
+}: {
+  onNavigate?: () => void
+  /** Counted by the server component that renders the sidebar. */
+  bankSize: number
+}) {
   const auth = useAuth()
   const entitlement = useEntitlement()
   const usage = useFreeUsage()
@@ -38,18 +45,25 @@ export function MembershipCard({ onNavigate }: { onNavigate?: () => void }) {
   if (COMMERCE_ENABLED && !entitlement.ready) return null
 
   if (COMMERCE_ENABLED && entitlement.access) {
+    // No rail and no usage figure here. "38 of 150 free questions used" is a
+    // Free plan's number, and leaving it up after an upgrade is the stalest
+    // thing the sidebar could say. A Pro account has no quota to report.
     return (
       <Link
         href="/account"
         onClick={onNavigate}
-        className="border-gold-line bg-card hover:border-gold flex flex-col gap-1 rounded-xl border px-3.5 py-3 transition-colors"
+        className="border-gold-line bg-card hover:border-gold group flex flex-col gap-1 rounded-xl border px-3.5 py-3 transition-colors"
       >
         <span className="flex items-center justify-between gap-2">
           <b className="text-sm font-semibold">Pro</b>
           <ProBadge />
         </span>
         <span className="text-muted-foreground text-xs leading-4">
-          Full Core bank and all four mocks. Yours for good.
+          All {bankSize} Core questions and all four mocks, for good.
+        </span>
+        <span className="text-foreground mt-1 inline-flex items-center gap-1 text-xs font-medium">
+          Manage membership
+          <ChevronRight aria-hidden className="size-3 transition-transform group-hover:translate-x-0.5" />
         </span>
       </Link>
     )

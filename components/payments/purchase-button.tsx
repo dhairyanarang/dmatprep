@@ -84,8 +84,20 @@ function loadCheckout(): Promise<RazorpayCtor | null> {
 export function PurchaseButton({
   className,
   bankSize,
+  onVerified,
 }: {
   className?: string
+  /**
+   * Fired once the SERVER has verified the payment and the entitlement has
+   * been re-read.
+   *
+   * It is a notification, not a grant. The caller may use it to change what
+   * it shows — a celebration rather than a calm confirmation — but what is
+   * shown as unlocked still comes from the entitlement the server returned.
+   * It deliberately does not fire for a pending payment, where nothing has
+   * been granted yet.
+   */
+  onVerified?: () => void
   /**
    * The number of active Core questions, counted by the page.
    *
@@ -113,7 +125,8 @@ export function PurchaseButton({
       if (!orderResponse.ok) {
         const body = (await orderResponse.json().catch(() => ({}))) as { error?: string }
         if (body.error === 'already-entitled') {
-          invalidateEntitlement()
+          // Already held before this click, so nothing was activated now.
+          void invalidateEntitlement()
           setPhase('success')
           return
         }
@@ -153,7 +166,9 @@ export function PurchaseButton({
           })
             .then(async (verify) => {
               if (verify.ok) {
-                invalidateEntitlement()
+                // Re-read first, then tell the caller: the success screen must
+                // never appear ahead of the entitlement that justifies it.
+                void invalidateEntitlement().then(() => onVerified?.())
                 setPhase('success')
                 return
               }
@@ -187,7 +202,7 @@ export function PurchaseButton({
       setMessage(error instanceof Error ? error.message : 'Something went wrong.')
       setPhase('error')
     }
-  }, [])
+  }, [onVerified])
 
   if (!COMMERCE_ENABLED) {
     return (

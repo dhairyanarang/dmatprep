@@ -1,5 +1,7 @@
 import { AccountRow } from '@/components/layout/account-row'
 import { MembershipCard } from '@/components/layout/membership-card'
+import { getBankSize } from '@/lib/content/registry'
+import { SECTION_IDS } from '@/lib/sections'
 
 /**
  * The foot of the sidebar: membership, who you are, and the one line that has
@@ -17,9 +19,14 @@ import { MembershipCard } from '@/components/layout/membership-card'
  * paragraphs live where someone would actually read them.
  */
 export function SidebarFooter({ onNavigate }: { onNavigate?: () => void }) {
+  // Counted here, on the server. The card is a client component and must not
+  // import the registry itself — that would put the whole question bank into
+  // the bundle of every page that renders a sidebar, which is all of them.
+  const bankSize = SECTION_IDS.reduce((n, id) => n + getBankSize(id), 0)
+
   return (
     <div className="flex shrink-0 flex-col gap-2.5 px-3 pt-2 pb-3">
-      <MembershipCard onNavigate={onNavigate} />
+      <MembershipCard onNavigate={onNavigate} bankSize={bankSize} />
       <AccountRow onNavigate={onNavigate} />
       <p className="text-muted-foreground/80 px-0.5 text-[10px] leading-3.5 text-balance">
         An independent resource, not affiliated with, endorsed by, or sponsored by g.a.s.t. or

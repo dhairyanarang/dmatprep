@@ -1,11 +1,13 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
-import { ChevronLeft, Lock } from 'lucide-react'
+import { ArrowRight, Check, ChevronLeft, Lock } from 'lucide-react'
 
 import { GoogleButton } from '@/components/auth/google-button'
+import { EdgeConfetti } from '@/components/payments/edge-confetti'
 import { PurchaseButton } from '@/components/payments/purchase-button'
+import { ProBadge } from '@/components/layout/sidebar-brand'
 import { SupportLink } from '@/components/support/support-link'
 import { useAuth } from '@/lib/auth/use-auth'
 import { ACCESS_IS_LIFETIME, formatPrice } from '@/lib/payments/config'
@@ -46,20 +48,115 @@ export function CheckoutView({
     }
   }, [])
 
+  /**
+   * Did Pro become active while this screen was open?
+   *
+   * The distinction is presentation only — both states are the SERVER'S
+   * answer, read from `/api/entitlement`. What it changes is the tone: someone
+   * who has just paid is congratulated and gets the confetti; someone who
+   * arrived at checkout already holding Pro is told so calmly, because they
+   * did not just do anything.
+   *
+   * Set by the purchase button, after the server verified the payment and the
+   * entitlement was re-read. Inferring it from a state transition was the
+   * first attempt and it was guesswork; this is the payment telling us.
+   *
+   * It only changes the TONE. What the screen says is unlocked comes from
+   * `entitlement.access`, which is the server's answer either way.
+   */
+  const [justPaid, setJustPaid] = useState(false)
+  const onVerified = useCallback(() => setJustPaid(true), [])
+
+  const justActivated = entitlement.ready && entitlement.access && justPaid
+
   if (entitlement.ready && entitlement.access) {
     return (
-      <div className="bg-frame fixed inset-0 z-50 grid place-items-center overflow-auto p-6 text-center">
-        <div className="flex flex-col items-center gap-3">
-          <h1 className="text-2xl font-semibold tracking-[-0.015em]">You already have Pro</h1>
-          <p className="text-muted-foreground text-sm">
-            Everything is unlocked on this account, and nothing will be charged again.
+      <div className="bg-frame fixed inset-0 z-50 overflow-auto">
+        {justActivated ? <EdgeConfetti /> : null}
+
+        <div className="mx-auto flex min-h-full w-full max-w-[560px] flex-col justify-center px-4 py-12 sm:px-6">
+          <div className="border-gold-line bg-card relative flex flex-col gap-5 rounded-2xl border p-6 sm:p-8">
+            <div className="flex flex-col gap-3">
+              <span
+                aria-hidden
+                className="bg-gold text-gold-dark grid size-11 place-items-center rounded-xl"
+              >
+                <Check className="size-6" strokeWidth={2.5} />
+              </span>
+
+              <div>
+                <h1 className="text-2xl leading-8 font-semibold tracking-[-0.015em]">
+                  {justActivated ? 'Your Pro is now active!' : 'You already have Pro'}
+                </h1>
+                <p className="text-muted-foreground mt-1.5 text-sm leading-relaxed">
+                  {justActivated
+                    ? 'Payment confirmed. Everything below is unlocked on your account from now on.'
+                    : 'Everything below is unlocked on your account, and nothing will be charged again.'}
+                </p>
+              </div>
+            </div>
+
+            {/* The account it landed on. After a payment this is the one fact
+                worth confirming without being asked for it. */}
+            <div
+              className="border-soft bg-frame flex items-center justify-between gap-3 rounded-xl border px-3.5 py-3"
+              data-clarity-mask="true"
+            >
+              <span className="flex min-w-0 flex-col">
+                <span className="text-muted-foreground text-xs">Active on</span>
+                <b className="truncate text-sm font-medium">
+                  {auth.user?.email ?? auth.user?.name ?? 'this account'}
+                </b>
+              </span>
+              <ProBadge />
+            </div>
+
+            <ul className="flex flex-col gap-2.5">
+              <Unlocked>
+                <b className="font-medium">Lifetime access</b> — paid once, it does not expire and
+                never renews
+              </Unlocked>
+              <Unlocked>
+                <b className="font-medium">All {bankSize} Core questions</b>, with full
+                explanations and distractor notes
+              </Unlocked>
+              <Unlocked>
+                <b className="font-medium">
+                  {mockCount} fixed Core mock exams
+                </b>{' '}
+                — {mockSize} questions each, 20 from every subtest
+              </Unlocked>
+            </ul>
+
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/"
+                className="bg-brand text-brand-foreground hover:bg-brand-strong inline-flex h-10 items-center gap-2 rounded-lg px-4 text-sm font-medium transition-colors"
+              >
+                Go to your dashboard
+                <ArrowRight aria-hidden className="size-4" />
+              </Link>
+              <Link
+                href="/account"
+                className="border-border bg-card hover:bg-frame inline-flex h-10 items-center rounded-lg border px-4 text-sm font-medium transition-colors"
+              >
+                Manage membership
+              </Link>
+            </div>
+          </div>
+
+          <p className="text-muted-foreground mt-4 px-1 text-xs leading-relaxed">
+            A receipt comes from our payment provider by email.{' '}
+            <Link href="/terms" className="underline underline-offset-2">
+              Terms
+            </Link>
+            .
           </p>
-          <Link
-            href="/"
-            className="bg-brand text-brand-foreground hover:bg-brand-strong mt-1 inline-flex h-9 items-center rounded-lg px-3.5 text-sm font-medium transition-colors"
-          >
-            Go to Home
-          </Link>
+          <SupportLink
+            className="mt-2 px-1"
+            showAim={false}
+            topic="Question about my Pro purchase"
+          />
         </div>
       </div>
     )
@@ -131,7 +228,7 @@ export function CheckoutView({
               nothing else about it.
             </p>
             {signedIn ? (
-              <PurchaseButton bankSize={bankSize} />
+              <PurchaseButton bankSize={bankSize} onVerified={onVerified} />
             ) : (
               // The purchase button has its own signed-out state, which is the
               // right one on the pricing page and wrong here: it would repeat
@@ -204,6 +301,15 @@ export function CheckoutView({
         </aside>
       </main>
     </div>
+  )
+}
+
+function Unlocked({ children }: { children: React.ReactNode }) {
+  return (
+    <li className="flex gap-2.5 text-sm leading-5">
+      <Check aria-hidden className="text-gold-text mt-px size-4 shrink-0" />
+      <span>{children}</span>
+    </li>
   )
 }
 
