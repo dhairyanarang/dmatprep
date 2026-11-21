@@ -685,6 +685,51 @@ time. If it is ever wrong, re-running the function fixes it.
 
 ---
 
+## 8a. KNOWN LIMITATION — a revocation suppresses later payments
+
+**Deferred by decision on 21 November 2026. Not a defect to be rediscovered.**
+
+`recompute_entitlement` reads the ACTION of the most recent `manual_grants`
+row and compares it against *whether any captured payment exists*. Neither side
+of that comparison carries a timestamp:
+
+```sql
+if v_manual = 'revoke' then revoked          -- unconditional
+elsif has_captured      then active
+```
+
+So once an account carries a `revoke`, every later captured payment is ignored.
+The money is taken, the `payments` row is written with its `captured_at`, and
+the projection still reads `revoked`. A second purchase on a revoked account
+grants nothing until another manual row is appended.
+
+**Consequences while this stands**
+
+- Do not revoke an account you expect to buy again. There is no revocation that
+  is also reversible by purchase.
+- Free-state and first-purchase testing must use a fresh account, not a revoked
+  one.
+- Support must not use a revoke as a temporary measure. It is permanent in
+  effect until a `grant` is appended by hand.
+- Nothing is wrong with the money path: the payment still verifies, captures
+  and is recorded. Only the projection withholds access.
+
+**Scope today.** No `manual_grants` row exists in any environment, so no account
+is affected and no customer can reach this. It is latent.
+
+**The correction, when it is wanted.** Carry the revocation's `created_at` and
+`source`, scope the captured test to `payments.captured_at > cutoff`, and move
+the revoke branch below the captured branch — keeping a `source = 'fraud'`
+revocation absolute, which is the case the original precedence was written for.
+`captured_at` is set server-side by `apply_payment_event` and preserved across
+webhook re-delivery by `coalesce`, so it cannot be influenced by a browser.
+That change was drafted, reviewed and proved against fourteen cases — it
+differs from current behaviour in exactly one — and was **deliberately not
+applied** so the release would not carry a database change it did not need.
+
+This is internal. Nothing about it appears in customer-facing copy, and no
+customer-visible behaviour depends on it.
+
 ## 9. The reconciliation sweep — now with two jobs
 
 Razorpay's own documentation says to poll the payment APIs for business-critical

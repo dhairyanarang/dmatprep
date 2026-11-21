@@ -1,7 +1,15 @@
 -- dMAT Prep — table privileges.
 --
--- NOT APPLIED. Drafted for review; `npx supabase db push` has not been run
--- since this file was created.
+-- APPLIED to the pilot (`dmatprep-pilot`). NOT applied to production.
+--
+-- The header used to read "NOT APPLIED", which was true when it was written
+-- and is no longer. Verified on 21 November 2026 by probing the pilot's REST
+-- API: `service_role` is refused on `attempts` and `user_state` with 42501 and
+-- allowed on `payment_orders`, `entitlements` and `manual_grants` — which is
+-- exactly the split this file declares and is not what Supabase's default
+-- privileges would produce. A stale "not applied" on a migration that has been
+-- applied is how the wrong thing gets run against production, so it is
+-- corrected here rather than left to be rediscovered.
 --
 -- ---------------------------------------------------------------------------
 -- Why this is needed
