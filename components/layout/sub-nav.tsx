@@ -42,19 +42,36 @@ export function SubNav({
    *
    * On a phone the list scrolls sideways, and the page you are reading is
    * frequently past the right edge — so the strip opened showing the first
-   * three items and no indication that you were on the sixth. `nearest` keeps
-   * it still when the item is already visible, which is every time on a
-   * laptop.
+   * three items with no sign that you were on the sixth.
+   *
+   * `scrollLeft` on the strip, never `scrollIntoView`: that scrolls every
+   * scrollable ancestor including the document, which shifted the whole page
+   * sideways and left the heading cut off at the left edge. Only this element
+   * should move.
    */
   useEffect(() => {
-    const active = strip.current?.querySelector('[aria-current="page"]')
-    active?.scrollIntoView({ inline: 'nearest', block: 'nearest' })
+    // One frame later: on first paint the strip has not been laid out, so its
+    // scrollWidth equals its clientWidth and the centring is skipped.
+    const frame = requestAnimationFrame(() => {
+      const container = strip.current
+      const active = container?.querySelector<HTMLElement>('[aria-current="page"]')
+      if (!container || !active) return
+      if (container.scrollWidth <= container.clientWidth) return
+
+      const target = active.offsetLeft - (container.clientWidth - active.offsetWidth) / 2
+      container.scrollLeft = Math.max(0, target)
+    })
+    return () => cancelAnimationFrame(frame)
   }, [pathname])
 
   return (
     <nav
       aria-label={label}
-      className="flex min-w-0 shrink-0 flex-col gap-0.5 lg:sticky lg:top-[68px] lg:w-[200px]"
+      // `w-full` on a phone, not `shrink-0`: shrink-0 let the column grow to
+      // its content width — 881px of links inside a 390px screen — so the
+      // strip never had anything to scroll and the PAGE overflowed sideways
+      // instead. The fixed width belongs to the desktop column only.
+      className="flex w-full min-w-0 flex-col gap-0.5 lg:sticky lg:top-[68px] lg:w-[200px] lg:shrink-0"
     >
       <span className="over hidden px-2.5 pb-2 lg:block">{label}</span>
 

@@ -147,9 +147,8 @@ export default function PricingPage() {
       <section className="grid w-full gap-3 [grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))]">
         <Reassurance
           icon={ShieldCheck}
-          title="Refunds"
-          body="Ask within the window in the refund policy and you get the full amount back."
-          href="/refunds"
+          title="Everything, immediately"
+          body="The whole bank and all four mocks unlock the moment the payment clears."
         />
         <Reassurance
           icon={RotateCcw}
@@ -217,7 +216,7 @@ export default function PricingPage() {
         <p className="text-muted-foreground text-sm leading-relaxed">
           dMAT Prep is independent. Questions follow the published format and every one is checked
           by a solver, but they are not official test items.{' '}
-          <Link className="hover:text-foreground underline underline-offset-2" href="/about">
+          <Link className="hover:text-foreground underline underline-offset-2" href="/information">
             More about this resource
           </Link>
           .
@@ -227,7 +226,6 @@ export default function PricingPage() {
       <div className="border-border/70 flex flex-col gap-3 border-t pt-5 sm:flex-row sm:items-center sm:justify-between">
         <nav aria-label="Purchase information" className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
           {[
-            { href: '/refunds', label: 'Refunds' },
             { href: '/terms', label: 'Terms' },
             { href: '/privacy', label: 'Your data' },
           ].map((l) => (

@@ -46,11 +46,9 @@ const STATIC: Record<string, Crumb[]> = {
   // as the page's `<h1>`, so without an entry here they had no heading at all.
   '/account': [{ label: 'Account' }],
   '/information': [{ label: 'Information' }],
-  '/about': [INFORMATION, { label: 'About this resource' }],
   '/pricing': [{ label: 'Plans and pricing' }],
   '/checkout': [{ label: 'Checkout' }],
   '/terms': [INFORMATION, { label: 'Terms' }],
-  '/refunds': [INFORMATION, { label: 'Refunds' }],
   '/privacy': [INFORMATION, { label: 'Your data' }],
   '/contact': [INFORMATION, { label: 'Help and contact' }],
 }

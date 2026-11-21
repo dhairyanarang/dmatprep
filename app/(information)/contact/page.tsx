@@ -44,7 +44,7 @@ export default function ContactPage() {
           <div className="mt-7 space-y-3">
             <h2 className="text-sm font-medium">What we can help with</h2>
             <p className="text-muted-foreground text-sm leading-relaxed">
-              Anything about this site: a payment that did not unlock, a refund, a question that
+              Anything about this site: a payment that did not unlock, a question that
               looks wrong, an account problem, or a mistake in something we have written about the
               examination.
             </p>

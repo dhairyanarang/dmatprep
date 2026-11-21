@@ -40,6 +40,7 @@ export function PageShell({
   description,
   actions,
   wide = false,
+  centred = false,
   children,
 }: {
   title?: ReactNode
@@ -49,6 +50,15 @@ export function PageShell({
   actions?: ReactNode
   /** Full container width for grid-heavy pages; otherwise a reading measure. */
   wide?: boolean
+  /**
+   * Centre the reading measure instead of hanging it off the left edge.
+   *
+   * Most narrow pages are documents, and a document starts where the page
+   * starts. A page that is a column of cards with nothing beside it is not a
+   * document — left-aligned it reads as a layout that failed to fill, which is
+   * what the account page looked like.
+   */
+  centred?: boolean
   children?: ReactNode
 }) {
   return (
@@ -60,13 +70,27 @@ export function PageShell({
      */
     <PageContainer className="stagger-enter flex flex-1 flex-col gap-5 pt-6 pb-12">
       {title || description || actions ? (
-        <PageHead title={title} eyebrow={eyebrow} description={description} actions={actions} wide={wide} />
+        <div className={cn(centred && 'mx-auto w-full max-w-3xl')}>
+          <PageHead
+            title={title}
+            eyebrow={eyebrow}
+            description={description}
+            actions={actions}
+            wide={wide}
+          />
+        </div>
       ) : null}
 
       {/* A wide page's sections are direct children, so each one takes its own
           step of the stagger. A reading page is one block at one measure, and
           one block is the right thing for it to arrive as. */}
-      {wide ? children : <div className="flex max-w-3xl flex-col gap-5">{children}</div>}
+      {wide ? (
+        children
+      ) : (
+        <div className={cn('flex max-w-3xl flex-col gap-5', centred && 'mx-auto w-full')}>
+          {children}
+        </div>
+      )}
     </PageContainer>
   )
 }

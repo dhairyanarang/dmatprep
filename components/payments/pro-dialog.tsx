@@ -161,10 +161,7 @@ function ProDialog({ onClose }: { onClose: () => void }) {
           <div className="text-muted-foreground flex flex-wrap items-center justify-between gap-2 text-xs">
             <span className="inline-flex items-center gap-1.5">
               <ShieldCheck aria-hidden className="text-success size-3.5" />
-              Refunds within the published window.{' '}
-              <Link href="/refunds" onClick={onClose} className="underline underline-offset-2">
-                Refund policy
-              </Link>
+              One payment. Nothing recurs, and no card is kept.
             </span>
             <button
               type="button"

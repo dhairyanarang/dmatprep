@@ -179,17 +179,26 @@ export function CheckoutView({
             </p>
           </section>
 
-          <p className="text-muted-foreground px-1 text-xs leading-relaxed">
-            By paying you accept the{' '}
-            <Link href="/terms" className="underline underline-offset-2">
-              Terms
-            </Link>{' '}
-            and the{' '}
-            <Link href="/refunds" className="underline underline-offset-2">
-              refund policy
-            </Link>
-            .
-          </p>
+          {/* Stated before the payment button, not after it and not only in
+              a document nobody opens. Pro is delivered in full at once, so a
+              change of mind is not refundable — and saying so here is the
+              difference between a policy and a surprise. It does not claim
+              anything about rights that exist in law regardless. */}
+          <div className="border-border bg-card flex flex-col gap-1.5 rounded-xl border p-3.5">
+            <b className="text-sm font-semibold">Before you pay</b>
+            <p className="text-muted-foreground text-[13px] leading-[19px]">
+              Everything unlocks immediately, so we do not refund a change of mind. If something
+              goes wrong — a duplicate charge, or a payment that does not grant access — write to
+              us and we will put it right. Your rights under consumer law are unaffected.
+            </p>
+            <p className="text-muted-foreground text-xs">
+              Paying accepts the{' '}
+              <Link href="/terms" className="underline underline-offset-2">
+                Terms
+              </Link>
+              , which cover this in full.
+            </p>
+          </div>
 
           <SupportLink className="px-1" showAim={false} topic="Question before buying Pro" />
         </aside>

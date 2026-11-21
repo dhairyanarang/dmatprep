@@ -13,6 +13,7 @@ export default function AccountPage() {
     <PageShell
       title="Account"
       description="Who you are, what is stored, and what this account can open."
+      centred
     >
       <AccountView />
     </PageShell>

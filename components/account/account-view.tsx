@@ -296,7 +296,6 @@ function DataSection({ signedIn }: { signedIn: boolean }) {
           {[
             { href: '/privacy', label: 'What we store' },
             { href: '/terms', label: 'Terms' },
-            { href: '/refunds', label: 'Refunds' },
             { href: '/contact', label: 'Contact' },
           ].map((l) => (
             <Link

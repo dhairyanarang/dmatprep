@@ -23,7 +23,7 @@ export function PageDisclaimer({
   showMoreLink = true,
 }: {
   className?: string
-  /** Omitted on /about, which IS the fuller statement. */
+  /** Omitted where the page already carries the fuller statement. */
   showMoreLink?: boolean
 }) {
   return (
@@ -49,8 +49,8 @@ export function PageDisclaimer({
         {showMoreLink ? (
           <>
             {' '}
-            <Link className="hover:text-foreground underline underline-offset-2" href="/about">
-              More about this resource
+            <Link className="hover:text-foreground underline underline-offset-2" href="/terms">
+              the terms
             </Link>
             , or{' '}
             {/* A direct link, not a route through the Information landing page.

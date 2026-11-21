@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArrowRight, FileText, Info, Mail, RotateCcw, ShieldCheck } from 'lucide-react'
+import { ArrowRight, FileText, Mail, ShieldCheck } from 'lucide-react'
 
 import { SubPage } from '@/components/layout/sub-nav'
 
@@ -13,16 +13,9 @@ export const metadata = {
  *
  * It exists so the section has a front door rather than opening on whichever
  * policy happened to be first. Each card says what the page is *for*, because
- * "Terms" and "Refunds" tell you the title and not whether it is the one you
- * need.
+ * "Terms" tells you the title and not whether it is the one you need.
  */
 const CARDS = [
-  {
-    href: '/about',
-    icon: Info,
-    title: 'About this resource',
-    body: 'Who makes dMAT Prep, what it is not, and how its questions are written and checked.',
-  },
   {
     href: '/contact',
     icon: Mail,
@@ -39,13 +32,7 @@ const CARDS = [
     href: '/terms',
     icon: FileText,
     title: 'Terms',
-    body: 'The terms this resource is offered under, including what it does not promise.',
-  },
-  {
-    href: '/refunds',
-    icon: RotateCcw,
-    title: 'Refunds',
-    body: 'When a purchase can be refunded, how to ask, and how long it takes.',
+    body: 'The terms this resource is offered under, what it does not promise, and when a payment can be refunded.',
   },
 ] as const
 
@@ -92,8 +79,10 @@ export default function InformationPage() {
             examination material.
           </p>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            Every factual claim about the exam traces to an official source, listed with the date
-            it was read on the{' '}
+            Nobody connected with the examination has reviewed or approved anything here, and
+            nothing on this site has been signed off by a person at g.a.s.t. or APS India. Every
+            factual claim about the exam traces to an official source, listed with the date it was
+            read on the{' '}
             <Link href="/exam/sources" className="underline underline-offset-2">
               sources page
             </Link>

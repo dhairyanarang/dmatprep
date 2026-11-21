@@ -15,6 +15,11 @@ const nextConfig: NextConfig = {
       // lands on Prepare, which is where its one real job — deciding what to
       // do next — now lives.
       { source: '/study-plan', destination: '/prepare', permanent: false },
+      // The refund policy is a section of the Terms now, and "About this
+      // resource" was internal detail rather than something a candidate needs.
+      // Both had public URLs, so both land somewhere real.
+      { source: '/refunds', destination: '/terms', permanent: false },
+      { source: '/about', destination: '/information', permanent: false },
     ]
   },
   /**

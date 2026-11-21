@@ -32,7 +32,7 @@ export const TERMS: LegalDocument = {
   blocks: [
     {
       type: 'note',
-      text: 'The short version: dMAT Prep is an independent study tool. It is not the examination and has no connection to the people who run it. Free practice stays free. Pro is a single payment, refundable within seven days.',
+      text: 'The short version: dMAT Prep is an independent study tool. It is not the examination and has no connection to the people who run it. Free practice stays free. Pro is a single payment that unlocks everything immediately.',
     },
 
     { type: 'h', text: 'We are independent' },
@@ -69,14 +69,23 @@ export const TERMS: LegalDocument = {
     {
       type: 'list',
       items: [
-        'Pro is a one-time payment. Nothing recurs and nothing is charged again automatically.',
+        `Pro is a one-time payment of ${formatPrice()}. Nothing recurs and nothing is charged again automatically.`,
         'Payment is handled by our payment provider. We never receive or store your card number, UPI ID or bank details.',
         'Access is granted once the payment is confirmed. If a payment succeeds but access does not appear, write to {contactEmail} — a background check looks for exactly this, and we would rather hear from you than have you wait.',
       ],
     },
+    { type: 'h', text: 'Refunds' },
     {
       type: 'p',
-      text: 'Refunds are covered by our refund policy, which forms part of these terms.',
+      text: 'Pro is delivered in full the moment it is paid for — every question, every explanation and every mock becomes available at once — so we do not offer refunds for a change of mind. Try the free side first: fifty questions in each Core subtest, with the same explanations and the same practice screen, and no account needed.',
+    },
+    {
+      type: 'p',
+      text: 'We do refund where something went wrong on our side: a duplicate charge, a payment that took your money without granting access, or a failure that left the product not working as described. Write to {contactEmail} from the address on your account. Once approved, the money goes back to the method you paid with — our provider cannot send it anywhere else.',
+    },
+    {
+      type: 'p',
+      text: 'Nothing here removes rights you have under consumer law. Where those rights apply, they apply regardless of what this page says.',
     },
 
     { type: 'h', text: 'What you may and may not do' },
@@ -100,7 +109,7 @@ export const TERMS: LegalDocument = {
     { type: 'h', text: 'Availability and liability' },
     {
       type: 'p',
-      text: 'We try to keep the service available but cannot promise it will be uninterrupted or error-free, and we may change or withdraw features. If we withdraw something you have paid for and cannot offer an equivalent, write to us and we will discuss a refund.',
+      text: 'We try to keep the service available but cannot promise it will be uninterrupted or error-free, and we may change or withdraw features. If we withdraw something you have paid for and cannot offer an equivalent, write to us.',
     },
     {
       type: 'p',
@@ -121,62 +130,4 @@ export const TERMS: LegalDocument = {
   ],
 }
 
-export const REFUNDS: LegalDocument = {
-  slug: 'refunds',
-  title: 'Refunds',
-  description: 'When you can get your money back, and how to ask',
-  blocks: [
-    {
-      type: 'note',
-      text: 'Seven days, no questions asked, as long as you have not worked through most of the paid material. Email {contactEmail}.',
-    },
-
-    { type: 'h', text: 'What you are buying' },
-    {
-      type: 'p',
-      text: `A one-time purchase of ${formatPrice()} that unlocks the paid half of the Core question bank on your account. There is no subscription, so there is nothing to cancel.`,
-    },
-    {
-      type: 'p',
-      text: 'Try the free side first. Fifty questions in each of the three Core subtests, with full explanations and progress tracking, and no account needed. We would rather you did that than bought and asked for the money back.',
-    },
-
-    { type: 'h', text: 'The seven-day window' },
-    {
-      type: 'p',
-      text: 'Ask within seven days of buying and we will refund you in full, provided you have not answered more than 20% of the paid questions. We will not ask why.',
-    },
-    {
-      type: 'p',
-      text: 'The 20% condition exists because the product is delivered instantly and in full. It is not a trap — if you are near it and still unhappy, write to us.',
-    },
-
-    { type: 'h', text: 'After seven days' },
-    {
-      type: 'p',
-      text: 'We will still consider a refund if the product did not work as described, if you were charged twice, or if you paid and never got access. We will not normally refund because you changed your mind later, finished the material, or did not get the result you hoped for.',
-    },
-
-    { type: 'h', text: 'How to ask, and how long it takes' },
-    {
-      type: 'p',
-      text: 'Email {contactEmail} from the address on your account and say when you bought. That is the whole process. We reply within 48 hours; once approved, the money goes back to the method you paid with — our provider cannot send it anywhere else — and normally arrives within 5 to 7 working days. Your access ends when the refund is issued.',
-    },
-    {
-      type: 'note',
-      text: 'Our payment provider cannot process a normal refund more than six months after the payment. If that applies to you, write to us anyway and we will find another way.',
-    },
-
-    { type: 'h', text: 'Failed and duplicate payments' },
-    {
-      type: 'p',
-      text: 'If a payment fails you are not charged and nothing is unlocked. If money has left your account but access has not appeared, it is usually a delayed confirmation and resolves by itself. If it has not within a few hours, write to us.',
-    },
-    {
-      type: 'p',
-      text: 'If you were charged twice for the same thing, tell us and we will refund the duplicate in full. The seven-day window and the 20% condition do not apply to a duplicate charge.',
-    },
-  ],
-}
-
-export const LEGAL_DOCUMENTS = [TERMS, REFUNDS]
+export const LEGAL_DOCUMENTS = [TERMS]

@@ -3,10 +3,9 @@ import {
   FileText,
   Info,
   Mail,
-  RotateCcw,
   ShieldCheck,
   Grid3x3,
-  LayoutDashboard,
+  Home,
   LayoutGrid,
   Library,
   SquareFunction,
@@ -65,7 +64,9 @@ export const NAV: NavGroup[] = [
   {
     label: 'Main menu',
     links: [
-      { href: '/', label: 'Home', hint: 'What to do next', icon: LayoutDashboard },
+      // The same glyph the breadcrumb uses for Home. Two different house
+      // icons for one destination reads as two destinations.
+      { href: '/', label: 'Home', hint: 'What to do next', icon: Home },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
     ],
@@ -99,11 +100,9 @@ export const NAV: NavGroup[] = [
  */
 export const INFO_LINKS: { href: string; label: string; icon: LucideIcon }[] = [
   { href: '/information', label: 'Overview', icon: Info },
-  { href: '/about', label: 'About this resource', icon: Info },
   { href: '/contact', label: 'Help and contact', icon: Mail },
   { href: '/privacy', label: 'Your data', icon: ShieldCheck },
   { href: '/terms', label: 'Terms', icon: FileText },
-  { href: '/refunds', label: 'Refunds', icon: RotateCcw },
 ]
 
 /** The informational page a path is, if it is one. */

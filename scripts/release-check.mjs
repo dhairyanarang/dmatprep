@@ -197,7 +197,19 @@ const check = (name, ok, detail) => {
   // Every point the disclaimer has to make, and the page it has to make it on.
   // Checked against the BUILT html, so a refactor that drops one is caught.
   const home = readFileSync(join(BUILD, 'index.html'), 'utf8')
-  const about = existsSync(join(BUILD, 'about.html')) ? readFileSync(join(BUILD, 'about.html'), 'utf8') : ''
+  /**
+   * The page carrying the fuller statement.
+   *
+   * It was `/about` until that page was removed for being internal detail
+   * rather than something a candidate needs. The OBLIGATION did not move with
+   * it — a product that says "not affiliated" in one line still owes a page
+   * that says it properly — so the fuller statement now lives on the
+   * Information landing page and is checked there. The two points below are
+   * unchanged; only the page they are required on has.
+   */
+  const about = existsSync(join(BUILD, 'information.html'))
+    ? readFileSync(join(BUILD, 'information.html'), 'utf8')
+    : ''
 
   const required = [
     ['independence', /not affiliated with, endorsed by, or sponsored by/i, home],
@@ -206,8 +218,8 @@ const check = (name, ok, detail) => {
     ['questions are not official', /not official examination questions/i, home],
     ['the real exam may differ', /may differ in content/i, home],
     ['no outcome is guaranteed', /guarantees no examination result|does not guarantee/i, home],
-    ['a fuller statement exists at /about', /not affiliated with, endorsed by, or sponsored by/i, about],
-    ['/about says nothing is approved', /has not been signed off by a person/i, about],
+    ['a fuller statement exists at /information', /not affiliated with, endorsed by, or sponsored by/i, about],
+    ['/information says nothing is approved', /has not been signed off by a person|reviewed or approved anything here/i, about],
   ]
   const absent = required.filter(([, re, text]) => !re.test(text)).map(([name]) => name)
 

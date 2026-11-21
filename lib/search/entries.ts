@@ -109,7 +109,7 @@ const PAGES: SearchEntry[] = [
     description: 'Who runs this, what it stores, and the terms',
     href: '/information',
     group: 'Go to',
-    keywords: ['help', 'policy', 'legal', 'about', 'privacy', 'terms', 'refunds'],
+    keywords: ['help', 'policy', 'legal', 'privacy', 'terms', 'contact', 'support'],
   },
   {
     id: 'pricing',
@@ -209,6 +209,20 @@ function mockEntries(): SearchEntry[] {
  * The informational pages, from the same list the sidebar renders. One list,
  * so a page cannot be in the navigation and missing from search.
  */
+/**
+ * Extra terms that should find an informational page.
+ *
+ * Refunds used to be a page of their own. It is a section of the Terms now,
+ * and someone searching the word still has to land on it — an empty result
+ * for "refund" reads as "we have no policy", which is not what happened.
+ */
+const INFO_KEYWORDS: Record<string, string[]> = {
+  '/terms': ['refund', 'refunds', 'cancel', 'licence', 'liability', 'payment'],
+  '/privacy': ['data', 'delete', 'cookies', 'storage', 'gdpr'],
+  '/contact': ['help', 'support', 'email', 'problem', 'stuck'],
+  '/information': ['about', 'who runs this', 'independent', 'policies'],
+}
+
 function infoEntries(): SearchEntry[] {
   // Any page PAGES already describes properly keeps its richer entry — /privacy
   // has a description there that "Your data" alone does not carry, and two rows
@@ -219,7 +233,7 @@ function infoEntries(): SearchEntry[] {
     title: link.label,
     href: link.href,
     group: 'Go to' as const,
-    keywords: ['information', 'policy', 'legal', 'help'],
+    keywords: ['information', 'policy', 'legal', 'help', ...(INFO_KEYWORDS[link.href] ?? [])],
   }))
 }
 
