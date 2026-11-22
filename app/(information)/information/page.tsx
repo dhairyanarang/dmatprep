@@ -2,12 +2,13 @@ import Link from 'next/link'
 import { ArrowRight, FileText, Mail, ShieldCheck } from 'lucide-react'
 
 import { SubPage } from '@/components/layout/sub-nav'
+import { canonical } from '@/lib/seo'
 
 export const metadata = {
   title: 'Information',
   description: 'Who runs dMAT Prep, what it stores, and the terms it is offered under',
+  alternates: { canonical: canonical('/information') },
 }
-
 /**
  * The Information landing page.
  *

@@ -9,9 +9,14 @@ import {
 } from '@/components/exam/visuals'
 import { SECTION_ICON } from '@/lib/nav'
 import { SECTIONS, type SectionId } from '@/lib/sections'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Format & structure' }
-
+export const metadata = {
+  title: 'Format & structure',
+  description:
+    'The dMAT format: two modules, three Core subtests of 25 minutes and 20 items each, and a General Academic Module of roughly 60 questions in 90 minutes.',
+  alternates: { canonical: canonical('/exam/format') },
+}
 const SCHEDULE: Segment[] = [
   { label: 'Figure Sequences', minutes: 25, tone: 'figures' },
   { label: 'Mathematical Equations', minutes: 25, tone: 'equations' },

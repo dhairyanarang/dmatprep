@@ -6,9 +6,14 @@ import { Badge } from '@/components/ui/badge'
 import { SOURCES, type SourceId } from '@/content/exam/sources'
 import { buildLedger } from '@/lib/content/ledger'
 import { cn } from '@/lib/utils'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Sources' }
-
+export const metadata = {
+  title: 'Sources',
+  description:
+    'Every claim dMAT Prep makes about the examination, the official page it came from and the date it was read — including the two points where official sources disagree.',
+  alternates: { canonical: canonical('/exam/sources') },
+}
 export default function ExamSourcesPage() {
   const { bySource, flagged } = buildLedger()
 

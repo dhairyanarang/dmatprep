@@ -5,12 +5,10 @@ import { GeistSans } from 'geist/font/sans'
 import { Analytics } from '@vercel/analytics/react'
 
 import { Clarity } from '@/components/analytics/clarity'
-import { AuthNotice } from '@/components/auth/auth-notice'
 import { SyncProvider } from '@/components/auth/sync-provider'
 import { DevAnnotations } from '@/components/dev/annotations'
 
-import { AppSidebar } from '@/components/layout/app-sidebar'
-import { TopBar } from '@/components/layout/top-bar'
+import { Chrome } from '@/components/layout/chrome'
 import { ProDialogProvider } from '@/components/payments/pro-dialog'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { Toaster } from '@/components/ui/sonner'
@@ -79,20 +77,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body className="flex min-h-full flex-col">
         <TooltipProvider>
           <ProDialogProvider>
-          <div className="flex min-h-svh">
-            <AppSidebar />
-
-            <div className="flex min-w-0 flex-1 flex-col">
-              <TopBar />
-              <AuthNotice />
-              {/* No global footer. The independence statement is carried on
-                  every page by the sidebar's one-line version, and in full by
-                  `PageDisclaimer` on the informational pages — rather than
-                  three paragraphs of legal text under a half-answered
-                  question. */}
-              <main className="flex-1">{children}</main>
-            </div>
-          </div>
+          {/* Which shell this route gets — the product's or the public
+              site's — is decided in one place. See components/layout/chrome.tsx. */}
+          <Chrome>{children}</Chrome>
           </ProDialogProvider>
           <Toaster />
           {/* Moves progress between this browser and the cloud. Renders nothing,

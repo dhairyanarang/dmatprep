@@ -61,9 +61,11 @@ export function TopBar() {
         aria-label="Breadcrumb"
         className="flex min-w-0 flex-1 items-center gap-1.5 overflow-hidden whitespace-nowrap"
       >
-        {/* Home is always the first step back, with or without a trail. */}
+        {/* Home is always the first step back, with or without a trail — and
+            inside the product that means the dashboard, not the public
+            landing page at `/`. */}
         <Link
-          href="/"
+          href="/dashboard"
           className="text-muted-foreground hover:text-foreground focus-visible:ring-ring inline-flex shrink-0 items-center gap-1.5 rounded text-sm transition-colors focus-visible:ring-2 focus-visible:outline-none"
         >
           <Home className="size-[18px]" aria-hidden />

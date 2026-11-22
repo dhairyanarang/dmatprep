@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { ContentBlocks } from '@/components/content/content-blocks'
 import { getGuide } from '@/lib/content/registry'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
+import { SUBTEST_META } from '@/content/site/subtests'
+import { canonical } from '@/lib/seo'
 
 export function generateStaticParams() {
   return SECTION_IDS.map((section) => ({ section }))
@@ -13,7 +15,11 @@ export async function generateMetadata({
 }: PageProps<'/module-a/[section]/overview'>) {
   const { section } = await params
   if (!isSectionId(section)) return {}
-  return { title: `${SECTION_BY_ID[section].title} — Overview` }
+  return {
+    title: `${SECTION_BY_ID[section].title} — rules, method and examples`,
+    description: SUBTEST_META[section].overview,
+    alternates: { canonical: canonical(`/module-a/${section}/overview`) },
+  }
 }
 
 export default async function SectionOverviewPage({

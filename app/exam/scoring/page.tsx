@@ -1,9 +1,14 @@
 import { ConfidenceBadge } from '@/components/content/source-ref'
 import { MilestoneTrack, ScoreScale, Section, Stat, StatGrid } from '@/components/exam/visuals'
 import { SubPage } from '@/components/layout/sub-nav'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Scoring & Results' }
-
+export const metadata = {
+  title: 'Scoring & Results',
+  description:
+    'How the dMAT is scored: a 0 to 200 scale with a mean of 100, a percentile rank, module scores added for the total, and what is not yet published about cut-offs.',
+  alternates: { canonical: canonical('/exam/scoring') },
+}
 export default function ExamScoringPage() {
   return (
     <SubPage

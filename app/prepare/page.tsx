@@ -6,9 +6,14 @@ import { TileCard } from '@/components/layout/tile-card'
 import { getBankSize } from '@/lib/content/registry'
 import { getPacks, totalGamQuestions } from '@/lib/gam/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Prepare' }
-
+export const metadata = {
+  title: 'Prepare',
+  description:
+    'Practise the three dMAT Core subtests — Figure Sequences, Mathematical Equations and Latin Squares — with worked solutions, plus the General Academic pilot packs.',
+  alternates: { canonical: canonical('/prepare') },
+}
 /**
  * Prepare, in the design's composition: one framed card per Core subtest, two
  * to a row, each carrying its own coverage and its own access line.

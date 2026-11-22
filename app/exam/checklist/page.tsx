@@ -2,9 +2,14 @@ import { ProvenanceKey, ProvenanceTag } from '@/components/content/provenance'
 import { Section } from '@/components/exam/visuals'
 import { SubPage } from '@/components/layout/sub-nav'
 import { ChecklistItems } from '@/components/exam/checklist-items'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Pre-exam checklist' }
-
+export const metadata = {
+  title: 'Pre-exam checklist',
+  description:
+    'A short pre-exam checklist for dMAT candidates: what to confirm, what to bring, and what the rules do not allow you to take in.',
+  alternates: { canonical: canonical('/exam/checklist') },
+}
 export default function ChecklistPage() {
   return (
     <SubPage

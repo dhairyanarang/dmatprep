@@ -1,8 +1,13 @@
 import { AllowedList, ChipGrid, MilestoneTrack, Section, Stat, StatGrid } from '@/components/exam/visuals'
 import { SubPage } from '@/components/layout/sub-nav'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Dates & Logistics' }
-
+export const metadata = {
+  title: 'Dates & Logistics',
+  description:
+    'dMAT dates for 2027, the application deadlines, the test fee and how registration and payment are handled — with the official source for each.',
+  alternates: { canonical: canonical('/exam/logistics') },
+}
 const CENTRES = [
   'Ahmedabad',
   'Bengaluru',

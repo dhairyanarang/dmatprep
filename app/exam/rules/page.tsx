@@ -2,9 +2,14 @@ import { AlertTriangle } from 'lucide-react'
 
 import { AllowedList, Section, Stat, StatGrid } from '@/components/exam/visuals'
 import { SubPage } from '@/components/layout/sub-nav'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Exam-Day Rules' }
-
+export const metadata = {
+  title: 'Exam-Day Rules',
+  description:
+    'What is allowed in the dMAT test room: no written notes, no calculators, phones or watches, and only your identity document on the desk.',
+  alternates: { canonical: canonical('/exam/rules') },
+}
 const CONDUCT = [
   ['Arrive before materials are distributed', 'Arrive after and you are not admitted. No exceptions.'],
   ['Bring the ID you registered with', 'It must match your online registration. Without it you are not admitted.'],

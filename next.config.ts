@@ -8,18 +8,22 @@ const nextConfig: NextConfig = {
     return [
       { source: '/practice', destination: '/test', permanent: false },
       // Review is not part of the public beta. The data model and components
-      // remain; the destination does not, so any saved link lands on Home
-      // rather than a 404.
-      { source: '/review', destination: '/', permanent: false },
+      // remain; the destination does not, so any saved link lands on the
+      // dashboard rather than a 404. It pointed at '/' until `/` became the
+      // public landing page — a saved link from inside the product should come
+      // back inside the product, not to a marketing page.
+      { source: '/review', destination: '/dashboard', permanent: false },
       // The study plan was removed as a product feature. A bookmark to it
       // lands on Prepare, which is where its one real job — deciding what to
       // do next — now lives.
       { source: '/study-plan', destination: '/prepare', permanent: false },
-      // The refund policy is a section of the Terms now, and "About this
-      // resource" was internal detail rather than something a candidate needs.
-      // Both had public URLs, so both land somewhere real.
+      // The refund policy is a section of the Terms now, so a saved link
+      // lands somewhere real.
       { source: '/refunds', destination: '/terms', permanent: false },
-      { source: '/about', destination: '/information', permanent: false },
+      // `/about` redirected to /information while there was no About page.
+      // There is one now — who built this, how the questions are verified and
+      // what the tool does not claim — which is what someone typing /about is
+      // looking for. /information remains, as the index of the policy pages.
     ]
   },
   /**

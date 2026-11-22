@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageContainer } from '@/components/layout/page-shell'
 
 export const metadata = { title: 'Page not found' }
@@ -8,10 +9,16 @@ export const metadata = { title: 'Page not found' }
  * The 404, in the app's own voice.
  *
  * Next's default renders "404: This page could not be found." inside the root
- * layout — so the navigation and the independence statement were already there,
- * but the copy was the framework's and offered nowhere to go. A candidate who
- * mistypes a URL should land somewhere that helps rather than somewhere that
- * merely reports.
+ * layout, but the copy was the framework's and offered nowhere to go. A
+ * candidate who mistypes a URL should land somewhere that helps rather than
+ * somewhere that merely reports.
+ *
+ * It states the independence notice itself rather than inheriting it from the
+ * surrounding shell. A 404 is a page a stranger can land on directly from a
+ * search result or a stale link, and the notice is the one thing on it that is
+ * not optional — so it should not depend on which chrome happens to wrap this
+ * route. `scripts/test/public-claims.test.mjs` checks every prerendered page
+ * for it, and this is the page where inheriting it proved fragile.
  */
 export default function NotFound() {
   return (
@@ -27,7 +34,10 @@ export default function NotFound() {
 
       <nav aria-label="Where to go instead" className="flex flex-col gap-2 text-sm">
         <Link className="text-foreground underline underline-offset-2" href="/">
-          Home — your progress at a glance
+          Home — what dMAT Prep is
+        </Link>
+        <Link className="text-foreground underline underline-offset-2" href="/dashboard">
+          Your dashboard — progress at a glance
         </Link>
         <Link className="text-foreground underline underline-offset-2" href="/prepare">
           Prepare — learn and practise
@@ -39,6 +49,8 @@ export default function NotFound() {
           About the exam — format, rules and dates
         </Link>
       </nav>
+
+      <PageDisclaimer />
     </PageContainer>
   )
 }

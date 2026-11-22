@@ -4,9 +4,14 @@ import { GamPilotNotice } from '@/components/gam/pilot-notice'
 import { Panel, PageShell } from '@/components/layout/page-shell'
 import { TileCard } from '@/components/layout/tile-card'
 import { GAM_TOTAL_MINUTES, getPacks, totalGamQuestions } from '@/lib/gam/registry'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Module B — General Academic' }
-
+export const metadata = {
+  title: 'Module B — General Academic',
+  description:
+    'Pilot practice for the dMAT General Academic Module: original source packs with passages, tables and charts, and questions that depend on reading them.',
+  alternates: { canonical: canonical('/module-b') },
+}
 export default function ModuleBPage() {
   const packs = getPacks()
 

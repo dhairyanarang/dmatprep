@@ -3,9 +3,14 @@ import { ShieldCheck } from 'lucide-react'
 import { SupportEmail } from '@/components/support/support-link'
 
 import { InfoPage } from '@/components/layout/info-page'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Your data' }
-
+export const metadata = {
+  title: 'Your data',
+  description:
+    'What dMAT Prep stores, what it does not, and which third-party services are involved.',
+  alternates: { canonical: canonical('/privacy') },
+}
 /**
  * The minimum honest disclosure, and no more.
  *

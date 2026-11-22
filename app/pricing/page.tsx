@@ -11,12 +11,13 @@ import { getCoreMocks, mockSize } from '@/lib/content/mocks'
 import { getBankSize } from '@/lib/content/registry'
 import { ACCESS_IS_LIFETIME, COMMERCE_ENABLED, formatPrice } from '@/lib/payments/config'
 import { SECTION_BY_ID, SECTION_IDS } from '@/lib/sections'
+import { canonical } from '@/lib/seo'
 
 export const metadata = {
   title: 'Plans and pricing',
   description: 'What is free, what is paid, and what it costs',
+  alternates: { canonical: canonical('/pricing') },
 }
-
 /**
  * Pricing, in the design's composition: a centred hero, two plan columns with
  * the paid one on its gold plane, then the three things a buyer actually

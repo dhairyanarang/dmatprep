@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation'
 import { HubCard } from '@/components/layout/hub'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
+import { canonical } from '@/lib/seo'
+import { SUBTEST_META } from '@/content/site/subtests'
 
 export function generateStaticParams() {
   return SECTION_IDS.map((section) => ({ section }))
@@ -10,7 +12,12 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<'/module-a/[section]'>) {
   const { section } = await params
-  return isSectionId(section) ? { title: SECTION_BY_ID[section].title } : {}
+  if (!isSectionId(section)) return {}
+  return {
+    title: SECTION_BY_ID[section].title,
+    description: SUBTEST_META[section].landing,
+    alternates: { canonical: canonical(`/module-a/${section}`) },
+  }
 }
 
 /**

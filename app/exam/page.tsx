@@ -2,9 +2,14 @@ import { LatestUpdate } from '@/components/exam/latest-update'
 import { StartHere } from '@/components/exam/start-here'
 import { SubPage } from '@/components/layout/sub-nav'
 import { SOURCES } from '@/content/exam/sources'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'About the Exam' }
-
+export const metadata = {
+  title: 'About the Exam',
+  description:
+    'What the Digital Master Assessment Test is, who sits it in Germany, how it is structured and scored — summarised from the official sources, with each one named.',
+  alternates: { canonical: canonical('/exam') },
+}
 export default function ExamPage() {
   return (
     <SubPage

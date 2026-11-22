@@ -4,9 +4,14 @@ import { SupportEmail } from '@/components/support/support-link'
 import { OPERATOR, SUPPORT_RESPONSE_AIM } from '@/content/legal/operator'
 
 import { InfoPage } from '@/components/layout/info-page'
+import { canonical } from '@/lib/seo'
 
-export const metadata = { title: 'Contact' }
-
+export const metadata = {
+  title: 'Contact',
+  description:
+    'How to report an incorrect answer, a misleading explanation or a fact that has gone stale on dMAT Prep.',
+  alternates: { canonical: canonical('/contact') },
+}
 /**
  * One address, and what we can actually help with.
  *

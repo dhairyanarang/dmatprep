@@ -66,7 +66,10 @@ export const NAV: NavGroup[] = [
     links: [
       // The same glyph the breadcrumb uses for Home. Two different house
       // icons for one destination reads as two destinations.
-      { href: '/', label: 'Home', hint: 'What to do next', icon: Home },
+      // `/` is the public landing page now; the working dashboard lives at
+      // /dashboard. Inside the product "Home" means the dashboard, which is
+      // what somebody mid-preparation is looking for when they press it.
+      { href: '/dashboard', label: 'Home', hint: 'What to do next', icon: Home },
       { href: '/prepare', label: 'Prepare', hint: 'Learn and practice', icon: Library },
       { href: '/test', label: 'Test', hint: 'Timed practice and mocks', icon: TestTubeDiagonal },
     ],
