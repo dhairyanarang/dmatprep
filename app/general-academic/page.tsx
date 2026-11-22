@@ -82,6 +82,10 @@ export default function GeneralAcademicPage() {
                 single-choice.
               </li>
               <li>
+                <strong>No negative marking.</strong> No points are deducted for wrong answers, so
+                a blank and a wrong answer are worth the same — never leave one unanswered.
+              </li>
+              <li>
                 Subject matter may be drawn from mathematics, computational sciences, the natural
                 sciences, engineering, business administration, economics, the social sciences and
                 the humanities. The official list is explicitly open-ended.

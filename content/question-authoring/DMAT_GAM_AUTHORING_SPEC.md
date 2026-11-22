@@ -102,8 +102,13 @@ Recording this explicitly so nothing here gets invented later:
 - **Any difficulty tiering.** No low/medium/high labels exist for this module,
   and the material warns the samples are not difficulty-representative.
 - **Topic weighting** across the eight named areas.
-- **Negative marking.** Same position as the Core Module: unsupported. The
-  guidance to guess implies it only indirectly.
+- ~~**Negative marking.**~~ **RESOLVED 22 Nov 2026 — it is officially stated and
+  this is no longer an unknown.** g.a.s.t. writes, under "Tips for taking the
+  exam", that no points are deducted for wrong answers; the sentence appears on
+  both the preparation page and the current dMAT-in-India page. See the entry in
+  CLAUDE.md. What remains unknown is how the score is computed beyond being a
+  conversion of correct answers, and whether an unanswered item is treated
+  differently from a wrong one.
 - **Source length limits**, register, or whether an input may be non-expository
   (all four samples are expository).
 - **Ordering of questions within a pack** (by difficulty or otherwise).

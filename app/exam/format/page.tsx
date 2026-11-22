@@ -1,3 +1,4 @@
+import { ExamLink } from '@/components/exam/exam-link'
 import { SubPage } from '@/components/layout/sub-nav'
 import {
   ChipGrid,
@@ -109,7 +110,7 @@ export default function ExamFormatPage() {
           />
         </Section>
 
-        <Section title="Two things worth knowing">
+        <Section title="Three things worth knowing">
           <div className="grid gap-4 sm:grid-cols-2">
             <div className="border-warning/35 bg-warning-tint/50 rounded-2xl border p-4">
               <p className="text-sm font-medium">The official sources disagree on duration</p>
@@ -127,6 +128,16 @@ export default function ExamFormatPage() {
                 <span className="text-foreground">only</span> in the preparatory materials — in the
                 exam you see short reminders. Figure Sequences is the one to know: a single item
                 asks for two matrices, so it takes two selections.
+              </p>
+            </div>
+
+            <div className="border-border bg-muted/50 rounded-2xl border p-4">
+              <p className="text-sm font-medium">There is no negative marking</p>
+              <p className="text-muted-foreground mt-2 text-sm leading-relaxed">
+                No points are deducted for wrong answers, and the instructions tell you to guess
+                when you do not know. A blank and a wrong answer are worth the same, so there is
+                never a reason to leave a question unanswered. The full claim and its sources are
+                on <ExamLink href="/exam/scoring">Scoring &amp; results</ExamLink>.
               </p>
             </div>
           </div>

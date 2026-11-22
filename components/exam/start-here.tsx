@@ -23,7 +23,8 @@ const ANSWERS: { q: string; a: React.ReactNode; more?: React.ReactNode }[] = [
     more: (
       <>
         The Core Module runs 25 minutes per subtest; the Subject Module runs 90. All tasks are
-        single-choice. <ExamLink href="/exam/format">Format &amp; structure</ExamLink> has the full
+        single-choice, and no points are deducted for wrong answers — there is no negative
+        marking. <ExamLink href="/exam/format">Format &amp; structure</ExamLink> has the full
         breakdown, including where the two official sources disagree on total duration.
       </>
     ),
