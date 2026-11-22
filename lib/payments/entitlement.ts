@@ -15,7 +15,7 @@ import type { EntitlementReason, EntitlementStatus, PaymentStatus } from './type
  * that a mirror is not a proof: these tests exercise this function, not the
  * SQL. The precedence table below is the shared specification, and the SQL
  * needs its own integration tests against a real Postgres before anyone relies
- * on it. See `docs/SPRINT4_REPORT.md` §6.1 risk 1.
+ * on it. See `docs/archive/SPRINT4_REPORT.md` §6.1 risk 1.
  *
  * Precedence, in order, and each line exists because of a real case:
  *

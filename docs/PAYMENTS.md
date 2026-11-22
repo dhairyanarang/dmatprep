@@ -1,5 +1,19 @@
 # Payments — decision document
 
+> ## ⚠️ STATUS — corrected 22 November 2026
+>
+> **This is no longer specification-only. The payment path is implemented.**
+>
+> Payment routes, the schema, entitlement logic and the webhook all exist — see the status note at the top of `docs/ENTITLEMENT.md` for the inventory. No npm payment SDK is installed by design: `lib/payments/razorpay.ts` calls `https://api.razorpay.com/v1` over REST and verifies signatures locally in `lib/payments/signature.ts`. The price is `PRICE_MINOR = 99_900` (₹999, one-time, lifetime) in `lib/payments/config.ts`, decided 20 November 2026.
+>
+> The banner below was written before any of it existed and is preserved only
+> so the sequence of decisions stays readable. **Treat the status lines in the
+> original text as historical.** The design reasoning in the body is still the
+> authority for how this works and why — it is the status, not the content,
+> that went stale.
+
+---
+
 **Specification only. Nothing in this document is implemented.** No payment SDK,
 route, table, migration, service-role key, entitlement logic, coupon or
 credential exists in this repository, and none should be added until the

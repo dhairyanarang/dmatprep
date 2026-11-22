@@ -1,5 +1,19 @@
 # Entitlement architecture — proposal, revision 2
 
+> ## ⚠️ STATUS — corrected 22 November 2026
+>
+> **This is no longer a proposal. It is implemented and in the repository.**
+>
+> `supabase/migrations/20261118120000_payments.sql` creates five tables — `payment_orders`, `payments`, `webhook_events`, `manual_grants`, `entitlements` — with row-level security enabled on all five, self-read policies, and nine server-side functions including `recompute_entitlement`, `claim_webhook_event` and `apply_payment_event`. `lib/payments/` holds 13 modules and `/api/entitlement`, `/api/checkout/*`, `/api/reconcile` and `/api/webhooks/razorpay` all exist. Selling is gated by `NEXT_PUBLIC_COMMERCE_ENABLED`, not by absence of code.
+>
+> The banner below was written before any of it existed and is preserved only
+> so the sequence of decisions stays readable. **Treat the status lines in the
+> original text as historical.** The design reasoning in the body is still the
+> authority for how this works and why — it is the status, not the content,
+> that went stale.
+
+---
+
 **This is a proposal and nothing in it has been applied.** No table exists, no
 migration file has been written, no RLS policy has been added, no service-role
 key exists in any environment, and no payment route exists. The brief requires

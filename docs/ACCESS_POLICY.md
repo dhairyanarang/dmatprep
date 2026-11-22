@@ -1,5 +1,19 @@
 # Product access rules — proposal for approval
 
+> ## ⚠️ STATUS — corrected 22 November 2026
+>
+> **These rules are implemented. The product does lock premium content.**
+>
+> The Free tier is 150 questions — 50 per Core subtest, listed in `content/access/free-set.json`. `npm run build:solutions` publishes only those to `public/solutions/` when the split is on, and `/api/content/solutions` performs its own entitlement check before serving a premium solution. The split is verifiable: with the split on, the public assets carry 150 solutions and zero premium ones.
+>
+> The banner below was written before any of it existed and is preserved only
+> so the sequence of decisions stays readable. **Treat the status lines in the
+> original text as historical.** The design reasoning in the body is still the
+> authority for how this works and why — it is the status, not the content,
+> that went stale.
+
+---
+
 **This is a proposal. No access rule has been changed, and nothing in the
 product is locked today.** It is here to be approved or amended before the
 policy is implemented, because it contradicts rules this repository currently

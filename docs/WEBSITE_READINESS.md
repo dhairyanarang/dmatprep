@@ -1,5 +1,21 @@
 # Public website and customer readiness
 
+> ## ⚠️ STATUS — note added 22 November 2026
+>
+> **Audited 18 November 2026, before the public website existed.** Read this as
+> the *requirements list* it is, not as a description of the site.
+>
+> Since then `/` became a public landing page (the dashboard moved to
+> `/dashboard`), and `/faq`, `/guides/*`, `/about`, `/general-academic`,
+> `sitemap.xml` and `robots.txt` were added, alongside the existing `/pricing`,
+> `/terms`, `/privacy`, `/contact` and `/information`. `/contact` exists and is
+> no longer ⛔. The compliance questions this document raises — a monitored
+> address, the grievance officer, the operator's legal details — are about
+> **content and a person**, not pages, and remain open: see
+> `docs/LEGAL_READINESS.md` and `docs/BUSINESS_SETUP.md`.
+
+---
+
 What a visitor and a paying customer must be able to find, and what is actually
 there today. Audited 18 November 2026 against the routes in `app/` and the
 requirements verified in `docs/RAZORPAY.md` §5 and `docs/BUSINESS_SETUP.md` §5.

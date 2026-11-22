@@ -129,8 +129,54 @@ rendered anywhere. Signing in adds durability across devices and nothing else;
 nothing is ever gated behind it. See `docs/SUPABASE.md` before touching
 `lib/progress/`, `lib/supabase/` or `supabase/migrations/`.
 
-Repo: `github.com/dhairyanarang/dmatprep`, branch `main`. Every route is static;
-nothing needs a server at request time.
+Repo: `github.com/dhairyanarang/dmatprep`, branch `main`.
+
+**Almost every route is static.** The exception is ten server routes: the eight
+under `app/api/` (checkout, entitlement, solutions, Module B marking, the
+Razorpay webhook, reconciliation) and `/auth/callback`. Everything a candidate
+reads or practises is prerendered; a server is needed only to take money, to
+decide what a signed-in account may download, and to complete a sign-in. This
+line used to read "every route is static" and stopped being true when payments
+landed on 18 November 2026.
+
+### Commerce — built, env-gated, and off by default
+
+Payments and entitlements are **implemented**, not planned: `lib/payments/`
+(13 modules), `supabase/migrations/20261118120000_payments.sql`, and the API
+routes above. Razorpay is the provider; Cashfree is the documented fallback.
+
+- **One price, one place.** `PRICE_MINOR = 99_900` (₹999, one-time, lifetime)
+  in `lib/payments/config.ts`. The pricing page, the sidebar card, the Terms,
+  the refund policy and the order the server creates all read it from there, so
+  a price shown to a buyer and a price charged to a card cannot disagree. Never
+  take an amount from the browser.
+- **`COMMERCE_ENABLED` (`NEXT_PUBLIC_COMMERCE_ENABLED=1`) gates the whole
+  commercial surface.** Unset, the product behaves exactly as it always has:
+  everything free, nothing for sale, no checkout affordance. This is a supported
+  mode, like guest mode.
+- **The Free/Pro split is enforced in two places, never one.** `build:solutions`
+  publishes only the free 150 to `public/solutions/` when the split is on, and
+  `/api/content/solutions` performs its own entitlement check. A cached
+  entitlement driving the interface is good UI; a cached entitlement releasing
+  content is a bug.
+- Read `docs/PAYMENTS.md`, `docs/RAZORPAY.md` and `docs/ENTITLEMENT.md` before
+  touching any of it. **Attempts and entitlements are immutable and additive** —
+  see the conventions below.
+
+### The public website
+
+Since 22 November 2026 the deployment serves two experiences on one domain:
+
+- **The public site** — `/` (landing), `/exam/*`, `/faq`, `/guides/*`,
+  `/about`, `/general-academic`, `/pricing`. Public header and footer, indexed,
+  in `sitemap.xml`.
+- **The application** — `/dashboard` and everything a candidate works in.
+  Sidebar and top bar, `noindex`, disallowed in `robots.txt`.
+
+`components/layout/chrome.tsx` decides which shell a route gets, in one place.
+Its default matters: **an unknown path gets the product shell, never the public
+one**, because `usePathname` returns null during prerender and the public
+branch would drop the independence statement. See the SEO conventions below.
 
 ### Visual feedback loop
 
@@ -156,7 +202,7 @@ removes it from the production graph. Verify with
 ## Conventions
 
 - **Content never lives in components.** All of it sits in `content/` as typed TS/JSON.
-  The one exception is the four exam reference pages: they are bespoke visual
+  The one exception is the seven exam reference pages: they are bespoke visual
   layouts, so their facts sit in the page files, and
   **`content/exam/claims.ts` is the audit record that feeds `/exam/sources`**.
   Change a fact on one of those pages and change it there too — that file exists
@@ -258,6 +304,32 @@ removes it from the production graph. Verify with
   and the runner's `timing` prop optional so it stays a drop-in.
 - Mobile and laptop are both first-class.
 
+- **The exam reference exists at two routes over one set of components.**
+  `/exam/*` is the public site's copy — indexed, in the sitemap, carrying the
+  canonicals. `/dashboard/exam/*` is the same seven pages inside the
+  application, `noindex`, reached from the sidebar. The app pages **import** the
+  public page components rather than restating them, so there is one set of
+  facts. A link between pages of the reference goes through `ExamLink`, which
+  rebases the canonical `/exam/...` path from the pathname — a hardcoded
+  `/exam/format` is correct on the public site and walks a student out of the
+  product.
+- **SEO metadata belongs in `lib/seo.ts`, never at the call site.** `canonical()`
+  for URLs, `social()` for Open Graph and Twitter *together*, and
+  `NOT_A_LANDING_PAGE` for any working screen. Two traps, both already sprung:
+  a page that exports its own `openGraph` **replaces** the parent's rather than
+  merging, so it silently loses the `opengraph-image` file convention unless it
+  spreads `social()`; and `robots.txt` is a request, not a boundary — a
+  disallowed URL can still be indexed from a link elsewhere, so every working
+  screen carries `noindex` as well.
+- **`SITE_ORIGIN` is a constant, not an environment variable.**
+  `https://dmatprep.vercel.app` has been shared in applications and must keep
+  working; a misconfigured deployment must not be able to change it underneath
+  the canonicals.
+- **No public page may state a dMAT fact that `content/exam/claims.ts` does not
+  record.** Rule zero applies to marketing copy exactly as it applies to the
+  exam pages, and `npm run release:check` asserts the independence disclaimer is
+  on every prerendered page.
+
 ## Design system — PrepdMAT (Figma is the source of truth)
 
 Figma: `LjpnjICgqimazVDo1Tw9IB` (PrepdMAT), Home at node `61:1781`. Values come
@@ -335,8 +407,20 @@ could not reach it with a naked single.
 
 ## Scope
 
-**Module A only** — Figure Sequences, Mathematical Equations, Latin Squares.
-Module B (General Academic Module) is a "coming soon" placeholder; do not build it out.
+**Module A is the product** — Figure Sequences, Mathematical Equations, Latin
+Squares. 543 committed questions, 89 quarantined and not served, 150 free.
+
+**Module B (General Academic) is a live pilot, not a placeholder.** This line
+read "a coming-soon placeholder; do not build it out" until 22 November 2026,
+by which time it had nine original source packs carrying 26 linked questions,
+practice routes, a timed session and a slot in the Core + GAM sample sitting.
+
+What governs it is honesty rather than scope: the packs have cleared automated
+validation, a leakage gate and independent adjudication, and **none has been
+signed off by a person**. `GamPilotNotice` and `/general-academic` both read
+that count from the registry at build time, so neither can overstate it. Read
+`content/question-authoring/DMAT_GAM_AUTHORING_SPEC.md` before adding any.
+Module B still must not grow a sidebar row.
 
 **Five sidebar rows, in two groups** — Home, Prepare, Test under "Main menu";
 About the Exam and Information under "The exam". This was four until 21 Nov
@@ -349,7 +433,9 @@ quietly, so a sixth row takes a decision and an edit to
 Review was removed from the public-beta IA — its data model, calculations and
 components all remain. Mistakes surface at the end of a practice set and at
 `/practice/mistakes`, which is reachable from the dashboard and from a result,
-and is not a sidebar row. `/review` redirects to Home.
+and is not a sidebar row. `/review` redirects to `/dashboard` — it pointed at
+`/` until `/` became the public landing page, and a saved link from inside the
+product should come back inside the product.
 
 **The Study Plan was removed on 21 Nov 2026**, by decision. `/study-plan`
 redirects to `/prepare`. Milestones survive because the pre-exam checklist uses
@@ -365,19 +451,33 @@ never a placeholder.
 
 ```bash
 npm run dev      # local dev server
-npm run build    # production build (also the type check)
+npm run build    # production build. THIS is the type check — `tsc --noEmit`
+                 # alone fails on a clean tree, because Next generates the
+                 # PageProps/LayoutProps route types into .next during a build.
 npm run lint
-npm test         # generator, solver, contract and append-only regression tests
-npm run verify:bank   # re-verify every committed question independently
-npm run verify:content # THE content workflow: solutions, bank, GAM, lint, build, tests
-npm run verify:gam    # the three GAM gates — validation, adjudication, human sign-off
-npm run register      # regenerate audit/content-register.{json,md}
+npm test         # generator, solver, contract, navigation and regression tests
+
+# Before shipping anything
+npm run release:check   # 6 containment checks over the BUILD: no quarantined or
+                        # draft question reaches it, no answers ship with a
+                        # question, exam facts trace to a source, and the
+                        # independence disclaimer is on every prerendered page
+npm run verify:bank     # re-verify every committed question independently
+npm run verify:content  # THE content workflow: solutions, bank, GAM, lint, build, tests
+npm run verify:gam      # the three GAM gates — validation, adjudication, sign-off
+npm run verify:rls      # Supabase row-level security policies
 npm run build:solutions # split the banks into public and solution halves
+npm run calibrate       # re-measure difficulty across the bank
+npm run register        # regenerate audit/content-register.{json,md}
 
 # Adding questions — append-only, never regenerates:
 node scripts/generate-batch.mjs --batch b2 --section figure-sequences \
      --low 5 --medium 5 --high 5 [--plan <path>] [--dry-run]
 ```
+
+**Where to start reading.** `docs/README.md` indexes every document and says
+what each is for. Historical reports live in `docs/archive/` and are records,
+not instructions — never follow them.
 
 <!-- BEGIN:nextjs-agent-rules -->
 

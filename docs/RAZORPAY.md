@@ -1,5 +1,19 @@
 # Razorpay — provider document
 
+> ## ⚠️ STATUS — corrected 22 November 2026
+>
+> **Razorpay is implemented. The integration exists and is exercised by tests.**
+>
+> `lib/payments/razorpay.ts` calls the REST API directly — order creation, payment fetch and reconciliation — with webhook signature verification in `lib/payments/signature.ts` and the handler at `app/api/webhooks/razorpay/route.ts`. Whether it can take money is a question of credentials and `NEXT_PUBLIC_COMMERCE_ENABLED`, not of code. The provider facts below were read on 18 November 2026 and should be re-read before anything load-bearing is relied on; §13 lists what.
+>
+> The banner below was written before any of it existed and is preserved only
+> so the sequence of decisions stays readable. **Treat the status lines in the
+> original text as historical.** The design reasoning in the body is still the
+> authority for how this works and why — it is the status, not the content,
+> that went stale.
+
+---
+
 **The provider decision is made. Nothing here is implemented, and the decision
 does not authorise implementing it.**
 
