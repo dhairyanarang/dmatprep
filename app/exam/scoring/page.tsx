@@ -40,12 +40,12 @@ export default function ExamScoringPage() {
             </p>
             <div className="border-success/20 mt-4 border-t pt-4">
               <p className="text-muted-foreground text-sm leading-relaxed">
-                There is no penalty for a wrong answer, so a blank costs exactly what a wrong guess
-                costs — and a guess sometimes pays.
+                No points are deducted for a wrong answer, so a blank costs exactly what a wrong
+                guess costs — and a guess sometimes pays.
               </p>
               <ConfidenceBadge
-                confidence="unconfirmed"
-                note="No official source states this either way. It follows from the score being a conversion of the number of correct answers, and from g.a.s.t. instructing candidates to guess — but “no negative marking” is nowhere written down."
+                confidence="official"
+                note="Stated outright by g.a.s.t., under “Tips for taking the exam”: “no points will be deducted for wrong answers.” It appears in identical words on the preparation page and on the current dMAT-in-India page. Both re-read 22 November 2026."
               />
             </div>
           </div>

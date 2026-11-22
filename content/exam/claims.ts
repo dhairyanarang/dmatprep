@@ -24,6 +24,7 @@ const HOME = 'dmat-home' as const
 const INDIA = 'dmat-india' as const
 const APS = 'aps-dmat' as const
 const FAQ = 'dmat-faq-india' as const
+const PREP = 'dmat-preparation' as const
 
 export const EXAM_CLAIMS: PageClaims[] = [
   {
@@ -83,10 +84,14 @@ export const EXAM_CLAIMS: PageClaims[] = [
       { text: 'The General Academic Module may draw on mathematics, computer science, the natural sciences, engineering, business administration, economics, the social sciences and the humanities. The list is explicitly open-ended.', sources: [{ id: FAQ }] },
       { text: 'The instructions tell candidates to guess when they do not know an answer. It appears in Figure Sequences, Latin Squares and the Subject Module; the Mathematical Equations instructions omit it.', sources: [{ id: GAM, page: 8 }, { id: GAM, page: 25 }, { id: GAM, page: 34 }] },
       {
-        text: 'There is no penalty for a wrong answer, so a blank costs exactly what a wrong guess costs.',
-        confidence: 'unconfirmed',
-        note: 'No official source states this either way. It follows from the score being a conversion of the number of correct answers, and from g.a.s.t. instructing candidates to guess — but “no negative marking” is nowhere written down.',
-        sources: [{ id: HOME }, { id: GAM, page: 8 }],
+        // UPGRADED 22 November 2026, on new official evidence. This was carried
+        // as `unconfirmed` with a note reading “no negative marking is nowhere
+        // written down”. It is now written down, in those words, on two
+        // official pages — so the old note had become the inaccurate claim.
+        // The grade follows the evidence in both directions.
+        text: 'No points are deducted for a wrong answer, so a blank costs exactly what a wrong guess costs.',
+        note: 'Stated outright by g.a.s.t., under “Tips for taking the exam”: “no points will be deducted for wrong answers.” It appears in identical words on the preparation page and on the current dMAT-in-India page. Both re-read 22 November 2026.',
+        sources: [{ id: PREP }, { id: INDIA }, { id: GAM, page: 8 }],
       },
       { text: 'Results for the 16 January 2027 sitting are released on 8 February 2027; for the 13 March 2027 sitting, on 5 April 2027.', sources: [{ id: INDIA }] },
       { text: 'Results are accessible only through the participant portal; none are sent by phone or email.', sources: [{ id: TERMS }] },

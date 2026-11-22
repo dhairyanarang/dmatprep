@@ -86,10 +86,19 @@ Two live consequences of that grading, both found by the 5 September audit:
 - **Duration.** GAM PDF p. 6 says *"about three hours with a break of 30 minutes"*;
   d-mat.de says *"three and a half hours"*. Computed from the parts: 75 + 30 + 90 =
   **195 min (3h15m)**. Show the breakdown and cite both.
-- **No negative marking is NOT officially stated.** Supported only indirectly by
-  *"If you do not know an answer, please guess which answer might be correct"* (GAM PDF
-  pp. 8, 25, 34) and score = *"a conversion of the total number of correct answers"*
-  (d-mat.de). Always render with `confidence: 'inferred'`, never as a rule.
+- **No negative marking — RESOLVED 22 Nov 2026. It IS officially stated.** This entry
+  previously read "NOT officially stated" and required `confidence: 'inferred'`. That is
+  now wrong, and the old note shipped on `/exam/scoring` was itself the inaccurate claim:
+  it told candidates "no negative marking is nowhere written down". It is written down, in
+  those words, under the heading **"Tips for taking the exam"** on two official pages:
+  *"If you do not know the solution to a task, take a guess: no points will be deducted for
+  wrong answers."* — `www.d-mat.de/en/preparation-for-the-exam/` and
+  `www.d-mat.de/en/dmat-in-india/`, both fetched and the sentence matched on both,
+  22 Nov 2026. The India page is the current one (it carries the 2027 cycle). The claim is
+  now graded **stated** in `content/exam/claims.ts` and rendered `confidence: 'official'`.
+  **Still unknown, and not to be filled in:** how the score is computed beyond being a
+  conversion of correct answers, and whether an unanswered item is treated differently
+  from a wrong one. Neither page says.
 - **Mathematical Equations phrasing — RESOLVED 5 Sep 2026, and now a coverage gap.**
   It is no longer unconfirmed: the official material *demonstrates both forms*. Example 1
   asks "What number does A correspond to?"; Example 2 asks "What numbers do **A and B**
