@@ -51,6 +51,21 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   applicationName: 'dMAT Prep',
   alternates: { canonical: '/' },
+  /**
+   * Google Search Console ownership, for `https://dmatprep.vercel.app`.
+   *
+   * It lives in the root metadata rather than in a dropped HTML file so that it
+   * is emitted on every page, survives every deployment, and is visible to
+   * whoever reads this file next. Next renders it as
+   * `<meta name="google-site-verification" content="…">`.
+   *
+   * **Do not remove it.** Search Console re-checks the tag periodically and
+   * silently unverifies the property when it disappears, which also drops the
+   * data and any sitemap submissions attached to it.
+   */
+  verification: {
+    google: 'Lyy5JMJeMkBXfaUafBnw0esCqMyj4W1MFOIYb4pbx4I',
+  },
   openGraph: {
     type: 'website',
     siteName: 'dMAT Prep',
