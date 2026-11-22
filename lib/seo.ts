@@ -119,3 +119,24 @@ export function social(opts: {
     },
   }
 }
+
+/**
+ * Metadata for a working screen that should not be a search result.
+ *
+ * The practice runners, the mocks, the timed sessions and the account page are
+ * reachable and are not secret — but they are a tool, not a destination. A
+ * search result that drops a stranger into a timed mock has served nobody, and
+ * an indexed practice runner would put questions from the bank into search
+ * results as public content, which is exactly what this site does not do.
+ *
+ * `robots.txt` already asks crawlers not to fetch most of these, but that file
+ * is a request and not a boundary: a disallowed URL can still be indexed from
+ * a link elsewhere, and `noindex` is the part that actually settles it. Neither
+ * is a security control — the Free and Pro split is enforced by the entitlement
+ * check and by which solutions are published, and nothing here changes that.
+ *
+ * `follow` stays on, so the links out of these pages still count.
+ */
+export const NOT_A_LANDING_PAGE = {
+  robots: { index: false, follow: true },
+} as const

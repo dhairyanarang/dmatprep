@@ -21,8 +21,9 @@ import {
 import { SECTION_ICON } from '@/lib/nav'
 import { GAM_TOTAL_MINUTES, totalGamQuestions } from '@/lib/gam/registry'
 import { SECTIONS, SECTION_IDS, type SectionId } from '@/lib/sections'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Test' }
+export const metadata = { title: 'Test', ...NOT_A_LANDING_PAGE }
 
 /** The noun each subtest's own official instructions use for its 20 items. */
 const UNIT: Record<SectionId, string> = {

@@ -1,7 +1,8 @@
 import { GamPackRunner } from '@/components/gam/pack-runner'
 import { GAM_TOTAL_MINUTES, getPublicPacks } from '@/lib/gam/registry'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Timed session — Module B' }
+export const metadata = { title: 'Timed session — Module B', ...NOT_A_LANDING_PAGE }
 
 /**
  * OFFICIAL (GAM PDF p. 34): the subject module runs 90 minutes in total.

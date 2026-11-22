@@ -3,8 +3,9 @@ import { PageShell } from '@/components/layout/page-shell'
 import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_IDS, type SectionId } from '@/lib/sections'
 import type { PublicQuestion } from '@/lib/content/registry'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Your mistakes' }
+export const metadata = { title: 'Your mistakes', ...NOT_A_LANDING_PAGE }
 
 /**
  * Static, like every route. Which questions are mistakes is a fact about this

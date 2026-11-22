@@ -4,6 +4,7 @@ import { PageShell } from '@/components/layout/page-shell'
 import { TimedLauncher } from '@/components/practice/timed-launcher'
 import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_BY_ID, SECTION_IDS, isSectionId } from '@/lib/sections'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
 /** The noun each subtest's own official instructions use for its 20 items. */
 const UNIT: Record<string, string> = {
@@ -18,8 +19,11 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps<'/practice/timed/[section]'>) {
   const { section } = await params
-  if (!isSectionId(section)) return {}
-  return { title: `${SECTION_BY_ID[section].title} — Timed practice` }
+  if (!isSectionId(section)) return NOT_A_LANDING_PAGE
+  return {
+    title: `${SECTION_BY_ID[section].title} — Timed practice`,
+    ...NOT_A_LANDING_PAGE,
+  }
 }
 
 export default async function TimedSectionPage({ params }: PageProps<'/practice/timed/[section]'>) {

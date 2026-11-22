@@ -2,8 +2,9 @@ import { PageShell } from '@/components/layout/page-shell'
 import { TimedLauncher } from '@/components/practice/timed-launcher'
 import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTIONS } from '@/lib/sections'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Diagnostic' }
+export const metadata = { title: 'Diagnostic', ...NOT_A_LANDING_PAGE }
 
 const UNIT: Record<string, string> = {
   'figure-sequences': 'series',

@@ -19,6 +19,13 @@ import { SITE_ORIGIN } from '@/lib/seo'
  *  · `/practice/*`, `/test/*`, `/module-b/timed` are running interfaces. A
  *    visitor who lands mid-mock from a search result has been failed.
  *  · `/api/*` returns JSON and should never be a search result.
+ *
+ * This file is a request, not a boundary. A disallowed URL can still be
+ * indexed from a link somewhere else, so every page listed here also carries
+ * `noindex` through `NOT_A_LANDING_PAGE` in `lib/seo.ts` — that is the half
+ * that actually settles it. Neither is access control: what a Free account may
+ * see is decided by the entitlement check and by which solutions are
+ * published, and nothing in this file affects either.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -34,6 +41,11 @@ export default function robots(): MetadataRoute.Robots {
           '/practice/',
           '/test/',
           '/module-b/timed',
+          // `/practice/` above does not cover these: a prefix rule matches from
+          // the start of the path, so the per-subtest runners and the General
+          // Academic packs sit outside it and were being crawled.
+          '/module-a/*/practice',
+          '/module-b/practice/',
         ],
       },
     ],

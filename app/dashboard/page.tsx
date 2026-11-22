@@ -7,6 +7,7 @@ import { PageDisclaimer } from '@/components/layout/page-disclaimer'
 import { PageContainer } from '@/components/layout/page-shell'
 import { getBankSize } from '@/lib/content/registry'
 import { SECTIONS, type SectionId } from '@/lib/sections'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
 export const metadata = {
   title: 'Your preparation',
@@ -15,7 +16,7 @@ export const metadata = {
   // same empty frame for every visitor who is not signed in, and the figures on
   // it belong to one candidate. Keeping it out of the index also stops it
   // competing with the landing page at `/`.
-  robots: { index: false, follow: true },
+  ...NOT_A_LANDING_PAGE,
 }
 
 /**

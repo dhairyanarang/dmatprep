@@ -28,7 +28,7 @@ import { SiteHeader } from '@/components/site/site-header'
  * crawler receives genuinely has no sidebar in it — the switch is not a
  * client-side repaint.
  */
-const PUBLIC_PREFIXES = ['/faq', '/guides', '/about']
+const PUBLIC_PREFIXES = ['/faq', '/guides', '/about', '/general-academic']
 
 export function isPublicRoute(pathname: string): boolean {
   if (pathname === '/') return true

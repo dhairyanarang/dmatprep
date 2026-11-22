@@ -12,8 +12,9 @@ import {
   fullMockGamPacks,
   fullMockGamSize,
 } from '@/lib/content/full-mock'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Core + GAM sample simulation' }
+export const metadata = { title: 'Core + GAM sample simulation', ...NOT_A_LANDING_PAGE }
 
 /**
  * The one sitting that runs both modules — as a SAMPLE, not a full-length mock.

@@ -26,6 +26,7 @@ const COLUMNS = [
     links: [
       { href: '/exam', label: 'About the dMAT' },
       { href: '/exam/format', label: 'Format and structure' },
+      { href: '/general-academic', label: 'General Academic Module' },
       { href: '/exam/scoring', label: 'Scoring and results' },
       { href: '/exam/rules', label: 'Exam-day rules' },
       { href: '/exam/sources', label: 'Where our facts come from' },

@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 
 import { GamPackRunner } from '@/components/gam/pack-runner'
 import { getPack, getPackIds, getPublicPack } from '@/lib/gam/registry'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
 export function generateStaticParams() {
   return getPackIds().map((pack) => ({ pack }))
@@ -10,7 +11,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/module-b/practice/[pack]'>) {
   const { pack } = await params
   const file = getPack(pack)
-  return file ? { title: `${file.pack.title} — Module B` } : {}
+  return file
+    ? { title: `${file.pack.title} — Module B`, ...NOT_A_LANDING_PAGE }
+    : NOT_A_LANDING_PAGE
 }
 
 export default async function GamPackPracticePage({

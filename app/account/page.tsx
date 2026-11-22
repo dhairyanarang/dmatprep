@@ -1,7 +1,8 @@
 import { AccountView } from '@/components/account/account-view'
 import { PageShell } from '@/components/layout/page-shell'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Account' }
+export const metadata = { title: 'Account', ...NOT_A_LANDING_PAGE }
 
 /**
  * Static, like every other route. Everything on it is client state — who is

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { PageShell } from '@/components/layout/page-shell'
 import { TimedLauncher } from '@/components/practice/timed-launcher'
 import { getCoreMock, getCoreMocks, mockSize, mockStages } from '@/lib/content/mocks'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
 /**
  * One of the four fixed Core mocks.
@@ -17,7 +18,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: PageProps<'/test/mock/[mock]'>) {
   const { mock } = await params
   const found = getCoreMock(mock)
-  return { title: found ? found.label : 'Core mock' }
+  return { title: found ? found.label : 'Core mock', ...NOT_A_LANDING_PAGE }
 }
 
 export default async function CoreMockPage({ params }: PageProps<'/test/mock/[mock]'>) {

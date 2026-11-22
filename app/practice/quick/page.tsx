@@ -3,8 +3,9 @@ import { QuickLauncher } from '@/components/practice/quick-launcher'
 import { getPublicQuestions } from '@/lib/content/registry'
 import { SECTION_IDS, type SectionId } from '@/lib/sections'
 import type { Question } from '@/lib/types/question'
+import { NOT_A_LANDING_PAGE } from '@/lib/seo'
 
-export const metadata = { title: 'Quick practice' }
+export const metadata = { title: 'Quick practice', ...NOT_A_LANDING_PAGE }
 
 export default function QuickPracticePage() {
   const pools = Object.fromEntries(

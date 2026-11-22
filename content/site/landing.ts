@@ -87,8 +87,12 @@ export const GAM_SECTION = {
     'The second half of the examination gives you an academic text — often with a table, chart or formula — and asks questions that depend on reading it carefully rather than on knowing the subject. dMAT Prep has a small pilot set of original source packs covering business, natural sciences, computing, mathematics, economics and the social sciences.',
   caveat:
     'This material is a pilot. It passes every automated check the Core bank does, but no human reviewer has signed it off yet, and it is a fraction of a full module in length. It is offered on that basis and labelled as such wherever it appears.',
-  href: '/module-b',
-  cta: 'Try a source pack',
+  // Points at the informational page, not straight at the practice launcher:
+  // somebody reading the landing page is still deciding what this module is,
+  // and the launcher assumes that question is already answered. The practice
+  // link is the primary action on the page it leads to.
+  href: '/general-academic',
+  cta: 'What this module asks',
 } as const
 
 export const PLANS = {
