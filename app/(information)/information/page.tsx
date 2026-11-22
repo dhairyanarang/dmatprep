@@ -84,7 +84,7 @@ export default function InformationPage() {
             nothing on this site has been signed off by a person at g.a.s.t. or APS India. Every
             factual claim about the exam traces to an official source, listed with the date it was
             read on the{' '}
-            <Link href="/exam/sources" className="underline underline-offset-2">
+            <Link href="/dashboard/exam/sources" className="underline underline-offset-2">
               sources page
             </Link>
             .

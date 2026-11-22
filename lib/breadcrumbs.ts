@@ -1,3 +1,4 @@
+import { APP_EXAM_BASE } from '@/lib/exam-nav'
 import { coreMockLabel } from '@/lib/content/mock-label'
 import { getPack } from '@/lib/gam/registry'
 import { SECTION_BY_ID, isSectionId } from '@/lib/sections'
@@ -19,7 +20,7 @@ export type Crumb = {
 
 const PREPARE: Crumb = { label: 'Prepare', href: '/prepare' }
 const TEST: Crumb = { label: 'Test', href: '/test' }
-const EXAM: Crumb = { label: 'About the Exam', href: '/exam' }
+const EXAM: Crumb = { label: 'About the Exam', href: APP_EXAM_BASE }
 const INFORMATION: Crumb = { label: 'Information', href: '/information' }
 
 /** Leaf pages whose trail is fixed. */
@@ -27,17 +28,17 @@ const STATIC: Record<string, Crumb[]> = {
   '/': [{ label: 'Home' }],
   '/prepare': [{ label: 'Prepare' }],
   '/test': [{ label: 'Test' }],
-  '/exam': [{ label: 'About the Exam' }],
+  '/dashboard/exam': [{ label: 'About the Exam' }],
   '/practice/quick': [PREPARE, { label: 'Quick practice' }],
   '/practice/mistakes': [PREPARE, { label: 'Your mistakes' }],
   '/practice/diagnostic': [TEST, { label: 'Diagnostic' }],
   '/practice/simulation': [TEST, { label: 'Open simulation' }],
-  '/exam/format': [EXAM, { label: 'Format & structure' }],
-  '/exam/rules': [EXAM, { label: 'Exam-day rules' }],
-  '/exam/scoring': [EXAM, { label: 'Scoring & results' }],
-  '/exam/logistics': [EXAM, { label: 'Dates & logistics' }],
-  '/exam/checklist': [EXAM, { label: 'Pre-exam checklist' }],
-  '/exam/sources': [EXAM, { label: 'Sources' }],
+  '/dashboard/exam/format': [EXAM, { label: 'Format & structure' }],
+  '/dashboard/exam/rules': [EXAM, { label: 'Exam-day rules' }],
+  '/dashboard/exam/scoring': [EXAM, { label: 'Scoring & results' }],
+  '/dashboard/exam/logistics': [EXAM, { label: 'Dates & logistics' }],
+  '/dashboard/exam/checklist': [EXAM, { label: 'Pre-exam checklist' }],
+  '/dashboard/exam/sources': [EXAM, { label: 'Sources' }],
   '/module-b': [PREPARE, { label: 'Module B' }],
   '/module-b/timed': [TEST, { label: 'Module B', href: '/module-b' }, { label: 'Timed session' }],
 

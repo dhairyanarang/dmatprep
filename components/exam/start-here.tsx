@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
 import { Disclosure } from '@/components/content/disclosure'
+import { ExamLink } from '@/components/exam/exam-link'
 
 /**
  * The five questions someone actually arrives with, answered in a line each.
@@ -22,7 +23,7 @@ const ANSWERS: { q: string; a: React.ReactNode; more?: React.ReactNode }[] = [
     more: (
       <>
         The Core Module runs 25 minutes per subtest; the Subject Module runs 90. All tasks are
-        single-choice. <Link href="/exam/format">Format &amp; structure</Link> has the full
+        single-choice. <ExamLink href="/exam/format">Format &amp; structure</ExamLink> has the full
         breakdown, including where the two official sources disagree on total duration.
       </>
     ),
@@ -45,7 +46,7 @@ const ANSWERS: { q: string; a: React.ReactNode; more?: React.ReactNode }[] = [
         list is guidance and not exhaustive, and that the official degree title decides. Exemptions
         cover pre-29 June 2026 APS registrations, existing certificate holders,
         Bachelor&rsquo;s and PhD applicants, and confirmed exchange programmes.{' '}
-        <Link href="/exam/logistics">Dates &amp; logistics</Link> lists them.
+        <ExamLink href="/exam/logistics">Dates &amp; logistics</ExamLink> lists them.
       </>
     ),
   },

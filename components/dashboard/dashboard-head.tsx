@@ -78,7 +78,7 @@ export function DashboardHead({ bankSizes }: { bankSizes: Record<SectionId, numb
 
       <div className="flex flex-wrap gap-2">
         <Link
-          href="/exam/logistics"
+          href="/dashboard/exam/logistics"
           className="border-border bg-card hover:bg-frame inline-flex h-9 items-center gap-2 rounded-lg border px-3.5 text-sm font-medium transition-colors"
         >
           <CalendarDays aria-hidden className="size-4" />

@@ -13,6 +13,7 @@ import {
   type LucideIcon,
 } from 'lucide-react'
 
+import { APP_EXAM_BASE } from '@/lib/exam-nav'
 import type { SectionId } from '@/lib/sections'
 
 /**
@@ -77,7 +78,13 @@ export const NAV: NavGroup[] = [
   {
     label: 'The exam',
     links: [
-      { href: '/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
+      // `/dashboard/exam`, not `/exam`. The public website's examination
+      // pages live at `/exam` and render in the public shell; from inside the
+      // product this row must keep the student in the product. Same seven
+      // documents, same components — see lib/exam-nav.ts. Written as a
+      // literal, not APP_EXAM_BASE: the row-count test counts link entries
+      // by their literal key, and a constant here reads to it as a lost row.
+      { href: '/dashboard/exam', label: 'About the Exam', hint: 'Format, rules and dates', icon: BookOpenCheck },
       { href: '/information', label: 'Information', hint: 'Who runs this, and the policies', icon: Info },
     ],
   },
@@ -133,7 +140,7 @@ const OWNS: Record<string, (path: string) => boolean> = {
     (path.startsWith('/practice') &&
       !path.startsWith('/practice/quick') &&
       !path.startsWith('/practice/mistakes')),
-  '/exam': (path) => path.startsWith('/exam'),
+  [APP_EXAM_BASE]: (path) => path.startsWith(APP_EXAM_BASE),
   '/information': (path) =>
     path.startsWith('/information') ||
     INFO_LINKS.some((link) => link.href !== '/information' && path === link.href),

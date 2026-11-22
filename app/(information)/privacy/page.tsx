@@ -79,7 +79,7 @@ export default function PrivacyPage() {
             dMAT Prep is an independent preparation tool. It is not affiliated with g.a.s.t., APS
             India, or any body that administers the dMAT, and nothing here is an official
             statement about the exam. Every factual claim is listed against its source on the{' '}
-            <a href="/exam/sources" className="text-foreground underline underline-offset-2">
+            <a href="/dashboard/exam/sources" className="text-foreground underline underline-offset-2">
               Sources
             </a>{' '}
             page.

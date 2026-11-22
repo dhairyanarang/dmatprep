@@ -1,6 +1,6 @@
-import Link from 'next/link'
 import { ExternalLink } from 'lucide-react'
 
+import { ExamLink } from '@/components/exam/exam-link'
 import { SubPage } from '@/components/layout/sub-nav'
 import { Badge } from '@/components/ui/badge'
 import { SOURCES, type SourceId } from '@/content/exam/sources'
@@ -61,12 +61,15 @@ export default function ExamSourcesPage() {
                     >
                       {entry.confidence === 'unconfirmed' ? 'Unconfirmed' : 'Inferred'}
                     </Badge>
-                    <Link
+                    {/* The ledger stores the canonical public path; ExamLink
+                        rebases it when this page is rendered inside the
+                        application, so the link stays in the product. */}
+                    <ExamLink
                       href={entry.href}
                       className="text-muted-foreground hover:text-foreground text-xs underline underline-offset-4"
                     >
                       {entry.where}
-                    </Link>
+                    </ExamLink>
                   </div>
                   <p className="mt-2 text-sm leading-relaxed">{entry.text}</p>
                   {entry.note ? (
