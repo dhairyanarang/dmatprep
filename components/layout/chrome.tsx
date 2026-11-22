@@ -28,7 +28,21 @@ import { SiteHeader } from '@/components/site/site-header'
  * crawler receives genuinely has no sidebar in it — the switch is not a
  * client-side repaint.
  */
-const PUBLIC_PREFIXES = ['/faq', '/guides', '/about', '/general-academic']
+const PUBLIC_PREFIXES = [
+  '/faq',
+  '/guides',
+  '/about',
+  '/general-academic',
+  // About the exam and Pricing are public destinations, not product screens.
+  // They are what somebody arriving from a search result came to read, and
+  // they are two of the five items in the public header — sending them into
+  // the application's sidebar was the one place the two experiences leaked
+  // into each other. The pages themselves are unchanged; only the shell
+  // around them is. `/exam` carries its own internal sub-navigation, which is
+  // part of that section rather than product chrome, so it stays.
+  '/exam',
+  '/pricing',
+]
 
 export function isPublicRoute(pathname: string): boolean {
   if (pathname === '/') return true
@@ -53,7 +67,14 @@ export function Chrome({ children }: { children: React.ReactNode }) {
     return (
       <div className="flex min-h-svh flex-col">
         <SiteHeader />
-        <main className="flex-1">{children}</main>
+        {/* `key` is the point: a CSS animation only runs when the element is
+            mounted, so keying main on the path replays the entry transition on
+            each public navigation instead of once per session. The product
+            shell deliberately has no equivalent — nothing about the
+            application's UX changes here. */}
+        <main key={pathname} className="page-enter flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </div>
     )

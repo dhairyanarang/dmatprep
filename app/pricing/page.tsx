@@ -46,8 +46,9 @@ export default function PricingPage() {
   const mocks = getCoreMocks()
   const mockQuestions = mocks[0] ? mockSize(mocks[0]) : 0
 
+  // Width matched to the public header and footer — see app/exam/layout.tsx.
   return (
-    <PageContainer className="flex flex-1 flex-col items-stretch gap-11 pt-12 pb-16">
+    <PageContainer className="flex max-w-6xl flex-1 flex-col items-stretch gap-11 pt-12 pb-16 sm:px-6">
       <PremiumViewed />
 
       <section className="flex flex-col items-center gap-3 text-center">

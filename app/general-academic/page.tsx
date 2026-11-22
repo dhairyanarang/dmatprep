@@ -167,13 +167,13 @@ export default function GeneralAcademicPage() {
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
               href="/module-b"
-              className="bg-brand text-brand-foreground hover:bg-brand-strong inline-flex h-10 items-center rounded-md px-4 text-[14px] font-medium transition-colors duration-150"
+              className="press bg-brand text-brand-foreground hover:bg-brand-strong inline-flex h-10 items-center rounded-md px-4 text-[14px] font-medium transition-colors duration-150"
             >
               Open the source packs
             </Link>
             <Link
               href="/exam/format"
-              className="border-border hover:bg-frame inline-flex h-10 items-center rounded-md border px-4 text-[14px] font-medium transition-colors duration-150"
+              className="press border-border hover:bg-frame inline-flex h-10 items-center rounded-md border px-4 text-[14px] font-medium transition-colors duration-150"
             >
               How the exam is structured
             </Link>

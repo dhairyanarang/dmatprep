@@ -57,7 +57,7 @@ function Disclosure({ item }: { item: FaqItem }) {
           )}
         />
       </summary>
-      <div id={panelId} className="pb-5">
+      <div id={panelId} className="panel-reveal pb-5">
         {item.a.map((para, i) => (
           <p key={i} className="text-muted-foreground max-w-[68ch] text-[14.5px] leading-7 [&+&]:mt-3">
             {para}

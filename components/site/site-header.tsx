@@ -73,7 +73,8 @@ export function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'relative rounded-md px-3 py-1.5 text-[14px] transition-colors duration-150',
+                  'group/nav relative rounded-md px-3 py-1.5 text-[14px] transition-colors duration-150',
+                  'focus-visible:ring-brand focus-visible:ring-2 focus-visible:outline-none',
                   active
                     ? 'text-foreground'
                     : 'text-muted-foreground hover:text-foreground',
@@ -87,7 +88,12 @@ export function SiteHeader() {
                   aria-hidden
                   className={cn(
                     'bg-brand absolute inset-x-3 -bottom-px h-px origin-left transition-transform duration-150',
-                    active ? 'scale-x-100' : 'scale-x-0',
+                    // On hover the marker previews at half weight, so the
+                    // pointer gets an answer without the page gaining a second
+                    // thing that looks selected.
+                    active
+                      ? 'scale-x-100'
+                      : 'scale-x-0 opacity-50 group-hover/nav:scale-x-100',
                   )}
                 />
               </Link>
@@ -97,8 +103,8 @@ export function SiteHeader() {
 
         <div className="ml-auto flex items-center gap-2">
           <Link
-            href="/prepare"
-            className="bg-brand text-brand-foreground hover:bg-brand-strong hidden h-8 items-center rounded-md px-3 text-[13.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none sm:flex"
+            href="/dashboard"
+            className="press bg-brand text-brand-foreground hover:bg-brand-strong hidden h-8 items-center rounded-md px-3 text-[13.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none sm:flex"
           >
             Start practising
           </Link>
@@ -116,7 +122,7 @@ export function SiteHeader() {
       </div>
 
       {open ? (
-        <div id="site-menu" className="border-border bg-background border-t md:hidden">
+        <div id="site-menu" className="menu-enter border-border bg-background border-t md:hidden">
           <nav aria-label="Site" className="mx-auto flex max-w-6xl flex-col px-4 py-2 sm:px-6">
             {SITE_NAV.map((item) => (
               <Link
@@ -128,8 +134,8 @@ export function SiteHeader() {
               </Link>
             ))}
             <Link
-              href="/prepare"
-              className="bg-brand text-brand-foreground mt-2 mb-2 flex h-10 items-center justify-center rounded-md text-[14px] font-medium"
+              href="/dashboard"
+              className="press bg-brand text-brand-foreground mt-2 mb-2 flex h-10 items-center justify-center rounded-md text-[14px] font-medium"
             >
               Start practising
             </Link>

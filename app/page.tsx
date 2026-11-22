@@ -63,7 +63,7 @@ export default function LandingPage() {
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Link
               href={HERO.primary.href}
-              className="bg-brand text-brand-foreground hover:bg-brand-strong group inline-flex h-11 items-center gap-2 rounded-md px-5 text-[14.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
+              className="press bg-brand text-brand-foreground hover:bg-brand-strong group inline-flex h-11 items-center gap-2 rounded-md px-5 text-[14.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
             >
               {HERO.primary.label}
               <ArrowRight
@@ -252,7 +252,7 @@ export default function LandingPage() {
           </p>
           <Link
             href="/prepare"
-            className="bg-brand text-brand-foreground hover:bg-brand-strong group mt-7 inline-flex h-11 items-center gap-2 rounded-md px-5 text-[14.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
+            className="press bg-brand text-brand-foreground hover:bg-brand-strong group mt-7 inline-flex h-11 items-center gap-2 rounded-md px-5 text-[14.5px] font-medium transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 focus-visible:outline-none"
           >
             Start practising
             <ArrowRight

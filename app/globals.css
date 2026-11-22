@@ -589,3 +589,80 @@
     align-items: flex-start;
   }
 }
+
+/**
+ * Public-site motion.
+ *
+ * Four small things, all CSS — no animation library was added, and nothing
+ * here runs inside the application. Each answers one of the questions
+ * CLAUDE.md allows motion to answer: where did I go (page entry), did my
+ * action register (press feedback, disclosure reveal), what changed (the
+ * mobile menu arriving rather than appearing).
+ *
+ * None of it needs a `prefers-reduced-motion` guard of its own. The global
+ * block above already collapses every animation and transition on the page to
+ * 0.01ms, so these degrade to an instant state change for anyone who has asked
+ * for that — which is the correct outcome here, since none of them carries
+ * information the static state does not.
+ *
+ * Durations follow the system: 150ms for controls, 200ms for panels.
+ */
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Keyed on the pathname in `components/layout/chrome.tsx`, so it replays per
+   navigation rather than once per session. */
+.page-enter {
+  animation: page-enter 240ms cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+@keyframes panel-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The body of an open FAQ disclosure. `<details>` cannot animate its own
+   height portably, so the content arrives rather than the box growing — the
+   layout shift is identical either way, and this needs no JavaScript. */
+details[open] > .panel-reveal {
+  animation: panel-reveal 200ms ease-out both;
+}
+
+/* The mobile menu, which previously appeared with no transition at all. */
+.menu-enter {
+  animation: panel-reveal 200ms ease-out both;
+}
+
+/**
+ * Press feedback for the public site's buttons.
+ *
+ * A link that moves one pixel under the pointer is the cheapest possible
+ * confirmation that the click landed, and it costs no layout — `transform`
+ * and `opacity` are the two properties the compositor can animate without
+ * touching the rest of the page.
+ */
+.press {
+  transition:
+    transform 120ms ease,
+    background-color 150ms ease,
+    color 150ms ease,
+    border-color 150ms ease;
+}
+
+.press:active {
+  transform: translateY(1px);
+}

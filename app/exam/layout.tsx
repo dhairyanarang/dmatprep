@@ -11,8 +11,13 @@ import { EXAM_SECTIONS } from '@/lib/exam-nav'
  * the six documents under it are visibly one thing. Every URL is unchanged.
  */
 export default function ExamLayout({ children }: LayoutProps<'/exam'>) {
+  // `max-w-6xl sm:px-6` overrides PageContainer's 1280px to match the public
+  // header and footer. This section renders inside the public shell now, and
+  // at the application's wider measure its content started 56px outside the
+  // header above it. twMerge keeps the className's width, so this replaces
+  // PageContainer's rather than fighting it.
   return (
-    <PageContainer className="stagger-enter flex flex-col gap-5 pt-6 pb-12">
+    <PageContainer className="stagger-enter flex max-w-6xl flex-col gap-5 pt-6 pb-12 sm:px-6">
       <SubNavLayout
         nav={
           <SubNav
